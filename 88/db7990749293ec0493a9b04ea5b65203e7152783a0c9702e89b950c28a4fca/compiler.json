@@ -1,0 +1,1186 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from proxy_fragment_jetton.tolk\nPROGRAM{\n  DECLPROC sendJettonTransfer()\n  DECLPROC processDistribution()\n  0 DECLMETHOD onInternalMessage()\n  201 DECLMETHOD getOwner()\n  202 DECLMETHOD isWalletAuthorized()\n  // 5 functions inlined in-place:\n  // - loadStorage (3 calls)\n  // - saveStorage (2 calls)\n  // - isWalletAuthorizedInMap (2 calls)\n  // - sendJettonBackByData (3 calls)\n  // - MapLookupResult<bool>.loadValue (1 call)\n  sendJettonTransfer() PROC:<{\n    s3 PUSH\n    1 LESSINT\n    IFJMP:<{\n      8 BLKDROP\n    }>\n    7 PUSHPOW2\n    1 PUSHINT\n    CONDSEL\n    50000000 PUSHINT\n    s3 PUSH\n    ADD\n    PUSHNULL\n    NEWC\n    x{0f8a7ea5} STSLICECONST\n    s1 s10 XCHG\n    64 STU\n    s0 s5 XCHG2\n    STGRAMS\n    s1 s5 XCHG\n    STSTDADDR\n    s1 s6 XCHG\n    STSTDADDR\n    s1 s6 XCHG\n    STOPTREF\n    s0 s5 XCHG2\n    STGRAMS\n    s1 s3 XCHG\n    STOPTREF\n    ENDC\n    NEWC\n    b{010000} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    s0 s3 XCHG2\n    STGRAMS\n    1 PUSHINT\n    107 STUR\n    s1 s2 XCHG\n    STREF\n    ENDC\n    SWAP\n    SENDRAWMSG\n  }>\n  processDistribution() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    CTOS\n    s4 s3 s2 PUSH3\n    s4 PUSH\n    CONT:<{\n      2DROP\n      s0 s0 s2 XCPUXC\n      0 PUSHINT\n      PUSHNULL\n      FALSE\n      sendJettonTransfer() CALLDICT\n    }>\n    0b10111010 SETCONTMANY\n    4 PUSHINT\n    -1 PUSHINT\n    SETCONTVARARGS\n    CONT:<{\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      LDREF\n      PUSHNULL\n      0 PUSHINT\n      PUSHNULL\n      s11 s1 s(-2) PU2XC\n      s12 PUSH\n      s12 s2 s(-1) PUXC2\n      s12 PUSH\n      s8 s2 s(-1) PUXC2\n      s13 PUSH\n      s13 s2 s(-1) PUXC2\n      s13 PUSH\n      s13 s2 s10 PUXC2\n      s12 s0 s11 XC2PU\n      s13 PUSH\n      CONT:<{\n        2DROP\n      }>\n      0b10111010 SETCONTMANY\n      13 PUSHINT\n      -1 PUSHINT\n      SETCONTVARARGS\n      CONT:<{\n        s0 s2 XCHG\n        LDSTDADDR\n        LDGRAMS\n        s0 s8 XCHG\n        s0 s7 XCHG\n        s0 s6 XCHG\n        s0 s5 XCHG\n        s1 s4 s4 XCHG3\n        s0 s3 XCHG\n      }>\n      c1 PUSH\n      COMPOSALT\n      SWAP\n      TRY\n      s3 PUSH\n      ISNULL\n      IFNOT:<{\n        s12 PUSH\n        s12 s2 s(-1) PUXC2\n        s12 PUSH\n        s12 s2 s(-1) PUXC2\n        s11 PUSH\n        s11 s2 s(-1) PUXC2\n        s11 PUSH\n        s11 s2 s(-1) PUXC2\n        s11 PUSH\n        s11 s2 s(-1) PUXC2\n        CONT:<{\n          2DROP\n        }>\n        0b10111010 SETCONTMANY\n        12 PUSHINT\n        -1 PUSHINT\n        SETCONTVARARGS\n        CONT:<{\n          s0 s6 XCHG\n          LDSTDADDR\n          LDGRAMS\n          DROP\n          s6 s7 XCHG\n          s5 s6 XCHG\n          s4 s5 XCHG\n          s3 s4 XCHG\n          s2 s3 XCHG\n        }>\n        c1 PUSH\n        COMPOSALT\n        SWAP\n        TRY\n        7 -ROLL\n      }>ELSE<{\n        s8 POP\n      }>\n      s5 s2 PUSH2\n      ISNULL\n      IFNOT:<{\n        s2 PUSH\n        ADD\n      }>\n      OVER\n      ISNULL\n      IFNOT:<{\n        s8 PUSH\n        ADD\n      }>\n      s0 s11 PUSH2\n      GREATER\n      IFJMP:<{\n        9 BLKDROP\n        s0 s0 s2 XCPUXC\n        0 PUSHINT\n        PUSHNULL\n        FALSE\n        sendJettonTransfer() CALLDICT\n        RETALT\n      }>\n      s1 s11 XCHG\n      SUB\n      DUP\n      0 GTINT\n      s3 PUSH\n      ISNULL\n      IF:<{\n        s11 PUSH\n        ISNULL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        DUP\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      s13 PUSH\n      s5 s12 XCPU\n      s5 s12 XCPU\n      s0 s5 XCHG\n      s4 s11 XCHG\n      s3 s10 XCHG\n      s9 s8 s10 XCHG3\n      sendJettonTransfer() CALLDICT\n      OVER\n      ISNULL\n      IFNOT:<{\n        0 PUSHINT\n        PUSHNULL\n        s9 PUSH\n        ISNULL\n        IF:<{\n          s5 PUSH\n          NOT\n          0 NEQINT\n        }>ELSE<{\n          OVER\n        }>\n        s11 PUSH\n        s5 s10 XCPU\n        s5 s10 XCPU\n        s5 s1 s5 XCHG3\n        s4 s4 XCHG2\n        s0 s3 XCHG\n        sendJettonTransfer() CALLDICT\n      }>ELSE<{\n        2DROP\n      }>\n      s5 PUSH\n      ISNULL\n      IFNOT:<{\n        0 PUSHINT\n        PUSHNULL\n        s3 PUSH\n        NOT\n        s9 PUSH\n        s5 s8 XCPU\n        s5 s8 XCPU\n        s0 s5 XCHG\n        s4 s11 XCHG\n        s3 s8 XCHG\n        s0 s11 s8 XCHG3\n        sendJettonTransfer() CALLDICT\n        s0 s3 XCHG\n      }>ELSE<{\n        s2 POP\n        s4 POP\n      }>\n      s0 s3 XCHG\n      IF:<{\n        s0 s0 s2 XCPUXC\n        0 PUSHINT\n        PUSHNULL\n        TRUE\n        sendJettonTransfer() CALLDICT\n      }>ELSE<{\n        4 BLKDROP\n      }>\n    }>\n    c1 PUSH\n    COMPOSALT\n    SWAP\n    TRY\n  }>\n  onInternalMessage() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    INMSG_BOUNCED\n    0 THROWIF\n    DUP\n    SBITS\n    32 LESSINT\n    IFJMP:<{\n      DROP\n    }>\n    c4 PUSH\n    CTOS\n    1 LDU\n    NIP\n    LDSTDADDR\n    PUSHNULL\n    OVER\n    SEMPTY\n    IFNOT:<{\n      DROP\n      PLDDICT\n    }>ELSE<{\n      NIP\n    }>\n    s2 PUSH\n    32 LDU\n    OVER\n    1 EQINT\n    IFJMP:<{\n      5 BLKDROP\n    }>\n    OVER\n    2584504897 PUSHINT\n    EQUAL\n    IFJMP:<{\n      NIP\n      s3 POP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s2 XCHG\n      LDSTDADDR\n      DROP\n      NEWC\n      b{1} STSLICECONST\n      s0 s1 s3 XCHG3\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      b{0} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      STDICT\n      ENDC\n      c4 POP\n    }>\n    OVER\n    2827734651 PUSHINT\n    EQUAL\n    IFJMP:<{\n      NIP\n      s3 POP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s2 XCHG\n      LDSTDADDR\n      DROP\n      NEWC\n      b{0} STSLICECONST\n      s0 s1 s3 XCHG3\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      b{0} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      STDICT\n      ENDC\n      c4 POP\n    }>\n    DROP\n    1 2 BLKDROP2\n    1935855772 PUSHINT\n    EQUAL\n    IFJMP:<{\n      INMSG_SRC\n      SWAP\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      IF:<{\n        1 LDI\n        ENDS\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      402 THROWIFNOT\n      CONT:<{\n        2DROP\n        RETALT\n      }>\n      0b10111010 SETCONTMANY\n      CONT:<{\n        32 LDU\n        NIP\n        64 LDU\n        LDGRAMS\n        LDSTDADDR\n        1 LDU\n        SWAP\n        1 NEQINT\n        IFJMP:<{\n          DROP\n          INMSG_SRC\n          s0 s0 s2 XCPUXC\n          0 PUSHINT\n          PUSHNULL\n          FALSE\n          sendJettonTransfer() CALLDICT\n          RETALT\n        }>\n        PLDREF\n        INMSG_SRC\n        SWAP\n        processDistribution() PREPAREDICT\n        6 0 CALLXARGS\n      }>\n      c1 PUSH\n      COMPOSALT\n      SWAP\n      TRY\n    }>\n    2DROP\n  }>\n  getOwner() PROC:<{\n    c4 PUSH\n    CTOS\n    1 LDU\n    NIP\n    LDSTDADDR\n    DUP\n    SEMPTY\n    NIP\n    IFNOT:<{\n    }>\n  }>\n  isWalletAuthorized() PROC:<{\n    c4 PUSH\n    CTOS\n    1 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    PUSHNULL\n    OVER\n    SEMPTY\n    IFNOT:<{\n      DROP\n      PLDDICT\n    }>ELSE<{\n      NIP\n    }>\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IF:<{\n      1 LDI\n      ENDS\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDwEAAskAART/APSkE/S88sgLAQICywIDAgHWBAUCA6ygDQ4CASAGBwFFTtou370FR0MiSZW1QgA3BtcPAB7eO6dH/tEYrtQe3xAfL/gKAuU7aLt+/iR8kAg10nBIJEw4O1E0NMAMfpIbSHHAJExkzD0BeIi0x8hwAGSXwXgIYIQmgxqQbqOIzEz+JIixwXy4ZEC+kgwyM+DQBOBAQv0QcjPgRL6UvQAye1U4CGCEKiLznu64wIwbBKCEHNi0Jy64wJbgCAkAkQjwQGSXwjggwZx4wSCCvrwgCOgbcjPkD4p+pYayz9QBfoCFfpSFvpSFvQAUAX6AhP0AMnIz4UIEvpSUAP6AnHPC2oSzMkB+wCAARjEz+JIixwXy4ZEC+kgwyM+BQBOBAQv0QcjPgRL6UvQAye1UAJz4kgGBAQv0Cm+hldIA0cMAkjBw4vLhkpNb2zHt47qOJ9MfMdM/+gD6SNMAAcMBnTD4klQgA3BtcPAB2zHg10z4kgHxgALaYO1B7fEB8v8B/vpI+gD6ANRtcG1UayAsVEwwLFRIMC1UTTAtVE07VBwLLZFb7eO6gA1/7RGcAvpI+gAIBwYFQUQD7UHt8QHy/yNukTiOOSxUTDAsVEwwK1RLMCtUSzArVEswkVvt47qADH/tEY4QBvpI+gAwEGcQVhBFEDQQI+1B7fEB8v9VYOILAfxTUm6SIqDfIW6SKKDfUwu8nF8JVCADcG1w8AHbMeAboSDCACNulCtuwwCRcOKUILPDAJFw4i1RXFFcBRBLEDpJivABIW6RW44YcG0pbpQls8MAkSHiK1FaUVpFFVBEA/AB4iVukjI0jhNwbSOzKVFYUVgFEEsQOEC48AED4gMMABqYVCADcG1/8AGSXwTiABte1E0NMAMfpIIMcAMTCABLTtRNDTADH6SDFtIccAkTGTMPQF4oEBC/QKb6GV0gDRwwCSMHDig=",
+  "codeHashHex": "88DB7990749293EC0493A9B04EA5B65203E7152783A0C9702E89B950C28A4FCA",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/f9a469cb-1f77-4a7b-99c2-4f44e5042eae/proxy_fragment_jetton.tolk",
+        "size_chars": 7476,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransferInternal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          14
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 21
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          20
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          25,
+          26
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 31,
+        "stack_type_id": 131,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          35
+        ]
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          38
+        ]
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "dict"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          5
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          43
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 15,
+        "struct_name": "CreateMessageOptions<JettonTransferInternal>",
+        "monomorphic_fields_ty_idx": [
+          19,
+          24,
+          34,
+          14
+        ]
+      },
+      {
+        "ty_idx": 41,
+        "struct_name": "MapLookupResult<bool>",
+        "monomorphic_fields_ty_idx": [
+          42,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "dict",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          168,
+          6,
+          168,
+          10
+        ],
+        "target_ty_idx": 12
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 42
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 22
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 32
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 25
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 30
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 16,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 17,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 18,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 19
+          },
+          {
+            "name": "value",
+            "ty_idx": 24
+          },
+          {
+            "name": "dest",
+            "ty_idx": 34
+          },
+          {
+            "name": "body",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 13,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonTransferInternal",
+        "ty_idx": 14,
+        "ident_loc": [
+          1,
+          16,
+          21,
+          16,
+          43
+        ],
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 12
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 12
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "sendJettonTransfer",
+        "return_ty_idx": 0,
+        "num_params": 8,
+        "ident_loc": [
+          1,
+          53,
+          5,
+          53,
+          23
+        ],
+        "end_loc": [
+          1,
+          83,
+          1,
+          83,
+          2
+        ],
+        "params": [
+          {
+            "name": "originalQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "originalSender",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 12
+          },
+          {
+            "name": "carryAll",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "createMessage<JettonTransferInternal>",
+        "return_ty_idx": 13,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "processDistribution",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          111,
+          5,
+          111,
+          24
+        ],
+        "end_loc": [
+          1,
+          213,
+          1,
+          213,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "sendJettonBackByData",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          98,
+          5,
+          98,
+          25
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          215,
+          5,
+          215,
+          22
+        ],
+        "end_loc": [
+          1,
+          272,
+          1,
+          272,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "loadStorage",
+        "return_ty_idx": 39,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          26,
+          5,
+          26,
+          16
+        ],
+        "end_loc": [
+          1,
+          37,
+          1,
+          37,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 6,
+        "name": "map<address, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "saveStorage",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          39,
+          5,
+          39,
+          16
+        ],
+        "end_loc": [
+          1,
+          46,
+          1,
+          46,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "wallets",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "isWalletAuthorizedInMap",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          48,
+          5,
+          48,
+          28
+        ],
+        "end_loc": [
+          1,
+          51,
+          1,
+          51,
+          2
+        ],
+        "params": [
+          {
+            "name": "wallets",
+            "ty_idx": 38
+          },
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "map<address, bool>.get",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MapLookupResult<bool>.loadValue",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "bool.fromSlice",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "getOwner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          275,
+          5,
+          275,
+          13
+        ],
+        "end_loc": [
+          1,
+          278,
+          1,
+          278,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "isWalletAuthorized",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          281,
+          5,
+          281,
+          23
+        ],
+        "end_loc": [
+          1,
+          284,
+          1,
+          284,
+          2
+        ],
+        "params": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransferInternal"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "JettonTransferInternal",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 13
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 13
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERR_ONLY_OWNER",
+        "err_code": 401
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_UNAUTHORIZED_WALLET",
+        "err_code": 402
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/f9a469cb-1f77-4a7b-99c2-4f44e5042eae/proxy_fragment_jetton.tolk",
+      "contents": "const DEPLOY_MESSAGE_OP = 1;\nconst JETTON_TRANSFER_NOTIFICATION_OP = 0x7362d09c;\nconst AUTHORIZE_WALLET_OP = 2584504897;\nconst REVOKE_WALLET_OP = 2827734651;\n\nconst ERR_ONLY_OWNER = 401;\nconst ERR_UNAUTHORIZED_WALLET = 402;\n\nstruct (0x7362d09c) JettonTransferNotification {\n    queryId: uint64;\n    amount: coins;\n    sender: address;\n    forwardPayload: cell;\n}\n\nstruct (0x0f8a7ea5) JettonTransferInternal {\n    queryId: uint64;\n    amount: coins;\n    destination: address;\n    responseDestination: address;\n    customPayload: cell?;\n    forwardTonAmount: coins;\n    forwardPayload: cell?;\n}\n\nfun loadStorage(): (address, map<address, bool>) {\n    var ds = contract.getData().beginParse();\n    ds.loadUint(1); // reserved prefix bit for compatibility with current wrapper init data\n    val owner = ds.loadAddress();\n\n    var walletsLowLevel: dict = null;\n    if (!ds.isEmpty()) {\n        walletsLowLevel = ds.loadDict();\n    }\n\n    return (owner, createMapFromLowLevelDict<address, bool>(walletsLowLevel));\n}\n\nfun saveStorage(owner: address, wallets: map<address, bool>) {\n    val data = beginCell()\n        .storeUint(0, 1)\n        .storeAddress(owner)\n        .storeDict(wallets.toLowLevelDict())\n        .endCell();\n    contract.setData(data);\n}\n\nfun isWalletAuthorizedInMap(wallets: map<address, bool>, wallet: address): bool {\n    val r = wallets.get(wallet);\n    return r.isFound && r.loadValue();\n}\n\nfun sendJettonTransfer(\n    originalQueryId: uint64,\n    originalSender: address,\n    jettonWallet: address,\n    destination: address,\n    amount: coins,\n    forwardTonAmount: coins,\n    forwardPayload: cell?,\n    carryAll: bool\n) {\n    if (amount <= 0) {\n        return;\n    }\n\n    val sendMode = carryAll ? SEND_MODE_CARRY_ALL_BALANCE : SEND_MODE_PAY_FEES_SEPARATELY;\n\n    createMessage({\n        bounce: false,\n        value: (50000000 + forwardTonAmount),\n        dest: jettonWallet,\n        body: JettonTransferInternal {\n            queryId: originalQueryId,\n            amount: amount,\n            destination: destination,\n            responseDestination: originalSender,\n            customPayload: null,\n            forwardTonAmount: forwardTonAmount,\n            forwardPayload: forwardPayload,\n        },\n    }).send(sendMode);\n}\n\nfun sendJettonBack(transfer: JettonTransferNotification, jettonWallet: address) {\n    sendJettonTransfer(\n        transfer.queryId,\n        transfer.sender,\n        jettonWallet,\n        transfer.sender,\n        transfer.amount,\n        0,\n        null,\n        false\n    );\n}\n\nfun sendJettonBackByData(queryId: uint64, sender: address, amount: coins, jettonWallet: address) {\n    sendJettonTransfer(\n        queryId,\n        sender,\n        jettonWallet,\n        sender,\n        amount,\n        0,\n        null,\n        false\n    );\n}\n\nfun processDistribution(\n    queryId: uint64,\n    amount: coins,\n    sender: address,\n    jettonWallet: address,\n    forwardPayload: cell\n) {\n    var payload = forwardPayload.beginParse();\n\n    try {\n        val primaryTo = payload.loadAddress();\n        val primaryValue = payload.loadCoins();\n        val primaryForwardAmount = payload.loadCoins();\n        val primaryBody = payload.loadRef();\n\n        var secondaryTo: address? = null;\n        var secondaryValue: coins = 0;\n        var tailTo: address? = null;\n        var tailValue: coins = 0;\n\n        try {\n            secondaryTo = payload.loadAddress();\n            secondaryValue = payload.loadCoins();\n        } catch {\n        }\n\n        if (secondaryTo != null) {\n            try {\n                tailTo = payload.loadAddress();\n                tailValue = payload.loadCoins();\n            } catch {\n            }\n        }\n\n        var totalToDistribute: coins = primaryValue;\n        if (secondaryTo != null) {\n            totalToDistribute += secondaryValue;\n        }\n        if (tailTo != null) {\n            totalToDistribute += tailValue;\n        }\n\n        if (totalToDistribute > amount) {\n            sendJettonBackByData(queryId, sender, amount, jettonWallet);\n            return;\n        }\n\n        val remainingAmount = amount - totalToDistribute;\n        val hasRemaining = remainingAmount > 0;\n\n        sendJettonTransfer(\n            queryId,\n            sender,\n            jettonWallet,\n            primaryTo,\n            primaryValue,\n            primaryForwardAmount,\n            primaryBody,\n            (secondaryTo == null) && (tailTo == null) && !hasRemaining\n        );\n\n        if (secondaryTo != null) {\n            sendJettonTransfer(\n                queryId,\n                sender,\n                jettonWallet,\n                secondaryTo!!,\n                secondaryValue,\n                0,\n                null,\n                (tailTo == null) && !hasRemaining\n            );\n        }\n\n        if (tailTo != null) {\n            sendJettonTransfer(\n                queryId,\n                sender,\n                jettonWallet,\n                tailTo!!,\n                tailValue,\n                0,\n                null,\n                !hasRemaining\n            );\n        }\n\n        if (hasRemaining) {\n            sendJettonTransfer(\n                queryId,\n                sender,\n                jettonWallet,\n                sender,\n                remainingAmount,\n                0,\n                null,\n                true\n            );\n        }\n    } catch {\n        sendJettonBackByData(queryId, sender, amount, jettonWallet);\n    }\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.remainingBitsCount() < 32) {\n        return;\n    }\n\n    val (owner, wallets) = loadStorage();\n\n    var body = in.body;\n    val op = body.loadUint(32);\n\n    if (op == DEPLOY_MESSAGE_OP) {\n        return;\n    }\n\n    if (op == AUTHORIZE_WALLET_OP) {\n        assert (in.senderAddress == owner) throw ERR_ONLY_OWNER;\n        val wallet = body.loadAddress();\n        var updated = wallets;\n        updated.set(wallet, true);\n        saveStorage(owner, updated);\n        return;\n    }\n\n    if (op == REVOKE_WALLET_OP) {\n        assert (in.senderAddress == owner) throw ERR_ONLY_OWNER;\n        val wallet = body.loadAddress();\n        var updated = wallets;\n        updated.set(wallet, false);\n        saveStorage(owner, updated);\n        return;\n    }\n\n    if (op == JETTON_TRANSFER_NOTIFICATION_OP) {\n        assert (isWalletAuthorizedInMap(wallets, in.senderAddress)) throw ERR_UNAUTHORIZED_WALLET;\n\n        try {\n            var notifyBody = in.body;\n            notifyBody.loadUint(32); // op\n            val queryId = notifyBody.loadUint(64);\n            val amount = notifyBody.loadCoins();\n            val sender = notifyBody.loadAddress();\n\n            // Jetton standard encodes forward_payload as (Either Cell ^Cell).\n            // We support the common right branch where payload is in a reference.\n            val isRight = notifyBody.loadUint(1);\n            if (isRight != 1) {\n                sendJettonBackByData(queryId, sender, amount, in.senderAddress);\n                return;\n            }\n\n            val forwardPayload = notifyBody.loadRef();\n            processDistribution(queryId, amount, sender, in.senderAddress, forwardPayload);\n        } catch {\n            return;\n        }\n        return;\n    }\n}\n\n@method_id(201)\nfun getOwner(): address {\n    val (owner, _) = loadStorage();\n    return owner;\n}\n\n@method_id(202)\nfun isWalletAuthorized(wallet: address): bool {\n    val (_, wallets) = loadStorage();\n    return isWalletAuthorizedInMap(wallets, wallet);\n}\n"
+    }
+  ]
+}

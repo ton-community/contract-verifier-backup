@@ -1,0 +1,2180 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from TradeFactory.tolk, trade_types.tolk\nPROGRAM{\n  DECLPROC sweepableBalance()\n  DECLPROC allowedCollectionAt()\n  0 DECLMETHOD onInternalMessage()\n  128295 DECLMETHOD getNextTradeId()\n  106423 DECLMETHOD isCollectionAllowed()\n  113530 DECLMETHOD getAllowedCollections()\n  87067 DECLMETHOD getAllowedCollectionCount()\n  78164 DECLMETHOD getAllowedCollectionAt()\n  70001 DECLMETHOD getAllowedCollectionInfo()\n  128267 DECLMETHOD getAllowedCollectionItemCodeHash()\n  102025 DECLMETHOD getOwner()\n  74724 DECLMETHOD getVersion()\n  93770 DECLMETHOD getConfig()\n  // 6 functions inlined in-place:\n  // - TradeFactoryStorage.load (13 calls)\n  // - TradeFactoryStorage.save (4 calls)\n  // - sendTon (2 calls)\n  // - addrWorkchain (2 calls)\n  // - allowedCollectionCount (1 call)\n  // - onBouncedMessage (0 calls)\n  // - MapEntry<address, cell>.getKey (1 call)\n  sweepableBalance() PROC:<{\n    BALANCE\n    FIRST\n    s0 s2 PUSH2\n    LEQ\n    IFJMP:<{\n      3 BLKDROP\n      0 PUSHINT\n    }>\n    ROT\n    SUB\n    OVER\n    10000000 PUSHINT\n    ADD\n    OVER\n    GEQ\n    IFJMP:<{\n      2DROP\n      0 PUSHINT\n    }>\n    SUBR\n    10000000 PUSHINT\n    SUB\n  }>\n  allowedCollectionAt() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    DUP\n    -1 GTINT\n    113 THROWIFNOT\n    0 PUSHINT\n    s2 PUSH\n    267 PUSHINT\n    DICTMIN NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      s1 s2 PUSH2\n      EQUAL\n      IFJMP:<{\n        3 1 BLKDROP2\n        RETALT\n      }>\n      SWAP\n      INC\n      s1 s3 XCPU\n      267 PUSHINT\n      DICTGETNEXT NULLSWAPIFNOT2\n      s2 POP\n    }>\n    4 BLKDROP\n    113 THROW\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    SEMPTY\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{54524352} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      LDSTDADDR\n      LDSTDADDR\n      LDGRAMS\n      DROP\n      s2 s1 PUSH2\n      SDEQ\n      100 THROWIF\n      16 PUSHPOW2DEC\n      s3 PUSH\n      NEWC\n      STSTDADDR\n      BTOS\n      3 LDU\n      NIP\n      8 PLDU\n      THROWANYIF\n      16 PUSHPOW2DEC\n      s2 PUSH\n      NEWC\n      STSTDADDR\n      BTOS\n      3 LDU\n      NIP\n      8 PLDU\n      THROWANYIF\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        INMSG_SRC\n        s2 PUSH\n        SDEQ\n        0 NEQINT\n      }>\n      101 THROWIFNOT\n      DUP\n      50000000 PUSHINT\n      GEQ\n      113 THROWIFNOT\n      INMSG_VALUE\n      OVER\n      10000000 PUSHINT\n      ADD\n      GEQ\n      112 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      DUP\n      LDREF\n      PLDOPTREF\n      s3 PUSH\n      MYADDR\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      ENDC\n      NEWDICT\n      NEWDICT\n      SWAP\n      NEWC\n      STOPTREF\n      STOPTREF\n      x{00000000} STSLICECONST\n      ENDC\n      s6 PUSH\n      s0 s9 XCHG\n      NEWC\n      64 STU\n      s1 s10 XCHG\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      STREF\n      b{0000000000} STSLICECONST\n      s1 s7 XCHG\n      STREF\n      0 PUSHINT\n      72 STUR\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      NEWC\n      b{01000010000000000} STSLICECONST\n      s1 s6 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      s0 s4 XCHG2\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s5 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      s0 s2 XCHG\n      INC\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{46535750} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      OVER\n      SDEQ\n      114 THROWIFNOT\n      INMSG_VALUE\n      30000000 PUSHINT\n      sweepableBalance() CALLDICT\n      DUP\n      0 GTINT\n      116 THROWIFNOT\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n      INMSG_SRC\n      INMSG_VALUE\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{41444443} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      LDREF\n      PLDOPTREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      114 THROWIFNOT\n      s0 s4 XCHG\n      LDSTDADDR\n      PLDREF\n      s0 s1 s5 XCHG3\n      267 PUSHINT\n      DICTSETREF\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      s1 s2 XCHG\n      STREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{524d5643} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      LDREF\n      PLDOPTREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      114 THROWIFNOT\n      s0 s4 XCHG\n      LDSTDADDR\n      DROP\n      s0 s4 XCHG2\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      s1 s2 XCHG\n      STREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{544f574e} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      114 THROWIFNOT\n      s0 s2 XCHG\n      LDSTDADDR\n      DROP\n      s0 s1 PUXC\n      SDEQ\n      100 THROWIF\n      NEWC\n      STSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  getNextTradeId() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 PLDU\n  }>\n  isCollectionAllowed() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n  }>\n  getAllowedCollections() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n  }>\n  getAllowedCollectionCount() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n    0 PUSHINT\n    OVER\n    267 PUSHINT\n    DICTMIN NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      SWAP\n      INC\n      s1 s2 XCPU\n      267 PUSHINT\n      DICTGETNEXT NULLSWAPIFNOT2\n      s2 POP\n    }>\n    DROP\n    NIP\n  }>\n  getAllowedCollectionAt() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n    SWAP\n    allowedCollectionAt() CALLDICT\n  }>\n  getAllowedCollectionInfo() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n    s0 s1 PUXC\n    allowedCollectionAt() CALLDICT\n    s0 s1 PUXC\n    267 PUSHINT\n    DICTGETREF\n    9 THROWIFNOT\n    HASHCU\n  }>\n  getAllowedCollectionItemCodeHash() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    PLDOPTREF\n    267 PUSHINT\n    DICTGETREF\n    9 THROWIFNOT\n    HASHCU\n  }>\n  getOwner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  getVersion() PROC:<{\n    1 PUSHINT\n  }>\n  getConfig() PROC:<{\n    10000000 PUSHINT\n    30000000 PUSHINT\n    50000000 PUSHINT\n    s2 PUSH\n    6 PUSHINT\n    50 PUSHINT\n    604800 PUSHINT\n    2592000 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECIAEAA34AART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAODwIBIAYHAGdO2i7fsgwv/y4HFwIoEBC/SCb6UykQGOFVMSupRsMdsx4AGkUROBAQv0dG+lMuhfBPLAcYBPU+JGRMOAgxwCRMOAg1ywiopIalOMC1ywiMpq6hI5WW+1E0PpIMPiSIccF8uBy+JeCCcnDgPABIMIA8uB0IMIAjhLIz4UIEvpSAfoCcM8Laslx+wCRW+L4kviXIMIAjhLIz4UIEvpSAfoCcM8Laslx+wCRW+Lgidcn4wKAICQoLAEU+CdvEFMCu5NfA3DgWKEhggiYloCgIb6SW3DgooIImJaAoYAH+MfpI+kj6ADBTIccF8tBkhA8jyPpSz1DTAjHXCwfy8oQPIsj6Us9Q0wIx1wsH8vL4kiPHBZF/l/iSIscFwwDi8uBlIIIK+vCAvvLgcfiXIYIImJaAoL7y4HDtRND6SNM/INT0BSP4KAnI+lIY+lLJbW0ByPQA9ADPkAAAAALJJgwACEFEREMAVjHtRND6SNY/1PQF+JIkxwXy4HIE+kjXTEAVgQEL9BMCyPpSzhLM9ADJ7VQBxonXJ44rMe1E0PpI1j/U9AX4kiTHBfLgcgT6SDBQBIEBC/RZMALI+lLOEsz0AMntVODXLCKierp0jiAx7UTQ+kj4kiLHBfLgcgL6SDBSAscF8tBkyPpSzsntVOAwhA8BxwDy9A0AlgnIyz8a+lIY+lIXzM+IAIAXzHDPC0cV9ADJyM+JCAFTFsjPhNDMzPkWzwv/UAT6AoEAjM8LcBXMEszJcfsAAqQCyPpSEss/zsntVAAIUk1WQwIBIBARAgEgGBkCASASEwIBIBYXAD22Lj2omh9JBjpn5jqGPoCqQF4ASkBQICF+gX5RPyAQAgEgFBUAB7D5HGAAJbBVO1E0PpIMdM/MdQx9AUB8AKAAV7aDfaiaH0kGOmfmOoY+gK4EMCAhfpBN9KZSIDOANIoiUCAhfo6N9KZdBgYwAD+1yVBBExLQEEE5OHAQQV9eEARO0AZQQQEnUBBBBPGgEAIBIBobAgOjUh4fAgEgHB0AH7dvXaiaH0kGOmfmOoY+gLAAEbOie1E0PpIMIAAvs+37UTQ+kgx0z8x1DH0BYEBC/QKb6ExgAC+q+1E0PpIMdM/MdQx9AWBAQv0C/KJ+QCAAFan7UTQ+kgx1ws/g",
+  "codeHashHex": "9AC198EDB73AB6CD56DCD8A4B2D752CBFAF4569E07F68D68D35320036BAD6942",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/4f63bdd2-6d06-42f6-b8d0-8b6ad34a7d84/TradeFactory.tolk",
+        "size_chars": 8545,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/4f63bdd2-6d06-42f6-b8d0-8b6ad34a7d84/trade_types.tolk",
+        "size_chars": 8957,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "FactoryMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateTrade"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SweepFactoryDust"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnership"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1414677330,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1179866960,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1094992963,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1380800067,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1414485838,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TradeFactoryStorage"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          7,
+          3
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          23,
+          24
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TradeParticipants"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 26
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TradeAssets"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 30
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 29
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TradeEscrowStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 34
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 44
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          43
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          48,
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 53,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 51,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          57
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowConfig"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 21,
+        "struct_name": "MapEntry<address, cell>",
+        "monomorphic_fields_ty_idx": [
+          22,
+          7,
+          5
+        ]
+      },
+      {
+        "ty_idx": 38,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          42,
+          47,
+          56,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          1038,
+          8,
+          1038,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 23
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 45
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 54
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 48
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 52
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 40,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 42
+          },
+          {
+            "name": "value",
+            "ty_idx": 47
+          },
+          {
+            "name": "dest",
+            "ty_idx": 56
+          },
+          {
+            "name": "body",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "FactoryMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          11,
+          6,
+          11,
+          20
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "TradeFactoryStorage",
+        "ty_idx": 19,
+        "ident_loc": [
+          2,
+          64,
+          8,
+          64,
+          27
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextTradeId",
+            "ty_idx": 11
+          },
+          {
+            "name": "escrowCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "allowedCollections",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TradeEscrowStorage",
+        "ty_idx": 34,
+        "ident_loc": [
+          2,
+          83,
+          8,
+          83,
+          26
+        ],
+        "fields": [
+          {
+            "name": "tradeId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "participants",
+            "ty_idx": 27
+          },
+          {
+            "name": "acceptedA",
+            "ty_idx": 5
+          },
+          {
+            "name": "acceptedB",
+            "ty_idx": 5
+          },
+          {
+            "name": "depositedTonA",
+            "ty_idx": 6
+          },
+          {
+            "name": "depositedTonB",
+            "ty_idx": 6
+          },
+          {
+            "name": "assets",
+            "ty_idx": 33
+          },
+          {
+            "name": "status",
+            "ty_idx": 30
+          },
+          {
+            "name": "statusChangedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastActivityAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "allowedCollections",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TradeParticipants",
+        "ty_idx": 26,
+        "ident_loc": [
+          2,
+          109,
+          8,
+          109,
+          25
+        ],
+        "fields": [
+          {
+            "name": "userA",
+            "ty_idx": 7
+          },
+          {
+            "name": "userB",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TradeAssets",
+        "ty_idx": 29,
+        "ident_loc": [
+          2,
+          146,
+          8,
+          146,
+          19
+        ],
+        "fields": [
+          {
+            "name": "nftA",
+            "ty_idx": 31
+          },
+          {
+            "name": "nftB",
+            "ty_idx": 31
+          },
+          {
+            "name": "nftCountA",
+            "ty_idx": 32
+          },
+          {
+            "name": "nftCountB",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowConfig",
+        "ty_idx": 60,
+        "ident_loc": [
+          2,
+          153,
+          8,
+          153,
+          20
+        ],
+        "fields": [
+          {
+            "name": "minTradeActionValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minEscrowDeployValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minCreateTradeValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "maxNftsPerSide",
+            "ty_idx": 30
+          },
+          {
+            "name": "tradeFeeBps",
+            "ty_idx": 32
+          },
+          {
+            "name": "stuckSettlementTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "openTradeTimeout",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateTrade",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          164,
+          21,
+          164,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1414677330,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "userA",
+            "ty_idx": 7
+          },
+          {
+            "name": "userB",
+            "ty_idx": 7
+          },
+          {
+            "name": "deployValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SweepFactoryDust",
+        "ty_idx": 14,
+        "ident_loc": [
+          2,
+          178,
+          21,
+          178,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1179866960,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "AddCollection",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          180,
+          21,
+          180,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1094992963,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveCollection",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          185,
+          21,
+          185,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1380800067,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnership",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          189,
+          21,
+          189,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1414485838,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "sweepableBalance",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          228,
+          5,
+          228,
+          21
+        ],
+        "end_loc": [
+          2,
+          238,
+          1,
+          238,
+          2
+        ],
+        "params": [
+          {
+            "name": "inValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minReserve",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "allowedCollectionAt",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          38,
+          5,
+          38,
+          24
+        ],
+        "end_loc": [
+          1,
+          53,
+          1,
+          53,
+          2
+        ],
+        "params": [
+          {
+            "name": "collections",
+            "ty_idx": 20
+          },
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "map<address, cell>.findFirst",
+        "return_ty_idx": 21,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "MapEntry<address, cell>.getKey",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1045,
+          20,
+          1045,
+          26
+        ],
+        "end_loc": [
+          0,
+          1049,
+          1,
+          1049,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "map<address, cell>.iterateNext",
+        "return_ty_idx": 21,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "current",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          55,
+          5,
+          55,
+          22
+        ],
+        "end_loc": [
+          1,
+          159,
+          1,
+          159,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          161,
+          5,
+          161,
+          21
+        ],
+        "end_loc": [
+          1,
+          161,
+          46,
+          161,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "addrWorkchain",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          18
+        ],
+        "end_loc": [
+          1,
+          24,
+          1,
+          24,
+          2
+        ],
+        "params": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "TradeParticipants.toCell",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "TradeAssets.toCell",
+        "return_ty_idx": 33,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "TradeEscrowStorage.toCell",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createMessage<void>",
+        "return_ty_idx": 37,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "TradeFactoryStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          79,
+          25,
+          79,
+          29
+        ],
+        "end_loc": [
+          2,
+          81,
+          1,
+          81,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "sendTon",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          240,
+          5,
+          240,
+          12
+        ],
+        "end_loc": [
+          2,
+          248,
+          1,
+          248,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<address, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<address, cell>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "getNextTradeId",
+        "return_ty_idx": 11,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          163,
+          9,
+          163,
+          23
+        ],
+        "end_loc": [
+          1,
+          166,
+          1,
+          166,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "isCollectionAllowed",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          168,
+          9,
+          168,
+          28
+        ],
+        "end_loc": [
+          1,
+          171,
+          1,
+          171,
+          2
+        ],
+        "params": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<address, cell>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "getAllowedCollections",
+        "return_ty_idx": 20,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          173,
+          9,
+          173,
+          30
+        ],
+        "end_loc": [
+          1,
+          176,
+          1,
+          176,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 20,
+        "name": "getAllowedCollectionCount",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          178,
+          9,
+          178,
+          34
+        ],
+        "end_loc": [
+          1,
+          181,
+          1,
+          181,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "allowedCollectionCount",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          28,
+          5,
+          28,
+          27
+        ],
+        "end_loc": [
+          1,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": [
+          {
+            "name": "collections",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "getAllowedCollectionAt",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          183,
+          9,
+          183,
+          31
+        ],
+        "end_loc": [
+          1,
+          186,
+          1,
+          186,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "getAllowedCollectionInfo",
+        "return_ty_idx": 59,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          188,
+          9,
+          188,
+          33
+        ],
+        "end_loc": [
+          1,
+          192,
+          1,
+          192,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "map<address, cell>.mustGet",
+        "return_ty_idx": 3,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "getAllowedCollectionItemCodeHash",
+        "return_ty_idx": 49,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          194,
+          9,
+          194,
+          41
+        ],
+        "end_loc": [
+          1,
+          197,
+          1,
+          197,
+          2
+        ],
+        "params": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "getOwner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          199,
+          9,
+          199,
+          17
+        ],
+        "end_loc": [
+          1,
+          202,
+          1,
+          202,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "getVersion",
+        "return_ty_idx": 32,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          205,
+          9,
+          205,
+          19
+        ],
+        "end_loc": [
+          1,
+          207,
+          1,
+          207,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 28,
+        "name": "getConfig",
+        "return_ty_idx": 60,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          209,
+          9,
+          209,
+          18
+        ],
+        "end_loc": [
+          1,
+          220,
+          1,
+          220,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "TradeFactory",
+    "author": "TON Trades",
+    "version": "0.1.0",
+    "description": "Factory for two-party TON Trades escrow rooms",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateTrade"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SweepFactoryDust"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnership"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TradeFactoryStorage"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          19
+        ]
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "TradeFactoryStorage",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextTradeId",
+            "ty_idx": 11
+          },
+          {
+            "name": "escrowCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "allowedCollections",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowConfig",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "minTradeActionValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minEscrowDeployValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minCreateTradeValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "maxNftsPerSide",
+            "ty_idx": 23
+          },
+          {
+            "name": "tradeFeeBps",
+            "ty_idx": 21
+          },
+          {
+            "name": "stuckSettlementTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "openTradeTimeout",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateTrade",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1414677330,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "userA",
+            "ty_idx": 7
+          },
+          {
+            "name": "userB",
+            "ty_idx": 7
+          },
+          {
+            "name": "deployValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SweepFactoryDust",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1179866960,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "AddCollection",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1094992963,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveCollection",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1380800067,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnership",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1414485838,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 17
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 128295,
+        "name": "getNextTradeId",
+        "parameters": [],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 106423,
+        "name": "isCollectionAllowed",
+        "parameters": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 113530,
+        "name": "getAllowedCollections",
+        "parameters": [],
+        "return_ty_idx": 18
+      },
+      {
+        "tvm_method_id": 87067,
+        "name": "getAllowedCollectionCount",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 78164,
+        "name": "getAllowedCollectionAt",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 70001,
+        "name": "getAllowedCollectionInfo",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 20
+      },
+      {
+        "tvm_method_id": 128267,
+        "name": "getAllowedCollectionItemCodeHash",
+        "parameters": [
+          {
+            "name": "collection",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 19
+      },
+      {
+        "tvm_method_id": 102025,
+        "name": "getOwner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 74724,
+        "name": "getVersion",
+        "parameters": [],
+        "return_ty_idx": 21
+      },
+      {
+        "tvm_method_id": 93770,
+        "name": "getConfig",
+        "parameters": [],
+        "return_ty_idx": 22
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.SameUsers",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.NotParticipant",
+        "err_code": 101
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.InsufficientMessageValue",
+        "err_code": 112
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.InvalidAmount",
+        "err_code": 113
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.NotOwner",
+        "err_code": 114
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.NothingToSweep",
+        "err_code": 116
+      },
+      {
+        "kind": "enum_member",
+        "name": "TradeErrors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "tmp/4f63bdd2-6d06-42f6-b8d0-8b6ad34a7d84/TradeFactory.tolk:52:5: warning: unreachable code\n\n    // in function `allowedCollectionAt`\n  52 |     return contract.getAddress();\n     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/4f63bdd2-6d06-42f6-b8d0-8b6ad34a7d84/TradeFactory.tolk",
+      "contents": "import \"trade_types\"\n\ncontract TradeFactory {\n    author: \"TON Trades\"\n    version: \"0.1.0\"\n    description: \"Factory for two-party TON Trades escrow rooms\"\n    storage: TradeFactoryStorage\n    incomingMessages: FactoryMessage\n}\n\ntype FactoryMessage =\n    | CreateTrade\n    | SweepFactoryDust\n    | AddCollection\n    | RemoveCollection\n    | TransferOwnership\n\n// M-06: extract workchain_id from a serialized addr_std address.\n// addr_std bit layout: tag$10 (2 bits) | anycast? (1 bit) | workchain_id (8 bits) | hash (256 bits)\nfun addrWorkchain(addr: address): int {\n    var s = beginCell().storeAddress(addr).endCell().beginParse();\n    val _ = s.loadUint(3); // skip addr_std tag + anycast flag\n    return s.loadUint(8);  // workchain_id (0 = basechain, 255 = masterchain stored as uint8)\n}\n\n// sweepableBalance + sendTon are shared helpers defined in trade_types.tolk (S-1).\n\nfun allowedCollectionCount(collections: map<address, cell>): int {\n    var count = 0;\n    var entry = collections.findFirst();\n    while (entry.isFound) {\n        count += 1;\n        entry = collections.iterateNext(entry);\n    }\n    return count;\n}\n\nfun allowedCollectionAt(collections: map<address, cell>, index: int): address {\n    assert (index >= 0) throw TradeErrors.InvalidAmount;\n\n    var current = 0;\n    var entry = collections.findFirst();\n    while (entry.isFound) {\n        if (current == index) {\n            return entry.getKey();\n        }\n        current += 1;\n        entry = collections.iterateNext(entry);\n    }\n\n    assert (false) throw TradeErrors.InvalidAmount;\n    return contract.getAddress();\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.isEmpty()) {\n        return;\n    }\n\n    val msg = lazy FactoryMessage.fromSlice(in.body);\n\n    match (msg) {\n        CreateTrade => {\n            assert (msg.userA != msg.userB) throw TradeErrors.SameUsers;\n            // M-06: both participants must be on workchain 0. Masterchain (-1) addresses incur higher\n            // forward fees, can behave unexpectedly with some TON tooling, and are never valid user wallets.\n            // Tolk's address type has no .workchain accessor, so parse the bit layout manually:\n            //   addr_std$10 (2 bits) | anycast? (1 bit) | workchain_id (8 bits) | hash (256 bits)\n            assert (addrWorkchain(msg.userA) == 0) throw TradeErrors.InvalidMessage;\n            assert (addrWorkchain(msg.userB) == 0) throw TradeErrors.InvalidMessage;\n            // H-02: only a participant may open a trade. Without this, anyone could deploy escrows\n            // between arbitrary addresses they don't control — spamming the factory map, flooding\n            // users with \"new trade\" notifications, and seeding phishing rooms. The app always sends\n            // CreateTrade from the creator's own wallet, which is userA, so this never blocks a real\n            // creation.\n            assert (\n                in.senderAddress == msg.userA || in.senderAddress == msg.userB\n            ) throw TradeErrors.NotParticipant;\n            assert (msg.deployValue >= MIN_ESCROW_DEPLOY_VALUE) throw TradeErrors.InvalidAmount;\n            assert (\n                in.valueCoins >= msg.deployValue + MIN_CREATE_TRADE_VALUE\n            ) throw TradeErrors.InsufficientMessageValue;\n\n            var storage = lazy TradeFactoryStorage.load();\n            val tradeId = storage.nextTradeId;\n            val escrowStorage = TradeEscrowStorage {\n                tradeId,\n                factory: contract.getAddress(),\n                feeRecipient: storage.owner,\n                participants: TradeParticipants {\n                    userA: msg.userA,\n                    userB: msg.userB,\n                }.toCell(),\n                acceptedA: false,\n                acceptedB: false,\n                depositedTonA: 0,\n                depositedTonB: 0,\n                assets: TradeAssets {\n                    nftA: [],\n                    nftB: [],\n                    nftCountA: 0,\n                    nftCountB: 0,\n                }.toCell(),\n                status: TRADE_STATUS_OPEN,\n                // Set when settlement/refund begins; 0 at deploy keeps the escrow address independent\n                // of creation time (see TradeEscrowStorage / H-01).\n                statusChangedAt: 0,\n                // Set on the first participant action; 0 until then (M-03 expiry clock).\n                lastActivityAt: 0,\n                // Snapshot the current allowlist so each escrow authenticates deposits independently\n                // of later factory changes — a trade's tradable collections are fixed at creation.\n                allowedCollections: storage.allowedCollections,\n            };\n            val stateInit = ContractState {\n                code: storage.escrowCode,\n                data: escrowStorage.toCell(),\n            };\n\n            createMessage({\n                bounce: BounceMode.NoBounce,\n                value: msg.deployValue,\n                dest: { stateInit },\n            }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n\n            storage.nextTradeId += 1;\n            storage.save();\n        }\n        SweepFactoryDust => {\n            val storage = lazy TradeFactoryStorage.load();\n            assert (in.senderAddress == storage.owner) throw TradeErrors.NotOwner;\n            val amount = sweepableBalance(in.valueCoins, MIN_FACTORY_DUST_RESERVE);\n            assert (amount > 0) throw TradeErrors.NothingToSweep;\n            sendTon(storage.owner, amount);\n            sendTon(in.senderAddress, in.valueCoins);\n        }\n        AddCollection => {\n            var storage = lazy TradeFactoryStorage.load();\n            assert (in.senderAddress == storage.owner) throw TradeErrors.NotOwner;\n            storage.allowedCollections.set(msg.collection, msg.itemCode);\n            storage.save();\n        }\n        RemoveCollection => {\n            var storage = lazy TradeFactoryStorage.load();\n            assert (in.senderAddress == storage.owner) throw TradeErrors.NotOwner;\n            storage.allowedCollections.delete(msg.collection);\n            storage.save();\n        }\n        TransferOwnership => {\n            var storage = lazy TradeFactoryStorage.load();\n            assert (in.senderAddress == storage.owner) throw TradeErrors.NotOwner;\n            assert (msg.newOwner != storage.owner) throw TradeErrors.SameUsers;\n            storage.owner = msg.newOwner;\n            storage.save();\n        }\n        else => {\n            assert (in.body.isEmpty()) throw TradeErrors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun getNextTradeId(): uint64 {\n    val storage = lazy TradeFactoryStorage.load();\n    return storage.nextTradeId;\n}\n\nget fun isCollectionAllowed(collection: address): bool {\n    val storage = lazy TradeFactoryStorage.load();\n    return storage.allowedCollections.exists(collection);\n}\n\nget fun getAllowedCollections(): map<address, cell> {\n    val storage = lazy TradeFactoryStorage.load();\n    return storage.allowedCollections;\n}\n\nget fun getAllowedCollectionCount(): int {\n    val storage = lazy TradeFactoryStorage.load();\n    return allowedCollectionCount(storage.allowedCollections);\n}\n\nget fun getAllowedCollectionAt(index: int): address {\n    val storage = lazy TradeFactoryStorage.load();\n    return allowedCollectionAt(storage.allowedCollections, index);\n}\n\nget fun getAllowedCollectionInfo(index: int): (address, uint256) {\n    val storage = lazy TradeFactoryStorage.load();\n    val collection = allowedCollectionAt(storage.allowedCollections, index);\n    return (collection, storage.allowedCollections.mustGet(collection).hash());\n}\n\nget fun getAllowedCollectionItemCodeHash(collection: address): uint256 {\n    val storage = lazy TradeFactoryStorage.load();\n    return storage.allowedCollections.mustGet(collection).hash();\n}\n\nget fun getOwner(): address {\n    val storage = lazy TradeFactoryStorage.load();\n    return storage.owner;\n}\n\n// I-05: numeric code version so the indexer can route by version after a code upgrade.\nget fun getVersion(): uint16 {\n    return CONTRACT_VERSION;\n}\n\nget fun getConfig(): EscrowConfig {\n    return {\n        minTradeActionValue: MIN_TRADE_ACTION_VALUE,\n        nftTransferValue: NFT_TRANSFER_VALUE,\n        minEscrowDeployValue: MIN_ESCROW_DEPLOY_VALUE,\n        minCreateTradeValue: MIN_CREATE_TRADE_VALUE,\n        maxNftsPerSide: MAX_NFTS_PER_SIDE,\n        tradeFeeBps: TRADE_FEE_BPS,\n        stuckSettlementTimeout: STUCK_SETTLEMENT_TIMEOUT,\n        openTradeTimeout: OPEN_TRADE_TIMEOUT,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/4f63bdd2-6d06-42f6-b8d0-8b6ad34a7d84/trade_types.tolk",
+      "contents": "enum TradeErrors {\n    InvalidMessage = 0xFFFF\n    SameUsers = 100\n    NotParticipant = 101\n    SideAlreadyAccepted = 103\n    EmptyTonDeposit = 104\n    AlreadyCompleted = 109\n    AlreadyCancelled = 110\n    InsufficientMessageValue = 112\n    InvalidAmount = 113\n    NotOwner = 114\n    TradeNotClosed = 115\n    NothingToSweep = 116\n    TradeNotCompleted = 117\n    TradeNotCancelled = 118\n    TradeNotStuck = 119\n    StuckTimeoutNotReached = 120\n    TradeNotExpired = 121\n}\n\nconst MAX_NFTS_PER_SIDE = 6\nconst NFT_TRANSFER_VALUE = 30000000\nconst MIN_ESCROW_DEPLOY_VALUE = 50000000\nconst MIN_CREATE_TRADE_VALUE = 10000000\nconst MIN_TRADE_ACTION_VALUE = 10000000\nconst TRADE_FEE_BPS = 50\nconst BPS_DENOMINATOR = 10000\nconst MIN_ESCROW_DUST_RESERVE = 30000000\nconst MIN_FACTORY_DUST_RESERVE = 30000000\nconst SWEEP_FEE_BUFFER = 10000000\n// I-05: schema/behaviour version, exposed via getVersion() on both contracts so the indexer can route\n// by version after a code upgrade. Bump whenever a deployed code change must be distinguishable\n// off-chain (existing on-chain instances keep the version they were deployed with).\nconst CONTRACT_VERSION: uint16 = 1\n// H-01: a settlement that keeps bouncing (an NFT whose item contract permanently rejects the transfer\n// to the counterparty) would otherwise sit in SETTLING forever. After this timeout from the moment\n// settlement began, anyone may call ForceResolveStuck to return the undeliverable NFTs to their\n// depositors and move the trade to TRADE_STATUS_SETTLE_STUCK. 7 days = 604800 seconds.\nconst STUCK_SETTLEMENT_TIMEOUT = 604800\n// M-03: an OPEN trade where every participant goes silent (both ghost, or a depositor loses their key\n// and the counterparty never appears) would otherwise lock its deposited TON and NFTs forever — neither\n// can be cancelled by anyone who is still around. After this much inactivity (`lastActivityAt` is reset\n// on every participant deposit/accept, so only genuinely-abandoned trades qualify), anyone may call\n// ExpireTrade to refund all assets to their depositors. 30 days = 2592000 seconds — generous, because\n// OPEN is the negotiation phase where legitimate pauses happen, and an active trade resets the clock.\nconst OPEN_TRADE_TIMEOUT = 2592000\n// N-2: minimum forwarded value for OwnershipAssigned. The SDK always sends 20 mTON\n// (NFT_OWNERSHIP_NOTIFICATION_VALUE); this floor ensures a rejected deposit has adequate\n// budget for the mode-64 return without requiring escrow-funded top-up (which would reopen C-03).\nconst MIN_NFT_FORWARD_VALUE = 5000000\nconst TRADE_STATUS_OPEN: uint8 = 0\nconst TRADE_STATUS_SETTLING: uint8 = 1\nconst TRADE_STATUS_COMPLETED: uint8 = 2\nconst TRADE_STATUS_REFUNDING: uint8 = 3\nconst TRADE_STATUS_REFUNDED: uint8 = 4\n// Terminal degraded outcome: both parties' TON was distributed by settlement, but at least one NFT\n// could not be delivered to the counterparty and was force-returned to its depositor after the\n// stuck-settlement timeout. Distinct from COMPLETED so the indexer/UI can flag the failed delivery.\nconst TRADE_STATUS_SETTLE_STUCK: uint8 = 5\nconst NFT_STATUS_DEPOSITED: uint8 = 0\nconst NFT_STATUS_TRANSFER_SENT: uint8 = 1\nconst NFT_STATUS_TRANSFER_BOUNCED: uint8 = 2\n\nstruct TradeFactoryStorage {\n    owner: address\n    nextTradeId: uint64\n    escrowCode: cell\n    // C-01/H-03: allowlist of tradable NFT collections → that collection's NFT item code cell.\n    // An escrow authenticates a deposit by recomputing the sender's expected item address from\n    // (itemCode, index, collection) and requiring it to match; only genuine items of an allowlisted\n    // collection pass. Snapshotted into each escrow at CreateTrade.\n    allowedCollections: map<address, cell>\n}\n\nfun TradeFactoryStorage.load(): TradeFactoryStorage {\n    return TradeFactoryStorage.fromCell(contract.getData());\n}\n\nfun TradeFactoryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TradeEscrowStorage {\n    tradeId: uint64\n    factory: address\n    feeRecipient: address\n    participants: Cell<TradeParticipants>\n    acceptedA: bool\n    acceptedB: bool\n    depositedTonA: coins\n    depositedTonB: coins\n    assets: Cell<TradeAssets>\n    status: uint8\n    // H-01: Unix time (seconds) when the trade first left OPEN — set once when settlement begins\n    // (completeTrade) or a refund begins (refundAll), never updated by retries/bounces. The\n    // stuck-settlement escape is time-gated against this. Initialised to 0 at deploy (a constant, so\n    // the deterministic escrow address never depends on wall-clock time).\n    statusChangedAt: uint32\n    // M-03: Unix time of the last participant action while OPEN (TON deposit, NFT deposit, or accept).\n    // 0 until the first such action. The OPEN-trade expiry escape is time-gated against this, so any\n    // genuine activity pushes the deadline out and only a truly-abandoned trade can be expired.\n    lastActivityAt: uint32\n    // C-01/H-03: snapshot of the factory allowlist at creation time (collection → item code cell).\n    // A deposit is authenticated by recomputing the sender's expected TEP-62 item address from\n    // (itemCode, index, collection) carried in the transfer's forward payload and requiring a match.\n    allowedCollections: map<address, cell>\n}\n\nstruct TradeParticipants {\n    userA: address\n    userB: address\n}\n\nfun TradeEscrowStorage.load(): TradeEscrowStorage {\n    return TradeEscrowStorage.fromCell(contract.getData());\n}\n\nfun TradeEscrowStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TradeState {\n    tradeId: uint64\n    factory: address\n    feeRecipient: address\n    userA: address\n    userB: address\n    acceptedA: bool\n    acceptedB: bool\n    depositedTonA: coins\n    depositedTonB: coins\n    nftCountA: uint16\n    nftCountB: uint16\n    pendingNftCount: uint16\n    status: uint8\n    statusChangedAt: uint32\n    lastActivityAt: uint32\n    completed: bool\n    cancelled: bool\n    // True when status == TRADE_STATUS_SETTLE_STUCK: settlement completed but an NFT could not be\n    // delivered and was force-returned to its depositor. Lets the app flag the degraded outcome\n    // without hard-coding the magic status value.\n    stuck: bool\n}\n\nstruct TradeAssets {\n    nftA: map<address, uint8>\n    nftB: map<address, uint8>\n    nftCountA: uint16\n    nftCountB: uint16\n}\n\nstruct EscrowConfig {\n    minTradeActionValue: coins\n    nftTransferValue: coins\n    minEscrowDeployValue: coins\n    minCreateTradeValue: coins\n    maxNftsPerSide: uint8\n    tradeFeeBps: uint16\n    stuckSettlementTimeout: uint32\n    openTradeTimeout: uint32\n}\n\nstruct (0x54524352) CreateTrade {\n    userA: address\n    userB: address\n    deployValue: coins\n}\n\nstruct (0x544f4e44) DepositTon {}\n\nstruct (0x41434350) AcceptTrade {}\n\nstruct (0x43414e43) CancelTrade {}\n\nstruct (0x53574550) SweepDust {}\n\nstruct (0x46535750) SweepFactoryDust {}\n\nstruct (0x41444443) AddCollection {\n    collection: address\n    itemCode: cell\n}\n\nstruct (0x524d5643) RemoveCollection {\n    collection: address\n}\n\nstruct (0x544f574e) TransferOwnership {\n    newOwner: address\n}\n\nstruct (0x52455452) RetryPending {}\n\n// H-01: permissionless, timeout-gated escape from a permanently-stuck SETTLING trade. Carries no\n// fields — the escrow is per-trade and reads everything it needs from its own storage.\nstruct (0x46525356) ForceResolveStuck {}\n\n// M-03: permissionless, timeout-gated refund of an abandoned OPEN trade. Carries no fields.\nstruct (0x45585052) ExpireTrade {}\n\nstruct (0x05138d91) OwnershipAssigned {\n    queryId: uint64\n    prevOwner: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\nstruct (0x5fcc3d14) NftTransfer {\n    queryId: uint64\n    newOwner: address\n    responseDestination: address\n    customPayload: bool\n    forwardAmount: coins\n    forwardPayload: bool\n}\n\n// TEP-62 NFT item initial state data. An item's address is the address of\n// StateInit{ code: itemCode, data: NftItemInitData{ index, collection } }. The escrow recomputes\n// this from the allowlisted collection's item code to authenticate a deposit's sender.\nstruct NftItemInitData {\n    index: uint64\n    collection: address\n}\n\n// S-1: shared between TradeFactory and TradeEscrow so the two copies can't drift. These are free\n// functions invoked inside a contract transaction, so `contract.*` resolves to whichever contract is\n// executing and `createMessage` queues from its action phase.\nfun sweepableBalance(inValue: coins, minReserve: coins): coins {\n    val originalBalance = contract.getOriginalBalance();\n    if (originalBalance <= inValue) {\n        return 0;\n    }\n    val balance = originalBalance - inValue;\n    if (balance <= minReserve + SWEEP_FEE_BUFFER) {\n        return 0;\n    }\n    return balance - minReserve - SWEEP_FEE_BUFFER;\n}\n\nfun sendTon(to: address, amount: coins) {\n    if (amount > 0) {\n        createMessage({\n            bounce: BounceMode.NoBounce,\n            value: amount,\n            dest: to,\n        }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n}\n"
+    }
+  ]
+}

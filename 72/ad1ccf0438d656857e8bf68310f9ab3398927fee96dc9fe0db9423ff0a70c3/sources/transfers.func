@@ -1,0 +1,42 @@
+#include "../imports/stdlib.func";
+#include "error-codes.func";
+
+() forward_funds(slice beneficiary, int self_destruct?, int op, int reserved_funds) impure inline_ref {
+    if ~ (self_destruct?) {
+        raw_reserve(reserved_funds, 2); ;; reserve at most `max_reserved_funds` nanocoins
+    }
+
+    var msg = begin_cell()
+        .store_uint(0x10, 6) ;; non-bounceable
+        .store_slice(beneficiary)
+        .store_grams(0)
+        .store_dict(pair_second(get_balance()))
+        .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_ref(begin_cell()
+            .store_uint(op, 32)
+            .end_cell());
+    int mode = 128; ;; carry all the remaining balance of the current smart contract
+    if (self_destruct?) {
+        mode += 32; ;; must be destroyed if its resulting balance is zero
+    }
+    send_raw_message(msg.end_cell(), mode);
+}
+
+() transfer_funds(slice beneficiary, int msg_value) impure inline_ref {
+    if (beneficiary.slice_empty?()) {
+        throw(error::beneficiary_not_found);
+    }
+
+    if (msg_value < 0) {
+        return ();
+    }
+
+    cell msg = begin_cell()
+        .store_uint(0x10, 6) ;; bounceable
+        .store_slice(beneficiary)
+        .store_coins(msg_value)
+        .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_ref(begin_cell().end_cell())
+        .end_cell();
+    send_raw_message(msg, 2);
+}

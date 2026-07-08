@@ -1,0 +1,195 @@
+#include "../../../node_modules/@layerzerolabs/layerzero-v2-ton/src/funC++/actions/event.fc";
+#include "../../../node_modules/@layerzerolabs/layerzero-v2-ton/src/funC++/handlerCore.fc";
+#include "../../../node_modules/@layerzerolabs/layerzero-v2-ton/src/classes/msgdata/MdObj.fc";
+
+#include "../structs/Address.fc";
+
+#include "storage.fc";
+
+
+;;; ================ INTERFACE/HELPER FUNCTIONS =====================
+
+;; We declare it here because it saves the need for declaring initialStorage everytime we call event
+tuple _newAction<event>(int topic, cell $Body) impure inline {
+    return action::event::create(topic, $Body, cl::nullObject());
+}
+
+int _getEventSink() impure inline {
+    return getContractAddress();
+}
+
+int _getIncomingAmount() impure inline {
+    int amount = getDonationNanos();
+
+    ;; The following assertion cannot fail, because the txnContext loads amount as coins which
+    ;; by the definition of LDGRAMS is a VarUInteger16.
+    ;; throw_if(ERROR::InvalidAmount, amount < 0);
+
+    setDonationNanos(0);
+
+    return (amount);
+}
+
+
+;;; ========================== PERMISSION FUNCTIONS =================
+
+() assertAuthenticated() impure inline {
+    cell $baseStorage = getContractStorage().cl::get<objRef>(BASE_STORAGE_INDEX);
+    throw_unless(
+        ERROR::NotAuthenticated,
+        $baseStorage.cl::get<bool>(BaseStorage::authenticated)
+    );
+}
+
+() assertInitialized() impure inline {
+    cell $baseStorage = getContractStorage().cl::get<objRef>(BASE_STORAGE_INDEX);
+    throw_unless(
+        ERROR::NotInitialized,
+        $baseStorage.cl::get<bool>(BaseStorage::initialized)
+    );
+}
+
+() assertOwner() impure inline {
+    cell $baseStorage = getContractStorage().cl::get<objRef>(BASE_STORAGE_INDEX);
+    throw_unless(
+        ERROR::OnlyOwner,
+        getCaller() == $baseStorage.cl::get<address>(BaseStorage::owner)
+    );
+}
+
+() assertTentativeOwner() impure inline {
+    throw_unless(
+        ERROR::OnlyTentativeOwner,
+        getCaller() == getContractStorage().cl::get<address>(Vault::tentativeOwner)
+    );
+}
+
+() assertShareMinterOrAssetWallet() impure inline {
+    throw_unless(
+        ERROR::OnlyShareMinterOrAssetWallet,
+        (getCaller() == getContractStorage().Vault::getShareMinterAddress())
+        | (getCaller() == getContractStorage().Vault::getAssetWalletAddress())
+    );
+}
+
+
+;;; ========================== AUTHENTICATE FUNCTIONS =====================================
+
+() authenticate() impure inline {
+    ;; We apply a 'permission' check inside this function
+    ;; due to the way the 'contractMain.fc' is formatted, this is required
+    assertOwner();
+    cell $storage = getContractStorage();
+
+    setContractStorage(
+        $storage
+            .cl::set(
+                BASE_STORAGE_INDEX,
+                $storage
+                    .cl::get<objRef>(BASE_STORAGE_INDEX)
+                    .cl::set(BaseStorage::authenticated, true)
+            )
+    );
+}
+
+() authenticateIfNecessary() impure inline {
+    if (getContractStorage()
+        .cl::get<objRef>(BASE_STORAGE_INDEX)
+        .cl::get<bool>(BaseStorage::authenticated) == false
+    ) {
+        authenticate();
+    }
+}
+
+
+;;; ========================== INITIALIZE FUNCTIONS =====================================
+
+;; Initialize interface for the underlying implementation to add custom initialize logic
+(cell, tuple) _initialize(cell $md) impure inline;
+
+;; Required by the base contract
+tuple initialize(cell $md) impure inline {
+    assertAuthenticated();
+
+    if (
+        getContractStorage()
+            .cl::get<objRef>(BASE_STORAGE_INDEX)
+            .cl::get<bool>(BaseStorage::initialized)
+    ) {
+        return emptyActions();
+    }
+
+    (cell $storage, tuple actions) = _initialize($md);
+
+    setContractStorage(
+        $storage
+            .cl::set(
+                BASE_STORAGE_INDEX,
+                $storage
+                    .cl::get<objRef>(BASE_STORAGE_INDEX)
+                    .cl::set(BaseStorage::initialized, true)
+            )
+    );
+
+    return actions;
+}
+
+
+;;; ========================== OWNERSHIP FUNCTIONS =====================================
+
+tuple transferOwnership(cell $Address) impure inline {
+    (cell $storage, tuple actions) = preamble();
+
+    int tentativeOwner = $Address.Address::getAddress();
+
+    setContractStorage(
+        $storage.cl::set(Vault::tentativeOwner, tentativeOwner)
+    );
+
+    actions~pushAction<event>(
+        EVENT::TentativeOwnerSet,
+        Address::New(tentativeOwner)
+    );
+
+    return actions;
+}
+
+tuple claimOwnership(cell $unused) impure inline {
+    (cell $storage, tuple actions) = preamble();
+
+    int newOwner = $storage.Vault::getTentativeOwner();
+
+    cell $baseStorage = $storage
+        .Vault::getBaseStorage()
+        .cl::set(
+            BaseStorage::owner,
+            newOwner
+        );
+
+    setContractStorage(
+        $storage
+            .cl::set(Vault::baseStorage, $baseStorage)
+            .cl::set(Vault::tentativeOwner, NULLADDRESS)
+    );
+
+    actions~pushAction<event>(
+        EVENT::OwnerSet,
+        Address::New(newOwner)
+    );
+
+    return actions;
+}
+
+tuple upgradeCode(cell $mdObj) impure inline {
+    (_, tuple actions) = preamble();
+
+    (
+        cell newCode,
+        cell newStorage
+    ) = $mdObj.md::MdObj::deserialize();
+
+    setContractStorage(newStorage);
+    set_code(newCode);
+
+    return actions;
+}

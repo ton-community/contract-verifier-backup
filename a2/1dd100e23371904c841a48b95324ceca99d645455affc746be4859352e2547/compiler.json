@@ -1,0 +1,2243 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from CoinFlipGame.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  121383 DECLMETHOD gameData()\n  126344 DECLMETHOD gameStatus()\n  // 7 functions inlined in-place:\n  // - GameStorage.load (6 calls)\n  // - GameStorage.save (4 calls)\n  // - calcCommitment (1 call)\n  // - calcCoinIsHeads (1 call)\n  // - calcFee (2 calls)\n  // - payoutAndDestroy (2 calls)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{c0f20001} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      8 LDU\n      LDOPTSTDADDR\n      NIP\n      256 LDU\n      NIP\n      32 LDU\n      NIP\n      ENDS\n      107 THROWIF\n      DUP\n      CTOS\n      64 LDU\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDGRAMS\n      1 LDI\n      NIP\n      16 LDU\n      NIP\n      32 LDU\n      32 LDU\n      LDREF\n      NIP\n      ENDS\n      NOW\n      GEQ\n      108 THROWIFNOT\n      INMSG_SRC\n      s0 s3 XCHG2\n      SDEQ\n      106 THROWIF\n      INMSG_VALUE\n      OVER\n      50000000 PUSHINT\n      ADD\n      GEQ\n      104 THROWIFNOT\n      BALANCE\n      FIRST\n      OVER\n      1 LSHIFT#\n      50000000 PUSHINT\n      ADD\n      GEQ\n      109 THROWIFNOT\n      INMSG_SRC\n      s0 s5 XCHG\n      256 PLDU\n      DUP\n      NOW\n      s0 s4 XCHG2\n      ADD\n      s0 s5 XCHG\n      NEWC\n      STREF\n      x{01} STSLICECONST\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      256 STU\n      s3 PUSH\n      32 STUR\n      ENDC\n      c4 POP\n      INMSG_SRC\n      NEWC\n      x{c0fe0002} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      s1 s2 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      256 STU\n      32 STU\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      2 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      INMSG_VALUE\n      SUBR\n      50000000 PUSHINT\n      SUB\n      DUP\n      10000000 PUSHINT\n      GEQ\n      IF:<{\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n      }>\n    }>\n    x{c0f20002} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      8 LDU\n      LDOPTSTDADDR\n      256 LDU\n      32 LDU\n      ENDS\n      s0 s3 XCHG\n      1 EQINT\n      107 THROWIFNOT\n      s3 PUSH\n      CTOS\n      64 LDU\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDGRAMS\n      1 LDI\n      16 LDU\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      ENDS\n      CTOS\n      256 LDU\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      101 THROWIFNOT\n      NOW\n      s10 PUSH\n      LEQ\n      111 THROWIFNOT\n      s0 s11 XCHG\n      256 PLDU\n      DUP\n      NEWC\n      256 STU\n      BTOS\n      SHA256U\n      ROT\n      EQUAL\n      110 THROWIFNOT\n      s6 PUSH\n      XOR\n      1 PUSHINT\n      AND\n      1 EQINT\n      s0 s2 PUXC\n      EQUAL\n      s0 s4 s7 XC2PU\n      CONDSEL\n      s0 s2 XCHG\n      1 LSHIFT#\n      s0 s3 PUXC\n      MUL\n      10000 PUSHINT\n      DIV\n      s0 s8 XCHG\n      NEWC\n      STREF\n      x{02} STSLICECONST\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      256 STU\n      s1 s5 XCHG\n      32 STU\n      ENDC\n      c4 POP\n      s3 s4 XCPU\n      SUB\n      NEWC\n      x{c0fe0003} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      s1 s2 XCHG\n      1 STI\n      s1 s(-1) PUXC\n      STSTDADDR\n      ROT\n      STGRAMS\n      s2 PUSH\n      STGRAMS\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      3 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      OVER\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2 1 BLKDROP2\n      }>\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    x{c0f20003} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDREF\n      8 LDU\n      LDOPTSTDADDR\n      256 LDU\n      32 LDU\n      ENDS\n      s0 s3 XCHG\n      1 EQINT\n      107 THROWIFNOT\n      NOW\n      s3 PUSH\n      GREATER\n      112 THROWIFNOT\n      s3 PUSH\n      CTOS\n      64 LDU\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      NIP\n      LDGRAMS\n      1 LDI\n      NIP\n      16 LDU\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      ENDS\n      CTOS\n      256 LDU\n      NIP\n      LDSTDADDR\n      ENDS\n      s5 PUSH\n      s0 s3 XCHG\n      1 LSHIFT#\n      s0 s2 PUXC\n      MUL\n      10000 PUSHINT\n      DIV\n      s0 s8 XCHG\n      NEWC\n      STREF\n      x{03} STSLICECONST\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      256 STU\n      s1 s5 XCHG\n      32 STU\n      ENDC\n      c4 POP\n      s1 s4 XCPU\n      SUB\n      NEWC\n      x{c0fe0004} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      s3 s(-1) PUXC\n      STSTDADDR\n      SWAP\n      STGRAMS\n      s3 PUSH\n      STGRAMS\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      4 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      s2 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        ROT\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n        NIP\n      }>\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    x{c0f20004} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDREF\n      8 LDU\n      LDOPTSTDADDR\n      256 LDU\n      32 LDU\n      ENDS\n      s0 s3 XCHG\n      107 THROWIF\n      s3 PUSH\n      CTOS\n      64 LDU\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDGRAMS\n      NIP\n      1 LDI\n      NIP\n      16 LDU\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      NIP\n      ENDS\n      INMSG_SRC\n      OVER\n      SDEQ\n      101 THROWIFNOT\n      s0 s5 XCHG\n      NEWC\n      STREF\n      x{04} STSLICECONST\n      s1 s3 XCHG\n      STOPTSTDADDR\n      256 STU\n      s1 s2 XCHG\n      32 STU\n      ENDC\n      c4 POP\n      BALANCE\n      FIRST\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      5 PUSHINT\n      248 STUR\n      3237871621 PUSHINT\n      130 STUR\n      s1 s2 XCHG\n      64 STU\n      SWAP\n      STGRAMS\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  gameData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    8 LDU\n    LDOPTSTDADDR\n    256 LDU\n    32 LDU\n    ENDS\n    s0 s4 XCHG\n    CTOS\n    64 LDU\n    LDSTDADDR\n    LDSTDADDR\n    LDGRAMS\n    1 LDI\n    16 LDU\n    32 LDU\n    NIP\n    32 LDU\n    LDREF\n    ENDS\n    CTOS\n    256 LDU\n    LDSTDADDR\n    ENDS\n    s8 s12 XCHG\n    s7 s11 XCHG\n    s6 s10 XCHG\n    s5 s9 XCHG\n    s1 s8 XCHG\n    s4 s7 XCHG\n    s3 s6 XCHG\n    s4 s1 s5 XCHG3\n    s3 s0 s0 XCHG3\n  }>\n  gameStatus() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    8 LDU\n    LDOPTSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDwEAA38AART/APSkE/S88sgLAQIBYgIDBFTQ+JGRMOAg1ywmB5AADOMC1ywmB5AAFOMC1ywmB5AAHOMC1ywmB5AAJDEEBQYHAgFuDQ4C/jHtRNDU0wf6UDHT/zHTHzHR8tBrINDTP/pIMfpI+gDSADHTDzHTH9Mf1DHR+CO+8uBs+JJQA8cF8tBq+Jchggr68ICgvvLgaPgnbxAhqgCCCvrwgKC+8uBt+JIF1wv/IPgjUASgBcjMz4QGFvpUEsv/I88LH8ntVPiSyInPFhMICQH+Me1E0NTTB/pQ0//TH9EDwAHy4Gsj0NM/+kgx+kj6ANIA0w/THzHTHzHU0dDT//pI0fiSJscF8uBl+CMqu/LgbwvXC/8gyMv/z1D5Ali68uBuJrJxsMABUgO6VBBH4wQCqgBSBKiBJxCpBAjIzM+EChb6VBTL/xXLH8ntVFE0oQoB/lvtRNDU0wf6UNP/0x/RA8AB8uBr+CMjvPLgcCPQ0z/6SDH6SDH6ANIAMdMP0x8x0x8x1NHQ0/8x+kjRJQOqAFIDqIEnEKkECMjMz4QOFvpUFMv/Fcsfye1UURShyM+TA/gAEhLLP1Iw+lIB+gIj+gLJyM+PGAAEdM8L93HPC2ELAf6OdzDtRNDU0wf6UNP/0x/RA/LQayPQ0z/6SDH6SPoAMdIAMdMPMdMfMdMfMdQx0fiSIccF8uBlBcjMz4QSE/pUy/8Syx/J7VT4J28QyM+PGAAEdc8L94IQwP4ABc8LgRLLPwH6Aslw+wDIz4UI+lJwzwtuyYEAoPsA4IQPAccADAAIwP4AAgCMyz8S+lITy//LH8nIz48YAARyzwv3cc8LYczJcPsA+Jeiggr68IChIIIImJaAvo4T+JLIz4UI+lIB+gJwzwtqyXD7AJEw4gCsyM+TA/gADhTLPxLKAFIQ+lJY+gIi+gLJyM+PGAAEc88L93HPC2HMyXD7ACHCAI4SyM+FCBP6UgH6AnDPC2rJcfsAkmwh4sjPhQj6UnDPC27JgQCg+wAAXszJcPsAIsIAjhHIz4UI+lJY+gJwzwtqyXH7AJIwMeLIz4UI+lJwzwtuyYEAoPsAAATy9AB3t0T9qJoammD/Shp/+mP6IJoaZ/9JH0kfQBpAGmH6Y+Y6Y/qaOhp//0kaIhGCD2INQgsjAgjiBsiCqGAQACe1sR2omhqGOmD/SgY6f+Y6Y+Y6MA==",
+  "codeHashHex": "A21DD100E23371904C841A48B95324CECA99D645455AFFC746BE4859352E2547",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/06b35bfb-1904-4e1f-9256-05e7e2dacfdc/contracts/src/CoinFlipGame.tolk",
+        "size_chars": 8248,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/06b35bfb-1904-4e1f-9256-05e7e2dacfdc/contracts/src/types.tolk",
+        "size_chars": 5499,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedGameMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JoinGame"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Reveal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimTimeout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelGame"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 3237085185,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 3237085186,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 3237085187,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 3237085188,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameConfigExt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameJoined"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          31
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          39
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 42,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 47
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          46
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          51,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 56,
+        "stack_type_id": 134,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 52,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 141,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          39
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameSettled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          61
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameTimedOut"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          65
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameData"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 32,
+        "struct_name": "CreateExternalLogMessageOptions<EvGameJoined>",
+        "monomorphic_fields_ty_idx": [
+          38,
+          31
+        ]
+      },
+      {
+        "ty_idx": 41,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          45,
+          50,
+          59,
+          0
+        ]
+      },
+      {
+        "ty_idx": 62,
+        "struct_name": "CreateExternalLogMessageOptions<EvGameSettled>",
+        "monomorphic_fields_ty_idx": [
+          38,
+          61
+        ]
+      },
+      {
+        "ty_idx": 64,
+        "struct_name": "CreateExternalLogMessageOptions<EvGameTimedOut>",
+        "monomorphic_fields_ty_idx": [
+          38,
+          63
+        ]
+      },
+      {
+        "ty_idx": 66,
+        "struct_name": "CreateExternalLogMessageOptions<EvGameCancelled>",
+        "monomorphic_fields_ty_idx": [
+          38,
+          65
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 48
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 57
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 51
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 55
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 43,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 45
+          },
+          {
+            "name": "value",
+            "ty_idx": 50
+          },
+          {
+            "name": "dest",
+            "ty_idx": 59
+          },
+          {
+            "name": "body",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 38
+          },
+          {
+            "name": "body",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedGameMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          11,
+          6,
+          11,
+          24
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "GameConfigExt",
+        "ty_idx": 22,
+        "ident_loc": [
+          2,
+          67,
+          8,
+          67,
+          21
+        ],
+        "fields": [
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameConfig",
+        "ty_idx": 20,
+        "ident_loc": [
+          2,
+          72,
+          8,
+          72,
+          18
+        ],
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "creator",
+            "ty_idx": 7
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "aSideHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 21
+          },
+          {
+            "name": "revealTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "joinDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "ext",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameStorage",
+        "ty_idx": 19,
+        "ident_loc": [
+          2,
+          84,
+          8,
+          84,
+          19
+        ],
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 24
+          },
+          {
+            "name": "status",
+            "ty_idx": 25
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 26
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 14
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameData",
+        "ty_idx": 67,
+        "ident_loc": [
+          2,
+          101,
+          8,
+          101,
+          16
+        ],
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "creator",
+            "ty_idx": 7
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "aSideHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 21
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "joinDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "status",
+            "ty_idx": 25
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 26
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 14
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JoinGame",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          152,
+          21,
+          152,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 3237085185,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "seedB",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Reveal",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          156,
+          21,
+          156,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 3237085186,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "secretA",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimTimeout",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          160,
+          21,
+          160,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 3237085187,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "CancelGame",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          162,
+          21,
+          162,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 3237085188,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameJoined",
+        "ty_idx": 31,
+        "ident_loc": [
+          2,
+          182,
+          21,
+          182,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 3237871618,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 7
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 14
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameSettled",
+        "ty_idx": 61,
+        "ident_loc": [
+          2,
+          189,
+          21,
+          189,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 3237871619,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "coinIsHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameTimedOut",
+        "ty_idx": 63,
+        "ident_loc": [
+          2,
+          197,
+          21,
+          197,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 3237871620,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameCancelled",
+        "ty_idx": 65,
+        "ident_loc": [
+          2,
+          204,
+          21,
+          204,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 3237871621,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "refund",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          41,
+          5,
+          41,
+          22
+        ],
+        "end_loc": [
+          1,
+          189,
+          1,
+          189,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          191,
+          5,
+          191,
+          21
+        ],
+        "end_loc": [
+          1,
+          191,
+          46,
+          191,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "GameStorage.load",
+        "return_ty_idx": 19,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          92,
+          17,
+          92,
+          21
+        ],
+        "end_loc": [
+          2,
+          94,
+          1,
+          94,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 3,
+        "name": "GameStorage.fromCell",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Cell<GameConfig>.load",
+        "return_ty_idx": 20,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "options",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "GameStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          96,
+          17,
+          96,
+          21
+        ],
+        "end_loc": [
+          2,
+          98,
+          1,
+          98,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "GameStorage.toCell",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "options",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "createExternalLogMessage<EvGameJoined>",
+        "return_ty_idx": 30,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "createMessage<void>",
+        "return_ty_idx": 30,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<GameConfigExt>.load",
+        "return_ty_idx": 22,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "options",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "calcCommitment",
+        "return_ty_idx": 14,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          214,
+          5,
+          214,
+          19
+        ],
+        "end_loc": [
+          2,
+          216,
+          1,
+          216,
+          2
+        ],
+        "params": [
+          {
+            "name": "secretA",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "calcCoinIsHeads",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          219,
+          5,
+          219,
+          20
+        ],
+        "end_loc": [
+          2,
+          221,
+          1,
+          221,
+          2
+        ],
+        "params": [
+          {
+            "name": "secretA",
+            "ty_idx": 14
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "calcFee",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          224,
+          5,
+          224,
+          12
+        ],
+        "end_loc": [
+          2,
+          226,
+          1,
+          226,
+          2
+        ],
+        "params": [
+          {
+            "name": "pot",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "createExternalLogMessage<EvGameSettled>",
+        "return_ty_idx": 30,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "payoutAndDestroy",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          21
+        ],
+        "end_loc": [
+          1,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "createExternalLogMessage<EvGameTimedOut>",
+        "return_ty_idx": 30,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "createExternalLogMessage<EvGameCancelled>",
+        "return_ty_idx": 30,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "gameData",
+        "return_ty_idx": 67,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          193,
+          9,
+          193,
+          17
+        ],
+        "end_loc": [
+          1,
+          212,
+          1,
+          212,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "gameStatus",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          214,
+          9,
+          214,
+          19
+        ],
+        "end_loc": [
+          1,
+          217,
+          1,
+          217,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "CoinFlipGame",
+    "author": "TON Coin Flip",
+    "version": "0.1.0",
+    "description": "Single coin-flip game: escrow, commit-reveal, payouts",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JoinGame"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Reveal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimTimeout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelGame"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameConfigExt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameJoined"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameSettled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameTimedOut"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvGameCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GameData"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "GameConfigExt",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameConfig",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "creator",
+            "ty_idx": 7
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "aSideHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 19
+          },
+          {
+            "name": "revealTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "joinDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "ext",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameStorage",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 22
+          },
+          {
+            "name": "status",
+            "ty_idx": 23
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 24
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 13
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GameData",
+        "ty_idx": 29,
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "creator",
+            "ty_idx": 7
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "aSideHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 19
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "joinDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "status",
+            "ty_idx": 23
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 24
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 13
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JoinGame",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 3237085185,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "seedB",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Reveal",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 3237085186,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "secretA",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimTimeout",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 3237085187,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "CancelGame",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 3237085188,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameJoined",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 3237871618,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 7
+          },
+          {
+            "name": "seedB",
+            "ty_idx": 13
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameSettled",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 3237871619,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "coinIsHeads",
+            "ty_idx": 5
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameTimedOut",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 3237871620,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvGameCancelled",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 3237871621,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "gameId",
+            "ty_idx": 11
+          },
+          {
+            "name": "refund",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 17
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      },
+      {
+        "body_ty_idx": 28
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 121383,
+        "name": "gameData",
+        "parameters": [],
+        "return_ty_idx": 29
+      },
+      {
+        "tvm_method_id": 126344,
+        "name": "gameStatus",
+        "parameters": [],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotCreator",
+        "err_code": 101
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientValue",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SelfPlayNotAllowed",
+        "err_code": 106
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongState",
+        "err_code": 107
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.JoinDeadlinePassed",
+        "err_code": 108
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.EscrowUnderfunded",
+        "err_code": 109
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.CommitmentMismatch",
+        "err_code": 110
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RevealDeadlinePassed",
+        "err_code": 111
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RevealDeadlineNotReached",
+        "err_code": 112
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/06b35bfb-1904-4e1f-9256-05e7e2dacfdc/contracts/src/CoinFlipGame.tolk",
+      "contents": "import \"types\"\n\ncontract CoinFlipGame {\n    author: \"TON Coin Flip\"\n    version: \"0.1.0\"\n    description: \"Single coin-flip game: escrow, commit-reveal, payouts\"\n    storage: GameStorage\n    incomingMessages: AllowedGameMessage\n}\n\ntype AllowedGameMessage =\n    | JoinGame\n    | Reveal\n    | ClaimTimeout\n    | CancelGame\n\n// Sends the platform fee and the winner payout, then destroys the game account.\n// The carry-all + destroy mode sweeps the entire remaining balance (pot - fee\n// plus any gas dust) to the winner, so no funds can ever be stranded here.\nfun payoutAndDestroy(treasury: address, winner: address, fee: coins) {\n    if (fee > 0) {\n        val feeMsg = createMessage({\n            bounce: BounceMode.NoBounce,\n            dest: treasury,\n            value: fee,\n        });\n        feeMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n    val payoutMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: winner,\n        value: 0,\n    });\n    // SAFETY: the game is in a terminal state (status saved before any send) and\n    // must end with a zero balance: the whole escrow minus fee belongs to the\n    // winner, and destroying the account guarantees no funds can be stranded.\n    // NoBounce ensures the payout lands even on an uninitialized wallet.\n    payoutMsg.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_DESTROY);\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedGameMessage.fromSlice(in.body);\n\n    match (msg) {\n        JoinGame => {\n            var storage = GameStorage.load();\n            assert (storage.status == STATUS_CREATED) throw Errors.WrongState;\n            val config = storage.config.load();\n            assert (blockchain.now() <= config.joinDeadline) throw Errors.JoinDeadlinePassed;\n            assert (in.senderAddress != config.creator) throw Errors.SelfPlayNotAllowed;\n            assert (\n                in.valueCoins >= config.stake + JOIN_GAS_RESERVE\n            ) throw Errors.InsufficientValue;\n            // The creator escrow must actually be on the balance: a game deployed\n            // directly (bypassing the factory) with an unfunded stake must not\n            // be joinable, or the joiner's money would back a phantom pot.\n            assert (\n                contract.getOriginalBalance() >= 2 * config.stake + JOIN_GAS_RESERVE\n            ) throw Errors.EscrowUnderfunded;\n\n            storage.opponent = in.senderAddress;\n            storage.seedB = msg.seedB;\n            storage.revealDeadline = (blockchain.now() + config.revealTimeout) as uint32;\n            storage.status = STATUS_JOINED;\n            storage.save();\n\n            val ev = createExternalLogMessage({\n                dest: ExtOutLogBucket { topic: TOPIC_GAME_JOINED },\n                body: EvGameJoined {\n                    gameId: config.gameId,\n                    opponent: in.senderAddress,\n                    seedB: msg.seedB,\n                    revealDeadline: storage.revealDeadline,\n                },\n            });\n            ev.send(SEND_MODE_REGULAR);\n\n            // Return everything above stake + gas reserve to the joiner\n            val excess = in.valueCoins - config.stake - JOIN_GAS_RESERVE;\n            if (excess >= MIN_REFUND) {\n                val refundMsg = createMessage({\n                    bounce: BounceMode.NoBounce,\n                    dest: in.senderAddress,\n                    value: excess,\n                });\n                refundMsg.send(SEND_MODE_REGULAR);\n            }\n        }\n\n        Reveal => {\n            var storage = GameStorage.load();\n            assert (storage.status == STATUS_JOINED) throw Errors.WrongState;\n            val config = storage.config.load();\n            val ext = config.ext.load();\n            assert (in.senderAddress == config.creator) throw Errors.NotCreator;\n            assert (blockchain.now() <= storage.revealDeadline) throw Errors.RevealDeadlinePassed;\n            assert (calcCommitment(msg.secretA) == ext.commitment) throw Errors.CommitmentMismatch;\n\n            val coinIsHeads = calcCoinIsHeads(msg.secretA, storage.seedB);\n            val winner = coinIsHeads == config.aSideHeads ? config.creator : storage.opponent!;\n            val pot = 2 * config.stake;\n            val fee = calcFee(pot, config.feeBps);\n\n            storage.status = STATUS_SETTLED;\n            storage.save();\n\n            val ev = createExternalLogMessage({\n                dest: ExtOutLogBucket { topic: TOPIC_GAME_SETTLED },\n                body: EvGameSettled {\n                    gameId: config.gameId,\n                    coinIsHeads,\n                    winner,\n                    payout: pot - fee,\n                    fee,\n                },\n            });\n            ev.send(SEND_MODE_REGULAR);\n\n            payoutAndDestroy(ext.treasury, winner, fee);\n        }\n\n        ClaimTimeout => {\n            // Permissionless: anyone may finalize an expired game, the payout\n            // always goes to the opponent (the creator forfeits by not revealing)\n            var storage = GameStorage.load();\n            assert (storage.status == STATUS_JOINED) throw Errors.WrongState;\n            assert (\n                blockchain.now() > storage.revealDeadline\n            ) throw Errors.RevealDeadlineNotReached;\n            val config = storage.config.load();\n            val ext = config.ext.load();\n\n            val winner = storage.opponent!;\n            val pot = 2 * config.stake;\n            val fee = calcFee(pot, config.feeBps);\n\n            storage.status = STATUS_TIMED_OUT;\n            storage.save();\n\n            val ev = createExternalLogMessage({\n                dest: ExtOutLogBucket { topic: TOPIC_GAME_TIMED_OUT },\n                body: EvGameTimedOut {\n                    gameId: config.gameId,\n                    winner,\n                    payout: pot - fee,\n                    fee,\n                },\n            });\n            ev.send(SEND_MODE_REGULAR);\n\n            payoutAndDestroy(ext.treasury, winner, fee);\n        }\n\n        CancelGame => {\n            var storage = GameStorage.load();\n            assert (storage.status == STATUS_CREATED) throw Errors.WrongState;\n            val config = storage.config.load();\n            assert (in.senderAddress == config.creator) throw Errors.NotCreator;\n\n            storage.status = STATUS_CANCELLED;\n            storage.save();\n\n            val ev = createExternalLogMessage({\n                dest: ExtOutLogBucket { topic: TOPIC_GAME_CANCELLED },\n                body: EvGameCancelled {\n                    gameId: config.gameId,\n                    refund: contract.getOriginalBalance(),\n                },\n            });\n            ev.send(SEND_MODE_REGULAR);\n\n            // Full refund, no fee on a game that never happened (constitution IX)\n            val refundMsg = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: config.creator,\n                value: 0,\n            });\n            // SAFETY: status is CANCELLED (saved above) and the entire balance is\n            // the creator's own escrow; sweeping it back and destroying the account\n            // is the intended terminal outcome. NoBounce so the refund always lands.\n            refundMsg.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_DESTROY);\n        }\n\n        else => {\n            // Plain TON transfers (e.g. the factory deploy carrying the escrow) are accepted\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun gameData(): GameData {\n    val storage = GameStorage.load();\n    val config = storage.config.load();\n    val ext = config.ext.load();\n    return {\n        gameId: config.gameId,\n        factory: config.factory,\n        creator: config.creator,\n        stake: config.stake,\n        commitment: ext.commitment,\n        aSideHeads: config.aSideHeads,\n        feeBps: config.feeBps,\n        treasury: ext.treasury,\n        joinDeadline: config.joinDeadline,\n        status: storage.status,\n        opponent: storage.opponent,\n        seedB: storage.seedB,\n        revealDeadline: storage.revealDeadline,\n    };\n}\n\nget fun gameStatus(): int {\n    val storage = GameStorage.load();\n    return storage.status;\n}\n"
+    },
+    {
+      "filename": "tmp/06b35bfb-1904-4e1f-9256-05e7e2dacfdc/contracts/src/types.tolk",
+      "contents": "// Shared types for the TON Coin Flip platform.\n// See docs/specification.md for the full protocol description.\n\nenum Errors {\n    NotAdmin = 100\n    NotCreator = 101\n    GamePaused = 102\n    InvalidStake = 103\n    InsufficientValue = 104\n    FeeTooHigh = 105\n    SelfPlayNotAllowed = 106\n    WrongState = 107\n    JoinDeadlinePassed = 108\n    EscrowUnderfunded = 109\n    CommitmentMismatch = 110\n    RevealDeadlinePassed = 111\n    RevealDeadlineNotReached = 112\n    InvalidLimits = 113\n    InvalidMessage = 0xFFFF\n}\n\n// Game lifecycle states (specification §5)\nconst STATUS_CREATED = 0\nconst STATUS_JOINED = 1\nconst STATUS_SETTLED = 2\nconst STATUS_TIMED_OUT = 3\nconst STATUS_CANCELLED = 4\n\n// Fee is measured in basis points of the pot; the cap is hardcoded (constitution III, IX)\nconst BPS_DENOMINATOR = 10000\nconst MAX_FEE_BPS = 1000 // 10%\n\n// Gas reserves: the part of the attached value that is NOT counted as stake.\n// Anything above stake + reserve is refunded (join) or swept to the winner (settle).\nconst CREATE_GAS_RESERVE = ton(\"0.1\")\nconst JOIN_GAS_RESERVE = ton(\"0.05\")\nconst MIN_REFUND = ton(\"0.01\")\n\n// ---------------------------------------------------------------------------\n// Storage\n// ---------------------------------------------------------------------------\n\nstruct FactoryStorage {\n    admin: address\n    treasury: address\n    feeBps: uint16\n    minStake: coins\n    maxStake: coins\n    joinTimeout: uint32\n    revealTimeout: uint32\n    paused: bool\n    gamesCount: uint64\n    gameCode: cell\n}\n\nfun FactoryStorage.load(): FactoryStorage {\n    return FactoryStorage.fromCell(contract.getData());\n}\n\nfun FactoryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Immutable per-game parameters, snapshotted from the factory at creation time\n// (constitution VIII: later admin changes never affect an existing game).\n// Split into two cells: three addresses + commitment exceed the 1023-bit cell limit.\nstruct GameConfigExt {\n    commitment: uint256\n    treasury: address\n}\n\nstruct GameConfig {\n    gameId: uint64\n    factory: address\n    creator: address\n    stake: coins\n    aSideHeads: bool\n    feeBps: uint16\n    revealTimeout: uint32\n    joinDeadline: uint32\n    ext: Cell<GameConfigExt>\n}\n\nstruct GameStorage {\n    config: Cell<GameConfig>\n    status: uint8\n    opponent: address?\n    seedB: uint256\n    revealDeadline: uint32\n}\n\nfun GameStorage.load(): GameStorage {\n    return GameStorage.fromCell(contract.getData());\n}\n\nfun GameStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Flattened read-only view returned by the `gameData` get-method\nstruct GameData {\n    gameId: uint64\n    factory: address\n    creator: address\n    stake: coins\n    commitment: uint256\n    aSideHeads: bool\n    feeBps: uint16\n    treasury: address\n    joinDeadline: uint32\n    status: uint8\n    opponent: address?\n    seedB: uint256\n    revealDeadline: uint32\n}\n\n// ---------------------------------------------------------------------------\n// Incoming messages (specification §6)\n// ---------------------------------------------------------------------------\n\n// Factory\nstruct (0xC0F10001) CreateGame {\n    stake: coins\n    commitment: uint256\n    aSideHeads: bool\n}\n\nstruct (0xC0F10002) SetFee {\n    feeBps: uint16\n}\n\nstruct (0xC0F10003) SetLimits {\n    minStake: coins\n    maxStake: coins\n    joinTimeout: uint32\n    revealTimeout: uint32\n}\n\nstruct (0xC0F10004) SetTreasury {\n    treasury: address\n}\n\nstruct (0xC0F10005) SetPaused {\n    paused: bool\n}\n\nstruct (0xC0F10006) SetGameCode {\n    code: cell\n}\n\n// Game\nstruct (0xC0F20001) JoinGame {\n    seedB: uint256\n}\n\nstruct (0xC0F20002) Reveal {\n    secretA: uint256\n}\n\nstruct (0xC0F20003) ClaimTimeout {}\n\nstruct (0xC0F20004) CancelGame {}\n\n// ---------------------------------------------------------------------------\n// Events (external-out log messages, indexed by ExtOutLogBucket topic)\n// ---------------------------------------------------------------------------\n\nconst TOPIC_GAME_CREATED = 1\nconst TOPIC_GAME_JOINED = 2\nconst TOPIC_GAME_SETTLED = 3\nconst TOPIC_GAME_TIMED_OUT = 4\nconst TOPIC_GAME_CANCELLED = 5\n\nstruct (0xC0FE0001) EvGameCreated {\n    gameId: uint64\n    game: address\n    creator: address\n    stake: coins\n    joinDeadline: uint32\n}\n\nstruct (0xC0FE0002) EvGameJoined {\n    gameId: uint64\n    opponent: address\n    seedB: uint256\n    revealDeadline: uint32\n}\n\nstruct (0xC0FE0003) EvGameSettled {\n    gameId: uint64\n    coinIsHeads: bool\n    winner: address\n    payout: coins\n    fee: coins\n}\n\nstruct (0xC0FE0004) EvGameTimedOut {\n    gameId: uint64\n    winner: address\n    payout: coins\n    fee: coins\n}\n\nstruct (0xC0FE0005) EvGameCancelled {\n    gameId: uint64\n    refund: coins\n}\n\n// ---------------------------------------------------------------------------\n// Provably-fair helpers (shared by contracts, tests and the off-chain verifier)\n// ---------------------------------------------------------------------------\n\n// commitment = SHA256(secretA as a 32-byte big-endian value)\nfun calcCommitment(secretA: uint256): uint256 {\n    return beginCell().storeUint(secretA, 256).endCell().beginParse().bitsHash();\n}\n\n// coin = LSB(secretA XOR seedB); true = heads (орел), false = tails (решка)\nfun calcCoinIsHeads(secretA: uint256, seedB: uint256): bool {\n    return ((secretA ^ seedB) & 1) == 1;\n}\n\n// fee = floor(pot * feeBps / 10000); the rounding dust stays in the winner payout\nfun calcFee(pot: coins, feeBps: int): coins {\n    return pot * feeBps / BPS_DENOMINATOR;\n}\n"
+    }
+  ]
+}

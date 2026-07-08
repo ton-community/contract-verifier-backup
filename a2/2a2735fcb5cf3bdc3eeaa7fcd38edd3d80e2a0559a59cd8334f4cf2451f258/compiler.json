@@ -1,0 +1,3372 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from NftSale.tolk, types.tolk\nPROGRAM{\n  DECLPROC sendTerminalExcessRefund()\n  0 DECLMETHOD onInternalMessage()\n  82386 DECLMETHOD factory()\n  116220 DECLMETHOD saleId()\n  123671 DECLMETHOD seller()\n  71452 DECLMETHOD nftItem()\n  120091 DECLMETHOD price()\n  103528 DECLMETHOD feeWallet()\n  80005 DECLMETHOD feeBps()\n  102272 DECLMETHOD expiresAt()\n  75514 DECLMETHOD marketplaceIntentHash()\n  77589 DECLMETHOD state()\n  86012 DECLMETHOD buyer()\n  69421 DECLMETHOD nftTransferQueryId()\n  100733 DECLMETHOD payoutDone()\n  // 14 functions inlined in-place:\n  // - SaleStorage.load (21 calls)\n  // - SaleStorage.save (10 calls)\n  // - minBuyGasValue (1 call)\n  // - storageReserve (6 calls)\n  // - terminalReserve (2 calls)\n  // - minTerminalRefundValue (3 calls)\n  // - nftTransferValue (4 calls)\n  // - minActionGasValue (3 calls)\n  // - factoryDepositReadyValue (2 calls)\n  // - factoryDepositCompletedValue (1 call)\n  // - loadDepositMarker (1 call)\n  // - sendNftTransfer (4 calls)\n  // - onBouncedMessage (0 calls)\n  // - MarketTlbMaybe<Cell<cell>>.none (1 call)\n  // - MarketTlbEither<cell, Cell<cell>>.left (1 call)\n  sendTerminalExcessRefund() PROC:<{\n    DUP\n    10000000 PUSHINT\n    LESS\n    IFJMP:<{\n      3 BLKDROP\n    }>\n    BALANCE\n    FIRST\n    s2 PUSH\n    80000000 PUSHINT\n    ADD\n    10000000 PUSHINT\n    ADD\n    OVER\n    GEQ\n    IFJMP:<{\n      4 BLKDROP\n    }>\n    ROT\n    SUB\n    80000000 PUSHINT\n    SUB\n    s0 s1 PUSH2\n    GREATER\n    IF:<{\n      DROP\n    }>ELSE<{\n      NIP\n    }>\n    DUP\n    10000000 PUSHINT\n    LESS\n    IFJMP:<{\n      2DROP\n    }>\n    NEWC\n    b{010000} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    SWAP\n    STGRAMS\n    0 PUSHINT\n    107 STUR\n    ENDC\n    0 PUSHINT\n    SENDRAWMSG\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      DUP\n      LDREF\n      LDREF\n      NIP\n      PLDREF\n      SWAP\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      ENDS\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      LDGRAMS\n      NIP\n      64 LDU\n      1 LDI\n      ENDS\n      INMSG_SRC\n      s0 s3 XCHG2\n      SDEQ\n      208 THROWIFNOT\n      s0 s6 XCHG\n      32 LDU\n      NIP\n      32 LDU\n      SWAP\n      1607220500 PUSHINT\n      EQUAL\n      208 THROWIFNOT\n      64 PLDU\n      s1 s6 XCHG\n      EQUAL\n      208 THROWIFNOT\n      OVER\n      2 EQINT\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        OVER\n        3 EQINT\n        0 NEQINT\n      }>\n      201 THROWIFNOT\n      s0 s4 XCHG\n      209 THROWIF\n      2 EQINT\n      IF:<{\n        6 PUSHINT\n      }>ELSE<{\n        7 PUSHINT\n      }>\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      8 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DUP\n    x{47535244} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      NIP\n      8 LDU\n      LDREF\n      PLDREF\n      DUP\n      CTOS\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      200 THROWIFNOT\n      s0 s3 XCHG\n      201 THROWIF\n      s0 s4 XCHG\n      64 LDU\n      256 LDU\n      LDGRAMS\n      DROP\n      s0 s4 XCHG\n      EQUAL\n      207 THROWIFNOT\n      BALANCE\n      FIRST\n      150000000 PUSHINT\n      GEQ\n      212 THROWIFNOT\n      100000000 PUSHINT\n      NEWC\n      x{4746444e} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      s1 s2 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      SWAP\n      STGRAMS\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{47534259} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      PLDREF\n      DUP\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      256 LDU\n      ENDS\n      s0 s5 XCHG\n      1 EQINT\n      201 THROWIFNOT\n      NOW\n      GREATER\n      202 THROWIFNOT\n      s0 s6 XCHG\n      64 LDU\n      LDSTDADDR\n      LDGRAMS\n      256 PLDU\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      210 THROWIFNOT\n      s1 s9 XCPU\n      EQUAL\n      204 THROWIFNOT\n      s0 s5 XCHG2\n      EQUAL\n      207 THROWIFNOT\n      INMSG_VALUE\n      s7 PUSH\n      60000000 PUSHINT\n      ADD\n      GEQ\n      205 THROWIFNOT\n      BALANCE\n      FIRST\n      s7 PUSH\n      50000000 PUSHINT\n      ADD\n      50000000 PUSHINT\n      ADD\n      GEQ\n      212 THROWIFNOT\n      INMSG_VALUE\n      s0 s7 XCHG2\n      SUB\n      s3 PUSH\n      NEWC\n      STOPTSTDADDR\n      s4 s(-1) PUXC\n      STOPTSTDADDR\n      SWAP\n      STGRAMS\n      s6 PUSH\n      64 STUR\n      b{0} STSLICECONST\n      ENDC\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSLICE\n      x{02} STSLICECONST\n      OVER\n      STREFR\n      s1 s3 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      c4 POP\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      ENDS\n      50000000 PUSHINT\n      MYADDR\n      <b b> PUSHREF\n      NEWC\n      x{5fcc3d14} STSLICECONST\n      s1 s6 XCHG\n      64 STU\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      b{000000} STSLICECONST\n      s1 s3 XCHG\n      STREF\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4753434c} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      PLDREF\n      OVER\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      s2 PUSH\n      CTOS\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      256 LDU\n      ENDS\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      IF:<{\n        NIP\n        -1 PUSHINT\n      }>ELSE<{\n        NOW\n        ROT\n        GEQ\n        0 NEQINT\n      }>\n      s0 s9 XCHG\n      64 LDU\n      256 PLDU\n      ROT\n      EQUAL\n      207 THROWIFNOT\n      s5 PUSH\n      IF:<{\n        s5 PUSH\n        1 EQINT\n        0 NEQINT\n      }>ELSE<{\n        -1 PUSHINT\n      }>\n      201 THROWIFNOT\n      s0 s8 XCHG\n      203 THROWIFNOT\n      INMSG_VALUE\n      100000000 PUSHINT\n      GEQ\n      205 THROWIFNOT\n      s0 s4 XCHG\n      IFNOTJMP:<{\n        DROP\n        s2 POP\n        PUSHNULL\n        INMSG_SRC\n        INMSG_VALUE\n        s0 s2 XCHG\n        NEWC\n        STOPTSTDADDR\n        STOPTSTDADDR\n        SWAP\n        STGRAMS\n        s1 s5 XCHG\n        64 STU\n        b{1} STSLICECONST\n        ENDC\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        s1 s2 XCHG\n        STSLICE\n        x{05} STSLICECONST\n        s1 s3 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        STREF\n        ENDC\n        c4 POP\n        INMSG_SRC\n        0 PUSHINT\n        INMSG_VALUE\n        sendTerminalExcessRefund() CALLDICT\n      }>\n      BALANCE\n      FIRST\n      100000000 PUSHINT\n      GEQ\n      212 THROWIFNOT\n      PUSHNULL\n      INMSG_SRC\n      INMSG_VALUE\n      s0 s2 XCHG\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      SWAP\n      STGRAMS\n      s7 PUSH\n      64 STUR\n      b{0} STSLICECONST\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STSTDADDR\n      s1 s5 XCHG\n      STSLICE\n      x{03} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      c4 POP\n      50000000 PUSHINT\n      MYADDR\n      <b b> PUSHREF\n      NEWC\n      x{5fcc3d14} STSLICECONST\n      s1 s6 XCHG\n      64 STU\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{000000} STSLICECONST\n      s1 s3 XCHG\n      STREF\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{47535254} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      LDREF\n      PLDREF\n      s2 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      s3 PUSH\n      CTOS\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      ENDS\n      s0 s3 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      LDGRAMS\n      64 LDU\n      NIP\n      1 LDI\n      NIP\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      256 PLDU\n      s0 s6 XCHG2\n      EQUAL\n      207 THROWIFNOT\n      s7 PUSH\n      6 EQINT\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s7 PUSH\n        7 EQINT\n        0 NEQINT\n      }>\n      201 THROWIFNOT\n      INMSG_VALUE\n      100000000 PUSHINT\n      GEQ\n      205 THROWIFNOT\n      BALANCE\n      FIRST\n      100000000 PUSHINT\n      GEQ\n      212 THROWIFNOT\n      s0 s7 XCHG\n      6 EQINT\n      IFJMP:<{\n        s2 POP\n        OVER\n        ISNULL\n        208 THROWIF\n        OVER\n        NEWC\n        STOPTSTDADDR\n        s1 s6 XCHG\n        STOPTSTDADDR\n        s0 s8 XCHG2\n        STGRAMS\n        OVER\n        64 STUR\n        b{0} STSLICECONST\n        ENDC\n        s0 s6 XCHG\n        NEWC\n        STSTDADDR\n        s1 s5 XCHG\n        STSLICE\n        x{02} STSLICECONST\n        s1 s2 XCHG\n        STREF\n        STREF\n        s1 s3 XCHG\n        STREF\n        ENDC\n        c4 POP\n        50000000 PUSHINT\n        MYADDR\n        <b b> PUSHREF\n        NEWC\n        x{5fcc3d14} STSLICECONST\n        s1 s4 XCHG\n        64 STU\n        s1 s5 XCHG\n        STSTDADDR\n        s1 s4 XCHG\n        STSTDADDR\n        b{000000} STSLICECONST\n        STREF\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        STREF\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>\n      DROP\n      PUSHNULL\n      NEWC\n      STOPTSTDADDR\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s0 s8 XCHG2\n      STGRAMS\n      OVER\n      64 STUR\n      b{0} STSLICECONST\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STSTDADDR\n      s1 s5 XCHG\n      STSLICE\n      x{03} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      c4 POP\n      50000000 PUSHINT\n      MYADDR\n      <b b> PUSHREF\n      NEWC\n      x{5fcc3d14} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      b{000000} STSLICECONST\n      STREF\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{47535246} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      LDREF\n      PLDREF\n      OVER\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      ENDS\n      s0 s2 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      LDGRAMS\n      NIP\n      64 LDU\n      NIP\n      1 LDI\n      NIP\n      ENDS\n      s0 s8 XCHG\n      64 LDU\n      256 PLDU\n      s0 s3 XCHG2\n      EQUAL\n      207 THROWIFNOT\n      s0 s4 XCHG\n      6 EQINT\n      201 THROWIFNOT\n      s6 PUSH\n      ISNULL\n      208 THROWIF\n      INMSG_SRC\n      s0 s7 XCHG2\n      SDEQ\n      211 THROWIFNOT\n      INMSG_VALUE\n      100000000 PUSHINT\n      GEQ\n      205 THROWIFNOT\n      BALANCE\n      FIRST\n      s3 PUSH\n      50000000 PUSHINT\n      ADD\n      GEQ\n      212 THROWIFNOT\n      PUSHNULL\n      PUSHNULL\n      SWAP\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      x{0} STSLICECONST\n      s1 s6 XCHG\n      64 STU\n      b{0} STSLICECONST\n      ENDC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSLICE\n      x{01} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{05138d91} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      PLDREF\n      OVER\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      s2 PUSH\n      CTOS\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      ENDS\n      s0 s8 XCHG\n      64 LDU\n      LDSTDADDR\n      b{0} SDBEGINSQ\n      IF:<{\n        PLDREF\n        134 PUSHINT\n      }>ELSE<{\n        b{1} SDBEGINSQ\n        IFNOTJMP:<{\n          63 THROW\n        }>\n        PLDREF\n        135 PUSHINT\n      }>\n      134 PUSHINT\n      EQUAL\n      IF:<{\n        CTOS\n        x{47534450} SDBEGINSQ\n        63 THROWIFNOT\n        64 LDU\n        NIP\n        256 LDU\n        LDSTDADDR\n        ENDS\n      }>ELSE<{\n        CTOS\n        x{47534450} SDBEGINSQ\n        63 THROWIFNOT\n        64 LDU\n        NIP\n        256 LDU\n        LDSTDADDR\n        ENDS\n      }>\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      206 THROWIFNOT\n      s0 s8 XCHG\n      201 THROWIF\n      s1 s4 PUSH2\n      SDEQ\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s1 s9 PUSH2\n        SDEQ\n        0 NEQINT\n      }>\n      207 THROWIFNOT\n      s10 PUSH\n      EQUAL\n      207 THROWIFNOT\n      s6 s3 XCHG2\n      SDEQ\n      207 THROWIFNOT\n      PUSHNULL\n      PUSHNULL\n      SWAP\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      x{0} STSLICECONST\n      s5 PUSH\n      64 STUR\n      b{0} STSLICECONST\n      ENDC\n      s7 PUSH\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSLICE\n      x{01} STSLICECONST\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      ENDC\n      c4 POP\n      s2 s3 XCPU\n      SDEQ\n      IF:<{\n        10000000 PUSHINT\n        NEWC\n        x{47464443} STSLICECONST\n        s1 s2 XCHG\n        64 STU\n        s1 s2 XCHG\n        STSTDADDR\n        s1 s3 XCHG\n        256 STU\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        STREF\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        4 BLKDROP\n      }>\n    }>\n    x{d53276db} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      8 LDU\n      LDREF\n      LDREF\n      PLDREF\n      s2 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      s3 PUSH\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      16 LDU\n      64 LDU\n      NIP\n      256 LDU\n      NIP\n      ENDS\n      s0 s5 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      LDGRAMS\n      64 LDU\n      1 LDI\n      ENDS\n      INMSG_SRC\n      s0 s8 XCHG2\n      SDEQ\n      208 THROWIFNOT\n      s11 PUSH\n      2 EQINT\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s11 PUSH\n        3 EQINT\n        0 NEQINT\n      }>\n      201 THROWIFNOT\n      s0 s14 XCHG\n      64 PLDU\n      s14 PUSH\n      EQUAL\n      208 THROWIFNOT\n      s0 s5 XCHG\n      209 THROWIF\n      s0 s9 XCHG\n      3 EQINT\n      IFJMP:<{\n        s3 s5 XCHG\n        5 BLKDROP\n        s3 PUSH\n        ISNULL\n        208 THROWIF\n        PUSHNULL\n        PUSHNULL\n        SWAP\n        NEWC\n        STOPTSTDADDR\n        STOPTSTDADDR\n        x{0} STSLICECONST\n        s1 s7 XCHG\n        64 STU\n        b{1} STSLICECONST\n        ENDC\n        s0 s5 XCHG\n        NEWC\n        STSTDADDR\n        s1 s4 XCHG\n        STSLICE\n        x{05} STSLICECONST\n        STREF\n        s1 s2 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        ENDC\n        c4 POP\n        0 PUSHINT\n        ROT\n        sendTerminalExcessRefund() CALLDICT\n      }>\n      DUP\n      ISNULL\n      208 THROWIF\n      s8 PUSH\n      ISNULL\n      208 THROWIF\n      s2 s5 PUXC\n      MUL\n      10000 PUSHINT\n      DIV\n      s2 s0 PUSH2\n      SUB\n      BALANCE\n      FIRST\n      s4 PUSH\n      50000000 PUSHINT\n      ADD\n      GEQ\n      212 THROWIFNOT\n      s0 s6 XCHG\n      NEWC\n      STOPTSTDADDR\n      s9 s(-1) PUXC\n      STOPTSTDADDR\n      s4 PUSH\n      STGRAMS\n      s1 s12 XCHG\n      64 STU\n      b{1} STSLICECONST\n      ENDC\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSLICE\n      x{04} STSLICECONST\n      s1 s6 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      s1 s7 XCHG\n      STREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s6 XCHG\n      STSTDADDR\n      s0 s5 XCHG2\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      s0 s4 XCHG2\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      SWAP\n      sendTerminalExcessRefund() CALLDICT\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  factory() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  saleId() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 PLDU\n  }>\n  seller() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    NIP\n    ENDS\n  }>\n  nftItem() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    ENDS\n  }>\n  price() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDGRAMS\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    64 LDU\n    NIP\n    256 LDU\n    NIP\n    ENDS\n  }>\n  feeWallet() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDGRAMS\n    NIP\n    LDSTDADDR\n    16 LDU\n    NIP\n    64 LDU\n    NIP\n    256 LDU\n    NIP\n    ENDS\n  }>\n  feeBps() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDGRAMS\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    64 LDU\n    NIP\n    256 LDU\n    NIP\n    ENDS\n  }>\n  expiresAt() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDGRAMS\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    64 LDU\n    256 LDU\n    NIP\n    ENDS\n  }>\n  marketplaceIntentHash() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDGRAMS\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    64 LDU\n    NIP\n    256 LDU\n    ENDS\n  }>\n  state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    8 PLDU\n  }>\n  buyer() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTSTDADDR\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    64 LDU\n    NIP\n    1 LDI\n    NIP\n    ENDS\n  }>\n  nftTransferQueryId() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    64 LDU\n    1 LDI\n    NIP\n    ENDS\n  }>\n  payoutDone() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    64 LDU\n    NIP\n    1 LDI\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECMwEACKsAART/APSkE/S88sgLAQIBYgIDAgLPBAUCASAbHAH3PiRjm7tRND6SNY/0wcg1NQx10wB0PpIMfpI0QHQ+lAx+lAx+gAx0z/SANH4klADxwXy4NAG0x8x0x8BghBfzD0UuvLg0NcLPxa68uDQIcACkX+VIcADwwDi8uDJBPLQ0cACkXaRd+ICyPpSzssHzsntVOAg1ywiOpqSJIAYAoQgggiYloC5kl8D4PgnbxAighAExLQAoIIImJaAoCG+kl8E4FihghAExLQAoVMBvJEwkTHiIIIImJaAuZFb4MjPhQgS+lIB+gJwzwtqyXD7AIAP8jnEx7UTQ+kjTPzHTB9TXTCDQ+gAx+kgx0w8x0z8x0//R+JIlxwXy4MgD8tDJBNM/0//6ADAEuvLgz/gnbxCCEAjw0YC+8uDUghAF9eEAyM+RHRkROhLLPxLMFMwB+gLJyM+FiBL6Ulj6AnHPC2rMyXD7AODXLCI6mhLM4wKJBwgJAf4x7UTQ+kjWP9MH1NdMIND6APpIMdMPMdM/0//RBcAB8uDJ+CO88uDKBtM/+kj6ANcL//iSI8cF8uDSURm68uDMUAW68uDP+JcngguThwCgvvLgzfgnbxAnggr68ICgggr68ICgvvLg1PiXUAehI8j6VFJA+lQB+gImzws/z4HJCgAIR1NDTAQ61yfjAtcsIjqakqTjAtcsIjqakjTjAtcsICicbIwLDA0OAZYFyPpSFM7PhAohzxQTzBPMye1U0PpIMfpI0YIK+vCA+CiIyM+RfzD0UhbLPxT6UhP6Us+ECBPMycjPhYgT+lIB+gJxzwtqzMlw+wAUAv4x7UTQ+kjWP9MH1NdMIdD6SPpI0SLQ+gAx+kgx0w8x0z/T/9H4kiTHBZIxf5b4I1i+wwDiCdM/1wv/WLry4M8llSXAAcMAkX/i8uDJCPLgy/iXghAF9eEAvvLgzQTjA/gnbxCCEAX14QC+8uDUbfiS+JcCyPpU+lQB+gInzws/DxAC/jHtRND6SNY/0wfU1NdMItD6SPpI0SPQ+gAx+kgx0w8x0z8x0//RA9D6UPpQ+gDTPzHSADHRC9M/1wv/UAa68uDPJ8AGkX+VJ8AHwwDi8uDJ+JeCEAX14QC+8uDN+CdvEIIQBfXhAL7y4NQHwAbjAjBtyPpUFvpUUAj6AiHPCz8REgH+Me1E0PpI1j/TB9TU10wh0PoA+kgx0w8x0z8x0//RAtD6UPpQMfoAMdM/MdIAMdEI0z/XC/9QA7ry4M8EwAby4MkmbvLQ0PiSUAfHBfLg0/iXghAF9eEAvvLgzfgnbxAjggr68ICgvvLg1G1tAcj6VPpUz4QgFss/z4HJBMj6UhUCJuMC1ywmqZO23OMCMIQPAccA8vQWFwBcMDJt+JL4lwLI+lT6VAH6AhXLP8+DyQPI+lISzs+EFhPMEszMye1U+JJw+JfwAQKMic8WyQbI+lIVzs+EDhLMzBPMye1Uggr68ID4KIjIz5F/MPRSFss/E/pSEvpSz4QIE8zJyM+FiBL6Ulj6AnHPC2rMyXD7ABMUAbIyIW7y0NAhyPpUFvpUUAj6AiHPCz/PgckGyPpSFc7PhAoSzMwTzMntVIIK+vCA+CiIyM+RfzD0UhTLPxX6UhT6Us+ECMzJyM+FiBL6Ulj6AnHPC2rMyXD7ABQCionPFskGyPpSFc7PhA4SzMwTzMntVIIK+vCA+CiIyM+RfzD0UhTLPxX6UhT6Us+ECMzJyM+FiBL6Ulj6AnHPC2rMyXD7ABMUAAFAAAAAQBPOz4QGEswTzMzJ7VT4ksjPhQj6UgH6AnDPC2rJcfsAAfwx7UTQ+kjWP9MH1NdMIdD6SPpI0SLQ+gAx+kgx0w8x0z8x0//RCNM/+kjXLAKV10yBAIac1ywGkvI/4ddMgQCH4oEAhrqOEtDXLCI6miKE8r/TPzHT//pI0Y4S0NcsIjqaIoTyv9M/MdP/+kjR4viSJccF8uDOCPLQyVMUxwUYAv4x7UTQ+kjWP9MH1NTXTCLQ+kj6SNEj0PoA+kjTD9M/MdP/MdEF0PpQ+lD6ANM/0gDR+JJQCMcF8uDQK8ACkX+VK8ADwwDi8uDJDtcLPy668uDQBfLQ0QnAA+MCIG7y0NAobvLQ0FImqIEnEKkEUyCh+CdvECSCCvrwgKC+8uDUGRoA4JF/llMZxwXDAOLy4M8quvLgz1BjxwXy4M9tbQHI+lT6VM+EICXPCz/PgcknyPpSF87PhAYUzBLMFMzJ7VRRI8cFjimCCJiWgMjPkR0ZEQ4Syz8S+lITy//JyM+FCBL6Ulj6AnHPC2rMyXD7AJJfBOIAXhA1XwUjbvLQ0G1tAcj6VPpUz4QgF8s/z4PJBcj6UhTOz4QWzBLMEszJ7VRwWPABAJgGyPpUUpD6VCT6AhzLP8+DyQrI+lIZzs+EEhbMFMwXzMntVMjPhQgW+lJQBfoCcM8Laslx+wDIz4UIE/pSUAT6AnDPC2rJcfsAAfABAgEgHR4CASApKgIBIB8gAgFiJygCASAhIgIBICMkADezy3tRNDUMdQx10zQ+lAx+lAx+gAx0z/SADHRgAB2xxztRNDXTND6SDH6SNGACASAlJgAzsiF7UTQ1DHXTND6ADH6SDHTD9M/MdP/MdGAAM699dqJoahjrpmh9ABj9JBjph5jpn5jp/+jAAB2vivaiaH0kGOmfmOuFg8AAEazpdqJofSQYQAA3r/52omhqGOoY66ZofSh9KBj9ABjpn5jpABjowAIBSCssAgEgLzACAVgtLgAzsRo7UTQ1DHXTND6ADH6SNMPMdM/MdP/MdGAANql97UTQ1DHUMddM0PpQMfpQMfoAMdM/MdIA0QAyq4DtRNDUMddM0PoAMfpIMdMPMdM/0/8x0QIBIDEyAB20Yv2omhrpmh9JH0kGOjAAF7F/O1E0PpIMdcLP4AAzsUb7UTQ1DHXTND6APpIMdMPMdM/MdP/MdGA=",
+  "codeHashHex": "A22A2735FCB5CF3BDC3EEAA7FCD38EDD3D80E2A0559A59CD8334F4CF2451F258",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/82f43110-0a53-423f-bc4a-5db37804d191/contracts/NftSale.tolk",
+        "size_chars": 17431,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/82f43110-0a53-423f-bc4a-5db37804d191/contracts/types.tolk",
+        "size_chars": 9201,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SaleMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRequestDeposit"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleBuy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleCancel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRetryTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRefundBuy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftOwnershipAssigned"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbEither",
+        "type_args_ty_idx": [
+          3,
+          20
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherLeft",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "X"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherLeft",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          20
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "Y"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbEither",
+        "type_args_ty_idx": [
+          23,
+          28
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          28
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          }
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftExcesses"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1196642884,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1196638809,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1196639052,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1196642900,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1196642886,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 85167505,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 3576854235,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleParties"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleTerms"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 38
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleSettlement"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 51
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          50
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 143,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          55,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 58,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 60,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 56,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 144,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          64
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryDepositNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          67
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbMaybe",
+        "type_args_ty_idx": [
+          20
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbNone"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbJust",
+        "type_args_ty_idx": [
+          20
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbJust",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 71,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 133,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 72,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 145,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbMaybe",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 71,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          },
+          {
+            "variant_ty_idx": 73,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          }
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          77
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleDepositMarker"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryDepositCompleted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          80
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 22,
+        "struct_name": "MarketTlbEitherLeft<cell>",
+        "monomorphic_fields_ty_idx": [
+          3
+        ]
+      },
+      {
+        "ty_idx": 25,
+        "struct_name": "MarketTlbEitherRight<Cell<cell>>",
+        "monomorphic_fields_ty_idx": [
+          20
+        ]
+      },
+      {
+        "ty_idx": 45,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          0
+        ]
+      },
+      {
+        "ty_idx": 68,
+        "struct_name": "CreateMessageOptions<FactoryDepositNft>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          67
+        ]
+      },
+      {
+        "ty_idx": 72,
+        "struct_name": "MarketTlbJust<Cell<cell>>",
+        "monomorphic_fields_ty_idx": [
+          20
+        ]
+      },
+      {
+        "ty_idx": 78,
+        "struct_name": "CreateMessageOptions<NftTransfer>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          77
+        ]
+      },
+      {
+        "ty_idx": 81,
+        "struct_name": "CreateMessageOptions<FactoryDepositCompleted>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          80
+        ]
+      }
+    ],
+    "alias_instantiations": [
+      {
+        "ty_idx": 21,
+        "alias_name": "MarketTlbEither<cell, Cell<cell>>",
+        "monomorphic_target_ty_idx": 27
+      },
+      {
+        "ty_idx": 70,
+        "alias_name": "MarketTlbMaybe<Cell<cell>>",
+        "monomorphic_target_ty_idx": 74
+      }
+    ],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 69,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 52
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 61
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 55
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 59
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 47,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 65,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 49
+          },
+          {
+            "name": "value",
+            "ty_idx": 54
+          },
+          {
+            "name": "dest",
+            "ty_idx": 63
+          },
+          {
+            "name": "body",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "SaleMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          11,
+          6,
+          11,
+          17
+        ],
+        "target_ty_idx": 33
+      },
+      {
+        "kind": "alias",
+        "name": "MarketTlbEither",
+        "ty_idx": 29,
+        "ident_loc": [
+          2,
+          38,
+          6,
+          38,
+          21
+        ],
+        "target_ty_idx": 31,
+        "type_params": [
+          "X",
+          "Y"
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbEitherLeft",
+        "ty_idx": 24,
+        "ident_loc": [
+          2,
+          50,
+          14,
+          50,
+          33
+        ],
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbEitherRight",
+        "ty_idx": 26,
+        "ident_loc": [
+          2,
+          54,
+          14,
+          54,
+          34
+        ],
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "MarketTlbMaybe",
+        "ty_idx": 75,
+        "ident_loc": [
+          2,
+          58,
+          6,
+          58,
+          20
+        ],
+        "target_ty_idx": 76,
+        "type_params": [
+          "X"
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbNone",
+        "ty_idx": 71,
+        "ident_loc": [
+          2,
+          60,
+          14,
+          60,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbJust",
+        "ty_idx": 73,
+        "ident_loc": [
+          2,
+          62,
+          14,
+          62,
+          27
+        ],
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleParties",
+        "ty_idx": 36,
+        "ident_loc": [
+          2,
+          157,
+          8,
+          157,
+          19
+        ],
+        "fields": [
+          {
+            "name": "seller",
+            "ty_idx": 7
+          },
+          {
+            "name": "nftItem",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleTerms",
+        "ty_idx": 38,
+        "ident_loc": [
+          2,
+          162,
+          8,
+          162,
+          17
+        ],
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 39
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleSettlement",
+        "ty_idx": 41,
+        "ident_loc": [
+          2,
+          170,
+          8,
+          170,
+          22
+        ],
+        "fields": [
+          {
+            "name": "buyer",
+            "ty_idx": 42
+          },
+          {
+            "name": "refundRecipient",
+            "ty_idx": 42
+          },
+          {
+            "name": "refundBudget",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "payoutDone",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleStorage",
+        "ty_idx": 34,
+        "ident_loc": [
+          2,
+          223,
+          8,
+          223,
+          19
+        ],
+        "fields": [
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "saleId",
+            "ty_idx": 11
+          },
+          {
+            "name": "state",
+            "ty_idx": 35
+          },
+          {
+            "name": "parties",
+            "ty_idx": 37
+          },
+          {
+            "name": "terms",
+            "ty_idx": 40
+          },
+          {
+            "name": "settlement",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryDepositNft",
+        "ty_idx": 67,
+        "ident_loc": [
+          2,
+          301,
+          21,
+          301,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1195787342,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parties",
+            "ty_idx": 37
+          },
+          {
+            "name": "terms",
+            "ty_idx": 40
+          },
+          {
+            "name": "factoryRefundBudget",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryDepositCompleted",
+        "ty_idx": 80,
+        "ident_loc": [
+          2,
+          315,
+          21,
+          315,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 1195787331,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftItem",
+            "ty_idx": 7
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRequestDeposit",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          347,
+          21,
+          347,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1196642884,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "factoryRefundBudget",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleBuy",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          353,
+          21,
+          353,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 1196638809,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "buyerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "expectedPriceNano",
+            "ty_idx": 6
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleCancel",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          401,
+          21,
+          401,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1196639052,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRetryTransfer",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          406,
+          21,
+          406,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1196642900,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRefundBuy",
+        "ty_idx": 18,
+        "ident_loc": [
+          2,
+          411,
+          21,
+          411,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1196642886,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleDepositMarker",
+        "ty_idx": 79,
+        "ident_loc": [
+          2,
+          416,
+          21,
+          416,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1196639312,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "sellerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftOwnershipAssigned",
+        "ty_idx": 19,
+        "ident_loc": [
+          2,
+          422,
+          21,
+          422,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 85167505,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftTransfer",
+        "ty_idx": 77,
+        "ident_loc": [
+          2,
+          428,
+          21,
+          428,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1607220500,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 70
+          },
+          {
+            "name": "forwardAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftExcesses",
+        "ty_idx": 32,
+        "ident_loc": [
+          2,
+          437,
+          21,
+          437,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "sendTerminalExcessRefund",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          78,
+          5,
+          78,
+          29
+        ],
+        "end_loc": [
+          1,
+          103,
+          1,
+          103,
+          2
+        ],
+        "params": [
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "reservedOutgoing",
+            "ty_idx": 6
+          },
+          {
+            "name": "maxRefund",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "minTerminalRefundValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          32,
+          5,
+          32,
+          27
+        ],
+        "end_loc": [
+          1,
+          34,
+          1,
+          34,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 2,
+        "name": "terminalReserve",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          28,
+          5,
+          28,
+          20
+        ],
+        "end_loc": [
+          1,
+          30,
+          1,
+          30,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 3,
+        "name": "createMessage<void>",
+        "return_ty_idx": 44,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          105,
+          5,
+          105,
+          22
+        ],
+        "end_loc": [
+          1,
+          389,
+          1,
+          389,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          391,
+          5,
+          391,
+          21
+        ],
+        "end_loc": [
+          1,
+          412,
+          1,
+          412,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Cell<SaleParties>.load",
+        "return_ty_idx": 36,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Cell<SaleSettlement>.load",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "SaleStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          236,
+          17,
+          236,
+          21
+        ],
+        "end_loc": [
+          2,
+          238,
+          1,
+          238,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<SaleTerms>.load",
+        "return_ty_idx": 38,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "storageReserve",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          24,
+          5,
+          24,
+          19
+        ],
+        "end_loc": [
+          1,
+          26,
+          1,
+          26,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 11,
+        "name": "factoryDepositReadyValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          44,
+          5,
+          44,
+          29
+        ],
+        "end_loc": [
+          1,
+          46,
+          1,
+          46,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<FactoryDepositNft>",
+        "return_ty_idx": 44,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "minBuyGasValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          19
+        ],
+        "end_loc": [
+          1,
+          22,
+          1,
+          22,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "nftTransferValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          36,
+          5,
+          36,
+          21
+        ],
+        "end_loc": [
+          1,
+          38,
+          1,
+          38,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "SaleSettlement.toCell",
+        "return_ty_idx": 43,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 41
+          },
+          {
+            "name": "options",
+            "ty_idx": 69
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "sendNftTransfer",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          61,
+          5,
+          61,
+          20
+        ],
+        "end_loc": [
+          1,
+          76,
+          1,
+          76,
+          2
+        ],
+        "params": [
+          {
+            "name": "nftItem",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "MarketTlbMaybe<Cell<cell>>.none",
+        "return_ty_idx": 70,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          66,
+          23,
+          66,
+          27
+        ],
+        "end_loc": [
+          2,
+          68,
+          1,
+          68,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "MarketTlbEither<cell, Cell<cell>>.left",
+        "return_ty_idx": 22,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          41,
+          27,
+          41,
+          31
+        ],
+        "end_loc": [
+          2,
+          43,
+          1,
+          43,
+          2
+        ],
+        "params": [
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "createMessage<NftTransfer>",
+        "return_ty_idx": 44,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 78
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "minActionGasValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          40,
+          5,
+          40,
+          22
+        ],
+        "end_loc": [
+          1,
+          42,
+          1,
+          42,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "loadDepositMarker",
+        "return_ty_idx": 79,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          52,
+          5,
+          52,
+          22
+        ],
+        "end_loc": [
+          1,
+          59,
+          1,
+          59,
+          2
+        ],
+        "params": [
+          {
+            "name": "payload",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "SaleDepositMarker.fromCell",
+        "return_ty_idx": 79,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "factoryDepositCompletedValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          48,
+          5,
+          48,
+          33
+        ],
+        "end_loc": [
+          1,
+          50,
+          1,
+          50,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 24,
+        "name": "createMessage<FactoryDepositCompleted>",
+        "return_ty_idx": 44,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 81
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "factory",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          414,
+          9,
+          414,
+          16
+        ],
+        "end_loc": [
+          1,
+          417,
+          1,
+          417,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 26,
+        "name": "saleId",
+        "return_ty_idx": 11,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          419,
+          9,
+          419,
+          15
+        ],
+        "end_loc": [
+          1,
+          422,
+          1,
+          422,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "seller",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          424,
+          9,
+          424,
+          15
+        ],
+        "end_loc": [
+          1,
+          427,
+          1,
+          427,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 28,
+        "name": "nftItem",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          429,
+          9,
+          429,
+          16
+        ],
+        "end_loc": [
+          1,
+          432,
+          1,
+          432,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 29,
+        "name": "price",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          434,
+          9,
+          434,
+          14
+        ],
+        "end_loc": [
+          1,
+          437,
+          1,
+          437,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 30,
+        "name": "feeWallet",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          439,
+          9,
+          439,
+          18
+        ],
+        "end_loc": [
+          1,
+          442,
+          1,
+          442,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 31,
+        "name": "feeBps",
+        "return_ty_idx": 39,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          444,
+          9,
+          444,
+          15
+        ],
+        "end_loc": [
+          1,
+          447,
+          1,
+          447,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 32,
+        "name": "expiresAt",
+        "return_ty_idx": 11,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          449,
+          9,
+          449,
+          18
+        ],
+        "end_loc": [
+          1,
+          452,
+          1,
+          452,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 33,
+        "name": "marketplaceIntentHash",
+        "return_ty_idx": 14,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          454,
+          9,
+          454,
+          30
+        ],
+        "end_loc": [
+          1,
+          457,
+          1,
+          457,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 34,
+        "name": "state",
+        "return_ty_idx": 35,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          459,
+          9,
+          459,
+          14
+        ],
+        "end_loc": [
+          1,
+          462,
+          1,
+          462,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 35,
+        "name": "buyer",
+        "return_ty_idx": 42,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          464,
+          9,
+          464,
+          14
+        ],
+        "end_loc": [
+          1,
+          467,
+          1,
+          467,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 36,
+        "name": "nftTransferQueryId",
+        "return_ty_idx": 11,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          469,
+          9,
+          469,
+          27
+        ],
+        "end_loc": [
+          1,
+          472,
+          1,
+          472,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 37,
+        "name": "payoutDone",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          474,
+          9,
+          474,
+          19
+        ],
+        "end_loc": [
+          1,
+          477,
+          1,
+          477,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "NftSale",
+    "author": "Grapes Marketplace",
+    "version": "0.1.0",
+    "description": "Per-listing Telegram Gift NFT sale contract",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRequestDeposit"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleBuy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleCancel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRetryTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleRefundBuy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftOwnershipAssigned"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbEither",
+        "type_args_ty_idx": [
+          3,
+          19
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherLeft",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "X"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherLeft",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          19
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "Y"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbEither",
+        "type_args_ty_idx": [
+          22,
+          27
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbEitherRight",
+        "type_args_ty_idx": [
+          27
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          }
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftExcesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleParties"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 34
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleTerms"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SaleSettlement"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftTransfer"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbMaybe",
+        "type_args_ty_idx": [
+          19
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbNone"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbJust",
+        "type_args_ty_idx": [
+          19
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketTlbJust",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 133,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 145,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "MarketTlbMaybe",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          },
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true
+          }
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryDepositNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryDepositCompleted"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 21,
+        "struct_name": "MarketTlbEitherLeft<cell>",
+        "monomorphic_fields_ty_idx": [
+          3
+        ]
+      },
+      {
+        "ty_idx": 24,
+        "struct_name": "MarketTlbEitherRight<Cell<cell>>",
+        "monomorphic_fields_ty_idx": [
+          19
+        ]
+      },
+      {
+        "ty_idx": 45,
+        "struct_name": "MarketTlbJust<Cell<cell>>",
+        "monomorphic_fields_ty_idx": [
+          19
+        ]
+      }
+    ],
+    "alias_instantiations": [
+      {
+        "ty_idx": 20,
+        "alias_name": "MarketTlbEither<cell, Cell<cell>>",
+        "monomorphic_target_ty_idx": 26
+      },
+      {
+        "ty_idx": 43,
+        "alias_name": "MarketTlbMaybe<Cell<cell>>",
+        "monomorphic_target_ty_idx": 47
+      }
+    ],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "MarketTlbEither",
+        "ty_idx": 28,
+        "target_ty_idx": 30,
+        "type_params": [
+          "X",
+          "Y"
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbEitherLeft",
+        "ty_idx": 23,
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbEitherRight",
+        "ty_idx": 25,
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "MarketTlbMaybe",
+        "ty_idx": 48,
+        "target_ty_idx": 49,
+        "type_params": [
+          "X"
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbNone",
+        "ty_idx": 44,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "MarketTlbJust",
+        "ty_idx": 46,
+        "type_params": [
+          "X"
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleParties",
+        "ty_idx": 34,
+        "fields": [
+          {
+            "name": "seller",
+            "ty_idx": 7
+          },
+          {
+            "name": "nftItem",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleTerms",
+        "ty_idx": 36,
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 37
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleSettlement",
+        "ty_idx": 39,
+        "fields": [
+          {
+            "name": "buyer",
+            "ty_idx": 40
+          },
+          {
+            "name": "refundRecipient",
+            "ty_idx": 40
+          },
+          {
+            "name": "refundBudget",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "payoutDone",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleStorage",
+        "ty_idx": 32,
+        "fields": [
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "saleId",
+            "ty_idx": 11
+          },
+          {
+            "name": "state",
+            "ty_idx": 33
+          },
+          {
+            "name": "parties",
+            "ty_idx": 35
+          },
+          {
+            "name": "terms",
+            "ty_idx": 38
+          },
+          {
+            "name": "settlement",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryDepositNft",
+        "ty_idx": 50,
+        "prefix": {
+          "prefix_num": 1195787342,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parties",
+            "ty_idx": 35
+          },
+          {
+            "name": "terms",
+            "ty_idx": 38
+          },
+          {
+            "name": "factoryRefundBudget",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryDepositCompleted",
+        "ty_idx": 51,
+        "prefix": {
+          "prefix_num": 1195787331,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftItem",
+            "ty_idx": 7
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRequestDeposit",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1196642884,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          },
+          {
+            "name": "factoryRefundBudget",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleBuy",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1196638809,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "buyerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "expectedPriceNano",
+            "ty_idx": 6
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleCancel",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1196639052,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRetryTransfer",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1196642900,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SaleRefundBuy",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 1196642886,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "marketplaceIntentHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftOwnershipAssigned",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 85167505,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftTransfer",
+        "ty_idx": 42,
+        "prefix": {
+          "prefix_num": 1607220500,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 43
+          },
+          {
+            "name": "forwardAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftExcesses",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 32
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 17
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 31
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 42
+      },
+      {
+        "body_ty_idx": 50
+      },
+      {
+        "body_ty_idx": 51
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 82386,
+        "name": "factory",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 116220,
+        "name": "saleId",
+        "parameters": [],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 123671,
+        "name": "seller",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 71452,
+        "name": "nftItem",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 120091,
+        "name": "price",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 103528,
+        "name": "feeWallet",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 80005,
+        "name": "feeBps",
+        "parameters": [],
+        "return_ty_idx": 37
+      },
+      {
+        "tvm_method_id": 102272,
+        "name": "expiresAt",
+        "parameters": [],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 75514,
+        "name": "marketplaceIntentHash",
+        "parameters": [],
+        "return_ty_idx": 13
+      },
+      {
+        "tvm_method_id": 77589,
+        "name": "state",
+        "parameters": [],
+        "return_ty_idx": 33
+      },
+      {
+        "tvm_method_id": 86012,
+        "name": "buyer",
+        "parameters": [],
+        "return_ty_idx": 40
+      },
+      {
+        "tvm_method_id": 69421,
+        "name": "nftTransferQueryId",
+        "parameters": [],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 100733,
+        "name": "payoutDone",
+        "parameters": [],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotSeller",
+        "err_code": 200
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SaleNotActive",
+        "err_code": 201
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SaleExpired",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SaleNotExpired",
+        "err_code": 203
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PriceMismatch",
+        "err_code": 204
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientValue",
+        "err_code": 205
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongNftSender",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongNftMarker",
+        "err_code": 207
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongNftResponse",
+        "err_code": 208
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.AlreadySettled",
+        "err_code": 209
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BuyerMismatch",
+        "err_code": 210
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotBuyer",
+        "err_code": 211
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientReserve",
+        "err_code": 212
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/82f43110-0a53-423f-bc4a-5db37804d191/contracts/NftSale.tolk",
+      "contents": "import \"types\"\r\n\r\ncontract NftSale {\r\n    author: \"Grapes Marketplace\"\r\n    version: \"0.1.0\"\r\n    description: \"Per-listing Telegram Gift NFT sale contract\"\r\n    storage: SaleStorage\r\n    incomingMessages: SaleMessage\r\n}\r\n\r\ntype SaleMessage =\r\n    | SaleRequestDeposit\r\n    | SaleBuy\r\n    | SaleCancel\r\n    | SaleRetryTransfer\r\n    | SaleRefundBuy\r\n    | NftOwnershipAssigned\r\n    | NftExcesses\r\n\r\nfun minBuyGasValue(): coins {\r\n    return ton(\"0.06\");\r\n}\r\n\r\nfun storageReserve(): coins {\r\n    return ton(\"0.05\");\r\n}\r\n\r\nfun terminalReserve(): coins {\r\n    return ton(\"0.08\");\r\n}\r\n\r\nfun minTerminalRefundValue(): coins {\r\n    return ton(\"0.01\");\r\n}\r\n\r\nfun nftTransferValue(): coins {\r\n    return ton(\"0.05\");\r\n}\r\n\r\nfun minActionGasValue(): coins {\r\n    return ton(\"0.1\");\r\n}\r\n\r\nfun factoryDepositReadyValue(): coins {\r\n    return ton(\"0.1\");\r\n}\r\n\r\nfun factoryDepositCompletedValue(): coins {\r\n    return ton(\"0.01\");\r\n}\r\n\r\nfun loadDepositMarker(\r\n    payload: MarketTlbEither<cell, Cell<cell>>,\r\n): SaleDepositMarker {\r\n    return match (payload) {\r\n        MarketTlbEitherLeft => SaleDepositMarker.fromCell(payload.value),\r\n        MarketTlbEitherRight => SaleDepositMarker.fromCell(payload.value),\r\n    };\r\n}\r\n\r\nfun sendNftTransfer(nftItem: address, queryId: uint64, newOwner: address) {\r\n    val transferNft = createMessage({\r\n        bounce: BounceMode.Only256BitsOfBody,\r\n        value: nftTransferValue(),\r\n        dest: nftItem,\r\n        body: NftTransfer {\r\n            queryId,\r\n            newOwner,\r\n            responseDestination: contract.getAddress(),\r\n            customPayload: MarketTlbMaybe<Cell<cell>>.none(),\r\n            forwardAmount: ton(\"0\"),\r\n            forwardPayload: MarketTlbEither<cell, Cell<cell>>.left(createEmptyCell()),\r\n        },\r\n    });\r\n    transferNft.send(SEND_MODE_REGULAR);\r\n}\r\n\r\nfun sendTerminalExcessRefund(recipient: address, reservedOutgoing: coins, maxRefund: coins) {\r\n    if (maxRefund < minTerminalRefundValue()) {\r\n        return;\r\n    }\r\n\r\n    val originalBalance = contract.getOriginalBalance();\r\n    if (originalBalance <= reservedOutgoing + terminalReserve() + minTerminalRefundValue()) {\r\n        return;\r\n    }\r\n\r\n    var refundAmount = originalBalance - reservedOutgoing - terminalReserve();\r\n    if (refundAmount > maxRefund) {\r\n        refundAmount = maxRefund;\r\n    }\r\n\r\n    if (refundAmount < minTerminalRefundValue()) {\r\n        return;\r\n    }\r\n\r\n    val refund = createMessage({\r\n        bounce: BounceMode.NoBounce,\r\n        value: refundAmount,\r\n        dest: recipient,\r\n    });\r\n    refund.send(SEND_MODE_REGULAR);\r\n}\r\n\r\nfun onInternalMessage(in: InMessage) {\r\n    val msg = lazy SaleMessage.fromSlice(in.body);\r\n\r\n    match (msg) {\r\n        SaleRequestDeposit => {\r\n            val storage = lazy SaleStorage.load();\r\n            val terms = storage.terms.load();\r\n\r\n            assert (in.senderAddress == storage.factory) throw Errors.NotSeller;\r\n            assert (storage.state == 0) throw Errors.SaleNotActive;\r\n            assert (\r\n                msg.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (\r\n                contract.getOriginalBalance() >= storageReserve() + factoryDepositReadyValue()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            val ready = createMessage({\r\n                bounce: BounceMode.Only256BitsOfBody,\r\n                value: factoryDepositReadyValue(),\r\n                dest: storage.factory,\r\n                body: FactoryDepositNft {\r\n                    queryId: msg.queryId,\r\n                    parties: storage.parties,\r\n                    terms: storage.terms,\r\n                    factoryRefundBudget: msg.factoryRefundBudget,\r\n                },\r\n            });\r\n            ready.send(SEND_MODE_REGULAR);\r\n        }\r\n        SaleBuy => {\r\n            var storage = lazy SaleStorage.load();\r\n            val terms = storage.terms.load();\r\n\r\n            assert (storage.state == 1) throw Errors.SaleNotActive;\r\n            assert (blockchain.now() < terms.expiresAt) throw Errors.SaleExpired;\r\n            assert (in.senderAddress == msg.buyerAddress) throw Errors.BuyerMismatch;\r\n            assert (msg.expectedPriceNano == terms.price) throw Errors.PriceMismatch;\r\n            assert (\r\n                msg.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (in.valueCoins >= terms.price + minBuyGasValue()) throw Errors.InsufficientValue;\r\n            assert (\r\n                contract.getOriginalBalance() >= terms.price + storageReserve() + nftTransferValue()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            storage.state = SaleState.SettlingBuy;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: msg.buyerAddress,\r\n                refundRecipient: msg.buyerAddress,\r\n                refundBudget: in.valueCoins - terms.price,\r\n                nftTransferQueryId: msg.queryId,\r\n                payoutDone: false,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            val parties = storage.parties.load();\r\n            sendNftTransfer(parties.nftItem, msg.queryId, msg.buyerAddress);\r\n        }\r\n        SaleCancel => {\r\n            var storage = lazy SaleStorage.load();\r\n            val parties = storage.parties.load();\r\n            val terms = storage.terms.load();\r\n            val canCancel = in.senderAddress == parties.seller ||\r\n            blockchain.now() >= terms.expiresAt;\r\n\r\n            assert (\r\n                msg.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (storage.state == 0 || storage.state == 1) throw Errors.SaleNotActive;\r\n            assert (canCancel) throw Errors.SaleNotExpired;\r\n            assert (in.valueCoins >= minActionGasValue()) throw Errors.InsufficientValue;\r\n\r\n            if (storage.state == 0) {\r\n                storage.state = SaleState.Cancelled;\r\n                storage.settlement = SaleSettlement {\r\n                    buyer: null,\r\n                    refundRecipient: in.senderAddress,\r\n                    refundBudget: in.valueCoins,\r\n                    nftTransferQueryId: msg.queryId,\r\n                    payoutDone: true,\r\n                }.toCell();\r\n                storage.save();\r\n                sendTerminalExcessRefund(in.senderAddress, ton(\"0\"), in.valueCoins);\r\n                return;\r\n            }\r\n\r\n            assert (\r\n                contract.getOriginalBalance() >= storageReserve() + nftTransferValue()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            storage.state = SaleState.SettlingCancel;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: null,\r\n                refundRecipient: in.senderAddress,\r\n                refundBudget: in.valueCoins,\r\n                nftTransferQueryId: msg.queryId,\r\n                payoutDone: false,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            sendNftTransfer(parties.nftItem, msg.queryId, parties.seller);\r\n        }\r\n        SaleRetryTransfer => {\r\n            var storage = lazy SaleStorage.load();\r\n            val parties = storage.parties.load();\r\n            val terms = storage.terms.load();\r\n            val settlement = storage.settlement.load();\r\n\r\n            assert (\r\n                msg.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (storage.state == 6 || storage.state == 7) throw Errors.SaleNotActive;\r\n            assert (in.valueCoins >= minActionGasValue()) throw Errors.InsufficientValue;\r\n            assert (\r\n                contract.getOriginalBalance() >= storageReserve() + nftTransferValue()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            if (storage.state == 6) {\r\n                assert (settlement.buyer != null) throw Errors.WrongNftResponse;\r\n\r\n                storage.state = SaleState.SettlingBuy;\r\n                storage.settlement = SaleSettlement {\r\n                    buyer: settlement.buyer,\r\n                    refundRecipient: settlement.refundRecipient,\r\n                    refundBudget: settlement.refundBudget,\r\n                    nftTransferQueryId: msg.queryId,\r\n                    payoutDone: false,\r\n                }.toCell();\r\n                storage.save();\r\n\r\n                sendNftTransfer(parties.nftItem, msg.queryId, settlement.buyer!);\r\n                return;\r\n            }\r\n\r\n            storage.state = SaleState.SettlingCancel;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: null,\r\n                refundRecipient: settlement.refundRecipient,\r\n                refundBudget: settlement.refundBudget,\r\n                nftTransferQueryId: msg.queryId,\r\n                payoutDone: false,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            sendNftTransfer(parties.nftItem, msg.queryId, parties.seller);\r\n        }\r\n        SaleRefundBuy => {\r\n            var storage = lazy SaleStorage.load();\r\n            val terms = storage.terms.load();\r\n            val settlement = storage.settlement.load();\r\n\r\n            assert (\r\n                msg.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (storage.state == 6) throw Errors.SaleNotActive;\r\n            assert (settlement.buyer != null) throw Errors.WrongNftResponse;\r\n            assert (in.senderAddress == settlement.buyer!) throw Errors.NotBuyer;\r\n            assert (in.valueCoins >= minActionGasValue()) throw Errors.InsufficientValue;\r\n            assert (\r\n                contract.getOriginalBalance() >= terms.price + storageReserve()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            storage.state = SaleState.Active;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: null,\r\n                refundRecipient: null,\r\n                refundBudget: 0,\r\n                nftTransferQueryId: msg.queryId,\r\n                payoutDone: false,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            val refund = createMessage({\r\n                bounce: BounceMode.NoBounce,\r\n                value: terms.price,\r\n                dest: in.senderAddress,\r\n            });\r\n            refund.send(SEND_MODE_PAY_FEES_SEPARATELY);\r\n        }\r\n        NftOwnershipAssigned => {\r\n            var storage = lazy SaleStorage.load();\r\n            val parties = storage.parties.load();\r\n            val terms = storage.terms.load();\r\n            val marker = loadDepositMarker(msg.forwardPayload);\r\n\r\n            assert (in.senderAddress == parties.nftItem) throw Errors.WrongNftSender;\r\n            assert (storage.state == 0) throw Errors.SaleNotActive;\r\n            assert (\r\n                msg.prevOwner == parties.seller || msg.prevOwner == storage.factory\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (\r\n                marker.marketplaceIntentHash == terms.marketplaceIntentHash\r\n            ) throw Errors.WrongNftMarker;\r\n            assert (marker.sellerAddress == parties.seller) throw Errors.WrongNftMarker;\r\n\r\n            storage.state = SaleState.Active;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: null,\r\n                refundRecipient: null,\r\n                refundBudget: 0,\r\n                nftTransferQueryId: msg.queryId,\r\n                payoutDone: false,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            if (msg.prevOwner == storage.factory) {\r\n                val completed = createMessage({\r\n                    bounce: BounceMode.NoBounce,\r\n                    value: factoryDepositCompletedValue(),\r\n                    dest: storage.factory,\r\n                    body: FactoryDepositCompleted {\r\n                        queryId: msg.queryId,\r\n                        nftItem: parties.nftItem,\r\n                        marketplaceIntentHash: terms.marketplaceIntentHash,\r\n                    },\r\n                });\r\n                completed.send(SEND_MODE_REGULAR);\r\n            }\r\n        }\r\n        NftExcesses => {\r\n            var storage = lazy SaleStorage.load();\r\n            val parties = storage.parties.load();\r\n            val terms = storage.terms.load();\r\n            val settlement = storage.settlement.load();\r\n\r\n            assert (in.senderAddress == parties.nftItem) throw Errors.WrongNftResponse;\r\n            assert (storage.state == 2 || storage.state == 3) throw Errors.SaleNotActive;\r\n            assert (settlement.nftTransferQueryId == msg.queryId) throw Errors.WrongNftResponse;\r\n            assert (!settlement.payoutDone) throw Errors.AlreadySettled;\r\n\r\n            if (storage.state == 3) {\r\n                assert (settlement.refundRecipient != null) throw Errors.WrongNftResponse;\r\n                storage.state = SaleState.Cancelled;\r\n                storage.settlement = SaleSettlement {\r\n                    buyer: null,\r\n                    refundRecipient: null,\r\n                    refundBudget: 0,\r\n                    nftTransferQueryId: settlement.nftTransferQueryId,\r\n                    payoutDone: true,\r\n                }.toCell();\r\n                storage.save();\r\n                sendTerminalExcessRefund(settlement.refundRecipient!, ton(\"0\"), settlement.refundBudget);\r\n                return;\r\n            }\r\n\r\n            assert (settlement.buyer != null) throw Errors.WrongNftResponse;\r\n            assert (settlement.refundRecipient != null) throw Errors.WrongNftResponse;\r\n            val fee = terms.price * terms.feeBps / 10000;\r\n            val sellerAmount = terms.price - fee;\r\n            assert (\r\n                contract.getOriginalBalance() >= terms.price + storageReserve()\r\n            ) throw Errors.InsufficientReserve;\r\n\r\n            storage.state = SaleState.Sold;\r\n            storage.settlement = SaleSettlement {\r\n                buyer: settlement.buyer,\r\n                refundRecipient: settlement.refundRecipient,\r\n                refundBudget: settlement.refundBudget,\r\n                nftTransferQueryId: settlement.nftTransferQueryId,\r\n                payoutDone: true,\r\n            }.toCell();\r\n            storage.save();\r\n\r\n            val paySeller = createMessage({\r\n                bounce: BounceMode.NoBounce,\r\n                value: sellerAmount,\r\n                dest: parties.seller,\r\n            });\r\n            paySeller.send(SEND_MODE_PAY_FEES_SEPARATELY);\r\n\r\n            val payFee = createMessage({\r\n                bounce: BounceMode.NoBounce,\r\n                value: fee,\r\n                dest: terms.feeWallet,\r\n            });\r\n            payFee.send(SEND_MODE_PAY_FEES_SEPARATELY);\r\n\r\n            sendTerminalExcessRefund(settlement.refundRecipient!, terms.price, settlement.refundBudget);\r\n        }\r\n        else => {\r\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\r\n        }\r\n    }\r\n}\r\n\r\nfun onBouncedMessage(in: InMessageBounced) {\r\n    var storage = lazy SaleStorage.load();\r\n    val parties = storage.parties.load();\r\n    val settlement = storage.settlement.load();\r\n    var body = in.bouncedBody;\r\n\r\n    assert (in.senderAddress == parties.nftItem) throw Errors.WrongNftResponse;\r\n    body.skipBouncedPrefix();\r\n    val op = body.loadUint(32);\r\n    assert (op == 0x5fcc3d14) throw Errors.WrongNftResponse;\r\n    val queryId = body.loadUint(64);\r\n    assert (settlement.nftTransferQueryId == queryId) throw Errors.WrongNftResponse;\r\n    assert (storage.state == 2 || storage.state == 3) throw Errors.SaleNotActive;\r\n    assert (!settlement.payoutDone) throw Errors.AlreadySettled;\r\n\r\n    if (storage.state == 2) {\r\n        storage.state = SaleState.TransferFailedBuy;\r\n    } else {\r\n        storage.state = SaleState.TransferFailedCancel;\r\n    }\r\n    storage.save();\r\n}\r\n\r\nget fun factory(): address {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.factory;\r\n}\r\n\r\nget fun saleId(): uint64 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.saleId;\r\n}\r\n\r\nget fun seller(): address {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.parties.load().seller;\r\n}\r\n\r\nget fun nftItem(): address {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.parties.load().nftItem;\r\n}\r\n\r\nget fun price(): coins {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.terms.load().price;\r\n}\r\n\r\nget fun feeWallet(): address {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.terms.load().feeWallet;\r\n}\r\n\r\nget fun feeBps(): uint16 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.terms.load().feeBps;\r\n}\r\n\r\nget fun expiresAt(): uint64 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.terms.load().expiresAt;\r\n}\r\n\r\nget fun marketplaceIntentHash(): uint256 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.terms.load().marketplaceIntentHash;\r\n}\r\n\r\nget fun state(): uint8 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.state;\r\n}\r\n\r\nget fun buyer(): address? {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.settlement.load().buyer;\r\n}\r\n\r\nget fun nftTransferQueryId(): uint64 {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.settlement.load().nftTransferQueryId;\r\n}\r\n\r\nget fun payoutDone(): bool {\r\n    val storage = lazy SaleStorage.load();\r\n    return storage.settlement.load().payoutDone;\r\n}\r\n"
+    },
+    {
+      "filename": "tmp/82f43110-0a53-423f-bc4a-5db37804d191/contracts/types.tolk",
+      "contents": "enum Errors {\n    NotFactoryOwner = 100\n    FactoryCreatePaused = 101\n    InvalidFeeBps = 102\n    InvalidPrice = 103\n    InvalidExpiry = 104\n    InvalidIntentHash = 105\n    InvalidFeeConfig = 106\n    PendingDepositExists = 107\n    PendingDepositMissing = 108\n    WrongPendingDeposit = 109\n    RecoveryNotAllowed = 110\n    NotSeller = 200\n    SaleNotActive = 201\n    SaleExpired = 202\n    SaleNotExpired = 203\n    PriceMismatch = 204\n    InsufficientValue = 205\n    WrongNftSender = 206\n    WrongNftMarker = 207\n    WrongNftResponse = 208\n    AlreadySettled = 209\n    BuyerMismatch = 210\n    NotBuyer = 211\n    InsufficientReserve = 212\n    WrongFactoryDeposit = 213\n    InvalidPricingMode = 214\n    InvalidQuote = 215\n    QuoteExpired = 216\n    QuoteNotActive = 217\n    InvalidSignature = 218\n    QuotePriceMismatch = 219\n    NotNftOwner = 300\n    NotImplemented = 0xFFFE\n    InvalidMessage = 0xFFFF\n}\n\ntype MarketTlbEither<X, Y> = MarketTlbEitherLeft<X> | MarketTlbEitherRight<Y>\n\n@inline\nfun MarketTlbEither<X, Y>.left(value: X): MarketTlbEitherLeft<X> {\n    return MarketTlbEitherLeft { value };\n}\n\n@inline\nfun MarketTlbEither<X, Y>.right(value: Y): MarketTlbEitherRight<Y> {\n    return MarketTlbEitherRight { value };\n}\n\nstruct (0b0) MarketTlbEitherLeft<X> {\n    value: X\n}\n\nstruct (0b1) MarketTlbEitherRight<X> {\n    value: X\n}\n\ntype MarketTlbMaybe<X> = MarketTlbNone | MarketTlbJust<X>\n\nstruct (0b0) MarketTlbNone\n\nstruct (0b1) MarketTlbJust<X> {\n    value: X\n}\n\nfun MarketTlbMaybe<X>.none(): MarketTlbMaybe<X> {\n    return MarketTlbNone {};\n}\n\nfun MarketTlbMaybe<X>.just(value: X): MarketTlbMaybe<X> {\n    return MarketTlbJust { value };\n}\n\nenum SaleState {\n    Created = 0\n    Active = 1\n    SettlingBuy = 2\n    SettlingCancel = 3\n    Sold = 4\n    Cancelled = 5\n    TransferFailedBuy = 6\n    TransferFailedCancel = 7\n}\n\nenum SalePricingMode {\n    FixedNative = 0\n    LiveUsdQuote = 1\n}\n\nenum FactoryPendingStage {\n    WaitingSaleReady = 1\n    TransferringToSale = 2\n    TransferFailedToSale = 3\n    RecoveringToSeller = 4\n    RecoveryFailedToSeller = 5\n}\n\nstruct FactoryPendingDeposit {\n    seller: address\n    expectedSale: address\n    terms: Cell<SaleTerms>\n    transferQueryId: uint64\n    recoveryQueryId: uint64\n    stage: FactoryPendingStage\n    createdAt: uint64\n}\n\nstruct FactoryStorage {\n    owner: address\n    feeWallet: address\n    feeBps: uint16\n    defaultLifetimeSeconds: uint32\n    createPaused: bool\n    nextSaleId: uint64\n    saleCode: cell\n    pendingDeposits: map<address, Cell<FactoryPendingDeposit>>\n}\n\nstruct FactoryV2PendingDeposit {\n    seller: address\n    expectedSale: address\n    terms: Cell<SaleV2Terms>\n    transferQueryId: uint64\n    recoveryQueryId: uint64\n    stage: FactoryPendingStage\n    createdAt: uint64\n}\n\nstruct FactoryV2Storage {\n    owner: address\n    feeWallet: address\n    feeBps: uint16\n    defaultLifetimeSeconds: uint32\n    networkId: uint32\n    createPaused: bool\n    nextSaleId: uint64\n    saleCode: cell\n    pendingDeposits: map<address, Cell<FactoryV2PendingDeposit>>\n}\n\nfun FactoryStorage.load(): FactoryStorage {\n    return FactoryStorage.fromCell(contract.getData());\n}\n\nfun FactoryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun FactoryV2Storage.load(): FactoryV2Storage {\n    return FactoryV2Storage.fromCell(contract.getData());\n}\n\nfun FactoryV2Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct SaleParties {\n    seller: address\n    nftItem: address\n}\n\nstruct SaleTerms {\n    price: coins\n    feeWallet: address\n    feeBps: uint16\n    expiresAt: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct SaleSettlement {\n    buyer: address?\n    refundRecipient: address?\n    refundBudget: coins\n    nftTransferQueryId: uint64\n    payoutDone: bool\n}\n\nstruct SaleV2PricingPolicy {\n    pricingMode: uint8\n    networkId: uint32\n    fixedPrice: coins\n    usdPriceMicro: uint64\n    rateScale: uint32\n    oraclePublicKey: uint256\n    minPriceNano: coins\n    maxPriceNano: coins\n}\n\nstruct SaleV2Terms {\n    pricing: Cell<SaleV2PricingPolicy>\n    feeWallet: address\n    feeBps: uint16\n    expiresAt: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct SaleV2Settlement {\n    buyer: address?\n    refundRecipient: address?\n    refundBudget: coins\n    nftTransferQueryId: uint64\n    settlementPrice: coins\n    payoutDone: bool\n}\n\nstruct SaleV2Storage {\n    factory: address\n    saleId: uint64\n    state: uint8\n    parties: Cell<SaleParties>\n    terms: Cell<SaleV2Terms>\n    settlement: Cell<SaleV2Settlement>\n}\n\nfun SaleV2Storage.load(): SaleV2Storage {\n    return SaleV2Storage.fromCell(contract.getData());\n}\n\nfun SaleV2Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct SaleStorage {\n    factory: address\n    saleId: uint64\n    state: uint8\n    parties: Cell<SaleParties>\n    terms: Cell<SaleTerms>\n    settlement: Cell<SaleSettlement>\n}\n\nfun SaleStorage.load(): SaleStorage {\n    return SaleStorage.fromCell(contract.getData());\n}\n\nfun SaleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct MockNftStorage {\n    owner: address\n    collection: address\n    bounceTransfers: bool\n    suppressResponses: bool\n}\n\nfun MockNftStorage.load(): MockNftStorage {\n    return MockNftStorage.fromCell(contract.getData());\n}\n\nfun MockNftStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct DisposableNftStorage {\n    owner: address\n    collection: address\n    index: uint64\n    content: cell\n}\n\nfun DisposableNftStorage.load(): DisposableNftStorage {\n    return DisposableNftStorage.fromCell(contract.getData());\n}\n\nfun DisposableNftStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct Tep62NftData {\n    initialized: int\n    index: uint64\n    collection: address\n    owner: address\n    content: cell\n}\n\nstruct (0x47524353) FactoryCreateSale {\n    queryId: uint64\n    parties: Cell<SaleParties>\n    terms: Cell<SaleTerms>\n}\n\nstruct (0x47324353) FactoryV2CreateSale {\n    queryId: uint64\n    parties: Cell<SaleParties>\n    terms: Cell<SaleV2Terms>\n}\n\nstruct (0x47504643) FactorySetCreatePaused {\n    queryId: uint64\n    paused: bool\n}\n\nstruct (0x47504645) FactorySetFeeConfig {\n    queryId: uint64\n    feeWallet: address\n    feeBps: uint16\n}\n\nstruct (0x4746444e) FactoryDepositNft {\n    queryId: uint64\n    parties: Cell<SaleParties>\n    terms: Cell<SaleTerms>\n    factoryRefundBudget: coins\n}\n\nstruct (0x4732444e) FactoryV2DepositNft {\n    queryId: uint64\n    parties: Cell<SaleParties>\n    terms: Cell<SaleV2Terms>\n    factoryRefundBudget: coins\n}\n\nstruct (0x47464443) FactoryDepositCompleted {\n    queryId: uint64\n    nftItem: address\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x4746524e) FactoryRecoverPendingNft {\n    queryId: uint64\n    nftItem: address\n    marketplaceIntentHash: uint256\n}\n\nstruct FactoryListWithNftTerms {\n    price: coins\n    feeWallet: address\n    feeBps: uint16\n    expiresAt: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x47534c4e) FactoryListWithNftMarker {\n    queryId: uint64\n    sellerAddress: address\n    terms: Cell<FactoryListWithNftTerms>\n}\n\nstruct (0x47324c4e) FactoryV2ListWithNftMarker {\n    queryId: uint64\n    sellerAddress: address\n    terms: Cell<SaleV2Terms>\n}\n\nstruct (0x47535244) SaleRequestDeposit {\n    queryId: uint64\n    marketplaceIntentHash: uint256\n    factoryRefundBudget: coins\n}\n\nstruct (0x47534259) SaleBuy {\n    queryId: uint64\n    buyerAddress: address\n    expectedPriceNano: coins\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x47324658) SaleV2BuyFixed {\n    queryId: uint64\n    buyerAddress: address\n    expectedPriceNano: coins\n    marketplaceIntentHash: uint256\n}\n\nstruct SaleV2LiveQuoteScope {\n    networkId: uint32\n    factory: address\n    sale: address\n    buyer: address\n}\n\nstruct SaleV2LiveQuoteListing {\n    seller: address\n    nftItem: address\n    marketplaceIntentHash: uint256\n    usdPriceMicro: uint64\n}\n\nstruct SaleV2LiveQuotePricing {\n    rateUsdPerGramMicro: uint64\n    priceNano: coins\n    issuedAt: uint64\n    expiresAt: uint64\n    quoteId: uint256\n}\n\nstruct SaleV2LiveQuote {\n    scope: Cell<SaleV2LiveQuoteScope>\n    listing: Cell<SaleV2LiveQuoteListing>\n    pricing: Cell<SaleV2LiveQuotePricing>\n}\n\nstruct (0x47324c52) SaleV2BuyLive {\n    queryId: uint64\n    quote: Cell<SaleV2LiveQuote>\n    signature: bits512\n}\n\nstruct (0x4753434c) SaleCancel {\n    queryId: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x47535254) SaleRetryTransfer {\n    queryId: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x47535246) SaleRefundBuy {\n    queryId: uint64\n    marketplaceIntentHash: uint256\n}\n\nstruct (0x47534450) SaleDepositMarker {\n    queryId: uint64\n    marketplaceIntentHash: uint256\n    sellerAddress: address\n}\n\nstruct (0x05138d91) NftOwnershipAssigned {\n    queryId: uint64\n    prevOwner: address\n    forwardPayload: MarketTlbEither<cell, Cell<cell>>\n}\n\nstruct (0x5fcc3d14) NftTransfer {\n    queryId: uint64\n    newOwner: address\n    responseDestination: address\n    customPayload: MarketTlbMaybe<Cell<cell>>\n    forwardAmount: coins\n    forwardPayload: MarketTlbEither<cell, Cell<cell>>\n}\n\nstruct (0xd53276db) NftExcesses {\n    queryId: uint64\n}\n\nstruct (0x4d534246) MockSetBehavior {\n    queryId: uint64\n    bounceTransfers: bool\n    suppressResponses: bool\n}\n"
+    }
+  ]
+}

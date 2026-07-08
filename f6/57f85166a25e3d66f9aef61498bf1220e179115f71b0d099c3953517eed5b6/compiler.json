@@ -1,0 +1,2741 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from JettonMinter.tolk, errors.tolk, fees-management.tolk, jetton-utils.tolk, messages.tolk, sharding.tolk, storage.tolk, tokenomics.tolk, JettonWallet.code.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  106029 DECLMETHOD get_jetton_data()\n  103289 DECLMETHOD get_wallet_address()\n  78683 DECLMETHOD get_next_admin_address()\n  94740 DECLMETHOD get_max_supply()\n  123279 DECLMETHOD get_zedl_tokenomics()\n  // 10 functions inlined in-place:\n  // - calculateJettonWalletMinStorageFee (1 call)\n  // - forwardInitStateOverhead (1 call)\n  // - calcMinimalTransferAmount (1 call)\n  // - checkAmountIsEnoughToTransfer (1 call)\n  // - calcMinimalBurnAmount (1 call)\n  // - MinterStorage.load (11 calls)\n  // - MinterStorage.save (7 calls)\n  // - calcDeployedJettonWallet (2 calls)\n  // - calcAddressOfJettonWallet (3 calls)\n  // - ForwardPayloadRemainder.checkIsCorrectTlbEither (1 call)\n  // - onBouncedMessage (0 calls)\n  // - assertSenderIsAdmin (6 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      c4 PUSH\n      CTOS\n      SWAP\n      x{178d4519} SDBEGINSQ\n      63 THROWIFNOT\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      SWAP\n      LDGRAMS\n      s0 s2 XCHG\n      SUB\n      NEWC\n      SWAP\n      STGRAMS\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{7bdd97de} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n          \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n      s0 s2 XCHG\n      64 LDU\n      LDGRAMS\n      LDSTDADDR\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      MYADDR\n      s3 PUSH\n      NEWC\n      x{0} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      8 PUSHINT\n      s8 s8 XCPU\n      NEWC\n      b{1} STSLICECONST\n      5 STU\n      b{0110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      248 PUSHPOW2DEC\n      AND\n      s1 s3 XCHG\n      11 PUSHINT\n      s0 s8 XCHG2\n      SDSUBSTR\n      NEWC\n      b{10000000000} STSLICECONST\n      STSLICE\n      s1 s6 XCHG\n      248 STU\n      BTOS\n      SDEQ\n      74 THROWIFNOT\n      s0 s2 XCHG\n      LDGRAMS\n      s0 s3 XCHG\n      SUB\n      NEWC\n      SWAP\n      STGRAMS\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      OVER\n      ISNULL\n      IFJMP:<{\n        2DROP\n      }>\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      3576854235 PUSHINT\n      143 STUR\n      64 STU\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    x{2c76b973} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      LDSTDADDR\n      1 PLDI\n      IF:<{\n        DUP\n        NEWC\n        STSTDADDR\n        ENDC\n      }>ELSE<{\n        PUSHNULL\n      }>\n      PUSHNULL\n      s2 PUSH\n      REWRITESTDADDR\n      DROP\n      IFNOT:<{\n        DROP\n            \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n        MYADDR\n        s3 PUSH\n        NEWC\n        x{0} STSLICECONST\n        STSTDADDR\n        STSTDADDR\n        ENDC\n        8 PUSHINT\n        s2 s2 XCPU\n        NEWC\n        b{1} STSLICECONST\n        5 STU\n        b{0110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        248 PUSHPOW2DEC\n        AND\n        s1 s3 XCHG\n        11 PUSHINT\n        s0 s4 XCHG2\n        SDSUBSTR\n        NEWC\n        b{10000000000} STSLICECONST\n        STSLICE\n        s1 s2 XCHG\n        248 STU\n        BTOS\n        SWAP\n      }>ELSE<{\n        s2 POP\n      }>\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      3513996288 PUSHINT\n      143 STUR\n      s1 s3 XCHG\n      64 STU\n      STOPTSTDADDR\n      STOPTREF\n      ENDC\n      80 PUSHINT\n      SENDRAWMSG\n    }>\n    x{642b7d07} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      DUP\n      LDGRAMS\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      SDEQ\n      73 THROWIFNOT\n      s0 s3 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      LDGRAMS\n      PLDREF\n      s2 PUSH\n      REWRITESTDADDR\n      DROP\n      333 THROWIF\n      DUP\n      CTOS\n      x{178d4519} SDBEGINSQ\n      72 THROWIFNOT\n      64 LDU\n      NIP\n      LDGRAMS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      LDGRAMS\n      LDOPTREF\n      SWAP\n      ISNULL\n      IFNOT:<{\n        ENDS\n      }>ELSE<{\n        DROP\n      }>\n      INMSG_FWDFEE\n      0 PUSHINT\n      GETORIGINALFWDFEE\n      OVER\n      2 PUSHINT\n      1 PUSHINT\n      CONDSEL\n      GETPRECOMPILEDGAS\n      DUP\n      ISNULL\n      6327 PUSHINT\n      s2 PUSH\n      CONDSEL\n      OVER\n      ISNULL\n      7443 PUSHINT\n      ROT\n      s0 s3 XCHG\n      CONDSEL\n      s2 s3 XCHG2\n      MUL\n      s1 s3 XCHG\n      ADD\n      3 PUSHINT\n      812 PUSHINT\n      0 PUSHINT\n      GETFORWARDFEESIMPLE\n      ADD\n      s0 s2 XCHG\n      0 PUSHINT\n      GETGASFEE\n      s1 s2 XCHG\n      ADD\n      SWAP\n      0 PUSHINT\n      GETGASFEE\n      ADD\n      3 PUSHINT\n      1026 PUSHINT\n      157680000 PUSHINT\n      0 PUSHINT\n      GETSTORAGEFEE\n      ADD\n      s3 PUSH\n      LESS\n      48 THROWIFNOT\n      s5 s0 PUSH2\n      ADD\n      s0 s7 XCHG2\n      LEQ\n      75 THROWIFNOT\n      s4 s5 XCHG2\n      ADD\n      NEWC\n      SWAP\n      STGRAMS\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      10000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n          \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n      MYADDR\n      s2 PUSH\n      NEWC\n      x{0} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      8 PUSHINT\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s3 s1 PUSH3\n      NEWC\n      b{1} STSLICECONST\n      5 STU\n      b{0110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      248 PUSHPOW2DEC\n      AND\n      s0 s5 XCHG\n      11 PUSHINT\n      s3 PUSH\n      SDSUBSTR\n      s2 POP\n      STSLICE\n      s1 s3 XCHG\n      248 STU\n      s0 s3 XCHG2\n      STGRAMS\n      5389 PUSHINT\n      118 STUR\n      s1 s2 XCHG\n      STREF\n      STREF\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n    }>\n    x{6501f354} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      73 THROWIFNOT\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      NEWC\n      s0 s4 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      STOPTSTDADDR\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{fb88e119} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      73 THROWIFNOT\n      PUSHNULL\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{7431f221} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      INMSG_SRC\n      ROT\n      SDEQ\n      73 THROWIFNOT\n      PUSHNULL\n      PUSHNULL\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      s1 s2 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{cb862902} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      73 THROWIFNOT\n      s0 s4 XCHG\n      PLDREF\n      NEWC\n      s0 s4 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{2508d66a} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      SDEQ\n      73 THROWIFNOT\n      LDREF\n      PLDREF\n      SETCODE\n      c4 POP\n    }>\n    x{d372158c} SDBEGINSQ\n    NIP\n    IFJMP:<{\n    }>\n    16 PUSHPOW2DEC\n    THROWANY\n  }>\n  get_jetton_data() PROC:<{\n    c4 PUSH\n    CTOS\n        \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n    SWAP\n    LDGRAMS\n    LDGRAMS\n    LDOPTSTDADDR\n    PLDREF\n    OVER\n    ISNULL\n    NOT\n    IF:<{\n      s3 s2 PUXC\n      LESS\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      0 PUSHINT\n    }>\n    s0 s3 XCHG\n    s2 s4 XCHG2\n  }>\n  get_wallet_address() PROC:<{\n        \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n    MYADDR\n    s2 PUSH\n    NEWC\n    x{0} STSLICECONST\n    STSTDADDR\n    STSTDADDR\n    ENDC\n    8 PUSHINT\n    s2 s2 XCPU\n    NEWC\n    b{1} STSLICECONST\n    5 STU\n    b{0110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    248 PUSHPOW2DEC\n    AND\n    s1 s2 XCHG\n    11 PUSHINT\n    s0 s3 XCHG2\n    SDSUBSTR\n    NEWC\n    b{10000000000} STSLICECONST\n    STSLICE\n    248 STU\n    BTOS\n  }>\n  get_next_admin_address() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDOPTSTDADDR\n    DROP\n  }>\n  get_max_supply() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    NIP\n    LDGRAMS\n    DROP\n  }>\n  get_zedl_tokenomics() PROC:<{\n    20000000000000000000 PUSHINT\n    9 PUSHINT\n    7000000000000000000 PUSHINT\n    4400000000000000000 PUSHINT\n    1600000000000000000 PUSHINT\n    2000000000000000000 PUSHINT\n    OVER\n    1400000000000000000 PUSHINT\n    1000000000000000000 PUSHINT\n    DUP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHwEABswAART/APSkE/S88sgLAQIBYgIDBPLQ+JGOI9MfMe1E0AHXLCC8aijM8r/TPzH6ADAB+gACocgB+gLOye1U4NcsI97svvTjAtcsIWO1y5zjAtcsIyFb6DzjAtcsIygPmqSOK+1E0PoA+gD6UPpQMfiSIscF8uBJBNM/MfpIMMhQBPoCWPoC+lT6VM7J7VTgDA0ODwIBIAQFAgEgBgcCASAICQAjuzW+1E0PoAMfoAMfpQMfpQMIABe7IU7UTQ+gAx+gAwgCAWYKCwCXuhj4IxFY5GCRPQAAB5gjBhJP7pk7wAAIIwPQ/wsBO4AACCMBY0V4XYoAAAgjAbwW1nTsgAACGCMBNtzJUdjAAAgjAN4Lazp2QAACCAFlrbzEfBQRZGfCEH0pfSlkvCiRZGfB5YJnwtBmZnyLQnvYCUAFqAHrkmRnxQAgZ2X756hAEQE/rxb2omhEAP0AfQB9KGumELdZyqkZ3OGASRk4cQGoEkARAd7tRNCIAtM/+gD6SPpQMPiS+CgjyM+EIPpS+lLJeFGIyM+DywTPhaDMzPkWhPewE4ALUAjXJMjPigBAzhbL989QxwXy4EoC+gADocgB+gISzsntVCFukVvgyM+FCBL6UoIQ1TJ2288Ljss/yYBC+wARAdTTP/pI1woAlSDI+lLJkW3ibSL6RDCRMo6zMIj4KCPIz4Qg+lL6Usl4USLIz4PLBM+FoMzM+RaE97ATgAtQBNckyM+KAEDOEsv3z1AB4viSyM+FCPpSghDRc1QAzwuOE8s/+lT0AMmAUPsAEQH87UTQ+gAg+gD6UDD4kscF8uBJA9M/MfpI+gDXTCL6RDDy0U0g0NcsILxqKMzy4EjTPzH6APpQMfpQMfoA9AQBbpEwkdHi+JNw+DohcnHjBPg5IG6BGLci4wQhboEdE1gD4wRQI6gToHOBAyxw+DygAnD4NhKgAXD4NqBzgQQCEAT+idcnjigw7UTQ+gD6APpQMfpQ+JIixwXy4EltyFAF+gJQA/oC+lQS+lTOye1U4NcsI6GPkQyOKjDtRND6APoA+lD6UDH4kljHBfLgSW1tyFAF+gJQA/oCEvpUEvpUzsntVODXLCZcMUgU4wLXLCEoRrNU4wLXLCabkKxkMdyEDxscHR4B3IIQCWYBgHD4N6AjufKwU1CgUAe78uBLUEWgyAH6AhLOye1UggiYloBw+wKI+CgiyM+EIPpS+lLJeMjPiYgBVHIxyM+DywTPhaDMzPkWhPewBYALI9ckMs4Ty/dQA/oCgRUNzwt1EszMzMmAEfsAEQEU/wD0pBP0vPLICxICAWITFAPE0PiRjjTTHzHXLCC8aijMltM/MfoAMI4R1ywj3uy+9JLyP+HTPzH6ADDi7UTQ+gACoMgB+gLOye1U4NcsILxqKMzjAtcsIHxT9SzjAtcsIsr4PeTjAtcsJpuQrGQx3IQP8vAVFhcAHaD2BdqJofQB9JH0kGHwVQLm7UTQAdM/+gD6UPpQ+gAG+gAg+kj6SDD4kiHHBZEwjjr4kvgqKMjPhCD6UhP6Usl4KVQSQsjPg8sEz4WgzMz5FoT3sBOAC1AE1yTIz4oAQM4Sy/fPUMcF8uBK4lEmoMgB+gLOye1UIZNbNFvjDSFukVvjDhgZAf7TP/oA+kj6UPQB+gAg9AQBbpEwkdHiI/pEMPLRTfiX+JNw+DojcnHjBPg5IG6BGLci4wQhboEdE1gD4wRQI6gloHOBAyxw+DygAXD4NqABcPg2oHOBBAKCEAlmAYBw+DegvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSVM4vvKvUTihGgDg+Jf4OSBugRCeWOMEcYEC8nD4OAFw+DaggQ/ncPg2oLzysO1E0PoAIPpI+kgw+JIixwXy4EkE0z/6APpQMFNRvvKvUVGhyAH6AhTOye1UyM+R73Zfess/WPoC+lL6VMnIz4WIEvpScc8LbszJgFD7AABSyM+RzYtCcibPCz9QBfoCE/pUFc7JyM+FCBP6UgH6AnHPC2rMyYAR+wAAaPgnbxD4l6H4L6BzgQQCghAJZgGAcPg3tgly+wLIz4UIEvpSghDVMnbbzwuOyz/JgQCC+wAAwMgB+gISzsntVPgqJsjPhCD6UhP6Usl4yM+QXjUUZhrLP1AI+gL6VBT6VFj6As7JyM+JiAFUdCXIz4PLBM+FoMzM+RaE97AEgAsn1yQ2Fc4Sy/eBFQ3PC3nMzMzJgFD7AAAI+4jhGQBQ7UTQ+gD6APpQ+lAw+JIixwXy4EkE10zIUAT6Alj6AvpUEvpUzMntVAA07UTQ+gAx+gAx+lAw+JLHBfLgSdTXTPsE7VQABPLw",
+  "codeHashHex": "F657F85166A25E3D66F9AEF61498BF1220E179115F71B0D099C3953517EED5B6",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/JettonMinter.tolk",
+        "size_chars": 7744,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/errors.tolk",
+        "size_chars": 197,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/fees-management.tolk",
+        "size_chars": 2815,
+        "imports": [
+          10,
+          2,
+          6
+        ]
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/jetton-utils.tolk",
+        "size_chars": 776,
+        "imports": [
+          6,
+          7
+        ]
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/messages.tolk",
+        "size_chars": 2352,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/sharding.tolk",
+        "size_chars": 54,
+        "imports": []
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/storage.tolk",
+        "size_chars": 1276,
+        "imports": [
+          11
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/tokenomics.tolk",
+        "size_chars": 601,
+        "imports": []
+      },
+      {
+        "file_id": 9,
+        "file_name": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/gen/JettonWallet.code.tolk",
+        "size_chars": 1519,
+        "imports": []
+      },
+      {
+        "file_id": 10,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3672,
+        "imports": []
+      },
+      {
+        "file_id": 11,
+        "file_name": "@stdlib/strings.tolk",
+        "size_chars": 7842,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintNewJettons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransferStep"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 134,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BurnNotificationForMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestWalletAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DropMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterMetadata"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpgradeMinterCode"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUpTons"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1680571655,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 2078119902,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 745978227,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1694626644,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 4220051737,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 1949430305,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 3414567170,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 621336170,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 3547469196,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MinterStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 37,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WalletStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 40
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReturnExcessesBack"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          44
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 51
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          50
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 144,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          34,
+          55
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 56,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 145,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          58
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 7
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 60
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseWalletAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          62
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 1
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OnchainMetadataReply"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "string_prefixed0x"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 55,
+        "value_ty_idx": 68
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 67
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ZedlTokenomicsReply"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 45,
+        "struct_name": "CreateMessageOptions<ReturnExcessesBack>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          57,
+          44
+        ]
+      },
+      {
+        "ty_idx": 63,
+        "struct_name": "CreateMessageOptions<ResponseWalletAddress>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          57,
+          62
+        ]
+      },
+      {
+        "ty_idx": 65,
+        "struct_name": "CreateMessageOptions<Cell<InternalTransferStep>>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          57,
+          22
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 52
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 38
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 34
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 36
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 47,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 59,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 49
+          },
+          {
+            "name": "value",
+            "ty_idx": 54
+          },
+          {
+            "name": "dest",
+            "ty_idx": 57
+          },
+          {
+            "name": "body",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToMinter",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          19,
+          6,
+          19,
+          28
+        ],
+        "target_ty_idx": 31
+      },
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 16,
+        "ident_loc": [
+          5,
+          1,
+          6,
+          1,
+          29
+        ],
+        "target_ty_idx": 17
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 18,
+        "ident_loc": [
+          5,
+          3,
+          14,
+          3,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 19,
+        "ident_loc": [
+          5,
+          7,
+          14,
+          7,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransferStep",
+        "ty_idx": 14,
+        "ident_loc": [
+          5,
+          30,
+          21,
+          30,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 395134233,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferInitiator",
+            "ty_idx": 15
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 15
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReturnExcessesBack",
+        "ty_idx": 44,
+        "ident_loc": [
+          5,
+          40,
+          21,
+          40,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BurnNotificationForMinter",
+        "ty_idx": 23,
+        "ident_loc": [
+          5,
+          51,
+          21,
+          51,
+          46
+        ],
+        "prefix": {
+          "prefix_num": 2078119902,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "burnInitiator",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestWalletAddress",
+        "ty_idx": 24,
+        "ident_loc": [
+          5,
+          58,
+          21,
+          58,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 745978227,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "includeOwnerAddress",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseWalletAddress",
+        "ty_idx": 62,
+        "ident_loc": [
+          5,
+          64,
+          21,
+          64,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 3513996288,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonWalletAddress",
+            "ty_idx": 15
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 61
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintNewJettons",
+        "ty_idx": 13,
+        "ident_loc": [
+          5,
+          70,
+          21,
+          70,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1680571655,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "internalTransferMsg",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterAdmin",
+        "ty_idx": 25,
+        "ident_loc": [
+          5,
+          77,
+          21,
+          77,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1694626644,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimMinterAdmin",
+        "ty_idx": 26,
+        "ident_loc": [
+          5,
+          82,
+          21,
+          82,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 4220051737,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DropMinterAdmin",
+        "ty_idx": 27,
+        "ident_loc": [
+          5,
+          86,
+          21,
+          86,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1949430305,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpgradeMinterCode",
+        "ty_idx": 29,
+        "ident_loc": [
+          5,
+          90,
+          21,
+          90,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 621336170,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newData",
+            "ty_idx": 3
+          },
+          {
+            "name": "newCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterMetadata",
+        "ty_idx": 28,
+        "ident_loc": [
+          5,
+          96,
+          21,
+          96,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 3414567170,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newMetadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TopUpTons",
+        "ty_idx": 30,
+        "ident_loc": [
+          5,
+          101,
+          21,
+          101,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 3547469196,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "WalletStorage",
+        "ty_idx": 40,
+        "ident_loc": [
+          7,
+          3,
+          8,
+          3,
+          21
+        ],
+        "fields": [
+          {
+            "name": "jettonBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MinterStorage",
+        "ty_idx": 32,
+        "ident_loc": [
+          7,
+          9,
+          8,
+          9,
+          21
+        ],
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "maxSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 15
+          },
+          {
+            "name": "nextAdminAddress",
+            "ty_idx": 15
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonDataReply",
+        "ty_idx": 66,
+        "ident_loc": [
+          7,
+          40,
+          8,
+          40,
+          23
+        ],
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 1
+          },
+          {
+            "name": "mintable",
+            "ty_idx": 5
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 15
+          },
+          {
+            "name": "jettonContent",
+            "ty_idx": 71
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ZedlTokenomicsReply",
+        "ty_idx": 72,
+        "ident_loc": [
+          7,
+          48,
+          8,
+          48,
+          27
+        ],
+        "fields": [
+          {
+            "name": "maxSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "decimals",
+            "ty_idx": 1
+          },
+          {
+            "name": "gameRewards",
+            "ty_idx": 6
+          },
+          {
+            "name": "shopSale",
+            "ty_idx": 6
+          },
+          {
+            "name": "liquidity",
+            "ty_idx": 6
+          },
+          {
+            "name": "reverseExchangeReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "teamVesting",
+            "ty_idx": 6
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 6
+          },
+          {
+            "name": "starterRewards",
+            "ty_idx": 6
+          },
+          {
+            "name": "partnerships",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OnchainMetadataReply",
+        "ty_idx": 67,
+        "ident_loc": [
+          7,
+          61,
+          15,
+          61,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "contentDict",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "string_prefixed0x",
+        "ty_idx": 68,
+        "ident_loc": [
+          11,
+          179,
+          6,
+          179,
+          23
+        ],
+        "target_ty_idx": 69
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          43,
+          5,
+          43,
+          22
+        ],
+        "end_loc": [
+          1,
+          185,
+          1,
+          185,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          30,
+          5,
+          30,
+          21
+        ],
+        "end_loc": [
+          1,
+          37,
+          1,
+          37,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "MinterStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          21,
+          19,
+          21,
+          23
+        ],
+        "end_loc": [
+          7,
+          23,
+          1,
+          23,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "calcAddressOfJettonWallet",
+        "return_ty_idx": 7,
+        "num_params": 3,
+        "ident_loc": [
+          4,
+          22,
+          5,
+          22,
+          30
+        ],
+        "end_loc": [
+          4,
+          29,
+          1,
+          29,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "calcDeployedJettonWallet",
+        "return_ty_idx": 33,
+        "num_params": 3,
+        "ident_loc": [
+          4,
+          4,
+          5,
+          4,
+          29
+        ],
+        "end_loc": [
+          4,
+          20,
+          1,
+          20,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "WalletStorage.toCell",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "options",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "createMessage<ReturnExcessesBack>",
+        "return_ty_idx": 43,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "address.toCell",
+        "return_ty_idx": 60,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          },
+          {
+            "name": "options",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "createMessage<ResponseWalletAddress>",
+        "return_ty_idx": 43,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "assertSenderIsAdmin",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          39,
+          5,
+          39,
+          24
+        ],
+        "end_loc": [
+          1,
+          41,
+          1,
+          41,
+          2
+        ],
+        "params": [
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "ForwardPayloadRemainder.checkIsCorrectTlbEither",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          103,
+          29,
+          103,
+          52
+        ],
+        "end_loc": [
+          5,
+          108,
+          1,
+          108,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "checkAmountIsEnoughToTransfer",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          58,
+          5,
+          58,
+          34
+        ],
+        "end_loc": [
+          3,
+          61,
+          1,
+          61,
+          2
+        ],
+        "params": [
+          {
+            "name": "msgValue",
+            "ty_idx": 1
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 1
+          },
+          {
+            "name": "fwdFee",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "calcMinimalTransferAmount",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          3,
+          41,
+          5,
+          41,
+          30
+        ],
+        "end_loc": [
+          3,
+          56,
+          1,
+          56,
+          2
+        ],
+        "params": [
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 1
+          },
+          {
+            "name": "fwdFee",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "forwardInitStateOverhead",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          3,
+          33,
+          5,
+          33,
+          29
+        ],
+        "end_loc": [
+          3,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "calculateJettonWalletMinStorageFee",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          3,
+          24,
+          5,
+          24,
+          39
+        ],
+        "end_loc": [
+          3,
+          31,
+          1,
+          31,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "createMessage<Cell<InternalTransferStep>>",
+        "return_ty_idx": 43,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 65
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "get_jetton_data",
+        "return_ty_idx": 66,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          187,
+          9,
+          187,
+          24
+        ],
+        "end_loc": [
+          1,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "get_wallet_address",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          200,
+          9,
+          200,
+          27
+        ],
+        "end_loc": [
+          1,
+          203,
+          1,
+          203,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "get_next_admin_address",
+        "return_ty_idx": 15,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          205,
+          9,
+          205,
+          31
+        ],
+        "end_loc": [
+          1,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 20,
+        "name": "get_max_supply",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          210,
+          9,
+          210,
+          23
+        ],
+        "end_loc": [
+          1,
+          213,
+          1,
+          213,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "get_zedl_tokenomics",
+        "return_ty_idx": 72,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          215,
+          9,
+          215,
+          28
+        ],
+        "end_loc": [
+          1,
+          228,
+          1,
+          228,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "JettonMinter",
+    "author": "tufypace",
+    "version": "1.0.0",
+    "description": "ZEDL Jetton Minter. TEP-74 and TEP-89 compliant",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintNewJettons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransferStep"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 134,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BurnNotificationForMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestWalletAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DropMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterMetadata"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpgradeMinterCode"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUpTons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MinterStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReturnExcessesBack"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseWalletAddress"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 7
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OnchainMetadataReply"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "string_prefixed0x"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 37,
+        "value_ty_idx": 38
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ZedlTokenomicsReply"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 15,
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransferStep",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 395134233,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferInitiator",
+            "ty_idx": 14
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 14
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15,
+            "client_ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReturnExcessesBack",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BurnNotificationForMinter",
+        "ty_idx": 22,
+        "prefix": {
+          "prefix_num": 2078119902,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "burnInitiator",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestWalletAddress",
+        "ty_idx": 23,
+        "prefix": {
+          "prefix_num": 745978227,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "includeOwnerAddress",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseWalletAddress",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 3513996288,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonWalletAddress",
+            "ty_idx": 14
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintNewJettons",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1680571655,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "internalTransferMsg",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterAdmin",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 1694626644,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimMinterAdmin",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 4220051737,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DropMinterAdmin",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 1949430305,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpgradeMinterCode",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 621336170,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newData",
+            "ty_idx": 3
+          },
+          {
+            "name": "newCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterMetadata",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 3414567170,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newMetadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TopUpTons",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 3547469196,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "MinterStorage",
+        "ty_idx": 30,
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "maxSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 14
+          },
+          {
+            "name": "nextAdminAddress",
+            "ty_idx": 14
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonDataReply",
+        "ty_idx": 35,
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 1
+          },
+          {
+            "name": "mintable",
+            "ty_idx": 5
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 14
+          },
+          {
+            "name": "jettonContent",
+            "ty_idx": 41
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ZedlTokenomicsReply",
+        "ty_idx": 42,
+        "fields": [
+          {
+            "name": "maxSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "decimals",
+            "ty_idx": 1
+          },
+          {
+            "name": "gameRewards",
+            "ty_idx": 6
+          },
+          {
+            "name": "shopSale",
+            "ty_idx": 6
+          },
+          {
+            "name": "liquidity",
+            "ty_idx": 6
+          },
+          {
+            "name": "reverseExchangeReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "teamVesting",
+            "ty_idx": 6
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 6
+          },
+          {
+            "name": "starterRewards",
+            "ty_idx": 6
+          },
+          {
+            "name": "partnerships",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OnchainMetadataReply",
+        "ty_idx": 36,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "contentDict",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "string_prefixed0x",
+        "ty_idx": 38,
+        "target_ty_idx": 39,
+        "description": "A string, which contents starts with 0x00/0x01 byte.\nBy standard, offchain explorers/APIs may treat contents of a string based on 0xXX prefixes:\n- 0x00 + \"str\" — means \"this is a regular snake-encoded string\"\n- 0x01 + \"str\" — means \"this is an off-chain content URL\"\nUsed in jettons and NFTs for responses from GET methods to comply with TEPs (token standards)."
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 30
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 22
+      },
+      {
+        "body_ty_idx": 23
+      },
+      {
+        "body_ty_idx": 24
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      },
+      {
+        "body_ty_idx": 28
+      },
+      {
+        "body_ty_idx": 29
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 31
+      },
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 13
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 106029,
+        "name": "get_jetton_data",
+        "parameters": [],
+        "return_ty_idx": 35
+      },
+      {
+        "tvm_method_id": 103289,
+        "name": "get_wallet_address",
+        "parameters": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 78683,
+        "name": "get_next_admin_address",
+        "parameters": [],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 94740,
+        "name": "get_max_supply",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 123279,
+        "name": "get_zedl_tokenomics",
+        "parameters": [],
+        "return_ty_idx": 42
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotEnoughGas",
+        "err_code": 48
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidOp",
+        "err_code": 72
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 73
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotValidWallet",
+        "err_code": 74
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SupplyCapExceeded",
+        "err_code": 75
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongWorkchain",
+        "err_code": 333
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/JettonMinter.tolk",
+      "contents": "import \"errors\"\nimport \"fees-management\"\nimport \"jetton-utils\"\nimport \"messages\"\nimport \"sharding\"\nimport \"storage\"\nimport \"tokenomics\"\n// check-disable-next-line all\nimport \"../gen/JettonWallet.code\"\n\ncontract JettonMinter {\n    author: \"tufypace\"\n    version: \"1.0.0\"\n    description: \"ZEDL Jetton Minter. TEP-74 and TEP-89 compliant\"\n    storage: MinterStorage\n    incomingMessages: AllowedMessageToMinter\n}\n\ntype AllowedMessageToMinter =\n    | MintNewJettons\n    | BurnNotificationForMinter\n    | RequestWalletAddress\n    | ChangeMinterAdmin\n    | ClaimMinterAdmin\n    | DropMinterAdmin\n    | ChangeMinterMetadata\n    | UpgradeMinterCode\n    | TopUpTons\n\nfun onBouncedMessage(in: InMessageBounced) {\n    in.bouncedBody.skipBouncedPrefix();\n    val msg = lazy InternalTransferStep.fromSlice(in.bouncedBody);\n\n    var storage = lazy MinterStorage.load();\n    storage.totalSupply -= msg.jettonAmount;\n    storage.save();\n}\n\nfun assertSenderIsAdmin(senderAddress: address, adminAddress: address?) {\n    assert (senderAddress == adminAddress!) throw Errors.NotOwner;\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToMinter.fromSlice(in.body);\n\n    match (msg) {\n        BurnNotificationForMinter => {\n            var storage = lazy MinterStorage.load();\n            val jettonWalletCode = jettonWalletCompiledCode();\n            assert (\n                in.senderAddress ==\n                calcAddressOfJettonWallet(\n                    msg.burnInitiator,\n                    contract.getAddress(),\n                    jettonWalletCode,\n                )\n            ) throw Errors.NotValidWallet;\n            storage.totalSupply -= msg.jettonAmount;\n            storage.save();\n\n            if (msg.sendExcessesTo == null) {\n                return;\n            }\n\n            val excessesMsg = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: msg.sendExcessesTo,\n                value: 0,\n                body: ReturnExcessesBack { queryId: msg.queryId },\n            });\n            excessesMsg.send(SEND_MODE_IGNORE_ERRORS | SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        RequestWalletAddress => {\n            val ownerAddress: Cell<address>? = msg.includeOwnerAddress\n                ? msg.ownerAddress.toCell()\n                : null;\n\n            var walletAddress: address? = null;\n            if (msg.ownerAddress.getWorkchain() == MY_WORKCHAIN) {\n                val jettonWalletCode = jettonWalletCompiledCode();\n                walletAddress = calcAddressOfJettonWallet(\n                    msg.ownerAddress,\n                    contract.getAddress(),\n                    jettonWalletCode,\n                );\n            }\n\n            val respondMsg = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: in.senderAddress,\n                value: 0,\n                body: ResponseWalletAddress {\n                    queryId: msg.queryId,\n                    jettonWalletAddress: walletAddress,\n                    ownerAddress,\n                },\n            });\n            respondMsg.send(\n                SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_BOUNCE_ON_ACTION_FAIL,\n            );\n        }\n\n        MintNewJettons => {\n            var storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.adminAddress);\n            assert (msg.mintRecipient.getWorkchain() == MY_WORKCHAIN) throw Errors.WrongWorkchain;\n\n            val internalTransferMsg = lazy msg\n                .internalTransferMsg\n                .load({ throwIfOpcodeDoesNotMatch: Errors.InvalidOp });\n            val forwardTonAmount = internalTransferMsg.forwardTonAmount;\n            internalTransferMsg.forwardPayload.checkIsCorrectTlbEither();\n\n            checkAmountIsEnoughToTransfer(msg.tonAmount, forwardTonAmount, in.originalForwardFee);\n            assert (\n                storage.totalSupply + internalTransferMsg.jettonAmount <= storage.maxSupply\n            ) throw Errors.SupplyCapExceeded;\n\n            storage.totalSupply += internalTransferMsg.jettonAmount;\n            storage.save();\n\n            reserveToncoinsOnBalance(\n                ton(\"0.01\"),\n                RESERVE_MODE_EXACT_AMOUNT,\n            );\n\n            val jettonWalletCode = jettonWalletCompiledCode();\n            val deployMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                dest: calcDeployedJettonWallet(\n                    msg.mintRecipient,\n                    contract.getAddress(),\n                    jettonWalletCode,\n                ),\n                value: msg.tonAmount,\n                body: msg.internalTransferMsg,\n            });\n            deployMsg.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n        }\n\n        ChangeMinterAdmin => {\n            var storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.adminAddress);\n            storage.nextAdminAddress = msg.newAdminAddress;\n            storage.save();\n        }\n\n        ClaimMinterAdmin => {\n            var storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.nextAdminAddress);\n            storage.adminAddress = storage.nextAdminAddress;\n            storage.nextAdminAddress = null;\n            storage.save();\n        }\n\n        DropMinterAdmin => {\n            var storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.adminAddress);\n            storage.adminAddress = null;\n            storage.nextAdminAddress = null;\n            storage.save();\n        }\n\n        ChangeMinterMetadata => {\n            var storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.adminAddress);\n            storage.metadata = msg.newMetadata;\n            storage.save();\n        }\n\n        UpgradeMinterCode => {\n            val storage = lazy MinterStorage.load();\n            assertSenderIsAdmin(in.senderAddress, storage.adminAddress);\n            contract.setCodePostponed(msg.newCode);\n            contract.setData(msg.newData);\n        }\n\n        TopUpTons => {\n            // just accept tons\n        }\n\n        else => throw 0xFFFF,\n    }\n}\n\nget fun get_jetton_data(): JettonDataReply {\n    val storage = lazy MinterStorage.load();\n    val jettonWalletCode = jettonWalletCompiledCode();\n\n    return {\n        totalSupply: storage.totalSupply,\n        mintable: storage.adminAddress != null && storage.totalSupply < storage.maxSupply,\n        adminAddress: storage.adminAddress,\n        jettonContent: storage.metadata as Cell<OnchainMetadataReply>,\n        jettonWalletCode,\n    };\n}\n\nget fun get_wallet_address(ownerAddress: address): address {\n    val jettonWalletCode = jettonWalletCompiledCode();\n    return calcAddressOfJettonWallet(ownerAddress, contract.getAddress(), jettonWalletCode);\n}\n\nget fun get_next_admin_address(): address? {\n    val storage = lazy MinterStorage.load();\n    return storage.nextAdminAddress;\n}\n\nget fun get_max_supply(): coins {\n    val storage = lazy MinterStorage.load();\n    return storage.maxSupply;\n}\n\nget fun get_zedl_tokenomics(): ZedlTokenomicsReply {\n    return {\n        maxSupply: ZEDL_MAX_SUPPLY,\n        decimals: ZEDL_DECIMALS,\n        gameRewards: ZEDL_GAME_REWARDS_ALLOCATION,\n        shopSale: ZEDL_SHOP_SALE_ALLOCATION,\n        liquidity: ZEDL_LIQUIDITY_ALLOCATION,\n        reverseExchangeReserve: ZEDL_REVERSE_EXCHANGE_RESERVE_ALLOCATION,\n        teamVesting: ZEDL_TEAM_VESTING_ALLOCATION,\n        treasury: ZEDL_TREASURY_ALLOCATION,\n        starterRewards: ZEDL_STARTER_REWARDS_ALLOCATION,\n        partnerships: ZEDL_PARTNERSHIPS_ALLOCATION,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/errors.tolk",
+      "contents": "enum Errors {\n    BalanceError = 47\n    NotEnoughGas = 48\n    InvalidMessage = 49\n    InvalidOp = 72\n    NotOwner = 73\n    NotValidWallet = 74\n    SupplyCapExceeded = 75\n    WrongWorkchain = 333\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/fees-management.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"errors\"\nimport \"sharding\"\n\nconst STORAGE_SIZE_MAX_WALLET_BITS = 1026\nconst STORAGE_SIZE_MAX_WALLET_CELLS = 3\nconst STORAGE_SIZE_INIT_STATE_WALLET_BITS = 812\nconst STORAGE_SIZE_INIT_STATE_WALLET_CELLS = 3\n\nconst MESSAGE_SIZE_BURN_NOTIFICATION_BITS = 754\nconst MESSAGE_SIZE_BURN_NOTIFICATION_CELLS = 1\n\nconst MIN_STORAGE_DURATION = 5 * 365 * 24 * 3600\n\nconst GAS_CONSUMPTION_JETTON_TRANSFER = 6327\nconst GAS_CONSUMPTION_JETTON_RECEIVE = 7443\nconst GAS_CONSUMPTION_BURN_REQUEST = 4254\nconst GAS_CONSUMPTION_BURN_NOTIFICATION = 4071\n\n// SAFETY: Safe opcode, returning int/null\nfun getPrecompiledGasConsumption(): int?\n    asm \"GETPRECOMPILEDGAS\"\n\nfun calculateJettonWalletMinStorageFee(): coins {\n    return calculateStorageFee(\n        MY_WORKCHAIN,\n        MIN_STORAGE_DURATION,\n        STORAGE_SIZE_MAX_WALLET_BITS,\n        STORAGE_SIZE_MAX_WALLET_CELLS,\n    );\n}\n\nfun forwardInitStateOverhead(): coins {\n    return calculateForwardFeeWithoutLumpPrice(\n        MY_WORKCHAIN,\n        STORAGE_SIZE_INIT_STATE_WALLET_BITS,\n        STORAGE_SIZE_INIT_STATE_WALLET_CELLS,\n    );\n}\n\nfun calcMinimalTransferAmount(forwardTonAmount: int, fwdFee: int): int {\n    val fwdCount = forwardTonAmount != 0 ? 2 : 1;\n\n    val jettonWalletGasConsumption = getPrecompiledGasConsumption();\n    val sendTransferGasConsumption = (jettonWalletGasConsumption == null)\n        ? GAS_CONSUMPTION_JETTON_TRANSFER\n        : jettonWalletGasConsumption;\n    val receiveTransferGasConsumption = (jettonWalletGasConsumption == null)\n        ? GAS_CONSUMPTION_JETTON_RECEIVE\n        : jettonWalletGasConsumption;\n\n    return forwardTonAmount + fwdCount * fwdFee + forwardInitStateOverhead() +\n    calculateGasFee(MY_WORKCHAIN, sendTransferGasConsumption) +\n    calculateGasFee(MY_WORKCHAIN, receiveTransferGasConsumption) +\n    calculateJettonWalletMinStorageFee();\n}\n\nfun checkAmountIsEnoughToTransfer(msgValue: int, forwardTonAmount: int, fwdFee: int) {\n    val minTransferAmount = calcMinimalTransferAmount(forwardTonAmount, fwdFee);\n    assert (msgValue > minTransferAmount) throw Errors.NotEnoughGas;\n}\n\nfun calcMinimalBurnAmount(): coins {\n    val jettonWalletGasConsumption = getPrecompiledGasConsumption();\n    val sendBurnGasConsumption = (jettonWalletGasConsumption == null)\n        ? GAS_CONSUMPTION_BURN_REQUEST\n        : jettonWalletGasConsumption;\n\n    return calculateForwardFee(\n        MY_WORKCHAIN,\n        MESSAGE_SIZE_BURN_NOTIFICATION_BITS,\n        MESSAGE_SIZE_BURN_NOTIFICATION_CELLS,\n    ) +\n    calculateGasFee(MY_WORKCHAIN, sendBurnGasConsumption) +\n    calculateGasFee(MY_WORKCHAIN, GAS_CONSUMPTION_BURN_NOTIFICATION);\n}\n\nfun checkAmountIsEnoughToBurn(msgValue: int) {\n    val minBurnAmount = calcMinimalBurnAmount();\n    assert (msgValue > minBurnAmount) throw Errors.NotEnoughGas;\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/jetton-utils.tolk",
+      "contents": "import \"sharding\"\nimport \"storage\"\n\nfun calcDeployedJettonWallet(\n    ownerAddress: address,\n    minterAddress: address,\n    jettonWalletCode: cell,\n): AutoDeployAddress {\n    val emptyWalletStorage: WalletStorage = {\n        jettonBalance: 0,\n        ownerAddress,\n        minterAddress,\n    };\n\n    return {\n        workchain: MY_WORKCHAIN,\n        stateInit: { code: jettonWalletCode, data: emptyWalletStorage.toCell() },\n        toShard: { fixedPrefixLength: SHARD_DEPTH, closeTo: ownerAddress },\n    };\n}\n\nfun calcAddressOfJettonWallet(\n    ownerAddress: address,\n    minterAddress: address,\n    jettonWalletCode: cell,\n): address {\n    val jwDeployed = calcDeployedJettonWallet(ownerAddress, minterAddress, jettonWalletCode);\n    return jwDeployed.calculateAddress();\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/messages.tolk",
+      "contents": "type ForwardPayloadRemainder = RemainingBitsAndRefs\n\nstruct (0b0) PayloadInline {\n    value: RemainingBitsAndRefs\n}\n\nstruct (0b1) PayloadInRef {\n    value: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x0f8a7ea5) AskToTransfer {\n    queryId: uint64\n    jettonAmount: coins\n    transferRecipient: address\n    sendExcessesTo: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x7362d09c) TransferNotificationForRecipient {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x178d4519) InternalTransferStep {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    sendExcessesTo: address?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\nstruct (0x595f07bc) AskToBurn {\n    queryId: uint64\n    jettonAmount: coins\n    sendExcessesTo: address?\n    customPayload: cell?\n}\n\nstruct (0x7bdd97de) BurnNotificationForMinter {\n    queryId: uint64\n    jettonAmount: coins\n    burnInitiator: address\n    sendExcessesTo: address?\n}\n\nstruct (0x2c76b973) RequestWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeOwnerAddress: bool\n}\n\nstruct (0xd1735400) ResponseWalletAddress {\n    queryId: uint64\n    jettonWalletAddress: address?\n    ownerAddress: Cell<address>?\n}\n\nstruct (0x642b7d07) MintNewJettons {\n    queryId: uint64\n    mintRecipient: address\n    tonAmount: coins\n    internalTransferMsg: Cell<InternalTransferStep>\n}\n\nstruct (0x6501f354) ChangeMinterAdmin {\n    queryId: uint64\n    newAdminAddress: address\n}\n\nstruct (0xfb88e119) ClaimMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x7431f221) DropMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x2508d66a) UpgradeMinterCode {\n    queryId: uint64\n    newData: cell\n    newCode: cell\n}\n\nstruct (0xcb862902) ChangeMinterMetadata {\n    queryId: uint64\n    newMetadata: cell\n}\n\nstruct (0xd372158c) TopUpTons {}\n\nfun ForwardPayloadRemainder.checkIsCorrectTlbEither(self) {\n    var mutableCopy = self;\n    if (mutableCopy.loadMaybeRef() != null) {\n        mutableCopy.assertEnd();\n    }\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/sharding.tolk",
+      "contents": "const MY_WORKCHAIN = BASECHAIN\n\nconst SHARD_DEPTH = 8\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/storage.tolk",
+      "contents": "import \"@stdlib/strings\"\n\nstruct WalletStorage {\n    jettonBalance: coins\n    ownerAddress: address\n    minterAddress: address\n}\n\nstruct MinterStorage {\n    totalSupply: coins\n    maxSupply: coins\n    adminAddress: address?\n    nextAdminAddress: address?\n    metadata: cell\n}\n\nfun MinterStorage.load(): MinterStorage {\n    return MinterStorage.fromCell(contract.getData());\n}\n\nfun MinterStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun WalletStorage.load(): WalletStorage {\n    return WalletStorage.fromCell(contract.getData());\n}\n\nfun WalletStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct JettonWalletDataReply {\n    jettonBalance: coins\n    ownerAddress: address\n    minterAddress: address\n    jettonWalletCode: cell\n}\n\nstruct JettonDataReply {\n    totalSupply: int\n    mintable: bool\n    adminAddress: address?\n    jettonContent: Cell<OnchainMetadataReply>\n    jettonWalletCode: cell\n}\n\nstruct ZedlTokenomicsReply {\n    maxSupply: coins\n    decimals: int\n    gameRewards: coins\n    shopSale: coins\n    liquidity: coins\n    reverseExchangeReserve: coins\n    teamVesting: coins\n    treasury: coins\n    starterRewards: coins\n    partnerships: coins\n}\n\nstruct (0x00) OnchainMetadataReply {\n    contentDict: map<uint256, string_prefixed0x>\n}\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/contracts/tokenomics.tolk",
+      "contents": "const ZEDL_DECIMALS = 9\nconst ZEDL_UNIT = 1000000000\n\n// 20,000,000,000 ZEDL with 9 decimals.\nconst ZEDL_MAX_SUPPLY = 20000000000000000000\n\nconst ZEDL_GAME_REWARDS_ALLOCATION = 7000000000000000000\nconst ZEDL_SHOP_SALE_ALLOCATION = 4400000000000000000\nconst ZEDL_LIQUIDITY_ALLOCATION = 1600000000000000000\nconst ZEDL_REVERSE_EXCHANGE_RESERVE_ALLOCATION = 2000000000000000000\nconst ZEDL_TEAM_VESTING_ALLOCATION = 1600000000000000000\nconst ZEDL_TREASURY_ALLOCATION = 1400000000000000000\nconst ZEDL_STARTER_REWARDS_ALLOCATION = 1000000000000000000\nconst ZEDL_PARTNERSHIPS_ALLOCATION = 1000000000000000000\n"
+    },
+    {
+      "filename": "tmp/a474828b-d546-4c20-a5f6-2e9a7e1a98cb/gen/JettonWallet.code.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n// Auto-generated dependency code for contract 'JettonWallet'\n// Provides compiled BoC data for the 'JettonWallet' contract\n//\n// This file is automatically generated by 'acton build'\n// Do not edit manually — changes will be overwritten\n\n/// Returns `JettonWallet`'s code as a cell.\n///\n/// - Contract: `JettonWallet`\n/// - Path: `contracts/JettonWallet.tolk`\n///\n/// # Safety\n///\n/// This function always returns the correct cell with the contract code.\n@pure\nfun jettonWalletCompiledCode(): cell asm \"\"\"\n    \"te6ccgECCgEAArgAART/APSkE/S88sgLAQIBYgIDA8TQ+JGONNMfMdcsILxqKMyW0z8x+gAwjhHXLCPe7L70kvI/4dM/MfoAMOLtRND6AAKgyAH6As7J7VTg1ywgvGoozOMC1ywgfFP1LOMC1ywiyvg95OMC1ywmm5CsZDHchA/y8AQFBgAdoPYF2omh9AH0kfSQYfBVAubtRNAB0z/6APpQ+lD6AAb6ACD6SPpIMPiSIccFkTCOOviS+CooyM+EIPpSE/pSyXgpVBJCyM+DywTPhaDMzPkWhPewE4ALUATXJMjPigBAzhLL989QxwXy4EriUSagyAH6As7J7VQhk1s0W+MNIW6RW+MOBwgB/tM/+gD6SPpQ9AH6ACD0BAFukTCR0eIj+kQw8tFN+Jf4k3D4OiNyceME+DkgboEYtyLjBCFugR0TWAPjBFAjqCWgc4EDLHD4PKABcPg2oAFw+Dagc4EEAoIQCWYBgHD4N6C88rDtRND6ACD6SPpIMPiSIscF8uBJUzi+8q9ROKEJAOD4l/g5IG6BEJ5Y4wRxgQLycPg4AXD4NqCBD+dw+DagvPKw7UTQ+gAg+kj6SDD4kiLHBfLgSQTTP/oA+lAwU1G+8q9RUaHIAfoCFM7J7VTIz5Hvdl96yz9Y+gL6UvpUycjPhYgS+lJxzwtuzMmAUPsAAFLIz5HNi0JyJs8LP1AF+gIT+lQVzsnIz4UIE/pSAfoCcc8LaszJgBH7AABo+CdvEPiXofgvoHOBBAKCEAlmAYBw+De2CXL7AsjPhQgS+lKCENUydtvPC47LP8mBAIL7AADAyAH6AhLOye1U+ComyM+EIPpSE/pSyXjIz5BeNRRmGss/UAj6AvpUFPpUWPoCzsnIz4mIAVR0JcjPg8sEz4WgzMz5FoT3sASACyfXJDYVzhLL94EVDc8LeczMzMmAUPsA\" base64>B B>boc PUSHREF\n\"\"\"\n"
+    }
+  ]
+}

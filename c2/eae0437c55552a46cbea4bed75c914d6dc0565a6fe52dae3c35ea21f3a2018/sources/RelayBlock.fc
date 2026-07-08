@@ -1,0 +1,253 @@
+#include "imports/stdlib.fc";
+#include "imports/ownable.fc";
+#include "imports/fee-utils.fc";
+#include "imports/message-utils.fc";
+#include "imports/constants.fc";
+
+;; storage variables
+global slice bitcoin_relay_address;
+global cell block_hash;
+global int block_height;
+global int is_active;
+global int required_fee;
+global int is_paused;
+
+;; load_data populates storage variables using stored data
+(slice, int, cell, int, int, int) load_data() impure {
+
+    var ds = get_data().begin_parse();
+    
+    bitcoin_relay_address = ds~load_msg_addr();
+    
+    block_height = ds~load_uint(32);
+
+    block_hash = ds~load_ref();
+    
+    is_active = ds~load_uint(1);
+    
+    required_fee = ds~load_uint(32);
+    
+    is_paused = ds~load_uint(1);
+
+    return (
+        bitcoin_relay_address,
+        block_height,
+        block_hash,
+        is_active,
+        required_fee,
+        is_paused
+    );
+
+}
+
+;; save_data stores storage variables as a cell into persistent storage
+() save_data() impure {
+    set_data(
+        begin_cell()
+            .store_slice(bitcoin_relay_address)
+            .store_uint(block_height, 32)
+            .store_ref(block_hash)
+            .store_uint(is_active, 1)
+            .store_uint(required_fee, 32)
+            .store_uint(is_paused, 1)
+            .end_cell()
+    );
+}
+
+;; change required_fee
+() change_required_fee(int new_fee) impure {
+    required_fee = new_fee;
+    save_data();
+}
+
+int check_proof_validation (slice in_msg_body) inline {
+    return 1;
+}
+
+
+() check_is_paused () impure {
+    throw_unless(ERROR_CONTRACT_PAUSED, is_paused == 0);
+}
+
+() on_bounce (slice in_msg_body) impure {
+    in_msg_body~skip_bits(32); ;; 0xFFFFFFFF
+
+    int op = in_msg_body~load_uint(32);
+
+    if ( op == op::proof_verified) {
+        in_msg_body~skip_bits(64);
+        load_data();
+        ;; we can not recover "from" address from the bounced message, so send the bounced excess to bitcoin_relay_address
+        send_ton(bitcoin_relay_address, 0, 64);
+    }
+
+    ;; ignore all other opcodes
+}
+
+;; recv_internal is the main function of the contract and is called when it receives a message from other contracts
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) { ;; ignore all empty messages
+        return ();
+    }
+
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    slice sender_address = cs~load_msg_addr();
+
+    if (flags & 1) {
+        on_bounce(in_msg_body);
+        return ();
+    }
+
+    int op = in_msg_body~load_uint(32); 
+
+    load_data(); ;; here we populate the storage variables
+
+    if (op == op::send_coins) { ;; bouncable
+        int amount = in_msg_body~load_uint(64);
+        send_coins(bitcoin_relay_address, sender_address, amount);
+        return();
+    }
+
+    if (op == op::set_variables) {
+        ;; TODO set once
+        is_owner(bitcoin_relay_address, sender_address); 
+        block_hash = in_msg_body~load_ref();
+        required_fee = in_msg_body~load_uint(32);
+        is_paused = 0;
+        is_active = 1;
+        save_data();
+        return ();
+    }
+
+    if (op == op::change_paused_status) {
+        is_owner(bitcoin_relay_address, sender_address);
+        is_paused = in_msg_body~load_uint(1);
+        save_data();
+        return ();
+    }
+
+    check_is_paused();
+    if (op == op::check_proof) {
+        ~strdump("relay");
+        ~dump(my_balance);
+        ~dump(msg_value);
+
+        int query_id = in_msg_body~load_uint(64);
+        int forward_ton_amount = in_msg_body~load_coins();
+        slice from = in_msg_body~load_msg_addr();
+
+        try { ;; if the try block fails, the whole block rolls back, meaning any local or global variable changes, message sends and other actions; and the catch block will be executed instead. Gas will still be used.
+            throw_unless(ERROR_NOT_ACTIVED, is_active == 1);
+
+            int total_ton_amount = msg_value;
+
+            int ton_balance_before_msg = my_balance - msg_value;
+            int storage_fee = min_tons_for_storage - min(ton_balance_before_msg, min_tons_for_storage);
+            int txn_fee = storage_fee + 2 * min_msg_fwd_fee + gas_consumption + required_fee;
+            throw_unless(ERROR_NOT_ENOUGH_COINS, total_ton_amount >= 
+                        forward_ton_amount + txn_fee);
+            forward_ton_amount = 13 * gas_consumption + 15 * min_msg_fwd_fee + 12 * min_tons_for_storage;
+            
+        
+            slice relay_block_msg_cs = in_msg_body~load_ref().begin_parse();
+            int tx_id = relay_block_msg_cs~load_uint(256);
+            int index = relay_block_msg_cs~load_uint(256);
+            cell intermediate_nodes = relay_block_msg_cs~load_ref();
+
+            ;;todo:
+            ;; slice intermediate_nodes_cs = intermediate_nodes.begin_parse();
+            ;; int intermediate_nodes_num_cells = intermediate_nodes_cs~load_uint(8);
+            ;; slice s = intermediate_nodes_cs~load_ref().begin_parse();
+            ;; int hash = tx_id;
+            ;; repeat(intermediate_nodes_num_cells) {
+            ;;     s = s~load_ref().begin_parse();
+            ;;     hash = slice_hash_2(begin_cell().store_uint(hash, 256), begin_cell().store_uint(s~load_uint(256), 256), 2);
+            ;; }
+            ;; slice hash_cs = begin_cell().store_uint(hash, 256).end_cell().begin_parse();
+            ;; ~dump(hash_cs.preload_bits(hash_cs.slice_bits()));
+            ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+            int is_valid_proof = check_proof_validation(in_msg_body);
+        
+            cell check_proof_body = begin_cell()
+                            .store_uint(op::proof_verified, 32)
+                            .store_uint(query_id, 64)
+                            .store_coins(forward_ton_amount)
+                            .store_slice(from)
+                            .store_uint(is_valid_proof, 1)
+                            .end_cell();
+            if (required_fee != 0) {
+                var reduceFee = begin_cell()
+                            .store_uint(0x18, 6)
+                            .store_slice(bitcoin_relay_address)
+                            .store_coins(required_fee)
+                            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+                send_raw_message(reduceFee.end_cell(), 1);
+            }
+
+            var msg = begin_cell()
+            .store_uint(0x18, 6)
+            .store_slice(sender_address)
+            .store_coins(0)
+            .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+            .store_ref(check_proof_body);
+            
+            send_raw_message(msg.end_cell(), 64); ;; send all the remaining amount. todo: this will fail if the 'required_fee' is non-zero!
+        } catch(x, n) {
+            send_ton(from, 0, 64);
+        }
+
+        return ();
+    }
+
+    ;; if (op == op::test_bounce_back) {
+    ;;     ~dump(333);
+    ;;     throw_unless(ERROR_ACCESS_DENIED, 1 == 2);
+    ;;     return();
+    ;; }
+
+    ;; if (op == op::test_bounce) {
+    ;;     slice to = in_msg_body~load_msg_addr();
+    ;;     ~strdump(to.preload_bits(to.slice_bits()));
+    ;;     ;; ~dump(to);
+    ;;     ~dump(444);
+    ;;     block_height = 99999;
+    ;;     save_data();
+
+    ;;     cell body = begin_cell()
+    ;;                     .store_uint(op::test_bounce_back, 32)
+    ;;                     .end_cell();
+
+    ;;     ;; var msg = begin_cell()
+    ;;     ;; .store_uint(0x18, 6)
+    ;;     ;; .store_slice(bitcoin_relay_address)
+    ;;     ;; .store_coins(100000000)
+    ;;     ;; .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+    ;;     ;; .store_ref(body);
+
+
+    ;;     ;; send_raw_message(msg.end_cell(), 2);
+
+    ;;     var msg = begin_cell()
+    ;;     .store_uint(0x18, 6)
+    ;;     .store_slice(to)
+    ;;     .store_coins(1000000000)
+    ;;     ;; .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+    ;;     .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+    ;;     .store_ref(body);
+        
+    ;;     send_raw_message(msg.end_cell(), 16); ;; pay transfer fees separately, revert on errors
+    ;;     return ();
+    ;; } 
+
+    throw(ERROR_UNKNOWN_OP_CODE);
+}
+
+(slice, int, cell, int, int, int) get_block_data() method_id {
+    return load_data();
+}
+
+(int) get_contract_balance() method_id {
+    [int b, _] = get_balance();
+    return b;
+}

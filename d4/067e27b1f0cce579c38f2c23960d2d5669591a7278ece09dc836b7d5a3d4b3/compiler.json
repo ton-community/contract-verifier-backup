@@ -1,0 +1,1153 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Poll.tolk, Voter.code.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  102812 DECLMETHOD results()\n  83229 DECLMETHOD owner()\n  67040 DECLMETHOD calcVoterAddress()\n  92876 DECLMETHOD isClosed()\n  // 2 functions inlined in-place:\n  // - PollStorage.load (6 calls)\n  // - PollStorage.save (3 calls)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      c4 PUSH\n      CTOS\n      SWAP\n      x{694d6f6e} SDBEGINSQ\n      63 THROWIFNOT\n      8 PLDU\n      SWAP\n      LDSTDADDR\n      32 LDU\n      32 LDU\n      s0 s4 XCHG\n      IF:<{\n        DEC\n      }>ELSE<{\n        SWAP\n        DEC\n        SWAP\n      }>\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      32 STU\n      32 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DUP\n    x{694d6f6e} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      32 LDU\n      DUP\n      1 PLDI\n      104 THROWIF\n      s0 s4 XCHG\n      8 PLDU\n      DUP\n      IF:<{\n        SWAP\n        INC\n      }>ELSE<{\n        s0 s2 XCHG\n        INC\n        -ROT\n      }>\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      32 STU\n      s1 s2 XCHG\n      32 STU\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n          \"te6ccgEBAgEANgABFP8A9KQT9LzyyAsBAE7T+JGRMODXLCNKa3t0MY4W7UTQ+kj6SDHXCgD4kljHBfLgZvLQZeA=\" base64>B B>boc PUSHREF\n      MYADDR\n      INMSG_SRC\n      SWAP\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      b{0} STSLICECONST\n      ENDC\n      50000000 PUSHINT\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s2 XCHG\n      STREF\n      STREF\n      x{694d6f6e} STSLICECONST\n      8 STU\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{14160e21} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDSLICE\n      DROP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      103 THROWIFNOT\n      OVER\n      NEWC\n      STSTDADDR\n      STSLICE\n      b{1} STSLICECONST\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      96 PUSHINT\n      SENDRAWMSG\n    }>\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  results() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDU\n    32 PLDU\n  }>\n  owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  calcVoterAddress() PROC:<{\n        \"te6ccgEBAgEANgABFP8A9KQT9LzyyAsBAE7T+JGRMODXLCNKa3t0MY4W7UTQ+kj6SDHXCgD4kljHBfLgZvLQZeA=\" base64>B B>boc PUSHREF\n    MYADDR\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    b{0} STSLICECONST\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  isClosed() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    1 PLDI\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDQEAAZEAART/APSkE/S88sgLAQIBYgIDAfTQ+JGOLtMfMe1E0AHXLCNKa3t08r/XCwcB+kjTH9MfBJGlkwGlAeICyPpSyx/LH87J7VTgINcsI0pre3TjAtcsIKCwcQwxjiow7UTQ+kjWPzD4kiLHBfLgZyHI+lLOz4PJ7VTIz4UI+lJwzwtuyYBg+wDghA8BxwDy9AQCASAFBgHUMe1E0PpI0x/THyDXCgDy0GgE1wsHIJIBpJMCpFniA8j6UhLLHxLLHxLOye1UiPgo+JIByPpS+lLPgcmCCvrwgMjPiYgBUyPIz4TQzMz5Fs8L/wH6AoEAjM8LcBLMzM+RpTW9ussHyXH7AAkCASAHCAAbvIznaiaH0kGOmP64WPwBQbheCI+CjI+lIS+lLPgckByM+E0MzM+RbIz4oAQMv/z1CAkCASALDAEU/wD0pBP0vPLICwoATtP4kZEw4NcsI0pre3QxjhbtRND6SPpIMdcKAPiSWMcF8uBm8tBl4AARtKO9qJofSQYQAB21WZ2omh9JBjpn5jrhQBA=",
+  "codeHashHex": "D4067E27B1F0CCE579C38F2C23960D2D5669591A7278ECE09DC836B7D5A3D4B3",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/af3be295-c561-45f7-9457-850878689572/contracts/src/Poll.tolk",
+        "size_chars": 3328,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/af3be295-c561-45f7-9457-850878689572/gen/Voter.code.tolk",
+        "size_chars": 625,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/af3be295-c561-45f7-9457-850878689572/contracts/src/types.tolk",
+        "size_chars": 816,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedPollMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Vote"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClosePoll"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1766682478,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 336989729,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PollStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VoterStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          13
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 29
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          28
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 135,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          33,
+          34
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 38,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          42
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          9
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 23,
+        "struct_name": "CreateMessageOptions<Vote>",
+        "monomorphic_fields_ty_idx": [
+          27,
+          32,
+          41,
+          13
+        ]
+      },
+      {
+        "ty_idx": 44,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          27,
+          32,
+          41,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 30
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 21,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 39
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 33
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 37
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 24,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 25,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 27
+          },
+          {
+            "name": "value",
+            "ty_idx": 32
+          },
+          {
+            "name": "dest",
+            "ty_idx": 41
+          },
+          {
+            "name": "body",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 22,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedPollMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          6,
+          6,
+          6,
+          24
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "PollStorage",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          12,
+          8,
+          12,
+          19
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "option0",
+            "ty_idx": 9
+          },
+          {
+            "name": "option1",
+            "ty_idx": 9
+          },
+          {
+            "name": "isClosed",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VoterStorage",
+        "ty_idx": 18,
+        "ident_loc": [
+          3,
+          29,
+          8,
+          29,
+          20
+        ],
+        "fields": [
+          {
+            "name": "poll",
+            "ty_idx": 7
+          },
+          {
+            "name": "voter",
+            "ty_idx": 7
+          },
+          {
+            "name": "hasVoted",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Vote",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          44,
+          21,
+          44,
+          25
+        ],
+        "prefix": {
+          "prefix_num": 1766682478,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "option",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClosePoll",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          48,
+          21,
+          48,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 336989729,
+          "prefix_len": 32
+        },
+        "fields": []
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          13,
+          5,
+          13,
+          22
+        ],
+        "end_loc": [
+          1,
+          71,
+          1,
+          71,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          73,
+          5,
+          73,
+          21
+        ],
+        "end_loc": [
+          1,
+          84,
+          1,
+          84,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "PollStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          23,
+          17,
+          23,
+          21
+        ],
+        "end_loc": [
+          3,
+          25,
+          1,
+          25,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "VoterStorage.toCell",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "options",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "createMessage<Vote>",
+        "return_ty_idx": 22,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "createMessage<void>",
+        "return_ty_idx": 22,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "results",
+        "return_ty_idx": 45,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          85,
+          9,
+          85,
+          16
+        ],
+        "end_loc": [
+          1,
+          88,
+          1,
+          88,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 7,
+        "name": "owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          90,
+          9,
+          90,
+          14
+        ],
+        "end_loc": [
+          1,
+          93,
+          1,
+          93,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 8,
+        "name": "calcVoterAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          95,
+          9,
+          95,
+          25
+        ],
+        "end_loc": [
+          1,
+          105,
+          1,
+          105,
+          2
+        ],
+        "params": [
+          {
+            "name": "voter",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "isClosed",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          107,
+          9,
+          107,
+          17
+        ],
+        "end_loc": [
+          1,
+          110,
+          1,
+          110,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Poll",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Vote"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClosePoll"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PollStorage"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          9
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PollStorage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "option0",
+            "ty_idx": 9
+          },
+          {
+            "name": "option1",
+            "ty_idx": 9
+          },
+          {
+            "name": "isClosed",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Vote",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1766682478,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "option",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClosePoll",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 336989729,
+          "prefix_len": 32
+        },
+        "fields": []
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102812,
+        "name": "results",
+        "parameters": [],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 83229,
+        "name": "owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 67040,
+        "name": "calcVoterAddress",
+        "parameters": [
+          {
+            "name": "voter",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 92876,
+        "name": "isClosed",
+        "parameters": [],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 103
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PollClosed",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/af3be295-c561-45f7-9457-850878689572/contracts/src/Poll.tolk",
+      "contents": "import \"../../gen/Voter.code\"\nimport \"types\"\n\n\n//type AllowedPollMessage = Vote\ntype AllowedPollMessage = Vote | ClosePoll\n\ncontract Poll {\n    storage: PollStorage\n    incomingMessages: AllowedPollMessage\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedPollMessage.fromSlice(in.body);\n\n    match (msg) {\n        Vote => {\n            var storage = lazy PollStorage.load();\n\n             // ADD THIS LINE:    \n            assert (!storage.isClosed) throw Errors.PollClosed;\n\n            // Optimistic increment — reverted in onBouncedMessage if Voter rejects.\n            if (msg.option == 0) {\n                storage.option0 += 1;\n            } else {\n                storage.option1 += 1;\n            }\n            storage.save();\n\n            // Deploy or message the Voter for this sender.\n            // If Voter doesn't exist, the stateInit deploys it.\n            // If it already exists, the stateInit is ignored; only the body is processed.\n            val voterInit = ContractState {\n                code: voterCompiledCode(),\n                data: VoterStorage {\n                    poll: contract.getAddress(),\n                    voter: in.senderAddress,\n                    hasVoted: false,\n                }.toCell(),\n            };\n            val outMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                value: ton(\"0.05\"),\n                dest: { stateInit: voterInit },\n                body: msg,\n            });\n            outMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n        }\n\n     ClosePoll => { \n            var storage = lazy PollStorage.load();\n            assert (in.senderAddress == storage.owner) throw Errors.NotOwner;\n            storage.isClosed = true;\n            storage.save();\n\n            // Return remaining message value to the owner.\n            val returnMsg = createMessage({\n                bounce: false,\n                value:  0,\n                dest:   storage.owner,\n            });\n            // SAFETY: only the poll owner can close, and this returns the remaining\n            // message value after storage has been marked closed.\n            returnMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_DESTROY);\n        }\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    in.bouncedBody.skipBouncedPrefix();\n    val msg = lazy Vote.fromSlice(in.bouncedBody);\n\n    var storage = lazy PollStorage.load();\n    if (msg.option == 0) {\n        storage.option0 -= 1;\n    } else {\n        storage.option1 -= 1;\n    }\n    storage.save();\n}\nget fun results(): (uint32, uint32) {\n    val storage = lazy PollStorage.load();\n    return (storage.option0, storage.option1);\n}\n\nget fun owner(): address {\n    val storage = lazy PollStorage.load();\n    return storage.owner;\n}\n\nget fun calcVoterAddress(voter: address): address {\n    val init = ContractState {\n        code: voterCompiledCode(),\n        data: VoterStorage {\n            poll: contract.getAddress(),\n            voter,\n            hasVoted: false,\n        }.toCell(),\n    };\n    return AutoDeployAddress { stateInit: init }.calculateAddress();\n}\n\nget fun isClosed(): bool { \n    val storage = lazy PollStorage.load();\n    return storage.isClosed;\n}\n"
+    },
+    {
+      "filename": "tmp/af3be295-c561-45f7-9457-850878689572/gen/Voter.code.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n// Auto-generated dependency code for contract 'Voter'\n// Provides compiled BoC data for the 'Voter' contract\n//\n// This file is automatically generated by 'acton build'\n// Do not edit manually — changes will be overwritten\n\n/// Returns `Voter`'s code as a cell.\n///\n/// - Contract: `Voter`\n/// - Path: `contracts/src/Voter.tolk`\n///\n/// # Safety\n///\n/// This function always returns the correct cell with the contract code.\n@pure\nfun voterCompiledCode(): cell asm \"\"\"\n    \"te6ccgEBAgEANgABFP8A9KQT9LzyyAsBAE7T+JGRMODXLCNKa3t0MY4W7UTQ+kj6SDHXCgD4kljHBfLgZvLQZeA=\" base64>B B>boc PUSHREF\n\"\"\"\n"
+    },
+    {
+      "filename": "tmp/af3be295-c561-45f7-9457-850878689572/contracts/src/types.tolk",
+      "contents": "enum Errors {\n    InvalidOption  = 100\n    AlreadyVoted   = 101\n    NotFromPoll    = 102\n    NotOwner       = 103\n    PollClosed     = 104\n    InvalidMessage = 0xFFFF\n}\n\n// ----- Poll storage -----\n\nstruct PollStorage {\n    owner:    address\n    option0:  uint32\n    option1:  uint32\n    isClosed: bool\n}\n\nfun PollStorage.load(): PollStorage {\n    return PollStorage.fromCell(contract.getData());\n}\n\nfun PollStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ----- Voter storage -----\n\nstruct VoterStorage {\n    poll: address\n    voter: address\n    hasVoted: bool\n}\n\nfun VoterStorage.load(): VoterStorage {\n    return VoterStorage.fromCell(contract.getData());\n}\n\nfun VoterStorage.save(self) {\n}\n\n// ----- Messages -----\n\nstruct (0x694d6f6e) Vote {\n    option: uint8\n}\n\nstruct (0x14160e21) ClosePoll {}\n"
+    }
+  ]
+}

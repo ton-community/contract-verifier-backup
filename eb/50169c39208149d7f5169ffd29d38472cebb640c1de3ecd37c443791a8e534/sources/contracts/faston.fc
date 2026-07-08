@@ -1,0 +1,17 @@
+#include "imports/stdlib.fc";
+
+global cell beneficiarys;
+
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+     beneficiarys = new_dict();
+
+    beneficiarys~dict_set(256, "UQDONG1SdxnSvJjJKVzkGQCuEkCl31GX91jboZOmmpaUa_uk", 7500);
+    beneficiarys~dict_set(256, "UQBsmOZnYxsqkzrSmziOh5OLGOSfYIYMUCdkM6zp0JhYT-Sp", 2000);
+    beneficiarys~dict_set(256, "UQBsmOZnYxsqkzrSmziOh5OLGOSfYIYMUCdkM6zp0JhYT-Sx", 5000);
+
+    (slice key, slice val, int flag) = beneficiarys.udict_get_min?(256);
+
+    while (flag) {
+        (key, val, flag) = beneficiarys.udict_get_next?(256, key);
+    }
+}

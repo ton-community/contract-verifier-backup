@@ -1,0 +1,1484 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from JobEscrow.tolk, common.tolk, escrow_types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  105076 DECLMETHOD get_escrow_state()\n  99806 DECLMETHOD get_requester()\n  70616 DECLMETHOD get_expected_hash()\n  // 5 functions inlined in-place:\n  // - EscrowStorage.load (5 calls)\n  // - EscrowStorage.save (2 calls)\n  // - onBouncedMessage (0 calls)\n  // - sendValue (4 calls)\n  // - MapEntry<address, coins>.loadValue (2 calls)\n  // - MapEntry<address, coins>.getKey (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{45534302} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDGRAMS\n      32 LDSLICE\n      1 LDI\n      DUP\n      PLDREF\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      222 THROWIFNOT\n      s0 s2 XCHG\n      224 THROWIF\n      SWAP\n      CTOS\n      LDSTDADDR\n      256 LDU\n      ENDS\n      s0 s7 XCHG\n      64 LDU\n      NIP\n      256 LDU\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      PLDOPTREF\n      s4 s11 XCHG2\n      EQUAL\n      223 THROWIFNOT\n      0 PUSHINT\n      s10 PUSH\n      267 PUSHINT\n      DICTMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        SWAP\n        LDGRAMS\n        ENDS\n        s1 s2 XCHG\n        ADD\n        s1 s11 XCPU\n        267 PUSHINT\n        DICTGETNEXT NULLSWAPIFNOT2\n      }>\n      2DROP\n      s1 s3 PUSH2\n      ADD\n      ADD\n      s0 s7 PUSH2\n      LEQ\n      226 THROWIFNOT\n      s9 PUSH\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s7 PUSH\n      STGRAMS\n      s1 s6 XCHG\n      STSLICE\n      b{1} STSLICECONST\n      s1 s4 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      s3 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2 2 BLKDROP2\n      }>\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n      s3 PUSH\n      267 PUSHINT\n      DICTMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        s0 s1 PUXC\n        LDGRAMS\n        ENDS\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s1 s3 XCHG\n          STSTDADDR\n          ROT\n          STGRAMS\n          0 PUSHINT\n          107 STUR\n          ENDC\n          3 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          DROP\n          NIP\n        }>\n        s4 PUSH\n        267 PUSHINT\n        DICTGETNEXT NULLSWAPIFNOT2\n      }>\n      2DROP\n      s3 POP\n      s1 s2 XCHG\n      SUB\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{45534303} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDGRAMS\n      32 LDU\n      1 LDI\n      SWAP\n      224 THROWIF\n      NOW\n      s2 PUSH\n      GEQ\n      225 THROWIFNOT\n      s4 PUSH\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      32 STU\n      b{1} STSLICECONST\n      STSLICE\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      130 PUSHINT\n      SENDRAWMSG\n    }>\n    x{45534300} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n    }>\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_escrow_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    32 LDU\n    1 PLDI\n  }>\n  get_requester() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  get_expected_hash() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECCwEAAbcAART/APSkE/S88sgLAQIBYgIDAc7Q+JGRMOAg1ywiKpoYFOMC1ywiKpoYHI47W+1E0PpI+kj6ANMf0gAB8tDg+CMivvLg4STI+lIU+lJY+gLLH8+DzsntVMjPhQj6UnDPC27JgQCC+wDg1ywiKpoYBDGRMOCEDwHHAPL0BAIBIAcIAvgx7UTQ+kj6SPoA1h/SACDXTPiSJscF8uDeAvLQ4AHQ+kjT/9EH0z8x0//6SPoA+gD0BVBLuvLg33AqgQEL9IJvpZCfAfoA0RKgURuBAQv0dG+l6FtTE6CgUwe78uDiKcj6Uhn6Uif6AhbOz4MUzsntVCPCAJJsIuMNIMIABQYAJsjPhQgT+lJQA/oCcM8Laslz+wAA0o4SyM+FCBL6UgH6AnDPC2rJc/sAkVviI4EBC/SCb6WQjihSAvoA0SDCAI4SyM+FCBP6Ulj6AnDPC2rJc/sAkjAx4iSBAQv0dG+l6FszEqEgwgCOEsjPhQgS+lIB+gJwzwtqyXP7AJFb4gAdvJ7HaiaGumaH0kGOn/6MAgFiCQoAEbF3u1E0PpIMIAAlsp07UTQ+kgx+kgx+gDTH9cKAIA==",
+  "codeHashHex": "60C9F21AA3146CFA0A77B28098865118080B67F9CDF700F7C5DEDC984BD77E71",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/JobEscrow.tolk",
+        "size_chars": 4477,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/common.tolk",
+        "size_chars": 4741,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/escrow_types.tolk",
+        "size_chars": 2002,
+        "imports": [
+          2
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToEscrow"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowSettle"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowRefund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowTopUp"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1163084546,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1163084547,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1163084544,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 7
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowTerms"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          7,
+          6
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          25,
+          26
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 35
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          34
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 37,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          39,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 42,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 44,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          48
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowState"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 23,
+        "struct_name": "MapEntry<address, coins>",
+        "monomorphic_fields_ty_idx": [
+          24,
+          7,
+          5
+        ]
+      },
+      {
+        "ty_idx": 29,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          33,
+          38,
+          47,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 22,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          1038,
+          8,
+          1038,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 24
+          },
+          {
+            "name": "key",
+            "ty_idx": 25
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 36
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 45
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 39
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 43
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 31,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 49,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 33
+          },
+          {
+            "name": "value",
+            "ty_idx": 38
+          },
+          {
+            "name": "dest",
+            "ty_idx": 47
+          },
+          {
+            "name": "body",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToEscrow",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          15,
+          6,
+          15,
+          28
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowTerms",
+        "ty_idx": 20,
+        "ident_loc": [
+          3,
+          16,
+          8,
+          16,
+          19
+        ],
+        "fields": [
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "expectedHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowStorage",
+        "ty_idx": 19,
+        "ident_loc": [
+          3,
+          21,
+          8,
+          21,
+          21
+        ],
+        "fields": [
+          {
+            "name": "requester",
+            "ty_idx": 7
+          },
+          {
+            "name": "arbiter",
+            "ty_idx": 7
+          },
+          {
+            "name": "escrowAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "settled",
+            "ty_idx": 5
+          },
+          {
+            "name": "terms",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowSettle",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          41,
+          22,
+          41,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1163084546,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "resultHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "winnerAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "platformFee",
+            "ty_idx": 6
+          },
+          {
+            "name": "participants",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowRefund",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          50,
+          22,
+          50,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1163084547,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowTopUp",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          54,
+          22,
+          54,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1163084544,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowState",
+        "ty_idx": 50,
+        "ident_loc": [
+          3,
+          58,
+          8,
+          58,
+          19
+        ],
+        "fields": [
+          {
+            "name": "escrowAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "settled",
+            "ty_idx": 5
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          22,
+          5,
+          22,
+          22
+        ],
+        "end_loc": [
+          1,
+          100,
+          1,
+          100,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          21
+        ],
+        "end_loc": [
+          1,
+          20,
+          46,
+          20,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<EscrowTerms>.load",
+        "return_ty_idx": 20,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "map<address, coins>.findFirst",
+        "return_ty_idx": 23,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "MapEntry<address, coins>.loadValue",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1052,
+          20,
+          1052,
+          29
+        ],
+        "end_loc": [
+          0,
+          1058,
+          1,
+          1058,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "coins.fromSlice",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<address, coins>.iterateNext",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "current",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "EscrowStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          34,
+          19,
+          34,
+          23
+        ],
+        "end_loc": [
+          3,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "sendValue",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          102,
+          5,
+          102,
+          14
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "createMessage<void>",
+        "return_ty_idx": 28,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MapEntry<address, coins>.getKey",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1045,
+          20,
+          1045,
+          26
+        ],
+        "end_loc": [
+          0,
+          1049,
+          1,
+          1049,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "get_escrow_state",
+        "return_ty_idx": 50,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          115,
+          9,
+          115,
+          25
+        ],
+        "end_loc": [
+          1,
+          122,
+          1,
+          122,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "get_requester",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          124,
+          9,
+          124,
+          22
+        ],
+        "end_loc": [
+          1,
+          127,
+          1,
+          127,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "get_expected_hash",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          129,
+          9,
+          129,
+          26
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "JobEscrow",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowSettle"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowRefund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowTopUp"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowTerms"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EscrowState"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "EscrowTerms",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "expectedHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowStorage",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "requester",
+            "ty_idx": 7
+          },
+          {
+            "name": "arbiter",
+            "ty_idx": 7
+          },
+          {
+            "name": "escrowAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "settled",
+            "ty_idx": 5
+          },
+          {
+            "name": "terms",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowSettle",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1163084546,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "resultHash",
+            "ty_idx": 13
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "winnerAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "platformFee",
+            "ty_idx": 6
+          },
+          {
+            "name": "participants",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowRefund",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1163084547,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowTopUp",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1163084544,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EscrowState",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "escrowAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "settled",
+            "ty_idx": 5
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 17
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 105076,
+        "name": "get_escrow_state",
+        "parameters": [],
+        "return_ty_idx": 20
+      },
+      {
+        "tvm_method_id": 99806,
+        "name": "get_requester",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 70616,
+        "name": "get_expected_hash",
+        "parameters": [],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_ARBITER",
+        "err_code": 222
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_HASH_MISMATCH",
+        "err_code": 223
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_ALREADY_SETTLED",
+        "err_code": 224
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_TIMEOUT_NOT_REACHED",
+        "err_code": 225
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_PAYOUT_EXCEEDS_ESCROW",
+        "err_code": 226
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_OP",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/JobEscrow.tolk",
+      "contents": "// Per-job non-custodial escrow with HTLC-style release keyed on the quorum\n// result hash (BLOCKCHAIN_ECONOMICS §6.2, §13). The requester locks the max bid\n// B at deploy; settlement is gated on presenting the agreed quorum hash and is\n// bounded by B with any remainder refunded to the requester; on timeout the full\n// escrow refunds. No platform key can ever take custody.\n\nimport \"common\"\nimport \"escrow_types\"\n\ncontract JobEscrow {\n    storage: EscrowStorage\n    incomingMessages: AllowedMessageToEscrow\n}\n\ntype AllowedMessageToEscrow =\n    | EscrowSettle\n    | EscrowRefund\n    | EscrowTopUp\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToEscrow.fromSlice(in.body);\n\n    match (msg) {\n        EscrowSettle => {\n            var storage = lazy EscrowStorage.load();\n            assert (in.senderAddress == storage.arbiter) throw ERROR_NOT_ARBITER;\n            assert (!storage.settled) throw ERROR_ALREADY_SETTLED;\n\n            val terms = storage.terms.load();\n            // HTLC lock: funds only unlock for the agreed quorum result hash.\n            assert (msg.resultHash == terms.expectedHash) throw ERROR_HASH_MISMATCH;\n\n            // Sum participation commissions.\n            var participantsTotal: coins = 0;\n            var entry = msg.participants.findFirst();\n            while (entry.isFound) {\n                participantsTotal += entry.loadValue();\n                entry = msg.participants.iterateNext(entry);\n            }\n\n            val total = msg.winnerAmount + msg.platformFee + participantsTotal;\n            assert (total <= storage.escrowAmount) throw ERROR_PAYOUT_EXCEEDS_ESCROW;\n\n            storage.settled = true;\n            storage.save();\n\n            // Winner: base + perf bonus.\n            if (msg.winnerAmount > 0) {\n                sendValue(msg.winner, msg.winnerAmount);\n            }\n            // Platform fee.\n            if (msg.platformFee > 0) {\n                sendValue(terms.treasury, msg.platformFee);\n            }\n            // Fixed participation commission to each agreeing non-winner.\n            var p = msg.participants.findFirst();\n            while (p.isFound) {\n                val who = p.getKey();\n                val amt = p.loadValue();\n                if (amt > 0) {\n                    sendValue(who, amt);\n                }\n                p = msg.participants.iterateNext(p);\n            }\n            // Refund the unspent escrow slack to the requester (§4.2).\n            val refund = storage.escrowAmount - total;\n            if (refund > 0) {\n                sendValue(storage.requester, refund);\n            }\n        }\n\n        // Refund-on-timeout: if the job is not settled by the deadline, anyone can\n        // trigger a full refund to the requester (funds always go to the requester).\n        EscrowRefund => {\n            var storage = lazy EscrowStorage.load();\n            assert (!storage.settled) throw ERROR_ALREADY_SETTLED;\n            assert (blockchain.now() >= storage.deadline) throw ERROR_TIMEOUT_NOT_REACHED;\n\n            storage.settled = true;\n            storage.save();\n\n            val refundMsg = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: storage.requester,\n                value: 0,\n            });\n            refundMsg.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_IGNORE_ERRORS);\n        }\n\n        EscrowTopUp => {\n            // accept additional funding / storage rent\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw ERROR_INVALID_OP;\n        }\n    }\n}\n\nfun sendValue(to: address, amount: coins) {\n    val m = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: amount,\n    });\n    m.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS);\n}\n\n// ---------------------------------------------------------------------------\n// Getters\n// ---------------------------------------------------------------------------\n\nget fun get_escrow_state(): EscrowState {\n    val storage = lazy EscrowStorage.load();\n    return {\n        escrowAmount: storage.escrowAmount,\n        deadline: storage.deadline,\n        settled: storage.settled,\n    };\n}\n\nget fun get_requester(): address {\n    val storage = lazy EscrowStorage.load();\n    return storage.requester;\n}\n\nget fun get_expected_hash(): int {\n    val storage = lazy EscrowStorage.load();\n    return storage.terms.load().expectedHash;\n}\n"
+    },
+    {
+      "filename": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/common.tolk",
+      "contents": "// Shared error codes, opcodes and constants for the duckdb-p2p settlement layer.\n//\n// These contracts implement the *paid* path of the economic layer described in\n// `docs/BLOCKCHAIN_ECONOMICS.md`. Free jobs never touch any of this code — the\n// requester runs them through the off-chain coordinator with the `NoopSettlement`\n// path and there is zero on-chain interaction (see §8.2 \"Free vs paid path\").\n//\n// Design constraints honoured here (BLOCKCHAIN_ECONOMICS §1, §8):\n//   * sharded per-node state (no global contract): one StakeVault per node,\n//     one JobEscrow per job — never a single hot contract.\n//   * non-custodial: release is governed entirely by contract code (quorum\n//     result-hash, challenge window, unbonding cooldown), never a platform key.\n//   * defensive TON style: explicit gas floors, bounce-safe, carry-value.\n// ---------------------------------------------------------------------------\n// Error codes (numeric, cheap to assert against in tests)\n// ---------------------------------------------------------------------------\n\nconst ERROR_NOT_OWNER = 132 // sender is not the contract owner\nconst ERROR_NOT_FROM_MASTER = 133 // sender is not the jetton master (vault)\nconst ERROR_NOT_VALID_WALLET = 134 // sender is not a legitimate sibling receipt wallet\nconst ERROR_UNAUTHORIZED_BURN = 135 // burn notification not from the owner's wallet\nconst ERROR_BALANCE_NEGATIVE = 136 // resulting balance would be negative\nconst ERROR_NOT_ENOUGH_GAS = 137 // attached value too small to cover the operation\nconst ERROR_RECEIPT_LOCKED = 138 // stake-receipt jetton is non-transferable (anti-exit)\nconst ERROR_WRONG_WORKCHAIN = 333 // address is not in the basechain\nconst ERROR_INVALID_OP = 0xffff // unknown opcode\n\n// Stake vault\nconst ERROR_NOT_SLASHER = 200 // sender is not the authorized slasher (dispute contract)\nconst ERROR_NOTHING_TO_UNBOND = 201 // unbond requested but no eligible stake\nconst ERROR_UNBOND_IN_PROGRESS = 202 // a prior unbond is still cooling down\nconst ERROR_COOLDOWN_NOT_ELAPSED = 203 // withdraw before the unbonding cooldown finished\nconst ERROR_NO_UNBONDING = 204 // withdraw with nothing in the unbonding bucket\nconst ERROR_KEEPER_TOO_EARLY = 205 // keeper withdraw before the owner-grace window\nconst ERROR_SLASH_EXCEEDS_STAKE = 206 // slash amount larger than slashable stake\nconst ERROR_INVALID_SPLIT = 207 // slash split bps do not sum to 10000\n\n// Escrow\nconst ERROR_ESCROW_NOT_FUNDED = 220 // escrow opened without the requester's max-bid B\nconst ERROR_NOT_REQUESTER = 221 // settle/refund by someone other than the requester\nconst ERROR_NOT_ARBITER = 222 // settle by someone other than the bound arbiter\nconst ERROR_HASH_MISMATCH = 223 // provided result hash != the committed quorum hash\nconst ERROR_ALREADY_SETTLED = 224 // escrow already released\nconst ERROR_TIMEOUT_NOT_REACHED = 225 // refund-on-timeout before the deadline\nconst ERROR_PAYOUT_EXCEEDS_ESCROW = 226 // requested payout exceeds the locked escrow B\n\n// Record anchor / dispute\nconst ERROR_BAD_PREV_ROOT = 240 // submitted root does not chain to the stored prev_root\nconst ERROR_EPOCH_REGRESSION = 241 // epoch did not advance monotonically\nconst ERROR_INSUFFICIENT_ANCHOR_STAKE = 242 // keeper stake-weight below the acceptance threshold\nconst ERROR_BAD_INCLUSION_PROOF = 243 // Merkle inclusion proof does not reproduce the root\nconst ERROR_DISPUTE_BOND_TOO_LOW = 244 // challenger bond below the configured minimum\nconst ERROR_NO_SUCH_DISPUTE = 245 // verdict for an unknown dispute id\nconst ERROR_NOT_VERDICT_AUTHORITY = 246 // verdict from a non-authoritative source\n\n// ---------------------------------------------------------------------------\n// Opcodes — keep TEP-74 standard values verbatim for ecosystem interop.\n// ---------------------------------------------------------------------------\n\n// TEP-74 jetton standard\nconst OP_JETTON_TRANSFER = 0x0f8a7ea5\nconst OP_JETTON_TRANSFER_INTERNAL = 0x178d4519\nconst OP_JETTON_NOTIFICATION = 0x7362d09c\nconst OP_JETTON_EXCESSES = 0xd53276db\nconst OP_JETTON_BURN = 0x595f07bc\nconst OP_JETTON_BURN_NOTIFICATION = 0x7bdd97de\nconst OP_PROVIDE_WALLET_ADDRESS = 0x2c76b973\nconst OP_TAKE_WALLET_ADDRESS = 0xd1735400\n\n// ---------------------------------------------------------------------------\n// Constants\n// ---------------------------------------------------------------------------\n\nconst MIN_TONS_FOR_STORAGE = ton(\"0.05\")\nconst BPS_DENOM = 10000 // basis-points denominator for splits/fractions\n\n// Status bit flags for the stake-receipt wallet.\nconst RECEIPT_STATUS_LOCKED = 1 // bit 0: outgoing transfers locked (default)\n\nfun assertBasechain(addr: address) {\n    assert (addr.getWorkchain() == BASECHAIN) throw ERROR_WRONG_WORKCHAIN;\n}\n"
+    },
+    {
+      "filename": "tmp/a9740a5e-6c95-4b37-9888-ada4c2cba339/contracts/escrow_types.tolk",
+      "contents": "// Storage + messages for the per-job escrow / HTLC settlement contract.\n// See BLOCKCHAIN_ECONOMICS §4 (earning function), §6.2 (who gets paid), and the\n// \"HTLC-style escrow release keyed on the quorum result-hash\" recommendation\n// in §13. Non-custodial: the arbiter can only DIRECT payouts bounded by the\n// locked escrow B and gated on the agreed result hash; it can never seize funds,\n// and any leftover always refunds to the requester.\n//\n// Touched by PAID jobs only. Free jobs never open an escrow (§8.2).\n\nimport \"common\"\n\nconst OP_ESCROW_SETTLE = 0x4553_4302\nconst OP_ESCROW_REFUND = 0x4553_4303\nconst OP_ESCROW_TOPUP = 0x4553_4300\n\nstruct EscrowTerms {\n    treasury: address     // platform-fee recipient\n    expectedHash: uint256 // HTLC lock: settle must present this quorum result hash\n}\n\nstruct EscrowStorage {\n    requester: address  // who funded B and receives refunds\n    arbiter: address    // quorum oracle / coordinator authorized to settle\n    escrowAmount: coins // B — the requester's max bid, locked up front\n    deadline: uint32    // refund-on-timeout deadline (unix secs)\n    settled: bool\n    terms: Cell<EscrowTerms>\n}\n\nfun EscrowStorage.load(): EscrowStorage {\n    return EscrowStorage.fromCell(contract.getData());\n}\n\nfun EscrowStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Settle after the quorum verdict. `participants` maps each agreeing non-winner\n// to its fixed participation commission (§6.2). `winnerAmount` is base + perf\n// bonus. Any escrow not paid out refunds to the requester.\nstruct (0x4553_4302) EscrowSettle {\n    queryId: uint64\n    resultHash: uint256 // the agreed quorum hash — must equal terms.expectedHash\n    winner: address\n    winnerAmount: coins\n    platformFee: coins\n    participants: map<address, coins>\n}\n\nstruct (0x4553_4303) EscrowRefund {\n    queryId: uint64\n}\n\nstruct (0x4553_4300) EscrowTopUp {\n    queryId: uint64\n}\n\nstruct EscrowState {\n    escrowAmount: coins\n    deadline: uint32\n    settled: bool\n}\n"
+    }
+  ]
+}

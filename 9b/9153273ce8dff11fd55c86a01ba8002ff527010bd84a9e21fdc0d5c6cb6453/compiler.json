@@ -1,0 +1,1803 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from lmsr_market_maker.tolk, types.tolk, fixed_math.tolk\nPROGRAM{\n  DECLPROC fixed_log2()\n  DECLPROC fixed_pow2()\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC getBalanceAt()\n  DECLPROC lmsrCost()\n  DECLPROC calcNetCost()\n  83229 DECLMETHOD owner()\n  96565 DECLMETHOD stage()\n  90219 DECLMETHOD funding()\n  90467 DECLMETHOD calcMarginalPrice()\n  74139 DECLMETHOD getNetCost()\n  // 5 functions inlined in-place:\n  // - fixed_mul (2 calls)\n  // - fixed_div (1 call)\n  // - MarketStorage.load (13 calls)\n  // - MarketStorage.save (9 calls)\n  // - onBouncedMessage (0 calls)\n  // - MapLookupResult<int128>.loadValue (1 call)\n  fixed_log2() PROC:<{\n    DUP\n    0 GTINT\n    401 THROWIFNOT\n    0 PUSHINT\n    OVER\n    64 PUSHPOW2\n    GEQ\n    IF:<{\n      WHILE:<{\n        OVER\n        65 PUSHPOW2\n        GEQ\n      }>DO<{\n        SWAP\n        1 RSHIFT#\n        SWAP\n        64 PUSHPOW2\n        ADD\n      }>\n    }>ELSE<{\n      WHILE:<{\n        OVER\n        64 PUSHPOW2\n        LESS\n      }>DO<{\n        SWAP\n        1 LSHIFT#\n        SWAP\n        64 PUSHPOW2\n        SUB\n      }>\n    }>\n    63 PUSHPOW2\n    0 PUSHINT\n    WHILE:<{\n      DUP\n      64 LESSINT\n    }>DO<{\n      s3 s0 XCPU\n      MUL\n      64 RSHIFT#\n      DUP\n      65 PUSHPOW2\n      GEQ\n      IF:<{\n        1 RSHIFT#\n        s2 s1 XCPU\n        ADD\n        s0 s2 XCHG\n      }>\n      SWAP\n      1 RSHIFT#\n      s0 s3 XCHG\n      INC\n      s1 s3 XCHG\n    }>\n    s2 s3 XCHG\n    3 BLKDROP\n  }>\n  fixed_pow2() PROC:<{\n    DUP\n    IFNOTJMP:<{\n      DROP\n      64 PUSHPOW2\n    }>\n    DUP\n    0 LESSINT\n    2DUP\n    IF:<{\n      DROP\n      SWAP\n      NEGATE\n      SWAP\n    }>ELSE<{\n      s2 POP\n    }>\n    OVER\n    64 RSHIFT#\n    s0 s2 XCHG\n    64 PUSHPOW2DEC\n    AND\n    12786308645202655660 PUSHINT\n    4431396893595737425 PUSHINT\n    1023870087579328453 PUSHINT\n    177423166116318949 PUSHINT\n    24596073471909060 PUSHINT\n    2841449829983171 PUSHINT\n    281363276907910 PUSHINT\n    24378270262728 PUSHINT\n    1877525477726 PUSHINT\n    s9 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s8 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s7 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s6 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s5 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s4 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s3 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    s2 PUSH\n    MUL\n    64 RSHIFT#\n    ADD\n    64 PUSHPOW2\n    s0 s2 XCHG\n    MUL\n    64 RSHIFT#\n    ADD\n    ROT\n    LSHIFT\n    SWAP\n    IF:<{\n      128 PUSHPOW2\n      SWAP\n      DIV\n    }>\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      DUP\n      SBITS\n      31 GTINT\n      IFJMP:<{\n        32 LDU\n        SWAP\n        260734629 PUSHINT\n        EQUAL\n        IF:<{\n          DUP\n          SBITS\n          NIP\n          67 GTINT\n          IF:<{\n          }>\n        }>ELSE<{\n          DROP\n        }>\n      }>\n      DROP\n    }>\n    INMSG_VALUE\n    200000000 PUSHINT\n    GEQ\n    310 THROWIFNOT\n    DUP\n    x{00000013} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s0 s2 XCHG\n      303 THROWIF\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      128 STU\n      64 STU\n      x{01} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000014} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s0 s2 XCHG\n      1 EQINT\n      304 THROWIFNOT\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      128 STU\n      64 STU\n      x{00} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000015} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s0 s2 XCHG\n      2 NEQINT\n      305 THROWIFNOT\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      128 STU\n      64 STU\n      x{02} STSLICECONST\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000016} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      NIP\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s2 PUSH\n      2 NEQINT\n      305 THROWIFNOT\n      s0 s6 XCHG\n      64 LDU\n      NIP\n      64 PLDU\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      128 STU\n      s1 s3 XCHG\n      64 STU\n      s1 s2 XCHG\n      8 STU\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000017} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s2 PUSH\n      1 EQINT\n      304 THROWIFNOT\n      s0 s7 XCHG\n      64 LDU\n      NIP\n      128 PLDI\n      DUP\n      309 THROWIFNOT\n      s1 s4 XCHG\n      ADD\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s4 XCHG\n      128 STU\n      s1 s3 XCHG\n      64 STU\n      8 STU\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000018} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      300 THROWIFNOT\n      s2 PUSH\n      2 NEQINT\n      305 THROWIFNOT\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      128 LDU\n      NIP\n      ENDS\n      SWAP\n      NEWC\n      STOPTREF\n      STOPTREF\n      0 PUSHINT\n      128 STUR\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STSTDADDR\n      s1 s5 XCHG\n      32 STU\n      s1 s3 XCHG\n      128 STU\n      64 STU\n      8 STU\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{00000012} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      s2 PUSH\n      303 THROWIF\n      s0 s7 XCHG\n      64 LDU\n      NIP\n      PLDREF\n      s5 s0 PUSH2\n      CTOS\n      0 PUSHINT\n      WHILE:<{\n        OVER\n        SBITS\n        63 GTINT\n      }>DO<{\n        SWAP\n        64 LDU\n        NIP\n        SWAP\n        INC\n      }>\n      NIP\n      OVER\n      EQUAL\n      306 THROWIFNOT\n      s0 s8 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      128 LDU\n      ENDS\n      s2 s3 s10 PUSH3\n      s10 PUSH\n      calcNetCost() CALLDICT\n      DUP\n      0 LESSINT\n      IF:<{\n        NEGATE\n      }>\n      s7 PUSH\n      MUL\n      1000000000000000000 PUSHINT\n      DIV\n      s0 s4 XCHG\n      CTOS\n      0 PUSHINT\n      WHILE:<{\n        s0 s12 PUSH2\n        LESS\n      }>DO<{\n        SWAP\n        64 LDI\n        s5 s2 PUSH2\n        getBalanceAt() CALLDICT\n        ROT\n        ADD\n        NEWC\n        128 STI\n        s0 s2 s5 XCPUXC\n        32 PUSHINT\n        DICTUSETB\n        SWAP\n        INC\n        s1 s4 XCHG\n      }>\n      2DROP\n      s10 POP\n      s9 s2 XCHG2\n      ADD\n      s0 s8 XCHG\n      NEWC\n      STOPTREF\n      STOPTREF\n      s1 s7 XCHG\n      128 STU\n      ENDC\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      128 STU\n      64 STU\n      8 STU\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    DUP\n    32 LDU\n    SWAP\n    1935855772 PUSHINT\n    EQUAL\n    IF:<{\n      NIP\n      64 LDU\n      NIP\n      LDGRAMS\n      LDSTDADDR\n      NIP\n      PLDREF\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      128 LDU\n      64 LDU\n      8 LDU\n      LDREF\n      LDREF\n      ENDS\n      OVER\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDSTDADDR\n      LDREF\n      NIP\n      LDREF\n      NIP\n      ENDS\n      16 PUSHPOW2DEC\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      THROWANYIFNOT\n      s0 s9 XCHG\n      CTOS\n      32 LDU\n      OVER\n      16 EQINT\n      IF:<{\n        NIP\n        s3 POP\n        s5 POP\n        s5 POP\n        SWAP\n        8 PUSHPOW2DEC\n        EQUAL\n        301 THROWIFNOT\n        s6 PUSH\n        0 GTINT\n        302 THROWIFNOT\n        LDSTDADDR\n        8 LDU\n        LDREF\n        PLDREF\n        DUP\n        CTOS\n        1 PUSHINT\n        0 PUSHINT\n        WHILE:<{\n          s0 s5 PUSH2\n          LESS\n        }>DO<{\n          s0 s2 XCHG\n          8 LDU\n          s0 s2 XCHG\n          MUL\n          s0 s2 XCHG\n          INC\n          s1 s2 XCHG\n        }>\n        DROP\n        NIP\n        s3 POP\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        s1 s5 XCHG\n        STSTDADDR\n        s1 s7 XCHG\n        STSTDADDR\n        s1 s3 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        ENDC\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        s1 s4 XCHG\n        32 STU\n        s1 s4 XCHG\n        128 STU\n        s1 s2 XCHG\n        64 STU\n        x{00} STSLICECONST\n        STREF\n        STREF\n        ENDC\n        c4 POP\n      }>ELSE<{\n        s10 POP\n        NIP\n        17 EQINT\n        IFNOTJMP:<{\n          9 BLKDROP\n          16 PUSHPOW2DEC\n          THROWANY\n        }>\n        s2 PUSH\n        303 THROWIF\n        s0 s7 XCHG\n        LDREF\n        128 PLDI\n        s6 s1 PUSH2\n        CTOS\n        0 PUSHINT\n        WHILE:<{\n          OVER\n          SBITS\n          63 GTINT\n        }>DO<{\n          SWAP\n          64 LDU\n          NIP\n          SWAP\n          INC\n        }>\n        NIP\n        OVER\n        EQUAL\n        306 THROWIFNOT\n        s0 s9 XCHG\n        CTOS\n        LDOPTREF\n        LDOPTREF\n        128 LDU\n        ENDS\n        s2 s4 s11 PUSH3\n        s11 PUSH\n        calcNetCost() CALLDICT\n        s0 s0 PUSH2\n        0 LESSINT\n        IF:<{\n          NEGATE\n        }>\n        s9 PUSH\n        MUL\n        1000000000000000000 PUSHINT\n        DIV\n        TUCK\n        ADD\n        s5 PUSH\n        0 GTINT\n        IF:<{\n          s0 s5 PUXC\n          LEQ\n          307 THROWIFNOT\n        }>ELSE<{\n          s5 POP\n        }>\n        s13 s4 XCHG2\n        GEQ\n        308 THROWIFNOT\n        s0 s3 XCHG\n        CTOS\n        0 PUSHINT\n        WHILE:<{\n          s0 s11 PUSH2\n          LESS\n        }>DO<{\n          SWAP\n          64 LDI\n          2OVER\n          getBalanceAt() CALLDICT\n          ROT\n          ADD\n          NEWC\n          128 STI\n          s0 s2 s3 XCPUXC\n          32 PUSHINT\n          DICTUSETB\n          SWAP\n          INC\n          s1 s2 XCHG\n        }>\n        2DROP\n        s9 POP\n        s1 s9 XCHG\n        ADD\n        s0 s7 XCHG\n        NEWC\n        STOPTREF\n        s1 s8 XCHG\n        STOPTREF\n        s1 s6 XCHG\n        128 STU\n        ENDC\n        s0 s4 XCHG\n        NEWC\n        STSTDADDR\n        s1 s3 XCHG\n        32 STU\n        128 STU\n        64 STU\n        s1 s2 XCHG\n        8 STU\n        s1 s2 XCHG\n        STREF\n        STREF\n        ENDC\n        c4 POP\n      }>\n    }>ELSE<{\n      DROP\n      16 PUSHPOW2DEC\n      SWAP\n      SEMPTY\n      THROWANYIFNOT\n    }>\n  }>\n  getBalanceAt() PROC:<{\n    SWAP\n    32 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IFJMP:<{\n      128 LDI\n      ENDS\n    }>\n    DROP\n    0 PUSHINT\n  }>\n  lmsrCost() PROC:<{\n    250 PUSHNEGPOW2\n    0 PUSHINT\n    WHILE:<{\n      s0 s3 PUSH2\n      LESS\n    }>DO<{\n      s4 s0 PUSH2\n      getBalanceAt() CALLDICT\n      26613026195688644984 PUSHINT\n      MUL\n      s3 PUSH\n      DIV\n      s0 s2 PUSH2\n      GREATER\n      IF:<{\n        s2 POP\n      }>ELSE<{\n        DROP\n      }>\n      INC\n    }>\n    DROP\n    0 PUSHINT\n    OVER\n    62771017353866807638 PUSHINT\n    GREATER\n    IF:<{\n      DROP\n      62771017353866807638 PUSHINT\n      SUB\n    }>ELSE<{\n      NIP\n    }>\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      s0 s4 PUSH2\n      LESS\n    }>DO<{\n      s5 s0 PUSH2\n      getBalanceAt() CALLDICT\n      26613026195688644984 PUSHINT\n      MUL\n      s4 PUSH\n      DIV\n      s3 PUSH\n      SUB\n      fixed_pow2() CALLDICT\n      s1 s2 XCHG\n      ADD\n      SWAP\n      INC\n    }>\n    DROP\n    s3 POP\n    s3 POP\n    SWAP\n    fixed_log2() CALLDICT\n    ROT\n    ADD\n    12786308645202655660 PUSHINT\n    MUL\n    64 RSHIFT#\n    MUL\n  }>\n  calcNetCost() PROC:<{\n    s3 s1 s0 PUSH3\n    lmsrCost() CALLDICT\n    s4 PUSH\n    s0 s4 XCHG\n    CTOS\n    0 PUSHINT\n    WHILE:<{\n      s0 s4 PUSH2\n      LESS\n    }>DO<{\n      SWAP\n      64 LDI\n      s7 s2 PUSH2\n      getBalanceAt() CALLDICT\n      ROT\n      ADD\n      NEWC\n      128 STI\n      s0 s2 s6 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      SWAP\n      INC\n      s1 s5 XCHG\n    }>\n    2DROP\n    s4 POP\n    lmsrCost() CALLDICT\n    SUBR\n    64 RSHIFT#\n  }>\n  owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  stage() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    224 LDU\n    NIP\n    8 PLDU\n  }>\n  funding() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDU\n    NIP\n    128 PLDU\n  }>\n  calcMarginalPrice() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDU\n    128 LDU\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    128 LDU\n    NIP\n    ENDS\n    250 PUSHNEGPOW2\n    0 PUSHINT\n    WHILE:<{\n      s0 s4 PUSH2\n      LESS\n    }>DO<{\n      s2 s0 PUSH2\n      getBalanceAt() CALLDICT\n      26613026195688644984 PUSHINT\n      MUL\n      s4 PUSH\n      DIV\n      s0 s2 PUSH2\n      GREATER\n      IF:<{\n        s2 POP\n      }>ELSE<{\n        DROP\n      }>\n      INC\n    }>\n    DROP\n    0 PUSHINT\n    OVER\n    62771017353866807638 PUSHINT\n    GREATER\n    IF:<{\n      DROP\n      62771017353866807638 PUSHINT\n      SUB\n    }>ELSE<{\n      NIP\n    }>\n    0 PUSHINT\n    s0 s0 PUSH2\n    WHILE:<{\n      s0 s6 PUSH2\n      LESS\n    }>DO<{\n      s4 s0 PUSH2\n      getBalanceAt() CALLDICT\n      26613026195688644984 PUSHINT\n      MUL\n      s6 PUSH\n      DIV\n      s4 PUSH\n      SUB\n      fixed_pow2() CALLDICT\n      s3 s3 XCPU\n      ADD\n      s1 s8 PUSH2\n      EQUAL\n      IF:<{\n        s2 POP\n        s1 s2 XCHG\n      }>ELSE<{\n        s3 POP\n      }>\n      INC\n    }>\n    DROP\n    s5 s6 XCHG2\n    5 BLKDROP\n    DUP\n    400 THROWIFNOT\n    SWAP\n    64 LSHIFT#\n    SWAP\n    DIV\n  }>\n  getNetCost() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDU\n    128 LDU\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    128 LDU\n    NIP\n    ENDS\n    3 -ROLL\n    calcNetCost() CALLDICT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECJgEABsUAART/APSkE/S88sgLAQIBYgIDAgLNBAUCAUgdHgIBIAYHAgFIGhsCASAICQIBIBcYA/c+JGOIdMfMSDXScIfjhXTHwGCEA+KfqW6lyDXSTHCQzCRMOLgMOD4l4IQC+vCAL7y4TYg1ywgAAAAnI4yW+1E0PpI0x/Tf9M/0wfU1NH4kifHBfLhLALy0S8FyPpSFMsfEst/yz/PhAYSzMzJ7VTg1ywgAAAApOMCidcngCgsMAJ8IMIA8uGRcCGDP76elCGDQL6XAasAAYM/oOielCGDP7mXAaoAAYM/oejigz5wkyDBQI4XUTCoqz8gg0C+lqsAUSGgAt4BqwADpBPoECNfA4ABoW+1E0PpI0x/Tf9M/0wfU1NH4kifHBfLhLALAAfLhMAXI+lIUyx8Sy3/LP8+EAhLMzMntVAAIAAAAFQL8jjRb7UTQ+kjTH9N/0z/TB9TU0fiSJ8cF8uEsAsMC8uExBcj6UhTLHxLLf8s/z4QKEszMye1U4NcsIAAAALSOPDHtRND6SNMf03/TPzHTB9TU0fiSJscF8uEsIsMC8uExBtM/MdcLPwXI+lIUyx8Sy38Tyz8SywfMzMntVOCJDQ4ACAAAABcD3NcnjkAx7UTQ+kjTH9N/0z/TB9TU0fiSJ8cF8uEsIsAB8uEwB9M/MdcKfyDy4TUUoAXI+lIUyx8Uy38Tyz/LB8zMye1U4NcsIAAAAMTjAtcsIAAAAJTjAjAg0x8BghBzYtCcupgwhA8BxwDy9OMNDxARAIxb7UTQ+kjTH9N/0z/TB9TU0fiSJ8cF8uEsIsMC8uEx0PQE9ATTfzHRAcj0APQAcM8Lf8kGyPpSFcsfE8t/yz/LB8zMye1UAf4x7UTQ+kjTH9N/0z/TB9TU0SLy0S8H0z8x10xTUNBwlSHXScI/lgHTPzEBpOgxIbry4TII0PQE9ATTf9FUcjoq8AUgwQCRo94nqIIwDeC2s6dkAACpBATQcJNTDLmOFgHSP1NS8ANYoMjKf1QgJoAg9EMBpBToWzpQkqAIyPQAEgJ2MdM/MfoA+kgx10ztRND6SNMf03/TP9MH1NTRIdD6SDH6SPpI1DHUMdGED/iSIscF8vQJ0NMfIcAQ4w8TFAA09AAXy3/JBcj6UhTLHxLLf8s/ywcSzMzJ7VQAojEzNTUBhAe68uEtJsIA8uEu+kjTB9TXTCDQcXCTUwW5mALTBwKoAqQS6DAxMwPI+lIV+lIX+lITzBLMyQPI+lIUyx8Uy38Syz/PhALMzMntVAL+OjHAEZZfCYQP8vDhIvLRLwfU1wp/U2HQcJUh10nCP5YB0z8xAaToMSG68uEyCdD0BPQE03/RVHJLK/AFUwDBAJGj3imogjAN4Lazp2QAAKkEZqAlwgCWUga78uEzkTXiUNS+8uE0A9Bwk1MLuYroWzkZoAfI9AAY9AAWy3/JBBUWACoB0j9d8ANYoMjKf1QgJIAg9EMBpBIAJsj6UhPLH8t/yz8SywcSzMzJ7VQB9QgkzCDP+EgwQBclDABowGRMuIhqz8ChD+wgjCxchf30c95rIIwPX97/wWLHVGCMA41hGuCUF/Fgip2VW33Sc7lgihXYf+eKZzEgigKGEiXw2PDgiD/5f4sRYaCIBYsAiOlyIIZtSU9OV4pqKs/oCioqz+gJ6irP6AmqIBkAHQBgCD0Dm+hk9J/0eAwcIABQqz+gJairP6AkqKs/oCOoqz+gIqirP6CDPwKoqz+gWKwBlYN/AakE3gH3IX5cJNTA7mOG1NA8AOCMXFUdlK4L+F4qCOpBFMCvJEykTDipOgwcCGCM2cfc7VPHIlWvJwwgjNnH3O1TxyJVqGRMeJwIJNTBLmOGlNQ8AOCMXFUdlK4L+F4qCSpBCOh8AISoAGk6DAzMwHwAViggjCxchf30c95rKirP4BwAWxUcxDwBCQE0HCTUwS5jhYB0j9TcvADWKDIyn9UICeAIPRDAaQV6Fs08ASiqz+AAAqgAPboZvtRND6SDHTH9N/1DHXTND0BPQEMdN/MdFVIPAFgCASAfIAARtKO9qJofSQYQAgEgISICAccjJAAdsk17UTQ+kgx098x1wsHgABuhr7UTQ+kgx0x8x1wt/gHpoY+1E0PpIMdMf03/UMddM0PQE9AQx038x0YX5cJNTBLmOG1Mg8AOCMXFUdlK4L+F4qCSpBFMCvJEykTDipOgwcCGCM2cfc7VPHIlWvJwwgjNnH3O1TxyJVqGRMeJwUwCTUwa5iugwUFZfBSDy4ZABqj8BqQSJQBGU0DwA4IxcVR2Urgv4XioJqkEJKHwAlEzoFMYupIyEpEz4qQ=",
+  "codeHashHex": "9B9153273CE8DFF11FD55C86A01BA8002FF527010BD84A9E21FDC0D5C6CB6453",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/lmsr_market_maker.tolk",
+        "size_chars": 24594,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/types.tolk",
+        "size_chars": 308,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/fixed_math.tolk",
+        "size_chars": 3998,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMarketMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Pause"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Resume"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Close"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeFunding"
+      },
+      {
+        "kind": "intN",
+        "n": 128
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawFees"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SellTrade"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 19,
+            "prefix_len": 32,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 20,
+            "prefix_len": 32,
+            "stack_type_id": 130,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 21,
+            "prefix_len": 32,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 22,
+            "prefix_len": 32,
+            "stack_type_id": 132,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 23,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 24,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 18,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 128
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 18
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 29
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          18
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          37
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 35,
+        "struct_name": "MapLookupResult<int128>",
+        "monomorphic_fields_ty_idx": [
+          36,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 36
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketConfig",
+        "ty_idx": 25,
+        "ident_loc": [
+          1,
+          51,
+          8,
+          51,
+          20
+        ],
+        "fields": [
+          {
+            "name": "conditionRegistry",
+            "ty_idx": 7
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditionIds",
+            "ty_idx": 3
+          },
+          {
+            "name": "outcomeSlotCounts",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketState",
+        "ty_idx": 27,
+        "ident_loc": [
+          1,
+          60,
+          8,
+          60,
+          19
+        ],
+        "fields": [
+          {
+            "name": "positionBalances",
+            "ty_idx": 28
+          },
+          {
+            "name": "positionIds",
+            "ty_idx": 30
+          },
+          {
+            "name": "accumulatedFees",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MarketStorage",
+        "ty_idx": 22,
+        "ident_loc": [
+          1,
+          66,
+          8,
+          66,
+          21
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "atomicOutcomeSlotCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "funding",
+            "ty_idx": 23
+          },
+          {
+            "name": "fee",
+            "ty_idx": 11
+          },
+          {
+            "name": "stage",
+            "ty_idx": 24
+          },
+          {
+            "name": "config",
+            "ty_idx": 26
+          },
+          {
+            "name": "state",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Pause",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          86,
+          21,
+          86,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 19,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Resume",
+        "ty_idx": 14,
+        "ident_loc": [
+          1,
+          90,
+          21,
+          90,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 20,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Close",
+        "ty_idx": 15,
+        "ident_loc": [
+          1,
+          94,
+          21,
+          94,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 21,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeFee",
+        "ty_idx": 16,
+        "ident_loc": [
+          1,
+          98,
+          21,
+          98,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 22,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newFee",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeFunding",
+        "ty_idx": 17,
+        "ident_loc": [
+          1,
+          103,
+          21,
+          103,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 23,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "fundingChange",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawFees",
+        "ty_idx": 19,
+        "ident_loc": [
+          1,
+          108,
+          21,
+          108,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 24,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SellTrade",
+        "ty_idx": 20,
+        "ident_loc": [
+          1,
+          112,
+          21,
+          112,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 18,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "outcomeTokenAmounts",
+            "ty_idx": 3
+          },
+          {
+            "name": "minCollateralReturn",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMarketMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          128,
+          6,
+          128,
+          26
+        ],
+        "target_ty_idx": 21
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "fixed_log2",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          29,
+          5,
+          29,
+          15
+        ],
+        "end_loc": [
+          3,
+          63,
+          1,
+          63,
+          2
+        ],
+        "params": [
+          {
+            "name": "x",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "fixed_pow2",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          67,
+          5,
+          67,
+          15
+        ],
+        "end_loc": [
+          3,
+          115,
+          1,
+          115,
+          2
+        ],
+        "params": [
+          {
+            "name": "x",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          132,
+          5,
+          132,
+          22
+        ],
+        "end_loc": [
+          1,
+          371,
+          1,
+          371,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          373,
+          5,
+          373,
+          21
+        ],
+        "end_loc": [
+          1,
+          394,
+          1,
+          394,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "MarketStorage.load",
+        "return_ty_idx": 22,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          76,
+          19,
+          76,
+          23
+        ],
+        "end_loc": [
+          1,
+          78,
+          1,
+          78,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "MarketStorage.fromCell",
+        "return_ty_idx": 22,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "MarketStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          80,
+          19,
+          80,
+          23
+        ],
+        "end_loc": [
+          1,
+          82,
+          1,
+          82,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "MarketStorage.toCell",
+        "return_ty_idx": 33,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "Cell<MarketState>.load",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "MarketState.toCell",
+        "return_ty_idx": 31,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint32, int128>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          },
+          {
+            "name": "value",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "Cell<MarketConfig>.load",
+        "return_ty_idx": 25,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "MarketConfig.toCell",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "getBalanceAt",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          399,
+          5,
+          399,
+          17
+        ],
+        "end_loc": [
+          1,
+          405,
+          1,
+          405,
+          2
+        ],
+        "params": [
+          {
+            "name": "positionBalances",
+            "ty_idx": 28
+          },
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<uint32, int128>.get",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "MapLookupResult<int128>.loadValue",
+        "return_ty_idx": 18,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "int128.fromSlice",
+        "return_ty_idx": 18,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "lmsrCost",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          415,
+          5,
+          415,
+          13
+        ],
+        "end_loc": [
+          1,
+          461,
+          1,
+          461,
+          2
+        ],
+        "params": [
+          {
+            "name": "positionBalances",
+            "ty_idx": 28
+          },
+          {
+            "name": "atomicOutcomeSlotCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "funding",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "calcNetCost",
+        "return_ty_idx": 1,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          472,
+          5,
+          472,
+          16
+        ],
+        "end_loc": [
+          1,
+          494,
+          1,
+          494,
+          2
+        ],
+        "params": [
+          {
+            "name": "currentBalances",
+            "ty_idx": 28
+          },
+          {
+            "name": "tradeAmounts",
+            "ty_idx": 3
+          },
+          {
+            "name": "atomicOutcomeSlotCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "funding",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          498,
+          9,
+          498,
+          14
+        ],
+        "end_loc": [
+          1,
+          501,
+          1,
+          501,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 20,
+        "name": "stage",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          503,
+          9,
+          503,
+          14
+        ],
+        "end_loc": [
+          1,
+          506,
+          1,
+          506,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "funding",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          508,
+          9,
+          508,
+          16
+        ],
+        "end_loc": [
+          1,
+          511,
+          1,
+          511,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 22,
+        "name": "calcMarginalPrice",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          517,
+          9,
+          517,
+          26
+        ],
+        "end_loc": [
+          1,
+          561,
+          1,
+          561,
+          2
+        ],
+        "params": [
+          {
+            "name": "outcomeIndex",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "fixed_div",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          3,
+          22,
+          5,
+          22,
+          14
+        ],
+        "end_loc": [
+          3,
+          25,
+          1,
+          25,
+          2
+        ],
+        "params": [
+          {
+            "name": "a",
+            "ty_idx": 1
+          },
+          {
+            "name": "b",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "getNetCost",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          565,
+          9,
+          565,
+          19
+        ],
+        "end_loc": [
+          1,
+          572,
+          1,
+          572,
+          2
+        ],
+        "params": [
+          {
+            "name": "tradeAmounts",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "LmsrMarketMaker",
+    "author": "Hossein Boustani",
+    "version": "0.1.0",
+    "description": "LMSR Market Maker for TON Prediction Market - automated pricing and trade execution",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Pause"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Resume"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Close"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeFunding"
+      },
+      {
+        "kind": "intN",
+        "n": 128
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawFees"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SellTrade"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 128
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MarketState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 27
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "MarketConfig",
+        "ty_idx": 23,
+        "fields": [
+          {
+            "name": "conditionRegistry",
+            "ty_idx": 7
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditionIds",
+            "ty_idx": 3
+          },
+          {
+            "name": "outcomeSlotCounts",
+            "ty_idx": 3
+          }
+        ],
+        "description": "Market configuration stored in a separate cell reference"
+      },
+      {
+        "kind": "struct",
+        "name": "MarketState",
+        "ty_idx": 25,
+        "fields": [
+          {
+            "name": "positionBalances",
+            "ty_idx": 26
+          },
+          {
+            "name": "positionIds",
+            "ty_idx": 28
+          },
+          {
+            "name": "accumulatedFees",
+            "ty_idx": 21
+          }
+        ],
+        "description": "Market state data stored in a separate cell reference"
+      },
+      {
+        "kind": "struct",
+        "name": "MarketStorage",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "atomicOutcomeSlotCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "funding",
+            "ty_idx": 21
+          },
+          {
+            "name": "fee",
+            "ty_idx": 11
+          },
+          {
+            "name": "stage",
+            "ty_idx": 22
+          },
+          {
+            "name": "config",
+            "ty_idx": 24
+          },
+          {
+            "name": "state",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Pause",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 19,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Resume",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 20,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Close",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 21,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeFee",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 22,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newFee",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeFunding",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 23,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "fundingChange",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawFees",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 24,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SellTrade",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 18,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "outcomeTokenAmounts",
+            "ty_idx": 3
+          },
+          {
+            "name": "minCollateralReturn",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 20
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 83229,
+        "name": "owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 96565,
+        "name": "stage",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 90219,
+        "name": "funding",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 90467,
+        "name": "calcMarginalPrice",
+        "parameters": [
+          {
+            "name": "outcomeIndex",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1,
+        "description": "Compute the marginal price for a given outcome index.\nprice_i = exp(q_i / b) / sum(exp(q_j / b)) for all j\nUses the offset technique in log2 space (same as lmsrCost) to prevent overflow.\nReturns price in Q64.64 format."
+      },
+      {
+        "tvm_method_id": 74139,
+        "name": "getNetCost",
+        "parameters": [
+          {
+            "name": "tradeAmounts",
+            "ty_idx": 3
+          }
+        ],
+        "return_ty_idx": 1,
+        "description": "Compute the net cost of a trade without executing it.\nTakes a trade amounts cell (array of int64 values) and returns net cost in raw token units."
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.NotOwner",
+        "err_code": 300
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.MarketAlreadyInitialized",
+        "err_code": 301
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.ZeroFunding",
+        "err_code": 302
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.MarketNotRunning",
+        "err_code": 303
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.MarketNotPaused",
+        "err_code": 304
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.MarketClosed",
+        "err_code": 305
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.InvalidTradeAmounts",
+        "err_code": 306
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.CollateralLimitExceeded",
+        "err_code": 307
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.InsufficientCollateral",
+        "err_code": 308
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.ZeroFundingChange",
+        "err_code": 309
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.InsufficientGas",
+        "err_code": 310
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 400
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 401
+      },
+      {
+        "kind": "enum_member",
+        "name": "MarketErrors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/lmsr_market_maker.tolk",
+      "contents": "/// LMSR Market Maker Contract\n/// Automated market maker implementing the Logarithmic Market Scoring Rule\n/// for pricing outcome tokens in the TON Prediction Market protocol.\n\nimport \"types\"\nimport \"fixed_math\"\n\n// ─── Op-codes ───────────────────────────────────────────────────────────────\n\nconst OP_INIT_MARKET: int = 0x10;\nconst OP_TRADE: int = 0x11;\nconst OP_SELL_TRADE: int = 0x12;\nconst OP_PAUSE: int = 0x13;\nconst OP_RESUME: int = 0x14;\nconst OP_CLOSE: int = 0x15;\nconst OP_CHANGE_FEE: int = 0x16;\nconst OP_CHANGE_FUNDING: int = 0x17;\nconst OP_WITHDRAW_FEES: int = 0x18;\nconst OP_MM_TRANSFER_NOTIFICATION: int = 0x7362d09c;\n\n// ─── Constants ──────────────────────────────────────────────────────────────\n\n/// Fee range denominator: 10^18\nconst FEE_RANGE: int = 1000000000000000000;\n\n/// Market stages\nconst STAGE_RUNNING: int = 0;\nconst STAGE_PAUSED: int = 1;\nconst STAGE_CLOSED: int = 2;\n\n// ─── Error codes ────────────────────────────────────────────────────────────\n\nenum MarketErrors {\n    NotOwner = 300\n    InvalidMessage = 0xFFFF\n    MarketAlreadyInitialized = 301\n    ZeroFunding = 302\n    MarketNotRunning = 303\n    MarketNotPaused = 304\n    MarketClosed = 305\n    InvalidTradeAmounts = 306\n    CollateralLimitExceeded = 307\n    InsufficientCollateral = 308\n    ZeroFundingChange = 309\n    InsufficientGas = 310\n}\n\n// ─── Storage ────────────────────────────────────────────────────────────────\n\n/// Market configuration stored in a separate cell reference\nstruct MarketConfig {\n    conditionRegistry: address\n    collateralToken: address\n    jettonWallet: address\n    conditionIds: cell                      // serialized array of condition_id (uint256)\n    outcomeSlotCounts: cell                 // serialized array of uint8 per condition\n}\n\n/// Market state data stored in a separate cell reference\nstruct MarketState {\n    positionBalances: map<uint32, int128>   // atomic_index → balance (can be negative for sells)\n    positionIds: map<uint32, uint256>       // atomic_index → position_id cache\n    accumulatedFees: uint128\n}\n\nstruct MarketStorage {\n    owner: address\n    atomicOutcomeSlotCount: uint32\n    funding: uint128                        // LMSR b parameter\n    fee: uint64                             // fee rate (0 to FEE_RANGE)\n    stage: uint8                            // 0=Running, 1=Paused, 2=Closed\n    config: Cell<MarketConfig>\n    state: Cell<MarketState>\n}\n\nfun MarketStorage.load(): MarketStorage {\n    return MarketStorage.fromCell(contract.getData());\n}\n\nfun MarketStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ─── Messages ───────────────────────────────────────────────────────────────\n\nstruct (0x00000013) Pause {\n    queryId: uint64\n}\n\nstruct (0x00000014) Resume {\n    queryId: uint64\n}\n\nstruct (0x00000015) Close {\n    queryId: uint64\n}\n\nstruct (0x00000016) ChangeFee {\n    queryId: uint64\n    newFee: uint64\n}\n\nstruct (0x00000017) ChangeFunding {\n    queryId: uint64\n    fundingChange: int128\n}\n\nstruct (0x00000018) WithdrawFees {\n    queryId: uint64\n}\n\nstruct (0x00000012) SellTrade {\n    queryId: uint64\n    outcomeTokenAmounts: cell\n    minCollateralReturn: coins\n}\n\n// ─── Contract definition ────────────────────────────────────────────────────\n\ncontract LmsrMarketMaker {\n    author: \"Hossein Boustani\"\n    version: \"0.1.0\"\n    description: \"LMSR Market Maker for TON Prediction Market - automated pricing and trade execution\"\n    storage: MarketStorage\n    incomingMessages: AllowedMarketMessage\n}\n\ntype AllowedMarketMessage = Pause | Resume | Close | ChangeFee | ChangeFunding | WithdrawFees | SellTrade\n\n// ─── Entry points ───────────────────────────────────────────────────────────\n\nfun onInternalMessage(in: InMessage) {\n    // Gas validation - reject if insufficient TON attached\n    assert(in.valueCoins >= 200000000) throw MarketErrors.InsufficientGas;  // 0.2 TON = 2*10^8 nanotons\n\n    val msg = lazy AllowedMarketMessage.fromSlice(in.body);\n\n    match (msg) {\n        Pause => {\n            // ─── Pause Handler ──────────────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage == STAGE_RUNNING) throw MarketErrors.MarketNotRunning;\n            storage.stage = STAGE_PAUSED;\n            storage.save();\n        }\n        Resume => {\n            // ─── Resume Handler ─────────────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage == STAGE_PAUSED) throw MarketErrors.MarketNotPaused;\n            storage.stage = STAGE_RUNNING;\n            storage.save();\n        }\n        Close => {\n            // ─── Close Handler ──────────────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage != STAGE_CLOSED) throw MarketErrors.MarketClosed;\n            storage.stage = STAGE_CLOSED;\n            storage.save();\n        }\n        ChangeFee => {\n            // ─── Change Fee Handler ─────────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage != STAGE_CLOSED) throw MarketErrors.MarketClosed;\n            storage.fee = msg.newFee;\n            storage.save();\n        }\n        ChangeFunding => {\n            // ─── Change Funding Handler ─────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage == STAGE_PAUSED) throw MarketErrors.MarketNotPaused;\n            assert(msg.fundingChange != 0) throw MarketErrors.ZeroFundingChange;\n            storage.funding = ((storage.funding as int) + (msg.fundingChange as int)) as uint128;\n            storage.save();\n        }\n        WithdrawFees => {\n            // ─── Withdraw Fees Handler ──────────────────────────────────────\n            var storage = MarketStorage.load();\n            assert(in.senderAddress == storage.owner) throw MarketErrors.NotOwner;\n            assert(storage.stage != STAGE_CLOSED) throw MarketErrors.MarketClosed;\n            var state = storage.state.load();\n            state.accumulatedFees = 0 as uint128;\n            storage.state = state.toCell();\n            storage.save();\n        }\n        SellTrade => {\n            // ─── Sell Trade Handler ─────────────────────────────────────────\n            var storage = MarketStorage.load();\n\n            // Check market is running\n            assert(storage.stage == STAGE_RUNNING) throw MarketErrors.MarketNotRunning;\n\n            // Access sell trade fields from smart-casted msg\n            val tradeAmountsCell = msg.outcomeTokenAmounts;\n            val _minCollateralReturn = msg.minCollateralReturn;\n\n            // Validate outcomeTokenAmounts length == atomicOutcomeSlotCount\n            val outcomeCount = storage.atomicOutcomeSlotCount as int;\n            var validateSlice = tradeAmountsCell.beginParse();\n            var validateLen = 0;\n            while (validateSlice.remainingBitsCount() >= 64) {\n                validateSlice.skipBits(64);\n                validateLen += 1;\n            }\n            assert(validateLen == outcomeCount) throw MarketErrors.InvalidTradeAmounts;\n\n            // Load current state\n            var state = storage.state.load();\n\n            // Compute net cost using LMSR (will be negative for sells)\n            val netCost = calcNetCost(state.positionBalances, tradeAmountsCell, outcomeCount, storage.funding as int);\n\n            // Compute fee: fee = abs(netCost) * fee / FEE_RANGE\n            var absNetCost = netCost;\n            if (absNetCost < 0) {\n                absNetCost = -absNetCost;\n            }\n            val fee = absNetCost * (storage.fee as int) / FEE_RANGE;\n\n            // Update position balances: for each i, positionBalances[i] += tradeAmounts[i]\n            var tradeSlice = tradeAmountsCell.beginParse();\n            var idx = 0;\n            while (idx < outcomeCount) {\n                val tradeAmount = tradeSlice.loadInt(64);\n                val currentBalance = getBalanceAt(state.positionBalances, idx);\n                val newBalance = currentBalance + tradeAmount;\n                state.positionBalances.set(idx as uint32, newBalance as int128);\n                idx += 1;\n            }\n\n            // Accumulate fees\n            state.accumulatedFees = ((state.accumulatedFees as int) + fee) as uint128;\n\n            // Save updated state\n            storage.state = state.toCell();\n            storage.save();\n        }\n        else => {\n            // Handle transfer_notification for init_market and buy trades (op 0x7362d09c)\n            var bodySlice = in.body;\n            val op = bodySlice.loadUint(32);\n\n            if (op == OP_MM_TRANSFER_NOTIFICATION) {\n                val _queryId = bodySlice.loadUint(64);\n                val amount = bodySlice.loadCoins();\n                val _sender = bodySlice.loadAddress();\n                val forwardPayload = bodySlice.loadRef();\n\n                // Load storage and verify message comes from our Jetton wallet\n                var storage = MarketStorage.load();\n                val config = storage.config.load();\n                assert(in.senderAddress == config.jettonWallet) throw MarketErrors.InvalidMessage;\n\n                // Parse forward_payload to determine sub-operation\n                var fpSlice = forwardPayload.beginParse();\n                val fpOp = fpSlice.loadUint(32);\n\n                if (fpOp == OP_INIT_MARKET) {\n                    // ─── Init Market Handler ────────────────────────────────────\n                    // Check stage == 255 (uninitialized)\n                    assert(storage.stage == 255) throw MarketErrors.MarketAlreadyInitialized;\n\n                    // Check amount > 0\n                    assert(amount > 0) throw MarketErrors.ZeroFunding;\n\n                    // Parse init_market payload\n                    val conditionRegistry = fpSlice.loadAddress();\n                    val conditionCount = fpSlice.loadUint(8);\n                    val conditionIdsCell = fpSlice.loadRef();\n                    val outcomeSlotCountsCell = fpSlice.loadRef();\n\n                    // Compute atomic_outcome_slot_count = product of all outcome_slot_counts\n                    var outcomeSlice = outcomeSlotCountsCell.beginParse();\n                    var atomicOutcomeSlotCount: int = 1;\n                    var i: int = 0;\n                    while (i < conditionCount) {\n                        val slotCount = outcomeSlice.loadUint(8);\n                        atomicOutcomeSlotCount *= slotCount;\n                        i += 1;\n                    }\n\n                    // Update storage: stage = STAGE_RUNNING, funding = amount\n                    storage.stage = STAGE_RUNNING;\n                    storage.funding = amount as uint128;\n                    storage.atomicOutcomeSlotCount = atomicOutcomeSlotCount as uint32;\n\n                    // Update config with condition registry and condition data\n                    val newConfig = MarketConfig {\n                        conditionRegistry: conditionRegistry,\n                        collateralToken: config.collateralToken,\n                        jettonWallet: config.jettonWallet,\n                        conditionIds: conditionIdsCell,\n                        outcomeSlotCounts: outcomeSlotCountsCell,\n                    };\n                    storage.config = newConfig.toCell();\n\n                    // Save updated storage\n                    storage.save();\n                } else if (fpOp == OP_TRADE) {\n                    // ─── Buy Trade Handler ──────────────────────────────────────\n                    // Check market is running\n                    assert(storage.stage == STAGE_RUNNING) throw MarketErrors.MarketNotRunning;\n\n                    // Parse trade payload: outcomeTokenAmounts (ref cell of int64), collateralLimit (int128)\n                    val tradeAmountsCell = fpSlice.loadRef();\n                    val collateralLimit = fpSlice.loadInt(128);\n\n                    // Validate outcomeTokenAmounts length == atomicOutcomeSlotCount\n                    val outcomeCount = storage.atomicOutcomeSlotCount as int;\n                    var validateSlice = tradeAmountsCell.beginParse();\n                    var validateLen = 0;\n                    while (validateSlice.remainingBitsCount() >= 64) {\n                        validateSlice.skipBits(64);\n                        validateLen += 1;\n                    }\n                    assert(validateLen == outcomeCount) throw MarketErrors.InvalidTradeAmounts;\n\n                    // Load current state\n                    var state = storage.state.load();\n\n                    // Compute net cost using LMSR\n                    val netCost = calcNetCost(state.positionBalances, tradeAmountsCell, outcomeCount, storage.funding as int);\n\n                    // Compute fee: fee = abs(netCost) * fee / FEE_RANGE\n                    var absNetCost = netCost;\n                    if (absNetCost < 0) {\n                        absNetCost = -absNetCost;\n                    }\n                    val fee = absNetCost * (storage.fee as int) / FEE_RANGE;\n\n                    // Total cost for trader (for buy: netCost > 0, so totalCost = netCost + fee)\n                    val totalCost = netCost + fee;\n\n                    // Check collateral limit (only if limit > 0)\n                    if (collateralLimit > 0) {\n                        assert(totalCost <= collateralLimit) throw MarketErrors.CollateralLimitExceeded;\n                    }\n\n                    // Check sufficient collateral\n                    assert(amount as int >= totalCost) throw MarketErrors.InsufficientCollateral;\n\n                    // Update position balances: for each i, positionBalances[i] += tradeAmounts[i]\n                    var tradeSlice = tradeAmountsCell.beginParse();\n                    var idx = 0;\n                    while (idx < outcomeCount) {\n                        val tradeAmount = tradeSlice.loadInt(64);\n                        val currentBalance = getBalanceAt(state.positionBalances, idx);\n                        val newBalance = currentBalance + tradeAmount;\n                        state.positionBalances.set(idx as uint32, newBalance as int128);\n                        idx += 1;\n                    }\n\n                    // Accumulate fees\n                    state.accumulatedFees = ((state.accumulatedFees as int) + fee) as uint128;\n\n                    // Save updated state\n                    storage.state = state.toCell();\n                    storage.save();\n                } else {\n                    assert(false) throw MarketErrors.InvalidMessage;\n                }\n            } else {\n                assert(in.body.isEmpty()) throw MarketErrors.InvalidMessage;\n            }\n        }\n    }\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    // Parse bounced body - the prefix is already stripped by the framework\n    in.bouncedBody.skipBouncedPrefix();\n    var body = in.bouncedBody;\n\n    // Read the original op-code from the bounced message\n    if (body.remainingBitsCount() >= 32) {\n        val bounceOp = body.loadUint(32);\n\n        if (bounceOp == 0x0f8a7ea5) {\n            // Jetton transfer bounced - accept silently\n            // Parse query_id and amount if enough bits remain\n            if (body.remainingBitsCount() >= 64 + 4) {\n                val _queryId = body.loadUint(64);\n                val _amount = body.loadCoins();\n            }\n            // State restoration for the full trade flow would require\n            // storing pending trade info - for now, accept the bounce silently\n        }\n    }\n    // Default: silently accept other bounces\n}\n\n// ─── LMSR Cost Functions ────────────────────────────────────────────────────\n\n/// Helper: get balance from positionBalances map, returns 0 if key not found.\nfun getBalanceAt(positionBalances: map<uint32, int128>, index: int): int {\n    val result = positionBalances.get(index as uint32);\n    if (result.isFound) {\n        return result.loadValue() as int;\n    }\n    return 0;\n}\n\n/// Compute the LMSR cost function: C(q) = b * ln(Σ exp(q_i / b))\n/// Uses the offset technique in log2 space to prevent overflow.\n///\n/// positionBalances: map<uint32, uint128> mapping outcome index → balance\n/// atomicOutcomeSlotCount: number of atomic outcomes\n/// funding: the b parameter (raw integer token units)\n///\n/// Returns: cost value in Q64.64 fixed-point (for precision in net cost diff)\nfun lmsrCost(positionBalances: map<uint32, int128>, atomicOutcomeSlotCount: int, funding: int): int {\n    // Step 1 & 2: Compute log2_scaled[i] = q_i * LOG2_E / funding for each outcome\n    // and find the maximum for offset calculation.\n    // log2_scaled is in Q64.64: (q_i * LOG2_E) / funding\n    var maxLog2Scaled = 0 - (1 << 250); // Very negative initial value\n    var i = 0;\n    while (i < atomicOutcomeSlotCount) {\n        val balance = getBalanceAt(positionBalances, i);\n        // log2_scaled[i] = balance * LOG2_E / funding (result in Q64.64)\n        val log2Scaled = balance * LOG2_E / funding;\n        if (log2Scaled > maxLog2Scaled) {\n            maxLog2Scaled = log2Scaled;\n        }\n        i += 1;\n    }\n\n    // Step 3: Compute offset. Only apply offset if max exceeds EXP_LIMIT\n    var offset = 0;\n    if (maxLog2Scaled > EXP_LIMIT) {\n        offset = maxLog2Scaled - EXP_LIMIT;\n    }\n\n    // Step 4: Compute sum = Σ pow2(log2_scaled[i] - offset)\n    var sumExp = 0;\n    i = 0;\n    while (i < atomicOutcomeSlotCount) {\n        val balance = getBalanceAt(positionBalances, i);\n        val log2Scaled = balance * LOG2_E / funding;\n        val expArg = log2Scaled - offset;\n        val expVal = fixed_pow2(expArg);\n        sumExp += expVal;\n        i += 1;\n    }\n\n    // Step 5: Compute C(q) = b * ln(sum) = b * log2(sum) * ln(2)\n    // log2(sumExp) is in Q64.64, offset is in Q64.64\n    val log2Sum = fixed_log2(sumExp);\n    val totalLog2 = log2Sum + offset;\n\n    // ln(sum) in Q64.64 = fixed_mul(totalLog2, LN_2) = (totalLog2 * LN_2) >> 64\n    val lnSum = (totalLog2 * LN_2) >> 64;\n\n    // cost in Q64.64 = lnSum * funding (funding is raw integer, lnSum is Q64.64)\n    val costFixed = lnSum * funding;\n\n    return costFixed;\n}\n\n/// Compute the net cost of a trade: C(q_after) - C(q_before)\n/// where q_after[i] = q_before[i] + tradeAmounts[i]\n///\n/// currentBalances: map<uint32, uint128> mapping outcome index → current balance\n/// tradeAmounts: cell containing atomicOutcomeSlotCount int64 values serialized sequentially\n/// atomicOutcomeSlotCount: number of atomic outcomes\n/// funding: the b parameter (raw integer token units)\n///\n/// Returns: net cost in raw token units (positive = trader pays, negative = trader receives)\nfun calcNetCost(currentBalances: map<uint32, int128>, tradeAmounts: cell, atomicOutcomeSlotCount: int, funding: int): int {\n    // Compute C(q_before) in Q64.64\n    val costBefore = lmsrCost(currentBalances, atomicOutcomeSlotCount, funding);\n\n    // Build q_after balances by adding trade amounts to current balances\n    var afterBalances: map<uint32, int128> = currentBalances;\n    var slice = tradeAmounts.beginParse();\n    var i = 0;\n    while (i < atomicOutcomeSlotCount) {\n        val tradeAmount = slice.loadInt(64);\n        val currentBalance = getBalanceAt(currentBalances, i);\n        val newBalance = currentBalance + tradeAmount;\n        afterBalances.set(i as uint32, newBalance as int128);\n        i += 1;\n    }\n\n    // Compute C(q_after) in Q64.64\n    val costAfter = lmsrCost(afterBalances, atomicOutcomeSlotCount, funding);\n\n    // Net cost in Q64.64, convert to raw token units (floor division by ONE)\n    val netCostFixed = costAfter - costBefore;\n    return netCostFixed / ONE;\n}\n\n// ─── Get-methods ────────────────────────────────────────────────────────────\n\nget fun owner(): address {\n    val storage = lazy MarketStorage.load();\n    return storage.owner;\n}\n\nget fun stage(): int {\n    val storage = lazy MarketStorage.load();\n    return storage.stage;\n}\n\nget fun funding(): int {\n    val storage = lazy MarketStorage.load();\n    return storage.funding;\n}\n\n/// Compute the marginal price for a given outcome index.\n/// price_i = exp(q_i / b) / sum(exp(q_j / b)) for all j\n/// Uses the offset technique in log2 space (same as lmsrCost) to prevent overflow.\n/// Returns price in Q64.64 format.\nget fun calcMarginalPrice(outcomeIndex: int): int {\n    val storage = lazy MarketStorage.load();\n    val state = storage.state.load();\n    val atomicOutcomeSlotCount = storage.atomicOutcomeSlotCount as int;\n    val funding = storage.funding as int;\n\n    // Step 1: Compute log2_scaled[i] = balance_i * LOG2_E / funding for each outcome\n    // and find maximum for offset calculation\n    var maxLog2Scaled = 0 - (1 << 250);\n    var i = 0;\n    while (i < atomicOutcomeSlotCount) {\n        val balance = getBalanceAt(state.positionBalances, i);\n        val log2Scaled = balance * LOG2_E / funding;\n        if (log2Scaled > maxLog2Scaled) {\n            maxLog2Scaled = log2Scaled;\n        }\n        i += 1;\n    }\n\n    // Step 2: Compute offset\n    var offset = 0;\n    if (maxLog2Scaled > EXP_LIMIT) {\n        offset = maxLog2Scaled - EXP_LIMIT;\n    }\n\n    // Step 3: Compute exp values and sum, also capture exp for outcomeIndex\n    var sumExp = 0;\n    var expOutcome = 0;\n    i = 0;\n    while (i < atomicOutcomeSlotCount) {\n        val balance = getBalanceAt(state.positionBalances, i);\n        val log2Scaled = balance * LOG2_E / funding;\n        val expArg = log2Scaled - offset;\n        val expVal = fixed_pow2(expArg);\n        sumExp += expVal;\n        if (i == outcomeIndex) {\n            expOutcome = expVal;\n        }\n        i += 1;\n    }\n\n    // Step 4: price = expOutcome / sumExp (both in Q64.64)\n    // fixed_div: (a << 64) / b\n    return fixed_div(expOutcome, sumExp);\n}\n\n/// Compute the net cost of a trade without executing it.\n/// Takes a trade amounts cell (array of int64 values) and returns net cost in raw token units.\nget fun getNetCost(tradeAmounts: cell): int {\n    val storage = lazy MarketStorage.load();\n    val state = storage.state.load();\n    val atomicOutcomeSlotCount = storage.atomicOutcomeSlotCount as int;\n    val funding = storage.funding as int;\n\n    return calcNetCost(state.positionBalances, tradeAmounts, atomicOutcomeSlotCount, funding);\n}\n"
+    },
+    {
+      "filename": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/types.tolk",
+      "contents": "enum Errors {\n    NotOwner = 100\n    InvalidMessage = 0xFFFF\n}\n\nstruct Storage {\n    owner: address\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct (0x2ce05111) ChangeOwner {\n    newOwner: address\n}\n"
+    },
+    {
+      "filename": "tmp/fdf9af74-a5fd-4986-8b81-7f981f39dcc3/contracts/src/fixed_math.tolk",
+      "contents": "/// Fixed-point math library (Q64.64 format)\n/// Provides exp, ln, log2, pow2, mul, div operations for LMSR pricing\n\n/// Q64.64 fixed-point unit: 2^64\nconst ONE: int = 18446744073709551616;\n\n/// log2(e) in Q64.64 ≈ 1.4427 * 2^64\nconst LOG2_E: int = 26613026195688644984;\n\n/// ln(2) in Q64.64 ≈ 0.6931 * 2^64\nconst LN_2: int = 12786308645202655660;\n\n/// Maximum safe exponent input (~3.4 * ONE)\nconst EXP_LIMIT: int = 62771017353866807638;\n\n/// Fixed-point multiplication: (a * b) >> 64\nfun fixed_mul(a: int, b: int): int {\n    return (a * b) >> 64;\n}\n\n/// Fixed-point division: (a << 64) / b\nfun fixed_div(a: int, b: int): int {\n    assert(b != 0) throw 400;\n    return (a << 64) / b;\n}\n\n/// Binary logarithm in Q64.64 format\n/// Returns log2(x) where x is in Q64.64 (x must be > 0)\nfun fixed_log2(x: int): int {\n    assert(x > 0) throw 401;\n\n    var result = 0;\n    var v = x;\n\n    // Integer part: normalize v into [ONE, 2*ONE)\n    if (v >= ONE) {\n        while (v >= 2 * ONE) {\n            v = v >> 1;\n            result += ONE;\n        }\n    } else {\n        while (v < ONE) {\n            v = v << 1;\n            result -= ONE;\n        }\n    }\n\n    // Fractional part: iterative squaring (64 iterations for 64 fractional bits)\n    var bit = ONE >> 1; // 0.5 in Q64.64\n    var i = 0;\n    while (i < 64) {\n        // Square v in Q64.64\n        v = (v * v) >> 64;\n        if (v >= 2 * ONE) {\n            v = v >> 1;\n            result += bit;\n        }\n        bit = bit >> 1;\n        i += 1;\n    }\n\n    return result;\n}\n\n/// Power of 2 in Q64.64 format\n/// Returns 2^x where x is in Q64.64\nfun fixed_pow2(x: int): int {\n    if (x == 0) {\n        return ONE;\n    }\n\n    // Handle negative exponents\n    val negative = x < 0;\n    var absX = x;\n    if (negative) {\n        absX = -x;\n    }\n\n    // Split into integer and fractional parts\n    val intPart = absX >> 64;\n    val fracPart = absX & ((1 << 64) - 1);\n\n    // Taylor series coefficients for 2^f (c_k = ln(2)^k / k! in Q64.64)\n    val c1 = 12786308645202655660;  // ln(2)\n    val c2 = 4431396893595737425;   // ln(2)^2 / 2!\n    val c3 = 1023870087579328453;   // ln(2)^3 / 3!\n    val c4 = 177423166116318949;    // ln(2)^4 / 4!\n    val c5 = 24596073471909060;     // ln(2)^5 / 5!\n    val c6 = 2841449829983171;      // ln(2)^6 / 6!\n    val c7 = 281363276907910;       // ln(2)^7 / 7!\n    val c8 = 24378270262728;        // ln(2)^8 / 8!\n    val c9 = 1877525477726;         // ln(2)^9 / 9!\n\n    // Evaluate polynomial using Horner's method: 2^f = 1 + c1*f + c2*f^2 + ...\n    var fracResult = c9;\n    fracResult = c8 + ((fracResult * fracPart) >> 64);\n    fracResult = c7 + ((fracResult * fracPart) >> 64);\n    fracResult = c6 + ((fracResult * fracPart) >> 64);\n    fracResult = c5 + ((fracResult * fracPart) >> 64);\n    fracResult = c4 + ((fracResult * fracPart) >> 64);\n    fracResult = c3 + ((fracResult * fracPart) >> 64);\n    fracResult = c2 + ((fracResult * fracPart) >> 64);\n    fracResult = c1 + ((fracResult * fracPart) >> 64);\n    fracResult = ONE + ((fracResult * fracPart) >> 64);\n\n    // Combine: 2^x = 2^int * 2^frac\n    var result = fracResult << intPart;\n\n    if (negative) {\n        // 2^(-x) = ONE^2 / 2^x = (ONE << 64) / result\n        result = (ONE << 64) / result;\n    }\n\n    return result;\n}\n\n/// Natural logarithm: ln(x) = log2(x) * ln(2)\nfun fixed_ln(x: int): int {\n    assert(x > 0) throw 401;\n    return fixed_mul(fixed_log2(x), LN_2);\n}\n\n/// Exponential: e^x = 2^(x * log2(e))\nfun fixed_exp(x: int): int {\n    return fixed_pow2(fixed_mul(x, LOG2_E));\n}\n\n/// Maximum element in a cell-encoded array of integers\n/// The cell stores: count (uint32), followed by count int257 values\nfun fixed_max(arr: cell): int {\n    var s = arr.beginParse();\n    val count = s.loadUint(32);\n    assert(count > 0) throw 402;\n    var maxVal = s.loadInt(257);\n    var i = 1;\n    while (i < count) {\n        val v = s.loadInt(257);\n        if (v > maxVal) {\n            maxVal = v;\n        }\n        i += 1;\n    }\n    return maxVal;\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Counter.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  117456 DECLMETHOD currentCounter()\n  83229 DECLMETHOD owner()\n  // 2 functions inlined in-place:\n  // - Storage.load (5 calls)\n  // - Storage.save (3 calls)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    DROP\n    INMSG_BOUNCED\n    IFJMP:<{\n    }>\n    16 PUSHPOW2DEC\n    THROWANY\n  }>\n  currentCounter() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    32 PLDU\n  }>\n  owner() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDSTDADDR\n    DROP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgEBBgEAQQABFP8A9KQT9LzyyAsBAgFiAgMAEtAw+JHchA/y8AIBIAQFABe+KO9qJoaY+Y/SQYQAHb5Wh2omhpj5j9JBjrhY/A==",
+  "codeHashHex": "A88A929F3A13A2426A64DEE095D535603F44B0D692580B37C833E5A11CB55322",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/564d9e63-8e27-443b-ad56-cd7ae218f2a5/contracts/src/Counter.tolk",
+        "size_chars": 1584,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/564d9e63-8e27-443b-ad56-cd7ae218f2a5/contracts/src/types.tolk",
+        "size_chars": 479,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "IncreaseCounter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DecreaseCounter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResetCounter"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 2122802415,
+            "prefix_len": 32,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 674974783,
+            "prefix_len": 32,
+            "stack_type_id": 130,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 980758278,
+            "prefix_len": 32,
+            "stack_type_id": 131,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          11,
+          6,
+          11,
+          20
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          7,
+          8,
+          7,
+          15
+        ],
+        "fields": [
+          {
+            "name": "id",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "counter",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "IncreaseCounter",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          21,
+          21,
+          21,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 2122802415,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "increaseBy",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DecreaseCounter",
+        "ty_idx": 14,
+        "ident_loc": [
+          2,
+          25,
+          21,
+          25,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 674974783,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "decreaseBy",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResetCounter",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          29,
+          21,
+          29,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 980758278,
+          "prefix_len": 32
+        },
+        "fields": []
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          16,
+          5,
+          16,
+          22
+        ],
+        "end_loc": [
+          1,
+          47,
+          1,
+          47,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          49,
+          5,
+          49,
+          21
+        ],
+        "end_loc": [
+          1,
+          49,
+          46,
+          49,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          17,
+          13,
+          17,
+          17
+        ],
+        "end_loc": [
+          2,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "currentCounter",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          51,
+          9,
+          51,
+          23
+        ],
+        "end_loc": [
+          1,
+          55,
+          1,
+          55,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 4,
+        "name": "owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          57,
+          9,
+          57,
+          14
+        ],
+        "end_loc": [
+          1,
+          61,
+          1,
+          61,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Counter",
+    "author": "20131001",
+    "version": "1.0.0",
+    "description": "Simple counter contract with owner-controlled updates",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "IncreaseCounter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DecreaseCounter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResetCounter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "id",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "counter",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "IncreaseCounter",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2122802415,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "increaseBy",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DecreaseCounter",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 674974783,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "decreaseBy",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResetCounter",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 980758278,
+          "prefix_len": 32
+        },
+        "fields": []
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 117456,
+        "name": "currentCounter",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 83229,
+        "name": "owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.CounterUnderflow",
+        "err_code": 4097
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "tmp/564d9e63-8e27-443b-ad56-cd7ae218f2a5/contracts/src/Counter.tolk:20:5: warning: unreachable code\n\n    // in function `onInternalMessage`\n  20 |     match (msg) {\n     |     ^^^^^^^^^^^^\n ...   ...\n  46 |     }\n     |     ^\n",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/564d9e63-8e27-443b-ad56-cd7ae218f2a5/contracts/src/Counter.tolk",
+      "contents": "import \"types\"\n\ncontract Counter {\n    author: \"20131001\"\n    version: \"1.0.0\"\n    description: \"Simple counter contract with owner-controlled updates\"\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\ntype AllowedMessage =\n    | IncreaseCounter\n    | DecreaseCounter\n    | ResetCounter\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n    throw Errors.InvalidMessage;\n\n    match (msg) {\n        IncreaseCounter => {\n            var storage = lazy Storage.load();\n            assert (storage.owner == in.senderAddress) throw Errors.NotOwner;\n\n            storage.counter += msg.increaseBy;\n            storage.save();\n        }\n        DecreaseCounter => {\n            var storage = lazy Storage.load();\n            assert (storage.owner == in.senderAddress) throw Errors.NotOwner;\n            assert (storage.counter >= msg.decreaseBy) throw Errors.CounterUnderflow;\n\n            storage.counter -= msg.decreaseBy;\n            storage.save();\n        }\n        ResetCounter => {\n            var storage = lazy Storage.load();\n            assert (storage.owner == in.senderAddress) throw Errors.NotOwner;\n\n            storage.counter = 0;\n            storage.save();\n        }\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun currentCounter(): int {\n    val storage = lazy Storage.load();\n\n    return storage.counter;\n}\n\nget fun owner(): address {\n    val storage = lazy Storage.load();\n\n    return storage.owner;\n}\n"
+    },
+    {
+      "filename": "tmp/564d9e63-8e27-443b-ad56-cd7ae218f2a5/contracts/src/types.tolk",
+      "contents": "enum Errors {\n    NotOwner = 100\n    CounterUnderflow = 0x1001\n    InvalidMessage = 0xFFFF\n}\n\nstruct Storage {\n    id: uint32\n    owner: address\n    counter: uint32\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct (0x7e8764ef) IncreaseCounter {\n    increaseBy: uint32\n}\n\nstruct (0x283b4c3f) DecreaseCounter {\n    decreaseBy: uint32\n}\n\nstruct (0x3a752f06) ResetCounter {}\n"
+    }
+  ]
+}

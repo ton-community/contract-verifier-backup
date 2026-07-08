@@ -1,0 +1,2231 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from StakeVault.tolk, common.tolk, stake_types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  103269 DECLMETHOD get_vault_state()\n  80293 DECLMETHOD get_owner()\n  91632 DECLMETHOD get_binding_hash()\n  111293 DECLMETHOD get_receipt_wallet_address()\n  69178 DECLMETHOD is_eligible()\n  // 8 functions inlined in-place:\n  // - VaultStorage.load (10 calls)\n  // - VaultStorage.save (5 calls)\n  // - calcDeployedReceiptWallet (2 calls)\n  // - calcReceiptWalletAddress (2 calls)\n  // - onBouncedMessage (0 calls)\n  // - mintReceipt (1 call)\n  // - burnReceipt (3 calls)\n  // - payout (6 calls)\n  // - applySlashSplit (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{534b4b01} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      32 LDSLICE\n      LDGRAMS\n      DUP\n      PLDREF\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      132 THROWIFNOT\n      s0 s7 XCHG\n      64 LDU\n      LDGRAMS\n      DROP\n      INMSG_VALUE\n      OVER\n      50000000 PUSHINT\n      ADD\n      GEQ\n      137 THROWIFNOT\n      s6 s6 XCPU\n      ADD\n      s3 s6 XCPU\n      ADD\n      s7 PUSH\n      NEWC\n      STSTDADDR\n      s0 s4 XCHG2\n      STGRAMS\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      STSLICE\n      SWAP\n      STGRAMS\n      STSLICE\n      ENDC\n      c4 POP\n      s0 s3 XCHG\n      CTOS\n      LDGRAMS\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      LDSTDADDR\n      NIP\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      MYADDR\n      NEWC\n      x{10} STSLICECONST\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      ENDC\n      50000000 PUSHINT\n      NEWC\n      b{01000010000000000} STSLICECONST\n      s2 s4 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s3 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      x{534b4b07} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      SWAP\n      STGRAMS\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{534b4b02} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      NIP\n      32 LDU\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      132 THROWIFNOT\n      SWAP\n      202 THROWIF\n      s0 s3 XCHG\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      DUP\n      0 GTINT\n      IF:<{\n        s0 s1 PUSH2\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      201 THROWIFNOT\n      TUCK\n      SUB\n      NOW\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      32 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{534b4b03} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      32 LDU\n      LDGRAMS\n      DUP\n      PLDREF\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      132 THROWIFNOT\n      s4 PUSH\n      0 GTINT\n      204 THROWIFNOT\n      CTOS\n      LDGRAMS\n      NIP\n      32 LDU\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      LDSTDADDR\n      NIP\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      s0 s4 XCHG\n      ADD\n      NOW\n      LEQ\n      203 THROWIFNOT\n      s1 s3 XCPU\n      SUB\n      s5 PUSH\n      NEWC\n      STSTDADDR\n      s0 s5 XCHG2\n      STGRAMS\n      0 PUSHINT\n      36 STUR\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      s0 s3 XCHG\n      64 PLDU\n      MYADDR\n      s3 PUSH\n      NEWC\n      x{10} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      ROT\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      20000000 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1397443334 PUSHINT\n      139 STUR\n      64 STU\n      s2 PUSH\n      STGRAMS\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n    }>\n    x{534b4b04} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      32 LDU\n      LDGRAMS\n      DUP\n      PLDREF\n      s4 PUSH\n      0 GTINT\n      204 THROWIFNOT\n      CTOS\n      LDGRAMS\n      NIP\n      32 LDU\n      32 LDU\n      NIP\n      32 LDU\n      16 LDU\n      LDSTDADDR\n      NIP\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      s6 s3 XCHG2\n      ADD\n      ADD\n      NOW\n      LEQ\n      205 THROWIFNOT\n      s2 s4 XCPU\n      SUB\n      s6 PUSH\n      NEWC\n      STSTDADDR\n      s0 s6 XCHG2\n      STGRAMS\n      0 PUSHINT\n      36 STUR\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      s1 s(-1) PUXC\n      10000 PUSHINT\n      MULDIV\n      s0 s4 XCHG\n      64 PLDU\n      MYADDR\n      s4 PUSH\n      NEWC\n      x{10} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      s0 s3 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      20000000 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1397443334 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      64 STU\n      OVER\n      STGRAMS\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n      s2 PUSH\n      SUB\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n      DUP\n      0 GTINT\n      IF:<{\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n      }>\n    }>\n    x{534b4b05} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      32 LDSLICE\n      LDGRAMS\n      DUP\n      PLDREF\n      CTOS\n      LDGRAMS\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      LDSTDADDR\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s0 s3 XCHG2\n      SDEQ\n      200 THROWIFNOT\n      s6 s5 PUSH2\n      ADD\n      s0 s9 XCHG\n      64 LDU\n      LDGRAMS\n      8 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      OVER\n      0 GTINT\n      IF:<{\n        s1 s11 PUXC\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        s11 POP\n        0 PUSHINT\n      }>\n      206 THROWIFNOT\n      s0 s8 PUSH2\n      MIN\n      s9 s9 XCPU\n      SUB\n      s1 s9 PUXC\n      SUB\n      s1 s8 XCHG\n      SUB\n      s5 s7 XCPU\n      SUB\n      s9 PUSH\n      NEWC\n      STSTDADDR\n      s0 s9 XCHG2\n      STGRAMS\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s5 XCHG\n      STSLICE\n      s0 s6 XCHG2\n      STGRAMS\n      STSLICE\n      ENDC\n      c4 POP\n      MYADDR\n      NEWC\n      x{10} STSLICECONST\n      s1 s6 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      STSTDADDR\n      ENDC\n      SWAP\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      20000000 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1397443334 PUSHINT\n      139 STUR\n      s1 s3 XCHG\n      64 STU\n      s2 PUSH\n      STGRAMS\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      16 LDU\n      16 LDU\n      16 LDU\n      ENDS\n      2OVER\n      ADD\n      ROT\n      ADD\n      OVER\n      ADD\n      10000 PUSHINT\n      EQUAL\n      207 THROWIFNOT\n      s5 s2 PUXC\n      10000 PUSHINT\n      MULDIV\n      s5 s1 PUXC\n      10000 PUSHINT\n      MULDIV\n      s5 s2 XCHG2\n      10000 PUSHINT\n      MULDIV\n      s4 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s6 XCHG\n        STSTDADDR\n        s0 s4 XCHG2\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n        s2 s3 XCHG\n      }>ELSE<{\n        s4 POP\n        s4 POP\n      }>\n      s3 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n        s2 POP\n      }>\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{534b4b00} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n    }>\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_vault_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    LDGRAMS\n    32 LDU\n    LDGRAMS\n    PLDREF\n    CTOS\n    LDGRAMS\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s4 PUSH\n    LEQ\n    IF:<{\n      OVER\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n  }>\n  get_owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  get_binding_hash() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    32 LDU\n    NIP\n    LDGRAMS\n    NIP\n    256 PLDU\n  }>\n  get_receipt_wallet_address() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDGRAMS\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    MYADDR\n    NEWC\n    x{10} STSLICECONST\n    s1 s3 XCHG\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  is_eligible() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    LDGRAMS\n    NIP\n    32 LDU\n    PLDREF\n    CTOS\n    LDGRAMS\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s1 s2 XCHG\n    GEQ\n    IF:<{\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECGQEABPEAART/APSkE/S88sgLAQIBYgIDBOzQ+JGRMOAg1ywimlpYDOMC1ywimlpYFI5DMe1E0PpI+gD6ADHTH/iSJMcF8uCEAfLQygPTPzH6ADAgwgCVUwG7wwCRcOLy4MlmofgjA8j6UgH6AgH6AssfzsntVODXLCKaWlgc4wLXLCKaWlgk4wLXLCKaWlgsBAUGBwIBIBESAfwx7UTQ+kj6APoA1h/6ACDXTPiSJ8cF8uCEB9M/+gAw+Jchggr68ICgvvLgiVFmoFE2oCfI+lJQBPoCUAX6AhPOAfoCzsntVAPQ+gAx0x8x0x8x0x8x0w8x+kgx1NQx0fgoyM+EQhT6UhP6UsmCCvrwgMjPiQgBUyTIz4TQzMwIAvwx7UTQ+kj6APoA0x/6ACDXTPiSJ8cF8uCEJMIA8uDM0PoAMdMf0x8x0x8x0w8x+kgx1NQx0QSg+CO78uDLUROhJcj6UlAF+gJwzwsjUAT6AhPOye1UA9cLP/goI8jPhEL6UvpSyVjIz4TQzMz5FsjPigBAy//PUIIJMS0AyIkKCQL8Me1E0PpI+gD6ANMf+gAg10wkwgDy4MzQ+gAx0x/THzHTH9MP+kgx1NQx0VBjoKD4I7vy4M1RJKEmyPpSUAb6AnDPCyNQBfoCFM7J7VRSEIEnEKmEBNcLP/goJMjPhEL6UvpSyVADyM+E0MzM+RbIz4oAQMv/z1CCCTEtAMiJCgsBKOMC1ywimlpYBDGRMOCEDwHHAPL0DABE+RbPC/8B+gKBAIzPC3ATzBLMz5FNLSweEss/AfoCyXH7AABWzxYS+lIB+gKCEFNLSwbPC4rLPyL6Aslz+wDIz4UI+lIB+gJwzwtqyXP7AAABQgCUzxYS+lIB+gKCEFNLSwbPC4oSyz8h+gLJc/sAIqHIz4UIEvpSAfoCcM8Laslz+wAgwgCOE/iSyM+FCPpSAfoCcM8Laslz+wCRMOIB/jHtRND6SPoA+gDWH/oAINdM0PoAMdMfMdMfMdMfMdMPMfpI1NTR+JJQA8cF8uDIU2WgCdM/+gDTBzH6SDAhwgCVUhy7wwCSO3Di8uDOUwi2CFGZoVIaoRihUVehKcj6UlAJ+gJQBfoCFc5QBvoCzsntVPgoyM+EQhb6UhX6UskNA/YByM+E0MzM+RbIz4oAQMv/z1CCCTEtAMjPhQgS+lIB+gKCEFNLSwbPC4oTyz8i+gLJc/sA0PpI+kjTD9MP0w/TD9FdoFigIaCBJxC68uDPUlOBJxCphFJSgScQqYRQUoEnEKmEJMIAkjQ04w0jwgCSMDLjDSDCAJFb4w0ODxAAKsjPhQgW+lJQBPoCcM8Laslz+wAQIwAkyM+FCPpSUAP6AnDPC2rJc/sAACTIz4UIEvpSAfoCcM8Laslz+wACASATFAIBSBcYAgEgFRYAL7pfDtRND6SDH6ADH6ADHTHzH6ADHXC/+ABntcddqJofSQY/QB9ABjpj+umaH0AaY+Y6Y+Y6Y+Y6YeY/SQY6hjqGOiJX0pgAGGASRg4cUAARtzS9qJofSQYQAGm2bL2omh9JBj9AH0AaY/9AGumaH0AaY+Y6Y+Y6Y+Y6YeY/SQY6hjqGOiSXcqQ4ABhgEi4cUAB7tle9qJoa6ZofQAY6Y+Y6Y+Y6Y+Y6YeY/SQY6moY6PwUZGfCIQn9KQl9KWSA5GfCaGZmfItkZ8UAIGX/56hA=",
+  "codeHashHex": "C5FD6885088125A83FFCDF641F5E7E5142D356D60CD1D35C64D59E8A597C409F",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/StakeVault.tolk",
+        "size_chars": 9538,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/common.tolk",
+        "size_chars": 4741,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/stake_types.tolk",
+        "size_chars": 5781,
+        "imports": [
+          2
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToVault"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeDeposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeRequestUnbond"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeWithdraw"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeKeeperWithdraw"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeSlash"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptTopUp"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1397443329,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1397443330,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1397443331,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1397443332,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1397443333,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 1397443328,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SlashConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 33,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptWalletStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 4
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptMint"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          41
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 48
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          47
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          30,
+          22
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 52,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          54
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptBurn"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          56
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultState"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 42,
+        "struct_name": "CreateMessageOptions<ReceiptMint>",
+        "monomorphic_fields_ty_idx": [
+          46,
+          51,
+          53,
+          41
+        ]
+      },
+      {
+        "ty_idx": 57,
+        "struct_name": "CreateMessageOptions<ReceiptBurn>",
+        "monomorphic_fields_ty_idx": [
+          46,
+          51,
+          53,
+          56
+        ]
+      },
+      {
+        "ty_idx": 58,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          46,
+          51,
+          53,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 47,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 49
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 34
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 30
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 32
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 44,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 55,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 46
+          },
+          {
+            "name": "value",
+            "ty_idx": 51
+          },
+          {
+            "name": "dest",
+            "ty_idx": 53
+          },
+          {
+            "name": "body",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToVault",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          18,
+          6,
+          18,
+          27
+        ],
+        "target_ty_idx": 20
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptWalletStorage",
+        "ty_idx": 36,
+        "ident_loc": [
+          3,
+          25,
+          8,
+          25,
+          28
+        ],
+        "fields": [
+          {
+            "name": "status",
+            "ty_idx": 37
+          },
+          {
+            "name": "balance",
+            "ty_idx": 6
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptMint",
+        "ty_idx": 41,
+        "ident_loc": [
+          3,
+          44,
+          22,
+          44,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1397443335,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptBurn",
+        "ty_idx": 56,
+        "ident_loc": [
+          3,
+          61,
+          22,
+          61,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1397443334,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptTopUp",
+        "ty_idx": 19,
+        "ident_loc": [
+          3,
+          66,
+          22,
+          66,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1397443328,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SlashConfig",
+        "ty_idx": 25,
+        "ident_loc": [
+          3,
+          83,
+          8,
+          83,
+          19
+        ],
+        "fields": [
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "redundancyPool",
+            "ty_idx": 7
+          },
+          {
+            "name": "splitChallengerBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "splitRedundancyBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "splitBurnBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "splitTreasuryBps",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultConfig",
+        "ty_idx": 23,
+        "ident_loc": [
+          3,
+          92,
+          8,
+          92,
+          19
+        ],
+        "fields": [
+          {
+            "name": "minStake",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingPeriod",
+            "ty_idx": 9
+          },
+          {
+            "name": "challengeWindow",
+            "ty_idx": 9
+          },
+          {
+            "name": "keeperGrace",
+            "ty_idx": 9
+          },
+          {
+            "name": "keeperBountyBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "slasher",
+            "ty_idx": 7
+          },
+          {
+            "name": "receiptWalletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "slash",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultStorage",
+        "ty_idx": 21,
+        "ident_loc": [
+          3,
+          103,
+          8,
+          103,
+          20
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "staked",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "bindingHash",
+            "ty_idx": 22
+          },
+          {
+            "name": "config",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeDeposit",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          122,
+          22,
+          122,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1397443329,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeRequestUnbond",
+        "ty_idx": 14,
+        "ident_loc": [
+          3,
+          127,
+          22,
+          127,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1397443330,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeWithdraw",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          132,
+          22,
+          132,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1397443331,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeKeeperWithdraw",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          136,
+          22,
+          136,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1397443332,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeSlash",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          140,
+          22,
+          140,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1397443333,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "reason",
+            "ty_idx": 18
+          },
+          {
+            "name": "challenger",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultState",
+        "ty_idx": 59,
+        "ident_loc": [
+          3,
+          148,
+          8,
+          148,
+          18
+        ],
+        "fields": [
+          {
+            "name": "staked",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "eligible",
+            "ty_idx": 5
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          28,
+          5,
+          28,
+          22
+        ],
+        "end_loc": [
+          1,
+          157,
+          1,
+          157,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          26,
+          5,
+          26,
+          21
+        ],
+        "end_loc": [
+          1,
+          26,
+          46,
+          26,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "VaultStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          117,
+          18,
+          117,
+          22
+        ],
+        "end_loc": [
+          3,
+          119,
+          1,
+          119,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<VaultConfig>.load",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "mintReceipt",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          163,
+          5,
+          163,
+          16
+        ],
+        "end_loc": [
+          1,
+          175,
+          1,
+          175,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "calcDeployedReceiptWallet",
+        "return_ty_idx": 29,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          160,
+          5,
+          160,
+          30
+        ],
+        "end_loc": [
+          3,
+          172,
+          1,
+          172,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "ReceiptWalletStorage.toCell",
+        "return_ty_idx": 38,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 36
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "createMessage<ReceiptMint>",
+        "return_ty_idx": 40,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "burnReceipt",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          177,
+          5,
+          177,
+          16
+        ],
+        "end_loc": [
+          1,
+          189,
+          1,
+          189,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "calcReceiptWalletAddress",
+        "return_ty_idx": 7,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          174,
+          5,
+          174,
+          29
+        ],
+        "end_loc": [
+          3,
+          176,
+          1,
+          176,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createMessage<ReceiptBurn>",
+        "return_ty_idx": 40,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "payout",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          191,
+          5,
+          191,
+          11
+        ],
+        "end_loc": [
+          1,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "createMessage<void>",
+        "return_ty_idx": 40,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "Cell<SlashConfig>.load",
+        "return_ty_idx": 25,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "applySlashSplit",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          203,
+          5,
+          203,
+          20
+        ],
+        "end_loc": [
+          1,
+          221,
+          1,
+          221,
+          2
+        ],
+        "params": [
+          {
+            "name": "sc",
+            "ty_idx": 25
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "challenger",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "get_vault_state",
+        "return_ty_idx": 59,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          227,
+          9,
+          227,
+          24
+        ],
+        "end_loc": [
+          1,
+          238,
+          1,
+          238,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "get_owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          240,
+          9,
+          240,
+          18
+        ],
+        "end_loc": [
+          1,
+          243,
+          1,
+          243,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "get_binding_hash",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          245,
+          9,
+          245,
+          25
+        ],
+        "end_loc": [
+          1,
+          248,
+          1,
+          248,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 19,
+        "name": "get_receipt_wallet_address",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          250,
+          9,
+          250,
+          35
+        ],
+        "end_loc": [
+          1,
+          254,
+          1,
+          254,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "is_eligible",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          256,
+          9,
+          256,
+          20
+        ],
+        "end_loc": [
+          1,
+          260,
+          1,
+          260,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "StakeVault",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeDeposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeRequestUnbond"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeWithdraw"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeKeeperWithdraw"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeSlash"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptTopUp"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SlashConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptMint"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReceiptBurn"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultState"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "ReceiptMint",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 1397443335,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptBurn",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 1397443334,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReceiptTopUp",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1397443328,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SlashConfig",
+        "ty_idx": 23,
+        "fields": [
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "redundancyPool",
+            "ty_idx": 7
+          },
+          {
+            "name": "splitChallengerBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "splitRedundancyBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "splitBurnBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "splitTreasuryBps",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultConfig",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "minStake",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingPeriod",
+            "ty_idx": 9
+          },
+          {
+            "name": "challengeWindow",
+            "ty_idx": 9
+          },
+          {
+            "name": "keeperGrace",
+            "ty_idx": 9
+          },
+          {
+            "name": "keeperBountyBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "slasher",
+            "ty_idx": 7
+          },
+          {
+            "name": "receiptWalletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "slash",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultStorage",
+        "ty_idx": 19,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "staked",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "bindingHash",
+            "ty_idx": 20
+          },
+          {
+            "name": "config",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeDeposit",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1397443329,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeRequestUnbond",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1397443330,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeWithdraw",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1397443331,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeKeeperWithdraw",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1397443332,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeSlash",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1397443333,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "reason",
+            "ty_idx": 17
+          },
+          {
+            "name": "challenger",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultState",
+        "ty_idx": 28,
+        "fields": [
+          {
+            "name": "staked",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "unbondingAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "eligible",
+            "ty_idx": 5
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 19
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 18
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 103269,
+        "name": "get_vault_state",
+        "parameters": [],
+        "return_ty_idx": 28
+      },
+      {
+        "tvm_method_id": 80293,
+        "name": "get_owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 91632,
+        "name": "get_binding_hash",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 111293,
+        "name": "get_receipt_wallet_address",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 69178,
+        "name": "is_eligible",
+        "parameters": [],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_OWNER",
+        "err_code": 132
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_ENOUGH_GAS",
+        "err_code": 137
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_SLASHER",
+        "err_code": 200
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOTHING_TO_UNBOND",
+        "err_code": 201
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNBOND_IN_PROGRESS",
+        "err_code": 202
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_COOLDOWN_NOT_ELAPSED",
+        "err_code": 203
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NO_UNBONDING",
+        "err_code": 204
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_KEEPER_TOO_EARLY",
+        "err_code": 205
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_SLASH_EXCEEDS_STAKE",
+        "err_code": 206
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SPLIT",
+        "err_code": 207
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_OP",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/StakeVault.tolk",
+      "contents": "// Per-node stake contract (BLOCKCHAIN_ECONOMICS §8). Non-custodial: no human key\n// controls the funds — deposit, unbond cooldown, slashing and keeper withdrawal\n// are all governed by contract code. The vault is ALSO the master of this node's\n// transfer-locked stake-receipt jetton (§8.5): it mints 1:1 on deposit and burns\n// on withdrawal/slash.\n//\n// This contract is only ever touched by PAID work. Free jobs (§8.2) bypass it\n// entirely via the off-chain NoopSettlement path.\n\nimport \"common\"\nimport \"stake_types\"\n\ncontract StakeVault {\n    storage: VaultStorage\n    incomingMessages: AllowedMessageToVault\n}\n\ntype AllowedMessageToVault =\n    | StakeDeposit\n    | StakeRequestUnbond\n    | StakeWithdraw\n    | StakeKeeperWithdraw\n    | StakeSlash\n    | ReceiptTopUp\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToVault.fromSlice(in.body);\n\n    match (msg) {\n        // Deposit: bond `amount` (held non-custodially in this contract) and mint\n        // an equal amount of the transfer-locked stake-receipt jetton to the owner.\n        StakeDeposit => {\n            var storage = lazy VaultStorage.load();\n            assert (in.senderAddress == storage.owner) throw ERROR_NOT_OWNER;\n            assert (in.valueCoins >= msg.amount + MIN_TONS_FOR_STORAGE) throw ERROR_NOT_ENOUGH_GAS;\n\n            storage.staked += msg.amount;\n            storage.totalSupply += msg.amount;\n            storage.save();\n\n            val cfg = storage.config.load();\n            mintReceipt(\n                storage.owner,\n                contract.getAddress(),\n                cfg.receiptWalletCode,\n                msg.amount,\n                msg.queryId,\n            );\n        }\n\n        // Begin unbonding: move `amount` from the bonded bucket into the cooldown\n        // bucket. The cooldown stake stays SLASHABLE (§8.4) and the receipt stays\n        // locked until withdrawal completes.\n        StakeRequestUnbond => {\n            var storage = lazy VaultStorage.load();\n            assert (in.senderAddress == storage.owner) throw ERROR_NOT_OWNER;\n            assert (storage.unbondingAt == 0) throw ERROR_UNBOND_IN_PROGRESS;\n            assert (msg.amount > 0 && msg.amount <= storage.staked) throw ERROR_NOTHING_TO_UNBOND;\n\n            storage.staked -= msg.amount;\n            storage.unbondingAmount = msg.amount;\n            storage.unbondingAt = blockchain.now() as uint32;\n            storage.save();\n        }\n\n        // Owner withdrawal after the cooldown elapses: release the cooled stake and\n        // burn the matching receipts.\n        StakeWithdraw => {\n            var storage = lazy VaultStorage.load();\n            assert (in.senderAddress == storage.owner) throw ERROR_NOT_OWNER;\n            assert (storage.unbondingAmount > 0) throw ERROR_NO_UNBONDING;\n            val cfg = storage.config.load();\n            val readyAt = storage.unbondingAt + cfg.unbondingPeriod;\n            assert (blockchain.now() >= readyAt) throw ERROR_COOLDOWN_NOT_ELAPSED;\n\n            val amount = storage.unbondingAmount;\n            storage.unbondingAmount = 0;\n            storage.unbondingAt = 0;\n            storage.totalSupply -= amount;\n            storage.save();\n\n            burnReceipt(\n                storage.owner,\n                contract.getAddress(),\n                cfg.receiptWalletCode,\n                amount,\n                msg.queryId,\n            );\n            payout(storage.owner, amount);\n        }\n\n        // Keeper liveness (TON idiom, §8.4): once cooldown + grace elapses, ANYONE\n        // can finalize an unresponsive owner's withdrawal and earn a small bounty.\n        StakeKeeperWithdraw => {\n            var storage = lazy VaultStorage.load();\n            assert (storage.unbondingAmount > 0) throw ERROR_NO_UNBONDING;\n            val cfg = storage.config.load();\n            val keeperAt = storage.unbondingAt + cfg.unbondingPeriod + cfg.keeperGrace;\n            assert (blockchain.now() >= keeperAt) throw ERROR_KEEPER_TOO_EARLY;\n\n            val amount = storage.unbondingAmount;\n            storage.unbondingAmount = 0;\n            storage.unbondingAt = 0;\n            storage.totalSupply -= amount;\n            storage.save();\n\n            val bounty = mulDivFloor(amount, cfg.keeperBountyBps, BPS_DENOM);\n            burnReceipt(\n                storage.owner,\n                contract.getAddress(),\n                cfg.receiptWalletCode,\n                amount,\n                msg.queryId,\n            );\n            payout(storage.owner, amount - bounty);\n            if (bounty > 0) {\n                payout(in.senderAddress, bounty);\n            }\n        }\n\n        // Graduated slashing (§8.3) by the authorized slasher (dispute contract).\n        // Takes from the bonded bucket first, then the still-slashable cooldown\n        // bucket, splits the slashed funds per config, and burns the receipts.\n        StakeSlash => {\n            var storage = lazy VaultStorage.load();\n            val cfg = storage.config.load();\n            assert (in.senderAddress == cfg.slasher) throw ERROR_NOT_SLASHER;\n            val slashable = storage.staked + storage.unbondingAmount;\n            assert (msg.amount > 0 && msg.amount <= slashable) throw ERROR_SLASH_EXCEEDS_STAKE;\n\n            val fromStaked = min(msg.amount, storage.staked);\n            storage.staked -= fromStaked;\n            storage.unbondingAmount -= (msg.amount - fromStaked);\n            storage.totalSupply -= msg.amount;\n            storage.save();\n\n            burnReceipt(\n                storage.owner,\n                contract.getAddress(),\n                cfg.receiptWalletCode,\n                msg.amount,\n                msg.queryId,\n            );\n            applySlashSplit(cfg.slash.load(), msg.amount, msg.challenger);\n        }\n\n        ReceiptTopUp => {\n            // accept TON top-ups for storage rent\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw ERROR_INVALID_OP;\n        }\n    }\n}\n\n// ---------------------------------------------------------------------------\n// Internal helpers\n// ---------------------------------------------------------------------------\n\nfun mintReceipt(owner: address, master: address, walletCode: cell, amount: coins, queryId: int) {\n    val dest = calcDeployedReceiptWallet(owner, master, walletCode);\n    val m = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: dest,\n        value: MIN_TONS_FOR_STORAGE,\n        body: ReceiptMint {\n            queryId: queryId,\n            amount: amount,\n        },\n    });\n    m.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun burnReceipt(owner: address, master: address, walletCode: cell, amount: coins, queryId: int) {\n    val dest = calcReceiptWalletAddress(owner, master, walletCode);\n    val m = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: dest,\n        value: ton(\"0.02\"),\n        body: ReceiptBurn {\n            queryId: queryId,\n            amount: amount,\n        },\n    });\n    m.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS);\n}\n\nfun payout(to: address, amount: coins) {\n    val m = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: amount,\n    });\n    m.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS);\n}\n\n// Split slashed funds: challenger bounty / redundancy-reward pool / burn /\n// treasury (§8.3). The burn share is simply left locked in this contract (no key\n// can release it), which removes it from circulation.\nfun applySlashSplit(sc: SlashConfig, amount: coins, challenger: address) {\n    val sum = sc.splitChallengerBps + sc.splitRedundancyBps + sc.splitBurnBps + sc.splitTreasuryBps;\n    assert (sum == BPS_DENOM) throw ERROR_INVALID_SPLIT;\n\n    val challengerAmt = mulDivFloor(amount, sc.splitChallengerBps, BPS_DENOM);\n    val redundancyAmt = mulDivFloor(amount, sc.splitRedundancyBps, BPS_DENOM);\n    val treasuryAmt = mulDivFloor(amount, sc.splitTreasuryBps, BPS_DENOM);\n    // burn share = remainder, left locked in the vault forever.\n\n    if (challengerAmt > 0) {\n        payout(challenger, challengerAmt);\n    }\n    if (redundancyAmt > 0) {\n        payout(sc.redundancyPool, redundancyAmt);\n    }\n    if (treasuryAmt > 0) {\n        payout(sc.treasury, treasuryAmt);\n    }\n}\n\n// ---------------------------------------------------------------------------\n// Getters\n// ---------------------------------------------------------------------------\n\nget fun get_vault_state(): VaultState {\n    val storage = lazy VaultStorage.load();\n    val cfg = storage.config.load();\n    val eligible = storage.staked >= cfg.minStake && storage.unbondingAt == 0;\n    return {\n        staked: storage.staked,\n        unbondingAmount: storage.unbondingAmount,\n        unbondingAt: storage.unbondingAt,\n        totalSupply: storage.totalSupply,\n        eligible: eligible,\n    };\n}\n\nget fun get_owner(): address {\n    val storage = lazy VaultStorage.load();\n    return storage.owner;\n}\n\nget fun get_binding_hash(): int {\n    val storage = lazy VaultStorage.load();\n    return storage.bindingHash;\n}\n\nget fun get_receipt_wallet_address(owner: address): address {\n    val storage = lazy VaultStorage.load();\n    val cfg = storage.config.load();\n    return calcReceiptWalletAddress(owner, contract.getAddress(), cfg.receiptWalletCode);\n}\n\nget fun is_eligible(): bool {\n    val storage = lazy VaultStorage.load();\n    val cfg = storage.config.load();\n    return storage.staked >= cfg.minStake && storage.unbondingAt == 0;\n}\n"
+    },
+    {
+      "filename": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/common.tolk",
+      "contents": "// Shared error codes, opcodes and constants for the duckdb-p2p settlement layer.\n//\n// These contracts implement the *paid* path of the economic layer described in\n// `docs/BLOCKCHAIN_ECONOMICS.md`. Free jobs never touch any of this code — the\n// requester runs them through the off-chain coordinator with the `NoopSettlement`\n// path and there is zero on-chain interaction (see §8.2 \"Free vs paid path\").\n//\n// Design constraints honoured here (BLOCKCHAIN_ECONOMICS §1, §8):\n//   * sharded per-node state (no global contract): one StakeVault per node,\n//     one JobEscrow per job — never a single hot contract.\n//   * non-custodial: release is governed entirely by contract code (quorum\n//     result-hash, challenge window, unbonding cooldown), never a platform key.\n//   * defensive TON style: explicit gas floors, bounce-safe, carry-value.\n// ---------------------------------------------------------------------------\n// Error codes (numeric, cheap to assert against in tests)\n// ---------------------------------------------------------------------------\n\nconst ERROR_NOT_OWNER = 132 // sender is not the contract owner\nconst ERROR_NOT_FROM_MASTER = 133 // sender is not the jetton master (vault)\nconst ERROR_NOT_VALID_WALLET = 134 // sender is not a legitimate sibling receipt wallet\nconst ERROR_UNAUTHORIZED_BURN = 135 // burn notification not from the owner's wallet\nconst ERROR_BALANCE_NEGATIVE = 136 // resulting balance would be negative\nconst ERROR_NOT_ENOUGH_GAS = 137 // attached value too small to cover the operation\nconst ERROR_RECEIPT_LOCKED = 138 // stake-receipt jetton is non-transferable (anti-exit)\nconst ERROR_WRONG_WORKCHAIN = 333 // address is not in the basechain\nconst ERROR_INVALID_OP = 0xffff // unknown opcode\n\n// Stake vault\nconst ERROR_NOT_SLASHER = 200 // sender is not the authorized slasher (dispute contract)\nconst ERROR_NOTHING_TO_UNBOND = 201 // unbond requested but no eligible stake\nconst ERROR_UNBOND_IN_PROGRESS = 202 // a prior unbond is still cooling down\nconst ERROR_COOLDOWN_NOT_ELAPSED = 203 // withdraw before the unbonding cooldown finished\nconst ERROR_NO_UNBONDING = 204 // withdraw with nothing in the unbonding bucket\nconst ERROR_KEEPER_TOO_EARLY = 205 // keeper withdraw before the owner-grace window\nconst ERROR_SLASH_EXCEEDS_STAKE = 206 // slash amount larger than slashable stake\nconst ERROR_INVALID_SPLIT = 207 // slash split bps do not sum to 10000\n\n// Escrow\nconst ERROR_ESCROW_NOT_FUNDED = 220 // escrow opened without the requester's max-bid B\nconst ERROR_NOT_REQUESTER = 221 // settle/refund by someone other than the requester\nconst ERROR_NOT_ARBITER = 222 // settle by someone other than the bound arbiter\nconst ERROR_HASH_MISMATCH = 223 // provided result hash != the committed quorum hash\nconst ERROR_ALREADY_SETTLED = 224 // escrow already released\nconst ERROR_TIMEOUT_NOT_REACHED = 225 // refund-on-timeout before the deadline\nconst ERROR_PAYOUT_EXCEEDS_ESCROW = 226 // requested payout exceeds the locked escrow B\n\n// Record anchor / dispute\nconst ERROR_BAD_PREV_ROOT = 240 // submitted root does not chain to the stored prev_root\nconst ERROR_EPOCH_REGRESSION = 241 // epoch did not advance monotonically\nconst ERROR_INSUFFICIENT_ANCHOR_STAKE = 242 // keeper stake-weight below the acceptance threshold\nconst ERROR_BAD_INCLUSION_PROOF = 243 // Merkle inclusion proof does not reproduce the root\nconst ERROR_DISPUTE_BOND_TOO_LOW = 244 // challenger bond below the configured minimum\nconst ERROR_NO_SUCH_DISPUTE = 245 // verdict for an unknown dispute id\nconst ERROR_NOT_VERDICT_AUTHORITY = 246 // verdict from a non-authoritative source\n\n// ---------------------------------------------------------------------------\n// Opcodes — keep TEP-74 standard values verbatim for ecosystem interop.\n// ---------------------------------------------------------------------------\n\n// TEP-74 jetton standard\nconst OP_JETTON_TRANSFER = 0x0f8a7ea5\nconst OP_JETTON_TRANSFER_INTERNAL = 0x178d4519\nconst OP_JETTON_NOTIFICATION = 0x7362d09c\nconst OP_JETTON_EXCESSES = 0xd53276db\nconst OP_JETTON_BURN = 0x595f07bc\nconst OP_JETTON_BURN_NOTIFICATION = 0x7bdd97de\nconst OP_PROVIDE_WALLET_ADDRESS = 0x2c76b973\nconst OP_TAKE_WALLET_ADDRESS = 0xd1735400\n\n// ---------------------------------------------------------------------------\n// Constants\n// ---------------------------------------------------------------------------\n\nconst MIN_TONS_FOR_STORAGE = ton(\"0.05\")\nconst BPS_DENOM = 10000 // basis-points denominator for splits/fractions\n\n// Status bit flags for the stake-receipt wallet.\nconst RECEIPT_STATUS_LOCKED = 1 // bit 0: outgoing transfers locked (default)\n\nfun assertBasechain(addr: address) {\n    assert (addr.getWorkchain() == BASECHAIN) throw ERROR_WRONG_WORKCHAIN;\n}\n"
+    },
+    {
+      "filename": "tmp/6e8dd174-0440-4e5e-b997-0e245aaef8a3/contracts/stake_types.tolk",
+      "contents": "// Storage layouts, message bodies and address helpers for the per-node stake\n// contract (`StakeVault`) and its non-transferable stake-receipt jetton\n// (`StakeReceiptWallet`). See BLOCKCHAIN_ECONOMICS §8 (staking/slashing/unbonding)\n// and §8.5 (transfer-locked TEP-74 stake-receipt jetton).\n\nimport \"common\"\n\n// ---------------------------------------------------------------------------\n// Custom opcodes (distinct 32-bit tags)\n// ---------------------------------------------------------------------------\n\nconst OP_TOP_UP = 0x534b_4b00\nconst OP_STAKE_DEPOSIT = 0x534b_4b01\nconst OP_STAKE_UNBOND = 0x534b_4b02\nconst OP_STAKE_WITHDRAW = 0x534b_4b03\nconst OP_STAKE_KEEPER = 0x534b_4b04\nconst OP_STAKE_SLASH = 0x534b_4b05\nconst OP_RECEIPT_BURN = 0x534b_4b06\nconst OP_RECEIPT_MINT = 0x534b_4b07\n\n// ---------------------------------------------------------------------------\n// Stake-receipt jetton wallet (per-holder, TEP-74 shaped, transfer-LOCKED)\n// ---------------------------------------------------------------------------\n\nstruct ReceiptWalletStorage {\n    status: uint4   // bit 0 = transfers locked (always set: the receipt is non-transferable)\n    balance: coins  // receipt units held (1:1 with bonded TON)\n    owner: address  // node operator\n    master: address // the StakeVault that minted this receipt\n}\n\nfun ReceiptWalletStorage.load(): ReceiptWalletStorage {\n    return ReceiptWalletStorage.fromCell(contract.getData());\n}\n\nfun ReceiptWalletStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Mint — master-only. The receipt is non-transferable, so it is never minted via\n// a sibling internal-transfer; the master credits the wallet directly. (We keep\n// the standard TEP-74 transfer opcode below purely so a real transfer attempt\n// hits the lock.)\nstruct (0x534b_4b07) ReceiptMint {\n    queryId: uint64\n    amount: coins\n}\n\n// TEP-74 outgoing transfer — always rejected for the stake receipt (anti-exit).\nstruct (0x0f8a7ea5) JettonTransfer {\n    queryId: uint64\n    amount: coins\n    destination: address\n    responseDestination: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Master-driven burn (on withdraw or slash). Only the StakeVault may send it.\nstruct (0x534b_4b06) ReceiptBurn {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x534b_4b00) ReceiptTopUp {\n    queryId: uint64\n}\n\n// Getter shape for `get_wallet_data` (TEP-74).\nstruct ReceiptWalletData {\n    balance: coins\n    owner: address\n    minter: address\n    code: cell\n}\n\n// ---------------------------------------------------------------------------\n// Stake vault (per node) — also the receipt jetton master\n// ---------------------------------------------------------------------------\n\n// Slash split + payout targets, kept in a child cell (bit budget).\nstruct SlashConfig {\n    treasury: address\n    redundancyPool: address\n    splitChallengerBps: uint16\n    splitRedundancyBps: uint16\n    splitBurnBps: uint16\n    splitTreasuryBps: uint16\n}\n\nstruct VaultConfig {\n    minStake: coins         // eligibility threshold (0 = free tier, public only)\n    unbondingPeriod: uint32 // cooldown secs; MUST be >= challengeWindow (validated off-chain)\n    challengeWindow: uint32 // optimistic-settlement window secs\n    keeperGrace: uint32     // extra secs after cooldown before a keeper may act\n    keeperBountyBps: uint16 // keeper reward (bps of the withdrawn amount)\n    slasher: address        // authorized slasher (the dispute contract)\n    receiptWalletCode: cell // code of StakeReceiptWallet (for deterministic mint)\n    slash: Cell<SlashConfig>\n}\n\nstruct VaultStorage {\n    owner: address         // node operator wallet\n    staked: coins          // currently bonded\n    unbondingAmount: coins // in cooldown (still slashable)\n    unbondingAt: uint32    // unix ts the cooldown started (0 = none)\n    totalSupply: coins     // receipts outstanding (== staked + unbondingAmount)\n    bindingHash: uint256   // wallet<->node identity binding hash (§3.2)\n    config: Cell<VaultConfig>\n}\n\nfun VaultStorage.load(): VaultStorage {\n    return VaultStorage.fromCell(contract.getData());\n}\n\nfun VaultStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Vault messages\nstruct (0x534b_4b01) StakeDeposit {\n    queryId: uint64\n    amount: coins // how much of the attached value to bond + mint as receipt\n}\n\nstruct (0x534b_4b02) StakeRequestUnbond {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x534b_4b03) StakeWithdraw {\n    queryId: uint64\n}\n\nstruct (0x534b_4b04) StakeKeeperWithdraw {\n    queryId: uint64\n}\n\nstruct (0x534b_4b05) StakeSlash {\n    queryId: uint64\n    amount: coins\n    reason: uint8       // SlashReason discriminant (mirrors §8.3)\n    challenger: address // receives the challenger bounty share\n}\n\n// Getter shapes\nstruct VaultState {\n    staked: coins\n    unbondingAmount: coins\n    unbondingAt: uint32\n    totalSupply: coins\n    eligible: bool // staked >= minStake AND no unbonding in progress\n}\n\n// ---------------------------------------------------------------------------\n// Deterministic receipt-wallet address (mirrors the TEP-74 jetton pattern)\n// ---------------------------------------------------------------------------\n\nfun calcDeployedReceiptWallet(\n    owner: address,\n    master: address,\n    walletCode: cell,\n): AutoDeployAddress {\n    val empty: ReceiptWalletStorage = {\n        status: RECEIPT_STATUS_LOCKED,\n        balance: 0,\n        owner: owner,\n        master: master,\n    };\n    return { workchain: BASECHAIN, stateInit: { code: walletCode, data: empty.toCell() } };\n}\n\nfun calcReceiptWalletAddress(owner: address, master: address, walletCode: cell): address {\n    return calcDeployedReceiptWallet(owner, master, walletCode).calculateAddress();\n}\n"
+    }
+  ]
+}

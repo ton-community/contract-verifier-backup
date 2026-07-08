@@ -1,0 +1,1845 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from RecordAnchor.tolk, anchor_types.tolk, common.tolk\nPROGRAM{\n  DECLPROC computeRootFromProof()\n  0 DECLMETHOD onInternalMessage()\n  77020 DECLMETHOD get_anchor_state()\n  95366 DECLMETHOD get_dispute()\n  114529 DECLMETHOD verify_inclusion()\n  87955 DECLMETHOD compute_root()\n  // 5 functions inlined in-place:\n  // - AnchorStorage.load (5 calls)\n  // - AnchorStorage.save (3 calls)\n  // - hashPair (2 calls)\n  // - onBouncedMessage (0 calls)\n  // - refund (2 calls)\n  // - MapLookupResult<DisputeInfo>.loadValue (2 calls)\n  computeRootFromProof() PROC:<{\n    WHILE:<{\n      DUP\n      ISNULL\n      NOT\n    }>DO<{\n      CTOS\n      1 LDU\n      256 LDU\n      LDOPTREF\n      ENDS\n      s0 s2 XCHG\n      IF:<{\n        NEWC\n        256 STU\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n      }>ELSE<{\n        s0 s2 XCHG\n        NEWC\n        256 STU\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n      }>\n      SWAP\n    }>\n    DROP\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{414e4301} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      256 LDU\n      DUP\n      32 LDU\n      NIP\n      SKIPOPTREF\n      PLDREF\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      NIP\n      ENDS\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      32 LDU\n      256 LDU\n      256 LDU\n      LDGRAMS\n      DROP\n      s0 s6 XCHG\n      INC\n      s3 PUSH\n      EQUAL\n      241 THROWIFNOT\n      s0 s4 XCHG2\n      EQUAL\n      240 THROWIFNOT\n      s3 s4 XCHG2\n      GEQ\n      242 THROWIFNOT\n      s0 s2 XCHG\n      NEWC\n      32 STU\n      s1 s2 XCHG\n      256 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{414e4302} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      288 PUSHINT\n      LDSLICEX\n      32 LDU\n      LDOPTREF\n      DUP\n      PLDREF\n      CTOS\n      LDGRAMS\n      NIP\n      LDGRAMS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      NIP\n      ENDS\n      INMSG_VALUE\n      LEQ\n      244 THROWIFNOT\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      32 LDU\n      256 LDU\n      256 LDU\n      PLDOPTREF\n      s2 s(-1) PUXC\n      computeRootFromProof() CALLDICT\n      EQUAL\n      243 THROWIFNOT\n      s3 PUSH\n      INC\n      INMSG_SRC\n      INMSG_VALUE\n      SWAP\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      256 STU\n      ROT\n      STGRAMS\n      b{00} STSLICECONST\n      2SWAP\n      32 PUSHINT\n      DICTUSETB\n      s0 s2 XCHG\n      NEWC\n      STSLICE\n      32 STU\n      STOPTREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{414e4303} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      320 PUSHINT\n      LDSLICEX\n      LDOPTREF\n      DUP\n      PLDREF\n      CTOS\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      ROT\n      SDEQ\n      246 THROWIFNOT\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      32 LDU\n      1 PLDI\n      s1 s3 PUSH2\n      32 PUSHINT\n      DICTUGET\n      245 THROWIFNOT\n      LDSTDADDR\n      32 LDU\n      256 LDU\n      LDGRAMS\n      2 LDU\n      NIP\n      ENDS\n      s0 s4 XCHG\n      IF:<{\n        s8 POP\n        1 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s3 s(-1) PUXC\n        STSTDADDR\n        s4 PUSH\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s10 XCHG\n        STSTDADDR\n        s4 PUSH\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        3 PUSHINT\n        SENDRAWMSG\n        s0 s8 XCHG\n      }>\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      32 STU\n      s1 s7 XCHG\n      256 STU\n      SWAP\n      STGRAMS\n      s1 s5 XCHG\n      2 STU\n      s4 s2 XCHG2\n      32 PUSHINT\n      DICTUSETB\n      SWAP\n      NEWC\n      STSLICE\n      STOPTREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_anchor_state() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    256 LDU\n    32 PLDU\n  }>\n  get_dispute() PROC:<{\n    c4 PUSH\n    CTOS\n    320 PUSHINT\n    SDSKIPFIRST\n    PLDOPTREF\n    32 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      0 PUSHINT\n    }>\n    LDSTDADDR\n    32 LDU\n    256 LDU\n    LDGRAMS\n    2 LDU\n    ENDS\n    133 PUSHINT\n  }>\n  verify_inclusion() PROC:<{\n    s1 s2 XCHG\n    computeRootFromProof() CALLDICT\n    EQUAL\n  }>\n  compute_root() PROC:<{\n    computeRootFromProof() CALLDICT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDwEAAgIAART/APSkE/S88sgLAQIBYgIDAgLPBAUCASAJCgLlPiRkTDgINcsIgpyGAyOSDHtRNDTH9P/INMfMfQB10zQ+gD6ADH6SDH6SDHRBNM/MdMf0//T//oAMAakI7ry4PFQBLry4PBQNL7y4PICyMsfEsv/zsntVODXLCIKchgU4wLXLCIKchgc4wIwhA8BxwDy9IAYHAE0kyBus44e0NMA0//0BNECmMjL/xLL//kWmQLIy/8Sy//5FuIB6DCAAujHtRNCBASDXGNMf9AQg10zQ+gAx+gD6SDH6SDHR+Je78uD0BNM/MdMf0//T//QFUiDwAbry4PMjpPiS+JcByPpSFMsfEsv/WPoCz4SAWoAg9EMCyM7LH/QAzsntVAH8Me1E0IEBQNcY9AQg10zQ+gAx+gAx+kj6SNH4kljHBfLg9gTTPzHTH9cKAFMTgCD0DvLg9fpI0x/T//oA0wEx0QSOFThxyM+FCFIw+lIk+gJwzwtqyXP7AI4UcsjPhQga+lIk+gJwzwtqyXP7AAjiAsj6UssfF8v/AfoCFcsBCAAeUEKAIPRDAcjO9ADOye1UAgEgCwwADb37CJeADdQAGbrNztRNDTH9P/1wsfgCASANDgAJtvJ+ADAAU7aQ3aiaECAoGuQ+gLAEHoHN9DLmDa2tra2uHD9JGmP6f/9AGmA6MCAQsA==",
+  "codeHashHex": "187743596E72426B5156E234FE4B12B7CF4887217FD99B249D024EB89F2270AF",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/RecordAnchor.tolk",
+        "size_chars": 5138,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/anchor_types.tolk",
+        "size_chars": 3866,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/common.tolk",
+        "size_chars": 4741,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToAnchor"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorSubmitRoot"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorOpenDispute"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MerkleStep"
+      },
+      {
+        "kind": "uintN",
+        "n": 1
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorResolveDispute"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1095648001,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 5
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1095648002,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 5
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1095648003,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DisputeInfo"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 26
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          31
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 39
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          38
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          43,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 48,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          52
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorState"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 23,
+        "stack_type_id": 133,
+        "stack_width": 6
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 29,
+        "struct_name": "MapLookupResult<DisputeInfo>",
+        "monomorphic_fields_ty_idx": [
+          30,
+          5
+        ]
+      },
+      {
+        "ty_idx": 34,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          37,
+          42,
+          51,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 30
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 40
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 49
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 43
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 47
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 24,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 37
+          },
+          {
+            "name": "value",
+            "ty_idx": 42
+          },
+          {
+            "name": "dest",
+            "ty_idx": 51
+          },
+          {
+            "name": "body",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToAnchor",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          19,
+          6,
+          19,
+          28
+        ],
+        "target_ty_idx": 21
+      },
+      {
+        "kind": "struct",
+        "name": "MerkleStep",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          22,
+          8,
+          22,
+          18
+        ],
+        "fields": [
+          {
+            "name": "dir",
+            "ty_idx": 17
+          },
+          {
+            "name": "sibling",
+            "ty_idx": 14
+          },
+          {
+            "name": "next",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorConfig",
+        "ty_idx": 26,
+        "ident_loc": [
+          2,
+          28,
+          8,
+          28,
+          20
+        ],
+        "fields": [
+          {
+            "name": "minStakeWeight",
+            "ty_idx": 6
+          },
+          {
+            "name": "disputeBondMin",
+            "ty_idx": 6
+          },
+          {
+            "name": "verdictAuthority",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DisputeInfo",
+        "ty_idx": 23,
+        "ident_loc": [
+          2,
+          36,
+          8,
+          36,
+          19
+        ],
+        "fields": [
+          {
+            "name": "challenger",
+            "ty_idx": 7
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "leaf",
+            "ty_idx": 14
+          },
+          {
+            "name": "bond",
+            "ty_idx": 6
+          },
+          {
+            "name": "status",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorStorage",
+        "ty_idx": 22,
+        "ident_loc": [
+          2,
+          44,
+          8,
+          44,
+          21
+        ],
+        "fields": [
+          {
+            "name": "currentEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "nextDisputeId",
+            "ty_idx": 9
+          },
+          {
+            "name": "disputes",
+            "ty_idx": 25
+          },
+          {
+            "name": "config",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorSubmitRoot",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          63,
+          22,
+          63,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1095648001,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "root",
+            "ty_idx": 14
+          },
+          {
+            "name": "prevRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "stakeWeight",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorOpenDispute",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          72,
+          22,
+          72,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1095648002,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "leaf",
+            "ty_idx": 14
+          },
+          {
+            "name": "claimedRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "proof",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorResolveDispute",
+        "ty_idx": 20,
+        "ident_loc": [
+          2,
+          81,
+          22,
+          81,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1095648003,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "disputeId",
+            "ty_idx": 9
+          },
+          {
+            "name": "upheld",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorState",
+        "ty_idx": 54,
+        "ident_loc": [
+          2,
+          87,
+          8,
+          87,
+          19
+        ],
+        "fields": [
+          {
+            "name": "currentEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "nextDisputeId",
+            "ty_idx": 9
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "computeRootFromProof",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          102,
+          5,
+          102,
+          25
+        ],
+        "end_loc": [
+          2,
+          115,
+          1,
+          115,
+          2
+        ],
+        "params": [
+          {
+            "name": "leaf",
+            "ty_idx": 1
+          },
+          {
+            "name": "proof",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "Cell<MerkleStep>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "hashPair",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          97,
+          5,
+          97,
+          13
+        ],
+        "end_loc": [
+          2,
+          99,
+          1,
+          99,
+          2
+        ],
+        "params": [
+          {
+            "name": "left",
+            "ty_idx": 1
+          },
+          {
+            "name": "right",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          26,
+          5,
+          26,
+          22
+        ],
+        "end_loc": [
+          1,
+          101,
+          1,
+          101,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          24,
+          5,
+          24,
+          21
+        ],
+        "end_loc": [
+          1,
+          24,
+          46,
+          24,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "Cell<AnchorConfig>.load",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "AnchorStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          56,
+          19,
+          56,
+          23
+        ],
+        "end_loc": [
+          2,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint32, DisputeInfo>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          },
+          {
+            "name": "value",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "map<uint32, DisputeInfo>.get",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "MapLookupResult<DisputeInfo>.loadValue",
+        "return_ty_idx": 23,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "DisputeInfo.fromSlice",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "refund",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          103,
+          5,
+          103,
+          11
+        ],
+        "end_loc": [
+          1,
+          110,
+          1,
+          110,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<void>",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "get_anchor_state",
+        "return_ty_idx": 54,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          116,
+          9,
+          116,
+          25
+        ],
+        "end_loc": [
+          1,
+          123,
+          1,
+          123,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "get_dispute",
+        "return_ty_idx": 55,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          125,
+          9,
+          125,
+          20
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": [
+          {
+            "name": "disputeId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "verify_inclusion",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          136,
+          9,
+          136,
+          25
+        ],
+        "end_loc": [
+          1,
+          138,
+          1,
+          138,
+          2
+        ],
+        "params": [
+          {
+            "name": "leaf",
+            "ty_idx": 1
+          },
+          {
+            "name": "root",
+            "ty_idx": 1
+          },
+          {
+            "name": "proof",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "compute_root",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          140,
+          9,
+          140,
+          21
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": [
+          {
+            "name": "leaf",
+            "ty_idx": 1
+          },
+          {
+            "name": "proof",
+            "ty_idx": 19
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "RecordAnchor",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorSubmitRoot"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorOpenDispute"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MerkleStep"
+      },
+      {
+        "kind": "uintN",
+        "n": 1
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorResolveDispute"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DisputeInfo"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnchorState"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 21,
+        "stack_type_id": 133,
+        "stack_width": 6
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "MerkleStep",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "dir",
+            "ty_idx": 16
+          },
+          {
+            "name": "sibling",
+            "ty_idx": 13
+          },
+          {
+            "name": "next",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorConfig",
+        "ty_idx": 24,
+        "fields": [
+          {
+            "name": "minStakeWeight",
+            "ty_idx": 6
+          },
+          {
+            "name": "disputeBondMin",
+            "ty_idx": 6
+          },
+          {
+            "name": "verdictAuthority",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DisputeInfo",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "challenger",
+            "ty_idx": 7
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "leaf",
+            "ty_idx": 13
+          },
+          {
+            "name": "bond",
+            "ty_idx": 6
+          },
+          {
+            "name": "status",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorStorage",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "currentEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastRoot",
+            "ty_idx": 13
+          },
+          {
+            "name": "nextDisputeId",
+            "ty_idx": 9
+          },
+          {
+            "name": "disputes",
+            "ty_idx": 23
+          },
+          {
+            "name": "config",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorSubmitRoot",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1095648001,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "root",
+            "ty_idx": 13
+          },
+          {
+            "name": "prevRoot",
+            "ty_idx": 13
+          },
+          {
+            "name": "stakeWeight",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorOpenDispute",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1095648002,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "epoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "leaf",
+            "ty_idx": 13
+          },
+          {
+            "name": "claimedRoot",
+            "ty_idx": 13
+          },
+          {
+            "name": "proof",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorResolveDispute",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1095648003,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "disputeId",
+            "ty_idx": 9
+          },
+          {
+            "name": "upheld",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnchorState",
+        "ty_idx": 26,
+        "fields": [
+          {
+            "name": "currentEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastRoot",
+            "ty_idx": 13
+          },
+          {
+            "name": "nextDisputeId",
+            "ty_idx": 9
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 20
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 19
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 77020,
+        "name": "get_anchor_state",
+        "parameters": [],
+        "return_ty_idx": 26
+      },
+      {
+        "tvm_method_id": 95366,
+        "name": "get_dispute",
+        "parameters": [
+          {
+            "name": "disputeId",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 27
+      },
+      {
+        "tvm_method_id": 114529,
+        "name": "verify_inclusion",
+        "parameters": [
+          {
+            "name": "leaf",
+            "ty_idx": 1
+          },
+          {
+            "name": "root",
+            "ty_idx": 1
+          },
+          {
+            "name": "proof",
+            "ty_idx": 18
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 87955,
+        "name": "compute_root",
+        "parameters": [
+          {
+            "name": "leaf",
+            "ty_idx": 1
+          },
+          {
+            "name": "proof",
+            "ty_idx": 18
+          }
+        ],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_BAD_PREV_ROOT",
+        "err_code": 240
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_EPOCH_REGRESSION",
+        "err_code": 241
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_ANCHOR_STAKE",
+        "err_code": 242
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_BAD_INCLUSION_PROOF",
+        "err_code": 243
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DISPUTE_BOND_TOO_LOW",
+        "err_code": 244
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NO_SUCH_DISPUTE",
+        "err_code": 245
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_VERDICT_AUTHORITY",
+        "err_code": 246
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_OP",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/RecordAnchor.tolk",
+      "contents": "// Record-anchor + dispute contract (BLOCKCHAIN_ECONOMICS §7, §11).\n// Permissionless keepers anchor a per-epoch Merkle root (chained to the previous\n// root, gated by a stake-weighted threshold). Anyone can open a bonded dispute\n// with a Merkle inclusion proof; an authoritative committee resolves it\n// (upheld => challenger bond returned + slashing happens via the StakeVault\n// slasher path; rejected => bond forfeited, anti-griefing).\n//\n// Only PAID jobs are anchored. Free jobs keep their signed receipts purely\n// off-chain and are never written here (§8.2).\n\nimport \"anchor_types\"\nimport \"common\"\n\ncontract RecordAnchor {\n    storage: AnchorStorage\n    incomingMessages: AllowedMessageToAnchor\n}\n\ntype AllowedMessageToAnchor =\n    | AnchorSubmitRoot\n    | AnchorOpenDispute\n    | AnchorResolveDispute\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToAnchor.fromSlice(in.body);\n\n    match (msg) {\n        AnchorSubmitRoot => {\n            var storage = lazy AnchorStorage.load();\n            val cfg = storage.config.load();\n\n            // Epochs advance monotonically; each root chains to the previous one.\n            assert (msg.epoch == storage.currentEpoch + 1) throw ERROR_EPOCH_REGRESSION;\n            assert (msg.prevRoot == storage.lastRoot) throw ERROR_BAD_PREV_ROOT;\n            // Stake-weighted acceptance: the aggregate weight backing the root\n            // must clear the threshold (anchoring is not a trust bottleneck).\n            assert (msg.stakeWeight >= cfg.minStakeWeight) throw ERROR_INSUFFICIENT_ANCHOR_STAKE;\n\n            storage.currentEpoch = msg.epoch;\n            storage.lastRoot = msg.root;\n            storage.save();\n            // (A small keeper reward could be paid here from accumulated fees.)\n        }\n\n        AnchorOpenDispute => {\n            var storage = lazy AnchorStorage.load();\n            val cfg = storage.config.load();\n            assert (in.valueCoins >= cfg.disputeBondMin) throw ERROR_DISPUTE_BOND_TOO_LOW;\n\n            // The inclusion proof must reproduce the claimed (anchored) root.\n            val recomputed = computeRootFromProof(msg.leaf, msg.proof);\n            assert (recomputed == msg.claimedRoot) throw ERROR_BAD_INCLUSION_PROOF;\n\n            val id = storage.nextDisputeId;\n            storage.nextDisputeId = id + 1;\n            storage\n                .disputes\n                .set(\n                    id,\n                    {\n                        challenger: in.senderAddress,\n                        epoch: msg.epoch,\n                        leaf: msg.leaf,\n                        bond: in.valueCoins,\n                        status: 0,\n                    },\n                );\n            storage.save();\n        }\n\n        AnchorResolveDispute => {\n            var storage = lazy AnchorStorage.load();\n            val cfg = storage.config.load();\n            assert (in.senderAddress == cfg.verdictAuthority) throw ERROR_NOT_VERDICT_AUTHORITY;\n\n            val found = storage.disputes.get(msg.disputeId);\n            assert (found.isFound) throw ERROR_NO_SUCH_DISPUTE;\n            var dispute = found.loadValue();\n\n            if (msg.upheld) {\n                // Challenge upheld: return the bond to the challenger (the actual\n                // stake slash + challenger bounty is applied on the cheater's\n                // StakeVault via the slasher path).\n                dispute.status = 1;\n                refund(dispute.challenger, dispute.bond);\n            } else {\n                // Frivolous challenge: forfeit the bond to the treasury.\n                dispute.status = 2;\n                refund(cfg.treasury, dispute.bond);\n            }\n            storage.disputes.set(msg.disputeId, dispute);\n            storage.save();\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw ERROR_INVALID_OP;\n        }\n    }\n}\n\nfun refund(to: address, amount: coins) {\n    val m = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: amount,\n    });\n    m.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS);\n}\n\n// ---------------------------------------------------------------------------\n// Getters\n// ---------------------------------------------------------------------------\n\nget fun get_anchor_state(): AnchorState {\n    val storage = lazy AnchorStorage.load();\n    return {\n        currentEpoch: storage.currentEpoch,\n        lastRoot: storage.lastRoot,\n        nextDisputeId: storage.nextDisputeId,\n    };\n}\n\nget fun get_dispute(disputeId: int): DisputeInfo? {\n    val storage = lazy AnchorStorage.load();\n    val found = storage.disputes.get(disputeId as uint32);\n    if (!found.isFound) {\n        return null;\n    }\n    return found.loadValue();\n}\n\n// Pure inclusion verifier (also used by tests): does `leaf` + `proof` reproduce\n// `root`?\nget fun verify_inclusion(leaf: int, root: int, proof: Cell<MerkleStep>?): bool {\n    return computeRootFromProof(leaf, proof) == root;\n}\n\nget fun compute_root(leaf: int, proof: Cell<MerkleStep>?): int {\n    return computeRootFromProof(leaf, proof);\n}\n"
+    },
+    {
+      "filename": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/anchor_types.tolk",
+      "contents": "// Storage + messages for the record-anchor / dispute contract.\n// See BLOCKCHAIN_ECONOMICS §7 (hybrid records: off-chain receipts batched into a\n// per-epoch Merkle tree, only the ROOT anchored on-chain), §7.2 (permissionless\n// keepers + stake-weighted acceptance, chained roots via prev_root) and §11\n// (optimistic settlement + bonded fraud proofs).\n//\n// Hash domain note: the off-chain epoch tree is built with BLAKE3 over canonical\n// JobRecords (Rust side, p2p-settlement). The ON-CHAIN inclusion verifier below\n// uses TON cell-representation hashing (`cell.hash()`), which is what an on-chain\n// dispute proof is constructed against. Production aligns the two by also\n// publishing a cell-hash root; here the contract treats the anchored root as an\n// opaque 256-bit commitment and the verifier is self-consistent on-chain.\n\nimport \"common\"\n\nconst OP_ANCHOR_SUBMIT = 0x414e_4301\nconst OP_ANCHOR_DISPUTE = 0x414e_4302\nconst OP_ANCHOR_VERDICT = 0x414e_4303\n\n// One sibling on a Merkle inclusion path. `dir = 0`: sibling is the RIGHT node\n// (current is the left child); `dir = 1`: sibling is the LEFT node.\nstruct MerkleStep {\n    dir: uint1\n    sibling: uint256\n    next: Cell<MerkleStep>?\n}\n\nstruct AnchorConfig {\n    minStakeWeight: coins     // stake-weighted threshold a submitted root must clear (§7.2)\n    disputeBondMin: coins     // anti-griefing challenger bond (§13)\n    verdictAuthority: address // committee/oracle that resolves disputes (§11)\n    treasury: address         // forfeited bonds / fees\n}\n\n// status: 0 = open, 1 = upheld (challenger wins), 2 = rejected (bond forfeited)\nstruct DisputeInfo {\n    challenger: address\n    epoch: uint32\n    leaf: uint256\n    bond: coins\n    status: uint2\n}\n\nstruct AnchorStorage {\n    currentEpoch: uint32 // last anchored epoch (0 = none yet)\n    lastRoot: uint256    // last anchored root (the prev_root for the next epoch)\n    nextDisputeId: uint32\n    disputes: map<uint32, DisputeInfo>\n    config: Cell<AnchorConfig>\n}\n\nfun AnchorStorage.load(): AnchorStorage {\n    return AnchorStorage.fromCell(contract.getData());\n}\n\nfun AnchorStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// Permissionless keeper submits the per-epoch root. `prevRoot` must chain to the\n// stored `lastRoot`; `stakeWeight` is the aggregate staked weight backing this\n// root (collected off-chain) and must clear the configured threshold.\nstruct (0x414e_4301) AnchorSubmitRoot {\n    queryId: uint64\n    epoch: uint32\n    root: uint256\n    prevRoot: uint256\n    stakeWeight: coins\n}\n\n// Open a bonded dispute with a Merkle inclusion proof of the contested record.\nstruct (0x414e_4302) AnchorOpenDispute {\n    queryId: uint64\n    epoch: uint32\n    leaf: uint256\n    claimedRoot: uint256 // the anchored root the leaf is proven against\n    proof: Cell<MerkleStep>?\n}\n\n// Verdict from the authoritative committee/oracle.\nstruct (0x414e_4303) AnchorResolveDispute {\n    queryId: uint64\n    disputeId: uint32\n    upheld: bool\n}\n\nstruct AnchorState {\n    currentEpoch: uint32\n    lastRoot: uint256\n    nextDisputeId: uint32\n}\n\n// ---------------------------------------------------------------------------\n// Merkle helpers (TON cell-hash domain; self-consistent on-chain)\n// ---------------------------------------------------------------------------\n\nfun hashPair(left: int, right: int): int {\n    return beginCell().storeUint(left, 256).storeUint(right, 256).endCell().hash();\n}\n\n// Fold a leaf up to the root along the supplied sibling path.\nfun computeRootFromProof(leaf: int, proof: Cell<MerkleStep>?): int {\n    var acc = leaf;\n    var cur = proof;\n    while (cur != null) {\n        val step = cur.load();\n        if (step.dir == 0) {\n            acc = hashPair(acc, step.sibling);\n        } else {\n            acc = hashPair(step.sibling, acc);\n        }\n        cur = step.next;\n    }\n    return acc;\n}\n"
+    },
+    {
+      "filename": "tmp/fc5759d4-8580-4150-8223-48e3da56564f/contracts/common.tolk",
+      "contents": "// Shared error codes, opcodes and constants for the duckdb-p2p settlement layer.\n//\n// These contracts implement the *paid* path of the economic layer described in\n// `docs/BLOCKCHAIN_ECONOMICS.md`. Free jobs never touch any of this code — the\n// requester runs them through the off-chain coordinator with the `NoopSettlement`\n// path and there is zero on-chain interaction (see §8.2 \"Free vs paid path\").\n//\n// Design constraints honoured here (BLOCKCHAIN_ECONOMICS §1, §8):\n//   * sharded per-node state (no global contract): one StakeVault per node,\n//     one JobEscrow per job — never a single hot contract.\n//   * non-custodial: release is governed entirely by contract code (quorum\n//     result-hash, challenge window, unbonding cooldown), never a platform key.\n//   * defensive TON style: explicit gas floors, bounce-safe, carry-value.\n// ---------------------------------------------------------------------------\n// Error codes (numeric, cheap to assert against in tests)\n// ---------------------------------------------------------------------------\n\nconst ERROR_NOT_OWNER = 132 // sender is not the contract owner\nconst ERROR_NOT_FROM_MASTER = 133 // sender is not the jetton master (vault)\nconst ERROR_NOT_VALID_WALLET = 134 // sender is not a legitimate sibling receipt wallet\nconst ERROR_UNAUTHORIZED_BURN = 135 // burn notification not from the owner's wallet\nconst ERROR_BALANCE_NEGATIVE = 136 // resulting balance would be negative\nconst ERROR_NOT_ENOUGH_GAS = 137 // attached value too small to cover the operation\nconst ERROR_RECEIPT_LOCKED = 138 // stake-receipt jetton is non-transferable (anti-exit)\nconst ERROR_WRONG_WORKCHAIN = 333 // address is not in the basechain\nconst ERROR_INVALID_OP = 0xffff // unknown opcode\n\n// Stake vault\nconst ERROR_NOT_SLASHER = 200 // sender is not the authorized slasher (dispute contract)\nconst ERROR_NOTHING_TO_UNBOND = 201 // unbond requested but no eligible stake\nconst ERROR_UNBOND_IN_PROGRESS = 202 // a prior unbond is still cooling down\nconst ERROR_COOLDOWN_NOT_ELAPSED = 203 // withdraw before the unbonding cooldown finished\nconst ERROR_NO_UNBONDING = 204 // withdraw with nothing in the unbonding bucket\nconst ERROR_KEEPER_TOO_EARLY = 205 // keeper withdraw before the owner-grace window\nconst ERROR_SLASH_EXCEEDS_STAKE = 206 // slash amount larger than slashable stake\nconst ERROR_INVALID_SPLIT = 207 // slash split bps do not sum to 10000\n\n// Escrow\nconst ERROR_ESCROW_NOT_FUNDED = 220 // escrow opened without the requester's max-bid B\nconst ERROR_NOT_REQUESTER = 221 // settle/refund by someone other than the requester\nconst ERROR_NOT_ARBITER = 222 // settle by someone other than the bound arbiter\nconst ERROR_HASH_MISMATCH = 223 // provided result hash != the committed quorum hash\nconst ERROR_ALREADY_SETTLED = 224 // escrow already released\nconst ERROR_TIMEOUT_NOT_REACHED = 225 // refund-on-timeout before the deadline\nconst ERROR_PAYOUT_EXCEEDS_ESCROW = 226 // requested payout exceeds the locked escrow B\n\n// Record anchor / dispute\nconst ERROR_BAD_PREV_ROOT = 240 // submitted root does not chain to the stored prev_root\nconst ERROR_EPOCH_REGRESSION = 241 // epoch did not advance monotonically\nconst ERROR_INSUFFICIENT_ANCHOR_STAKE = 242 // keeper stake-weight below the acceptance threshold\nconst ERROR_BAD_INCLUSION_PROOF = 243 // Merkle inclusion proof does not reproduce the root\nconst ERROR_DISPUTE_BOND_TOO_LOW = 244 // challenger bond below the configured minimum\nconst ERROR_NO_SUCH_DISPUTE = 245 // verdict for an unknown dispute id\nconst ERROR_NOT_VERDICT_AUTHORITY = 246 // verdict from a non-authoritative source\n\n// ---------------------------------------------------------------------------\n// Opcodes — keep TEP-74 standard values verbatim for ecosystem interop.\n// ---------------------------------------------------------------------------\n\n// TEP-74 jetton standard\nconst OP_JETTON_TRANSFER = 0x0f8a7ea5\nconst OP_JETTON_TRANSFER_INTERNAL = 0x178d4519\nconst OP_JETTON_NOTIFICATION = 0x7362d09c\nconst OP_JETTON_EXCESSES = 0xd53276db\nconst OP_JETTON_BURN = 0x595f07bc\nconst OP_JETTON_BURN_NOTIFICATION = 0x7bdd97de\nconst OP_PROVIDE_WALLET_ADDRESS = 0x2c76b973\nconst OP_TAKE_WALLET_ADDRESS = 0xd1735400\n\n// ---------------------------------------------------------------------------\n// Constants\n// ---------------------------------------------------------------------------\n\nconst MIN_TONS_FOR_STORAGE = ton(\"0.05\")\nconst BPS_DENOM = 10000 // basis-points denominator for splits/fractions\n\n// Status bit flags for the stake-receipt wallet.\nconst RECEIPT_STATUS_LOCKED = 1 // bit 0: outgoing transfers locked (default)\n\nfun assertBasechain(addr: address) {\n    assert (addr.getWorkchain() == BASECHAIN) throw ERROR_WRONG_WORKCHAIN;\n}\n"
+    }
+  ]
+}

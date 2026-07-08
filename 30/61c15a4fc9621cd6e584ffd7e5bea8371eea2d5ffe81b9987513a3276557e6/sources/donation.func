@@ -1,0 +1,64 @@
+#include "../imports/stdlib.func";
+#include "op-codes.func";
+#include "error-codes.func";
+#include "transfers.func";
+
+;; load_data populates storage variables using stored data
+(slice) load_data() impure inline_ref {
+    slice ds = get_data().begin_parse();
+    return ds~load_msg_addr(); ;; admin address
+}
+
+;; recv_internal is the main function of the contract and is called when it receives a message from other contracts
+() recv_internal(int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) {
+        ;; ignore all empty messages
+        return ();
+    }
+
+    slice cs = in_msg_full.begin_parse();
+
+    int flags = cs~load_uint(4);
+    if (flags & 1) {
+        ;; ignore all bounced messages
+        return ();
+    }
+
+    (slice owner_address) = load_data();
+
+    int op = in_msg_body~load_uint(32);
+    if (op == op::donation) {
+        slice query_id = in_msg_body~load_bits(128); ;; not by convention, the next 128 bits contain the "query id"
+        slice destination = in_msg_body~load_msg_addr();
+        ;; it's not an empty address, deduct fee and transfer
+        int fee = 10;
+        if (in_msg_body.slice_bits() >= 32) {
+            fee = in_msg_body~load_uint(32);
+        }
+
+        int calculatedFee = fee > 0 ? muldiv(msg_value, fee, 100) : 0;
+        msg_value -= calculatedFee;
+        transfer_funds(destination, query_id, msg_value, op);
+        return ();
+    }
+
+    slice sender_address = cs~load_msg_addr();
+
+    throw_unless(error::unauthorized, equal_slice_bits(owner_address, sender_address));
+
+    if ((op == op::withdraw_tons) | (op == op::destroy)) {
+        forward_funds(owner_address, op == op::destroy, op, max_reserved_funds());
+        return ();
+    }
+    ;; 
+    ;; if (op == op::excesses) {
+    ;;     raw_reserve(max_reserved_funds(), 2); ;; reserve at most `max_reserved_funds` nanocoins
+    ;;     slice destination = in_msg_body~load_msg_addr();
+    ;;     int amount = in_msg_body~load_coins();
+    ;;     slice comments = in_msg_body~load_bits(in_msg_body.slice_bits());
+    ;;     transfer_funds(destination, comments, amount, 0);
+    ;;     return ();
+    ;; }
+
+    throw(0xffff); ;; if the message contains an op that is not known to this contract, we throw
+}

@@ -1,0 +1,1252 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from PriceOracle.tolk, errors.tolk, tokenomics-messages.tolk, tokenomics-storage.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  83831 DECLMETHOD confirmed_level()\n  88710 DECLMETHOD candidate_state()\n  97119 DECLMETHOD threshold_for()\n  DECLPROC threshold()\n  // 2 functions inlined in-place:\n  // - PriceOracleStorage.load (5 calls)\n  // - PriceOracleStorage.save (4 calls)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{48490201} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      8 LDU\n      8 LDU\n      32 PLDU\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s0 s6 XCHG\n      64 PLDU\n      s0 s2 PUSH2\n      INC\n      DUP\n      10 GTINT\n      IFJMP:<{\n        DROP\n        NIP\n        s0 s5 XCHG\n        NEWC\n        STSTDADDR\n        s1 s4 XCHG\n        STOPTSTDADDR\n        s1 s2 XCHG\n        STOPTSTDADDR\n        8 STU\n        8 STU\n        s1 s2 XCHG\n        32 STU\n        64 STU\n        ENDC\n        c4 POP\n      }>\n      DUP\n      threshold() CALLDICT\n      s1 s3 XCHG\n      GEQ\n      IF:<{\n        s2 s1 PUSH2\n        NEQ\n        IF:<{\n          s2 POP\n          NOW\n          s7 POP\n          SWAP\n        }>ELSE<{\n          NIP\n        }>\n      }>ELSE<{\n        s7 POP\n        2DROP\n        0 PUSHINT\n        s0 s5 PUXC\n      }>\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      8 STU\n      8 STU\n      s1 s2 XCHG\n      32 STU\n      64 STU\n      ENDC\n      c4 POP\n    }>\n    x{48490203} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s0 s2 XCHG\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STOPTSTDADDR\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490202} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      8 LDU\n      8 LDU\n      32 LDU\n      s0 s3 XCHG\n      INC\n      DUP\n      11 LESSINT\n      206 THROWIFNOT\n      s2 s2 XCPU\n      EQUAL\n      208 THROWIFNOT\n      DUP\n      208 THROWIFNOT\n      NOW\n      SWAP\n      86400 PUSHINT\n      ADD\n      GEQ\n      209 THROWIFNOT\n      NOW\n      s1 s4 s3 PUSH3\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STOPTSTDADDR\n      s1 s5 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      8 STU\n      0 PUSHINT\n      40 STUR\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      s2 PUSH\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s4 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        1212743942 PUSHINT\n        139 STUR\n        s2 PUSH\n        8 STUR\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        s2 POP\n      }>\n      SWAP\n      10 EQINT\n      IF:<{\n        OVER\n        ISNULL\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1212744449 PUSHINT\n        139 STUR\n        32 STU\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    SEMPTY\n    49 THROWIFNOT\n  }>\n  confirmed_level() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    8 PLDU\n  }>\n  candidate_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    8 LDU\n    NIP\n    8 LDU\n    32 LDU\n    64 PLDU\n  }>\n  threshold_for() PROC:<{\n    threshold() CALLDICT\n  }>\n  threshold() PROC:<{\n    DUP\n    1 EQINT\n    IFJMP:<{\n      DROP\n      800000 PUSHINT\n    }>\n    DUP\n    2 EQINT\n    IFJMP:<{\n      DROP\n      1600000 PUSHINT\n    }>\n    DUP\n    3 EQINT\n    IFJMP:<{\n      DROP\n      3200000 PUSHINT\n    }>\n    DUP\n    4 EQINT\n    IFJMP:<{\n      DROP\n      6400000 PUSHINT\n    }>\n    DUP\n    5 EQINT\n    IFJMP:<{\n      DROP\n      12800000 PUSHINT\n    }>\n    DUP\n    6 EQINT\n    IFJMP:<{\n      DROP\n      25600000 PUSHINT\n    }>\n    DUP\n    7 EQINT\n    IFJMP:<{\n      DROP\n      51200000 PUSHINT\n    }>\n    DUP\n    8 EQINT\n    IFJMP:<{\n      DROP\n      102400000 PUSHINT\n    }>\n    DUP\n    9 EQINT\n    IFJMP:<{\n      DROP\n      204800000 PUSHINT\n    }>\n    10 EQINT\n    IFJMP:<{\n      409600000 PUSHINT\n    }>\n    206 THROW\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDQEAAjQAART/APSkE/S88sgLAQIBYgIDAgLPBAUCAWYJCgKbPiRkTDgINcsIkJIEAzjAtcsIkJIEByOJjHtRND6SPpQMfpQMfiSIscF8uBkAvpI+kgwAsj6UvpU+lTOye1U4NcsIkJIEBQx4wLHAPKxgBgcA5QgwAGWMIIIDDUA4CDAApYwgggYagDgIMADljCCCDDUAOAgwASWMIIIYagA4CDABZYwggjDUADgIMAGljCCCYagAOAgwAeWMIILDUAA4CDACJcwghAGGoAA4CDACZcwghAMNQAA4MAKloIQGGoAAODywM6AA2jHtRND6SPpQ+lDTB9MH1wsf+JImxwXy4GQG1ws/UwKkIMIKjhgwMQXI+lIU+lQS+lTLB8sHEssfyz/J7VTgIPABE76cUyG9lTL4IzcBkTHilTdbcFIG4gXI+lIU+lQS+lTLB8sHEssfyz/J7VQB/DDtRND6SPpQ+lDTB9MH0x8DpCDBC/LgzlEiuvLg0CDy4ND4IwGCAVGAoL7y4NH4I1RxQwjI+lIX+lQV+lQUywdwzwsnEs7J7VQibpEyjiKCCvrwgMjPhYgU+lJQA/oCghBISQEGzwuKIs8LB8mAEfsA4gHACpUhbrPDAJFw4ggASI4fggr68IDIz4WIE/pSWPoCghBISQMBzwuKyx/JgBH7AJFb4gIBIAsMAAm3a/4AMAAjsd37UTQ+kgx+lAx+lAx1wsHgADGyobtRND6SDH6UDH6UDHTBzHTB9Mf1ws/g",
+  "codeHashHex": "DD53CDBEFA6D5F1D4BD5916826E9880F93B02A10A7D55C58CCE7BCA584ABE7CA",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/PriceOracle.tolk",
+        "size_chars": 4337,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/errors.tolk",
+        "size_chars": 602,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/tokenomics-messages.tolk",
+        "size_chars": 1161,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/tokenomics-storage.tolk",
+        "size_chars": 2806,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedOracleMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetOracleTargets"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1212744193,
+            "prefix_len": 32,
+            "stack_type_id": 132,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1212744194,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1212744195,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleStorage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetConfirmedLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          21
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 28
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          27
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          32,
+          33
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 38,
+        "stack_type_id": 131,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          42
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SyncLevel10"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          44
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          19,
+          9,
+          11
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 22,
+        "struct_name": "CreateMessageOptions<SetConfirmedLevel>",
+        "monomorphic_fields_ty_idx": [
+          26,
+          31,
+          41,
+          21
+        ]
+      },
+      {
+        "ty_idx": 45,
+        "struct_name": "CreateMessageOptions<SyncLevel10>",
+        "monomorphic_fields_ty_idx": [
+          26,
+          31,
+          41,
+          44
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 29
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 39
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 32
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 37
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 23,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 24,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 26
+          },
+          {
+            "name": "value",
+            "ty_idx": 31
+          },
+          {
+            "name": "dest",
+            "ty_idx": 41
+          },
+          {
+            "name": "body",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedOracleMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          13,
+          6,
+          13,
+          26
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "SetConfirmedLevel",
+        "ty_idx": 21,
+        "ident_loc": [
+          3,
+          18,
+          21,
+          18,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportPrice",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          32,
+          21,
+          32,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1212744193,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmLevel",
+        "ty_idx": 14,
+        "ident_loc": [
+          3,
+          36,
+          21,
+          36,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1212744194,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetOracleTargets",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          38,
+          21,
+          38,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1212744195,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "publicSale",
+            "ty_idx": 7
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SyncLevel10",
+        "ty_idx": 44,
+        "ident_loc": [
+          3,
+          43,
+          21,
+          43,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1212744449,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleStorage",
+        "ty_idx": 17,
+        "ident_loc": [
+          4,
+          56,
+          8,
+          56,
+          26
+        ],
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "publicSale",
+            "ty_idx": 18
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 18
+          },
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 19
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 19
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          17,
+          5,
+          17,
+          22
+        ],
+        "end_loc": [
+          1,
+          94,
+          1,
+          94,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          15,
+          5,
+          15,
+          21
+        ],
+        "end_loc": [
+          1,
+          15,
+          46,
+          15,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "PriceOracleStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          4,
+          70,
+          24,
+          70,
+          28
+        ],
+        "end_loc": [
+          4,
+          72,
+          1,
+          72,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "createMessage<SetConfirmedLevel>",
+        "return_ty_idx": 20,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "createMessage<SyncLevel10>",
+        "return_ty_idx": 20,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "confirmed_level",
+        "return_ty_idx": 19,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          96,
+          9,
+          96,
+          24
+        ],
+        "end_loc": [
+          1,
+          99,
+          1,
+          99,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 6,
+        "name": "candidate_state",
+        "return_ty_idx": 46,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          101,
+          9,
+          101,
+          24
+        ],
+        "end_loc": [
+          1,
+          104,
+          1,
+          104,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 7,
+        "name": "threshold_for",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          106,
+          9,
+          106,
+          22
+        ],
+        "end_loc": [
+          1,
+          108,
+          1,
+          108,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "threshold",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          110,
+          5,
+          110,
+          14
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "PriceOracle",
+    "author": "100wan",
+    "version": "0.1.0",
+    "description": "HI V1 price threshold oracle",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetOracleTargets"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleStorage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetConfirmedLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SyncLevel10"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          17,
+          9,
+          11
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "SetConfirmedLevel",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportPrice",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1212744193,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmLevel",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1212744194,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetOracleTargets",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1212744195,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "publicSale",
+            "ty_idx": 7
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SyncLevel10",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1212744449,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleStorage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "publicSale",
+            "ty_idx": 16
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 16
+          },
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 17
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 17
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 83831,
+        "name": "confirmed_level",
+        "parameters": [],
+        "return_ty_idx": 17
+      },
+      {
+        "tvm_method_id": 88710,
+        "name": "candidate_state",
+        "parameters": [],
+        "return_ty_idx": 20
+      },
+      {
+        "tvm_method_id": 97119,
+        "name": "threshold_for",
+        "parameters": [
+          {
+            "name": "level",
+            "ty_idx": 17
+          }
+        ],
+        "return_ty_idx": 11
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 49
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotAdmin",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidLevel",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TimerNotStarted",
+        "err_code": 208
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TimerNotMature",
+        "err_code": 209
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/PriceOracle.tolk",
+      "contents": "import \"errors\"\nimport \"tokenomics-messages\"\nimport \"tokenomics-storage\"\n\ncontract PriceOracle {\n    author: \"100wan\"\n    version: \"0.1.0\"\n    description: \"HI V1 price threshold oracle\"\n    storage: PriceOracleStorage\n    incomingMessages: AllowedOracleMessage\n}\n\ntype AllowedOracleMessage = ReportPrice | ConfirmLevel | SetOracleTargets\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedOracleMessage.fromSlice(in.body);\n\n    match (msg) {\n        ReportPrice => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            storage.lastPrice = msg.price;\n\n            val nextLevel = storage.confirmedLevel + 1;\n            if (nextLevel > 10) {\n                storage.save();\n                return;\n            }\n\n            if (msg.price >= threshold(nextLevel)) {\n                if (storage.candidateLevel != nextLevel) {\n                    storage.candidateLevel = nextLevel;\n                    storage.levelStartedAt = blockchain.now() as uint32;\n                }\n            } else {\n                storage.candidateLevel = 0;\n                storage.levelStartedAt = 0;\n            }\n\n            storage.save();\n        }\n\n        SetOracleTargets => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            storage.publicSale = msg.publicSale;\n            storage.teamVestingVault = msg.teamVestingVault;\n            storage.save();\n        }\n\n        ConfirmLevel => {\n            var storage = lazy PriceOracleStorage.load();\n            val nextLevel = storage.confirmedLevel + 1;\n            assert (nextLevel <= 10) throw Errors.InvalidLevel;\n            assert (storage.candidateLevel == nextLevel) throw Errors.TimerNotStarted;\n            assert (storage.levelStartedAt != 0) throw Errors.TimerNotStarted;\n            assert (blockchain.now() >= storage.levelStartedAt + 86400) throw Errors.TimerNotMature;\n\n            val confirmedAt = blockchain.now() as uint32;\n            storage.confirmedLevel = nextLevel;\n            storage.candidateLevel = 0;\n            storage.levelStartedAt = 0;\n            val publicSale = storage.publicSale;\n            val teamVestingVault = storage.teamVestingVault;\n            storage.save();\n\n            if (publicSale != null) {\n                val saleMessage = createMessage({\n                    bounce: true,\n                    dest: publicSale!,\n                    value: ton(\"0.05\"),\n                    body: SetConfirmedLevel { confirmedLevel: nextLevel },\n                });\n                saleMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n\n            if (nextLevel == 10 && teamVestingVault != null) {\n                val teamMessage = createMessage({\n                    bounce: true,\n                    dest: teamVestingVault!,\n                    value: ton(\"0.05\"),\n                    body: SyncLevel10 { confirmedAt },\n                });\n                teamMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nget fun confirmed_level(): uint8 {\n    val storage = lazy PriceOracleStorage.load();\n    return storage.confirmedLevel;\n}\n\nget fun candidate_state(): (uint8, uint32, uint64) {\n    val storage = lazy PriceOracleStorage.load();\n    return (storage.candidateLevel, storage.levelStartedAt, storage.lastPrice);\n}\n\nget fun threshold_for(level: uint8): uint64 {\n    return threshold(level);\n}\n\nfun threshold(level: int): uint64 {\n    if (level == 1) {\n        return 800000;\n    }\n    if (level == 2) {\n        return 1600000;\n    }\n    if (level == 3) {\n        return 3200000;\n    }\n    if (level == 4) {\n        return 6400000;\n    }\n    if (level == 5) {\n        return 12800000;\n    }\n    if (level == 6) {\n        return 25600000;\n    }\n    if (level == 7) {\n        return 51200000;\n    }\n    if (level == 8) {\n        return 102400000;\n    }\n    if (level == 9) {\n        return 204800000;\n    }\n    if (level == 10) {\n        return 409600000;\n    }\n    throw Errors.InvalidLevel;\n}\n"
+    },
+    {
+      "filename": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/errors.tolk",
+      "contents": "enum Errors {\n    BalanceError = 47\n    NotEnoughGas = 48\n    InvalidMessage = 49\n    InvalidOp = 72\n    NotOwner = 73\n    NotValidWallet = 74\n    WrongWorkchain = 333\n    NotAdmin = 100\n    SaleClosed = 200\n    BelowMinimum = 201\n    WalletCapExceeded = 202\n    PoolPaused = 203\n    InsufficientInventory = 204\n    NoClaimableAmount = 205\n    InvalidLevel = 206\n    InvalidPrice = 207\n    TimerNotStarted = 208\n    TimerNotMature = 209\n    BatchExists = 210\n    BatchMissing = 211\n    AlreadyClaimed = 212\n    InvalidProof = 213\n    InsufficientAttachedTon = 214\n    JettonWalletNotConfigured = 215\n}\n"
+    },
+    {
+      "filename": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/tokenomics-messages.tolk",
+      "contents": "struct (0x48490101) BuyInstant {\n    tonAmount: coins\n}\n\nstruct (0x48490102) BuyLocked {\n    tonAmount: coins\n}\n\nstruct (0x48490103) SetPoolEnabled {\n    instantPool: bool\n    enabled: bool\n}\n\nstruct (0x48490104) CloseSale {}\n\nstruct (0x48490105) ClaimLocked {}\n\nstruct (0x48490106) SetConfirmedLevel {\n    confirmedLevel: uint8\n}\n\nstruct (0x48490107) SweepProjectFund {}\n\nstruct (0x48490108) WithdrawSaleTons {\n    amount: coins\n}\n\nstruct (0x48490109) SetSaleJettonWallet {\n    saleJettonWallet: address\n}\n\nstruct (0x48490201) ReportPrice {\n    price: uint64\n}\n\nstruct (0x48490202) ConfirmLevel {}\n\nstruct (0x48490203) SetOracleTargets {\n    publicSale: address\n    teamVestingVault: address\n}\n\nstruct (0x48490301) SyncLevel10 {\n    confirmedAt: uint32\n}\n\nstruct (0x48490302) ClaimTeam {}\n\nstruct (0x48490303) SetTeamJettonWallet {\n    teamJettonWallet: address\n}\n\nstruct (0x48490401) CreateRewardBatch {\n    batchId: uint64\n    root: uint256\n    totalHi: coins\n    metadataHash: uint256\n}\n\nstruct (0x48490402) ClaimReward {\n    batchId: uint64\n    amount: coins\n    proof: cell\n}\n\nstruct (0x48490403) SetRewardJettonWallet {\n    rewardJettonWallet: address\n}\n"
+    },
+    {
+      "filename": "tmp/dc97e600-abaa-4b7f-ada5-2d5abe50b857/contracts/tokenomics-storage.tolk",
+      "contents": "struct PurchasePosition {\n    totalLockedHi: coins\n    claimedHi: coins\n    entryLevel: uint8\n    missedHi: coins\n}\n\nstruct PendingSaleTransfer {\n    kind: uint8\n    owner: address\n    hiAmount: coins\n    tonAmount: coins\n}\n\nstruct PublicSaleConfig {\n    admin: address\n    projectFundWallet: address\n}\n\nstruct PublicSaleStorage {\n    config: Cell<PublicSaleConfig>\n    counters: Cell<PublicSaleCounters>\n    maps: Cell<PublicSaleMaps>\n    oracle: address\n    saleJettonWallet: address?\n    instantSaleEnabled: bool\n    lockedSaleEnabled: bool\n    permanentlyClosed: bool\n    confirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct PublicSaleMaps {\n    purchasedTon: map<address, coins>\n    positions: map<address, PurchasePosition>\n    pendingTransfers: map<uint64, PendingSaleTransfer>\n}\n\nstruct PublicSaleCounters {\n    instantPoolTotalHi: coins\n    lockedPoolTotalHi: coins\n    instantSoldHi: coins\n    lockedSoldHi: coins\n    lockedClaimedHi: coins\n    lockedMissedHi: coins\n}\n\nfun PublicSaleStorage.load(): PublicSaleStorage {\n    return PublicSaleStorage.fromCell(contract.getData());\n}\n\nfun PublicSaleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct PriceOracleStorage {\n    admin: address\n    publicSale: address?\n    teamVestingVault: address?\n    confirmedLevel: uint8\n    candidateLevel: uint8\n    levelStartedAt: uint32\n    lastPrice: uint64\n}\n\nfun PriceOracleStorage.load(): PriceOracleStorage {\n    return PriceOracleStorage.fromCell(contract.getData());\n}\n\nfun PriceOracleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TeamVestingConfig {\n    admin: address\n    teamWallet: address\n}\n\nstruct TeamVestingStorage {\n    config: Cell<TeamVestingConfig>\n    oracle: address\n    teamJettonWallet: address?\n    totalHi: coins\n    claimedHi: coins\n    level10ConfirmedAt: uint32\n    nextQueryId: uint64\n    pendingTransfers: map<uint64, coins>\n}\n\nfun TeamVestingStorage.load(): TeamVestingStorage {\n    return TeamVestingStorage.fromCell(contract.getData());\n}\n\nfun TeamVestingStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct RewardBatch {\n    root: uint256\n    totalHi: coins\n    claimedHi: coins\n    metadataHash: uint256\n}\n\nstruct PendingRewardTransfer {\n    batchId: uint64\n    claimant: address\n    amount: coins\n}\n\nstruct EcosystemRewardStorage {\n    config: Cell<EcosystemRewardConfig>\n    rewardJettonWallet: address?\n    nextQueryId: uint64\n    batches: map<uint64, RewardBatch>\n    claimed: map<uint256, bool>\n    pendingTransfers: map<uint64, PendingRewardTransfer>\n}\n\nstruct EcosystemRewardConfig {\n    admin: address\n}\n\nfun EcosystemRewardStorage.load(): EcosystemRewardStorage {\n    return EcosystemRewardStorage.fromCell(contract.getData());\n}\n\nfun EcosystemRewardStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

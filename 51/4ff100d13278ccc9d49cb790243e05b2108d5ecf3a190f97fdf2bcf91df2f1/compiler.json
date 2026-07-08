@@ -1,0 +1,2372 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from RaffleFactory.tolk, Raffle.code.tolk, common.tolk, messages.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  107504 DECLMETHOD factoryData()\n  // 7 functions inlined in-place:\n  // - FactoryStorage.load (3 calls)\n  // - FactoryStorage.save (2 calls)\n  // - countPrizes (1 call)\n  // - onBouncedMessage (0 calls)\n  // - handleCreateRaffle (1 call)\n  // - handleSetParams (1 call)\n  // - emitEvent<EvRaffleCreated> (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{f0000001} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      LDREF\n      PLDOPTREF\n      INMSG_VALUE\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      16 LDU\n      32 LDU\n      LDSTDADDR\n      64 LDU\n      ENDS\n      s7 PUSH\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      32 LDU\n      32 LDU\n      LDREF\n      NIP\n      LDREF\n      NIP\n      LDOPTREF\n      LDOPTSTDADDR\n      ENDS\n      s5 PUSH\n      0 GTINT\n      IF:<{\n        s5 s4 XCHG2\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        s4 POP\n        s4 POP\n        0 PUSHINT\n      }>\n      269 THROWIFNOT\n      s0 s4 XCHG\n      0 GTINT\n      269 THROWIFNOT\n      NOW\n      OVER\n      LEQ\n      IF:<{\n        s0 s3 XCHG2\n        LESS\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        s2 POP\n        0 PUSHINT\n      }>\n      269 THROWIFNOT\n      0 PUSHINT\n      OVER\n      32 PUSHINT\n      DICTUMIN NULLSWAPIFNOT2\n      s2 POP\n      WHILE:<{\n        SWAP\n      }>DO<{\n        SWAP\n        INC\n        s1 s2 XCPU\n        32 PUSHINT\n        DICTUGETNEXT NULLSWAPIFNOT2\n        s2 POP\n      }>\n      DROP\n      NIP\n      DUP\n      0 GTINT\n      269 THROWIFNOT\n      NEWC\n      x{01} STSLICECONST\n      s0 s12 s10 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      MYADDR\n      s3 s6 s5 PUSH3\n      s7 PUSH\n      PUSHNULL\n      PUSHNULL\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      s0 s9 XCHG\n      NEWC\n      64 STU\n      s1 s10 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STU\n      s1 s3 XCHG\n      STSTDADDR\n      s1 16 s() XCHG\n      STREF\n      s1 s6 XCHG\n      STOPTREF\n      s1 s15 XCHG\n      32 STU\n      ENDC\n      0 PUSHINT\n      NEWC\n      132 STU\n      0 PUSHINT\n      256 STUR\n      s1 s14 XCHG\n      STOPTREF\n      0 PUSHINT\n      96 STUR\n      s1 s4 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s13 XCHG\n      NEWC\n      STOPTREF\n      s1 s3 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      s7 PUSH\n      20000000 PUSHINT\n      GREATER\n      262 THROWIFNOT\n      \"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\" base64>B B>boc PUSHREF\n      NEWC\n      x{00} STSLICECONST\n      s1 s11 XCHG\n      STREF\n      s1 s11 XCHG\n      STREF\n      s1 s10 XCHG\n      STREF\n      ENDC\n      s0 s8 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s0 s7 XCHG\n      20000000 PUSHINT\n      SUB\n      NEWC\n      b{01000010000000000} STSLICECONST\n      s2 s10 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s9 XCHG\n      STREF\n      s1 s8 XCHG\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      s6 PUSH\n      INC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      16 STU\n      32 STU\n      STSTDADDR\n      64 STU\n      ENDC\n      c4 POP\n      b{00} PUSHSLICE\n      NEWC\n      x{e0000001} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      ENDC\n      NEWC\n      x{c} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n    }>\n    x{f0000002} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      NIP\n      16 LDU\n      32 LDU\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      16 LDU\n      NIP\n      32 LDU\n      NIP\n      LDSTDADDR\n      NIP\n      64 LDU\n      ENDS\n      s2 s1 XCPU\n      SDEQ\n      270 THROWIFNOT\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      16 STU\n      s1 s2 XCHG\n      32 STU\n      STSTDADDR\n      64 STU\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  factoryData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    16 LDU\n    32 LDU\n    LDSTDADDR\n    64 LDU\n    ENDS\n    4 ROLL\n  }>\n}END>c\n",
+  "codeBoc64": "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",
+  "codeHashHex": "514FF100D13278CCC9D49CB790243E05B2108D5ECF3A190F97FDF2BCF91DF2F1",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/RaffleFactory.tolk",
+        "size_chars": 4094,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/gen/Raffle.code.tolk",
+        "size_chars": 5691,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/common.tolk",
+        "size_chars": 9391,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/messages.tolk",
+        "size_chars": 4966,
+        "imports": [
+          3
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "FactoryMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateRaffle"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleConfig"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Beacon"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Prize"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 18
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 4026531841,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 4026531842,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 4
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          9,
+          18
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          31,
+          32
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleMeta"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleRuntime"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleMaps"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LedgerEntry"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 38
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Participant"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 40
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Winner"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 42
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 9
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 34
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 35
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 49
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 51,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 55,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 60,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 62,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 65
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          64
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 67,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          53,
+          14
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 69,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 52,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          71
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvRaffleCreated"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          74
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 78,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 79,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 76,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 77,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          71
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          7,
+          1,
+          7
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 29,
+        "struct_name": "MapEntry<uint32, Prize>",
+        "monomorphic_fields_ty_idx": [
+          30,
+          9,
+          5
+        ]
+      },
+      {
+        "ty_idx": 59,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          63,
+          68,
+          70,
+          0
+        ]
+      },
+      {
+        "ty_idx": 75,
+        "struct_name": "CreateExternalLogMessageOptions<EvRaffleCreated>",
+        "monomorphic_fields_ty_idx": [
+          81,
+          74
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1038,
+          8,
+          1038,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 30
+          },
+          {
+            "name": "key",
+            "ty_idx": 31
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 64,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 66
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 55,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 56
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 52,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 53
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 54
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 61,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 62,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 72,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 63
+          },
+          {
+            "name": "value",
+            "ty_idx": 68
+          },
+          {
+            "name": "dest",
+            "ty_idx": 70
+          },
+          {
+            "name": "body",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 77,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 80
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 82,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 81
+          },
+          {
+            "name": "body",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "FactoryMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          19,
+          6,
+          19,
+          20
+        ],
+        "target_ty_idx": 26
+      },
+      {
+        "kind": "struct",
+        "name": "Prize",
+        "ty_idx": 18,
+        "ident_loc": [
+          3,
+          70,
+          8,
+          70,
+          13
+        ],
+        "fields": [
+          {
+            "name": "title",
+            "ty_idx": 3
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Beacon",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          77,
+          8,
+          77,
+          14
+        ],
+        "fields": [
+          {
+            "name": "chainHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "genesisTime",
+            "ty_idx": 9
+          },
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleConfig",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          85,
+          8,
+          85,
+          20
+        ],
+        "fields": [
+          {
+            "name": "organizer",
+            "ty_idx": 7
+          },
+          {
+            "name": "ticketPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "softCap",
+            "ty_idx": 6
+          },
+          {
+            "name": "hardCap",
+            "ty_idx": 6
+          },
+          {
+            "name": "saleStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "saleDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "beacon",
+            "ty_idx": 17
+          },
+          {
+            "name": "prizes",
+            "ty_idx": 19
+          },
+          {
+            "name": "paymentJetton",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LedgerEntry",
+        "ty_idx": 38,
+        "ident_loc": [
+          3,
+          101,
+          8,
+          101,
+          19
+        ],
+        "fields": [
+          {
+            "name": "count",
+            "ty_idx": 9
+          },
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Participant",
+        "ty_idx": 40,
+        "ident_loc": [
+          3,
+          107,
+          8,
+          107,
+          19
+        ],
+        "fields": [
+          {
+            "name": "tickets",
+            "ty_idx": 9
+          },
+          {
+            "name": "contributed",
+            "ty_idx": 6
+          },
+          {
+            "name": "refundClaimed",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Winner",
+        "ty_idx": 42,
+        "ident_loc": [
+          3,
+          114,
+          8,
+          114,
+          14
+        ],
+        "fields": [
+          {
+            "name": "ticketIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleMeta",
+        "ty_idx": 34,
+        "ident_loc": [
+          3,
+          125,
+          8,
+          125,
+          18
+        ],
+        "fields": [
+          {
+            "name": "raffleId",
+            "ty_idx": 11
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "protocolFeeBps",
+            "ty_idx": 25
+          },
+          {
+            "name": "drawTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "config",
+            "ty_idx": 21
+          },
+          {
+            "name": "publishers",
+            "ty_idx": 23
+          },
+          {
+            "name": "prizeCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleRuntime",
+        "ty_idx": 35,
+        "ident_loc": [
+          3,
+          139,
+          8,
+          139,
+          21
+        ],
+        "fields": [
+          {
+            "name": "totalCollected",
+            "ty_idx": 6
+          },
+          {
+            "name": "ticketsSold",
+            "ty_idx": 9
+          },
+          {
+            "name": "salesClosedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "targetRound",
+            "ty_idx": 11
+          },
+          {
+            "name": "randomness",
+            "ty_idx": 14
+          },
+          {
+            "name": "drandSignature",
+            "ty_idx": 36
+          },
+          {
+            "name": "drawCounter",
+            "ty_idx": 11
+          },
+          {
+            "name": "winnersDrawn",
+            "ty_idx": 9
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleMaps",
+        "ty_idx": 37,
+        "ident_loc": [
+          3,
+          154,
+          8,
+          154,
+          18
+        ],
+        "fields": [
+          {
+            "name": "ledgerByIndex",
+            "ty_idx": 39
+          },
+          {
+            "name": "participants",
+            "ty_idx": 41
+          },
+          {
+            "name": "winners",
+            "ty_idx": 43
+          },
+          {
+            "name": "drawSwap",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleStorage",
+        "ty_idx": 49,
+        "ident_loc": [
+          3,
+          164,
+          8,
+          164,
+          21
+        ],
+        "fields": [
+          {
+            "name": "status",
+            "ty_idx": 22
+          },
+          {
+            "name": "meta",
+            "ty_idx": 45
+          },
+          {
+            "name": "runtime",
+            "ty_idx": 47
+          },
+          {
+            "name": "maps",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryStorage",
+        "ty_idx": 27,
+        "ident_loc": [
+          3,
+          182,
+          8,
+          182,
+          22
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "protocolFeeBps",
+            "ty_idx": 25
+          },
+          {
+            "name": "drawTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "raffleCount",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateRaffle",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          13,
+          21,
+          13,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 4026531841,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "organizerPubkey",
+            "ty_idx": 14
+          },
+          {
+            "name": "config",
+            "ty_idx": 21
+          },
+          {
+            "name": "publishers",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetParams",
+        "ty_idx": 24,
+        "ident_loc": [
+          4,
+          21,
+          21,
+          21,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 4026531842,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "protocolFeeBps",
+            "ty_idx": 25
+          },
+          {
+            "name": "drawTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvRaffleCreated",
+        "ty_idx": 74,
+        "ident_loc": [
+          4,
+          115,
+          21,
+          115,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 3758096385,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "raffleId",
+            "ty_idx": 11
+          },
+          {
+            "name": "instance",
+            "ty_idx": 7
+          },
+          {
+            "name": "organizer",
+            "ty_idx": 7
+          },
+          {
+            "name": "paymentJetton",
+            "ty_idx": 20
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          23,
+          5,
+          23,
+          22
+        ],
+        "end_loc": [
+          1,
+          33,
+          1,
+          33,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          35,
+          5,
+          35,
+          21
+        ],
+        "end_loc": [
+          1,
+          35,
+          46,
+          35,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "handleCreateRaffle",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          37,
+          5,
+          37,
+          23
+        ],
+        "end_loc": [
+          1,
+          114,
+          1,
+          114,
+          2
+        ],
+        "params": [
+          {
+            "name": "msgValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "FactoryStorage.load",
+        "return_ty_idx": 27,
+        "num_params": 0,
+        "ident_loc": [
+          3,
+          190,
+          20,
+          190,
+          24
+        ],
+        "end_loc": [
+          3,
+          192,
+          1,
+          192,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 4,
+        "name": "FactoryStorage.fromCell",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "Cell<RaffleConfig>.load",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "countPrizes",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          229,
+          5,
+          229,
+          16
+        ],
+        "end_loc": [
+          3,
+          237,
+          1,
+          237,
+          2
+        ],
+        "params": [
+          {
+            "name": "prizes",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint32, Prize>.findFirst",
+        "return_ty_idx": 29,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "map<uint32, Prize>.iterateNext",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "current",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "map<uint256, uint8>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "value",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "RaffleMeta.toCell",
+        "return_ty_idx": 45,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "RaffleRuntime.toCell",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "RaffleMaps.toCell",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "RaffleStorage.toCell",
+        "return_ty_idx": 50,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "createMessage<void>",
+        "return_ty_idx": 58,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "FactoryStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          194,
+          20,
+          194,
+          24
+        ],
+        "end_loc": [
+          3,
+          196,
+          1,
+          196,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "FactoryStorage.toCell",
+        "return_ty_idx": 73,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "emitEvent<EvRaffleCreated>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          256,
+          5,
+          256,
+          14
+        ],
+        "end_loc": [
+          3,
+          259,
+          1,
+          259,
+          2
+        ],
+        "params": [
+          {
+            "name": "body",
+            "ty_idx": 74
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "createExternalLogMessage<EvRaffleCreated>",
+        "return_ty_idx": 58,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 75
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "handleSetParams",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          116,
+          5,
+          116,
+          20
+        ],
+        "end_loc": [
+          1,
+          124,
+          1,
+          124,
+          2
+        ],
+        "params": [
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "factoryData",
+        "return_ty_idx": 83,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          131,
+          9,
+          131,
+          20
+        ],
+        "end_loc": [
+          1,
+          134,
+          1,
+          134,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "RaffleFactory",
+    "author": "OpenRaff",
+    "version": "0.1.0",
+    "description": "OpenRaff factory: deploys immutable raffle instances",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateRaffle"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RaffleConfig"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Beacon"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Prize"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryStorage"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          7,
+          1,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EvRaffleCreated"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Prize",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "title",
+            "ty_idx": 3
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Beacon",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "chainHash",
+            "ty_idx": 13
+          },
+          {
+            "name": "genesisTime",
+            "ty_idx": 9
+          },
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RaffleConfig",
+        "ty_idx": 14,
+        "fields": [
+          {
+            "name": "organizer",
+            "ty_idx": 7
+          },
+          {
+            "name": "ticketPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "softCap",
+            "ty_idx": 6
+          },
+          {
+            "name": "hardCap",
+            "ty_idx": 6
+          },
+          {
+            "name": "saleStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "saleDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "metadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "beacon",
+            "ty_idx": 16
+          },
+          {
+            "name": "prizes",
+            "ty_idx": 18
+          },
+          {
+            "name": "paymentJetton",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryStorage",
+        "ty_idx": 25,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "protocolFeeBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "drawTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "raffleCount",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateRaffle",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 4026531841,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "organizerPubkey",
+            "ty_idx": 13
+          },
+          {
+            "name": "config",
+            "ty_idx": 20
+          },
+          {
+            "name": "publishers",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetParams",
+        "ty_idx": 23,
+        "prefix": {
+          "prefix_num": 4026531842,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "protocolFeeBps",
+            "ty_idx": 24
+          },
+          {
+            "name": "drawTimeout",
+            "ty_idx": 9
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EvRaffleCreated",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 3758096385,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "raffleId",
+            "ty_idx": 11
+          },
+          {
+            "name": "instance",
+            "ty_idx": 7
+          },
+          {
+            "name": "organizer",
+            "ty_idx": 7
+          },
+          {
+            "name": "paymentJetton",
+            "ty_idx": 19
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 25
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 23
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [
+      {
+        "body_ty_idx": 27
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 107504,
+        "name": "factoryData",
+        "parameters": [],
+        "return_ty_idx": 26
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientValue",
+        "err_code": 262
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidConfig",
+        "err_code": 269
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 270
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/RaffleFactory.tolk",
+      "contents": "// OpenRaff v1 — Factory contract.\n//\n// Deploys immutable Raffle instances at deterministic addresses and stamps the\n// protocol parameters (fee, draw_timeout, treasury) into each instance. See\n// docs/versions/v1/messages.md §4.\n\nimport \"../gen/Raffle.code\"\nimport \"common\"\nimport \"messages\"\n\ncontract RaffleFactory {\n    author: \"OpenRaff\"\n    version: \"0.1.0\"\n    description: \"OpenRaff factory: deploys immutable raffle instances\"\n    storage: FactoryStorage\n    incomingMessages: FactoryMessage\n}\n\ntype FactoryMessage =\n    | CreateRaffle\n    | SetParams\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy FactoryMessage.fromSlice(in.body);\n\n    match (msg) {\n        CreateRaffle => handleCreateRaffle(in.valueCoins, msg),\n        SetParams => handleSetParams(in.senderAddress, msg),\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun handleCreateRaffle(msgValue: coins, msg: CreateRaffle) {\n    var fs = FactoryStorage.load();\n    val config = msg.config.load();\n\n    // Validate the organizer-provided configuration.\n    assert (config.softCap > 0 && config.softCap <= config.hardCap) throw Errors.InvalidConfig;\n    assert (config.ticketPrice > 0) throw Errors.InvalidConfig;\n    assert (\n        blockchain.now() <= config.saleStart && config.saleStart < config.saleDeadline\n    ) throw Errors.InvalidConfig;\n    val prizeCount = countPrizes(config.prizes);\n    assert (prizeCount > 0) throw Errors.InvalidConfig;\n\n    val raffleId = fs.raffleCount;\n\n    // Force-add the organizer's ed25519 key as the fallback publisher.\n    var publishers = msg.publishers;\n    publishers.set(msg.organizerPubkey, 1);\n\n    val meta: RaffleMeta = {\n        raffleId,\n        factory: contract.getAddress(),\n        protocolFeeBps: fs.protocolFeeBps,\n        drawTimeout: fs.drawTimeout,\n        treasury: fs.treasury,\n        config: msg.config,\n        publishers,\n        prizeCount: prizeCount as uint32,\n    };\n\n    val runtime: RaffleRuntime = {\n        totalCollected: 0,\n        ticketsSold: 0,\n        salesClosedAt: 0,\n        targetRound: 0,\n        randomness: 0,\n        drandSignature: null,\n        drawCounter: 0,\n        winnersDrawn: 0,\n        jettonWallet: null,\n    };\n\n    val maps: RaffleMaps = {\n        ledgerByIndex: [],\n        participants: [],\n        winners: [],\n        drawSwap: [],\n    };\n\n    val initStorage: RaffleStorage = {\n        status: STATUS_SCHEDULED,\n        meta: meta.toCell(),\n        runtime: runtime.toCell(),\n        maps: maps.toCell(),\n    };\n\n    // Forward the incoming value (minus a small factory-side buffer) to fund\n    // the new instance's storage.\n    assert (msgValue > GAS_RESERVE) throw Errors.InsufficientValue;\n    val stateInit: ContractState = { code: raffleCompiledCode(), data: initStorage.toCell() };\n    val instanceAddr = (AutoDeployAddress { stateInit }).calculateAddress();\n    val deployMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: msgValue - GAS_RESERVE,\n        dest: { stateInit },\n    });\n    deployMsg.send(SEND_MODE_REGULAR);\n\n    fs.raffleCount = raffleId + 1;\n    fs.save();\n\n    emitEvent(EvRaffleCreated {\n        raffleId,\n        instance: instanceAddr,\n        organizer: config.organizer,\n        paymentJetton: config.paymentJetton,\n    });\n}\n\nfun handleSetParams(senderAddress: address, msg: SetParams) {\n    var fs = FactoryStorage.load();\n    assert (senderAddress == fs.owner) throw Errors.NotOwner;\n\n    fs.protocolFeeBps = msg.protocolFeeBps;\n    fs.drawTimeout = msg.drawTimeout;\n    fs.treasury = msg.treasury;\n    fs.save();\n}\n\n// --------------------------------------------------------------------------\n// Get methods\n// --------------------------------------------------------------------------\n\n// (protocol_fee_bps, draw_timeout, treasury, raffle_count, owner)\nget fun factoryData(): (int, int, address, int, address) {\n    val fs = FactoryStorage.load();\n    return (fs.protocolFeeBps, fs.drawTimeout, fs.treasury, fs.raffleCount, fs.owner);\n}\n"
+    },
+    {
+      "filename": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/gen/Raffle.code.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n// Auto-generated dependency code for contract 'Raffle'\n// Provides compiled BoC data for the 'Raffle' contract\n//\n// This file is automatically generated by 'acton build'\n// Do not edit manually — changes will be overwritten\n\n/// Returns `Raffle`'s code as a cell.\n///\n/// - Contract: `Raffle`\n/// - Path: `contracts/Raffle.tolk`\n///\n/// # Safety\n///\n/// This function always returns the correct cell with the contract code.\n@pure\nfun raffleCompiledCode(): cell asm \"\"\"\n    \"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\" base64>B B>boc PUSHREF\n\"\"\"\n"
+    },
+    {
+      "filename": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/common.tolk",
+      "contents": "// OpenRaff v1 — shared types, storage layout, errors and helpers.\n//\n// See docs/versions/v1/{specification,messages}.md for the design of record.\n// v1 implements the native-TON payment path; the jetton path is the next\n// increment and is intentionally left out here (storage/handlers are shaped so\n// it can be added without reshuffling the core).\n\n// ---------------------------------------------------------------------------\n// Lifecycle status (stored as uint8). See specification §6.\n// ---------------------------------------------------------------------------\nconst STATUS_SCHEDULED = 0\nconst STATUS_ACTIVE = 1\nconst STATUS_SALES_CLOSED = 2\nconst STATUS_DRAWING = 3\nconst STATUS_DRAWN = 4\nconst STATUS_COMPLETED = 5\nconst STATUS_REFUNDING = 6\n// Terminal-settlement retry state: the protocol fee has been paid to the\n// treasury, but the organizer payout bounced and is awaiting a `Settle` retry.\n// See Raffle.onBouncedMessage.\nconst STATUS_SETTLING = 7\n\n// Max winners a single `draw` call resolves before yielding; the draw resumes\n// across further calls via `drawCounter`. Sampling is without replacement (see\n// Raffle.handleDraw), so each call does exactly this many sha256 samples — gas\n// per transaction is bounded regardless of K vs N. Calibrated in\n// tests/gas.test.tolk: a full batch of 48 winners costs ~444k gas — comfortably\n// under the 1,000,000 basechain limit. A draw call should attach ~1 TON to\n// cover gas plus up to 48 winner-event actions.\nconst DRAW_BATCH = 48\n\n// Small ton buffer the raffle keeps for storage rent / outgoing gas.\nconst GAS_RESERVE = 20000000 // 0.02 TON\n\n// TON attached to a single TEP-74 jetton `transfer` to fund the two-hop wallet\n// chain; the unused remainder returns to the recipient via `excesses`. Paid out\n// of the value of the message that triggered the transfer (buy/refund/settle).\nconst JETTON_SEND_GAS = 50000000 // 0.05 TON\n\n// TON for the TEP-89 provide/take wallet-discovery handshake.\nconst WALLET_DISCOVERY_GAS = 30000000 // 0.03 TON\n\n// ---------------------------------------------------------------------------\n// Error / exit codes. See messages.md §7.\n// ---------------------------------------------------------------------------\nenum Errors {\n    WrongStatus = 0x101\n    NotOrganizer = 0x102\n    SaleNotOpen = 0x103\n    SaleEnded = 0x104\n    SoldOut = 0x105\n    InsufficientValue = 0x106\n    UnauthorizedPublisher = 0x107\n    WrongRound = 0x108\n    BadSignature = 0x109\n    DrawTimeout = 0x10A\n    NothingToRefund = 0x10B\n    NotJettonWallet = 0x10C\n    InvalidConfig = 0x10D\n    NotOwner = 0x10E\n    InvalidMessage = 0xFFFF\n}\n\n// ---------------------------------------------------------------------------\n// Domain types.\n// ---------------------------------------------------------------------------\n\n// A prize is off-chain metadata (an obligation of the organizer), never an\n// on-chain asset. `title` and `metadata` are refs (URI + hash / inline).\nstruct Prize {\n    title: cell\n    metadata: cell\n}\n\n// DRAND network parameters. `publicKey` (BLS) is stored for off-chain / future\n// on-chain verification; the contract itself does not verify BLS in v1.\nstruct Beacon {\n    chainHash: uint256\n    genesisTime: uint32\n    period: uint32\n    publicKey: cell\n}\n\n// Immutable, organizer-provided configuration of a raffle.\nstruct RaffleConfig {\n    organizer: address\n    ticketPrice: coins\n    softCap: coins\n    hardCap: coins\n    saleStart: uint32\n    saleDeadline: uint32\n    metadata: cell\n    beacon: Cell<Beacon>\n    prizes: map<uint32, Prize>\n    // Payment asset: null => native TON; set => the jetton master this raffle is\n    // priced in (one asset per raffle; participants swap in the UI if needed).\n    paymentJetton: address?\n}\n\n// Ledger entry: a single purchase covering tickets [startIndex .. startIndex+count).\nstruct LedgerEntry {\n    count: uint32\n    buyer: address\n}\n\n// Per-participant aggregate, keyed by sha256(address) — for refunds.\nstruct Participant {\n    tickets: uint32\n    contributed: coins\n    refundClaimed: bool\n}\n\n// A resolved winner: prize `rank` goes to the owner of `ticketIndex`.\nstruct Winner {\n    ticketIndex: uint32\n    owner: address\n}\n\n// ---------------------------------------------------------------------------\n// Raffle storage (root cell = status + 3 refs). See messages.md §5.1.\n// ---------------------------------------------------------------------------\n\n// Immutable bundle. `protocolFeeBps`/`drawTimeout`/`treasury` are protocol\n// parameters stamped by the factory; the organizer does not set them.\nstruct RaffleMeta {\n    raffleId: uint64\n    factory: address\n    protocolFeeBps: uint16\n    drawTimeout: uint32\n    treasury: address\n    config: Cell<RaffleConfig>\n    // ed25519 publisher allowlist; the organizer's key is added by the factory.\n    publishers: map<uint256, uint8>\n    // Number of prizes K, counted by the factory once at creation.\n    prizeCount: uint32\n}\n\n// Mutable scalar state.\nstruct RaffleRuntime {\n    totalCollected: coins\n    ticketsSold: uint32\n    salesClosedAt: uint32\n    targetRound: uint64\n    randomness: uint256\n    drandSignature: cell?\n    drawCounter: uint64 // draw sample cursor, persists across draw batches\n    winnersDrawn: uint32\n    // The raffle's own jetton wallet for `config.paymentJetton`, discovered\n    // post-deploy via TEP-89. Null until discovered / in native mode.\n    jettonWallet: address?\n}\n\n// The four dictionaries, grouped so the root stays within 4 refs.\nstruct RaffleMaps {\n    ledgerByIndex: map<uint32, LedgerEntry> // startIndex -> (count, buyer)\n    participants: map<uint256, Participant> // sha256(addr) -> aggregate\n    winners: map<uint32, Winner>            // rank -> winner\n    // Sparse Fisher-Yates state for sampling winners WITHOUT replacement:\n    // position -> ticket index that currently lives there. Absent key => identity\n    // (position p holds ticket p). See Raffle.handleDraw and specification §7.5.\n    drawSwap: map<uint32, uint32>\n}\n\nstruct RaffleStorage {\n    status: uint8\n    meta: Cell<RaffleMeta>\n    runtime: Cell<RaffleRuntime>\n    maps: Cell<RaffleMaps>\n}\n\nfun RaffleStorage.load(): RaffleStorage {\n    return RaffleStorage.fromCell(contract.getData());\n}\n\nfun RaffleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ---------------------------------------------------------------------------\n// Factory storage. See messages.md §4.1.\n// ---------------------------------------------------------------------------\nstruct FactoryStorage {\n    owner: address         // v1: protocol admin; future: DAO address\n    protocolFeeBps: uint16 // v1: 30 (0.3%)\n    drawTimeout: uint32    // v1: 259200 (72h)\n    treasury: address\n    raffleCount: uint64    // source of raffle_id\n}\n\nfun FactoryStorage.load(): FactoryStorage {\n    return FactoryStorage.fromCell(contract.getData());\n}\n\nfun FactoryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ---------------------------------------------------------------------------\n// Fairness helpers. See specification §7.5.\n// ---------------------------------------------------------------------------\n\n// Deterministic draw index for a given counter, uniform in [0, n):\n//   idx = sha256(randomness ‖ le64(counter)) mod n\n// In handleDraw `n` is the shrinking pool size `remaining` (sampling without\n// replacement), so this yields the position to pick, never a rejected sample.\nfun computeDrawIndex(randomness: uint256, counter: uint64, n: int): int {\n    val h = beginCell()\n        .storeUint(randomness, 256)\n        .storeUint(counter, 64)\n        .endCell()\n        .beginParse()\n        .bitsHash();\n    return h % n;\n}\n\n// Authorization preimage signed by a publisher (ed25519):\n//   auth = (raffleId ‖ targetRound ‖ randomness)\n// The signer signs sha256(auth); CHKSIGNS verifies against that.\nfun buildAuthSlice(raffleId: uint64, targetRound: uint64, randomness: uint256): slice {\n    return beginCell()\n        .storeUint(raffleId, 64)\n        .storeUint(targetRound, 64)\n        .storeUint(randomness, 256)\n        .endCell()\n        .beginParse();\n}\n\n// Counts prize entries in the config (K). Done once by the factory at creation.\nfun countPrizes(prizes: map<uint32, Prize>): int {\n    var cnt = 0;\n    var e = prizes.findFirst();\n    while (e.isFound) {\n        cnt += 1;\n        e = prizes.iterateNext(e);\n    }\n    return cnt;\n}\n\n// DRAND target round fixed at sales close. See specification §7.2.\n//   round_at(t)  = floor((t - genesis) / period) + 1\n//   target_round = round_at(t) + 1   (first round strictly after t)\nfun computeTargetRound(closedAt: int, genesisTime: int, period: int): int {\n    val roundAt = (closedAt - genesisTime) / period + 1;\n    return roundAt + 1;\n}\n\n// An empty TEP-74 `forward_payload` (Either Cell ^Cell): a single 0 bit selects\n// the inline variant with no data. Used when we forward jettons without a note.\nfun emptyForwardPayload(): slice {\n    return beginCell().storeUint(0, 1).endCell().beginParse();\n}\n\n// Emits an opcode-tagged event as an external-out log message (dest = addr_none):\n// no value, cannot change state, visible to indexers/UI. IGNORE_ERRORS so a\n// failed log action never reverts the real state transition. See messages.md §5.10.\nfun emitEvent<T>(body: T) {\n    val ev = createExternalLogMessage({ dest: createAddressNone(), body });\n    ev.send(SEND_MODE_IGNORE_ERRORS);\n}\n"
+    },
+    {
+      "filename": "tmp/46bccffb-77ca-410e-836f-f55e392747cf/contracts/messages.tolk",
+      "contents": "// OpenRaff v1 — incoming message bodies (opcodes). See messages.md §2.\n//\n// Note on the organizer publisher key: on-chain the organizer is identified by\n// a TON address (receives funds, may cancel), but a *publisher* is an ed25519\n// key. These are distinct, so `CreateRaffle` carries the organizer's ed25519\n// pubkey explicitly and the factory force-adds it to the allowlist (the\n// always-available fallback publisher of specification §7.3).\n\nimport \"common\"\n\n// ------------------------------- Factory -----------------------------------\n\nstruct (0xF0000001) CreateRaffle {\n    queryId: uint64\n    organizerPubkey: uint256        // ed25519; force-added to publishers\n    config: Cell<RaffleConfig>\n    publishers: map<uint256, uint8> // extra auto-publisher keys (may be empty)\n}\n\n// Admin stopgap until DAO governance. Affects future raffles only.\nstruct (0xF0000002) SetParams {\n    queryId: uint64\n    protocolFeeBps: uint16\n    drawTimeout: uint32\n    treasury: address\n}\n\n// -------------------------------- Raffle -----------------------------------\n\nstruct (0xA0000001) BuyTicket {\n    queryId: uint64\n    count: uint32\n}\n\nstruct (0xA0000002) CloseSales {\n    queryId: uint64\n}\n\nstruct (0xA0000003) SubmitRandomness {\n    queryId: uint64\n    round: uint64\n    randomness: uint256\n    signature: cell          // DRAND BLS signature (stored, not verified in v1)\n    publisherPubkey: uint256 // ed25519\n    edSignature: cell        // ed25519 signature (512 bits) over the auth preimage\n}\n\nstruct (0xA0000007) DrawStep {\n    queryId: uint64\n}\n\nstruct (0xA0000004) Settle {\n    queryId: uint64\n}\n\nstruct (0xA0000005) Cancel {\n    queryId: uint64\n}\n\nstruct (0xA0000006) ClaimRefund {\n    queryId: uint64\n}\n\n// Permissionless trigger for the one-off TEP-89 wallet discovery of a jetton\n// raffle (the UI calls it once after creation). No-op / rejected in native mode.\nstruct (0xA0000008) SetupJettonWallet {\n    queryId: uint64\n}\n\n// --------------------------- Jetton standard -------------------------------\n// TEP-74 (jettons) + TEP-89 (wallet discovery). `forward_payload` and the\n// optional trailing `owner_address` are consumed as an opaque remainder.\n\n// Incoming: our jetton wallet notifies us that `amount` jettons arrived from\n// `sender` (the buyer). This is the jetton-path equivalent of BuyTicket.\nstruct (0x7362D09C) JettonTransferNotification {\n    queryId: uint64\n    amount: coins\n    sender: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Outgoing: instruct our jetton wallet to send `amount` jettons to `destination`\n// (payout / refund / excess). `responseDestination` receives the TON excesses.\nstruct (0x0F8A7EA5) JettonTransfer {\n    queryId: uint64\n    amount: coins\n    destination: address\n    responseDestination: address\n    customPayload: cell?\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Outgoing: ask the jetton master for our wallet address (TEP-89).\nstruct (0x2C76B973) ProvideWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeAddress: bool\n}\n\n// Incoming: the jetton master's reply carrying our wallet address (TEP-89).\nstruct (0xD1735400) TakeWalletAddress {\n    queryId: uint64\n    walletAddress: address\n    rest: RemainingBitsAndRefs\n}\n\n// ------------------------- Events (external-out) ---------------------------\n// Emitted as external-out log messages (dest = addr_none) at each significant\n// transition, so an indexer / UI can reconstruct state without reading storage.\n// They carry no value and cannot change state. Opcodes in the 0xE0.. range.\n\n// Factory event: a new raffle instance was deployed.\nstruct (0xE0000001) EvRaffleCreated {\n    raffleId: uint64\n    instance: address\n    organizer: address\n    paymentJetton: address?\n}\n\n// Raffle events.\nstruct (0xE0000010) EvTicketPurchased {\n    buyer: address\n    count: uint32\n    ticketsSold: uint32\n    totalCollected: coins\n}\n\nstruct (0xE0000011) EvSalesClosed {\n    salesClosedAt: uint32\n    targetRound: uint64\n    ticketsSold: uint32\n    totalCollected: coins\n}\n\nstruct (0xE0000012) EvRandomnessPublished {\n    round: uint64\n    randomness: uint256\n}\n\nstruct (0xE0000013) EvWinnerResolved {\n    rank: uint32\n    ticketIndex: uint32\n    owner: address\n}\n\n// Emitted at the end of every draw batch; the draw is complete when\n// winnersDrawn == target.\nstruct (0xE0000014) EvDrawProgress {\n    winnersDrawn: uint32\n    target: uint32\n}\n\nstruct (0xE0000015) EvSettled {\n    fee: coins\n    payout: coins\n}\n\nstruct (0xE0000016) EvCancelled {\n    queryId: uint64\n}\n\nstruct (0xE0000017) EvRefunded {\n    buyer: address\n    amount: coins\n}\n\n// Jetton wallet discovery completed (TEP-89).\nstruct (0xE0000018) EvWalletDiscovered {\n    jettonWallet: address\n}\n\n// A bounceable payout/refund bounced back and was recovered (settle downgraded\n// to retry, or the participant's refund flag was cleared). See\n// Raffle.onBouncedMessage.\nstruct (0xE0000019) EvPayoutBounced {\n    recipient: address\n}\n"
+    }
+  ]
+}

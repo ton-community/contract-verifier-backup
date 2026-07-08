@@ -1,0 +1,4166 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from sooth_adjudicator.tolk, common.tolk, errors.tolk, lifecycle.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  92353 DECLMETHOD adjudicatorState()\n  83103 DECLMETHOD isGuardian()\n  96759 DECLMETHOD marketState()\n  124015 DECLMETHOD canSettle()\n  109386 DECLMETHOD adjudicatorType()\n  115070 DECLMETHOD supportsTStar()\n  // 39 functions inlined in-place:\n  // - requireNotPaused (7 calls)\n  // - infiniteDeadline (1 call)\n  // - lifecycleLive (1 call)\n  // - lifecycleResolving (1 call)\n  // - lifecycleAttested (1 call)\n  // - lifecycleSettled (1 call)\n  // - invalidOutcome (16 calls)\n  // - Storage.load (5 calls)\n  // - Storage.save (15 calls)\n  // - executeSetLaunchpad (1 call)\n  // - executeAddGuardian (1 call)\n  // - executeRemoveGuardian (1 call)\n  // - executeSetRegistry (1 call)\n  // - executeProposeAdmin (1 call)\n  // - executeAcceptAdmin (1 call)\n  // - executeSetPaused (1 call)\n  // - executeConfigureMarket (1 call)\n  // - executeResolveMarket (1 call)\n  // - executeAttestMarket (1 call)\n  // - executeSettleMarket (1 call)\n  // - executeDisputeMarket (1 call)\n  // - executeInvalidateMarket (1 call)\n  // - executePostSettlementRoot (1 call)\n  // - executeClaimMarketFees (1 call)\n  // - onBouncedMessage (0 calls)\n  // - sendRegistryLifecycle (4 calls)\n  // - sendLaunchpadConfigurationConfirmation (1 call)\n  // - requireAdmin (7 calls)\n  // - requireLaunchpad (1 call)\n  // - requireRegistry (1 call)\n  // - validateOutcome (1 call)\n  // - validateAdjudicatorConfig (1 call)\n  // - emitAdjudicatorEvent (15 calls)\n  // - phaseIdle (8 calls)\n  // - phaseActive (3 calls)\n  // - phaseResolved (4 calls)\n  // - phaseAttested (5 calls)\n  // - phaseSettled (7 calls)\n  // - phaseDisputed (3 calls)\n  // - MapLookupResult<AdjudicatorMarketState>.loadValue (8 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      x{fffffffe} SDBEGINSQ\n      63 THROWIFNOT\n      PLDREF\n      CTOS\n      x{616a6665} SDBEGINSQ\n      NIP\n      IFJMP:<{\n      }>\n      63 THROW\n    }>\n    DUP\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    64 LDI\n    64 LDI\n    1 LDI\n    PLDREF\n    s0 s6 XCHG\n    x{736c6e63} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s9 s3 PUSH2\n      SDEQ\n      1012 THROWIFNOT\n      s0 s8 XCHG\n      INC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      STOPTREF\n      s1 s2 XCHG\n      STREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000600000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000000} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      6 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{61677561} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s10 s4 PUSH2\n      SDEQ\n      1012 THROWIFNOT\n      1 PUSHINT\n      NEWC\n      64 STI\n      s0 s6 s3 XCHG3\n      267 PUSHINT\n      DICTSETB\n      s0 s8 XCHG\n      INC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      STOPTREF\n      s1 s6 XCHG\n      STREF\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000700000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000001} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      7 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{72677561} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s10 s4 PUSH2\n      SDEQ\n      1012 THROWIFNOT\n      s5 s2 XCHG2\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s0 s8 XCHG\n      INC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000700000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000000} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      7 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{73726567} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s10 s4 PUSH2\n      SDEQ\n      1012 THROWIFNOT\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      64 LDI\n      ENDS\n      s0 s10 XCHG\n      INC\n      s0 s6 XCHG\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      s1 s9 XCHG\n      64 STI\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      STOPTREF\n      STREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000900000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000000} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      9 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{7061646d} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s10 s4 PUSH2\n      SDEQ\n      1012 THROWIFNOT\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      NOW\n      86400 PUSHINT\n      ADD\n      s0 s10 XCHG\n      INC\n      SWAP\n      NEWC\n      STOPTSTDADDR\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s9 XCHG\n      64 STI\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      STOPTREF\n      STREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000b00000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000000} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      11 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{6161646d} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s6 POP\n      INMSG_SRC\n      s0 s5 XCHG\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      64 LDI\n      ENDS\n      OVER\n      ISNULL\n      1013 THROWIF\n      s10 s1 PUXC\n      SDEQ\n      1013 THROWIFNOT\n      NOW\n      LEQ\n      1093 THROWIFNOT\n      s8 PUSH\n      PUSHNULL\n      s0 s9 XCHG\n      INC\n      s0 s2 XCHG\n      NEWC\n      STOPTSTDADDR\n      s1 s9 XCHG\n      STOPTSTDADDR\n      0 PUSHINT\n      64 STIR\n      ENDC\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTREF\n      s1 s6 XCHG\n      STREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s0 s1 PUXC\n      64 STI\n      NIP\n      s4 PUSH\n      1 STIR\n      s4 POP\n      s0 s3 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000c00000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      1 2 BLKDROP2\n      STSTDADDR\n      x{00020000000000000000} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      12 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{70617573} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      s6 POP\n      s0 s5 XCHG\n      1 PLDI\n      INMSG_SRC\n      s5 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      LDOPTREF\n      NIP\n      LDREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      OVER\n      SDEQ\n      1012 THROWIFNOT\n      s1 s0 s4 PUXC2\n      INC\n      DUP\n      NEWC\n      32 STU\n      s5 PUSH\n      32 STUR\n      s5 POP\n      s3 s4 PUXC\n      64 STI\n      s3 POP\n      s6 s2 PUXC\n      64 STI\n      s6 POP\n      s3 s5 PUXC\n      1 STI\n      s3 POP\n      s3 s2 PUXC\n      STREF\n      s3 POP\n      s0 s2 XCHG\n      ENDC\n      c4 POP\n      s0 s2 XCHG\n      1 PUSHINT\n      0 PUSHINT\n      CONDSEL\n      NEWC\n      x{616576740000000800000000} STSLICECONST\n      s2 PUSH\n      32 STUR\n      s2 POP\n      -ROT\n      STSTDADDR\n      x{0002} STSLICECONST\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      8 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{6366676d} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 LDU\n      LDSTDADDR\n      64 PLDI\n      INMSG_SRC\n      s0 s8 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s12 s3 PUSH2\n      SDEQ\n      1054 THROWIFNOT\n      s13 PUSH\n      1044 THROWIF\n      s8 PUSH\n      3600 PUSHINT\n      GEQ\n      1049 THROWIFNOT\n      s8 PUSH\n      2592000 PUSHINT\n      LEQ\n      1049 THROWIFNOT\n      s7 PUSH\n      0 GTINT\n      1002 THROWIFNOT\n      s5 PUSH\n      0 GTINT\n      1043 THROWIFNOT\n      s7 s0 PUSH2\n      32 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      1050 THROWIF\n      NOW\n      NEWC\n      x{01020000000000000000} STSLICECONST\n      s1 s7 XCHG\n      64 STI\n      0 PUSHINT\n      64 STIR\n      s1 s7 XCHG\n      STSTDADDR\n      0 PUSHINT\n      256 STUR\n      s5 PUSH\n      64 STIR\n      0 PUSHINT\n      64 STIR\n      s0 s7 s6 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s9 XCHG\n      INC\n      s0 s10 XCHG\n      INC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s2 s(-1) PUXC\n      STSTDADDR\n      STOPTREF\n      s1 s4 XCHG\n      STREF\n      s1 s7 XCHG\n      STOPTREF\n      ENDC\n      s6 PUSH\n      NEWC\n      32 STU\n      s8 PUSH\n      32 STUR\n      s8 POP\n      s5 s7 PUXC\n      64 STI\n      s5 POP\n      s3 s4 PUXC\n      64 STI\n      s3 POP\n      s7 s2 PUXC\n      1 STI\n      s7 POP\n      s4 s6 PUXC\n      STREF\n      s4 POP\n      s0 s3 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{6165767400000001} STSLICECONST\n      s5 PUSH\n      32 STUR\n      s2 PUSH\n      32 STUR\n      s2 POP\n      s3 s3 XCHG2\n      STSTDADDR\n      x{0102} STSLICECONST\n      s2 PUSH\n      64 STIR\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      1 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      10000000 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1633903462 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      32 STU\n      64 STI\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{7265736f} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 LDU\n      8 LDU\n      256 LDU\n      64 PLDI\n      INMSG_SRC\n      s0 s9 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s14 PUSH\n      1044 THROWIF\n      s7 PUSH\n      3 LESSINT\n      1003 THROWIFNOT\n      s8 s0 PUSH2\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      NIP\n      64 LDI\n      NIP\n      64 LDI\n      64 LDI\n      NIP\n      LDSTDADDR\n      256 LDU\n      NIP\n      64 LDI\n      64 LDI\n      NIP\n      ENDS\n      17 s() PUSH\n      s2 PUSH\n      SDEQ\n      1052 THROWIFNOT\n      s3 PUSH\n      1 EQINT\n      IF:<{\n        s3 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s3 XCHG\n        5 EQINT\n        0 NEQINT\n      }>\n      1053 THROWIFNOT\n      s8 PUSH\n      -1 GTINT\n      1002 THROWIFNOT\n      s8 PUSH\n      0 GTINT\n      IF:<{\n        s8 PUSH\n        NOW\n        LEQ\n        1088 THROWIFNOT\n        s8 s1 PUSH2\n        LEQ\n        1088 THROWIFNOT\n      }>\n      OVER\n      63 PUSHPOW2DEC\n      NEQ\n      IF:<{\n        NOW\n        s2 s13 PUSH2\n        ADD\n        LESS\n        1049 THROWIFNOT\n      }>\n      s10 PUSH\n      NOW\n      s15 PUSH\n      ADD\n      NEWC\n      x{02} STSLICECONST\n      s1 s2 XCHG\n      8 STU\n      s10 PUSH\n      64 STIR\n      s1 s3 XCHG\n      64 STI\n      s2 PUSH\n      64 STIR\n      STSTDADDR\n      s1 s9 XCHG\n      256 STU\n      64 STI\n      0 PUSHINT\n      64 STIR\n      s9 s1 PUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s12 XCHG\n      INC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      STOPTREF\n      OVER\n      STREFR\n      s1 s10 XCHG\n      STOPTREF\n      ENDC\n      OVER\n      NEWC\n      32 STU\n      s9 PUSH\n      32 STUR\n      s9 POP\n      s7 s8 PUXC\n      64 STI\n      s7 POP\n      s5 s6 PUXC\n      64 STI\n      s5 POP\n      s9 s4 PUXC\n      1 STI\n      s9 POP\n      s5 s8 PUXC\n      STREF\n      s5 POP\n      s0 s4 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{6165767400000002} STSLICECONST\n      OVER\n      32 STUR\n      s3 PUSH\n      32 STUR\n      s3 POP\n      s5 s2 XCHG2\n      STSTDADDR\n      x{02} STSLICECONST\n      s2 PUSH\n      8 STUR\n      s1 s5 XCHG\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      2 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      NOW\n      s0 s2 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1818846821 PUSHINT\n        139 STUR\n        s1 s4 XCHG\n        32 STU\n        x{03} STSLICECONST\n        s1 s3 XCHG\n        8 STU\n        s1 s2 XCHG\n        64 STI\n        64 STI\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        5 BLKDROP\n      }>\n    }>\n    x{61747473} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 PLDU\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s11 PUSH\n      1044 THROWIF\n      s5 s0 PUSH2\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      64 LDI\n      64 LDI\n      64 LDI\n      LDSTDADDR\n      256 LDU\n      64 LDI\n      64 LDI\n      ENDS\n      s0 s8 XCHG\n      2 EQINT\n      1053 THROWIFNOT\n      NEWC\n      x{03} STSLICECONST\n      s7 PUSH\n      8 STUR\n      s6 PUSH\n      64 STIR\n      s1 s5 XCHG\n      64 STI\n      s3 PUSH\n      64 STIR\n      s1 s2 XCHG\n      STSTDADDR\n      256 STU\n      s1 s2 XCHG\n      64 STI\n      s1 s4 XCHG\n      64 STI\n      s0 s9 s4 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s12 XCHG\n      INC\n      s0 s7 XCHG\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      STSTDADDR\n      s1 s4 XCHG\n      STOPTREF\n      s2 PUSH\n      STREFR\n      s1 s10 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s9 PUSH\n      32 STUR\n      s9 POP\n      s7 s8 PUXC\n      64 STI\n      s7 POP\n      s5 s6 PUXC\n      64 STI\n      s5 POP\n      s9 s4 PUXC\n      1 STI\n      s9 POP\n      s5 s8 PUXC\n      STREF\n      s5 POP\n      s0 s4 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{6165767400000003} STSLICECONST\n      OVER\n      32 STUR\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s5 s3 XCHG2\n      STSTDADDR\n      x{03} STSLICECONST\n      s5 PUSH\n      8 STUR\n      s1 s4 XCHG\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      3 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      NOW\n      s0 s3 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1818846821 PUSHINT\n        139 STUR\n        32 STU\n        x{04} STSLICECONST\n        s1 s3 XCHG\n        8 STU\n        64 STI\n        64 STI\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        5 BLKDROP\n      }>\n    }>\n    x{7365746c} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 PLDU\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s11 PUSH\n      1044 THROWIF\n      s5 s0 PUSH2\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      64 LDI\n      64 LDI\n      64 LDI\n      LDSTDADDR\n      256 LDU\n      64 LDI\n      64 LDI\n      NIP\n      ENDS\n      s0 s7 XCHG\n      3 EQINT\n      1053 THROWIFNOT\n      NOW\n      s3 PUSH\n      GEQ\n      1056 THROWIFNOT\n      NOW\n      NEWC\n      x{04} STSLICECONST\n      s7 PUSH\n      8 STUR\n      s6 PUSH\n      64 STIR\n      s1 s5 XCHG\n      64 STI\n      s1 s3 XCHG\n      64 STI\n      STSTDADDR\n      256 STU\n      s1 s4 XCHG\n      64 STI\n      s3 PUSH\n      64 STIR\n      s0 s9 s4 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s12 XCHG\n      INC\n      s0 s7 XCHG\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      STSTDADDR\n      s1 s4 XCHG\n      STOPTREF\n      s2 PUSH\n      STREFR\n      s1 s10 XCHG\n      STOPTREF\n      ENDC\n      s4 PUSH\n      NEWC\n      32 STU\n      s9 PUSH\n      32 STUR\n      s9 POP\n      s7 s8 PUXC\n      64 STI\n      s7 POP\n      s5 s6 PUXC\n      64 STI\n      s5 POP\n      s9 s4 PUXC\n      1 STI\n      s9 POP\n      s5 s8 PUXC\n      STREF\n      s5 POP\n      s0 s4 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{6165767400000004} STSLICECONST\n      OVER\n      32 STUR\n      s4 PUSH\n      32 STUR\n      s4 POP\n      s5 s3 XCHG2\n      STSTDADDR\n      x{04} STSLICECONST\n      s5 PUSH\n      8 STUR\n      s4 PUSH\n      64 STIR\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      4 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1818846821 PUSHINT\n        139 STUR\n        32 STU\n        x{05} STSLICECONST\n        s1 s3 XCHG\n        8 STU\n        64 STI\n        64 STI\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        5 BLKDROP\n      }>\n    }>\n    x{64737074} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 PLDU\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s11 PUSH\n      1044 THROWIF\n      s10 s2 PUSH2\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      1057 THROWIFNOT\n      s5 s0 PUSH2\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      NIP\n      64 LDI\n      NIP\n      64 LDI\n      64 LDI\n      LDSTDADDR\n      256 LDU\n      NIP\n      64 LDI\n      64 LDI\n      ENDS\n      s5 PUSH\n      2 EQINT\n      IF:<{\n        s5 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s5 XCHG\n        3 EQINT\n        0 NEQINT\n      }>\n      1053 THROWIFNOT\n      NOW\n      s0 s3 XCHG2\n      LESS\n      1058 THROWIFNOT\n      NEWC\n      x{05020000000000000000} STSLICECONST\n      s1 s3 XCHG\n      64 STI\n      0 PUSHINT\n      64 STIR\n      s1 s2 XCHG\n      STSTDADDR\n      0 PUSHINT\n      256 STUR\n      64 STI\n      64 STI\n      s6 s1 PUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s9 XCHG\n      INC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      STOPTREF\n      OVER\n      STREFR\n      s1 s7 XCHG\n      STOPTREF\n      ENDC\n      OVER\n      NEWC\n      32 STU\n      s6 PUSH\n      32 STUR\n      s6 POP\n      s4 s5 PUXC\n      64 STI\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s6 s1 PUXC\n      1 STI\n      s6 POP\n      s2 s5 PUXC\n      STREF\n      1 2 BLKDROP2\n      ENDC\n      c4 POP\n      NOW\n      NEWC\n      x{6165767400000005} STSLICECONST\n      s5 PUSH\n      32 STUR\n      s2 PUSH\n      32 STUR\n      s2 POP\n      s3 s3 XCHG2\n      STSTDADDR\n      x{0502} STSLICECONST\n      s1 s2 XCHG\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      5 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      NOW\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1818846821 PUSHINT\n        139 STUR\n        s1 s2 XCHG\n        32 STU\n        x{0102} STSLICECONST\n        64 STI\n        0 PUSHINT\n        64 STIR\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        3 BLKDROP\n      }>\n    }>\n    x{696e766c} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 PLDU\n      INMSG_SRC\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDREF\n      LDOPTREF\n      ENDS\n      s11 PUSH\n      1044 THROWIF\n      OVER\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      1059 THROWIF\n      s11 PUSH\n      SDEQ\n      1059 THROWIFNOT\n      s5 s0 PUSH2\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      NIP\n      64 LDI\n      NIP\n      64 LDI\n      64 LDI\n      NIP\n      LDSTDADDR\n      256 LDU\n      NIP\n      64 LDI\n      64 LDI\n      NIP\n      ENDS\n      s0 s3 XCHG\n      4 NEQINT\n      1053 THROWIFNOT\n      NOW\n      NEWC\n      x{04020000000000000000} STSLICECONST\n      s1 s3 XCHG\n      64 STI\n      0 PUSHINT\n      64 STIR\n      STSTDADDR\n      0 PUSHINT\n      256 STUR\n      s1 s2 XCHG\n      64 STI\n      OVER\n      64 STIR\n      s0 s7 s2 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      s0 s10 XCHG\n      INC\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTREF\n      STREF\n      s1 s7 XCHG\n      STOPTREF\n      ENDC\n      OVER\n      NEWC\n      32 STU\n      s6 PUSH\n      32 STUR\n      s6 POP\n      s4 s5 PUXC\n      64 STI\n      s4 POP\n      s2 s3 PUXC\n      64 STI\n      s2 POP\n      s6 s1 PUXC\n      1 STI\n      s6 POP\n      s2 s5 PUXC\n      STREF\n      1 2 BLKDROP2\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000a} STSLICECONST\n      s1 s4 XCHG\n      32 STU\n      s3 PUSH\n      32 STUR\n      s3 POP\n      s0 s2 XCHG\n      STSTDADDR\n      x{0402} STSLICECONST\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      10 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{70726f74} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      32 LDU\n      256 PLDU\n      INMSG_SRC\n      s7 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      NIP\n      LDOPTREF\n      NIP\n      LDREF\n      LDOPTREF\n      ENDS\n      s4 s(-1) PUXC\n      32 PUSHINT\n      DICTUGET\n      1051 THROWIFNOT\n      8 LDU\n      8 LDU\n      64 LDI\n      64 LDI\n      NIP\n      64 LDI\n      NIP\n      LDSTDADDR\n      256 LDU\n      NIP\n      64 LDI\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      s5 PUSH\n      SDEQ\n      1052 THROWIFNOT\n      s0 s2 XCHG\n      4 EQINT\n      1053 THROWIFNOT\n      OVER\n      0 GTINT\n      1055 THROWIFNOT\n      s4 PUSH\n      0 GTINT\n      1002 THROWIFNOT\n      s0 s2 XCHG\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      64 LDI\n      NIP\n      ENDS\n      DUP\n      ISNULL\n      1041 THROWIF\n      s5 PUSH\n      50000000 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1936879476 PUSHINT\n      139 STUR\n      32 STU\n      s1 s4 XCHG\n      256 STU\n      ENDC\n      s0 s8 XCHG\n      INC\n      DUP\n      NEWC\n      32 STU\n      s8 PUSH\n      32 STUR\n      s8 POP\n      s6 s7 PUXC\n      64 STI\n      s6 POP\n      s4 s5 PUXC\n      64 STI\n      s4 POP\n      s8 s3 PUXC\n      1 STI\n      s8 POP\n      s6 s7 PUXC\n      STREF\n      s6 POP\n      s0 s5 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000d} STSLICECONST\n      s1 s5 XCHG\n      32 STU\n      s2 PUSH\n      32 STUR\n      s2 POP\n      s3 s3 XCHG2\n      STSTDADDR\n      x{04} STSLICECONST\n      s1 s2 XCHG\n      8 STU\n      s1 s2 XCHG\n      64 STI\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      13 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{636d6665} SDBEGINSQ\n    IFJMP:<{\n      s7 POP\n      s0 s6 XCHG\n      LDSTDADDR\n      32 LDU\n      LDGRAMS\n      LDSTDADDR\n      LDSTDADDR\n      64 LDU\n      LDGRAMS\n      LDGRAMS\n      INMSG_SRC\n      INMSG_VALUE\n      s15 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      LDOPTREF\n      NIP\n      LDREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      s2 PUSH\n      SDEQ\n      1012 THROWIFNOT\n      16 s() PUSH\n      1044 THROWIF\n      s8 PUSH\n      0 GTINT\n      1002 THROWIFNOT\n      s8 PUSH\n      63 PUSHPOW2DEC\n      LEQ\n      1005 THROWIFNOT\n      s4 PUSH\n      0 GTINT\n      1002 THROWIFNOT\n      s3 PUSH\n      0 GTINT\n      1002 THROWIFNOT\n      s4 PUSH\n      10000000 PUSHINT\n      ADD\n      TUCK\n      GEQ\n      1019 THROWIFNOT\n      s0 s14 XCHG\n      INC\n      DUP\n      NEWC\n      32 STU\n      s14 PUSH\n      32 STUR\n      s14 POP\n      s12 s13 PUXC\n      64 STI\n      s12 POP\n      s10 s11 PUXC\n      64 STI\n      s10 POP\n      s14 s9 PUXC\n      1 STI\n      s14 POP\n      s12 s13 PUXC\n      STREF\n      s12 POP\n      s0 s11 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{616576740000000e} STSLICECONST\n      s5 PUSH\n      32 STUR\n      s9 PUSH\n      32 STUR\n      s9 POP\n      s7 s8 XCHG2\n      STSTDADDR\n      x{0002} STSLICECONST\n      s2 PUSH\n      64 STIR\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      14 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      NEWC\n      x{616a6665} STSLICECONST\n      s1 s3 XCHG\n      32 STU\n      SWAP\n      STGRAMS\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      64 STU\n      s0 s4 XCHG2\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    7 BLKDROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  adjudicatorState() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    64 LDI\n    64 LDI\n    1 LDI\n    PLDREF\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    LDOPTREF\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    ENDS\n    CTOS\n    LDOPTSTDADDR\n    LDOPTSTDADDR\n    64 LDI\n    ENDS\n    2SWAP\n  }>\n  isGuardian() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDOPTREF\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n  }>\n  marketState() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    ENDS\n    s1 s(-1) PUXC\n    32 PUSHINT\n    DICTUGET\n    1051 THROWIFNOT\n    8 LDU\n    8 LDU\n    64 LDI\n    64 LDI\n    64 LDI\n    LDSTDADDR\n    256 LDU\n    64 LDI\n    64 LDI\n    ENDS\n  }>\n  canSettle() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    ENDS\n    32 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      FALSE\n    }>\n    8 LDU\n    8 LDU\n    NIP\n    64 LDI\n    NIP\n    64 LDI\n    NIP\n    64 LDI\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    64 LDI\n    NIP\n    64 LDI\n    NIP\n    ENDS\n    SWAP\n    3 NEQINT\n    IFJMP:<{\n      DROP\n      FALSE\n    }>\n    NOW\n    LEQ\n  }>\n  adjudicatorType() PROC:<{\n    0 PUSHINT\n  }>\n  supportsTStar() PROC:<{\n    TRUE\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECOQEADnoAART/APSkE/S88sgLAQIBYgIDBKDQ+JGOF9csJ/////Tyv9dM0NcsIwtTMywx3PI/4CDtRNDTH9Mf0j/SP9IA10wG1ywjm2NzHOMC1ywjCzurDOMC1ywjkzurDOMC1ywjm5MrPAQFBgcCASAvMAH+Nwb6SDD4kgbQ+kj6SDH0BNT0BNFTk8cF8uP0CKQDyPpSFPpS9AASzBX0AMkkyMsfJM8LHzRSJMo/MlICyj8xJM8KADRSBMwzAsntVMiLxhZXZ0AAAABgAAAACM8WIs8LH2wS+lKLoAAgAAAAAAAAAAjPFsnIz48YAAR2zwv3cQgB/jcG+kgw+JIG0PpI+kj0BNT0BNFTpMcF8uP0ccjKP0BjgQEL9EEIpAPI+lIS+lIX9AAWzPQAySTIyx8kzwsfNFIkyj8yUgLKPzEkzwoANFIEzDMCye1UyIvGFldnQAAAAHAAAAAIzxYizwsfbBL6UougACAAAAAAAAAAGM8WycgJAvw3BvpIMPiSBtD6SPpI9ATU9ATRU6THBfLj9FBSgQEL9FkwCKQDyPpSEvpSF/QAEswV9ADJJMjLHyTPCx80UiTKPzJSAso/MSTPCgA0UgTMMwLJ7VTIi8YWV2dAAAAAcAAAAAjPFiLPCx9sEvpSi6AAIAAAAAAAAAAIzxbJyIkdCgQ24wLXLCODCyNs4wLXLCMLCyNs4wLXLCODC6ucCwwNDgAQzwthzMlw+wABIInPFnfPC/dxzwthzMlw+wAdAB7PFnfPC/dxzwthzMlw+wAD/jcG+lAw+JIG0PpI+kj0BNT0BNFTpMcF8uP0AdD6UDH6UNI/0QqkBsj6VPpUGco/yQPI+lIS+lL0AMwV9ADJJMjLHyTPCx80UiTKPzJSAso/MSTPCgA0UgTMMwLJ7VTIi8YWV2dAAAAAkAAAAAjPFiLPCx9sEvpSic8WyciJzxYPHRAB/DcG+kgw+JIG0PpI+kj0BNT0BNFTpMcF8uP0AdD6UPpQMdI/MdH4I4IBUYCgCqQByPpUFvpUGco/yQPI+lIS+lL0AMwV9ADJJMjLHyTPCx80UiTKPzJSAso/MSTPCgA0UgTMMwLJ7VTIi8YWV2dAAAAAsAAAAAjPFiLPCx9sEhEB/DA2+JIF0PpIMfpI9ATU9ATRAdD6UPpQ0j/RIW7y0/VSoscF8uP1+CO78uRFKG0JpALI+lQZ+lRwzwo/yQjI+lIU+lIS9AAWzBX0AMkkyMsfJM8LHzRSJMo/MlICyj8xJM8KADRSBMwzAsntVMiLxhZXZ0AAAADAAAAACM8WIhIC/I56MTYF1woA+JIl0PpI+kgx9AQx1DH0BDHRIccF8uP0VEEVpCDIyx8lzwsfNVI1yj8zUmPKPzZSNsoAM1IzzDMCye1UAnFw4wTIi8YWV2dAAAAAgAAAAAjPFiLPCx8yWfpSz4gACso/ycjPjxgABHjPC/dxzwthzMlw+wDgiRMUABQAAgAAAAAAAAAAABp5zwv3cc8LYczJcPsAAEr6UougACAAAAAAAAAACM8WycjPjxgABIALzwv3cc8LYczJcPsAAFTPCx9sEvpSi6AAIAAAAAAAAAAIzxbJyM+PGAAEgAzPC/dxzwthzMlw+wAACGNmZ20EOtcn4wLXLCOTK5t84wLXLCMLo6Oc4wLXLCObK6NkFRYXGAH+NwbTH/pI1wo/+JII0PpI+kj0BNT0BNFTw8cF8uQeLfLUFCiBDhC+8uQZKIIIJ40Au/LkGSfCAPLj6iXCAPLkE1NwgCD0Dm+hMfLUGvgjyIugECAAAAAAAAAACM8WF8o/cM8KPxf6UnDPC/8lzwo/cM8KP1Qgd4Ag9EMJpAqkAxkC/jcG0x/TB9P/1wo/+JIJ0PpI+kj0BNT0BNEu8tQUJ8ED8uPrU4CAIPQO8uQb0wfTBzHSPzHSP9I/MfpI0/8x0j/SPzHRVhEixwXy5BwjwAGSM3+VA8AFwwDi8uQdKML/8uPqKMIAnSj4I7vy5EBTgbvy5EDeIYQ+veMAKvgjL6AbHAH+NwbXCx/4kgbQ+kj6SPQE1PQE0Svy1BRTUIAg9A7y5BvTB9MH0j/SP9I/+kjT/9I/0j/RCMAC8uQdyM+EDifPCwcmzwo/Fco/I88KPxL6Usv/Eso/FMo/VCCVgCD0QwykB8j6Uhb6UhT0ACLPFBr0AMkkyMsfKc8LHzlSeco/Nx8ENuMC1ywjI5uDpOMC1ywjS3OzZOMC1ywjg5N7pCEiIyQB/Mj6UlIg+lL0ABTMF/QAySbIyx8ozwsfOFJYyj81UjXKPzNSc8oAN1JHzDQDye1UyIuGFldnQAAAABjPFiXPCx8izwsfMlAz+lLPiAQKIs8KP8nIz48YAARxzwv3cc8LYczJcPsAggiYloDIz4UIEvpSAfoCghBhY2NmzwuKEhoAEMsfyj/JcPsAABL4I1MtoLny5BkC/sjPhAoSywcqzwo/E8o/Is8KP/pSGcv/yj9wzwo/UpKAIPRDDKQEyPpSE/pS9AAhzxQa9ADJIcjLHynPCx85UnnKPzdSV8o/NVKVygA5UlnMNQTJ7VTIi4YWV2dAAAAAKM8WIc8LHyPPCx8zUFL6Us+ECiLPCwcVyj/JyInPFnIdHgAFxgABAJbPC/dxzwthzMlw+wD4IwLQ+lD6UDHSPzHRIG6SXwWOKoIK+vCAyM+FCBL6UgH6AoIQbGlmZc8LihTLH8+EDhPLBxLKP8o/yXD7AOIBvFJXyj81UpXKADlSWcw1BMntVMiLhhZXZ0AAAAA4zxYhzwsfJM8LHzRQU/pSz4QOJc8LBxTKP8nIz48YAARzzwv3cc8LYczJcPsA+CMD0PpQ+lAx0j8x0SBukl8F4w4gAFCCCvrwgMjPhQgS+lIB+gKCEGxpZmXPC4rLH8+EEhPLB8o/yj/JcPsAAf43BtcLH/iSBtD6SPpI9ATU9ATRK/LUFFNQgCD0DvLkG9MH0wfSP9I/0j/6SNP/0j/SPzHRB8AD8uQd+CMjvvLkIPgjyM+EEifPCwcmzwo/Fco/E8o/+lLL/xTKPyPPCj9UIJWAIPRDDKQHyPpSFvpSFPQAIs8UGvQAySTIyx8pJQH8NwbXCx/4kgbQ+kj6SPQE1PQE0Svy1BRTooEBC/QKb6Ex8uQhU1CAIPQO8uQb0wfTBzHSPzHSP9I/+kjT/zHSP9I/0SXAApI1f5UFwAPDAOLy5B34I1ADufLkIsiLoFAgAAAAAAAAAAjPFhPKP3DPCj8S+lJwzwv/yj/KP1JiJwH8NwbXCx/4kgbQ+kj6SPQE1PQE0Svy1BQh0PpQ+lAx0j8x0SBu8tQjK8cF8uQjU1CAIPQO8uQb0wfTBzHSPzHSP9I/MfpI0/8x0j/SPzHRA8ME8uQd+CPIi6BAIAAAAAAAAAAIzxYTyj9wzwo/+lJwzwv/Eso/Ic8KP1Qgc4AgKQIo4wLXLCMbazMs4wJfB4QPAccA8vQqKwHKzwsfOVJ5yj83UlfKPzVSlcoAOVJZzDUEye1UyIuGFldnQAAAAEjPFiHPCx8kzwsfNFBT+lLPhBIlzwsHJM8KP8nIz48YAAR0zwv3cc8LYczJcPsA0PpQ+lAx0j8x0SBukl8F4w4mAFCCCvrwgMjPhQgS+lIB+gKCEGxpZmXPC4rLH8+EFhPLB8o/yj/JcPsAAfiAIPRDCaQEyPpSE/pS9AAhzxQX9ADJIcjLHybPCx82UkbKPzRSJMo/MlJiygA2UibMbBLJ7VT4I8iLhhZXZ0AAAABYzxYlzwsfIs8LHzJQM/pSz4gUChLKP8nIz48YAAR1zwv3cc8LYczJcPsA+CMB0PpQ+lAx0j8x0SBuKABekl8DjimCCvrwgMjPhQgS+lIB+gKCEGxpZmXPC4oSyx/PiAQKyj9wzwo/yXD7AOIAyvRDCqQFyPpSFPpSEvQAzBf0AMkhyMsfJs8LHzZSRso/NFIkyj8yUmLKADZSJsxsEsntVMiLhhZXZ0AAAACozxYUyx8jzwsfMwL6Us+IEArKP8nIz48YAAR6zwv3cc8LYczJcPsAAf43BtMf1wv/+JIn0PpIMfpIMfQEMdT0BNFSQIAg9A7y5BvTB9MH0j/SPzHSPzH6SNP/MdI/MdI/MdElxwXy5BwCwATy5B0hwgDy5B8kwgDy4+oC0PpQ+lAx0j8x0SBu8tQRJYIK+vCAyM+FCBP6Ulj6AoIQc3JvdM8LissfFMv/LAL6Nwb6SNMf+gD6SPpI0z/6APoA+JL4ly/Q+kj6SDH0BDHUMfQEMdEixwXy4/RWEPLUFCjCAPLj6iiEPrvy4+0kwgDy4+ojwgDy4+okggiYloCgZr7y4/sOpCDIyx8uzwsfPlLOyj88UqzKPzpS6soAPlLOzDwLye1UyInPFiUtLgC6yQikIMjLHyjPCx84UmjKPzZSRso/NFKEygA4UmjMNgXJ7VTIi4YWV2dAAAAA2M8WFcsfIs8LHzJQM/pSz4QSEssHEso/ycjPjxgABIANzwv3cc8LYczJcPsAcPsAABBhZXZ0AAAADgDCzwsfKc8LHzlQePpSz4gACiLPCj/JyM+PGAAEgA7PC/dxzwthzMlw+wDIz5GFqZmWE8sfAfoC+lIT+lITyz9QBPoCUAT6AhPOycjPhYgS+lJY+gLPgXP6AnHPC2XMyXD7AAIBWDEyAgEgNTYAPbST/aiaGumaH0kGP0kGPoCahj6AhjowICF+gU30JjACASAzNABPsjB7UTQ0x/TH9I/0j/SANdM0PpI+kj0BDHU9AQx0dD6UPpQ0j/RWoABlsn37UTQ10zQ+kgx+kgx9AQx1DH0BNFSEIAg9A7y5BvTB9MH0j/SP9I/+kjT/9I/0j/RgAAe6tKcIAgEgNzgAB7Qvz/AAibSN/aiaGumaH0kGP0kGPoCGOoY+gJowBB6BzfQyRg4cOmD6YOY6R+Y6R+Y6R/9JBjp/5jpH5jpH5jogOGByRg4cHwR3cA==",
+  "codeHashHex": "79D711387BA4FA3CBFE957A3B49C92A6E4F3A5A22DD9D75CA28B680FD735D47C",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/sooth_adjudicator.tolk",
+        "size_chars": 29078,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/common.tolk",
+        "size_chars": 1845,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/errors.tolk",
+        "size_chars": 7320,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/lifecycle.tolk",
+        "size_chars": 1147,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceOriginalMsgInfo"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 15
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceComputePhaseInfo"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 19,
+        "stack_type_id": 135,
+        "stack_width": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AdjudicatorBounceMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawAdjudicatorFees"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetLaunchpad"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddGuardian"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveGuardian"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRegistry"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProposeAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigureMarket"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResolveMarket"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AttestMarket"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SettleMarket"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DisputeMarket"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InvalidateMarket"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PostSettlementRoot"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimMarketFees"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1936485987,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 1634170209,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 1919382881,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 1936876903,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1885430893,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 1633772653,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 1885435251,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1667655533,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 1919251311,
+            "prefix_len": 32,
+            "stack_type_id": 144,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 1635021939,
+            "prefix_len": 32,
+            "stack_type_id": 145,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 37,
+            "prefix_num": 1936028780,
+            "prefix_len": 32,
+            "stack_type_id": 146,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 1685287028,
+            "prefix_len": 32,
+            "stack_type_id": 147,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 1768846956,
+            "prefix_len": 32,
+            "stack_type_id": 148,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 1886547828,
+            "prefix_len": 32,
+            "stack_type_id": 149,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 1668114021,
+            "prefix_len": 32,
+            "stack_type_id": 150,
+            "stack_width": 9
+          }
+        ],
+        "stack_width": 10
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StorageExtra"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 10
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdjudicatorRouting"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 46
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdjudicatorMarketState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 48
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 44
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 43
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SoothAdjudicatorEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          55
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 59,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 60,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 151,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 58,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          48
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          67
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdjudicatorLaunchConfirmed"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          69
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 71,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 73,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          14
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 75,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 152,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          77,
+          35
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 80,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 82,
+        "stack_type_id": 134,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 78,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 153,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 79,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRegistryLifecycle"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          87
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          10
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegistryPostSettlementRoot"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          90
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          22
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          9,
+          10,
+          10,
+          5,
+          7,
+          29,
+          10,
+          7,
+          29
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          18,
+          18,
+          10,
+          10,
+          10,
+          7,
+          35,
+          10,
+          10
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 56,
+        "struct_name": "CreateExternalLogMessageOptions<SoothAdjudicatorEvent>",
+        "monomorphic_fields_ty_idx": [
+          62,
+          55
+        ]
+      },
+      {
+        "ty_idx": 65,
+        "struct_name": "MapLookupResult<AdjudicatorMarketState>",
+        "monomorphic_fields_ty_idx": [
+          66,
+          5
+        ]
+      },
+      {
+        "ty_idx": 70,
+        "struct_name": "CreateMessageOptions<AdjudicatorLaunchConfirmed>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          85,
+          69
+        ]
+      },
+      {
+        "ty_idx": 88,
+        "struct_name": "CreateMessageOptions<SetRegistryLifecycle>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          85,
+          87
+        ]
+      },
+      {
+        "ty_idx": 89,
+        "struct_name": "MapLookupResult<int64>",
+        "monomorphic_fields_ty_idx": [
+          66,
+          5
+        ]
+      },
+      {
+        "ty_idx": 91,
+        "struct_name": "CreateMessageOptions<RegistryPostSettlementRoot>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          85,
+          90
+        ]
+      },
+      {
+        "ty_idx": 92,
+        "struct_name": "CreateMessageOptions<WithdrawAdjudicatorFees>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          85,
+          22
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 52,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 68,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 66
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 14,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 80,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 82,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 83
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 79,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 77
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 81
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 84
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 71,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 72,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 73,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 86,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 74
+          },
+          {
+            "name": "value",
+            "ty_idx": 76
+          },
+          {
+            "name": "dest",
+            "ty_idx": 85
+          },
+          {
+            "name": "body",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 61
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 64,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 62
+          },
+          {
+            "name": "body",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceBody",
+        "ty_idx": 12,
+        "ident_loc": [
+          0,
+          1955,
+          21,
+          1955,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 4294967294,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "originalBody",
+            "ty_idx": 3
+          },
+          {
+            "name": "originalInfo",
+            "ty_idx": 17
+          },
+          {
+            "name": "bouncedByPhase",
+            "ty_idx": 18
+          },
+          {
+            "name": "exitCode",
+            "ty_idx": 8
+          },
+          {
+            "name": "computePhase",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceComputePhaseInfo",
+        "ty_idx": 19,
+        "ident_loc": [
+          0,
+          1964,
+          8,
+          1964,
+          34
+        ],
+        "fields": [
+          {
+            "name": "gasUsed",
+            "ty_idx": 9
+          },
+          {
+            "name": "vmSteps",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceOriginalMsgInfo",
+        "ty_idx": 13,
+        "ident_loc": [
+          0,
+          1975,
+          8,
+          1975,
+          33
+        ],
+        "fields": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "valueExtra",
+            "ty_idx": 14
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AdjudicatorMarketState",
+        "ty_idx": 48,
+        "ident_loc": [
+          1,
+          5,
+          8,
+          5,
+          30
+        ],
+        "fields": [
+          {
+            "name": "phase",
+            "ty_idx": 18
+          },
+          {
+            "name": "outcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "tStar",
+            "ty_idx": 10
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 10
+          },
+          {
+            "name": "vetoEndsAt",
+            "ty_idx": 10
+          },
+          {
+            "name": "resolver",
+            "ty_idx": 7
+          },
+          {
+            "name": "dataHash",
+            "ty_idx": 35
+          },
+          {
+            "name": "configuredAt",
+            "ty_idx": 10
+          },
+          {
+            "name": "settledAt",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AdjudicatorRouting",
+        "ty_idx": 46,
+        "ident_loc": [
+          1,
+          17,
+          8,
+          17,
+          26
+        ],
+        "fields": [
+          {
+            "name": "registryAddress",
+            "ty_idx": 29
+          },
+          {
+            "name": "pendingAdmin",
+            "ty_idx": 29
+          },
+          {
+            "name": "pendingAdminReadyAt",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StorageExtra",
+        "ty_idx": 44,
+        "ident_loc": [
+          1,
+          23,
+          8,
+          23,
+          20
+        ],
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "launchpadAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "guardians",
+            "ty_idx": 45
+          },
+          {
+            "name": "routing",
+            "ty_idx": 47
+          },
+          {
+            "name": "markets",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 43,
+        "ident_loc": [
+          1,
+          34,
+          8,
+          34,
+          15
+        ],
+        "fields": [
+          {
+            "name": "sequence",
+            "ty_idx": 9
+          },
+          {
+            "name": "marketCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "vetoPeriod",
+            "ty_idx": 10
+          },
+          {
+            "name": "invalidationBuffer",
+            "ty_idx": 10
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "extra",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetLaunchpad",
+        "ty_idx": 25,
+        "ident_loc": [
+          1,
+          49,
+          21,
+          49,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1936485987,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "launchpadAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddGuardian",
+        "ty_idx": 26,
+        "ident_loc": [
+          1,
+          54,
+          21,
+          54,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1634170209,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "guardianAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveGuardian",
+        "ty_idx": 27,
+        "ident_loc": [
+          1,
+          58,
+          21,
+          58,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1919382881,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "guardianAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRegistry",
+        "ty_idx": 28,
+        "ident_loc": [
+          1,
+          62,
+          21,
+          62,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1936876903,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "registryAddress",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigureMarket",
+        "ty_idx": 33,
+        "ident_loc": [
+          1,
+          68,
+          21,
+          68,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1667655533,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "resolver",
+            "ty_idx": 7
+          },
+          {
+            "name": "deadline",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResolveMarket",
+        "ty_idx": 34,
+        "ident_loc": [
+          1,
+          74,
+          21,
+          74,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1919251311,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "outcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "dataHash",
+            "ty_idx": 35
+          },
+          {
+            "name": "tStar",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AttestMarket",
+        "ty_idx": 36,
+        "ident_loc": [
+          1,
+          81,
+          21,
+          81,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1635021939,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SettleMarket",
+        "ty_idx": 37,
+        "ident_loc": [
+          1,
+          85,
+          21,
+          85,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1936028780,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DisputeMarket",
+        "ty_idx": 38,
+        "ident_loc": [
+          1,
+          89,
+          21,
+          89,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1685287028,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InvalidateMarket",
+        "ty_idx": 39,
+        "ident_loc": [
+          1,
+          93,
+          21,
+          93,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1768846956,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRegistryLifecycle",
+        "ty_idx": 87,
+        "ident_loc": [
+          1,
+          97,
+          21,
+          97,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1818846821,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "lifecycle",
+            "ty_idx": 18
+          },
+          {
+            "name": "winningOutcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "timestamp",
+            "ty_idx": 10
+          },
+          {
+            "name": "tStar",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RegistryPostSettlementRoot",
+        "ty_idx": 90,
+        "ident_loc": [
+          1,
+          105,
+          21,
+          105,
+          47
+        ],
+        "prefix": {
+          "prefix_num": 1936879476,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "merkleRoot",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PostSettlementRoot",
+        "ty_idx": 40,
+        "ident_loc": [
+          1,
+          110,
+          21,
+          110,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1886547828,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "merkleRoot",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimMarketFees",
+        "ty_idx": 41,
+        "ident_loc": [
+          1,
+          123,
+          21,
+          123,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1668114021,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "ammAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawAdjudicatorFees",
+        "ty_idx": 22,
+        "ident_loc": [
+          1,
+          137,
+          21,
+          137,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 1634362981,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "recipientOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AdjudicatorBounceMessage",
+        "ty_idx": 21,
+        "ident_loc": [
+          1,
+          150,
+          6,
+          150,
+          30
+        ],
+        "target_ty_idx": 22
+      },
+      {
+        "kind": "struct",
+        "name": "AdjudicatorLaunchConfirmed",
+        "ty_idx": 69,
+        "ident_loc": [
+          1,
+          152,
+          21,
+          152,
+          47
+        ],
+        "prefix": {
+          "prefix_num": 1633903462,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "configuredAt",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SoothAdjudicatorEvent",
+        "ty_idx": 55,
+        "ident_loc": [
+          1,
+          157,
+          21,
+          157,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1634039412,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "kind",
+            "ty_idx": 9
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "sequence",
+            "ty_idx": 9
+          },
+          {
+            "name": "actor",
+            "ty_idx": 7
+          },
+          {
+            "name": "phase",
+            "ty_idx": 18
+          },
+          {
+            "name": "outcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "aux",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 24,
+        "ident_loc": [
+          1,
+          167,
+          6,
+          167,
+          20
+        ],
+        "target_ty_idx": 42
+      },
+      {
+        "kind": "struct",
+        "name": "SetPaused",
+        "ty_idx": 32,
+        "ident_loc": [
+          2,
+          13,
+          21,
+          13,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1885435251,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProposeAdmin",
+        "ty_idx": 30,
+        "ident_loc": [
+          2,
+          17,
+          21,
+          17,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1885430893,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptAdmin",
+        "ty_idx": 31,
+        "ident_loc": [
+          2,
+          21,
+          21,
+          21,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1633772653,
+          "prefix_len": 32
+        },
+        "fields": []
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          192,
+          5,
+          192,
+          22
+        ],
+        "end_loc": [
+          1,
+          260,
+          1,
+          260,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          750,
+          5,
+          750,
+          21
+        ],
+        "end_loc": [
+          1,
+          758,
+          1,
+          758,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "executeSetLaunchpad",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          262,
+          5,
+          262,
+          24
+        ],
+        "end_loc": [
+          1,
+          278,
+          1,
+          278,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<StorageExtra>.load",
+        "return_ty_idx": 44,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 50
+          },
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "requireAdmin",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          802,
+          5,
+          802,
+          17
+        ],
+        "end_loc": [
+          1,
+          804,
+          1,
+          804,
+          2
+        ],
+        "params": [
+          {
+            "name": "extra",
+            "ty_idx": 44
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "StorageExtra.toCell",
+        "return_ty_idx": 50,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "options",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          188,
+          13,
+          188,
+          17
+        ],
+        "end_loc": [
+          1,
+          190,
+          1,
+          190,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Storage.toCell",
+        "return_ty_idx": 53,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          },
+          {
+            "name": "options",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "phaseIdle",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          857,
+          5,
+          857,
+          14
+        ],
+        "end_loc": [
+          1,
+          859,
+          1,
+          859,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 9,
+        "name": "invalidOutcome",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          37,
+          5,
+          37,
+          19
+        ],
+        "end_loc": [
+          4,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 10,
+        "name": "emitAdjudicatorEvent",
+        "return_ty_idx": 0,
+        "num_params": 7,
+        "ident_loc": [
+          1,
+          833,
+          5,
+          833,
+          25
+        ],
+        "end_loc": [
+          1,
+          855,
+          1,
+          855,
+          2
+        ],
+        "params": [
+          {
+            "name": "kind",
+            "ty_idx": 9
+          },
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "actor",
+            "ty_idx": 7
+          },
+          {
+            "name": "phase",
+            "ty_idx": 18
+          },
+          {
+            "name": "outcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "aux",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createExternalLogMessage<SoothAdjudicatorEvent>",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "executeAddGuardian",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          281,
+          5,
+          281,
+          23
+        ],
+        "end_loc": [
+          1,
+          297,
+          1,
+          297,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "map<address, int64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "executeRemoveGuardian",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          301,
+          5,
+          301,
+          26
+        ],
+        "end_loc": [
+          1,
+          317,
+          1,
+          317,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<address, int64>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "executeSetRegistry",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          319,
+          5,
+          319,
+          23
+        ],
+        "end_loc": [
+          1,
+          337,
+          1,
+          337,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "Cell<AdjudicatorRouting>.load",
+        "return_ty_idx": 46,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 47
+          },
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "AdjudicatorRouting.toCell",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 46
+          },
+          {
+            "name": "options",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "executeProposeAdmin",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          339,
+          5,
+          339,
+          24
+        ],
+        "end_loc": [
+          1,
+          358,
+          1,
+          358,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "executeAcceptAdmin",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          360,
+          5,
+          360,
+          23
+        ],
+        "end_loc": [
+          1,
+          382,
+          1,
+          382,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "executeSetPaused",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          384,
+          5,
+          384,
+          21
+        ],
+        "end_loc": [
+          1,
+          399,
+          1,
+          399,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "executeConfigureMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          401,
+          5,
+          401,
+          27
+        ],
+        "end_loc": [
+          1,
+          441,
+          1,
+          441,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "requireLaunchpad",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          806,
+          5,
+          806,
+          21
+        ],
+        "end_loc": [
+          1,
+          810,
+          1,
+          810,
+          2
+        ],
+        "params": [
+          {
+            "name": "extra",
+            "ty_idx": 44
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "requireNotPaused",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          25,
+          5,
+          25,
+          21
+        ],
+        "end_loc": [
+          2,
+          27,
+          1,
+          27,
+          2
+        ],
+        "params": [
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "validateAdjudicatorConfig",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          828,
+          5,
+          828,
+          30
+        ],
+        "end_loc": [
+          1,
+          831,
+          1,
+          831,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "map<uint32, AdjudicatorMarketState>.get",
+        "return_ty_idx": 65,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "phaseActive",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          861,
+          5,
+          861,
+          16
+        ],
+        "end_loc": [
+          1,
+          863,
+          1,
+          863,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 28,
+        "name": "map<uint32, AdjudicatorMarketState>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          },
+          {
+            "name": "value",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "sendLaunchpadConfigurationConfirmation",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          787,
+          5,
+          787,
+          43
+        ],
+        "end_loc": [
+          1,
+          800,
+          1,
+          800,
+          2
+        ],
+        "params": [
+          {
+            "name": "launchpadAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "configuredAt",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "createMessage<AdjudicatorLaunchConfirmed>",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "executeResolveMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          443,
+          5,
+          443,
+          25
+        ],
+        "end_loc": [
+          1,
+          501,
+          1,
+          501,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "validateOutcome",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          820,
+          5,
+          820,
+          20
+        ],
+        "end_loc": [
+          1,
+          822,
+          1,
+          822,
+          2
+        ],
+        "params": [
+          {
+            "name": "outcome",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "MapLookupResult<AdjudicatorMarketState>.loadValue",
+        "return_ty_idx": 48,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 65
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "AdjudicatorMarketState.fromSlice",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "phaseDisputed",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          877,
+          5,
+          877,
+          18
+        ],
+        "end_loc": [
+          1,
+          879,
+          1,
+          879,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 36,
+        "name": "infiniteDeadline",
+        "return_ty_idx": 10,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          37,
+          5,
+          37,
+          21
+        ],
+        "end_loc": [
+          2,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 37,
+        "name": "phaseResolved",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          865,
+          5,
+          865,
+          18
+        ],
+        "end_loc": [
+          1,
+          867,
+          1,
+          867,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 38,
+        "name": "lifecycleResolving",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          25,
+          5,
+          25,
+          23
+        ],
+        "end_loc": [
+          4,
+          27,
+          1,
+          27,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 39,
+        "name": "sendRegistryLifecycle",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          760,
+          5,
+          760,
+          26
+        ],
+        "end_loc": [
+          1,
+          785,
+          1,
+          785,
+          2
+        ],
+        "params": [
+          {
+            "name": "extra",
+            "ty_idx": 44
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "lifecycle",
+            "ty_idx": 18
+          },
+          {
+            "name": "winningOutcome",
+            "ty_idx": 18
+          },
+          {
+            "name": "timestamp",
+            "ty_idx": 10
+          },
+          {
+            "name": "tStar",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "createMessage<SetRegistryLifecycle>",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 88
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "executeAttestMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          503,
+          5,
+          503,
+          24
+        ],
+        "end_loc": [
+          1,
+          533,
+          1,
+          533,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "phaseAttested",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          869,
+          5,
+          869,
+          18
+        ],
+        "end_loc": [
+          1,
+          871,
+          1,
+          871,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 43,
+        "name": "lifecycleAttested",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          29,
+          5,
+          29,
+          22
+        ],
+        "end_loc": [
+          4,
+          31,
+          1,
+          31,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 44,
+        "name": "executeSettleMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          535,
+          5,
+          535,
+          24
+        ],
+        "end_loc": [
+          1,
+          567,
+          1,
+          567,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "phaseSettled",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          873,
+          5,
+          873,
+          17
+        ],
+        "end_loc": [
+          1,
+          875,
+          1,
+          875,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 46,
+        "name": "lifecycleSettled",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          33,
+          5,
+          33,
+          21
+        ],
+        "end_loc": [
+          4,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 47,
+        "name": "executeDisputeMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          569,
+          5,
+          569,
+          25
+        ],
+        "end_loc": [
+          1,
+          609,
+          1,
+          609,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "map<address, int64>.get",
+        "return_ty_idx": 89,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "lifecycleLive",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          17,
+          5,
+          17,
+          18
+        ],
+        "end_loc": [
+          4,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 50,
+        "name": "executeInvalidateMarket",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          611,
+          5,
+          611,
+          28
+        ],
+        "end_loc": [
+          1,
+          643,
+          1,
+          643,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 51,
+        "name": "requireRegistry",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          812,
+          5,
+          812,
+          20
+        ],
+        "end_loc": [
+          1,
+          818,
+          1,
+          818,
+          2
+        ],
+        "params": [
+          {
+            "name": "extra",
+            "ty_idx": 44
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 52,
+        "name": "executePostSettlementRoot",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          645,
+          5,
+          645,
+          30
+        ],
+        "end_loc": [
+          1,
+          686,
+          1,
+          686,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msg",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "createMessage<RegistryPostSettlementRoot>",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 91
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "executeClaimMarketFees",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          698,
+          5,
+          698,
+          27
+        ],
+        "end_loc": [
+          1,
+          743,
+          1,
+          743,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 43
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "inValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 55,
+        "name": "createMessage<WithdrawAdjudicatorFees>",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 92
+          }
+        ]
+      },
+      {
+        "f_idx": 56,
+        "name": "adjudicatorState",
+        "return_ty_idx": 93,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          883,
+          9,
+          883,
+          25
+        ],
+        "end_loc": [
+          1,
+          899,
+          1,
+          899,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 57,
+        "name": "isGuardian",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          903,
+          9,
+          903,
+          19
+        ],
+        "end_loc": [
+          1,
+          907,
+          1,
+          907,
+          2
+        ],
+        "params": [
+          {
+            "name": "account",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 58,
+        "name": "marketState",
+        "return_ty_idx": 94,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          909,
+          9,
+          909,
+          20
+        ],
+        "end_loc": [
+          1,
+          927,
+          1,
+          927,
+          2
+        ],
+        "params": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 59,
+        "name": "canSettle",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          929,
+          9,
+          929,
+          18
+        ],
+        "end_loc": [
+          1,
+          941,
+          1,
+          941,
+          2
+        ],
+        "params": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 60,
+        "name": "adjudicatorType",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          943,
+          9,
+          943,
+          24
+        ],
+        "end_loc": [
+          1,
+          945,
+          1,
+          945,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 61,
+        "name": "supportsTStar",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          947,
+          9,
+          947,
+          22
+        ],
+        "end_loc": [
+          1,
+          949,
+          1,
+          949,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegistryPostSettlementRoot"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawAdjudicatorFees"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRegistryLifecycle"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdjudicatorLaunchConfirmed"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SoothAdjudicatorEvent"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          9,
+          10,
+          10,
+          5,
+          7,
+          20,
+          10,
+          7,
+          20
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          9,
+          17,
+          17,
+          10,
+          10,
+          10,
+          7,
+          13,
+          10,
+          10
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "SetRegistryLifecycle",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1818846821,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "lifecycle",
+            "ty_idx": 17
+          },
+          {
+            "name": "winningOutcome",
+            "ty_idx": 17
+          },
+          {
+            "name": "timestamp",
+            "ty_idx": 10
+          },
+          {
+            "name": "tStar",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RegistryPostSettlementRoot",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1936879476,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "merkleRoot",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawAdjudicatorFees",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1634362981,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "recipientOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AdjudicatorLaunchConfirmed",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1633903462,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "configuredAt",
+            "ty_idx": 10
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SoothAdjudicatorEvent",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1634039412,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "kind",
+            "ty_idx": 9
+          },
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          },
+          {
+            "name": "sequence",
+            "ty_idx": 9
+          },
+          {
+            "name": "actor",
+            "ty_idx": 7
+          },
+          {
+            "name": "phase",
+            "ty_idx": 17
+          },
+          {
+            "name": "outcome",
+            "ty_idx": 17
+          },
+          {
+            "name": "aux",
+            "ty_idx": 10
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 18
+      }
+    ],
+    "emitted_events": [
+      {
+        "body_ty_idx": 19
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 92353,
+        "name": "adjudicatorState",
+        "parameters": [],
+        "return_ty_idx": 21
+      },
+      {
+        "tvm_method_id": 83103,
+        "name": "isGuardian",
+        "parameters": [
+          {
+            "name": "account",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 96759,
+        "name": "marketState",
+        "parameters": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ],
+        "return_ty_idx": 22
+      },
+      {
+        "tvm_method_id": 124015,
+        "name": "canSettle",
+        "parameters": [
+          {
+            "name": "marketId",
+            "ty_idx": 9
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 109386,
+        "name": "adjudicatorType",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 115070,
+        "name": "supportsTStar",
+        "parameters": [],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NON_POSITIVE_AMOUNT",
+        "err_code": 1002
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.UNKNOWN_OUTCOME",
+        "err_code": 1003
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NUMERIC_BOUNDS_EXCEEDED",
+        "err_code": 1005
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADMIN_UNAUTHORIZED",
+        "err_code": 1012
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TRADER_UNAUTHORIZED",
+        "err_code": 1013
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.INSUFFICIENT_MESSAGE_VALUE",
+        "err_code": 1019
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.REGISTRY_MARKET_NOT_FOUND",
+        "err_code": 1041
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.REGISTRY_TIMESTAMP_INVALID",
+        "err_code": 1043
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PAUSED",
+        "err_code": 1044
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_DEADLINE_PASSED",
+        "err_code": 1049
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_MARKET_EXISTS",
+        "err_code": 1050
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_MARKET_NOT_FOUND",
+        "err_code": 1051
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_RESOLVER_UNAUTHORIZED",
+        "err_code": 1052
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_PHASE_INVALID",
+        "err_code": 1053
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_LAUNCHPAD_UNAUTHORIZED",
+        "err_code": 1054
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_TSTAR_INVALID",
+        "err_code": 1055
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_VETO_NOT_ENDED",
+        "err_code": 1056
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_GUARDIAN_UNAUTHORIZED",
+        "err_code": 1057
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_VETO_ENDED",
+        "err_code": 1058
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ADJUDICATOR_REGISTRY_UNAUTHORIZED",
+        "err_code": 1059
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TSTAR_OUT_OF_RANGE",
+        "err_code": 1088
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PENDING_ADMIN_NOT_READY",
+        "err_code": 1093
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/sooth_adjudicator.tolk",
+      "contents": "import \"common.tolk\"\nimport \"errors.tolk\"\nimport \"lifecycle.tolk\"\n\nstruct AdjudicatorMarketState {\n    phase: uint8\n    outcome: uint8\n    tStar: int64\n    deadline: int64\n    vetoEndsAt: int64\n    resolver: address\n    dataHash: uint256\n    configuredAt: int64\n    settledAt: int64\n}\n\nstruct AdjudicatorRouting {\n    registryAddress: address?\n    pendingAdmin: address?\n    pendingAdminReadyAt: int64\n}\n\nstruct StorageExtra {\n    admin: address\n    launchpadAddress: address\n    // EVM AdjudicatorBase keeps a per-adjudicator guardian whitelist (mapping(address=>bool)),\n    // not a single guardian. A guardian is approved iff its key is present; revoke deletes the\n    // key. Any one approved guardian can dispute alone (simple whitelist, not an M-of-N threshold).\n    guardians: map<address, int64>\n    routing: Cell<AdjudicatorRouting>\n    markets: map<uint32, AdjudicatorMarketState>\n}\n\nstruct Storage {\n    sequence: uint32\n    marketCount: uint32\n    vetoPeriod: int64\n    // EVM parity (AdjudicatorBase.sol:127-133): resolve is rejected once\n    // block.timestamp >= deadline + invalidationBuffer. The EVM reads the buffer from\n    // TruthMarket.invalidationBuffer(); TON has no sync cross-contract read, so the\n    // operator MUST set this consistent with the registry's invalidationBuffer\n    // (cached-replica pattern, same as every other cross-contract value). Validated\n    // >= 1h && <= 30d, mirroring the registry/launchpad buffer bound.\n    invalidationBuffer: int64\n    paused: bool\n    extra: Cell<StorageExtra>\n}\n\nstruct (0x736c6e63) SetLaunchpad {\n    launchpadAddress: address\n}\n\n// EVM AdjudicatorBase.approveGuardian / revokeGuardian (owner-managed whitelist). Idempotent.\nstruct (0x61677561) AddGuardian {\n    guardianAddress: address\n}\n\nstruct (0x72677561) RemoveGuardian {\n    guardianAddress: address\n}\n\nstruct (0x73726567) SetRegistry {\n    registryAddress: address?\n}\n\n// ProposeAdmin / AcceptAdmin / SetPaused structs are shared via common.tolk.\n\nstruct (0x6366676d) ConfigureMarket {\n    marketId: uint32\n    resolver: address\n    deadline: int64\n}\n\nstruct (0x7265736f) ResolveMarket {\n    marketId: uint32\n    outcome: uint8\n    dataHash: uint256\n    tStar: int64\n}\n\nstruct (0x61747473) AttestMarket {\n    marketId: uint32\n}\n\nstruct (0x7365746c) SettleMarket {\n    marketId: uint32\n}\n\nstruct (0x64737074) DisputeMarket {\n    marketId: uint32\n}\n\nstruct (0x696e766c) InvalidateMarket {\n    marketId: uint32\n}\n\nstruct (0x6c696665) SetRegistryLifecycle {\n    marketId: uint32\n    lifecycle: uint8\n    winningOutcome: uint8\n    timestamp: int64\n    tStar: int64\n}\n\nstruct (0x73726f74) RegistryPostSettlementRoot {\n    marketId: uint32\n    merkleRoot: uint256\n}\n\nstruct (0x70726f74) PostSettlementRoot {\n    marketId: uint32\n    merkleRoot: uint256\n}\n\n// EVM fee parity (2/2): the adjudicator's own trigger to claim its accrued fees from a\n// market AMM. EVM-faithful self-claim: the AMM authes WithdrawAdjudicatorFees by\n// senderAddress == its stamped adjudicatorAddress, so this adjudicator can only ever\n// drain the markets whose adjudicatorAddress == this contract. We deliberately do NOT\n// verify ammAddress <-> marketId here: a wrong ammAddress simply bounces at the AMM\n// (sender mismatch or marketId mismatch). recipient is where the AMM forwards the\n// collateral Jetton (EVM sends to the adjudicator; here it is caller-specified so the\n// operator can sweep to a treasury wallet without an extra hop).\nstruct (0x636d6665) ClaimMarketFees {\n    ammAddress: address\n    marketId: uint32\n    amount: coins\n    recipient: address\n    responseDestination: address\n    queryId: uint64\n    jettonTransferValue: coins\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Mirrors SoothAmm's WithdrawAdjudicatorFees (op 0x616a6665) byte-for-byte so the AMM\n// parses it. Sent by executeClaimMarketFees.\nstruct (0x616a6665) WithdrawAdjudicatorFees {\n    marketId: uint32\n    amount: coins\n    recipientOwner: address\n    responseDestination: address\n    queryId: uint64\n    jettonTransferValue: coins\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// The only outbound message this contract sends with RichBounce; named so onBouncedMessage\n// can match it.\ntype AdjudicatorBounceMessage = WithdrawAdjudicatorFees\n\nstruct (0x61636366) AdjudicatorLaunchConfirmed {\n    marketId: uint32\n    configuredAt: int64\n}\n\nstruct (0x61657674) SoothAdjudicatorEvent {\n    kind: uint32\n    marketId: uint32\n    sequence: uint32\n    actor: address\n    phase: uint8\n    outcome: uint8\n    aux: int64\n}\n\ntype AllowedMessage =\n    | SetLaunchpad\n    | AddGuardian\n    | RemoveGuardian\n    | SetRegistry\n    | ProposeAdmin\n    | AcceptAdmin\n    | SetPaused\n    | ConfigureMarket\n    | ResolveMarket\n    | AttestMarket\n    | SettleMarket\n    | DisputeMarket\n    | InvalidateMarket\n    | PostSettlementRoot\n    | ClaimMarketFees\n\nfun Storage.load() {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n    var storage = lazy Storage.load();\n    match (msg) {\n        SetLaunchpad => {\n            executeSetLaunchpad(mutate storage, in.senderAddress, msg);\n        }\n\n        AddGuardian => {\n            executeAddGuardian(mutate storage, in.senderAddress, msg);\n        }\n\n        RemoveGuardian => {\n            executeRemoveGuardian(mutate storage, in.senderAddress, msg);\n        }\n\n        SetRegistry => {\n            executeSetRegistry(mutate storage, in.senderAddress, msg);\n        }\n\n        ProposeAdmin => {\n            executeProposeAdmin(mutate storage, in.senderAddress, msg);\n        }\n\n        AcceptAdmin => {\n            executeAcceptAdmin(mutate storage, in.senderAddress);\n        }\n\n        SetPaused => {\n            executeSetPaused(mutate storage, in.senderAddress, msg);\n        }\n\n        ConfigureMarket => {\n            executeConfigureMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        ResolveMarket => {\n            executeResolveMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        AttestMarket => {\n            executeAttestMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        SettleMarket => {\n            executeSettleMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        DisputeMarket => {\n            executeDisputeMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        InvalidateMarket => {\n            executeInvalidateMarket(mutate storage, in.senderAddress, msg);\n        }\n\n        PostSettlementRoot => {\n            executePostSettlementRoot(mutate storage, in.senderAddress, msg);\n        }\n\n        ClaimMarketFees => {\n            executeClaimMarketFees(mutate storage, in.senderAddress, in.valueCoins, msg);\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw 0xffff;\n        }\n    }\n}\n\nfun executeSetLaunchpad(mutate storage: Storage, senderAddress: address, msg: SetLaunchpad) {\n    var extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    extra.launchpadAddress = msg.launchpadAddress;\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        6,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        0,\n    );\n}\n\n// EVM approveGuardian: owner-only, idempotent. aux=1 marks an approval in the event.\nfun executeAddGuardian(mutate storage: Storage, senderAddress: address, msg: AddGuardian) {\n    var extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    extra.guardians.set(msg.guardianAddress, 1);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        7,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        1,\n    );\n}\n\n// EVM revokeGuardian: owner-only, idempotent, no last-guardian floor (an empty whitelist just\n// means no one can dispute — matches EVM, which lets the owner revoke every guardian). aux=0.\nfun executeRemoveGuardian(mutate storage: Storage, senderAddress: address, msg: RemoveGuardian) {\n    var extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    extra.guardians.delete(msg.guardianAddress);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        7,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        0,\n    );\n}\n\nfun executeSetRegistry(mutate storage: Storage, senderAddress: address, msg: SetRegistry) {\n    var extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    var routing = extra.routing.load();\n    routing.registryAddress = msg.registryAddress;\n    storage.sequence += 1;\n    extra.routing = routing.toCell();\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        9,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        0,\n    );\n}\n\nfun executeProposeAdmin(mutate storage: Storage, senderAddress: address, msg: ProposeAdmin) {\n    var extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    var routing = extra.routing.load();\n    routing.pendingAdmin = msg.admin;\n    routing.pendingAdminReadyAt = (blockchain.now() as int64) + 86400;\n    storage.sequence += 1;\n    extra.routing = routing.toCell();\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        11,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        0,\n    );\n}\n\nfun executeAcceptAdmin(mutate storage: Storage, senderAddress: address) {\n    var extra = storage.extra.load();\n    var routing = extra.routing.load();\n    assert (routing.pendingAdmin != null) throw Errors.TRADER_UNAUTHORIZED;\n    assert (senderAddress == routing.pendingAdmin!) throw Errors.TRADER_UNAUTHORIZED;\n    assert (blockchain.now() >= routing.pendingAdminReadyAt) throw Errors.PENDING_ADMIN_NOT_READY;\n    extra.admin = senderAddress;\n    routing.pendingAdmin = null;\n    routing.pendingAdminReadyAt = 0;\n    storage.sequence += 1;\n    extra.routing = routing.toCell();\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        12,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        0,\n    );\n}\n\nfun executeSetPaused(mutate storage: Storage, senderAddress: address, msg: SetPaused) {\n    val extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    storage.paused = msg.paused;\n    storage.sequence += 1;\n    storage.save();\n    emitAdjudicatorEvent(\n        8,\n        storage,\n        0,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        msg.paused ? 1 : 0,\n    );\n}\n\nfun executeConfigureMarket(mutate storage: Storage, senderAddress: address, msg: ConfigureMarket) {\n    var extra = storage.extra.load();\n    requireLaunchpad(extra, senderAddress);\n    requireNotPaused(storage.paused);\n    validateAdjudicatorConfig(storage);\n    assert (msg.marketId > 0) throw Errors.NON_POSITIVE_AMOUNT;\n    assert (msg.deadline > 0) throw Errors.REGISTRY_TIMESTAMP_INVALID;\n    val existing = extra.markets.get(msg.marketId);\n    assert (existing.isFound == false) throw Errors.ADJUDICATOR_MARKET_EXISTS;\n\n    val market: AdjudicatorMarketState = {\n        phase: phaseActive(),\n        outcome: invalidOutcome(),\n        tStar: 0,\n        deadline: msg.deadline,\n        vetoEndsAt: 0,\n        resolver: msg.resolver,\n        dataHash: 0,\n        configuredAt: blockchain.now() as int64,\n        settledAt: 0,\n    };\n    extra.markets.set(msg.marketId, market);\n    storage.marketCount += 1;\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        1,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseActive(),\n        invalidOutcome(),\n        market.configuredAt,\n    );\n    sendLaunchpadConfigurationConfirmation(\n        extra.launchpadAddress,\n        msg.marketId,\n        market.configuredAt,\n    );\n}\n\nfun executeResolveMarket(mutate storage: Storage, senderAddress: address, msg: ResolveMarket) {\n    var extra = storage.extra.load();\n    requireNotPaused(storage.paused);\n    validateOutcome(msg.outcome);\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    var market = result.loadValue();\n    assert (senderAddress == market.resolver) throw Errors.ADJUDICATOR_RESOLVER_UNAUTHORIZED;\n    assert (\n        market.phase == phaseActive() || market.phase == phaseDisputed()\n    ) throw Errors.ADJUDICATOR_PHASE_INVALID;\n    assert (msg.tStar >= 0) throw Errors.NON_POSITIVE_AMOUNT;\n    if (msg.tStar > 0) {\n        assert (msg.tStar <= blockchain.now()) throw Errors.TSTAR_OUT_OF_RANGE;\n        assert (msg.tStar <= market.deadline) throw Errors.TSTAR_OUT_OF_RANGE;\n    }\n    // EVM parity (AdjudicatorBase.sol:127-133): reject resolution once\n    // block.timestamp >= deadline + invalidationBuffer. Resolution legitimately\n    // happens AFTER the trading deadline (the outcome becomes known then), so the\n    // window is [start, deadline+buffer), NOT capped at deadline. EVM AdjudicatorBase.sol:128\n    // SKIPS this window for infinite-deadline markets (the adjudicator can resolve forever) — the\n    // explicit skip below matches that. (The sentinel sum is computed in TVM's 257-bit math and\n    // does NOT overflow, so the bare assert would also pass; the skip documents the EVM intent.)\n    // The buffer is a local cached replica of the registry's (no sync cross-contract read on TON)\n    // — operator MUST keep them consistent. Its [1h,30d] bound is validated at ConfigureMarket.\n    if (market.deadline != infiniteDeadline()) {\n        assert (\n            blockchain.now() < market.deadline + storage.invalidationBuffer\n        ) throw Errors.ADJUDICATOR_DEADLINE_PASSED;\n    }\n\n    market.phase = phaseResolved();\n    market.outcome = msg.outcome;\n    market.tStar = msg.tStar;\n    market.dataHash = msg.dataHash;\n    market.vetoEndsAt = (blockchain.now() as int64) + storage.vetoPeriod;\n    market.settledAt = 0;\n    extra.markets.set(msg.marketId, market);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        2,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseResolved(),\n        msg.outcome,\n        market.vetoEndsAt,\n    );\n    sendRegistryLifecycle(\n        extra,\n        msg.marketId,\n        lifecycleResolving(),\n        msg.outcome,\n        blockchain.now() as int64,\n        market.tStar,\n    );\n}\n\nfun executeAttestMarket(mutate storage: Storage, senderAddress: address, msg: AttestMarket) {\n    var extra = storage.extra.load();\n    requireNotPaused(storage.paused);\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    var market = result.loadValue();\n    assert (market.phase == phaseResolved()) throw Errors.ADJUDICATOR_PHASE_INVALID;\n\n    market.phase = phaseAttested();\n    extra.markets.set(msg.marketId, market);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        3,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseAttested(),\n        market.outcome,\n        market.vetoEndsAt,\n    );\n    sendRegistryLifecycle(\n        extra,\n        msg.marketId,\n        lifecycleAttested(),\n        market.outcome,\n        blockchain.now() as int64,\n        market.tStar,\n    );\n}\n\nfun executeSettleMarket(mutate storage: Storage, senderAddress: address, msg: SettleMarket) {\n    var extra = storage.extra.load();\n    requireNotPaused(storage.paused);\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    var market = result.loadValue();\n    assert (market.phase == phaseAttested()) throw Errors.ADJUDICATOR_PHASE_INVALID;\n    assert (blockchain.now() >= market.vetoEndsAt) throw Errors.ADJUDICATOR_VETO_NOT_ENDED;\n\n    market.phase = phaseSettled();\n    market.settledAt = blockchain.now() as int64;\n    extra.markets.set(msg.marketId, market);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        4,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseSettled(),\n        market.outcome,\n        market.settledAt,\n    );\n    sendRegistryLifecycle(\n        extra,\n        msg.marketId,\n        lifecycleSettled(),\n        market.outcome,\n        market.settledAt,\n        market.tStar,\n    );\n}\n\nfun executeDisputeMarket(mutate storage: Storage, senderAddress: address, msg: DisputeMarket) {\n    var extra = storage.extra.load();\n    requireNotPaused(storage.paused);\n    assert (\n        extra.guardians.get(senderAddress).isFound\n    ) throw Errors.ADJUDICATOR_GUARDIAN_UNAUTHORIZED;\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    var market = result.loadValue();\n    assert (\n        market.phase == phaseResolved() || market.phase == phaseAttested()\n    ) throw Errors.ADJUDICATOR_PHASE_INVALID;\n    assert (blockchain.now() < market.vetoEndsAt) throw Errors.ADJUDICATOR_VETO_ENDED;\n\n    market.phase = phaseDisputed();\n    market.outcome = invalidOutcome();\n    market.tStar = 0;\n    market.dataHash = 0;\n    market.vetoEndsAt = 0;\n    extra.markets.set(msg.marketId, market);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        5,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseDisputed(),\n        invalidOutcome(),\n        blockchain.now() as int64,\n    );\n    sendRegistryLifecycle(\n        extra,\n        msg.marketId,\n        lifecycleLive(),\n        invalidOutcome(),\n        blockchain.now() as int64,\n        0,\n    );\n}\n\nfun executeInvalidateMarket(\n    mutate storage: Storage,\n    senderAddress: address,\n    msg: InvalidateMarket,\n) {\n    var extra = storage.extra.load();\n    requireNotPaused(storage.paused);\n    requireRegistry(extra, senderAddress);\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    var market = result.loadValue();\n    assert (market.phase != phaseSettled()) throw Errors.ADJUDICATOR_PHASE_INVALID;\n\n    market.phase = phaseSettled();\n    market.outcome = invalidOutcome();\n    market.tStar = 0;\n    market.dataHash = 0;\n    market.vetoEndsAt = 0;\n    market.settledAt = blockchain.now() as int64;\n    extra.markets.set(msg.marketId, market);\n    storage.sequence += 1;\n    storage.extra = extra.toCell();\n    storage.save();\n    emitAdjudicatorEvent(\n        10,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseSettled(),\n        invalidOutcome(),\n        market.settledAt,\n    );\n}\n\nfun executePostSettlementRoot(\n    mutate storage: Storage,\n    senderAddress: address,\n    msg: PostSettlementRoot,\n) {\n    var extra = storage.extra.load();\n    val result = extra.markets.get(msg.marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    val market = result.loadValue();\n    // EVM parity (AdjudicatorBase.sol:235): the merkle root for market M can only be posted by\n    // M's OWN resolver, not the adjudicator's global admin. Mirrors the executeResolve gate\n    // (sooth_adjudicator.tolk:450) so root-posting authority lives per-market with the resolver.\n    assert (senderAddress == market.resolver) throw Errors.ADJUDICATOR_RESOLVER_UNAUTHORIZED;\n    assert (market.phase == phaseSettled()) throw Errors.ADJUDICATOR_PHASE_INVALID;\n    assert (market.tStar > 0) throw Errors.ADJUDICATOR_TSTAR_INVALID;\n    assert (msg.merkleRoot > 0) throw Errors.NON_POSITIVE_AMOUNT;\n    val routing = extra.routing.load();\n    assert (routing.registryAddress != null) throw Errors.REGISTRY_MARKET_NOT_FOUND;\n\n    val rootMsg: RegistryPostSettlementRoot = {\n        marketId: msg.marketId,\n        merkleRoot: msg.merkleRoot,\n    };\n    val outMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: ton(\"0.05\"),\n        dest: routing.registryAddress!,\n        body: rootMsg,\n    });\n    storage.sequence += 1;\n    storage.save();\n    emitAdjudicatorEvent(\n        13,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseSettled(),\n        market.outcome,\n        market.tStar,\n    );\n    outMsg.send(SEND_MODE_REGULAR);\n}\n\n// EVM fee parity (2/2): claim this adjudicator's accrued fees from a market AMM\n// (EVM AMMEngine.claimAdjudicatorFees:587 — there the adjudicator calls the engine\n// directly). Auth here is the adjudicator's own admin/operator (requireAdmin): the\n// privileged operator decides WHEN to claim and WHERE the collateral lands. The AMM's\n// senderAddress == adjudicatorAddress check is the REAL gate on WHICH market can be\n// drained — only the AMM whose stamped adjudicatorAddress equals this contract will pay,\n// so a wrong ammAddress simply bounces. We do not load/verify the local market entry\n// for the same reason (the AMM is the source of truth on fee custody). The outbound\n// WithdrawAdjudicatorFees is RichBounce so a rejecting AMM bounces back cleanly into\n// onBouncedMessage (no adjudicator state was mutated, so the bounce is a safe no-op).\nfun executeClaimMarketFees(\n    mutate storage: Storage,\n    senderAddress: address,\n    inValue: coins,\n    msg: ClaimMarketFees,\n) {\n    val extra = storage.extra.load();\n    requireAdmin(extra, senderAddress);\n    requireNotPaused(storage.paused);\n    assert (msg.amount > 0) throw Errors.NON_POSITIVE_AMOUNT;\n    assert (msg.amount <= 9223372036854775807) throw Errors.NUMERIC_BOUNDS_EXCEEDED;\n    assert (msg.jettonTransferValue > 0) throw Errors.NON_POSITIVE_AMOUNT;\n    assert (msg.forwardTonAmount > 0) throw Errors.NON_POSITIVE_AMOUNT;\n    val routeValue = msg.jettonTransferValue + ton(\"0.01\");\n    assert (inValue >= routeValue) throw Errors.INSUFFICIENT_MESSAGE_VALUE;\n\n    storage.sequence += 1;\n    storage.save();\n    emitAdjudicatorEvent(\n        14,\n        storage,\n        msg.marketId,\n        senderAddress,\n        phaseIdle(),\n        invalidOutcome(),\n        msg.amount as int64,\n    );\n\n    val withdraw: WithdrawAdjudicatorFees = {\n        marketId: msg.marketId,\n        amount: msg.amount,\n        recipientOwner: msg.recipient,\n        responseDestination: msg.responseDestination,\n        queryId: msg.queryId,\n        jettonTransferValue: msg.jettonTransferValue,\n        forwardTonAmount: msg.forwardTonAmount,\n        forwardPayload: msg.forwardPayload,\n    };\n    val withdrawMsg = createMessage({\n        bounce: BounceMode.RichBounce,\n        value: routeValue,\n        dest: msg.ammAddress,\n        body: withdraw,\n    });\n    withdrawMsg.send(SEND_MODE_REGULAR);\n}\n\n// EVM fee parity (2/2): a ClaimMarketFees that the target AMM rejected bounces back as\n// the original WithdrawAdjudicatorFees body. executeClaimMarketFees mutated no custody\n// state (it only forwards), so absorbing the bounce is correct — no restore needed. We\n// parse it to confirm it is the message we sent; any other bounced body falls through\n// (no-op) just like every other contract's unmatched-bounce path.\nfun onBouncedMessage(in: InMessageBounced) {\n    val rich = lazy RichBounceBody.fromSlice(in.bouncedBody);\n    val bounced = lazy AdjudicatorBounceMessage.fromSlice(rich.originalBody.beginParse());\n    match (bounced) {\n        WithdrawAdjudicatorFees => {\n            // No-op: the AMM rejected the claim and made no change; nothing to restore.\n        }\n    }\n}\n\nfun sendRegistryLifecycle(\n    extra: StorageExtra,\n    marketId: uint32,\n    lifecycle: uint8,\n    winningOutcome: uint8,\n    timestamp: int64,\n    tStar: int64,\n): void {\n    val routing = extra.routing.load();\n    if (routing.registryAddress != null) {\n        val registryMsg: SetRegistryLifecycle = {\n            marketId,\n            lifecycle,\n            winningOutcome,\n            timestamp,\n            tStar,\n        };\n        val outMsg = createMessage({\n            bounce: BounceMode.NoBounce,\n            value: ton(\"0.05\"),\n            dest: routing.registryAddress!,\n            body: registryMsg,\n        });\n        outMsg.send(SEND_MODE_REGULAR);\n    }\n}\n\nfun sendLaunchpadConfigurationConfirmation(\n    launchpadAddress: address,\n    marketId: uint32,\n    configuredAt: int64,\n): void {\n    val confirmation: AdjudicatorLaunchConfirmed = { marketId, configuredAt };\n    val outMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: ton(\"0.01\"),\n        dest: launchpadAddress,\n        body: confirmation,\n    });\n    outMsg.send(SEND_MODE_REGULAR);\n}\n\nfun requireAdmin(extra: StorageExtra, senderAddress: address) {\n    assert (senderAddress == extra.admin) throw Errors.ADMIN_UNAUTHORIZED;\n}\n\nfun requireLaunchpad(extra: StorageExtra, senderAddress: address) {\n    assert (\n        senderAddress == extra.launchpadAddress\n    ) throw Errors.ADJUDICATOR_LAUNCHPAD_UNAUTHORIZED;\n}\n\nfun requireRegistry(extra: StorageExtra, senderAddress: address) {\n    val routing = extra.routing.load();\n    assert (routing.registryAddress != null) throw Errors.ADJUDICATOR_REGISTRY_UNAUTHORIZED;\n    assert (\n        senderAddress == routing.registryAddress!\n    ) throw Errors.ADJUDICATOR_REGISTRY_UNAUTHORIZED;\n}\n\nfun validateOutcome(outcome: uint8) {\n    assert (outcome <= invalidOutcome()) throw Errors.UNKNOWN_OUTCOME;\n}\n\n// EVM parity: the resolve-deadline guard uses invalidationBuffer, which mirrors the\n// registry's [1h,30d] bound (LaunchpadEngine.sol:199). Validated at ConfigureMarket\n// — the adjudicator's per-market registration entry, before any market exists that\n// the resolve guard could act on. 3600 == 1h, 2592000 == 30d.\nfun validateAdjudicatorConfig(storage: Storage) {\n    assert (storage.invalidationBuffer >= 3600) throw Errors.ADJUDICATOR_DEADLINE_PASSED;\n    assert (storage.invalidationBuffer <= 2592000) throw Errors.ADJUDICATOR_DEADLINE_PASSED;\n}\n\nfun emitAdjudicatorEvent(\n    kind: uint32,\n    storage: Storage,\n    marketId: uint32,\n    actor: address,\n    phase: uint8,\n    outcome: uint8,\n    aux: int64,\n): void {\n    val eventMsg = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic: kind as uint248 },\n        body: SoothAdjudicatorEvent {\n            kind,\n            marketId,\n            sequence: storage.sequence,\n            actor,\n            phase,\n            outcome,\n            aux,\n        },\n    });\n    eventMsg.send(SEND_MODE_REGULAR);\n}\n\nfun phaseIdle(): uint8 {\n    return 0;\n}\n\nfun phaseActive(): uint8 {\n    return 1;\n}\n\nfun phaseResolved(): uint8 {\n    return 2;\n}\n\nfun phaseAttested(): uint8 {\n    return 3;\n}\n\nfun phaseSettled(): uint8 {\n    return 4;\n}\n\nfun phaseDisputed(): uint8 {\n    return 5;\n}\n\n// Lifecycle + INVALID-outcome helpers are shared via lifecycle.tolk (single source of truth).\n\nget fun adjudicatorState() {\n    val storage = lazy Storage.load();\n    val extra = storage.extra.load();\n    val routing = extra.routing.load();\n    return (\n        storage.sequence,\n        storage.marketCount,\n        storage.vetoPeriod,\n        storage.invalidationBuffer,\n        storage.paused,\n        extra.admin,\n        routing.pendingAdmin,\n        routing.pendingAdminReadyAt,\n        extra.launchpadAddress,\n        routing.registryAddress,\n    );\n}\n\n// EVM AdjudicatorBase.isGuardian: membership in the guardian whitelist. Replaces the single\n// guardianAddress slot that adjudicatorState() used to expose (a map can't be flattened there).\nget fun isGuardian(account: address): bool {\n    val storage = lazy Storage.load();\n    val extra = storage.extra.load();\n    return extra.guardians.get(account).isFound;\n}\n\nget fun marketState(marketId: uint32) {\n    val storage = lazy Storage.load();\n    val extra = storage.extra.load();\n    val result = extra.markets.get(marketId);\n    assert (result.isFound) throw Errors.ADJUDICATOR_MARKET_NOT_FOUND;\n    val market = result.loadValue();\n    return (\n        marketId,\n        market.phase,\n        market.outcome,\n        market.tStar,\n        market.deadline,\n        market.vetoEndsAt,\n        market.resolver,\n        market.dataHash,\n        market.configuredAt,\n        market.settledAt,\n    );\n}\n\nget fun canSettle(marketId: uint32) {\n    val storage = lazy Storage.load();\n    val extra = storage.extra.load();\n    val result = extra.markets.get(marketId);\n    if (result.isFound == false) {\n        return false;\n    }\n    val market = result.loadValue();\n    if (market.phase != phaseAttested()) {\n        return false;\n    }\n    return blockchain.now() >= market.vetoEndsAt;\n}\n\nget fun adjudicatorType() {\n    return 0;\n}\n\nget fun supportsTStar() {\n    return true;\n}\n"
+    },
+    {
+      "filename": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/common.tolk",
+      "contents": "// Shared governance message structs + pause guard for all Sooth TON contracts.\n//\n// Every Sooth contract exposes the same two-step admin handoff (ProposeAdmin/AcceptAdmin with a\n// timelock) and the same pause switch (SetPaused). The message structs are byte-identical across\n// all of them (opcodes 0x7061646d / 0x6161646d / 0x70617573), so they live here as a single\n// source of truth instead of being hand-copied six times. The per-contract execute* handlers\n// stay local (their storage nesting and events differ), but they parse these shared structs.\n//\n// Opcodes are wire-significant; do NOT change them.\n\nimport \"errors.tolk\"\n\nstruct (0x70617573) SetPaused {\n    paused: bool\n}\n\nstruct (0x7061646d) ProposeAdmin {\n    admin: address\n}\n\nstruct (0x6161646d) AcceptAdmin {}\n\n// Standard pause guard. Callers pass their pause flag (it lives in different storage tiers\n// across contracts), keeping the assert + canon PAUSED code in one place.\nfun requireNotPaused(paused: bool) {\n    assert (paused == false) throw Errors.PAUSED;\n}\n\n// Infinite-deadline sentinel. EVM uses type(uint64).max (18446744073709551615) to mark a\n// market that never expires; TON's deadline field is a SIGNED int64, so the sentinel here is\n// int64 max (0x7FFFFFFFFFFFFFFF == 9223372036854775807). The EVM uint64-max literal would\n// serialize as -1 over int64 and read as permanently expired — hence the int64-max sentinel.\n// Deadline/expiry checks short-circuit for this value: invalidate REVERTS (EVM\n// InfiniteDeadline), resolve SKIPS the window, trial uses the full default period — matching\n// EVM. (TVM does arithmetic on 257-bit stack integers, so `deadline + buffer` at the sentinel\n// does NOT wrap; the guards exist for EVM-semantic parity + a clear error, not overflow safety.)\nfun infiniteDeadline(): int64 {\n    return 0x7FFFFFFFFFFFFFFF;\n}\n"
+    },
+    {
+      "filename": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/errors.tolk",
+      "contents": "// Shared TVM exit codes for all Sooth TON contracts.\n//\n// This is the single source of truth for project-defined exit codes (>= 1000).\n// The TS adapter mapping in src/ton/exitCodes.ts (errorCodeFromExitCode), shared\n// by every TON adapter, must stay in sync with the canon-error names below; the\n// drift guard is tests/exit-codes-coverage.spec.ts and the doc snapshot lives at\n// .claude/skills/ton-dev/references/tvm-exit-codes.md.\n//\n// Standard TVM codes (0, 9, 13, 33/34, 0xffff) are NOT listed here — they are\n// emitted directly by the contracts/stdlib and are not project-defined.\n//\n// Acton E028: throw codes are referenced symbolically via `Errors.<Name>`. The\n// enum values are byte-identical to the historical bare `const ERROR_<Name>`\n// integers, so every `throw Errors.X` compiles to the same exit code as the old\n// `throw ERROR_X`. The descriptive names are preserved (ERROR_FOO -> Errors.FOO).\n\nenum Errors {\n    // --- Canon-mapped core codes (1001-1018), documented in tvm-exit-codes.md ---\n    MARKET_NOT_TRADABLE = 1001\n    NON_POSITIVE_AMOUNT = 1002\n    UNKNOWN_OUTCOME = 1003\n    POSITION_UNDERFLOW = 1004\n    NUMERIC_BOUNDS_EXCEEDED = 1005\n    SLIPPAGE_LIMIT = 1006\n    FEE_POLICY_INVALID = 1007\n    COLLATERAL_CUSTODY_MISMATCH = 1008\n    INSUFFICIENT_COLLATERAL = 1009\n    INSUFFICIENT_RESERVE = 1010\n    JETTON_WALLET_MISMATCH = 1011\n    ADMIN_UNAUTHORIZED = 1012\n    TRADER_UNAUTHORIZED = 1013\n    MARKET_ALREADY_SETTLED = 1014\n    MARKET_NOT_SETTLED = 1015\n    ZERO_REDEMPTION = 1016\n    MARKET_HAS_OPEN_INTEREST = 1017\n    PRODUCTION_SAFE_REJECTED = 1018\n\n    // --- AMM / shared collateral-flow codes (1019-1024) ---\n    INSUFFICIENT_MESSAGE_VALUE = 1019\n    BOUNCE_RESTORE_MISMATCH = 1021\n    INVALID_COLLATERAL_LOCK = 1022\n    MARKET_DEADLINE_INVALID = 1023\n    ORPHAN_COLLATERAL_UNDERFLOW = 1024\n\n    // --- Order-engine CLOB codes (1025-1038) ---\n    ORDER_TICK_RANGE = 1025\n    ORDER_TICK_SUM = 1026\n    ORDER_SELF_MATCH = 1027\n    ORDER_ALREADY_EXISTS = 1028\n    ORDER_NOT_FOUND = 1029\n    ORDER_NOT_OWNER = 1030\n    ORDER_STATE_MISMATCH = 1031\n    ORDER_SIGNING_KEY_INVALID = 1032\n    ORDER_OPERATOR_UNAUTHORIZED = 1033\n    ORDER_FILL_EXCEEDS_REMAINING = 1034\n    ORDER_SIGNATURE_INVALID = 1035\n    ORDER_EXPIRED = 1036\n    ORDER_NONCE_INVALID = 1037\n    ORDER_MIN_NONCE_INVALID = 1038\n    ORDER_BOOK_FULL = 1039\n\n    // --- Registry lifecycle codes (1040-1047) ---\n    REGISTRY_MARKET_EXISTS = 1040\n    REGISTRY_MARKET_NOT_FOUND = 1041\n    REGISTRY_LIFECYCLE_INVALID = 1042\n    REGISTRY_TIMESTAMP_INVALID = 1043\n    PAUSED = 1044\n    REGISTRY_INVALIDATION_TOO_EARLY = 1045\n    REGISTRY_VENUE_MASK_INVALID = 1046\n    VENUE_SETUP_INVALID = 1047\n\n    // --- Adjudicator codes (1049-1059) ---\n    // 1049 occupies the gap before the contiguous 1050-1059 block (which is full;\n    // 1060+ is the launchpad range). EVM-parity resolve deadline+buffer guard\n    // (AdjudicatorBase.sol:127-133) + the local invalidationBuffer range check.\n    ADJUDICATOR_DEADLINE_PASSED = 1049\n    ADJUDICATOR_MARKET_EXISTS = 1050\n    ADJUDICATOR_MARKET_NOT_FOUND = 1051\n    ADJUDICATOR_RESOLVER_UNAUTHORIZED = 1052\n    ADJUDICATOR_PHASE_INVALID = 1053\n    ADJUDICATOR_LAUNCHPAD_UNAUTHORIZED = 1054\n    ADJUDICATOR_TSTAR_INVALID = 1055\n    ADJUDICATOR_VETO_NOT_ENDED = 1056\n    ADJUDICATOR_GUARDIAN_UNAUTHORIZED = 1057\n    ADJUDICATOR_VETO_ENDED = 1058\n    ADJUDICATOR_REGISTRY_UNAUTHORIZED = 1059\n\n    // --- Launchpad codes (1060-1079) ---\n    LAUNCHPAD_MARKET_EXISTS = 1060\n    LAUNCHPAD_MARKET_NOT_FOUND = 1061\n    LAUNCHPAD_TIMESTAMP_INVALID = 1062\n    LAUNCHPAD_AMOUNT_INVALID = 1063\n    LAUNCHPAD_TRIAL_NOT_ENDED = 1064\n    LAUNCHPAD_ALREADY_LIVE = 1065\n    LAUNCHPAD_LIFECYCLE_INVALID = 1066\n    LAUNCHPAD_VENUE_SETUP_INVALID = 1067\n    // EVM fee parity (1/2): post-grad fee distribution shares must sum to 10000 bps\n    // (EVM FeeRouter.sol:240 InvalidFeeDistribution).\n    LAUNCHPAD_FEE_DISTRIBUTION_INVALID = 1069\n    LAUNCHPAD_COLLATERAL_OUTSTANDING = 1070\n    LAUNCHPAD_NO_LP_SUPPLY = 1071\n    LAUNCHPAD_NO_REDEEMABLE_COLLATERAL = 1072\n    LAUNCHPAD_INSUFFICIENT_LP_BALANCE = 1073\n    LAUNCHPAD_BOUNCE_RESTORE_MISMATCH = 1075\n    LAUNCHPAD_PURGE_PRECONDITION = 1076\n    LAUNCHPAD_LP_JETTON_MODE_MISMATCH = 1077\n    LAUNCHPAD_UNHANDLED_BRANCH = 1078\n    LAUNCHPAD_CODE_HASH_MISMATCH = 1079\n\n    // --- AMM fee-routing / retro-settlement codes (1080-1093) ---\n    PROTOCOL_FEE_UNDERFLOW = 1080\n    ADJUDICATOR_FEE_UNDERFLOW = 1081\n    LAUNCHPAD_FEE_ROUTE_UNDERFLOW = 1082\n    RETRO_SETTLEMENT_REQUIRED = 1084\n    RETRO_PROOF_INVALID = 1085\n    RETRO_ROOT_NOT_POSTED = 1086\n    RETRO_ALREADY_CLAIMED = 1087\n    TSTAR_OUT_OF_RANGE = 1088\n    RETRO_ROOT_ALREADY_POSTED = 1089\n    SELL_LOCK_NOT_FOUND = 1090\n    SELL_LOCK_NOT_OWNER = 1091\n    SELL_LOCK_NOT_UNLOCKED = 1092\n    PENDING_ADMIN_NOT_READY = 1093\n    // EVM TruthMarket.InfiniteDeadline(): a market with the infinite-deadline sentinel cannot be\n    // permissionlessly invalidated (it opted out of the timeout safety net).\n    INFINITE_DEADLINE = 1094\n    // Engine fee config out of bounds: zero denominator or numerator above the 5% cap\n    // (numerator * 20 > denominator), mirroring EVM's postGrad fee cap.\n    ORDER_ENGINE_FEE_RATE_INVALID = 1095\n    // H-1 fix: a fill charged a taker fee but the engine has no AMM collateral wallet wired\n    // (ammCollateralJettonWallet == null), so the fee jettons cannot be forwarded to the AMM\n    // for distribution. Set via SetAmmCollateralWallet on the factory path before fees go live.\n    ORDER_ENGINE_AMM_WALLET_UNSET = 1096\n    // Finding 3 (LOW): a fee-charging fill did not attach enough TON to cover the engine-fee\n    // forward to the AMM (engineFeeTransferValue + the jetton-send overhead). Fails loudly in the\n    // COMPUTE phase with this code rather than reverting in the ACTION phase. Inert at the default\n    // feeNumerator == 0 (no fee charged => no forward => never asserted).\n    ORDER_ENGINE_FEE_VALUE_INSUFFICIENT = 1097\n\n    // --- LMSR fixed-point domain guards (65002-65003) ---\n    // Internal saturation guards for the fixed-point ln/exp math in\n    // sooth_amm.tolk and sooth_amm_proof.tolk. They should never trigger on\n    // in-envelope inputs; they bound the domain of lnFixed/expFixed.\n    FIXED_POINT_VALUE_NON_POSITIVE = 65002\n    FIXED_POINT_VALUE_NEGATIVE = 65003\n\n    // --- Sandbox-only Jetton test fixtures (2001-2204) ---\n    // These codes are asserted only by the sandbox Jetton fixtures\n    // (test_jetton_wallet, sooth_test_jetton_wallet, sooth_test_jetton_master);\n    // they are not part of the production contract error surface.\n    FIXTURE_WALLET_FORWARD_TON_NON_POSITIVE = 2001\n    FIXTURE_WALLET_SENDER_NOT_OWNER = 2002\n    FIXTURE_WALLET_AMOUNT_NON_POSITIVE = 2003\n    FIXTURE_WALLET_INSUFFICIENT_BALANCE = 2004\n    FIXTURE_WALLET_WRONG_DESTINATION = 2005\n    FIXTURE_SOOTH_WALLET_SENDER_NOT_OWNER = 2101\n    FIXTURE_SOOTH_WALLET_AMOUNT_NON_POSITIVE = 2102\n    FIXTURE_SOOTH_WALLET_INSUFFICIENT_BALANCE = 2103\n    FIXTURE_SOOTH_WALLET_SENDER_NOT_WALLET = 2104\n    FIXTURE_SOOTH_WALLET_INSUFFICIENT_BURN_VALUE = 2105\n    FIXTURE_SOOTH_MASTER_SENDER_NOT_ADMIN = 2201\n    FIXTURE_SOOTH_MASTER_AMOUNT_NON_POSITIVE = 2202\n    FIXTURE_SOOTH_MASTER_SENDER_NOT_WALLET = 2203\n    FIXTURE_SOOTH_MASTER_INSUFFICIENT_SUPPLY = 2204\n}\n"
+    },
+    {
+      "filename": "tmp/58c50278-d8ad-453c-a3fd-a69a0874d274/contracts/lifecycle.tolk",
+      "contents": "// Shared market-lifecycle + outcome enum for all Sooth TON contracts.\n//\n// This is the single source of truth for the cross-contract lifecycle labels and the\n// INVALID outcome. The registry is the canonical six-label authority; the launchpad\n// (graduation/trial) and the adjudicator (resolve/attest/settle/dispute) drive subsets of\n// the same enum and notify the registry. Previously each of those three contracts hand-copied\n// these constants — identical today, but a drift would be a settlement-routing bug. Importing\n// this file keeps them in lockstep. Helpers are plain (not `get fun`) and tree-shake to zero\n// in any contract that doesn't call a given one, so importing the full set is free.\n//\n// Values are wire-significant (carried in lifecycle messages + getters); do NOT renumber.\n\nfun lifecycleBonding(): uint8 {\n    return 0;\n}\n\nfun lifecycleLive(): uint8 {\n    return 1;\n}\n\nfun lifecycleTrialExpired(): uint8 {\n    return 2;\n}\n\nfun lifecycleResolving(): uint8 {\n    return 3;\n}\n\nfun lifecycleAttested(): uint8 {\n    return 4;\n}\n\nfun lifecycleSettled(): uint8 {\n    return 5;\n}\n\nfun invalidOutcome(): uint8 {\n    return 2;\n}\n"
+    }
+  ]
+}

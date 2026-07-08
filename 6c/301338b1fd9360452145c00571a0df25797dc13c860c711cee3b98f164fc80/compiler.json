@@ -1,0 +1,1821 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from condition_registry.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC getBalance()\n  83229 DECLMETHOD owner()\n  108939 DECLMETHOD get_condition()\n  110284 DECLMETHOD compute_condition_id()\n  110727 DECLMETHOD compute_collection_id()\n  124037 DECLMETHOD compute_position_id()\n  // 13 functions inlined in-place:\n  // - RegistryStorage.load (7 calls)\n  // - RegistryStorage.save (5 calls)\n  // - get_condition_id (3 calls)\n  // - get_collection_id (7 calls)\n  // - get_position_id (2 calls)\n  // - handleSplit (1 call)\n  // - handleMerge (1 call)\n  // - getPositionId (9 calls)\n  // - getBalanceKey (2 calls)\n  // - setBalance (9 calls)\n  // - onBouncedMessage (0 calls)\n  // - MapLookupResult<cell>.loadValue (5 calls)\n  // - MapLookupResult<coins>.loadValue (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      DUP\n      SBITS\n      31 GTINT\n      IFJMP:<{\n        32 LDU\n        SWAP\n        260734629 PUSHINT\n        EQUAL\n        IF:<{\n          DUP\n          SBITS\n          NIP\n          67 GTINT\n          IF:<{\n          }>\n        }>ELSE<{\n          DROP\n        }>\n      }>\n      DROP\n    }>\n    INMSG_VALUE\n    100000000 PUSHINT\n    GEQ\n    210 THROWIFNOT\n    DUP\n    x{01} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      NIP\n      LDSTDADDR\n      256 LDU\n      8 PLDU\n      DUP\n      1 GTINT\n      200 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s6 PUSH\n      NEWC\n      STSTDADDR\n      BTOS\n      NEWC\n      STSLICE\n      s6 PUSH\n      256 STUR\n      s5 PUSH\n      8 STUR\n      HASHBU\n      s0 s2 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      201 THROWIF\n      s0 s7 XCHG\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      256 STU\n      s1 s4 XCHG\n      8 STU\n      0 PUSHINT\n      256 STUR\n      PUSHNULL\n      SWAP\n      STDICT\n      ENDC\n      s0 s5 s3 XCHG3\n      8 PUSHPOW2\n      DICTUSETREF\n      SWAP\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{02} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      NEWC\n      STSTDADDR\n      BTOS\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      256 LDU\n      8 LDU\n      PLDREF\n      s0 s7 XCHG\n      NEWC\n      STSLICE\n      s1 s2 XCHG\n      256 STU\n      OVER\n      8 STUR\n      HASHBU\n      s0 s3 PUSH2\n      8 PUSHPOW2\n      DICTUGET\n      202 THROWIFNOT\n      LDREF\n      ENDS\n      CTOS\n      LDSTDADDR\n      256 LDU\n      8 LDU\n      256 PLDU\n      203 THROWIF\n      s9 PUSH\n      CTOS\n      0 PUSHINT\n      DUP\n      WHILE:<{\n        s0 s7 PUSH2\n        LESS\n      }>DO<{\n        s0 s2 XCHG\n        256 LDU\n        s0 s2 XCHG\n        ADD\n        s0 s2 XCHG\n        INC\n        s1 s2 XCHG\n      }>\n      DROP\n      NIP\n      s5 POP\n      s4 PUSH\n      205 THROWIFNOT\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      256 STU\n      8 STU\n      s1 s2 XCHG\n      256 STU\n      s1 s6 XCHG\n      STREF\n      ENDC\n      s5 s2 XCHG2\n      8 PUSHPOW2\n      DICTUSETREF\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{04} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      256 LDU\n      256 LDU\n      8 LDU\n      LDREF\n      LDGRAMS\n      DROP\n      s3 s6 PUSH2\n      8 PUSHPOW2\n      DICTUGET\n      202 THROWIFNOT\n      LDREF\n      ENDS\n      CTOS\n      LDSTDADDR\n      NIP\n      256 LDU\n      NIP\n      8 PLDU\n      INMSG_SRC\n      s4 PUSH\n      1 GTINT\n      206 THROWIFNOT\n      SWAP\n      POW2\n      DEC\n      s3 PUSH\n      CTOS\n      0 PUSHINT\n      DUP\n      WHILE:<{\n        s0 s7 PUSH2\n        LESS\n      }>DO<{\n        s0 s2 XCHG\n        256 LDU\n        OVER\n        0 GTINT\n        206 THROWIFNOT\n        s1 s4 PUSH2\n        LESS\n        206 THROWIFNOT\n        s2 s1 PUSH2\n        AND\n        206 THROWIF\n        s0 s2 XCHG\n        OR\n        s0 s2 XCHG\n        INC\n        s1 s2 XCHG\n      }>\n      DROP\n      NIP\n      s0 s1 PUXC\n      EQUAL\n      s0 s4 XCHG\n      CTOS\n      0 PUSHINT\n      WHILE:<{\n        s0 s6 PUSH2\n        LESS\n      }>DO<{\n        SWAP\n        256 LDU\n        s9 PUSH\n        NEWC\n        256 STU\n        s9 PUSH\n        256 STUR\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n        s10 PUSH\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        256 STU\n        HASHBU\n        s13 s12 s11 PUSH3\n        17 s() PUSH\n        s4 s8 PUSH2\n        getBalance() CALLDICT\n        s0 s6 PUSH2\n        GEQ\n        207 THROWIFNOT\n        s6 PUSH\n        SUB\n        SWAP\n        NEWC\n        256 STU\n        s5 s(-1) PUXC\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s15 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        SWAP\n        INC\n        s1 s13 XCHG\n      }>\n      2DROP\n      s4 POP\n      s0 s2 XCHG\n      IF:<{\n        2 2 BLKDROP2\n        s2 PUSH\n        IF:<{\n          s0 s3 XCHG\n          NEWC\n          STSTDADDR\n          BTOS\n          NEWC\n          STSLICE\n          s1 s2 XCHG\n          256 STU\n          HASHBU\n          s5 s4 s3 PUSH3\n          s9 s3 s4 PUSH3\n          getBalance() CALLDICT\n          s0 s3 XCHG2\n          ADD\n          s0 s2 XCHG\n          NEWC\n          256 STU\n          STSTDADDR\n          HASHBU\n          NEWC\n          ROT\n          STGRAMS\n          s0 s1 s5 XCHG3\n          8 PUSHPOW2\n          DICTUSETB\n          s0 s3 XCHG\n        }>ELSE<{\n          4 BLKDROP\n        }>\n      }>ELSE<{\n        s0 s4 XCHG\n        NEWC\n        256 STU\n        s1 s3 XCHG\n        256 STU\n        256 STU\n        HASHBU\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        s1 s3 XCHG\n        256 STU\n        HASHBU\n        s5 s4 s3 PUSH3\n        s9 s3 s5 PUSH3\n        getBalance() CALLDICT\n        ROT\n        ADD\n        SWAP\n        NEWC\n        256 STU\n        s1 s2 XCHG\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s5 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s3 XCHG\n      }>\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{05} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      256 LDU\n      256 LDU\n      8 LDU\n      PLDREF\n      s2 s5 PUSH2\n      8 PUSHPOW2\n      DICTUGET\n      202 THROWIFNOT\n      LDREF\n      ENDS\n      CTOS\n      LDSTDADDR\n      NIP\n      256 LDU\n      NIP\n      8 LDU\n      256 LDU\n      OVER\n      0 GTINT\n      208 THROWIFNOT\n      PLDREF\n      s2 PUSH\n      POW2\n      DEC\n      INMSG_SRC\n      s0 s5 XCHG\n      CTOS\n      0 PUSHINT\n      DUP\n      WHILE:<{\n        s0 s8 PUSH2\n        LESS\n      }>DO<{\n        s0 s2 XCHG\n        256 LDU\n        OVER\n        0 GTINT\n        209 THROWIFNOT\n        s1 s4 PUSH2\n        LESS\n        209 THROWIFNOT\n        0 PUSHINT\n        s6 PUSH\n        CTOS\n        OVER\n        WHILE:<{\n          s0 s10 PUSH2\n          LESS\n        }>DO<{\n          SWAP\n          256 LDU\n          s5 s2 PUSH2\n          RSHIFT\n          1 PUSHINT\n          AND\n          1 EQINT\n          IF:<{\n            s0 s3 XCHG\n            ADD\n            s0 s2 XCHG\n          }>ELSE<{\n            NIP\n          }>\n          SWAP\n          INC\n        }>\n        2DROP\n        s12 PUSH\n        NEWC\n        256 STU\n        s12 PUSH\n        256 STUR\n        s1 s3 XCHG\n        256 STU\n        HASHBU\n        s13 PUSH\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        256 STU\n        HASHBU\n        16 s() PUSH\n        16 s() PUSH\n        16 s() PUSH\n        20 s() PUSH\n        s4 s13 PUSH2\n        getBalance() CALLDICT\n        s0 s3 XCHG2\n        MUL\n        s7 PUSH\n        DIV\n        s1 s3 XCHG\n        ADD\n        SWAP\n        NEWC\n        256 STU\n        s8 s(-1) PUXC\n        STSTDADDR\n        HASHBU\n        NEWC\n        x{0} STSLICECONST\n        s0 s2 XCHG\n        s0 17 s() XCHG\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s2 XCHG\n        INC\n        s1 s15 s0 XCHG3\n      }>\n      s1 s6 XCHG\n      6 BLKDROP\n      2 2 BLKDROP2\n      DUP\n      0 GTINT\n      IF:<{\n        s2 PUSH\n        0 NEQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n        s5 s4 s3 PUSH3\n        s9 s3 s4 PUSH3\n        getBalance() CALLDICT\n        s0 s3 XCHG2\n        ADD\n        s0 s2 XCHG\n        NEWC\n        256 STU\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s5 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s3 XCHG\n      }>ELSE<{\n        4 BLKDROP\n      }>\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    32 LDU\n    SWAP\n    1935855772 PUSHINT\n    EQUAL\n    IFNOTJMP:<{\n      DROP\n      16 PUSHPOW2DEC\n      THROWANY\n    }>\n    64 LDU\n    NIP\n    LDGRAMS\n    LDSTDADDR\n    PLDREF\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    16 PUSHPOW2DEC\n    INMSG_SRC\n    s4 PUSH\n    SDEQ\n    THROWANYIFNOT\n    s0 s4 XCHG\n    CTOS\n    32 LDU\n    16 PUSHPOW2DEC\n    s0 s2 XCHG\n    3 EQINT\n    s1 s2 XCHG\n    THROWANYIFNOT\n    LDSTDADDR\n    256 LDU\n    256 LDU\n    8 LDU\n    PLDREF\n    s2 s5 PUSH2\n    8 PUSHPOW2\n    DICTUGET\n    202 THROWIFNOT\n    LDREF\n    ENDS\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    8 PLDU\n    s2 PUSH\n    1 GTINT\n    206 THROWIFNOT\n    POW2\n    DEC\n    OVER\n    CTOS\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      s0 s5 PUSH2\n      LESS\n    }>DO<{\n      s0 s2 XCHG\n      256 LDU\n      OVER\n      0 GTINT\n      206 THROWIFNOT\n      s1 s4 PUSH2\n      LESS\n      206 THROWIFNOT\n      s2 s1 PUSH2\n      AND\n      206 THROWIF\n      s0 s2 XCHG\n      OR\n      s0 s2 XCHG\n      INC\n      s1 s2 XCHG\n    }>\n    DROP\n    NIP\n    s0 s1 PUXC\n    EQUAL\n    IF:<{\n      DROP\n      s3 PUSH\n      IF:<{\n        s4 PUSH\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        s4 PUSH\n        256 STUR\n        HASHBU\n        s8 s7 s6 PUSH3\n        s12 s3 s13 PUSH3\n        getBalance() CALLDICT\n        s0 s12 PUSH2\n        GEQ\n        207 THROWIFNOT\n        s12 PUSH\n        SUB\n        SWAP\n        NEWC\n        256 STU\n        s11 s(-1) PUXC\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s10 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s8 XCHG\n      }>\n      CTOS\n      0 PUSHINT\n      WHILE:<{\n        s0 s2 PUSH2\n        LESS\n      }>DO<{\n        SWAP\n        256 LDU\n        s5 PUSH\n        NEWC\n        256 STU\n        s5 PUSH\n        256 STUR\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n        s6 PUSH\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        256 STU\n        HASHBU\n        s9 s8 s7 PUSH3\n        s13 s3 s14 PUSH3\n        getBalance() CALLDICT\n        s13 PUSH\n        ADD\n        SWAP\n        NEWC\n        256 STU\n        s12 s(-1) PUXC\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s11 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        SWAP\n        INC\n        s1 s9 XCHG\n      }>\n      6 BLKDROP\n      s4 POP\n      s4 POP\n    }>ELSE<{\n      s4 PUSH\n      NEWC\n      256 STU\n      s4 PUSH\n      256 STUR\n      256 STU\n      HASHBU\n      s5 PUSH\n      NEWC\n      STSTDADDR\n      BTOS\n      NEWC\n      STSLICE\n      256 STU\n      HASHBU\n      s8 s7 s6 PUSH3\n      s12 s3 s13 PUSH3\n      getBalance() CALLDICT\n      s0 s12 PUSH2\n      GEQ\n      207 THROWIFNOT\n      s12 PUSH\n      SUB\n      SWAP\n      NEWC\n      256 STU\n      s11 s(-1) PUXC\n      STSTDADDR\n      HASHBU\n      NEWC\n      ROT\n      STGRAMS\n      s0 s1 s10 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      s0 s8 XCHG\n      CTOS\n      0 PUSHINT\n      WHILE:<{\n        s0 s2 PUSH2\n        LESS\n      }>DO<{\n        SWAP\n        256 LDU\n        s5 PUSH\n        NEWC\n        256 STU\n        s5 PUSH\n        256 STUR\n        s1 s2 XCHG\n        256 STU\n        HASHBU\n        s6 PUSH\n        NEWC\n        STSTDADDR\n        BTOS\n        NEWC\n        STSLICE\n        256 STU\n        HASHBU\n        s9 s8 s7 PUSH3\n        s13 s3 s14 PUSH3\n        getBalance() CALLDICT\n        s13 PUSH\n        ADD\n        SWAP\n        NEWC\n        256 STU\n        s12 s(-1) PUXC\n        STSTDADDR\n        HASHBU\n        NEWC\n        ROT\n        STGRAMS\n        s0 s1 s11 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        SWAP\n        INC\n        s1 s9 XCHG\n      }>\n      6 BLKDROP\n      s4 POP\n      s4 POP\n    }>\n    NEWC\n    STSTDADDR\n    s1 s3 XCHG\n    STSTDADDR\n    STOPTREF\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  getBalance() PROC:<{\n    3 3 BLKDROP2\n    SWAP\n    NEWC\n    256 STU\n    STSTDADDR\n    HASHBU\n    SWAP\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n    }>\n    LDGRAMS\n    ENDS\n  }>\n  owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  get_condition() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    8 PUSHPOW2\n    DICTUGET\n    202 THROWIFNOT\n    LDREF\n    ENDS\n    CTOS\n    LDSTDADDR\n    256 LDU\n    8 LDU\n    256 PLDU\n  }>\n  compute_condition_id() PROC:<{\n    s0 s2 XCHG\n    NEWC\n    STSLICE\n    256 STU\n    8 STU\n    HASHBU\n  }>\n  compute_collection_id() PROC:<{\n    s0 s2 XCHG\n    NEWC\n    256 STU\n    256 STU\n    256 STU\n    HASHBU\n  }>\n  compute_position_id() PROC:<{\n    SWAP\n    NEWC\n    STSLICE\n    256 STU\n    HASHBU\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHwEABd4AART/APSkE/S88sgLAQIBYgIDAgLPBAUCASAXGASTPiRjiHTHzEg10nCH44V0x8BghAPin6lupcg10kxwkMwkTDi4DDg+JeCEAX14QC+8uDSINcsCAzjAtcsCBTjAtcsCCTjAtcsCCyAGBwgJADEbDMByMv/+lL5FgGDB/QOb6GSMHDh+gDRgAMYx0z8x+kjT/9cLByDCAfLgyO1E0PpI+kj0BPQE0SbI+lLPUMjOJs8L/yXPCwf5FlMCgwf0Dm+hMfLQyQfI+lIWy/8Uywdwzwv/bQH0AMlAU4MH9BcByPpSE/pSEvQA9ADJ7VQA+DHtRND6SPpI9AT0BNH4ksj6Us9QBdM/MdP/0wfXTAfIzhLL/yHPCwf5FlMDgwf0DvLgytTR0PpI0//TB9cL//LQyynQcCCTUwe5mALT/wKgAqQS6DAxNSTy4M0CyPpSy//LBxLL/xbMyVBSgwf0FwLI+lL6UvQA9ADJ7VQE/jHtRND6SPpI9AT0BNEE0z8x+kjT/9P/0wfU+gAwUzaDB/QO8uDK1NHQ+kgx0/8x1wsH+JIkwgHy4M4BrqUj0HAgk1MHuY4aAtP/IcIA8uDOUxS58uDOUyGw8tDOArECpBLoMDFSAroE0HCTUwa5iuhbNALjDwLI+lL6UvQA9AAKCwwNBPyPazHtRND6SPpI9AT0BNEE0z8x+kjT/9P/0wfXTFMlgwf0DvLgytTR0PpIMdP/MdMH0/8hwgDy4NDXTCKupfiSBdBwIJNTCLmK6BZfBmwiIMIAlSLDAMMAkXDikl8E4w0CyPpS+lL0APQAye1U4DDTHwGCEHNi0Jy64wPTPzEODxARAIgB0/8pyMv/Kc8L/xLL//kWKsj6Us9QyM7L//kWVH3LVhFTSPABUwa+8uDPJqEByMv/UlD6UvkWyFj6AkAfgwf0QwGkHQBobCIijisDyPpSz1DIzhLL//kWVHVDVHk08AFQA6ACyMv/+lL5FshY+gJAFYMH9EMDkl8E4gBsBMjL/xPL/8v/+RYDyPpSz1DIzhPL//kWVHVDVHk18AFYoAHIy/8S+lL5FshY+gJAFYMH9EMDAAbJ7VQA6ALT/yHCAPLg0VMUufLg0XAm0CGTUwq5jhMB0/9TUq1xsMABkwOgApEx4gGk6FssyMv/LM8L/xPL//kWLcj6Us9QyM7L//kWVhBWEFYQVhRTTfABUAOoJ6kEE6AByMv/UoD6UvkWyM+EIAIREYMH9EMCpEHwAFYDyPpSz1DIzhLL//kWVHVDVHk08AFQA6ACyMv/+lL5FshY+gJAFYMH9EMDAAowhA/y8AP8+gD6SNdM7UTQ+kj6SPQE9ATRhA/4kiTHBfL0BNDTH4QPAsADEvL0+kjT/9P/0wfXTFMlgwf0DvLgytTR0PpIMdP/MdcLByLCAfLgzq6lIdBwIJNTBbmOGgLT/yHCAPLgzlMUufLgzlMhsPLQzgKxAqQS6DAxUgK64w/I+lITEhMUAfwwI44zJMj6Us9QyM4kzwv/+RZUeHZUfD3wAVMMvvLgzyyhAcjL/1Kw+lL5FshY+gJAGoMH9EMI3tBwk1MCuY49AdP/JcjL/yXPC/8Sy//5FibI+lLPUMjOy//5FlR5h1R9PvABLaAByMv/UsD6UvkWyFj6AkAbgwf0QwGkGegVAZIkyMv/JM8L/8v/+RYlyPpSz1DIzsv/+RZUeHZUfD3wAVMMvvLgzyyhAcjL/1Kw+lL5FshY+gJAGoMH9EMI0HCTUwK5iuhfBjQ0FgAS+lL0APQAye1UAAhfBjQ0AHoB0/8lyMv/Jc8L/xLL//kWJsj6Us9QyM7L//kWVHmHVH0+8AEtoAHIy/9SwPpS+RbIWPoCQBuDB/RDAaQZABG+KO9qJofSQYQCASAZGgIBWBscABO6SFAcjOy//5FoAgFYHR4AGbAhwLIy//L/8v/+RaAASKmL7UTQ+kgx+kgx9AT0BDHRgwf0DvLgytTR0PpI0//TB9cL/wAWqswCyM7L/8sH+RY=",
+  "codeHashHex": "6C301338B1FD9360452145C00571A0DF25797DC13C860C711CEE3B98F164FC80",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/fe8c7f8d-f561-4161-8406-41da8c92fb6d/contracts/src/condition_registry.tolk",
+        "size_chars": 25509,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/fe8c7f8d-f561-4161-8406-41da8c92fb6d/contracts/src/types.tolk",
+        "size_chars": 308,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedRegistryMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PrepareCondition"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportPayouts"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MergePositions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RedeemPositions"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1,
+            "prefix_len": 8,
+            "stack_type_id": 129,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 2,
+            "prefix_len": 8,
+            "stack_type_id": 130,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 4,
+            "prefix_len": 8,
+            "stack_type_id": 131,
+            "stack_width": 7
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 5,
+            "prefix_len": 8,
+            "stack_type_id": 132,
+            "stack_width": 6
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegistryStorage"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          28
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 26,
+        "struct_name": "MapLookupResult<cell>",
+        "monomorphic_fields_ty_idx": [
+          27,
+          5
+        ]
+      },
+      {
+        "ty_idx": 30,
+        "struct_name": "MapLookupResult<coins>",
+        "monomorphic_fields_ty_idx": [
+          27,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 23,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 27
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RegistryStorage",
+        "ty_idx": 20,
+        "ident_loc": [
+          1,
+          36,
+          8,
+          36,
+          23
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditions",
+            "ty_idx": 21
+          },
+          {
+            "name": "balances",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PrepareCondition",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          53,
+          15,
+          53,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "oracle",
+            "ty_idx": 7
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportPayouts",
+        "ty_idx": 16,
+        "ident_loc": [
+          1,
+          60,
+          15,
+          60,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 2,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "payoutCount",
+            "ty_idx": 15
+          },
+          {
+            "name": "payouts",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MergePositions",
+        "ty_idx": 17,
+        "ident_loc": [
+          1,
+          67,
+          15,
+          67,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 4,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "partitionCount",
+            "ty_idx": 15
+          },
+          {
+            "name": "partition",
+            "ty_idx": 3
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RedeemPositions",
+        "ty_idx": 18,
+        "ident_loc": [
+          1,
+          77,
+          15,
+          77,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 5,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 14
+          },
+          {
+            "name": "indexSetCount",
+            "ty_idx": 15
+          },
+          {
+            "name": "indexSets",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedRegistryMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          96,
+          6,
+          96,
+          28
+        ],
+        "target_ty_idx": 19
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          128,
+          5,
+          128,
+          22
+        ],
+        "end_loc": [
+          1,
+          357,
+          1,
+          357,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          567,
+          5,
+          567,
+          21
+        ],
+        "end_loc": [
+          1,
+          588,
+          1,
+          588,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "RegistryStorage.load",
+        "return_ty_idx": 20,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          43,
+          21,
+          43,
+          25
+        ],
+        "end_loc": [
+          1,
+          45,
+          1,
+          45,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 3,
+        "name": "RegistryStorage.fromCell",
+        "return_ty_idx": 20,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "get_condition_id",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          100,
+          5,
+          100,
+          21
+        ],
+        "end_loc": [
+          1,
+          107,
+          1,
+          107,
+          2
+        ],
+        "params": [
+          {
+            "name": "oracle",
+            "ty_idx": 2
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<uint256, cell>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint256, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "RegistryStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          47,
+          21,
+          47,
+          25
+        ],
+        "end_loc": [
+          1,
+          49,
+          1,
+          49,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "RegistryStorage.toCell",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "map<uint256, cell>.get",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MapLookupResult<cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "cell.fromSlice",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "handleMerge",
+        "return_ty_idx": 0,
+        "num_params": 9,
+        "ident_loc": [
+          1,
+          455,
+          5,
+          455,
+          16
+        ],
+        "end_loc": [
+          1,
+          530,
+          1,
+          530,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 1
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "partitionCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "partitionCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "get_collection_id",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          109,
+          5,
+          109,
+          22
+        ],
+        "end_loc": [
+          1,
+          116,
+          1,
+          116,
+          2
+        ],
+        "params": [
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "indexSet",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "getPositionId",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          535,
+          5,
+          535,
+          18
+        ],
+        "end_loc": [
+          1,
+          538,
+          1,
+          538,
+          2
+        ],
+        "params": [
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "collectionId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "get_position_id",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          118,
+          5,
+          118,
+          20
+        ],
+        "end_loc": [
+          1,
+          124,
+          1,
+          124,
+          2
+        ],
+        "params": [
+          {
+            "name": "collateralToken",
+            "ty_idx": 2
+          },
+          {
+            "name": "collectionId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "setBalance",
+        "return_ty_idx": 20,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          561,
+          5,
+          561,
+          15
+        ],
+        "end_loc": [
+          1,
+          565,
+          1,
+          565,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "userAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "newBalance",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "getBalanceKey",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          541,
+          5,
+          541,
+          18
+        ],
+        "end_loc": [
+          1,
+          547,
+          1,
+          547,
+          2
+        ],
+        "params": [
+          {
+            "name": "positionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "userAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<uint256, coins>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "handleSplit",
+        "return_ty_idx": 0,
+        "num_params": 9,
+        "ident_loc": [
+          1,
+          361,
+          5,
+          361,
+          16
+        ],
+        "end_loc": [
+          1,
+          451,
+          1,
+          451,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 1
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "partitionCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "partitionCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "getBalance",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          550,
+          5,
+          550,
+          15
+        ],
+        "end_loc": [
+          1,
+          557,
+          1,
+          557,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "userAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "map<uint256, coins>.get",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "MapLookupResult<coins>.loadValue",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "coins.fromSlice",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          592,
+          9,
+          592,
+          14
+        ],
+        "end_loc": [
+          1,
+          595,
+          1,
+          595,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 25,
+        "name": "get_condition",
+        "return_ty_idx": 31,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          597,
+          9,
+          597,
+          22
+        ],
+        "end_loc": [
+          1,
+          607,
+          1,
+          607,
+          2
+        ],
+        "params": [
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "compute_condition_id",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          609,
+          9,
+          609,
+          29
+        ],
+        "end_loc": [
+          1,
+          611,
+          1,
+          611,
+          2
+        ],
+        "params": [
+          {
+            "name": "oracle",
+            "ty_idx": 2
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "compute_collection_id",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          613,
+          9,
+          613,
+          30
+        ],
+        "end_loc": [
+          1,
+          615,
+          1,
+          615,
+          2
+        ],
+        "params": [
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "indexSet",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "compute_position_id",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          617,
+          9,
+          617,
+          28
+        ],
+        "end_loc": [
+          1,
+          619,
+          1,
+          619,
+          2
+        ],
+        "params": [
+          {
+            "name": "collateralToken",
+            "ty_idx": 2
+          },
+          {
+            "name": "collectionId",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "ConditionRegistry",
+    "author": "Hossein Boustani",
+    "version": "0.1.0",
+    "description": "Condition Registry for TON Prediction Market - manages conditions, positions, split/merge/redeem",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PrepareCondition"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportPayouts"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MergePositions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RedeemPositions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegistryStorage"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "RegistryStorage",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditions",
+            "ty_idx": 19
+          },
+          {
+            "name": "balances",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PrepareCondition",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "oracle",
+            "ty_idx": 7
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportPayouts",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 2,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "payoutCount",
+            "ty_idx": 14
+          },
+          {
+            "name": "payouts",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MergePositions",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 4,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "partitionCount",
+            "ty_idx": 14
+          },
+          {
+            "name": "partition",
+            "ty_idx": 3
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RedeemPositions",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 5,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "collateralToken",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 13
+          },
+          {
+            "name": "indexSetCount",
+            "ty_idx": 14
+          },
+          {
+            "name": "indexSets",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 18
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 17
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 83229,
+        "name": "owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 108939,
+        "name": "get_condition",
+        "parameters": [
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 21
+      },
+      {
+        "tvm_method_id": 110284,
+        "name": "compute_condition_id",
+        "parameters": [
+          {
+            "name": "oracle",
+            "ty_idx": 2
+          },
+          {
+            "name": "questionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "outcomeSlotCount",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 110727,
+        "name": "compute_collection_id",
+        "parameters": [
+          {
+            "name": "parentCollectionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "conditionId",
+            "ty_idx": 1
+          },
+          {
+            "name": "indexSet",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 124037,
+        "name": "compute_position_id",
+        "parameters": [
+          {
+            "name": "collateralToken",
+            "ty_idx": 2
+          },
+          {
+            "name": "collectionId",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InvalidOutcomeCount",
+        "err_code": 200
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.ConditionAlreadyExists",
+        "err_code": 201
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.ConditionNotFound",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.ConditionAlreadyResolved",
+        "err_code": 203
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.AllZeroPayouts",
+        "err_code": 205
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InvalidPartition",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InsufficientBalance",
+        "err_code": 207
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.ConditionNotResolved",
+        "err_code": 208
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InvalidIndexSet",
+        "err_code": 209
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InsufficientGas",
+        "err_code": 210
+      },
+      {
+        "kind": "enum_member",
+        "name": "RegistryErrors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/fe8c7f8d-f561-4161-8406-41da8c92fb6d/contracts/src/condition_registry.tolk",
+      "contents": "/// Condition Registry Contract\n/// Manages conditions, positions, split/merge/redeem operations\n/// for the TON Prediction Market protocol.\n\nimport \"types\"\n\n// ─── Op-codes ───────────────────────────────────────────────────────────────\n\nconst OP_PREPARE_CONDITION: int = 0x01;\nconst OP_REPORT_PAYOUTS: int = 0x02;\nconst OP_SPLIT_POSITION: int = 0x03;\nconst OP_MERGE_POSITIONS: int = 0x04;\nconst OP_REDEEM_POSITIONS: int = 0x05;\nconst OP_TRANSFER_NOTIFICATION: int = 0x7362d09c;\n\n// ─── Error codes ────────────────────────────────────────────────────────────\n\nenum RegistryErrors {\n    NotOwner = 100\n    InvalidMessage = 0xFFFF\n    InvalidOutcomeCount = 200\n    ConditionAlreadyExists = 201\n    ConditionNotFound = 202\n    ConditionAlreadyResolved = 203\n    InvalidOracle = 204\n    AllZeroPayouts = 205\n    InvalidPartition = 206\n    InsufficientBalance = 207\n    ConditionNotResolved = 208\n    InvalidIndexSet = 209\n    InsufficientGas = 210\n}\n\n// ─── Storage ────────────────────────────────────────────────────────────────\n\nstruct RegistryStorage {\n    owner: address\n    jettonWallet: address\n    conditions: map<uint256, cell>      // condition_id → condition data cell\n    balances: map<uint256, coins>       // balance_key (hash of positionId+user) → amount\n}\n\nfun RegistryStorage.load(): RegistryStorage {\n    return RegistryStorage.fromCell(contract.getData());\n}\n\nfun RegistryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ─── Messages ───────────────────────────────────────────────────────────────\n\nstruct (0x01) PrepareCondition {\n    queryId: uint64\n    oracle: address\n    questionId: uint256\n    outcomeSlotCount: uint8\n}\n\nstruct (0x02) ReportPayouts {\n    queryId: uint64\n    questionId: uint256\n    payoutCount: uint8\n    payouts: cell\n}\n\nstruct (0x04) MergePositions {\n    queryId: uint64\n    collateralToken: address\n    parentCollectionId: uint256\n    conditionId: uint256\n    partitionCount: uint8\n    partition: cell\n    amount: coins\n}\n\nstruct (0x05) RedeemPositions {\n    queryId: uint64\n    collateralToken: address\n    parentCollectionId: uint256\n    conditionId: uint256\n    indexSetCount: uint8\n    indexSets: cell\n}\n\n// ─── Contract definition ────────────────────────────────────────────────────\n\ncontract ConditionRegistry {\n    author: \"Hossein Boustani\"\n    version: \"0.1.0\"\n    description: \"Condition Registry for TON Prediction Market - manages conditions, positions, split/merge/redeem\"\n    storage: RegistryStorage\n    incomingMessages: AllowedRegistryMessage\n}\n\ntype AllowedRegistryMessage = PrepareCondition | ReportPayouts | MergePositions | RedeemPositions\n\n// ─── ID Derivation ──────────────────────────────────────────────────────────\n\nfun get_condition_id(oracle: slice, questionId: int, outcomeSlotCount: int): int {\n    val c = beginCell()\n        .storeSlice(oracle)\n        .storeUint(questionId, 256)\n        .storeUint(outcomeSlotCount, 8)\n        .endCell();\n    return c.hash();\n}\n\nfun get_collection_id(parentCollectionId: int, conditionId: int, indexSet: int): int {\n    val c = beginCell()\n        .storeUint(parentCollectionId, 256)\n        .storeUint(conditionId, 256)\n        .storeUint(indexSet, 256)\n        .endCell();\n    return c.hash();\n}\n\nfun get_position_id(collateralToken: slice, collectionId: int): int {\n    val c = beginCell()\n        .storeSlice(collateralToken)\n        .storeUint(collectionId, 256)\n        .endCell();\n    return c.hash();\n}\n\n// ─── Entry points ───────────────────────────────────────────────────────────\n\nfun onInternalMessage(in: InMessage) {\n    // Gas validation - reject if insufficient TON attached\n    assert(in.valueCoins >= 100000000) throw RegistryErrors.InsufficientGas;  // 0.1 TON = 10^8 nanotons\n\n    val msg = lazy AllowedRegistryMessage.fromSlice(in.body);\n\n    match (msg) {\n        PrepareCondition => {\n            // Validate outcome slot count (must be >= 2)\n            assert(msg.outcomeSlotCount >= 2) throw RegistryErrors.InvalidOutcomeCount;\n\n            // Load storage\n            var storage = RegistryStorage.load();\n\n            // Compute condition_id from oracle, questionId, outcomeSlotCount\n            val oracleSlice = beginCell().storeAddress(msg.oracle).endCell().beginParse();\n            val conditionId = get_condition_id(oracleSlice, msg.questionId, msg.outcomeSlotCount);\n\n            // Check that condition does not already exist\n            assert(!storage.conditions.exists(conditionId)) throw RegistryErrors.ConditionAlreadyExists;\n\n            // Build condition data cell:\n            //   oracle: address\n            //   question_id: uint256\n            //   outcome_slot_count: uint8\n            //   payout_denominator: uint256 (0 = unresolved)\n            //   payout_numerators: cell reference (empty dict)\n            val conditionData = beginCell()\n                .storeAddress(msg.oracle)\n                .storeUint(msg.questionId, 256)\n                .storeUint(msg.outcomeSlotCount, 8)\n                .storeUint(0, 256)\n                .storeDict(null)\n                .endCell();\n\n            // Store condition in the conditions dictionary\n            storage.conditions.set(conditionId, conditionData);\n\n            // Save updated storage\n            storage.save();\n        }\n        ReportPayouts => {\n            // Load storage\n            var storage = RegistryStorage.load();\n\n            // The oracle is identified by the sender of the message.\n            // Compute condition_id from (sender_address, questionId, payoutCount)\n            val senderSlice = beginCell().storeAddress(in.senderAddress).endCell().beginParse();\n            val conditionId = get_condition_id(senderSlice, msg.questionId, msg.payoutCount);\n\n            // Look up the condition — if not found, throw ConditionNotFound (202)\n            val lookupResult = storage.conditions.get(conditionId);\n            assert(lookupResult.isFound) throw RegistryErrors.ConditionNotFound;\n\n            // Parse existing condition data\n            var cs = lookupResult.loadValue().beginParse();\n            val oracle = cs.loadAddress();\n            val questionId = cs.loadUint(256);\n            val outcomeSlotCount = cs.loadUint(8);\n            val payoutDenominator = cs.loadUint(256);\n\n            // Check if already resolved (payout_denominator != 0)\n            assert(payoutDenominator == 0) throw RegistryErrors.ConditionAlreadyResolved;\n\n            // Parse the payouts array from the reference cell\n            var payoutsSlice = msg.payouts.beginParse();\n            var denominator: int = 0;\n            var i: int = 0;\n            while (i < msg.payoutCount) {\n                val payout = payoutsSlice.loadUint(256);\n                denominator += payout;\n                i += 1;\n            }\n\n            // If denominator == 0 (all-zero payouts), throw AllZeroPayouts (205)\n            assert(denominator != 0) throw RegistryErrors.AllZeroPayouts;\n\n            // Store the payout numerators and update the denominator in the condition data cell\n            val conditionData = beginCell()\n                .storeAddress(oracle)\n                .storeUint(questionId, 256)\n                .storeUint(outcomeSlotCount, 8)\n                .storeUint(denominator, 256)\n                .storeRef(msg.payouts)\n                .endCell();\n\n            // Update condition in storage\n            storage.conditions.set(conditionId, conditionData);\n\n            // Save the updated storage\n            storage.save();\n        }\n        MergePositions => {\n            // Load storage\n            var storage = RegistryStorage.load();\n\n            // Look up the condition — throw 202 if not found\n            val lookupResult = storage.conditions.get(msg.conditionId);\n            assert(lookupResult.isFound) throw RegistryErrors.ConditionNotFound;\n\n            // Parse condition data to get outcomeSlotCount\n            var cs = lookupResult.loadValue().beginParse();\n            cs.loadAddress(); // skip oracle\n            cs.loadUint(256); // skip questionId\n            val outcomeSlotCount = cs.loadUint(8);\n\n            // Execute merge logic\n            handleMerge(storage, in.senderAddress, msg.amount, msg.collateralToken, msg.parentCollectionId, msg.conditionId, outcomeSlotCount, msg.partitionCount, msg.partition);\n        }\n        RedeemPositions => {\n            // Load storage\n            var storage = RegistryStorage.load();\n\n            // Look up the condition\n            val lookupResult = storage.conditions.get(msg.conditionId);\n            assert(lookupResult.isFound) throw RegistryErrors.ConditionNotFound;\n\n            // Parse condition data\n            var cs = lookupResult.loadValue().beginParse();\n            cs.loadAddress(); // skip oracle\n            cs.loadUint(256); // skip questionId\n            val outcomeSlotCount = cs.loadUint(8);\n            val payoutDenominator = cs.loadUint(256);\n\n            // Check condition is resolved (denominator > 0)\n            assert(payoutDenominator > 0) throw RegistryErrors.ConditionNotResolved;\n\n            // Load payouts array from reference\n            val payoutsRef = cs.loadRef();\n\n            val fullIndexSet = (1 << outcomeSlotCount) - 1;\n            val sender = in.senderAddress;\n\n            // Process each index set\n            var indexSetsSlice = msg.indexSets.beginParse();\n            var totalPayout: int = 0;\n            var i: int = 0;\n\n            while (i < msg.indexSetCount) {\n                val indexSet = indexSetsSlice.loadUint(256);\n\n                // Validate index set: must be > 0 and < fullIndexSet\n                assert(indexSet > 0) throw RegistryErrors.InvalidIndexSet;\n                assert(indexSet < fullIndexSet) throw RegistryErrors.InvalidIndexSet;\n\n                // Compute payout_numerator: sum payouts[j] for each bit j set in indexSet\n                var payoutNumerator: int = 0;\n                var payoutsSlice = payoutsRef.beginParse();\n                var j: int = 0;\n                while (j < outcomeSlotCount) {\n                    val p = payoutsSlice.loadUint(256);\n                    if (((indexSet >> j) & 1) == 1) {\n                        payoutNumerator += p;\n                    }\n                    j += 1;\n                }\n\n                // Compute position's collection_id and position_id\n                val collectionId = get_collection_id(msg.parentCollectionId, msg.conditionId, indexSet);\n                val positionId = getPositionId(msg.collateralToken, collectionId);\n\n                // Get trader's balance in that position\n                val balance = getBalance(storage, positionId, sender);\n\n                // Compute position_payout = balance * payout_numerator / denominator (floor division)\n                val positionPayout = balance * payoutNumerator / payoutDenominator;\n                totalPayout += positionPayout;\n\n                // Burn (zero out) the trader's position balance\n                storage = setBalance(storage, positionId, sender, 0);\n\n                i += 1;\n            }\n\n            // If there's a payout and parent is non-null, mint in parent position\n            if (totalPayout > 0 && msg.parentCollectionId != 0) {\n                val parentPositionId = getPositionId(msg.collateralToken, msg.parentCollectionId);\n                val parentBalance = getBalance(storage, parentPositionId, sender);\n                storage = setBalance(storage, parentPositionId, sender, parentBalance + totalPayout);\n            }\n            // If parentCollectionId == 0 and totalPayout > 0, need to send Jetton transfer\n            // (actual Jetton transfer deferred to task 12 — for now just update storage)\n\n            // Save updated storage\n            storage.save();\n        }\n        else => {\n            // Handle transfer_notification for splits (op 0x7362d09c)\n            var bodySlice = in.body;\n            val op = bodySlice.loadUint(32);\n\n            if (op == OP_TRANSFER_NOTIFICATION) {\n                val _queryId = bodySlice.loadUint(64);\n                val amount = bodySlice.loadCoins();\n                val sender = bodySlice.loadAddress();\n                val forwardPayload = bodySlice.loadRef();\n\n                // Load storage and verify sender is our Jetton wallet\n                var storage = RegistryStorage.load();\n                assert(in.senderAddress == storage.jettonWallet) throw RegistryErrors.InvalidMessage;\n\n                // Parse forward_payload (split_position parameters)\n                var fpSlice = forwardPayload.beginParse();\n                val fpOp = fpSlice.loadUint(32);\n                assert(fpOp == OP_SPLIT_POSITION) throw RegistryErrors.InvalidMessage;\n\n                val collateralToken = fpSlice.loadAddress();\n                val parentCollectionId = fpSlice.loadUint(256);\n                val conditionId = fpSlice.loadUint(256);\n                val partitionCount = fpSlice.loadUint(8);\n                val partitionCell = fpSlice.loadRef();\n\n                // Look up the condition\n                val lookupResult = storage.conditions.get(conditionId);\n                assert(lookupResult.isFound) throw RegistryErrors.ConditionNotFound;\n\n                // Parse condition data to get outcomeSlotCount\n                var cs = lookupResult.loadValue().beginParse();\n                cs.loadAddress(); // skip oracle\n                cs.loadUint(256); // skip questionId\n                val outcomeSlotCount = cs.loadUint(8);\n\n                // Execute split logic\n                handleSplit(storage, sender, amount, collateralToken, parentCollectionId, conditionId, outcomeSlotCount, partitionCount, partitionCell);\n            } else {\n                assert(false) throw RegistryErrors.InvalidMessage;\n            }\n        }\n    }\n}\n\n// ─── Split Position Logic ───────────────────────────────────────────────────\n\nfun handleSplit(\n    storage: RegistryStorage,\n    sender: address,\n    amount: int,\n    collateralToken: address,\n    parentCollectionId: int,\n    conditionId: int,\n    outcomeSlotCount: int,\n    partitionCount: int,\n    partitionCell: cell,\n) {\n    // Validate partition: must have at least 2 index sets\n    assert(partitionCount >= 2) throw RegistryErrors.InvalidPartition;\n\n    val fullIndexSet = (1 << outcomeSlotCount) - 1;\n\n    // Parse partition and validate\n    var pSlice = partitionCell.beginParse();\n    var combinedIndexSet: int = 0;\n    var i: int = 0;\n\n    // First pass: validate each index set and compute combined (union)\n    // Also check for overlaps (disjoint requirement)\n    while (i < partitionCount) {\n        val indexSet = pSlice.loadUint(256);\n\n        // Each index set must be > 0\n        assert(indexSet > 0) throw RegistryErrors.InvalidPartition;\n\n        // Each index set must be < full set (within bounds)\n        assert(indexSet < fullIndexSet) throw RegistryErrors.InvalidPartition;\n\n        // Check for overlap with previously seen index sets\n        assert((combinedIndexSet & indexSet) == 0) throw RegistryErrors.InvalidPartition;\n\n        combinedIndexSet |= indexSet;\n        i += 1;\n    }\n\n    // Determine if this is a full-set split or partial-set split\n    val isFullSetSplit = (combinedIndexSet == fullIndexSet);\n\n    if (isFullSetSplit) {\n        // Full-set split from collateral (or from parent position)\n        if (parentCollectionId != 0) {\n            // Deep split: burn the parent position\n            val parentPositionId = getPositionId(collateralToken, parentCollectionId);\n            val currentBalance = getBalance(storage, parentPositionId, sender);\n            assert(currentBalance >= amount) throw RegistryErrors.InsufficientBalance;\n            storage = setBalance(storage, parentPositionId, sender, currentBalance - amount);\n        }\n        // If parentCollectionId == 0 and full-set: collateral split — amount is the incoming Jettons\n\n        // Mint positions for each index set in the partition\n        var pSlice2 = partitionCell.beginParse();\n        var j: int = 0;\n        while (j < partitionCount) {\n            val indexSet = pSlice2.loadUint(256);\n            val collectionId = get_collection_id(parentCollectionId, conditionId, indexSet);\n            val positionId = getPositionId(collateralToken, collectionId);\n            val currentBalance = getBalance(storage, positionId, sender);\n            storage = setBalance(storage, positionId, sender, currentBalance + amount);\n            j += 1;\n        }\n    } else {\n        // Partial-set split: burn the union position and mint sub-positions\n        // The trader must hold the union position (combinedIndexSet) with sufficient balance\n        val unionCollectionId = get_collection_id(parentCollectionId, conditionId, combinedIndexSet);\n        val unionPositionId = getPositionId(collateralToken, unionCollectionId);\n        val currentBalance = getBalance(storage, unionPositionId, sender);\n        assert(currentBalance >= amount) throw RegistryErrors.InsufficientBalance;\n\n        // Burn union position\n        storage = setBalance(storage, unionPositionId, sender, currentBalance - amount);\n\n        // Mint sub-positions\n        var pSlice2 = partitionCell.beginParse();\n        var j: int = 0;\n        while (j < partitionCount) {\n            val indexSet = pSlice2.loadUint(256);\n            val collectionId = get_collection_id(parentCollectionId, conditionId, indexSet);\n            val positionId = getPositionId(collateralToken, collectionId);\n            val bal = getBalance(storage, positionId, sender);\n            storage = setBalance(storage, positionId, sender, bal + amount);\n            j += 1;\n        }\n    }\n\n    // Save updated storage\n    storage.save();\n}\n\n// ─── Merge Position Logic ───────────────────────────────────────────────────\n\nfun handleMerge(\n    storage: RegistryStorage,\n    sender: address,\n    amount: int,\n    collateralToken: address,\n    parentCollectionId: int,\n    conditionId: int,\n    outcomeSlotCount: int,\n    partitionCount: int,\n    partitionCell: cell,\n) {\n    // Validate partition: must have at least 2 index sets\n    assert(partitionCount >= 2) throw RegistryErrors.InvalidPartition;\n\n    val fullIndexSet = (1 << outcomeSlotCount) - 1;\n\n    // Parse partition and validate\n    var pSlice = partitionCell.beginParse();\n    var combinedIndexSet: int = 0;\n    var i: int = 0;\n\n    // Validate each index set and compute combined (union)\n    while (i < partitionCount) {\n        val indexSet = pSlice.loadUint(256);\n\n        // Each index set must be > 0\n        assert(indexSet > 0) throw RegistryErrors.InvalidPartition;\n\n        // Each index set must be < full set (within bounds)\n        assert(indexSet < fullIndexSet) throw RegistryErrors.InvalidPartition;\n\n        // Check for overlap with previously seen index sets (disjoint)\n        assert((combinedIndexSet & indexSet) == 0) throw RegistryErrors.InvalidPartition;\n\n        combinedIndexSet |= indexSet;\n        i += 1;\n    }\n\n    // Determine if this is a full-set or partial-set merge\n    val isFullSetMerge = (combinedIndexSet == fullIndexSet);\n\n    // Burn each partition position (check balance >= amount, throw 207 if not)\n    var pSlice2 = partitionCell.beginParse();\n    var j: int = 0;\n    while (j < partitionCount) {\n        val indexSet = pSlice2.loadUint(256);\n        val collectionId = get_collection_id(parentCollectionId, conditionId, indexSet);\n        val positionId = getPositionId(collateralToken, collectionId);\n        val currentBalance = getBalance(storage, positionId, sender);\n        assert(currentBalance >= amount) throw RegistryErrors.InsufficientBalance;\n        storage = setBalance(storage, positionId, sender, currentBalance - amount);\n        j += 1;\n    }\n\n    if (isFullSetMerge) {\n        if (parentCollectionId == 0) {\n            // Full-set merge with null parent: collateral refund\n            // For now, just update balances (actual Jetton transfer will be done in task 12)\n            // The collateral is released — no position to mint\n        } else {\n            // Deep merge: full-set merge with non-null parent — mint the parent position\n            val parentPositionId = getPositionId(collateralToken, parentCollectionId);\n            val parentBalance = getBalance(storage, parentPositionId, sender);\n            storage = setBalance(storage, parentPositionId, sender, parentBalance + amount);\n        }\n    } else {\n        // Partial-set merge: mint the union position\n        val unionCollectionId = get_collection_id(parentCollectionId, conditionId, combinedIndexSet);\n        val unionPositionId = getPositionId(collateralToken, unionCollectionId);\n        val unionBalance = getBalance(storage, unionPositionId, sender);\n        storage = setBalance(storage, unionPositionId, sender, unionBalance + amount);\n    }\n\n    // Save updated storage\n    storage.save();\n}\n\n// ─── Balance helpers ────────────────────────────────────────────────────────\n\n/// Compute position_id from collateral token address and collection_id\nfun getPositionId(collateralToken: address, collectionId: int): int {\n    val collateralSlice = beginCell().storeAddress(collateralToken).endCell().beginParse();\n    return get_position_id(collateralSlice, collectionId);\n}\n\n/// Compute a balance map key from positionId and user address\nfun getBalanceKey(positionId: int, userAddress: address): int {\n    val c = beginCell()\n        .storeUint(positionId, 256)\n        .storeAddress(userAddress)\n        .endCell();\n    return c.hash();\n}\n\n/// Get the balance for a given position_id and user address.\nfun getBalance(storage: RegistryStorage, positionId: int, userAddress: address): int {\n    val key = getBalanceKey(positionId, userAddress);\n    val result = storage.balances.get(key);\n    if (!result.isFound) {\n        return 0;\n    }\n    return result.loadValue();\n}\n\n/// Set the balance for a given position_id and user address.\n/// Returns updated storage.\nfun setBalance(storage: RegistryStorage, positionId: int, userAddress: address, newBalance: int): RegistryStorage {\n    val key = getBalanceKey(positionId, userAddress);\n    storage.balances.set(key, newBalance);\n    return storage;\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    // Parse bounced body - the prefix is already stripped by the framework\n    in.bouncedBody.skipBouncedPrefix();\n    var body = in.bouncedBody;\n\n    // Read the original op-code from the bounced message\n    if (body.remainingBitsCount() >= 32) {\n        val bounceOp = body.loadUint(32);\n\n        if (bounceOp == 0x0f8a7ea5) {\n            // Jetton transfer bounced - accept silently\n            // Parse query_id and amount if enough bits remain\n            if (body.remainingBitsCount() >= 64 + 4) {\n                val _queryId = body.loadUint(64);\n                val _amount = body.loadCoins();\n            }\n            // State restoration would require tracking pending transfers\n            // For now, accept the bounce silently\n        }\n    }\n    // Default: silently accept other bounces\n}\n\n// ─── Get-methods ────────────────────────────────────────────────────────────\n\nget fun owner(): address {\n    val storage = lazy RegistryStorage.load();\n    return storage.owner;\n}\n\nget fun get_condition(conditionId: int): (address, int, int, int) {\n    val storage = RegistryStorage.load();\n    val r = storage.conditions.get(conditionId);\n    assert(r.isFound) throw RegistryErrors.ConditionNotFound;\n    var cs = r.loadValue().beginParse();\n    val oracle = cs.loadAddress();\n    val questionId = cs.loadUint(256);\n    val outcomeSlotCount = cs.loadUint(8);\n    val payoutDenominator = cs.loadUint(256);\n    return (oracle, questionId, outcomeSlotCount, payoutDenominator);\n}\n\nget fun compute_condition_id(oracle: slice, questionId: int, outcomeSlotCount: int): int {\n    return get_condition_id(oracle, questionId, outcomeSlotCount);\n}\n\nget fun compute_collection_id(parentCollectionId: int, conditionId: int, indexSet: int): int {\n    return get_collection_id(parentCollectionId, conditionId, indexSet);\n}\n\nget fun compute_position_id(collateralToken: slice, collectionId: int): int {\n    return get_position_id(collateralToken, collectionId);\n}\n"
+    },
+    {
+      "filename": "tmp/fe8c7f8d-f561-4161-8406-41da8c92fb6d/contracts/src/types.tolk",
+      "contents": "enum Errors {\n    NotOwner = 100\n    InvalidMessage = 0xFFFF\n}\n\nstruct Storage {\n    owner: address\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct (0x2ce05111) ChangeOwner {\n    newOwner: address\n}\n"
+    }
+  ]
+}

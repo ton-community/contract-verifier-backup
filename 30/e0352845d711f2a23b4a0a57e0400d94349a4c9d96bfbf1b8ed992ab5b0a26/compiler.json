@@ -1,0 +1,2654 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from plain_subdomains.tolk, common.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  123660 DECLMETHOD dnsresolve()\n  81504 DECLMETHOD dnssubdomains()\n  80293 DECLMETHOD get_owner()\n  87634 DECLMETHOD get_editors()\n  // 19 functions inlined in-place:\n  // - Storage.load (7 calls)\n  // - Storage.save (3 calls)\n  // - Storage.isOwner (3 calls)\n  // - Storage.isEditor (1 call)\n  // - Storage.canUpdateRecords (1 call)\n  // - Storage.addEditor (1 call)\n  // - Storage.removeEditor (1 call)\n  // - SubdomainState.processChanges (1 call)\n  // - Storage.processUpdate (1 call)\n  // - onBouncedMessage (0 calls)\n  // - sendExcesses (3 calls)\n  // - findPreviousSegmentPrefixBits (2 calls)\n  // - MapEntry<uint256, cell?>.loadValue (1 call)\n  // - MapEntry<uint256, cell?>.getKey (2 calls)\n  // - MapLookupResult<SubdomainState>.loadValue (3 calls)\n  // - MapLookupResult<cell>.loadValue (2 calls)\n  // - MapEntry<uint256, SubdomainState>.loadValue (1 call)\n  // - MapEntry<uint256, cell>.getKey (1 call)\n  // - MapEntry<uint256, cell>.loadValue (1 call)\n  // - MapEntry<address, ()>.getKey (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{632844dc} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTREF\n      PLDOPTREF\n      INMSG_SRC\n      s0 s3 PUSH2\n      SDEQ\n      IF:<{\n        DROP\n        -1 PUSHINT\n      }>ELSE<{\n        s2 PUSH\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        NIP\n        0 NEQINT\n      }>\n      132 THROWIFNOT\n      s0 s3 XCHG\n      1 LDI\n      0 TUPLE\n      SWAP\n      8 LDU\n      PLDOPTREF\n      WHILE:<{\n        DUP\n        ISNULL\n        NOT\n      }>DO<{\n        CTOS\n        LDOPTREF\n        UNTIL:<{\n          LDREF\n          1 LDI\n          LDOPTREF\n          s0 s6 XCHG\n          3 -ROLL\n          3 TUPLE TPUSH\n          s3 PUSH\n          SEMPTY\n          s1 s4 XCHG\n        }>\n        DROP\n      }>\n      DROP\n      OVER\n      TLEN\n      EQUAL\n      9 THROWIFNOT\n      SWAP\n      IF:<{\n        s3 POP\n        NEWDICT\n        s0 s3 XCHG\n      }>\n      0 PUSHINT\n      OVER\n      TLEN\n      REPEAT:<{\n        2DUP\n        INDEXVAR 3 UNTUPLE\n        s2 PUSH\n        CTOS\n        NEWC\n        STSLICE\n        HASHBU\n        s0 s8 PUSH2\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        IF:<{\n          s4 POP\n          s0 s3 XCHG\n          LDREF\n          LDOPTREF\n          ENDS\n        }>ELSE<{\n          DROP\n          NEWDICT\n          s1 s4 XCHG\n        }>\n        s0 s3 XCHG\n        IF:<{\n          s2 POP\n          NEWDICT\n          s0 s2 XCHG\n        }>\n        OVER\n        8 PUSHPOW2\n        DICTUMIN NULLSWAPIFNOT2\n        WHILE:<{\n        }>DO<{\n          SWAP\n          LDOPTREF\n          ENDS\n          DUP\n          ISNULL\n          IF:<{\n            DROP\n            s0 s3 PUXC\n            8 PUSHPOW2\n            DICTUDEL\n            DROP\n          }>ELSE<{\n            s0 s0 s4 XCPUXC\n            8 PUSHPOW2\n            DICTUSETREF\n          }>\n          s3 s2 XCPU\n          8 PUSHPOW2\n          DICTUGETNEXT NULLSWAPIFNOT2\n        }>\n        s2 s3 XCHG\n        3 BLKDROP\n        NEWC\n        STREF\n        STOPTREF\n        s0 s1 s6 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s4 XCHG\n        INC\n      }>\n      2DROP\n      SWAP\n      NEWC\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      3576854235 PUSHINT\n      143 STUR\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    x{2e8c24a1} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTREF\n      PLDOPTREF\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      132 THROWIFNOT\n      s0 s3 XCHG\n      LDSTDADDR\n      DROP\n      NEWC\n      s0 s2 XCHG\n      267 PUSHINT\n      DICTSETB\n      SWAP\n      NEWC\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      3576854235 PUSHINT\n      143 STUR\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    x{7b5cf2f8} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDOPTREF\n      PLDOPTREF\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      132 THROWIFNOT\n      s0 s3 XCHG\n      LDSTDADDR\n      DROP\n      SWAP\n      267 PUSHINT\n      DICTDEL\n      DROP\n      SWAP\n      NEWC\n      STSTDADDR\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      3576854235 PUSHINT\n      143 STUR\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  dnsresolve() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    c4 PUSH\n    CTOS\n    s2 PUSH\n    SBITS\n    0 PUSHINT\n    OVER\n    7 GTINT\n    IF:<{\n      s4 PUSH\n      8 PLDU\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      DUP\n    }>\n    IF:<{\n      DROP\n      s0 s3 XCHG\n      8 LDU\n      NIP\n      s0 s3 XCHG\n      8 PUSHINT\n    }>\n    s4 PUSH\n    SBITS\n    s5 PUSH\n    NEWC\n    STSLICE\n    HASHBU\n    s0 s4 XCHG\n    LDSTDADDR\n    NIP\n    SKIPOPTREF\n    PLDOPTREF\n    s4 s4 XCPU\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      NIP\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      IFNOTJMP:<{\n        s4 POP\n        2DROP\n        s3 POP\n        NIP\n        RETALT\n      }>\n      s1 s5 XCHG\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      IFJMP:<{\n        NIP\n        3 2 BLKDROP2\n        LDREF\n        ENDS\n        RETALT\n      }>\n      DROP\n      s0 s3 XCHG\n      NIP\n    }>ELSE<{\n      DROP\n      s2 POP\n      s3 POP\n    }>\n    s3 PUSH\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      OVER\n      8 ADDCONST\n      s4 PUSH\n      LESS\n    }>DO<{\n      s2 PUSH\n      8 PLDU\n      IFNOT:<{\n        DROP\n        DUP\n      }>\n      s0 s2 XCHG\n      8 LDU\n      NIP\n      SWAP\n      8 ADDCONST\n      ROT\n    }>\n    3 1 BLKDROP2\n    WHILE:<{\n      DUP\n      0 GTINT\n    }>DO<{\n      s3 s0 PUSH2\n      SDCUTFIRST\n      NEWC\n      STSLICE\n      HASHBU\n      s2 PUSH\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      IF:<{\n        LDREF\n        NIP\n        LDOPTREF\n        ENDS\n        11732114750494247458678882651681748623800183221773167493832867265755123357695 PUSHINT\n        SWAP\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        IFJMP:<{\n          s4 POP\n          NIP\n          ADD\n          SWAP\n          LDREF\n          ENDS\n          RETALT\n        }>\n        DROP\n      }>ELSE<{\n        DROP\n      }>\n      s3 PUSH\n      0 PUSHINT\n      DUP\n      WHILE:<{\n        OVER\n        8 ADDCONST\n        s4 PUSH\n        LESS\n      }>DO<{\n        s2 PUSH\n        8 PLDU\n        IFNOT:<{\n          DROP\n          DUP\n        }>\n        s0 s2 XCHG\n        8 LDU\n        NIP\n        SWAP\n        8 ADDCONST\n        ROT\n      }>\n      3 1 BLKDROP2\n    }>\n    4 BLKDROP\n    0 PUSHINT\n    PUSHNULL\n  }>\n  dnssubdomains() PROC:<{\n    c4 PUSH\n    CTOS\n    0 TUPLE\n    SWAP\n    LDSTDADDR\n    NIP\n    SKIPOPTREF\n    PLDOPTREF\n    DUP\n    8 PUSHPOW2\n    DICTUMIN NULLSWAPIFNOT2\n    WHILE:<{\n    }>DO<{\n      SWAP\n      LDREF\n      LDOPTREF\n      ENDS\n      DUP\n      8 PUSHPOW2\n      DICTUMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        s0 s1 PUXC\n        LDREF\n        ENDS\n        s4 PUSH\n        s3 s8 XCHG\n        s0 s8 s8 XCHG3\n        3 TUPLE TPUSH\n        s5 s1 XCPU\n        8 PUSHPOW2\n        DICTUGETNEXT NULLSWAPIFNOT2\n      }>\n      4 BLKDROP\n      OVER\n      8 PUSHPOW2\n      DICTUGETNEXT NULLSWAPIFNOT2\n    }>\n    3 BLKDROP\n  }>\n  get_owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  get_editors() PROC:<{\n    c4 PUSH\n    CTOS\n    0 TUPLE\n    SWAP\n    LDSTDADDR\n    NIP\n    PLDOPTREF\n    DUP\n    267 PUSHINT\n    DICTMIN NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      s2 s2 XCPU\n      TPUSH\n      s2 s1 XCPU\n      267 PUSHINT\n      DICTGETNEXT NULLSWAPIFNOT2\n      s2 POP\n    }>\n    2DROP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEAEAAzgAART/APSkE/S88sgLAQIBYgIDAtLQ+JGRMOAg1ywjGUIm5OMC1ywhdGElDI4+Me1E0PpI9AT0BfiSI8cF8uCEA/pIMMgCgQEL9EEByPpS9AD0AMntVPiSyM+FCPpSghDVMnbbzwuOyYBC+wDg1ywj2ueXxOMCMIQPAccA8vQEBQIBIAgJAvwx7UTQ+kj0BPQF+JJTA8cFkjB/myKBAQv0Cm+hMcMA4vLghAPSAG8AAdMH9AWTIG6zjhfQ9ASOENTSAPQEBlUgbwNvjCPHABTmMOgwIW+IuvKJAZMzbQPecCFviIrkWwHI+lL0APQAye1U+JLIz4UI+lKCENUydtvPC47JgEIGBwB8Me1E0PpI9AT0BfiSI8cF8uCEA/pIMAGBAQv0WTAByPpS9AD0AMntVPiSyM+FCPpSghDVMnbbzwuOyYBC+wAAwFxvgW8jItDIzvkWUwiDB/QOb6GWNAPU9ATRkzBtFOIDkzJtAt4hgwf0hm+lkI4gAfQE0SBumDBSBIMH9Fswl1QgBYMH9BfiUTKDB/R8b6XoECNfA8jM9ABAFoMH9EMEpAAE+wACASAKCwL5vxhnbRdv32omgRa6S4EOEDzBJrhYPgAGGASJBxS5gB6YOYgbxvEmukkuRnfIsCfSQY+gD6AqiiQYP6BzfQxxDqGPoCaJLLGi2ZmO2Y8IrBg/oHN9DLmLYZamjtmPAYAZjJmBkZ8RG4EEqQ0wQSXMV0NhjJkGEARXQvgjg2wODwIB5wwNAFO5ZS7UTQbwAB+kgx9AUggQEL9IJvpTKRAZ5RIm+MUSGBAQv0dG+lMuhbgAEKml7UTQ+kgwAJSqYO1E0G8AAfpIMfQB9AUggwf0hm+lkI4uAdT0BNEggwf0hm+lkI4VUgLU0SQQOECIbwNvjFFRgwf0fG+l6F8EIYMH9HxvpehfAwAgItcLB5IwIN8C0wcxAaYIWADWUzDXIMjO+RYigwf0Dm+hjjnUMfQE0YLwGfAkQe5Yj9sm7iSyVo3QNcPJIG4Rq5eb5i5VVYodF/8Bgwf0Dm+hmDQxoAHU0dsx4DCRMOIjcCCVIaYIJLmOECLXCweSMCDfAtMHMQGmCFjobDE=",
+  "codeHashHex": "30E0352845D711F2A23B4A0A57E0400D94349A4C9D96BFBF1B8ED992AB5B0A26",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/plain_subdomains.tolk",
+        "size_chars": 4600,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/common.tolk",
+        "size_chars": 113,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/messages.tolk",
+        "size_chars": 572,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/storage.tolk",
+        "size_chars": 2065,
+        "imports": [
+          2,
+          3
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateRecords"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateNameRecords"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddEditor"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveEditor"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1663583452,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 780936353,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 2069689080,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": []
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SubdomainState"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Name"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 26
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          26
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          32
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          16,
+          17
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          36,
+          37
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          40
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 42,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 47
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          46
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          51,
+          16
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 56,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 52,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          60
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          17
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Record"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Category"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          16,
+          26
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          16,
+          3
+        ]
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 7
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          7,
+          24
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 30,
+        "struct_name": "MapLookupResult<SubdomainState>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 35,
+        "struct_name": "MapEntry<uint256, cell?>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          16,
+          5
+        ]
+      },
+      {
+        "ty_idx": 41,
+        "struct_name": "CreateMessageOptions<Excesses>",
+        "monomorphic_fields_ty_idx": [
+          45,
+          50,
+          59,
+          40
+        ]
+      },
+      {
+        "ty_idx": 63,
+        "struct_name": "MapLookupResult<cell>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 67,
+        "struct_name": "MapEntry<uint256, SubdomainState>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          16,
+          5
+        ]
+      },
+      {
+        "ty_idx": 68,
+        "struct_name": "MapEntry<uint256, cell>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          16,
+          5
+        ]
+      },
+      {
+        "ty_idx": 70,
+        "struct_name": "MapEntry<address, ()>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          7,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 31
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1038,
+          8,
+          1038,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 36
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 48
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 57
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 51
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 55
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 43,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 61,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 45
+          },
+          {
+            "name": "value",
+            "ty_idx": 50
+          },
+          {
+            "name": "dest",
+            "ty_idx": 59
+          },
+          {
+            "name": "body",
+            "ty_idx": 60
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          10,
+          6,
+          10,
+          20
+        ],
+        "target_ty_idx": 22
+      },
+      {
+        "kind": "alias",
+        "name": "Name",
+        "ty_idx": 27,
+        "ident_loc": [
+          2,
+          7,
+          6,
+          7,
+          10
+        ],
+        "target_ty_idx": 15
+      },
+      {
+        "kind": "alias",
+        "name": "Category",
+        "ty_idx": 65,
+        "ident_loc": [
+          2,
+          9,
+          6,
+          9,
+          14
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateRecords",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          3,
+          21,
+          3,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1663583452,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "prune",
+            "ty_idx": 5
+          },
+          {
+            "name": "changes",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateNameRecords",
+        "ty_idx": 14,
+        "ident_loc": [
+          3,
+          8,
+          8,
+          8,
+          25
+        ],
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 15
+          },
+          {
+            "name": "prune",
+            "ty_idx": 5
+          },
+          {
+            "name": "changes",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddEditor",
+        "ty_idx": 20,
+        "ident_loc": [
+          3,
+          20,
+          21,
+          20,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 780936353,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveEditor",
+        "ty_idx": 21,
+        "ident_loc": [
+          3,
+          24,
+          21,
+          24,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 2069689080,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 40,
+        "ident_loc": [
+          3,
+          30,
+          21,
+          30,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 23,
+        "ident_loc": [
+          4,
+          4,
+          8,
+          4,
+          15
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "editors",
+            "ty_idx": 25
+          },
+          {
+            "name": "subdomains",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SubdomainState",
+        "ty_idx": 26,
+        "ident_loc": [
+          4,
+          10,
+          8,
+          10,
+          22
+        ],
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 27
+          },
+          {
+            "name": "records",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Record",
+        "ty_idx": 64,
+        "ident_loc": [
+          4,
+          15,
+          8,
+          15,
+          14
+        ],
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 27
+          },
+          {
+            "name": "category",
+            "ty_idx": 65
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          17,
+          5,
+          17,
+          22
+        ],
+        "end_loc": [
+          1,
+          52,
+          1,
+          52,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          54,
+          5,
+          54,
+          21
+        ],
+        "end_loc": [
+          1,
+          54,
+          46,
+          54,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.canUpdateRecords",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          37,
+          13,
+          37,
+          29
+        ],
+        "end_loc": [
+          4,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Storage.isOwner",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          29,
+          13,
+          29,
+          20
+        ],
+        "end_loc": [
+          4,
+          31,
+          1,
+          31,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Storage.isEditor",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          33,
+          13,
+          33,
+          21
+        ],
+        "end_loc": [
+          4,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<address, ()>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Storage.processUpdate",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          65,
+          13,
+          65,
+          26
+        ],
+        "end_loc": [
+          4,
+          85,
+          1,
+          85,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "update",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint256, SubdomainState>.get",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "MapLookupResult<SubdomainState>.loadValue",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "SubdomainState.fromSlice",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "SubdomainState.processChanges",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          49,
+          20,
+          49,
+          34
+        ],
+        "end_loc": [
+          4,
+          63,
+          1,
+          63,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "update",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint256, cell?>.findFirst",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "MapEntry<uint256, cell?>.loadValue",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1052,
+          20,
+          1052,
+          29
+        ],
+        "end_loc": [
+          0,
+          1058,
+          1,
+          1058,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "cell?.fromSlice",
+        "return_ty_idx": 17,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "MapEntry<uint256, cell?>.getKey",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1045,
+          20,
+          1045,
+          26
+        ],
+        "end_loc": [
+          0,
+          1049,
+          1,
+          1049,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<uint256, cell>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "map<uint256, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "map<uint256, cell?>.iterateNext",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "current",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<uint256, SubdomainState>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          },
+          {
+            "name": "value",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          4,
+          25,
+          13,
+          25,
+          17
+        ],
+        "end_loc": [
+          4,
+          27,
+          1,
+          27,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "sendExcesses",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          56,
+          5,
+          56,
+          17
+        ],
+        "end_loc": [
+          1,
+          64,
+          1,
+          64,
+          2
+        ],
+        "params": [
+          {
+            "name": "dest",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "createMessage<Excesses>",
+        "return_ty_idx": 39,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "Storage.addEditor",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          41,
+          13,
+          41,
+          22
+        ],
+        "end_loc": [
+          4,
+          43,
+          1,
+          43,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "map<address, ()>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "Storage.removeEditor",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          45,
+          13,
+          45,
+          25
+        ],
+        "end_loc": [
+          4,
+          47,
+          1,
+          47,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "map<address, ()>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "dnsresolve",
+        "return_ty_idx": 62,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          66,
+          9,
+          66,
+          19
+        ],
+        "end_loc": [
+          1,
+          103,
+          1,
+          103,
+          2
+        ],
+        "params": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "category",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "map<uint256, cell>.get",
+        "return_ty_idx": 63,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "MapLookupResult<cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "cell.fromSlice",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "findPreviousSegmentPrefixBits",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          105,
+          5,
+          105,
+          34
+        ],
+        "end_loc": [
+          1,
+          117,
+          1,
+          117,
+          2
+        ],
+        "params": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "limitBits",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "dnssubdomains",
+        "return_ty_idx": 66,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          119,
+          9,
+          119,
+          22
+        ],
+        "end_loc": [
+          1,
+          137,
+          1,
+          137,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 32,
+        "name": "map<uint256, SubdomainState>.findFirst",
+        "return_ty_idx": 67,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "MapEntry<uint256, SubdomainState>.loadValue",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1052,
+          20,
+          1052,
+          29
+        ],
+        "end_loc": [
+          0,
+          1058,
+          1,
+          1058,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 67
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "map<uint256, cell>.findFirst",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "MapEntry<uint256, cell>.getKey",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1045,
+          20,
+          1045,
+          26
+        ],
+        "end_loc": [
+          0,
+          1049,
+          1,
+          1049,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "MapEntry<uint256, cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1052,
+          20,
+          1052,
+          29
+        ],
+        "end_loc": [
+          0,
+          1058,
+          1,
+          1058,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "map<uint256, cell>.iterateNext",
+        "return_ty_idx": 68,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "current",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "map<uint256, SubdomainState>.iterateNext",
+        "return_ty_idx": 67,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "current",
+            "ty_idx": 67
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "get_owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          139,
+          9,
+          139,
+          18
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 40,
+        "name": "get_editors",
+        "return_ty_idx": 69,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          144,
+          9,
+          144,
+          20
+        ],
+        "end_loc": [
+          1,
+          153,
+          1,
+          153,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 41,
+        "name": "map<address, ()>.findFirst",
+        "return_ty_idx": 70,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "MapEntry<address, ()>.getKey",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1045,
+          20,
+          1045,
+          26
+        ],
+        "end_loc": [
+          0,
+          1049,
+          1,
+          1049,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "map<address, ()>.iterateNext",
+        "return_ty_idx": 70,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "current",
+            "ty_idx": 70
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "plain_subdomains",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateRecords"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateNameRecords"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 16
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddEditor"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveEditor"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": []
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SubdomainState"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Name"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          16
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Record"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Category"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 7
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "Name",
+        "ty_idx": 25,
+        "target_ty_idx": 14
+      },
+      {
+        "kind": "alias",
+        "name": "Category",
+        "ty_idx": 31,
+        "target_ty_idx": 15
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateRecords",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1663583452,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "prune",
+            "ty_idx": 5
+          },
+          {
+            "name": "changes",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateNameRecords",
+        "ty_idx": 13,
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 14
+          },
+          {
+            "name": "prune",
+            "ty_idx": 5
+          },
+          {
+            "name": "changes",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddEditor",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 780936353,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveEditor",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 2069689080,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "editor",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "editors",
+            "ty_idx": 23
+          },
+          {
+            "name": "subdomains",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SubdomainState",
+        "ty_idx": 24,
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 25
+          },
+          {
+            "name": "records",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Record",
+        "ty_idx": 30,
+        "fields": [
+          {
+            "name": "name",
+            "ty_idx": 25
+          },
+          {
+            "name": "category",
+            "ty_idx": 31
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 21
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 28
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 123660,
+        "name": "dnsresolve",
+        "parameters": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "category",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 29
+      },
+      {
+        "tvm_method_id": 81504,
+        "name": "dnssubdomains",
+        "parameters": [],
+        "return_ty_idx": 32
+      },
+      {
+        "tvm_method_id": 80293,
+        "name": "get_owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 87634,
+        "name": "get_editors",
+        "parameters": [],
+        "return_ty_idx": 33
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.AccessDenied",
+        "err_code": 132
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/plain_subdomains.tolk",
+      "contents": "import \"common\"\nimport \"messages\"\nimport \"storage\"\n\ncontract plain_subdomains {\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\ntype AllowedMessage =\n    | UpdateRecords\n    | AddEditor\n    | RemoveEditor\n\nconst DNS_NEXT_RESOLVER_CATEGORY = \"dns_next_resolver\".sha256()\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n\n    match (msg) {\n        UpdateRecords => {\n            var storage = lazy Storage.load();\n            assert (storage.canUpdateRecords(in.senderAddress)) throw Errors.AccessDenied;\n\n            storage.processUpdate(msg);\n            storage.save();\n\n            sendExcesses(in.senderAddress);\n        }\n        AddEditor => {\n            var storage = lazy Storage.load();\n            assert (storage.isOwner(in.senderAddress)) throw Errors.AccessDenied;\n\n            storage.addEditor(msg.editor);\n            storage.save();\n\n            sendExcesses(in.senderAddress);\n        }\n        RemoveEditor => {\n            var storage = lazy Storage.load();\n            assert (storage.isOwner(in.senderAddress)) throw Errors.AccessDenied;\n\n            storage.removeEditor(msg.editor);\n            storage.save();\n\n            sendExcesses(in.senderAddress);\n        }\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun sendExcesses(dest: address) {\n    val excessesMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: ton(\"0\"),\n        dest,\n        body: Excesses {},\n    });\n    excessesMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_IGNORE_ERRORS);\n}\n\nget fun dnsresolve(subdomain: slice, category: int): (int, cell?) {\n    val storage = lazy Storage.load();\n    val originalBits = subdomain.remainingBitsCount();\n    var skippedBits = 0;\n    if (originalBits >= 8 && subdomain.preloadUint(8) == 0) {\n        subdomain.skipBits(8);\n        skippedBits = 8;\n    }\n    val domainBits = subdomain.remainingBitsCount();\n    val nameHash = subdomain.hash();\n    val data = storage.subdomains.get(nameHash);\n    if (data.isFound) {\n        val data = data.loadValue();\n        if (category == 0) {\n            return (originalBits, data.records.toLowLevelDict());\n        }\n        val result = data.records.get(category);\n        if (result.isFound) {\n            return (originalBits, result.loadValue());\n        }\n    }\n\n    // Names are reversed DNS labels separated by zero bytes: level0\\0level1\\0level2.\n    var prefixBits = findPreviousSegmentPrefixBits(subdomain, domainBits);\n    while (prefixBits > 0) {\n        val prefix = subdomain.getFirstBits(prefixBits);\n        val prefixData = storage.subdomains.get(prefix.hash());\n        if (prefixData.isFound) {\n            val prefixState = prefixData.loadValue();\n            val nextResolver = prefixState.records.get(DNS_NEXT_RESOLVER_CATEGORY);\n            if (nextResolver.isFound) {\n                return (skippedBits + prefixBits, nextResolver.loadValue());\n            }\n        }\n        prefixBits = findPreviousSegmentPrefixBits(subdomain, prefixBits);\n    }\n    return (0, null);\n}\n\nfun findPreviousSegmentPrefixBits(subdomain: slice, limitBits: int): int {\n    var cursor = subdomain;\n    var offset = 0;\n    var prefixBits = 0;\n    while (offset + 8 < limitBits) {\n        if (cursor.preloadUint(8) == 0) {\n            prefixBits = offset;\n        }\n        cursor.skipBits(8);\n        offset += 8;\n    }\n    return prefixBits;\n}\n\nget fun dnssubdomains(): array<Record> {\n    val storage = lazy Storage.load();\n    var records: array<Record> = [];\n    var subdomain = storage.subdomains.findFirst();\n    while (subdomain.isFound) {\n        val state = subdomain.loadValue();\n        var record = state.records.findFirst();\n        while (record.isFound) {\n            records.push(Record {\n                name: state.name,\n                category: record.getKey(),\n                value: record.loadValue(),\n            });\n            record = state.records.iterateNext(record);\n        }\n        subdomain = storage.subdomains.iterateNext(subdomain);\n    }\n    return records;\n}\n\nget fun get_owner(): address {\n    val storage = lazy Storage.load();\n    return storage.ownerAddress;\n}\n\nget fun get_editors(): array<address> {\n    val storage = lazy Storage.load();\n    var editors: array<address> = [];\n    var editor = storage.editors.findFirst();\n    while (editor.isFound) {\n        editors.push(editor.getKey());\n        editor = storage.editors.iterateNext(editor);\n    }\n    return editors;\n}\n"
+    },
+    {
+      "filename": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/common.tolk",
+      "contents": "\nenum Errors {\n    AccessDenied = 132\n    InvalidMessage = 0xFFFF\n}\n\ntype Name = string\n\ntype Category = uint256\n"
+    },
+    {
+      "filename": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/messages.tolk",
+      "contents": "import \"common\"\n\nstruct (0x632844dc) UpdateRecords {\n    prune: bool\n    changes: array<UpdateNameRecords>\n}\n\nstruct UpdateNameRecords {\n    name: string\n    prune: bool\n    changes: map<uint256, cell?>\n}\n\nstruct UpdateRecord {\n    name: Name\n    category: Category\n    newValue: cell?\n}\n\nstruct (0x2e8c24a1) AddEditor {\n    editor: address\n}\n\nstruct (0x7b5cf2f8) RemoveEditor {\n    editor: address\n}\n\n// Excesses is recommended opcode for gas excesses\n// https://docs.ton.org/contract-dev/techniques/security#return-gas-excesses-carefully\nstruct (0xd53276db) Excesses {}\n"
+    },
+    {
+      "filename": "tmp/8723f0db-7834-456a-9531-f8184d7c2f19/contracts/src/storage.tolk",
+      "contents": "import \"common\"\nimport \"messages\"\n\nstruct Storage {\n    ownerAddress: address\n    editors: map<address, ()>\n    subdomains: map<uint256, SubdomainState>\n}\n\nstruct SubdomainState {\n    name: Name\n    records: map<uint256, cell>\n}\n\nstruct Record {\n    name: Name\n    category: Category\n    value: cell\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun Storage.isOwner(self, sender: address): bool {\n    return sender == self.ownerAddress;\n}\n\nfun Storage.isEditor(self, sender: address): bool {\n    return self.editors.exists(sender);\n}\n\nfun Storage.canUpdateRecords(self, sender: address): bool {\n    return self.isOwner(sender) || self.isEditor(sender);\n}\n\nfun Storage.addEditor(mutate self, editor: address) {\n    self.editors.set(editor, ());\n}\n\nfun Storage.removeEditor(mutate self, editor: address) {\n    self.editors.delete(editor);\n}\n\nfun SubdomainState.processChanges(mutate self, update: UpdateNameRecords) {\n    if (update.prune) {\n        self.records = [];\n    }\n    var r = update.changes.findFirst();\n    while (r.isFound) {\n        val value = r.loadValue();\n        if (value == null) {\n            self.records.delete(r.getKey());\n        } else {\n            self.records.set(r.getKey(), value);\n        }\n        r = update.changes.iterateNext(r);\n    }\n}\n\nfun Storage.processUpdate(mutate self, update: UpdateRecords) {\n    if (update.prune) {\n        self.subdomains = [];\n    }\n    val changes = update.changes;\n    var i = 0;\n    repeat (changes.size()) {\n        val nameChanges = changes.get(i);\n        val nameHash = nameChanges.name.beginParse().hash();\n        val existingState = self.subdomains.get(nameHash);\n        var nameState = existingState.isFound\n            ? existingState.loadValue()\n            : SubdomainState {\n                name: nameChanges.name,\n                records: [],\n            };\n        nameState.processChanges(nameChanges);\n        self.subdomains.set(nameHash, nameState);\n        i += 1;\n    }\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,3136 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from PublicSale.tolk, errors.tolk, messages.tolk, tokenomics-messages.tolk, tokenomics-storage.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC buy()\n  DECLPROC position()\n  DECLPROC claimable()\n  98796 DECLMETHOD buyer_state()\n  110968 DECLMETHOD sale_state()\n  // 13 functions inlined in-place:\n  // - PublicSaleStorage.load (11 calls)\n  // - PublicSaleStorage.save (8 calls)\n  // - onBouncedMessage (0 calls)\n  // - claimLocked (1 call)\n  // - sendJettons (3 calls)\n  // - purchasedTon (3 calls)\n  // - instantUnsold (2 calls)\n  // - lockedUnsold (2 calls)\n  // - minPurchaseTon (1 call)\n  // - maxPurchaseTon (1 call)\n  // - instantHiPerTon (1 call)\n  // - lockedHiPerTon (1 call)\n  // - MapLookupResult<coins>.loadValue (1 call)\n  // - MapLookupResult<PurchasePosition>.loadValue (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      DUP\n      LDSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      3 LDU\n      NIP\n      8 PLDU\n      s0 s3 XCHG\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s7 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s12 XCHG\n      x{0f8a7ea5} SDBEGINSQ\n      63 THROWIFNOT\n      64 PLDU\n      s0 s12 PUSH2\n      64 PUSHINT\n      DICTUGET\n      49 THROWIFNOT\n      8 LDU\n      LDSTDADDR\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s3 PUSH\n      1 EQINT\n      IF:<{\n        s3 POP\n        s13 POP\n        s7 s12 XCHG2\n        SUB\n        s11 s3 PUSH2\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        IF:<{\n          LDGRAMS\n          ENDS\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        s0 s7 XCHG2\n        SUB\n        NEWC\n        SWAP\n        STGRAMS\n        s0 s11 s3 XCHG3\n        267 PUSHINT\n        DICTSETB\n      }>ELSE<{\n        DROP\n        s0 s2 XCHG\n        3 EQINT\n        IF:<{\n          s4 s3 s(-2) PU2XC\n          16 s() PUSH\n          s1 s0 XCPU\n          s0 16 s() XCHG\n          position() CALLDICT\n          s2 s4 XCPU\n          SUB\n          NEWC\n          s0 s4 XCHG2\n          STGRAMS\n          s0 s3 XCHG2\n          STGRAMS\n          s1 s2 XCHG\n          8 STU\n          SWAP\n          STGRAMS\n          s0 s12 s3 XCHG3\n          267 PUSHINT\n          DICTSETB\n          s3 s10 XCHG2\n          SUB\n          s0 s1 s9 XCHG3\n        }>ELSE<{\n          2DROP\n          s10 POP\n        }>\n        SWAP\n      }>\n      NEWC\n      s0 s7 XCHG2\n      STGRAMS\n      s0 s5 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      ENDC\n      s4 s6 XCHG2\n      64 PUSHINT\n      DICTUDEL\n      DROP\n      s0 s3 XCHG\n      NEWC\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STREF\n      s1 s3 XCHG\n      STREF\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DUP\n    x{48490101} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      LDGRAMS\n      DROP\n      INMSG_SRC\n      INMSG_VALUE\n      s1 s2 XCHG\n      TRUE\n      buy() CALLDICT\n    }>\n    x{48490102} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      LDGRAMS\n      DROP\n      INMSG_SRC\n      INMSG_VALUE\n      s1 s2 XCHG\n      FALSE\n      buy() CALLDICT\n    }>\n    x{48490105} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      INMSG_SRC\n      INMSG_VALUE\n      DUP\n      250000000 PUSHINT\n      GEQ\n      214 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      1 LDI\n      1 LDI\n      1 LDI\n      8 LDU\n      64 PLDU\n      s8 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s13 PUSH\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s2 s1 s0 PUSH3\n      23 s() PUSH\n      s14 PUSH\n      position() CALLDICT\n      22 s() PUSH\n      s0 s2 XCHG\n      s1 22 s() XCHG\n      s0 21 s() XCHG\n      20 s() PUSH\n      20 s() PUSH\n      20 s() PUSH\n      20 s() PUSH\n      20 s() PUSH\n      20 s() PUSH\n      20 s() PUSH\n      s11 s10 PUSH2\n      30 s() PUSH\n      32 s() PUSH\n      claimable() CALLDICT\n      DUP\n      0 GTINT\n      205 THROWIFNOT\n      TUCK\n      ADD\n      NEWC\n      s0 s3 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      s1 18 s() XCHG\n      8 STU\n      SWAP\n      s0 18 s() XCHG\n      STGRAMS\n      SWAP\n      20 s() PUSH\n      SWAP\n      267 PUSHINT\n      DICTSETB\n      s3 s15 XCPU\n      ADD\n      NEWC\n      s0 s8 XCHG2\n      STGRAMS\n      s0 s6 XCHG2\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      SWAP\n      NEWC\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      s1 s10 XCHG\n      STOPTREF\n      ENDC\n      s10 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      s7 s7 PUSH2\n      ISNULL\n      215 THROWIF\n      s0 s2 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      INC\n      NEWC\n      x{03} STSLICECONST\n      18 s() PUSH\n      SWAP\n      STSTDADDR\n      s14 PUSH\n      STGRAMS\n      x{0} STSLICECONST\n      s0 s7 s2 XCPUXC\n      64 PUSHINT\n      DICTUSETB\n      s0 s3 XCHG\n      NEWC\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      ENDC\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{0f8a7ea5} STSLICECONST\n      s1 s7 XCHG\n      64 STU\n      s0 s13 XCHG2\n      STGRAMS\n      s1 16 s() XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      s1 s10 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      s0 s11 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s10 XCHG\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n      s0 s7 XCHG\n      NEWC\n      STREF\n      s1 s6 XCHG\n      STREF\n      s1 s8 XCHG\n      STREF\n      s1 s2 XCHG\n      STSTDADDR\n      STOPTSTDADDR\n      s1 s5 XCHG\n      1 STI\n      1 STI\n      1 STI\n      8 STU\n      64 STU\n      ENDC\n      c4 POP\n    }>\n    x{48490103} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      1 LDI\n      1 LDI\n      DUP\n      1 PLDI\n      s8 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      200 THROWIF\n      s0 s8 XCHG\n      1 LDI\n      1 PLDI\n      SWAP\n      IF:<{\n        s2 POP\n      }>ELSE<{\n        NIP\n      }>\n      s0 s6 XCHG\n      NEWC\n      STREF\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      STSTDADDR\n      STOPTSTDADDR\n      1 STI\n      1 STI\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490106} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      3 LDSLICE\n      8 LDU\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s0 s8 XCHG\n      8 PLDU\n      s0 s1 PUXC\n      GEQ\n      206 THROWIFNOT\n      DUP\n      11 LESSINT\n      206 THROWIFNOT\n      s0 s6 XCHG\n      NEWC\n      STREF\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      STSTDADDR\n      STOPTSTDADDR\n      STSLICE\n      8 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490109} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      NIP\n      s4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      s0 s5 XCHG\n      LDSTDADDR\n      DROP\n      s0 s4 XCHG\n      NEWC\n      STREF\n      s1 s3 XCHG\n      STREF\n      STREF\n      STSTDADDR\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490104} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      1 LDI\n      NIP\n      1 LDI\n      NIP\n      1 LDI\n      NIP\n      s5 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      s0 s5 XCHG\n      NEWC\n      STREF\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      STSTDADDR\n      STOPTSTDADDR\n      b{001} STSLICECONST\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490107} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      1 LDI\n      1 LDI\n      1 LDI\n      8 LDU\n      64 PLDU\n      s9 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      ROT\n      SDEQ\n      100 THROWIFNOT\n      s3 PUSH\n      200 THROWIFNOT\n      s0 s9 XCHG\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s5 s3 XCPU\n      SUB\n      s4 s2 XCPU\n      SUB\n      s1 s4 XCHG\n      ADD\n      s0 s4 XCHG2\n      ADD\n      DUP\n      0 GTINT\n      205 THROWIFNOT\n      s1 s3 PUSH2\n      NEWC\n      ROT\n      STGRAMS\n      SWAP\n      STGRAMS\n      ROT\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      SWAP\n      STGRAMS\n      x{0} STSLICECONST\n      ENDC\n      250000000 PUSHINT\n      s12 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      s9 s9 PUSH2\n      ISNULL\n      215 THROWIF\n      s0 s12 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s7 PUSH\n      INC\n      NEWC\n      x{02} STSLICECONST\n      17 s() PUSH\n      SWAP\n      STSTDADDR\n      s8 PUSH\n      STGRAMS\n      x{0} STSLICECONST\n      s0 s9 s2 XCPUXC\n      64 PUSHINT\n      DICTUSETB\n      s0 s3 XCHG\n      NEWC\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      ENDC\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{0f8a7ea5} STSLICECONST\n      s1 s9 XCHG\n      64 STU\n      s0 s7 XCHG2\n      STGRAMS\n      s1 s15 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      s1 s4 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s11 XCHG\n      STSTDADDR\n      s0 s3 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s9 XCHG\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n      s0 s9 XCHG\n      NEWC\n      STREF\n      s1 s9 XCHG\n      STREF\n      s1 s7 XCHG\n      STREF\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      1 STI\n      1 STI\n      s1 s2 XCHG\n      1 STI\n      s1 s2 XCHG\n      8 STU\n      64 STU\n      ENDC\n      c4 POP\n    }>\n    x{48490108} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      PLDREF\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      INMSG_SRC\n      OVER\n      SDEQ\n      100 THROWIFNOT\n      SWAP\n      LDGRAMS\n      DROP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      3547469196 PUSHINT\n      139 STUR\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n    }>\n    DROP\n    SEMPTY\n    49 THROWIFNOT\n  }>\n  buy() PROC:<{\n    s2 PUSH\n    250000000 PUSHINT\n    ADD\n    s2 PUSH\n    LEQ\n    214 THROWIFNOT\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    LDREF\n    LDSTDADDR\n    LDOPTSTDADDR\n    1 LDI\n    1 LDI\n    1 LDI\n    8 LDU\n    64 PLDU\n    s0 s8 XCHG\n    CTOS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s0 s12 XCHG\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s9 PUSH\n    200 THROWIF\n    19 s() PUSH\n    100000000 PUSHINT\n    GEQ\n    201 THROWIFNOT\n    20 s() PUSH\n    s3 PUSH\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IF:<{\n      LDGRAMS\n      ENDS\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    20 s() PUSH\n    ADD\n    DUP\n    5000000000000 PUSHINT\n    LEQ\n    202 THROWIFNOT\n    s0 18 s() XCHG\n    IF:<{\n      s11 PUSH\n      203 THROWIFNOT\n      19 s() PUSH\n      3000 PUSHINT\n      MUL\n      s6 s0 PUSH2\n      ADD\n      s9 PUSH\n      LEQ\n      204 THROWIFNOT\n      s6 s6 XCPU\n      ADD\n      NEWC\n      SWAP\n      s0 19 s() XCHG\n      STGRAMS\n      SWAP\n      21 s() PUSH\n      s0 s4 XCHG2\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      s0 s8 XCHG2\n      STGRAMS\n      s0 s6 XCHG2\n      STGRAMS\n      SWAP\n      s0 16 s() XCHG\n      STGRAMS\n      ROT\n      STGRAMS\n      SWAP\n      STGRAMS\n      s0 s10 XCHG2\n      STGRAMS\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STOPTREF\n      STOPTREF\n      s1 s11 XCHG\n      STOPTREF\n      ENDC\n      s11 s12 XCPU\n      SUB\n      s9 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      ENDS\n      s6 s6 PUSH2\n      ISNULL\n      215 THROWIF\n      s0 s13 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s12 PUSH\n      INC\n      NEWC\n      x{01} STSLICECONST\n      19 s() PUSH\n      SWAP\n      STSTDADDR\n      s13 PUSH\n      STGRAMS\n      SWAP\n      s0 18 s() XCHG\n      STGRAMS\n      s13 s1 PUXC\n      64 PUSHINT\n      DICTUSETB\n      s0 s2 XCHG\n      NEWC\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{0f8a7ea5} STSLICECONST\n      s1 s13 XCHG\n      64 STU\n      s0 s11 XCHG2\n      STGRAMS\n      s1 16 s() XCHG\n      STSTDADDR\n      STOPTSTDADDR\n      s1 s8 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      s1 s8 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s11 XCHG\n      STSTDADDR\n      s0 s6 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s9 XCHG\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n    }>ELSE<{\n      18 s() POP\n      s9 PUSH\n      203 THROWIFNOT\n      s0 18 s() XCHG\n      15000 PUSHINT\n      MUL\n      s3 s0 PUSH2\n      ADD\n      s6 PUSH\n      LEQ\n      204 THROWIFNOT\n      s0 s7 PUSH2\n      MUL\n      10 PUSHINT\n      DIV\n      s2 PUSH\n      20 s() PUSH\n      20 s() PUSH\n      23 s() PUSH\n      s12 PUSH\n      position() CALLDICT\n      NIP\n      s2 s4 XCPU\n      ADD\n      s2 s3 XCPU\n      ADD\n      NEWC\n      s0 s3 XCHG2\n      STGRAMS\n      SWAP\n      STGRAMS\n      s10 PUSH\n      8 STUR\n      SWAP\n      STGRAMS\n      SWAP\n      21 s() PUSH\n      SWAP\n      s0 21 s() XCHG\n      267 PUSHINT\n      DICTSETB\n      s0 s4 XCHG\n      ADD\n      s0 18 s() XCHG\n      s1 s13 XCHG\n      ADD\n      NEWC\n      SWAP\n      s0 16 s() XCHG\n      STGRAMS\n      s0 s2 XCHG\n      s1 18 s() XCHG\n      s0 s12 XCHG\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      s0 s4 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      SWAP\n      STGRAMS\n      s0 s13 XCHG2\n      STGRAMS\n      s0 s13 XCHG2\n      STGRAMS\n      s0 s9 XCHG2\n      STGRAMS\n      ENDC\n      s0 s10 XCHG\n      NEWC\n      STOPTREF\n      s1 s5 XCHG\n      STOPTREF\n      s1 s8 XCHG\n      STOPTREF\n      ENDC\n      s0 s9 XCHG\n      s4 s8 XCHG\n      s3 s7 XCHG\n      s0 s4 XCHG\n      s0 s6 XCHG\n      s0 s3 XCHG\n    }>\n    s0 s5 XCHG\n    NEWC\n    STREF\n    s1 s6 XCHG\n    STREF\n    s1 s8 XCHG\n    STREF\n    s1 s7 XCHG\n    STSTDADDR\n    s1 s3 XCHG\n    STOPTSTDADDR\n    1 STI\n    s1 s2 XCHG\n    1 STI\n    s1 s3 XCHG\n    1 STI\n    s1 s2 XCHG\n    8 STU\n    64 STU\n    ENDC\n    c4 POP\n  }>\n  position() PROC:<{\n    s4 POP\n    NIP\n    SWAP\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFJMP:<{\n      NIP\n      LDGRAMS\n      LDGRAMS\n      8 LDU\n      LDGRAMS\n      ENDS\n    }>\n    DROP\n    0 PUSHINT\n    s0 s1 s0 PUXCPU\n  }>\n  claimable() PROC:<{\n    DROP\n    s3 POP\n    8 4 BLKDROP2\n    2OVER\n    LEQ\n    IFJMP:<{\n      4 BLKDROP\n      0 PUSHINT\n    }>\n    2SWAP\n    SUB\n    s1 s2 XCHG\n    MUL\n    10 PUSHINT\n    DIV\n    SUBR\n  }>\n  buyer_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    LDREF\n    LDSTDADDR\n    LDOPTSTDADDR\n    1 LDI\n    1 LDI\n    1 LDI\n    8 LDU\n    64 PLDU\n    s7 PUSH\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s2 PUSH\n    -ROT\n    s14 s5 PUSH2\n    position() CALLDICT\n    s15 s4 XCHG2\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IF:<{\n      LDGRAMS\n      ENDS\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    s10 s13 XCHG\n    s9 s12 XCHG\n    s8 s11 XCHG\n    s7 s13 XCHG\n    s6 s12 XCHG\n    s5 s11 XCHG\n    s4 s13 XCHG\n    s3 s12 XCHG\n    s11 s13 s0 XCHG3\n    s11 s13 s(-2) PU2XC\n    16 s() PUSH\n    s0 s15 XCHG2\n    claimable() CALLDICT\n    s4 s3 s0 XCHG3\n  }>\n  sale_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    LDSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    3 LDU\n    NIP\n    8 PLDU\n    SWAP\n    CTOS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s5 s3 XCPU\n    SUB\n    s4 s2 XCPU\n    SUB\n    s1 s4 XCHG\n    ADD\n    s4 s3 s0 XCHG3\n    s1 s2 XCHG\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHgEAB38AART/APSkE/S88sgLAQIBYgIDAgLOBAUCAWocHQIBIAYHAgEgGhsEkT4keMCINcsIkJICAycMfoAMPiS+JcSf/AB4NcsIkJICBScMfoAMPiS+JcScPAB4NcsIkJICCzjAtcsIkJICBzjAtcsIkJICDSAICQoLA/cIoIQDuaygKAiu/Lg1u1E0NTU1PpI+lDSANIA0gDTB9cLPwjQ+gD6APoA+gD6APoA0QzQ9AT0BPQE0Sny0MhWE4IQBfXhAL7y4MlWFCOBAQv0Cm+hk/oA0ZIwcOJWFKAggiAEjCc5UAC78uDKERLjDwXIzBbMGMwX+lITgFRYXAvzTHzHtRNDU1NQg+kgx+lAx0wIx1wsHA9D6APoA+gD6APoA+gDRB9D0BPQE9ATRDNcsIHxT9Szyv9cLP1MMgED0DvKx0wf6SPoA+gDRI8ABjiQzPVB8oVOzgQEL9ApvoZP6ANGSMHDiUAehyAH6AkCzgQEL9EHjDshQB/oCUAUMDQH+W/iS+JcgghAO5rKAvvLg1u1E0NTU1PpI+lDSANIA0gDTB9cLPyjQ+gD6APoA+gD6APoA0S3Q9AT0BPQE0VRyEFYXLvACVhYCAREWAREVVhRWFFYUVhRWFFYUVhRTulYeViDwAyDCAPLgzWagyFAD+gJY+gIBERIBywcBERL6Ag4AiDHtRNDU1NT6SPpQ0gDSACDXCgAo0PpI+kgx0fiSxwXy4GTy0MgI0gDXCgABkTKRMeIGyMwVzBPM+lL6VMoAygDOye1UA/6OOTHtRNDU1NT6SPpQ1gLTB/iSJccF8uBkCNcLB1ICvvLgziDBC/LgzgbIzBXME8z6UvpUzssHzsntVODXLCJCSAhMji0x7UTQ1NTU+kj6UDEk0PpI+kgx0fiSxwXy4GQF+kgwBMjME8zM+lL6VM7J7VTg1ywiQkgIJOMCidcnEBESAGgwAsADjilUZEBWEFEQERDwAlEkochQBPoCUAP6AhLLBwH6AkDDgQEL9EFQOqFAGZJbOuIBAFr6AlAD+gIB+gIB+gJQBPoCyVBGgED0WzADyPQAEvQAEvQAyQLIzBPMzM7J7VQB/AFWFAGBAQv0QVE/oMhQCPoCUAb6AlAE+gJY+gJQBPoCAfoCyQHI9AAS9AAa9ADJKtD6SPpIMdFTd27y0NcC0PQE9AT0BNElpMjPhA5WEgH6Ui76As+EIFQgc4BA9EMDyPQAEvQAEvQAyW2LBMjPkD4p+pYXyz9QDfoCAREQAQ8AfPpSEvpUGvQAz4QgEs7JyM+FiBL6UlAL+gJxzwtqGszJgBH7AAfIzBbMGMwS+lL6VBXKAMoAygDLB8s/ye1UAGpb7UTQ1NTU+kj6UNIAMdIAMdIAMSXQ+kj6SDHR+JLHBfLgZAXIzBTMEsz6UvpUz4TAzsntVAAISEkBBwGC4wLXLCJCSAhEjjAx7UTQ10zQ+kj6SDHR+JIhxwXy4GQB+gAwyM+FCBL6UgH6AoIQ03IVjM8Lislz+wDgMMcA8rETAf5b7UTQ1NTU+kj6UNIA0gDSANMH1ws/KdD6SPpI0fiSWMcF8uBkI/LgyAnQ+gD6APoA+gD6APoA0VFToVFCoRSgUASgIMIA8uDNUxPIWPoCAfoCWPoCUAP6AgH6As+EIMmCEA7msoAs0PpI+kgx0VOZbvLQ1wzQ9AT0BPQE0SekFADmyM+EClYRAfpSKPoCz4QgVCCTgED0QwPI9AAS9AAS9ADJbYsEyM+QPin6lhnLP1AH+gIf+lIS+lQU9ADPhCAUzsnIz4WIG/pSUAP6AnHPC2oZzMmAEfsACcjMGcwXzBT6UhL6VMoAygASygASywfLP8ntVAH+K/Lgy1YTgQu4qFNgoCm78uDMUWagyAERE/oCAVYVUASBAQv0QchQCPoCUAb6AgEREPoCWPoCAfoCUAr6AskCyPQA9AAb9ADJUbyhKdD6SPpIMdFTZm7y0NcN0PQE9AT0BNEspMjPhAZWEwH6Ui36AgEREvoCUtKAQPRDAsj0ABgB/lcSKfLgyxESgTqYqFMwoCa78uDMUweoeqkEIlYUVhRWFyzwAjFRJKBRI6DIUAP6AgH6AirPCwcB+gIBVhUBERWBAQv0QQSgERIdoMgBERD6AgIBERIBDIEBC/RByFAE+gJY+gIB+gJQDfoCUA36AlAJ+gLJCsj0ABX0ABj0AMkZACT6VMoAEsoAE8oAEssHyz/J7VQAevQA9ADJbYsEyM+QPin6lh3LP1AL+gIBERAB+lL6VBj0AM+EIBjOycjPhYgb+lJQBvoCcc8LahnMyYAR+wAAEAkQSBA3BAYDADcNDEBgQEL9ApvoZox+gD6ANMH+gDR4DBwVFAhgACcMDNshF27k18EcOBaoRKoeqkEooACptD2dqJoampqfSR9KGkAaQBpAGmD64Wfk+h6AnoCegJokSyp8vgBKHpAgIX6BTfQyf0AaMkYOHEIVohOCEWIPog2CC2IJogeJegqNfArCCgH+AGiGEABdti8dqJoahjqfSQY/SgY6YEY64WDgOh9AH0AfQB9AH0AfQBoqKnQqKFQilAiGAlA=",
+  "codeHashHex": "538363B9E5CCB6BFB9727CAB11099515E987B3F9079427F94AEB8F0087B94B7B",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/PublicSale.tolk",
+        "size_chars": 11972,
+        "imports": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/errors.tolk",
+        "size_chars": 602,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/messages.tolk",
+        "size_chars": 2352,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/tokenomics-messages.tolk",
+        "size_chars": 1161,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/tokenomics-storage.tolk",
+        "size_chars": 2806,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedPublicSaleMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyInstant"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyLocked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimLocked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPoolEnabled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetConfirmedLevel"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CloseSale"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SweepProjectFund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawSaleTons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetSaleJettonWallet"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1212743937,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1212743938,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1212743941,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1212743939,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1212743942,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 1212743940,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1212743943,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 1212743944,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1212743945,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleCounters"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleMaps"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PurchasePosition"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 31
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingSaleTransfer"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 33
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 29
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SaleBounceMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 42,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 142,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 143,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          6
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          38
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 56,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 59
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          58
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 61,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 144,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          63,
+          64
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 67,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 69,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 65,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 145,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 66,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          73
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUpTons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          75
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          31
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          6,
+          18,
+          6,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          18,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 47,
+        "struct_name": "MapLookupResult<coins>",
+        "monomorphic_fields_ty_idx": [
+          48,
+          5
+        ]
+      },
+      {
+        "ty_idx": 53,
+        "struct_name": "CreateMessageOptions<AskToTransfer>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          62,
+          72,
+          38
+        ]
+      },
+      {
+        "ty_idx": 76,
+        "struct_name": "CreateMessageOptions<TopUpTons>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          62,
+          72,
+          75
+        ]
+      },
+      {
+        "ty_idx": 77,
+        "struct_name": "MapLookupResult<PurchasePosition>",
+        "monomorphic_fields_ty_idx": [
+          48,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 48
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 60
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 67,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 69,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 70
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 63
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 68
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 55,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 74,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 57
+          },
+          {
+            "name": "value",
+            "ty_idx": 62
+          },
+          {
+            "name": "dest",
+            "ty_idx": 72
+          },
+          {
+            "name": "body",
+            "ty_idx": 73
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 52,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedPublicSaleMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          14,
+          6,
+          14,
+          30
+        ],
+        "target_ty_idx": 23
+      },
+      {
+        "kind": "alias",
+        "name": "SaleBounceMessage",
+        "ty_idx": 37,
+        "ident_loc": [
+          1,
+          25,
+          6,
+          25,
+          23
+        ],
+        "target_ty_idx": 38
+      },
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 40,
+        "ident_loc": [
+          3,
+          1,
+          6,
+          1,
+          29
+        ],
+        "target_ty_idx": 41
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 42,
+        "ident_loc": [
+          3,
+          3,
+          14,
+          3,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 43,
+        "ident_loc": [
+          3,
+          7,
+          14,
+          7,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 38,
+        "ident_loc": [
+          3,
+          11,
+          21,
+          11,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 36
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 39
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TopUpTons",
+        "ty_idx": 75,
+        "ident_loc": [
+          3,
+          101,
+          21,
+          101,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 3547469196,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "BuyInstant",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          1,
+          21,
+          1,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1212743937,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuyLocked",
+        "ty_idx": 14,
+        "ident_loc": [
+          4,
+          5,
+          21,
+          5,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1212743938,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPoolEnabled",
+        "ty_idx": 16,
+        "ident_loc": [
+          4,
+          9,
+          21,
+          9,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1212743939,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "instantPool",
+            "ty_idx": 5
+          },
+          {
+            "name": "enabled",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CloseSale",
+        "ty_idx": 19,
+        "ident_loc": [
+          4,
+          14,
+          21,
+          14,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1212743940,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimLocked",
+        "ty_idx": 15,
+        "ident_loc": [
+          4,
+          16,
+          21,
+          16,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1212743941,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetConfirmedLevel",
+        "ty_idx": 17,
+        "ident_loc": [
+          4,
+          18,
+          21,
+          18,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SweepProjectFund",
+        "ty_idx": 20,
+        "ident_loc": [
+          4,
+          22,
+          21,
+          22,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1212743943,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawSaleTons",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          24,
+          21,
+          24,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1212743944,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetSaleJettonWallet",
+        "ty_idx": 22,
+        "ident_loc": [
+          4,
+          28,
+          21,
+          28,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1212743945,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "saleJettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PurchasePosition",
+        "ty_idx": 31,
+        "ident_loc": [
+          5,
+          1,
+          8,
+          1,
+          24
+        ],
+        "fields": [
+          {
+            "name": "totalLockedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "claimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "entryLevel",
+            "ty_idx": 18
+          },
+          {
+            "name": "missedHi",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingSaleTransfer",
+        "ty_idx": 33,
+        "ident_loc": [
+          5,
+          8,
+          8,
+          8,
+          27
+        ],
+        "fields": [
+          {
+            "name": "kind",
+            "ty_idx": 18
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "hiAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleConfig",
+        "ty_idx": 25,
+        "ident_loc": [
+          5,
+          15,
+          8,
+          15,
+          24
+        ],
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "projectFundWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleStorage",
+        "ty_idx": 24,
+        "ident_loc": [
+          5,
+          20,
+          8,
+          20,
+          25
+        ],
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 26
+          },
+          {
+            "name": "counters",
+            "ty_idx": 28
+          },
+          {
+            "name": "maps",
+            "ty_idx": 35
+          },
+          {
+            "name": "oracle",
+            "ty_idx": 7
+          },
+          {
+            "name": "saleJettonWallet",
+            "ty_idx": 36
+          },
+          {
+            "name": "instantSaleEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "lockedSaleEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "permanentlyClosed",
+            "ty_idx": 5
+          },
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 18
+          },
+          {
+            "name": "nextQueryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleMaps",
+        "ty_idx": 29,
+        "ident_loc": [
+          5,
+          33,
+          8,
+          33,
+          22
+        ],
+        "fields": [
+          {
+            "name": "purchasedTon",
+            "ty_idx": 30
+          },
+          {
+            "name": "positions",
+            "ty_idx": 32
+          },
+          {
+            "name": "pendingTransfers",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleCounters",
+        "ty_idx": 27,
+        "ident_loc": [
+          5,
+          39,
+          8,
+          39,
+          26
+        ],
+        "fields": [
+          {
+            "name": "instantPoolTotalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedPoolTotalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "instantSoldHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedSoldHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedClaimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedMissedHi",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          63,
+          5,
+          63,
+          22
+        ],
+        "end_loc": [
+          1,
+          150,
+          1,
+          150,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          27,
+          5,
+          27,
+          21
+        ],
+        "end_loc": [
+          1,
+          61,
+          1,
+          61,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<PublicSaleCounters>.load",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<PublicSaleMaps>.load",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "map<uint64, PendingSaleTransfer>.mustGet",
+        "return_ty_idx": 33,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "purchasedTon",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          289,
+          5,
+          289,
+          17
+        ],
+        "end_loc": [
+          1,
+          292,
+          1,
+          292,
+          2
+        ],
+        "params": [
+          {
+            "name": "maps",
+            "ty_idx": 29
+          },
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<address, coins>.get",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "MapLookupResult<coins>.loadValue",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 47
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "coins.fromSlice",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "map<address, coins>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<address, PurchasePosition>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "PublicSaleCounters.toCell",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint64, PendingSaleTransfer>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "PublicSaleMaps.toCell",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "PublicSaleStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          52,
+          23,
+          52,
+          27
+        ],
+        "end_loc": [
+          5,
+          54,
+          1,
+          54,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "claimLocked",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          212,
+          5,
+          212,
+          16
+        ],
+        "end_loc": [
+          1,
+          244,
+          1,
+          244,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "attached",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "sendJettons",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          246,
+          5,
+          246,
+          16
+        ],
+        "end_loc": [
+          1,
+          287,
+          1,
+          287,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 24
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "kind",
+            "ty_idx": 18
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "Cell<PublicSaleConfig>.load",
+        "return_ty_idx": 25,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<uint64, PendingSaleTransfer>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "createMessage<AskToTransfer>",
+        "return_ty_idx": 52,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 53
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "instantUnsold",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          315,
+          5,
+          315,
+          18
+        ],
+        "end_loc": [
+          1,
+          317,
+          1,
+          317,
+          2
+        ],
+        "params": [
+          {
+            "name": "counters",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "lockedUnsold",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          319,
+          5,
+          319,
+          17
+        ],
+        "end_loc": [
+          1,
+          321,
+          1,
+          321,
+          2
+        ],
+        "params": [
+          {
+            "name": "counters",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "createMessage<TopUpTons>",
+        "return_ty_idx": 52,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 76
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "buy",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          152,
+          5,
+          152,
+          8
+        ],
+        "end_loc": [
+          1,
+          210,
+          1,
+          210,
+          2
+        ],
+        "params": [
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "attached",
+            "ty_idx": 6
+          },
+          {
+            "name": "instantPool",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "minPurchaseTon",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          356,
+          5,
+          356,
+          19
+        ],
+        "end_loc": [
+          1,
+          358,
+          1,
+          358,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 25,
+        "name": "maxPurchaseTon",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          360,
+          5,
+          360,
+          19
+        ],
+        "end_loc": [
+          1,
+          362,
+          1,
+          362,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 26,
+        "name": "instantHiPerTon",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          364,
+          5,
+          364,
+          20
+        ],
+        "end_loc": [
+          1,
+          366,
+          1,
+          366,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "lockedHiPerTon",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          368,
+          5,
+          368,
+          19
+        ],
+        "end_loc": [
+          1,
+          370,
+          1,
+          370,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 28,
+        "name": "position",
+        "return_ty_idx": 31,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          294,
+          5,
+          294,
+          13
+        ],
+        "end_loc": [
+          1,
+          305,
+          1,
+          305,
+          2
+        ],
+        "params": [
+          {
+            "name": "maps",
+            "ty_idx": 29
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "map<address, PurchasePosition>.get",
+        "return_ty_idx": 77,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "MapLookupResult<PurchasePosition>.loadValue",
+        "return_ty_idx": 31,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 77
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "PurchasePosition.fromSlice",
+        "return_ty_idx": 31,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "claimable",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          307,
+          5,
+          307,
+          14
+        ],
+        "end_loc": [
+          1,
+          313,
+          1,
+          313,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 24
+          },
+          {
+            "name": "pos",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "buyer_state",
+        "return_ty_idx": 78,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          323,
+          9,
+          323,
+          20
+        ],
+        "end_loc": [
+          1,
+          334,
+          1,
+          334,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "sale_state",
+        "return_ty_idx": 79,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          336,
+          9,
+          336,
+          19
+        ],
+        "end_loc": [
+          1,
+          354,
+          1,
+          354,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "PublicSale",
+    "author": "100wan",
+    "version": "0.1.0",
+    "description": "HI V1 public sale",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyInstant"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyLocked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimLocked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPoolEnabled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetConfirmedLevel"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CloseSale"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SweepProjectFund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawSaleTons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetSaleJettonWallet"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleCounters"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PublicSaleMaps"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PurchasePosition"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 29
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingSaleTransfer"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 31
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUpTons"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 142,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 143,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          6,
+          17,
+          6,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          17,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 38,
+        "target_ty_idx": 39
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 40,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 41,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 36,
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 34
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 37
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 38,
+            "client_ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TopUpTons",
+        "ty_idx": 35,
+        "prefix": {
+          "prefix_num": 3547469196,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "BuyInstant",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1212743937,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuyLocked",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1212743938,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPoolEnabled",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1212743939,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "instantPool",
+            "ty_idx": 5
+          },
+          {
+            "name": "enabled",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CloseSale",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1212743940,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimLocked",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1212743941,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetConfirmedLevel",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SweepProjectFund",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1212743943,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawSaleTons",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 1212743944,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetSaleJettonWallet",
+        "ty_idx": 21,
+        "prefix": {
+          "prefix_num": 1212743945,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "saleJettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PurchasePosition",
+        "ty_idx": 29,
+        "fields": [
+          {
+            "name": "totalLockedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "claimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "entryLevel",
+            "ty_idx": 17
+          },
+          {
+            "name": "missedHi",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingSaleTransfer",
+        "ty_idx": 31,
+        "fields": [
+          {
+            "name": "kind",
+            "ty_idx": 17
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "hiAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "tonAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleConfig",
+        "ty_idx": 23,
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "projectFundWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleStorage",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 24
+          },
+          {
+            "name": "counters",
+            "ty_idx": 26
+          },
+          {
+            "name": "maps",
+            "ty_idx": 33
+          },
+          {
+            "name": "oracle",
+            "ty_idx": 7
+          },
+          {
+            "name": "saleJettonWallet",
+            "ty_idx": 34
+          },
+          {
+            "name": "instantSaleEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "lockedSaleEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "permanentlyClosed",
+            "ty_idx": 5
+          },
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 17
+          },
+          {
+            "name": "nextQueryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleMaps",
+        "ty_idx": 27,
+        "fields": [
+          {
+            "name": "purchasedTon",
+            "ty_idx": 28
+          },
+          {
+            "name": "positions",
+            "ty_idx": 30
+          },
+          {
+            "name": "pendingTransfers",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PublicSaleCounters",
+        "ty_idx": 25,
+        "fields": [
+          {
+            "name": "instantPoolTotalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedPoolTotalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "instantSoldHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedSoldHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedClaimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedMissedHi",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 22
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      },
+      {
+        "body_ty_idx": 21
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 35
+      },
+      {
+        "body_ty_idx": 36
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 98796,
+        "name": "buyer_state",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 44
+      },
+      {
+        "tvm_method_id": 110968,
+        "name": "sale_state",
+        "parameters": [],
+        "return_ty_idx": 45
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 49
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotAdmin",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SaleClosed",
+        "err_code": 200
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BelowMinimum",
+        "err_code": 201
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WalletCapExceeded",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PoolPaused",
+        "err_code": 203
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientInventory",
+        "err_code": 204
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NoClaimableAmount",
+        "err_code": 205
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidLevel",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientAttachedTon",
+        "err_code": 214
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.JettonWalletNotConfigured",
+        "err_code": 215
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/PublicSale.tolk",
+      "contents": "import \"errors\"\nimport \"messages\"\nimport \"tokenomics-messages\"\nimport \"tokenomics-storage\"\n\ncontract PublicSale {\n    author: \"100wan\"\n    version: \"0.1.0\"\n    description: \"HI V1 public sale\"\n    storage: PublicSaleStorage\n    incomingMessages: AllowedPublicSaleMessage\n}\n\ntype AllowedPublicSaleMessage =\n    | BuyInstant\n    | BuyLocked\n    | ClaimLocked\n    | SetPoolEnabled\n    | SetConfirmedLevel\n    | CloseSale\n    | SweepProjectFund\n    | WithdrawSaleTons\n    | SetSaleJettonWallet\n\ntype SaleBounceMessage = AskToTransfer\n\nfun onBouncedMessage(in: InMessageBounced) {\n    in.bouncedBody.skipBouncedPrefix();\n    val msg = lazy SaleBounceMessage.fromSlice(in.bouncedBody);\n\n    var storage = lazy PublicSaleStorage.load();\n    var counters = storage.counters.load();\n    var maps = storage.maps.load();\n    val pending = maps.pendingTransfers.mustGet(msg.queryId, Errors.InvalidMessage);\n\n    if (pending.kind == 1) {\n        counters.instantSoldHi -= pending.hiAmount;\n        maps.purchasedTon.set(pending.owner, purchasedTon(maps, pending.owner) - pending.tonAmount);\n    } else {\n        if (pending.kind == 3) {\n            val pos = position(maps, pending.owner, storage.confirmedLevel);\n            maps\n                .positions\n                .set(\n                    pending.owner,\n                    {\n                        totalLockedHi: pos.totalLockedHi,\n                        claimedHi: pos.claimedHi - pending.hiAmount,\n                        entryLevel: pos.entryLevel,\n                        missedHi: pos.missedHi,\n                    },\n                );\n            counters.lockedClaimedHi -= pending.hiAmount;\n        }\n    }\n\n    storage.counters = counters.toCell();\n    maps.pendingTransfers.delete(msg.queryId);\n    storage.maps = maps.toCell();\n    storage.save();\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedPublicSaleMessage.fromSlice(in.body);\n\n    match (msg) {\n        BuyInstant => {\n            buy(in.senderAddress, msg.tonAmount, in.valueCoins, true);\n        }\n        BuyLocked => {\n            buy(in.senderAddress, msg.tonAmount, in.valueCoins, false);\n        }\n        ClaimLocked => {\n            claimLocked(in.senderAddress, in.valueCoins);\n        }\n        SetPoolEnabled => {\n            var storage = lazy PublicSaleStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            assert (!storage.permanentlyClosed) throw Errors.SaleClosed;\n            if (msg.instantPool) {\n                storage.instantSaleEnabled = msg.enabled;\n            } else {\n                storage.lockedSaleEnabled = msg.enabled;\n            }\n            storage.save();\n        }\n        SetConfirmedLevel => {\n            var storage = lazy PublicSaleStorage.load();\n            assert (in.senderAddress == storage.oracle) throw Errors.NotAdmin;\n            assert (msg.confirmedLevel >= storage.confirmedLevel) throw Errors.InvalidLevel;\n            assert (msg.confirmedLevel <= 10) throw Errors.InvalidLevel;\n            storage.confirmedLevel = msg.confirmedLevel;\n            storage.save();\n        }\n        SetSaleJettonWallet => {\n            var storage = lazy PublicSaleStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            storage.saleJettonWallet = msg.saleJettonWallet;\n            storage.save();\n        }\n        CloseSale => {\n            var storage = lazy PublicSaleStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            storage.instantSaleEnabled = false;\n            storage.lockedSaleEnabled = false;\n            storage.permanentlyClosed = true;\n            storage.save();\n        }\n        SweepProjectFund => {\n            var storage = lazy PublicSaleStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            assert (storage.permanentlyClosed) throw Errors.SaleClosed;\n            var counters = storage.counters.load();\n            val amount = instantUnsold(counters) + lockedUnsold(counters) + counters.lockedMissedHi;\n            assert (amount > 0) throw Errors.NoClaimableAmount;\n            counters.instantPoolTotalHi = counters.instantSoldHi;\n            counters.lockedPoolTotalHi = counters.lockedSoldHi;\n            counters.lockedMissedHi = 0;\n            storage.counters = counters.toCell();\n            sendJettons(\n                mutate storage,\n                config.projectFundWallet,\n                amount,\n                2,\n                ton(\"0\"),\n                ton(\"0.25\"),\n            );\n            storage.save();\n        }\n        WithdrawSaleTons => {\n            val storage = lazy PublicSaleStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            val msgOut = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: config.admin,\n                value: msg.amount,\n                body: TopUpTons {},\n            });\n            msgOut.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS);\n        }\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun buy(buyer: address, tonAmount: coins, attached: coins, instantPool: bool) {\n    assert (attached >= tonAmount + ton(\"0.25\")) throw Errors.InsufficientAttachedTon;\n\n    var storage = lazy PublicSaleStorage.load();\n    var counters = storage.counters.load();\n    var maps = storage.maps.load();\n    assert (!storage.permanentlyClosed) throw Errors.SaleClosed;\n    assert (tonAmount >= minPurchaseTon()) throw Errors.BelowMinimum;\n\n    val previous = purchasedTon(maps, buyer);\n    val newTotal = previous + tonAmount;\n    assert (newTotal <= maxPurchaseTon()) throw Errors.WalletCapExceeded;\n\n    if (instantPool) {\n        assert (storage.instantSaleEnabled) throw Errors.PoolPaused;\n        val hiAmount = tonAmount * instantHiPerTon();\n        assert (\n            counters.instantSoldHi + hiAmount <= counters.instantPoolTotalHi\n        ) throw Errors.InsufficientInventory;\n        counters.instantSoldHi += hiAmount;\n        maps.purchasedTon.set(buyer, newTotal);\n        storage.counters = counters.toCell();\n        storage.maps = maps.toCell();\n        sendJettons(\n            mutate storage,\n            buyer,\n            hiAmount,\n            1,\n            tonAmount,\n            attached - tonAmount,\n        );\n    } else {\n        assert (storage.lockedSaleEnabled) throw Errors.PoolPaused;\n        val hiAmount = tonAmount * lockedHiPerTon();\n        assert (\n            counters.lockedSoldHi + hiAmount <= counters.lockedPoolTotalHi\n        ) throw Errors.InsufficientInventory;\n        val missedHi = hiAmount * storage.confirmedLevel / 10;\n        val pos = position(maps, buyer, storage.confirmedLevel);\n        maps\n            .positions\n            .set(\n                buyer,\n                {\n                    totalLockedHi: pos.totalLockedHi + hiAmount,\n                    claimedHi: pos.claimedHi,\n                    entryLevel: storage.confirmedLevel,\n                    missedHi: pos.missedHi + missedHi,\n                },\n            );\n        counters.lockedSoldHi += hiAmount;\n        counters.lockedMissedHi += missedHi;\n        maps.purchasedTon.set(buyer, newTotal);\n        storage.counters = counters.toCell();\n        storage.maps = maps.toCell();\n    }\n\n    storage.save();\n}\n\nfun claimLocked(owner: address, attached: coins) {\n    assert (attached >= ton(\"0.25\")) throw Errors.InsufficientAttachedTon;\n    var storage = lazy PublicSaleStorage.load();\n    var counters = storage.counters.load();\n    var maps = storage.maps.load();\n    val pos = position(maps, owner, storage.confirmedLevel);\n    val amount = claimable(storage, pos);\n    assert (amount > 0) throw Errors.NoClaimableAmount;\n\n    maps\n        .positions\n        .set(\n            owner,\n            {\n                totalLockedHi: pos.totalLockedHi,\n                claimedHi: pos.claimedHi + amount,\n                entryLevel: pos.entryLevel,\n                missedHi: pos.missedHi,\n            },\n        );\n    counters.lockedClaimedHi += amount;\n    storage.counters = counters.toCell();\n    storage.maps = maps.toCell();\n    sendJettons(\n        mutate storage,\n        owner,\n        amount,\n        3,\n        ton(\"0\"),\n        attached,\n    );\n    storage.save();\n}\n\nfun sendJettons(\n    mutate storage: PublicSaleStorage,\n    recipient: address,\n    amount: coins,\n    kind: uint8,\n    tonAmount: coins,\n    value: coins,\n) {\n    val config = storage.config.load();\n    val saleJettonWallet = storage.saleJettonWallet;\n    assert (saleJettonWallet != null) throw Errors.JettonWalletNotConfigured;\n    var maps = storage.maps.load();\n    val queryId = storage.nextQueryId;\n    storage.nextQueryId += 1;\n    maps\n        .pendingTransfers\n        .set(\n            queryId,\n            {\n                kind,\n                owner: recipient,\n                hiAmount: amount,\n                tonAmount,\n            },\n        );\n    storage.maps = maps.toCell();\n    val transferMessage = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: saleJettonWallet!,\n        value,\n        body: AskToTransfer {\n            queryId,\n            jettonAmount: amount,\n            transferRecipient: recipient,\n            sendExcessesTo: config.admin,\n            customPayload: null,\n            forwardTonAmount: 0,\n            forwardPayload: beginCell().storeUint(0, 1).endCell().beginParse(),\n        },\n    });\n    transferMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\nfun purchasedTon(maps: PublicSaleMaps, buyer: address): coins {\n    val found = maps.purchasedTon.get(buyer);\n    return found.isFound ? found.loadValue() : 0;\n}\n\nfun position(maps: PublicSaleMaps, owner: address, confirmedLevel: uint8): PurchasePosition {\n    val found = maps.positions.get(owner);\n    if (found.isFound) {\n        return found.loadValue();\n    }\n    return {\n        totalLockedHi: 0,\n        claimedHi: 0,\n        entryLevel: confirmedLevel,\n        missedHi: 0,\n    };\n}\n\nfun claimable(storage: PublicSaleStorage, pos: PurchasePosition): coins {\n    if (storage.confirmedLevel <= pos.entryLevel) {\n        return 0;\n    }\n    val eligibleLevels = storage.confirmedLevel - pos.entryLevel;\n    return pos.totalLockedHi * eligibleLevels / 10 - pos.claimedHi;\n}\n\nfun instantUnsold(counters: PublicSaleCounters): coins {\n    return counters.instantPoolTotalHi - counters.instantSoldHi;\n}\n\nfun lockedUnsold(counters: PublicSaleCounters): coins {\n    return counters.lockedPoolTotalHi - counters.lockedSoldHi;\n}\n\nget fun buyer_state(owner: address): (coins, coins, uint8, coins, coins) {\n    val storage = lazy PublicSaleStorage.load();\n    val maps = storage.maps.load();\n    val pos = position(maps, owner, storage.confirmedLevel);\n    return (\n        purchasedTon(maps, owner),\n        pos.totalLockedHi,\n        pos.entryLevel,\n        pos.claimedHi,\n        claimable(storage, pos),\n    );\n}\n\nget fun sale_state(): (\n    uint8,\n    coins,\n    coins,\n    coins,\n    coins,\n    coins,\n) {\n    val storage = lazy PublicSaleStorage.load();\n    val counters = storage.counters.load();\n    return (\n        storage.confirmedLevel,\n        counters.instantSoldHi,\n        counters.lockedSoldHi,\n        counters.lockedClaimedHi,\n        counters.lockedMissedHi,\n        instantUnsold(counters) + lockedUnsold(counters),\n    );\n}\n\nfun minPurchaseTon(): coins {\n    return ton(\"0.1\");\n}\n\nfun maxPurchaseTon(): coins {\n    return ton(\"5000\");\n}\n\nfun instantHiPerTon(): int {\n    return 3000;\n}\n\nfun lockedHiPerTon(): int {\n    return 15000;\n}\n"
+    },
+    {
+      "filename": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/errors.tolk",
+      "contents": "enum Errors {\n    BalanceError = 47\n    NotEnoughGas = 48\n    InvalidMessage = 49\n    InvalidOp = 72\n    NotOwner = 73\n    NotValidWallet = 74\n    WrongWorkchain = 333\n    NotAdmin = 100\n    SaleClosed = 200\n    BelowMinimum = 201\n    WalletCapExceeded = 202\n    PoolPaused = 203\n    InsufficientInventory = 204\n    NoClaimableAmount = 205\n    InvalidLevel = 206\n    InvalidPrice = 207\n    TimerNotStarted = 208\n    TimerNotMature = 209\n    BatchExists = 210\n    BatchMissing = 211\n    AlreadyClaimed = 212\n    InvalidProof = 213\n    InsufficientAttachedTon = 214\n    JettonWalletNotConfigured = 215\n}\n"
+    },
+    {
+      "filename": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/messages.tolk",
+      "contents": "type ForwardPayloadRemainder = RemainingBitsAndRefs\n\nstruct (0b0) PayloadInline {\n    value: RemainingBitsAndRefs\n}\n\nstruct (0b1) PayloadInRef {\n    value: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x0f8a7ea5) AskToTransfer {\n    queryId: uint64\n    jettonAmount: coins\n    transferRecipient: address\n    sendExcessesTo: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x7362d09c) TransferNotificationForRecipient {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x178d4519) InternalTransferStep {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    sendExcessesTo: address?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\nstruct (0x595f07bc) AskToBurn {\n    queryId: uint64\n    jettonAmount: coins\n    sendExcessesTo: address?\n    customPayload: cell?\n}\n\nstruct (0x7bdd97de) BurnNotificationForMinter {\n    queryId: uint64\n    jettonAmount: coins\n    burnInitiator: address\n    sendExcessesTo: address?\n}\n\nstruct (0x2c76b973) RequestWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeOwnerAddress: bool\n}\n\nstruct (0xd1735400) ResponseWalletAddress {\n    queryId: uint64\n    jettonWalletAddress: address?\n    ownerAddress: Cell<address>?\n}\n\nstruct (0x642b7d07) MintNewJettons {\n    queryId: uint64\n    mintRecipient: address\n    tonAmount: coins\n    internalTransferMsg: Cell<InternalTransferStep>\n}\n\nstruct (0x6501f354) ChangeMinterAdmin {\n    queryId: uint64\n    newAdminAddress: address\n}\n\nstruct (0xfb88e119) ClaimMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x7431f221) DropMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x2508d66a) UpgradeMinterCode {\n    queryId: uint64\n    newData: cell\n    newCode: cell\n}\n\nstruct (0xcb862902) ChangeMinterMetadata {\n    queryId: uint64\n    newMetadata: cell\n}\n\nstruct (0xd372158c) TopUpTons {}\n\nfun ForwardPayloadRemainder.checkIsCorrectTlbEither(self) {\n    var mutableCopy = self;\n    if (mutableCopy.loadMaybeRef() != null) {\n        mutableCopy.assertEnd();\n    }\n}\n"
+    },
+    {
+      "filename": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/tokenomics-messages.tolk",
+      "contents": "struct (0x48490101) BuyInstant {\n    tonAmount: coins\n}\n\nstruct (0x48490102) BuyLocked {\n    tonAmount: coins\n}\n\nstruct (0x48490103) SetPoolEnabled {\n    instantPool: bool\n    enabled: bool\n}\n\nstruct (0x48490104) CloseSale {}\n\nstruct (0x48490105) ClaimLocked {}\n\nstruct (0x48490106) SetConfirmedLevel {\n    confirmedLevel: uint8\n}\n\nstruct (0x48490107) SweepProjectFund {}\n\nstruct (0x48490108) WithdrawSaleTons {\n    amount: coins\n}\n\nstruct (0x48490109) SetSaleJettonWallet {\n    saleJettonWallet: address\n}\n\nstruct (0x48490201) ReportPrice {\n    price: uint64\n}\n\nstruct (0x48490202) ConfirmLevel {}\n\nstruct (0x48490203) SetOracleTargets {\n    publicSale: address\n    teamVestingVault: address\n}\n\nstruct (0x48490301) SyncLevel10 {\n    confirmedAt: uint32\n}\n\nstruct (0x48490302) ClaimTeam {}\n\nstruct (0x48490303) SetTeamJettonWallet {\n    teamJettonWallet: address\n}\n\nstruct (0x48490401) CreateRewardBatch {\n    batchId: uint64\n    root: uint256\n    totalHi: coins\n    metadataHash: uint256\n}\n\nstruct (0x48490402) ClaimReward {\n    batchId: uint64\n    amount: coins\n    proof: cell\n}\n\nstruct (0x48490403) SetRewardJettonWallet {\n    rewardJettonWallet: address\n}\n"
+    },
+    {
+      "filename": "tmp/8e12cdec-0a19-46d8-b6ef-398ca8275f09/contracts/tokenomics-storage.tolk",
+      "contents": "struct PurchasePosition {\n    totalLockedHi: coins\n    claimedHi: coins\n    entryLevel: uint8\n    missedHi: coins\n}\n\nstruct PendingSaleTransfer {\n    kind: uint8\n    owner: address\n    hiAmount: coins\n    tonAmount: coins\n}\n\nstruct PublicSaleConfig {\n    admin: address\n    projectFundWallet: address\n}\n\nstruct PublicSaleStorage {\n    config: Cell<PublicSaleConfig>\n    counters: Cell<PublicSaleCounters>\n    maps: Cell<PublicSaleMaps>\n    oracle: address\n    saleJettonWallet: address?\n    instantSaleEnabled: bool\n    lockedSaleEnabled: bool\n    permanentlyClosed: bool\n    confirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct PublicSaleMaps {\n    purchasedTon: map<address, coins>\n    positions: map<address, PurchasePosition>\n    pendingTransfers: map<uint64, PendingSaleTransfer>\n}\n\nstruct PublicSaleCounters {\n    instantPoolTotalHi: coins\n    lockedPoolTotalHi: coins\n    instantSoldHi: coins\n    lockedSoldHi: coins\n    lockedClaimedHi: coins\n    lockedMissedHi: coins\n}\n\nfun PublicSaleStorage.load(): PublicSaleStorage {\n    return PublicSaleStorage.fromCell(contract.getData());\n}\n\nfun PublicSaleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct PriceOracleStorage {\n    admin: address\n    publicSale: address?\n    teamVestingVault: address?\n    confirmedLevel: uint8\n    candidateLevel: uint8\n    levelStartedAt: uint32\n    lastPrice: uint64\n}\n\nfun PriceOracleStorage.load(): PriceOracleStorage {\n    return PriceOracleStorage.fromCell(contract.getData());\n}\n\nfun PriceOracleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TeamVestingConfig {\n    admin: address\n    teamWallet: address\n}\n\nstruct TeamVestingStorage {\n    config: Cell<TeamVestingConfig>\n    oracle: address\n    teamJettonWallet: address?\n    totalHi: coins\n    claimedHi: coins\n    level10ConfirmedAt: uint32\n    nextQueryId: uint64\n    pendingTransfers: map<uint64, coins>\n}\n\nfun TeamVestingStorage.load(): TeamVestingStorage {\n    return TeamVestingStorage.fromCell(contract.getData());\n}\n\nfun TeamVestingStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct RewardBatch {\n    root: uint256\n    totalHi: coins\n    claimedHi: coins\n    metadataHash: uint256\n}\n\nstruct PendingRewardTransfer {\n    batchId: uint64\n    claimant: address\n    amount: coins\n}\n\nstruct EcosystemRewardStorage {\n    config: Cell<EcosystemRewardConfig>\n    rewardJettonWallet: address?\n    nextQueryId: uint64\n    batches: map<uint64, RewardBatch>\n    claimed: map<uint256, bool>\n    pendingTransfers: map<uint64, PendingRewardTransfer>\n}\n\nstruct EcosystemRewardConfig {\n    admin: address\n}\n\nfun EcosystemRewardStorage.load(): EcosystemRewardStorage {\n    return EcosystemRewardStorage.fromCell(contract.getData());\n}\n\nfun EcosystemRewardStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

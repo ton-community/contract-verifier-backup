@@ -1,0 +1,2155 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from PriceOracle.tolk, errors.tolk, tokenomics-messages.tolk, tokenomics-storage.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  75445 DECLMETHOD growth_confirmed_level()\n  73432 DECLMETHOD team_confirmed_level()\n  80708 DECLMETHOD growth_candidate_state()\n  66345 DECLMETHOD team_candidate_state()\n  69067 DECLMETHOD growth_threshold_for()\n  119040 DECLMETHOD team_threshold_for()\n  DECLPROC growthThreshold()\n  DECLPROC teamThreshold()\n  // 2 functions inlined in-place:\n  // - PriceOracleStorage.load (10 calls)\n  // - PriceOracleStorage.save (8 calls)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{48490201} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDSLICE\n      LDREF\n      LDREF\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      100 THROWIFNOT\n      SWAP\n      CTOS\n      8 LDU\n      8 LDU\n      32 LDU\n      64 LDU\n      NIP\n      ENDS\n      s0 s7 XCHG\n      64 PLDU\n      s0 s2 PUSH2\n      INC\n      DUP\n      10 GTINT\n      IFJMP:<{\n        DROP\n        NIP\n        s0 s2 XCHG\n        NEWC\n        8 STU\n        8 STU\n        s1 s6 XCHG\n        32 STU\n        s1 s5 XCHG\n        64 STU\n        ENDC\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        s1 s2 XCHG\n        STSLICE\n        STREF\n        STREF\n        STSLICE\n        ENDC\n        c4 POP\n      }>\n      DUP\n      growthThreshold() CALLDICT\n      s1 s3 XCHG\n      GEQ\n      IF:<{\n        s2 s1 PUSH2\n        NEQ\n        IF:<{\n          s2 POP\n          NOW\n          s8 POP\n          SWAP\n        }>ELSE<{\n          NIP\n        }>\n      }>ELSE<{\n        s8 POP\n        2DROP\n        0 PUSHINT\n        s0 s6 PUXC\n      }>\n      s0 s2 XCHG\n      NEWC\n      8 STU\n      8 STU\n      s1 s6 XCHG\n      32 STU\n      s1 s5 XCHG\n      64 STU\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSLICE\n      STREF\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490205} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDSLICE\n      LDREF\n      LDREF\n      PLDREF\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      100 THROWIFNOT\n      CTOS\n      8 LDU\n      8 LDU\n      32 LDU\n      64 LDU\n      NIP\n      ENDS\n      s0 s7 XCHG\n      64 PLDU\n      s0 s2 PUSH2\n      INC\n      DUP\n      4 GTINT\n      IFJMP:<{\n        DROP\n        NIP\n        s0 s2 XCHG\n        NEWC\n        8 STU\n        8 STU\n        s1 s6 XCHG\n        32 STU\n        s1 s5 XCHG\n        64 STU\n        ENDC\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        s1 s2 XCHG\n        STSLICE\n        STREF\n        s1 s2 XCHG\n        STREF\n        STREF\n        ENDC\n        c4 POP\n      }>\n      DUP\n      teamThreshold() CALLDICT\n      s1 s3 XCHG\n      GEQ\n      IF:<{\n        s2 s1 PUSH2\n        NEQ\n        IF:<{\n          s2 POP\n          NOW\n          s8 POP\n          SWAP\n        }>ELSE<{\n          NIP\n        }>\n      }>ELSE<{\n        s8 POP\n        2DROP\n        0 PUSHINT\n        s0 s6 PUXC\n      }>\n      s0 s2 XCHG\n      NEWC\n      8 STU\n      8 STU\n      s1 s6 XCHG\n      32 STU\n      s1 s5 XCHG\n      64 STU\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSLICE\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{48490203} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDSLICE\n      LDREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      100 THROWIFNOT\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      NIP\n      LDREF\n      ENDS\n      s0 s4 XCHG\n      LDSTDADDR\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      s0 s2 XCHG\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      STOPTSTDADDR\n      s1 s4 XCHG\n      STREF\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490204} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDSLICE\n      LDREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      100 THROWIFNOT\n      SWAP\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      LDREF\n      NIP\n      ENDS\n      s0 s6 XCHG\n      LDSTDADDR\n      DROP\n      NEWC\n      STOPTSTDADDR\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STOPTSTDADDR\n      STOPTSTDADDR\n      s1 s5 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      STREF\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490202} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      LDREF\n      LDREF\n      SWAP\n      CTOS\n      8 LDU\n      8 LDU\n      32 LDU\n      64 LDU\n      ENDS\n      s0 s3 XCHG\n      INC\n      DUP\n      11 LESSINT\n      206 THROWIFNOT\n      s2 s2 XCPU\n      EQUAL\n      208 THROWIFNOT\n      DUP\n      208 THROWIFNOT\n      NOW\n      s1 s6 XCPU\n      ADD\n      GEQ\n      209 THROWIFNOT\n      DUP\n      NEWC\n      8 STU\n      0 PUSHINT\n      40 STUR\n      s1 s2 XCHG\n      64 STU\n      ENDC\n      s3 PUSH\n      CTOS\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      LDREF\n      ENDS\n      CTOS\n      LDOPTSTDADDR\n      ENDS\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      STREF\n      STREF\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      OVER\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1212743942 PUSHINT\n        139 STUR\n        OVER\n        8 STUR\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        NIP\n      }>\n      s2 PUSH\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s4 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        1212743942 PUSHINT\n        139 STUR\n        s2 PUSH\n        8 STUR\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        s2 POP\n      }>\n      DUP\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1212744708 PUSHINT\n        139 STUR\n        8 STU\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{48490206} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDU\n      LDREF\n      LDREF\n      PLDREF\n      CTOS\n      8 LDU\n      8 LDU\n      32 LDU\n      64 LDU\n      ENDS\n      s0 s3 XCHG\n      INC\n      DUP\n      5 LESSINT\n      206 THROWIFNOT\n      s2 s2 XCPU\n      EQUAL\n      208 THROWIFNOT\n      DUP\n      208 THROWIFNOT\n      NOW\n      s1 s6 XCPU\n      ADD\n      GEQ\n      209 THROWIFNOT\n      NOW\n      OVER\n      NEWC\n      8 STU\n      0 PUSHINT\n      40 STUR\n      s1 s3 XCHG\n      64 STU\n      ENDC\n      s4 PUSH\n      CTOS\n      LDOPTSTDADDR\n      NIP\n      LDOPTSTDADDR\n      LDOPTSTDADDR\n      NIP\n      LDREF\n      NIP\n      ENDS\n      s0 s7 XCHG\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      32 STU\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      c4 POP\n      s2 PUSH\n      ISNULL\n      IFNOT:<{\n        50000000 PUSHINT\n        NEWC\n        b{011000} STSLICECONST\n        s1 s4 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        1212744449 PUSHINT\n        139 STUR\n        s1 s2 XCHG\n        8 STU\n        32 STU\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        3 BLKDROP\n      }>\n    }>\n    SEMPTY\n    49 THROWIFNOT\n  }>\n  growth_confirmed_level() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    8 LDU\n    8 LDU\n    NIP\n    32 LDU\n    NIP\n    64 LDU\n    NIP\n    ENDS\n  }>\n  team_confirmed_level() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    8 LDU\n    8 LDU\n    NIP\n    32 LDU\n    NIP\n    64 LDU\n    NIP\n    ENDS\n  }>\n  growth_candidate_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    8 LDU\n    NIP\n    8 LDU\n    32 LDU\n    64 LDU\n    ENDS\n  }>\n  team_candidate_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    8 LDU\n    NIP\n    8 LDU\n    32 LDU\n    64 LDU\n    ENDS\n  }>\n  growth_threshold_for() PROC:<{\n    growthThreshold() CALLDICT\n  }>\n  team_threshold_for() PROC:<{\n    teamThreshold() CALLDICT\n  }>\n  growthThreshold() PROC:<{\n    DUP\n    1 EQINT\n    IFJMP:<{\n      DROP\n      800000 PUSHINT\n    }>\n    DUP\n    2 EQINT\n    IFJMP:<{\n      DROP\n      1600000 PUSHINT\n    }>\n    DUP\n    3 EQINT\n    IFJMP:<{\n      DROP\n      3200000 PUSHINT\n    }>\n    DUP\n    4 EQINT\n    IFJMP:<{\n      DROP\n      6400000 PUSHINT\n    }>\n    DUP\n    5 EQINT\n    IFJMP:<{\n      DROP\n      12800000 PUSHINT\n    }>\n    DUP\n    6 EQINT\n    IFJMP:<{\n      DROP\n      25600000 PUSHINT\n    }>\n    DUP\n    7 EQINT\n    IFJMP:<{\n      DROP\n      51200000 PUSHINT\n    }>\n    DUP\n    8 EQINT\n    IFJMP:<{\n      DROP\n      102400000 PUSHINT\n    }>\n    DUP\n    9 EQINT\n    IFJMP:<{\n      DROP\n      204800000 PUSHINT\n    }>\n    10 EQINT\n    IFJMP:<{\n      409600000 PUSHINT\n    }>\n    206 THROW\n  }>\n  teamThreshold() PROC:<{\n    DUP\n    1 EQINT\n    IFJMP:<{\n      DROP\n      100000000 PUSHINT\n    }>\n    DUP\n    2 EQINT\n    IFJMP:<{\n      DROP\n      500000000 PUSHINT\n    }>\n    DUP\n    3 EQINT\n    IFJMP:<{\n      DROP\n      1000000000 PUSHINT\n    }>\n    4 EQINT\n    IFJMP:<{\n      5000000000 PUSHINT\n    }>\n    206 THROW\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECGwEABG4AART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAREgIBIAYHAGNCDAAZcwghAF9eEA4CDAApcwghAdzWUA4CDAA5cwghA7msoA4MAEloIRKgXyAODywM6ATbPiRkTDgINcsIkJIEAzjAtcsIkJIECzjAtcsIkJIEByOOzHtRND6SNYf1PiSJMcF8uBkAdD6UDH6UDH6UDHU0QT6SPpI+kgwAsj6VPpU+lQUzMkCyPpSzszOye1U4NcsIkJIECTjAtcsIkJIEBSAICQoLAOUIMABljCCCAw1AOAgwAKWMIIIGGoA4CDAA5Ywgggw1ADgIMAEljCCCGGoAOAgwAWWMIIIw1AA4CDABpYwggmGoADgIMAHljCCCw1AAOAgwAiXMIIQBhqAAOAgwAmXMIIQDDUAAODACpaCEBhqAADg8sDOgAPAx7UTQ+kjWH9TU+JIlxwXy4GQB0NMH0wfTH9M/MdEH1ws/UwKkIMIKjhswMQLIywfLBxbLHxXLP8kDyPpSEs7MzM7J7VTgIPABE76cUyG9lTL4IzgBkTHilThbcFIH4gLIywfLBxbLHxXLP8kDyPpSEs7MzM7J7VQA9jHtRND6SNYf1NTXTPiSJccF8uBk0NMH0wfTH9M/MdEH1ws/UwKkIMIEjhwwMQLIywfLBxbLHxXLP8kDyPpSEs7MEszMye1U4CDwAhO+nFMhvZUy+CM4AZEx4pU4W3BSB+ICyMsHywcWyx8Vyz/JA8j6UhLOzBLMzMntVAB0Me1E0PpI1h/U+JIkxwXy4GQB0PpQ+lD6UNQx0Qb6SDDI+lTJAsj6VPpUFfpUFMzJAsj6Us7MzsntVATuj+xb7UTQ+kjTH9TUAdDTB9MH0x/TP9EDpCDBC/LgzlEiuvLg0CDy4ND4I1EWoL7y4NEgyMsHcM8LJxLLP8kj0PpQ+lAx+lDU0dD6UNEIyPpSF8sfFczMEs7J7VQhbpEx4w4ibpEy4w4gbpFb4w7g1ywiQkgQNDEMDQ4PAEKCCvrwgMjPhYgT+lJY+gKCEEhJAQbPC4ohzwsHyYAR+wAARIIK+vCAyM+FiBT6UlAD+gKCEEhJAQbPC4oizwsHyYAR+wAAPoIK+vCAyM+FiBL6UgH6AoIQSEkEBM8LissHyYAR+wAB1I7jMO1E0PpI0x/U1NdM0NMH0wfTH9M/0QOkIMEF8uDOUSK68uDQIPLg0PgjURagvvLg0fgjIcjLB3DPCycTyz/JJND6UDH6UPpQMdQx0QfI+lIWyx8UzBLME8zJ7VQibpJfA+MO4McA8rEQAEaCCvrwgMjPhYgU+lJQA/oCghBISQMBzwuKEssHyx/JgBH7AAIBSBMUAAm+iAeAFAIBIBUWAgEgGRoCASAXGAAxs7Y7UTQ1DHUMddM0NMH0wcx0x8x0z8x0YAAtrZT2omhqGOoY66ZoaYOY6YPpj+mf6MAACa7l+ADAAC2xrXtRNDUMddM0NMH0wcx0x8x0z8x0YAApstE7UTQ1DHXTNDTBzHTB9Mf0z/Rg",
+  "codeHashHex": "2B7E5D58147CBCC57DE9A8E134867C9F676E8AB842CAB137921C6B4513061A7B",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/PriceOracle.tolk",
+        "size_chars": 9343,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/errors.tolk",
+        "size_chars": 705,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/tokenomics-messages.tolk",
+        "size_chars": 2344,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/tokenomics-storage.tolk",
+        "size_chars": 5244,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedOracleMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportGrowthPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmGrowthLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportTeamPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmTeamLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetOracleTargets"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetCampaignWinnerTarget"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1212744193,
+            "prefix_len": 32,
+            "stack_type_id": 132,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1212744194,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1212744197,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1212744198,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1212744195,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1212744196,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleTargets"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleCampaignTargets"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleGrowthState"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 26
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleTeamState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 29
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetGrowthConfirmedLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          34
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 41
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          40
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          45,
+          46
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 51,
+        "stack_type_id": 131,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 47,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          55
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRewardGrowthLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          57
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SyncTeamPriceLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          59
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          27,
+          9,
+          11
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 35,
+        "struct_name": "CreateMessageOptions<SetGrowthConfirmedLevel>",
+        "monomorphic_fields_ty_idx": [
+          39,
+          44,
+          54,
+          34
+        ]
+      },
+      {
+        "ty_idx": 58,
+        "struct_name": "CreateMessageOptions<SetRewardGrowthLevel>",
+        "monomorphic_fields_ty_idx": [
+          39,
+          44,
+          54,
+          57
+        ]
+      },
+      {
+        "ty_idx": 60,
+        "struct_name": "CreateMessageOptions<SyncTeamPriceLevel>",
+        "monomorphic_fields_ty_idx": [
+          39,
+          44,
+          54,
+          59
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 42
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 49,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 52
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 45
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 50
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 53
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 37,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 39
+          },
+          {
+            "name": "value",
+            "ty_idx": 44
+          },
+          {
+            "name": "dest",
+            "ty_idx": 54
+          },
+          {
+            "name": "body",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedOracleMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          13,
+          6,
+          13,
+          26
+        ],
+        "target_ty_idx": 19
+      },
+      {
+        "kind": "struct",
+        "name": "SetGrowthConfirmedLevel",
+        "ty_idx": 34,
+        "ident_loc": [
+          3,
+          13,
+          21,
+          13,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthConfirmedLevel",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportGrowthPrice",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          35,
+          21,
+          35,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1212744193,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmGrowthLevel",
+        "ty_idx": 14,
+        "ident_loc": [
+          3,
+          39,
+          21,
+          39,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1212744194,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetOracleTargets",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          41,
+          21,
+          41,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1212744195,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthEngine",
+            "ty_idx": 7
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 7
+          },
+          {
+            "name": "merkleRewardVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetCampaignWinnerTarget",
+        "ty_idx": 18,
+        "ident_loc": [
+          3,
+          47,
+          21,
+          47,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 1212744196,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "campaignWinnerVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportTeamPrice",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          51,
+          21,
+          51,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1212744197,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmTeamLevel",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          55,
+          21,
+          55,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1212744198,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SyncTeamPriceLevel",
+        "ty_idx": 59,
+        "ident_loc": [
+          3,
+          57,
+          21,
+          57,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1212744449,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "teamConfirmedLevel",
+            "ty_idx": 27
+          },
+          {
+            "name": "confirmedAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRewardGrowthLevel",
+        "ty_idx": 57,
+        "ident_loc": [
+          3,
+          95,
+          21,
+          95,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1212744708,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthConfirmedLevel",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleCampaignTargets",
+        "ty_idx": 23,
+        "ident_loc": [
+          4,
+          63,
+          8,
+          63,
+          34
+        ],
+        "fields": [
+          {
+            "name": "campaignWinnerVault",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleTargets",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          67,
+          8,
+          67,
+          26
+        ],
+        "fields": [
+          {
+            "name": "growthEngine",
+            "ty_idx": 22
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 22
+          },
+          {
+            "name": "merkleRewardVault",
+            "ty_idx": 22
+          },
+          {
+            "name": "campaignTargets",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleGrowthState",
+        "ty_idx": 26,
+        "ident_loc": [
+          4,
+          74,
+          8,
+          74,
+          30
+        ],
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 27
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 27
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleTeamState",
+        "ty_idx": 29,
+        "ident_loc": [
+          4,
+          81,
+          8,
+          81,
+          28
+        ],
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 27
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 27
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleStorage",
+        "ty_idx": 20,
+        "ident_loc": [
+          4,
+          88,
+          8,
+          88,
+          26
+        ],
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "confirmationDelay",
+            "ty_idx": 9
+          },
+          {
+            "name": "targets",
+            "ty_idx": 25
+          },
+          {
+            "name": "growth",
+            "ty_idx": 28
+          },
+          {
+            "name": "team",
+            "ty_idx": 30
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          23,
+          5,
+          23,
+          22
+        ],
+        "end_loc": [
+          1,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          21,
+          5,
+          21,
+          21
+        ],
+        "end_loc": [
+          1,
+          21,
+          46,
+          21,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<PriceOracleGrowthState>.load",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "options",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "PriceOracleGrowthState.toCell",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "PriceOracleStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          4,
+          100,
+          24,
+          100,
+          28
+        ],
+        "end_loc": [
+          4,
+          102,
+          1,
+          102,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "Cell<PriceOracleTeamState>.load",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "options",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "PriceOracleTeamState.toCell",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Cell<PriceOracleTargets>.load",
+        "return_ty_idx": 21,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "options",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "PriceOracleTargets.toCell",
+        "return_ty_idx": 25,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "PriceOracleCampaignTargets.toCell",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "Cell<PriceOracleCampaignTargets>.load",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "options",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createMessage<SetGrowthConfirmedLevel>",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<SetRewardGrowthLevel>",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "createMessage<SyncTeamPriceLevel>",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 60
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "growth_confirmed_level",
+        "return_ty_idx": 27,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          200,
+          9,
+          200,
+          31
+        ],
+        "end_loc": [
+          1,
+          203,
+          1,
+          203,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "team_confirmed_level",
+        "return_ty_idx": 27,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          205,
+          9,
+          205,
+          29
+        ],
+        "end_loc": [
+          1,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "growth_candidate_state",
+        "return_ty_idx": 61,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          210,
+          9,
+          210,
+          31
+        ],
+        "end_loc": [
+          1,
+          214,
+          1,
+          214,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "team_candidate_state",
+        "return_ty_idx": 61,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          216,
+          9,
+          216,
+          29
+        ],
+        "end_loc": [
+          1,
+          220,
+          1,
+          220,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "growth_threshold_for",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          222,
+          9,
+          222,
+          29
+        ],
+        "end_loc": [
+          1,
+          224,
+          1,
+          224,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "team_threshold_for",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          226,
+          9,
+          226,
+          27
+        ],
+        "end_loc": [
+          1,
+          228,
+          1,
+          228,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "growthThreshold",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          230,
+          5,
+          230,
+          20
+        ],
+        "end_loc": [
+          1,
+          262,
+          1,
+          262,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "teamThreshold",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          264,
+          5,
+          264,
+          18
+        ],
+        "end_loc": [
+          1,
+          278,
+          1,
+          278,
+          2
+        ],
+        "params": [
+          {
+            "name": "level",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "PriceOracle",
+    "author": "100wan",
+    "version": "0.2.0",
+    "description": "HI USDT price threshold oracle",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportGrowthPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmGrowthLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportTeamPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmTeamLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetOracleTargets"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetCampaignWinnerTarget"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleTargets"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleCampaignTargets"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleGrowthState"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceOracleTeamState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetGrowthConfirmedLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRewardGrowthLevel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SyncTeamPriceLevel"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          25,
+          9,
+          11
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "SetGrowthConfirmedLevel",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1212743942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthConfirmedLevel",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportGrowthPrice",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1212744193,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmGrowthLevel",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1212744194,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SetOracleTargets",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1212744195,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthEngine",
+            "ty_idx": 7
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 7
+          },
+          {
+            "name": "merkleRewardVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetCampaignWinnerTarget",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 1212744196,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "campaignWinnerVault",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportTeamPrice",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1212744197,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "price",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmTeamLevel",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1212744198,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "SyncTeamPriceLevel",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 1212744449,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "teamConfirmedLevel",
+            "ty_idx": 25
+          },
+          {
+            "name": "confirmedAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRewardGrowthLevel",
+        "ty_idx": 30,
+        "prefix": {
+          "prefix_num": 1212744708,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "growthConfirmedLevel",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleCampaignTargets",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "campaignWinnerVault",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleTargets",
+        "ty_idx": 19,
+        "fields": [
+          {
+            "name": "growthEngine",
+            "ty_idx": 20
+          },
+          {
+            "name": "teamVestingVault",
+            "ty_idx": 20
+          },
+          {
+            "name": "merkleRewardVault",
+            "ty_idx": 20
+          },
+          {
+            "name": "campaignTargets",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleGrowthState",
+        "ty_idx": 24,
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 25
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 25
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleTeamState",
+        "ty_idx": 27,
+        "fields": [
+          {
+            "name": "confirmedLevel",
+            "ty_idx": 25
+          },
+          {
+            "name": "candidateLevel",
+            "ty_idx": 25
+          },
+          {
+            "name": "levelStartedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastPrice",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceOracleStorage",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "confirmationDelay",
+            "ty_idx": 9
+          },
+          {
+            "name": "targets",
+            "ty_idx": 23
+          },
+          {
+            "name": "growth",
+            "ty_idx": 26
+          },
+          {
+            "name": "team",
+            "ty_idx": 28
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 18
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 17
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 29
+      },
+      {
+        "body_ty_idx": 30
+      },
+      {
+        "body_ty_idx": 31
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 75445,
+        "name": "growth_confirmed_level",
+        "parameters": [],
+        "return_ty_idx": 25
+      },
+      {
+        "tvm_method_id": 73432,
+        "name": "team_confirmed_level",
+        "parameters": [],
+        "return_ty_idx": 25
+      },
+      {
+        "tvm_method_id": 80708,
+        "name": "growth_candidate_state",
+        "parameters": [],
+        "return_ty_idx": 32
+      },
+      {
+        "tvm_method_id": 66345,
+        "name": "team_candidate_state",
+        "parameters": [],
+        "return_ty_idx": 32
+      },
+      {
+        "tvm_method_id": 69067,
+        "name": "growth_threshold_for",
+        "parameters": [
+          {
+            "name": "level",
+            "ty_idx": 25
+          }
+        ],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 119040,
+        "name": "team_threshold_for",
+        "parameters": [
+          {
+            "name": "level",
+            "ty_idx": 25
+          }
+        ],
+        "return_ty_idx": 11
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 49
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotAdmin",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidLevel",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TimerNotStarted",
+        "err_code": 208
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TimerNotMature",
+        "err_code": 209
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/PriceOracle.tolk",
+      "contents": "import \"errors\"\nimport \"tokenomics-messages\"\nimport \"tokenomics-storage\"\n\ncontract PriceOracle {\n    author: \"100wan\"\n    version: \"0.2.0\"\n    description: \"HI USDT price threshold oracle\"\n    storage: PriceOracleStorage\n    incomingMessages: AllowedOracleMessage\n}\n\ntype AllowedOracleMessage =\n    | ReportGrowthPrice\n    | ConfirmGrowthLevel\n    | ReportTeamPrice\n    | ConfirmTeamLevel\n    | SetOracleTargets\n    | SetCampaignWinnerTarget\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedOracleMessage.fromSlice(in.body);\n\n    match (msg) {\n        ReportGrowthPrice => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            var growth = storage.growth.load();\n            growth.lastPrice = msg.price;\n\n            val nextLevel = growth.confirmedLevel + 1;\n            if (nextLevel > 10) {\n                storage.growth = growth.toCell();\n                storage.save();\n                return;\n            }\n\n            if (msg.price >= growthThreshold(nextLevel)) {\n                if (growth.candidateLevel != nextLevel) {\n                    growth.candidateLevel = nextLevel;\n                    growth.levelStartedAt = blockchain.now() as uint32;\n                }\n            } else {\n                growth.candidateLevel = 0;\n                growth.levelStartedAt = 0;\n            }\n\n            storage.growth = growth.toCell();\n            storage.save();\n        }\n\n        ReportTeamPrice => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            var team = storage.team.load();\n            team.lastPrice = msg.price;\n\n            val nextLevel = team.confirmedLevel + 1;\n            if (nextLevel > 4) {\n                storage.team = team.toCell();\n                storage.save();\n                return;\n            }\n\n            if (msg.price >= teamThreshold(nextLevel)) {\n                if (team.candidateLevel != nextLevel) {\n                    team.candidateLevel = nextLevel;\n                    team.levelStartedAt = blockchain.now() as uint32;\n                }\n            } else {\n                team.candidateLevel = 0;\n                team.levelStartedAt = 0;\n            }\n\n            storage.team = team.toCell();\n            storage.save();\n        }\n\n        SetOracleTargets => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            val currentTargets = storage.targets.load();\n            storage.targets = PriceOracleTargets {\n                growthEngine: msg.growthEngine,\n                teamVestingVault: msg.teamVestingVault,\n                merkleRewardVault: msg.merkleRewardVault,\n                campaignTargets: currentTargets.campaignTargets,\n            }.toCell();\n            storage.save();\n        }\n\n        SetCampaignWinnerTarget => {\n            var storage = lazy PriceOracleStorage.load();\n            assert (in.senderAddress == storage.admin) throw Errors.NotAdmin;\n            val targets = storage.targets.load();\n            storage.targets = PriceOracleTargets {\n                growthEngine: targets.growthEngine,\n                teamVestingVault: targets.teamVestingVault,\n                merkleRewardVault: targets.merkleRewardVault,\n                campaignTargets: PriceOracleCampaignTargets {\n                    campaignWinnerVault: msg.campaignWinnerVault,\n                }.toCell(),\n            }.toCell();\n            storage.save();\n        }\n\n        ConfirmGrowthLevel => {\n            var storage = lazy PriceOracleStorage.load();\n            var growth = storage.growth.load();\n            val nextLevel = growth.confirmedLevel + 1;\n            assert (nextLevel <= 10) throw Errors.InvalidLevel;\n            assert (growth.candidateLevel == nextLevel) throw Errors.TimerNotStarted;\n            assert (growth.levelStartedAt != 0) throw Errors.TimerNotStarted;\n            assert (\n                blockchain.now() >= growth.levelStartedAt + storage.confirmationDelay\n            ) throw Errors.TimerNotMature;\n\n            growth.confirmedLevel = nextLevel;\n            growth.candidateLevel = 0;\n            growth.levelStartedAt = 0;\n            storage.growth = growth.toCell();\n            val targets = storage.targets.load();\n            val growthEngine = targets.growthEngine;\n            val campaignWinnerVault = targets.campaignTargets.load().campaignWinnerVault;\n            val merkleRewardVault = targets.merkleRewardVault;\n            storage.save();\n\n            if (growthEngine != null) {\n                val growthMessage = createMessage({\n                    bounce: true,\n                    dest: growthEngine!,\n                    value: ton(\"0.05\"),\n                    body: SetGrowthConfirmedLevel { growthConfirmedLevel: nextLevel },\n                });\n                growthMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n\n            if (campaignWinnerVault != null) {\n                val winnerMessage = createMessage({\n                    bounce: true,\n                    dest: campaignWinnerVault!,\n                    value: ton(\"0.05\"),\n                    body: SetGrowthConfirmedLevel { growthConfirmedLevel: nextLevel },\n                });\n                winnerMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n\n            if (merkleRewardVault != null) {\n                val rewardMessage = createMessage({\n                    bounce: true,\n                    dest: merkleRewardVault!,\n                    value: ton(\"0.05\"),\n                    body: SetRewardGrowthLevel { growthConfirmedLevel: nextLevel },\n                });\n                rewardMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n        }\n\n        ConfirmTeamLevel => {\n            var storage = lazy PriceOracleStorage.load();\n            var team = storage.team.load();\n            val nextLevel = team.confirmedLevel + 1;\n            assert (nextLevel <= 4) throw Errors.InvalidLevel;\n            assert (team.candidateLevel == nextLevel) throw Errors.TimerNotStarted;\n            assert (team.levelStartedAt != 0) throw Errors.TimerNotStarted;\n            assert (\n                blockchain.now() >= team.levelStartedAt + storage.confirmationDelay\n            ) throw Errors.TimerNotMature;\n\n            val confirmedAt = blockchain.now() as uint32;\n            team.confirmedLevel = nextLevel;\n            team.candidateLevel = 0;\n            team.levelStartedAt = 0;\n            storage.team = team.toCell();\n            val teamVestingVault = storage.targets.load().teamVestingVault;\n            storage.save();\n\n            if (teamVestingVault != null) {\n                val teamMessage = createMessage({\n                    bounce: true,\n                    dest: teamVestingVault!,\n                    value: ton(\"0.05\"),\n                    body: SyncTeamPriceLevel {\n                        teamConfirmedLevel: nextLevel,\n                        confirmedAt,\n                    },\n                });\n                teamMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n            }\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nget fun growth_confirmed_level(): uint8 {\n    val storage = lazy PriceOracleStorage.load();\n    return storage.growth.load().confirmedLevel;\n}\n\nget fun team_confirmed_level(): uint8 {\n    val storage = lazy PriceOracleStorage.load();\n    return storage.team.load().confirmedLevel;\n}\n\nget fun growth_candidate_state(): (uint8, uint32, uint64) {\n    val storage = lazy PriceOracleStorage.load();\n    val growth = storage.growth.load();\n    return (growth.candidateLevel, growth.levelStartedAt, growth.lastPrice);\n}\n\nget fun team_candidate_state(): (uint8, uint32, uint64) {\n    val storage = lazy PriceOracleStorage.load();\n    val team = storage.team.load();\n    return (team.candidateLevel, team.levelStartedAt, team.lastPrice);\n}\n\nget fun growth_threshold_for(level: uint8): uint64 {\n    return growthThreshold(level);\n}\n\nget fun team_threshold_for(level: uint8): uint64 {\n    return teamThreshold(level);\n}\n\nfun growthThreshold(level: int): uint64 {\n    if (level == 1) {\n        return 800000;\n    }\n    if (level == 2) {\n        return 1600000;\n    }\n    if (level == 3) {\n        return 3200000;\n    }\n    if (level == 4) {\n        return 6400000;\n    }\n    if (level == 5) {\n        return 12800000;\n    }\n    if (level == 6) {\n        return 25600000;\n    }\n    if (level == 7) {\n        return 51200000;\n    }\n    if (level == 8) {\n        return 102400000;\n    }\n    if (level == 9) {\n        return 204800000;\n    }\n    if (level == 10) {\n        return 409600000;\n    }\n    throw Errors.InvalidLevel;\n}\n\nfun teamThreshold(level: int): uint64 {\n    if (level == 1) {\n        return 100000000;\n    }\n    if (level == 2) {\n        return 500000000;\n    }\n    if (level == 3) {\n        return 1000000000;\n    }\n    if (level == 4) {\n        return 5000000000;\n    }\n    throw Errors.InvalidLevel;\n}\n"
+    },
+    {
+      "filename": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/errors.tolk",
+      "contents": "enum Errors {\n    BalanceError = 47\n    NotEnoughGas = 48\n    InvalidMessage = 49\n    InvalidOp = 72\n    NotOwner = 73\n    NotValidWallet = 74\n    WrongWorkchain = 333\n    NotAdmin = 100\n    SaleClosed = 200\n    BelowMinimum = 201\n    WalletCapExceeded = 202\n    PoolPaused = 203\n    InsufficientInventory = 204\n    NoClaimableAmount = 205\n    InvalidLevel = 206\n    InvalidPrice = 207\n    TimerNotStarted = 208\n    TimerNotMature = 209\n    BatchExists = 210\n    BatchMissing = 211\n    AlreadyClaimed = 212\n    InvalidProof = 213\n    InsufficientAttachedTon = 214\n    JettonWalletNotConfigured = 215\n    WinnerExists = 216\n    WinnerMissing = 217\n    WinnerLimitExceeded = 218\n    InvalidPoolType = 219\n}\n"
+    },
+    {
+      "filename": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/tokenomics-messages.tolk",
+      "contents": "struct (0x48490102) BuyGrowth {\n    tonAmount: coins\n}\n\nstruct (0x48490103) SetGrowthEnabled {\n    enabled: bool\n}\n\nstruct (0x48490104) CloseGrowthEngine {}\n\nstruct (0x48490105) ClaimGrowth {}\n\nstruct (0x48490106) SetGrowthConfirmedLevel {\n    growthConfirmedLevel: uint8\n}\n\nstruct (0x48490107) SweepGrowthProjectFund {}\n\nstruct (0x48490108) WithdrawGrowthTons {\n    amount: coins\n}\n\nstruct (0x48490109) SetGrowthJettonWallet {\n    growthJettonWallet: address\n}\n\nstruct (0x4849010a) SetGrowthMigrationTarget {\n    targetContract: address\n}\n\nstruct (0x4849010b) TransferGrowthUncommittedHiToContract {\n    amount: coins\n}\n\nstruct (0x48490201) ReportGrowthPrice {\n    price: uint64\n}\n\nstruct (0x48490202) ConfirmGrowthLevel {}\n\nstruct (0x48490203) SetOracleTargets {\n    growthEngine: address\n    teamVestingVault: address\n    merkleRewardVault: address\n}\n\nstruct (0x48490204) SetCampaignWinnerTarget {\n    campaignWinnerVault: address\n}\n\nstruct (0x48490205) ReportTeamPrice {\n    price: uint64\n}\n\nstruct (0x48490206) ConfirmTeamLevel {}\n\nstruct (0x48490301) SyncTeamPriceLevel {\n    teamConfirmedLevel: uint8\n    confirmedAt: uint32\n}\n\nstruct (0x48490302) ClaimTeam {}\n\nstruct (0x48490303) SetTeamJettonWallet {\n    teamJettonWallet: address\n}\n\nstruct (0x48490304) SetTeamMigrationTarget {\n    targetContract: address\n}\n\nstruct (0x48490305) TransferTeamUncommittedHiToContract {\n    amount: coins\n}\n\nstruct (0x48490401) CreateRewardBatch {\n    batchId: uint64\n    root: uint256\n    totalHi: coins\n    metadataHash: uint256\n    poolType: uint8\n    requiredGrowthLevel: uint8\n}\n\nstruct (0x48490402) ClaimReward {\n    batchId: uint64\n    amount: coins\n    proof: cell\n}\n\nstruct (0x48490403) SetRewardJettonWallet {\n    rewardJettonWallet: address\n}\n\nstruct (0x48490404) SetRewardGrowthLevel {\n    growthConfirmedLevel: uint8\n}\n\nstruct (0x48490405) SetRewardMigrationTarget {\n    targetContract: address\n}\n\nstruct (0x48490406) TransferRewardUncommittedHiToContract {\n    amount: coins\n}\n\nstruct (0x48490501) RegisterCampaignWinner {\n    winner: address\n}\n\nstruct (0x48490502) ClaimCampaignWinner {}\n\nstruct (0x48490503) SetCampaignWinnerJettonWallet {\n    winnerJettonWallet: address\n}\n\nstruct (0x48490504) SetCampaignMigrationTarget {\n    targetContract: address\n}\n\nstruct (0x48490505) TransferCampaignUncommittedHiToContract {\n    amount: coins\n}\n"
+    },
+    {
+      "filename": "tmp/afddae6e-e63d-4aca-a8b0-8925018efa28/contracts/tokenomics-storage.tolk",
+      "contents": "struct PurchasePosition {\n    totalLockedHi: coins\n    claimedHi: coins\n    entryLevel: uint8\n    missedHi: coins\n}\n\nstruct PendingSaleTransfer {\n    kind: uint8\n    owner: address\n    hiAmount: coins\n    tonAmount: coins\n    lockedPurchaseHi: coins\n    missedHi: coins\n}\n\nstruct GrowthMigrationConfig {\n    migrationWallet1: address\n    migrationWallet2: address\n}\n\nstruct GrowthEngineConfig {\n    admin: address\n    projectFundWallet: address\n    migration: Cell<GrowthMigrationConfig>\n}\n\nstruct GrowthEngineStorage {\n    config: Cell<GrowthEngineConfig>\n    counters: Cell<GrowthEngineCounters>\n    maps: Cell<GrowthEngineMaps>\n    oracle: address\n    growthJettonWallet: address?\n    migrationTarget: address?\n    growthEnabled: bool\n    permanentlyClosed: bool\n    growthConfirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct GrowthEngineMaps {\n    purchasedTon: map<address, coins>\n    positions: map<address, PurchasePosition>\n    pendingTransfers: map<uint64, PendingSaleTransfer>\n}\n\nstruct GrowthEngineCounters {\n    growthPoolTotalHi: coins\n    growthSoldHi: coins\n    growthClaimedHi: coins\n    growthMissedHi: coins\n    growthMigratedHi: coins\n}\n\nfun GrowthEngineStorage.load(): GrowthEngineStorage {\n    return GrowthEngineStorage.fromCell(contract.getData());\n}\n\nfun GrowthEngineStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct PriceOracleCampaignTargets {\n    campaignWinnerVault: address?\n}\n\nstruct PriceOracleTargets {\n    growthEngine: address?\n    teamVestingVault: address?\n    merkleRewardVault: address?\n    campaignTargets: Cell<PriceOracleCampaignTargets>\n}\n\nstruct PriceOracleGrowthState {\n    confirmedLevel: uint8\n    candidateLevel: uint8\n    levelStartedAt: uint32\n    lastPrice: uint64\n}\n\nstruct PriceOracleTeamState {\n    confirmedLevel: uint8\n    candidateLevel: uint8\n    levelStartedAt: uint32\n    lastPrice: uint64\n}\n\nstruct PriceOracleStorage {\n    admin: address\n    confirmationDelay: uint32\n    targets: Cell<PriceOracleTargets>\n    growth: Cell<PriceOracleGrowthState>\n    team: Cell<PriceOracleTeamState>\n}\n\nfun PriceOracleStorage.load(): PriceOracleStorage {\n    return PriceOracleStorage.fromCell(contract.getData());\n}\n\nfun PriceOracleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TeamVestingConfig {\n    admin: address\n    teamWallet: address\n    migration: Cell<GrowthMigrationConfig>\n}\n\nstruct TeamVestingStorage {\n    config: Cell<TeamVestingConfig>\n    counters: Cell<TeamVestingCounters>\n    maps: Cell<TeamVestingMaps>\n    oracle: address\n    teamJettonWallet: address?\n    migrationTarget: address?\n    teamConfirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct TeamVestingCounters {\n    totalHi: coins\n    claimedHi: coins\n    migratedHi: coins\n}\n\nstruct PendingTeamTransfer {\n    kind: uint8\n    amount: coins\n}\n\nstruct TeamVestingMaps {\n    pendingTransfers: map<uint64, PendingTeamTransfer>\n}\n\nfun TeamVestingStorage.load(): TeamVestingStorage {\n    return TeamVestingStorage.fromCell(contract.getData());\n}\n\nfun TeamVestingStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct MerkleRewardBatch {\n    root: uint256\n    totalHi: coins\n    claimedHi: coins\n    metadataHash: uint256\n    poolType: uint8\n    requiredGrowthLevel: uint8\n}\n\nstruct PendingRewardTransfer {\n    kind: uint8\n    batchId: uint64\n    claimant: address\n    amount: coins\n}\n\nstruct MerkleRewardStorage {\n    config: Cell<MerkleRewardConfig>\n    counters: Cell<MerkleRewardCounters>\n    maps: Cell<MerkleRewardMaps>\n    oracle: address\n    rewardJettonWallet: address?\n    migrationTarget: address?\n    growthConfirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct MerkleRewardCounters {\n    ecosystemTotalHi: coins\n    universalTotalHi: coins\n    redPacketTotalHi: coins\n    migratedHi: coins\n}\n\nstruct MerkleRewardMaps {\n    batches: map<uint64, MerkleRewardBatch>\n    claimed: map<uint256, bool>\n    pendingTransfers: map<uint64, PendingRewardTransfer>\n}\n\nstruct MerkleRewardConfig {\n    admin: address\n    migration: Cell<GrowthMigrationConfig>\n}\n\nfun MerkleRewardStorage.load(): MerkleRewardStorage {\n    return MerkleRewardStorage.fromCell(contract.getData());\n}\n\nfun MerkleRewardStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct CampaignWinnerPosition {\n    entryLevel: uint8\n    claimedHi: coins\n}\n\nstruct PendingCampaignWinnerTransfer {\n    kind: uint8\n    winner: address\n    amount: coins\n}\n\nstruct CampaignWinnerConfig {\n    admin: address\n    migration: Cell<GrowthMigrationConfig>\n}\n\nstruct CampaignWinnerStorage {\n    config: Cell<CampaignWinnerConfig>\n    counters: Cell<CampaignWinnerCounters>\n    maps: Cell<CampaignWinnerMaps>\n    oracle: address\n    winnerJettonWallet: address?\n    migrationTarget: address?\n    growthConfirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct CampaignWinnerCounters {\n    winnerCount: uint16\n    totalClaimedHi: coins\n    migratedHi: coins\n}\n\nstruct CampaignWinnerMaps {\n    winners: map<address, CampaignWinnerPosition>\n    pendingTransfers: map<uint64, PendingCampaignWinnerTransfer>\n}\n\nfun CampaignWinnerStorage.load(): CampaignWinnerStorage {\n    return CampaignWinnerStorage.fromCell(contract.getData());\n}\n\nfun CampaignWinnerStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

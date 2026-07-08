@@ -1,0 +1,261 @@
+#include "imports/stdlib.fc";
+#include "imports/ownable.fc";
+#include "imports/constants.fc";
+#include "imports/address-utils.fc";
+#include "imports/message-utils.fc";
+#include "imports/fee-utils.fc";
+
+global slice admin_address;
+global slice locker_manager_address;
+global slice teleBTC_minter_address;
+global cell locker_locking_script;
+global cell wrap_request_code;
+global int is_actived;
+global int total_wrapped;
+global int is_paused;
+global int locker_percentage_fee;
+
+(slice, cell, slice, slice, cell, int, int, int, int) load_data() impure {
+    slice ds = get_data().begin_parse();
+    
+    locker_manager_address = ds~load_msg_addr();
+    locker_locking_script = ds~load_ref(); 
+    admin_address = ds~load_msg_addr();
+    teleBTC_minter_address = ds~load_msg_addr();
+    wrap_request_code = ds~load_ref();
+    is_actived = ds~load_uint(1);
+    total_wrapped = ds~load_coins();
+    is_paused = ds~load_uint(1);
+    locker_percentage_fee = ds~load_uint(32);
+
+    return (
+        locker_manager_address,
+        locker_locking_script,
+        admin_address,
+        teleBTC_minter_address,
+        wrap_request_code,
+        is_actived,
+        total_wrapped,
+        is_paused,
+        locker_percentage_fee
+    );
+}
+
+() save_data() impure {
+    set_data(
+        begin_cell()
+            .store_slice(locker_manager_address)
+            .store_ref(locker_locking_script)
+            .store_slice(admin_address)
+            .store_slice(teleBTC_minter_address)
+            .store_ref(wrap_request_code)
+            .store_uint(is_actived, 1)
+            .store_coins(total_wrapped)
+            .store_uint(is_paused, 1)
+            .store_uint(locker_percentage_fee, 32)
+            .end_cell()
+    );
+}
+
+() check_activation () inline {
+    throw_unless(ERROR_NOT_ACTIVED, is_actived == 1);
+}
+
+() check_is_paused () impure {
+    throw_unless(ERROR_CONTRACT_PAUSED, is_paused == 0);
+}
+
+() adjust_locker_net_minted (int is_wrap, int wrap_amount) impure {
+    if (is_wrap == 1) {
+        total_wrapped += wrap_amount;
+    }
+    else {
+        total_wrapped -= wrap_amount;
+    }
+    save_data();
+}
+
+() check_locker_capacity () impure {
+    ;;TODO 
+    ;; thow_unless();
+}
+
+() on_bounce (slice in_msg_body) impure {
+    in_msg_body~skip_bits(32); ;; 0xFFFFFFFF
+    int op = in_msg_body~load_uint(32);
+
+    if (op == op::set_is_used) {  
+        in_msg_body~load_uint(64); ;; skip query id
+        int amount = in_msg_body~load_coins();
+        adjust_locker_net_minted(0, amount);
+    }
+    ;; we can not recover "from" address from the bounced message, so send the bounced excess to teleBTC_minter_address
+    send_ton(teleBTC_minter_address, 0, 64);
+    ;; ignore all other opcodes
+}
+
+;; TODO add send coins add pausable? 
+;; TODO check which functions are before pausable
+;; TODO handle locker fee
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) { ;; ignore empty messages
+        return ();
+    }
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+
+    if (flags & 1) {
+        on_bounce(in_msg_body);        
+        return ();
+    }
+    slice sender_address = cs~load_msg_addr();
+    ;; cs~load_msg_addr(); ;; skip dst
+    ;; cs~load_coins(); ;; skip value
+    ;; cs~skip_bits(1); ;; skip extracurrency collection
+    ;; cs~load_coins(); ;; skip ihr_fee
+    ;; int fwd_fee = cs~load_coins(); ;; we use message fwd_fee for estimation of provide_wallet_address cost
+
+    int op = in_msg_body~load_uint(32);
+
+    load_data();
+
+    if (op == op::set_variables) {
+        ;; TODO set once
+        is_owner(locker_manager_address, sender_address); 
+        admin_address = in_msg_body~load_msg_addr();
+        teleBTC_minter_address = in_msg_body~load_msg_addr();
+        wrap_request_code = in_msg_body~load_ref();
+        is_actived = 1;
+        total_wrapped = 0;
+        is_paused = 0;
+        locker_percentage_fee = in_msg_body~load_uint(32);
+        save_data();
+        return ();
+    }
+
+    if (op == op::adjust_locker_net_minted) {
+        is_owner(locker_manager_address, sender_address);
+        int is_wrap = in_msg_body~load_uint(1);
+        int amount = in_msg_body~load_uint(64);
+        adjust_locker_net_minted(is_wrap, amount);
+        return ();
+    }
+
+    if (op == op::change_locker_activation_status) {
+        is_owner(locker_manager_address, sender_address);
+        is_actived = in_msg_body~load_uint(1);
+        save_data();
+        return ();
+    }
+
+    if (op == op::revoke_request) {
+        is_owner(admin_address, sender_address);
+        throw_unless(ERROR_IS_ACTIVED, is_actived == 0);
+ 
+        var msg = begin_cell()
+            .store_uint(0x18, 6)
+            .store_slice(admin_address)
+            .store_coins(0)
+            .store_uint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1);
+            
+        send_raw_message(msg.end_cell(), 160); ;; pay transfer fees separately, revert on errors \\TODO fix
+
+        save_data();
+        return ();
+    }
+
+    if (op == op::change_paused_status) {
+        is_owner(locker_manager_address, sender_address);
+        is_paused = in_msg_body~load_uint(1);
+        save_data();
+        return ();
+    }
+
+    check_is_paused();
+    check_activation();
+    if (op == op::check_locker_health) {
+        ~strdump("locker");
+        ~dump(my_balance);
+        ~dump(msg_value);
+
+        int query_id = in_msg_body~load_uint(64);
+        int amount = in_msg_body~load_coins();
+        int forward_ton_amount = in_msg_body~load_coins();
+        slice from = in_msg_body~load_msg_addr();
+
+        try {
+            int total_ton_amount = msg_value;
+
+            int ton_balance_before_msg = my_balance - msg_value;
+            int storage_fee = min_tons_for_storage - min(ton_balance_before_msg, min_tons_for_storage);
+            int txn_fee = storage_fee + min_msg_fwd_fee + gas_consumption;
+            throw_unless(ERROR_NOT_ENOUGH_COINS, total_ton_amount >= 
+                        forward_ton_amount + txn_fee);
+            forward_ton_amount = 11 * gas_consumption + 13 * min_msg_fwd_fee + 10 * min_tons_for_storage;
+            
+            ;; todo: check locker health and if healthy, adjust locker variables accordingly and then send the following message
+            int tx_id = in_msg_body~load_uint(256);
+            
+            adjust_locker_net_minted(1, amount);
+            check_locker_capacity();
+
+            cell state_init = calculate_wrap_request_state_init(teleBTC_minter_address, tx_id, wrap_request_code);
+            slice to_wrap_request_address = calculate_wrap_request_address(state_init);
+            
+            is_owner(to_wrap_request_address, sender_address);
+
+            cell wrap_request_msg = begin_cell()
+                            .store_uint(op::set_is_used, 32)
+                            .store_uint(query_id, 64)
+                            .store_coins(forward_ton_amount)
+                            .store_slice(from)
+                            .store_slice(admin_address)
+                            .store_uint(locker_percentage_fee, 32)
+                            .store_ref(locker_locking_script)
+                            .end_cell();
+
+            var msg = begin_cell()
+                    .store_uint(0x18, 6)
+                    .store_slice(sender_address)
+                    .store_coins(0)
+                    .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+                    .store_ref(wrap_request_msg);
+            send_raw_message(msg.end_cell(), 64);
+        } catch(x, n) {
+            send_ton(from, 0, 64);
+        }
+        return ();
+    }
+
+    if (op == op::revert_net_minted) {
+        int tx_id = in_msg_body~load_uint(256);
+        cell state_init = calculate_wrap_request_state_init(teleBTC_minter_address, tx_id, wrap_request_code);
+        slice to_wrap_request_address = calculate_wrap_request_address(state_init);
+        is_owner(to_wrap_request_address, sender_address);
+        int is_wrap = in_msg_body~load_uint(1);
+        int amount = in_msg_body~load_coins();
+        adjust_locker_net_minted(is_wrap, amount);
+        return ();
+    }
+
+    throw(ERROR_UNKNOWN_OP_CODE);
+}
+
+(slice, cell, slice, slice, cell, int, int, int, int)  get_locker_wallet_data() method_id {
+    return load_data();
+}
+
+(int) get_capacity() method_id {
+    ;; TODO
+    return 1000000000;
+}
+
+(int) get_total_wrapped() method_id {
+    load_data();
+    return total_wrapped;
+}
+
+(int) get_contract_balance() method_id {
+    [int b, _] = get_balance();
+    return b;
+}

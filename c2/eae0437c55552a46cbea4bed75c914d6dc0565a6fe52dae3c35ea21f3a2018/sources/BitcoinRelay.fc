@@ -1,0 +1,233 @@
+#include "imports/stdlib.fc";
+#include "imports/constants.fc";
+#include "imports/address-utils.fc";
+#include "imports/ownable.fc";
+
+;; storage variables
+global slice admin_address;
+global int current_block;
+global int block_availability_window;
+global cell block_code;
+global int block_code_size;
+global int required_fee_block;
+global int is_paused;
+
+;; load_data populates storage variables using stored data
+(slice, int, int, cell, int, int, int) load_data() impure {
+    var ds = get_data().begin_parse();
+
+    admin_address = ds~load_msg_addr();
+
+    current_block = ds~load_uint(32);
+    
+    block_availability_window = ds~load_uint(32);
+    
+    block_code = ds~load_ref();
+    
+    block_code_size = ds~load_uint(256);
+    
+    required_fee_block = ds~load_uint(32);
+    
+    is_paused = ds~load_uint(1);
+    
+    return (
+        admin_address,
+        current_block,
+        block_availability_window,
+        block_code,
+        block_code_size,
+        required_fee_block,
+        is_paused
+    );
+}
+
+;; save_data stores storage variables as a cell into persistent storage
+() save_data() impure {
+    set_data(
+        begin_cell()
+            .store_slice(admin_address)
+            .store_uint(current_block, 32)
+            .store_uint(block_availability_window, 32)
+            .store_ref(block_code)
+            .store_uint(block_code_size, 256)
+            .store_uint(required_fee_block, 32)
+            .store_uint(is_paused, 1)
+            .end_cell()
+    );
+}
+
+int calculate_rent_fee() inline {
+    ;; return block_availability_window * block_code_size;
+    return 10000000;
+}
+
+() create_block(cell block_hash, int fee_amount) impure {
+    ;; create a new contract for the block
+    cell state_init = calculate_block_state_init(my_address(), current_block, block_code);
+    slice to_wallet_address = calculate_block_address(state_init);
+
+    var master_msg = begin_cell()
+      .store_uint(op::set_variables, 32)
+      .store_ref(block_hash)
+      .store_uint(required_fee_block, 32)
+      .end_cell();
+      
+    var msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(to_wallet_address)
+        .store_coins(calculate_rent_fee())
+        .store_uint(4 + 2 + 1, 1 + 4 + 4 + 64 + 32 + 1 + 1 + 1)
+        .store_ref(state_init)
+        .store_ref(master_msg);
+        
+    send_raw_message(msg.end_cell(), 1); ;; pay transfer fees separately, revert on errors
+}
+
+() send_message_to_relay(int block_number, cell block_hash, var msg) impure {
+    cell state_init = calculate_block_state_init(my_address(), block_number, block_code);
+    slice to_wallet_address = calculate_block_address(state_init);
+
+    var msg = begin_cell()
+        .store_uint(0x18, 6)
+        .store_slice(to_wallet_address)
+        .store_coins(0)
+        .store_uint(1, 1 + 4 + 4 + 64 + 32 + 1 + 1)
+        .store_ref(msg);
+        
+    send_raw_message(msg.end_cell(), 64); ;; pay transfer fees separately, revert on errors
+}
+
+() check_is_paused () impure {
+    throw_unless(ERROR_CONTRACT_PAUSED, is_paused == 0);
+}
+
+
+;; recv_internal is the main function of the contract and is called when it receives a message from other contracts
+() recv_internal(int my_balance, int msg_value, cell in_msg_full, slice in_msg_body) impure {
+    if (in_msg_body.slice_empty?()) { ;; ignore all empty messages
+        return ();
+    }
+
+    slice cs = in_msg_full.begin_parse();
+    int flags = cs~load_uint(4);
+    slice sender_address = cs~load_msg_addr();
+
+    if (flags & 1) {
+        in_msg_body~skip_bits(32); ;; 0xFFFFFFFF
+        int op = in_msg_body~load_uint(32);
+
+        if (op == op::send_create_block) {  
+            current_block -= 1;
+            save_data();
+        }
+        
+        return ();
+    }
+
+    load_data(); ;; here we populate the storage variables
+
+    int op = in_msg_body~load_uint(32); ;; by convention, the first 32 bits of incoming message is the op
+
+    if (op == op::change_block_availability_window) { 
+        is_owner(admin_address, sender_address);
+        block_availability_window = in_msg_body~load_uint(32);
+        save_data();
+        return ();
+    }
+
+    if (op == op::send_coins) { ;; bouncable
+        int amount = in_msg_body~load_uint(64);
+        send_coins(admin_address, sender_address, amount);
+        return();
+    }
+
+    if (op == op::change_ownership) {
+        is_owner(admin_address, sender_address);
+        admin_address = in_msg_body~load_msg_addr();
+        save_data();
+        return ();
+    }
+
+    if (op == op::change_current_block) {
+        is_owner(admin_address, sender_address);
+        int new_block = in_msg_body~load_uint(32);
+        current_block = new_block;
+        save_data();
+        return();
+    }
+
+    if (op == op::change_paused_status) {
+        is_owner(admin_address, sender_address);
+        is_paused = in_msg_body~load_uint(1);
+        save_data();
+        return ();
+    }
+
+    if (op == op::receive_change_fee) {
+        is_owner(admin_address, sender_address);
+        required_fee_block = in_msg_body~load_uint(32);
+        save_data();
+        return ();
+    }
+
+    if (op == op::change_block_paused_status) {
+        is_owner(admin_address, sender_address);
+        int block_number = in_msg_body~load_int(32);
+        cell block_hash = in_msg_body~load_ref();
+        int paused_status = in_msg_body~load_uint(1);
+        var msg = begin_cell()
+            .store_uint(op::change_paused_status, 32)
+            .store_uint(paused_status, 1)
+            .end_cell();
+        send_message_to_relay(block_number, block_hash, msg);
+        return ();
+    }
+
+    if (op == op::send_coins_block) {
+        is_owner(admin_address, sender_address);
+        int block_number = in_msg_body~load_int(32);
+        cell block_hash = in_msg_body~load_ref();
+        int amount = in_msg_body~load_uint(64);
+        var msg = begin_cell()
+            .store_uint(op::send_coins, 32)
+            .store_uint(amount, 64)
+            .end_cell();
+        send_message_to_relay(block_number, block_hash, msg);
+        return ();
+    }
+
+    check_is_paused();
+    if (op == op::send_create_block) { ;; non bouncable
+        is_owner(admin_address, sender_address);
+        ;; get the data of current block and create the contract for it
+        int fee_amount = in_msg_body~load_coins();
+        cell block_hash = in_msg_body~load_ref();
+
+        create_block(block_hash, fee_amount);
+
+        ;; go to next block
+        current_block += 1;
+        save_data();
+
+        return ();
+    }
+
+    throw(ERROR_UNKNOWN_OP_CODE); 
+}
+
+(slice, int, int, cell, int, int, int) get_relay_data() method_id {
+    return load_data();
+}
+
+(slice) get_block_address(int block_number) method_id {
+    load_data();
+    cell state_init = calculate_block_state_init(my_address(), block_number, block_code);
+    slice to_wallet_address = calculate_block_address(state_init);
+    return to_wallet_address;
+}
+
+(int) get_contract_balance() method_id {
+    [int b, _] = get_balance();
+    return b;
+}
+

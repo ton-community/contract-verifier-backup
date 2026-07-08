@@ -1,0 +1,452 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from TimeMark.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  83229 DECLMETHOD owner()\n  // 2 functions inlined in-place:\n  // - Storage.load (3 calls)\n  // - Storage.save (1 call)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{6d61726b} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n    }>\n    x{2ce05111} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      LDSTDADDR\n      DROP\n      NEWC\n      STSTDADDR\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  owner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgEBBAEAZgABFP8A9KQT9LzyyAsBAgFiAgMAjtD4kZEw4CDXLCNrC5NcnlvtRND6SDD4kscF8uBk4NcsIWcCiIyOFzHtRND6SDD4kscF8uBk+kgwyPpSye1U4DCEDwHHAPL0ABGgijvaiaH0kGE=",
+  "codeHashHex": "1C826719E9A7702770111540B45AB60F2569C6561B788B5ADA9AFBA532A4354D",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/b042ee51-e534-4ae7-b0ab-b0ada2dda627/contracts/TimeMark.tolk",
+        "size_chars": 2618,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/b042ee51-e534-4ae7-b0ab-b0ada2dda627/contracts/types.tolk",
+        "size_chars": 1221,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Mark"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeOwner"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1835102827,
+            "prefix_len": 32,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 752898321,
+            "prefix_len": 32,
+            "stack_type_id": 130,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          31,
+          6,
+          31,
+          20
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          13,
+          8,
+          13,
+          15
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Mark",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          29,
+          21,
+          29,
+          25
+        ],
+        "prefix": {
+          "prefix_num": 1835102827,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "digest",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeOwner",
+        "ty_idx": 15,
+        "ident_loc": [
+          2,
+          34,
+          21,
+          34,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 752898321,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          35,
+          5,
+          35,
+          22
+        ],
+        "end_loc": [
+          1,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          60,
+          5,
+          60,
+          21
+        ],
+        "end_loc": [
+          1,
+          60,
+          46,
+          60,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          21,
+          13,
+          21,
+          17
+        ],
+        "end_loc": [
+          2,
+          23,
+          1,
+          23,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "owner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          62,
+          9,
+          62,
+          14
+        ],
+        "end_loc": [
+          1,
+          65,
+          1,
+          65,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "TimeMark",
+    "author": "AntiHater",
+    "version": "1.0.0",
+    "description": "Time-marks SHA-256 forensic-bundle digests on TON; tx history is the audit log",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Mark"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeOwner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Mark",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1835102827,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "digest",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeOwner",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 752898321,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 83229,
+        "name": "owner",
+        "parameters": [],
+        "return_ty_idx": 7
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/b042ee51-e534-4ae7-b0ab-b0ada2dda627/contracts/TimeMark.tolk",
+      "contents": "import \"types\"\n\n// TimeMark — AntiHater's on-chain time mark for forensic evidence.\n//\n// Purpose: time-mark the SHA-256 digest of a case-file forensic bundle on TON so\n// that the bundle's existence and content are provable as-of a specific block\n// time, by anyone, without trusting AntiHater. The TON transaction's block time\n// is the time mark.\n//\n// Design (locked):\n//   - One `mark(digest)` operation. The digest is sha256(manifest.json).\n//   - NO per-mark state writes. The only stored value is the owner address,\n//     fixed at deploy. Each mark lives in its transaction's inbound message\n//     body, so the transaction history is the immutable audit log.\n//   - Owner-restricted: only the AntiHater time-marking wallet can mark, so every\n//     successful mark transaction is — by contract rule, on-chain — AntiHater's.\n//\n// Verification (third-party, no AntiHater software required):\n//   1. Recompute sha256(manifest.json) from the delivered bundle.\n//   2. Find the time-mark transaction on a public TON explorer (toncenter / tonviewer).\n//   3. Decode its inbound message body: opcode 0x6d61726b + 256-bit digest.\n//   4. Confirm the digest matches step 1 and the block time predates the dispute.\ncontract TimeMark {\n    author: \"AntiHater\"\n    version: \"1.0.0\"\n    description: \"Time-marks SHA-256 forensic-bundle digests on TON; tx history is the audit log\"\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\ntype AllowedMessage =\n    | Mark\n    | ChangeOwner\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n\n    match (msg) {\n        Mark => {\n            // Read-only owner check. No save() — marking never mutates storage.\n            // The digest is now permanently recorded in this transaction's body,\n            // and the transaction's block time is the time mark.\n            val storage = lazy Storage.load();\n            assert (in.senderAddress == storage.owner) throw Errors.NotOwner;\n        }\n        ChangeOwner => {\n            var storage = lazy Storage.load();\n            assert (in.senderAddress == storage.owner) throw Errors.NotOwner;\n            storage.owner = msg.newOwner;\n            storage.save();\n        }\n        else => {\n            // Allow plain (empty-body) transfers — e.g. topping up the contract\n            // for rent — but reject any unrecognised opcode.\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun owner(): address {\n    val storage = lazy Storage.load();\n    return storage.owner;\n}\n"
+    },
+    {
+      "filename": "tmp/b042ee51-e534-4ae7-b0ab-b0ada2dda627/contracts/types.tolk",
+      "contents": "// Storage, messages and error codes for the TimeMark contract.\n//\n// The contract holds a single owner address (the AntiHater time-marking wallet),\n// written once at deploy time and never grown. Marking writes NO state: the\n// digest travels in the inbound message body, so the contract's transaction\n// history IS the append-only log of every time-marked evidence bundle.\n\nenum Errors {\n    NotOwner = 100         // sender is not the time-marking wallet\n    InvalidMessage = 0xFFFF // unrecognised opcode on a non-empty body\n}\n\nstruct Storage {\n    owner: address\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// mark(\"mark\") — time-mark one forensic bundle digest.\n// `digest` is sha256(manifest.json) for the case-file evidence bundle (32 bytes / 256 bits).\n// Handling it writes no storage; the value — together with the transaction's block\n// time — is recorded permanently in this transaction's inbound message body.\nstruct (0x6d61726b) Mark {\n    digest: uint256\n}\n\n// Rotate the time-marking wallet (e.g. proactive key rotation). Owner-only.\nstruct (0x2ce05111) ChangeOwner {\n    newOwner: address\n}\n"
+    }
+  ]
+}

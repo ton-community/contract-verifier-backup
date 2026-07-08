@@ -1,0 +1,2113 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from EcosystemRewardVault.tolk, errors.tolk, messages.tolk, tokenomics-messages.tolk, tokenomics-storage.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  107138 DECLMETHOD batch_state()\n  121798 DECLMETHOD has_claimed()\n  // 6 functions inlined in-place:\n  // - EcosystemRewardStorage.load (6 calls)\n  // - EcosystemRewardStorage.save (4 calls)\n  // - onBouncedMessage (0 calls)\n  // - sendRewardJettons (1 call)\n  // - claimKey (3 calls)\n  // - rewardLeaf (1 call)\n  // - merkleRoot (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      c4 PUSH\n      CTOS\n      SWAP\n      x{0f8a7ea5} SDBEGINSQ\n      63 THROWIFNOT\n      64 PLDU\n      SWAP\n      LDREF\n      LDOPTSTDADDR\n      64 LDSLICE\n      LDOPTREF\n      LDOPTREF\n      PLDOPTREF\n      s6 s0 PUSH2\n      64 PUSHINT\n      DICTUGET\n      49 THROWIFNOT\n      64 LDU\n      LDSTDADDR\n      LDGRAMS\n      ENDS\n      s2 s5 PUSH2\n      64 PUSHINT\n      DICTUGET\n      211 THROWIFNOT\n      256 LDU\n      LDGRAMS\n      LDGRAMS\n      256 LDU\n      ENDS\n      s0 s4 XCHG\n      SUB\n      s0 s2 XCHG\n      NEWC\n      256 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      256 STU\n      s0 s2 s5 XCPUXC\n      64 PUSHINT\n      DICTUSETB\n      SWAP\n      NEWC\n      64 STU\n      s1 s4 XCHG\n      STSTDADDR\n      HASHBU\n      ROT\n      8 PUSHPOW2\n      DICTUDEL\n      DROP\n      s6 s6 XCHG2\n      64 PUSHINT\n      DICTUDEL\n      DROP\n      s0 s4 XCHG\n      NEWC\n      STREF\n      s1 s3 XCHG\n      STOPTSTDADDR\n      STSLICE\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DUP\n    x{48490401} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDOPTSTDADDR\n      64 LDSLICE\n      LDOPTREF\n      s4 PUSH\n      CTOS\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      s0 s5 XCHG\n      64 LDU\n      256 LDU\n      LDGRAMS\n      256 PLDU\n      s3 s4 PUSH2\n      64 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      210 THROWIF\n      s0 s2 XCHG\n      NEWC\n      256 STU\n      SWAP\n      STGRAMS\n      x{0} STSLICECONST\n      256 STU\n      s0 s2 XCHG\n      64 PUSHINT\n      DICTUSETB\n      s0 s3 XCHG\n      NEWC\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      STSLICE\n      STOPTREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490403} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDREF\n      LDOPTSTDADDR\n      NIP\n      OVER\n      CTOS\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      s0 s2 XCHG\n      LDSTDADDR\n      DROP\n      SWAP\n      NEWC\n      STREF\n      STOPTSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{48490402} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      INMSG_VALUE\n      250000000 PUSHINT\n      GEQ\n      214 THROWIFNOT\n      SWAP\n      64 LDU\n      LDGRAMS\n      PLDREF\n      s0 s3 XCHG\n      LDREF\n      LDOPTSTDADDR\n      64 LDU\n      LDOPTREF\n      LDOPTREF\n      PLDOPTREF\n      s7 s2 PUSH2\n      64 PUSHINT\n      DICTUGET\n      211 THROWIFNOT\n      256 LDU\n      LDGRAMS\n      LDGRAMS\n      256 LDU\n      ENDS\n      INMSG_SRC\n      s12 PUSH\n      NEWC\n      64 STU\n      STSTDADDR\n      HASHBU\n      s0 s6 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      212 THROWIF\n      INMSG_SRC\n      s13 PUSH\n      NEWC\n      64 STU\n      STSTDADDR\n      s12 PUSH\n      STGRAMS\n      HASHBU\n      s0 s14 XCHG\n      CTOS\n      8 LDU\n      0 PUSHINT\n      WHILE:<{\n        s0 s2 PUSH2\n        LESS\n      }>DO<{\n        SWAP\n        256 LDU\n        1 LDI\n        SWAP\n        IF:<{\n          SWAP\n          NEWC\n          256 STU\n          s1 17 s() XCHG\n          256 STU\n          HASHBU\n        }>ELSE<{\n          s0 17 s() XCHG\n          NEWC\n          256 STU\n          256 STU\n          HASHBU\n        }>\n        SWAP\n        INC\n        s1 16 s() XCHG\n      }>\n      DROP\n      NIP\n      ENDS\n      s13 s4 XCPU\n      EQUAL\n      213 THROWIFNOT\n      s1 s10 PUSH2\n      ADD\n      s3 PUSH\n      LEQ\n      204 THROWIFNOT\n      NEWC\n      b{1} STSLICECONST\n      s0 s13 s6 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      s4 s9 XCPU\n      ADD\n      s0 s2 XCHG\n      NEWC\n      256 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      s1 s9 XCHG\n      256 STU\n      s0 s7 s2 XCPUXC\n      64 PUSHINT\n      DICTUSETB\n      INMSG_SRC\n      INMSG_VALUE\n      s6 PUSH\n      CTOS\n      LDSTDADDR\n      ENDS\n      s6 s6 PUSH2\n      ISNULL\n      215 THROWIF\n      s6 PUSH\n      INC\n      s0 s11 XCHG\n      NEWC\n      64 STU\n      s4 s(-1) PUXC\n      STSTDADDR\n      s10 PUSH\n      STGRAMS\n      s0 s7 s12 XCPUXC\n      64 PUSHINT\n      DICTUSETB\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{0f8a7ea5} STSLICECONST\n      s1 s9 XCHG\n      64 STU\n      s0 s11 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      STSTDADDR\n      STOPTSTDADDR\n      s1 s8 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      s1 s4 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s9 XCHG\n      STSTDADDR\n      s0 s6 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s7 XCHG\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n      s0 s2 XCHG\n      NEWC\n      STREF\n      STOPTSTDADDR\n      s1 s3 XCHG\n      64 STU\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    SEMPTY\n    49 THROWIFNOT\n  }>\n  batch_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDOPTSTDADDR\n    NIP\n    64 LDU\n    NIP\n    PLDOPTREF\n    64 PUSHINT\n    DICTUGET\n    211 THROWIFNOT\n    256 LDU\n    LDGRAMS\n    LDGRAMS\n    256 LDU\n    ENDS\n  }>\n  has_claimed() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDOPTSTDADDR\n    NIP\n    64 LDU\n    NIP\n    SKIPOPTREF\n    PLDOPTREF\n    s0 s2 XCHG\n    NEWC\n    64 STU\n    STSTDADDR\n    HASHBU\n    SWAP\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    NIP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECCwEAAp8AART/APSkE/S88sgLAQIBYgIDA+TQ+JHjAiDXLCJCSCAMjksx7UTQ1PpQ1j/0BCTQ+kjR+JLHBfLgZAXTP9P/+gDXC/9TNIBA9A5voTHy0NICyMv/AfoCz4Qgy/8CgED0QwPIzBL6VM70AM7J7VTg1ywiQkggHOMC1ywiQkggFOMCMMcA8rEEBQYCAVgJCgD40x8x7UTQAdcsIHxT9Szyv9cLPwHU+lDWP/QE9AT0BVNggED0DvKx0z/6SPoA0VMlgED0DvLg09P/+gD6ANP/0QShAsjL/wH6AgH6Asv/VCAmgED0QwHIyz8U+lL5FliDB/RbMFBmgED0WzAEyMwT+lTO9AAS9AD0AMntVABCMe1E0NT6UDEh0PpI0fiSxwXy4GQC+kgwAcjM+lTOye1UAv4x7UTQ+JeCEA7msoC+8uDWAdM/+gDXTAPU+lDTP/QE9AT0BVNygED0DvLg09P/+gD6ANP/0fiSLMjLP/pS+RZTBoMH9A5voTHy0NT4ki3Iyz/6Uiz6AvkWDtDTB3CTUwK5iugwMdFR1Lry4NVTGqAju/LgzMjPg0DWgwf0Q1FJBwgASAHT/9IAAZwByMv/ARERAcv/+RaZERHIy//L//kW4gGkAREQAQD+oALIy/8B+gIB+gIZy/9UIHOAQPRD+JL4lybQ+kjRU2Zu8tDXJqQLyMs/UkD6Uir6AlQgfYBA9ENtiwTIz5A+KfqWGcs/UAv6AhT6UvpUGPQAz4QgFM7JyM+FiBn6UlAG+gJxzwtqF8zJgBH7AALIzPpUE8s/9AAS9AD0AMntVAA/uigu1E0NQx+lAx0z8x9AWAQPQO8uDT0//6APoA0//RgAQ7m8btRNDUMfpQMdM/MfQB9AUCyMs/+lL5FgGDB/QOb6Exg=",
+  "codeHashHex": "EAFC09E985E4790BEA3421AECE5A60C5E9F48BEB7A7A00FD67E465719418F1FA",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/EcosystemRewardVault.tolk",
+        "size_chars": 6423,
+        "imports": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/errors.tolk",
+        "size_chars": 602,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/messages.tolk",
+        "size_chars": 2352,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/tokenomics-messages.tolk",
+        "size_chars": 1161,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/tokenomics-storage.tolk",
+        "size_chars": 2806,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedRewardMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateRewardBatch"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimReward"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRewardJettonWallet"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1212744705,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1212744706,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1212744707,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EcosystemRewardStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EcosystemRewardConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RewardBatch"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 22
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingRewardTransfer"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 25
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "RewardBounceMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 31
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 137,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          28
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 44
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          43
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          48,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 51,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 53,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          57
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          14,
+          6,
+          6,
+          14
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 38,
+        "struct_name": "CreateMessageOptions<AskToTransfer>",
+        "monomorphic_fields_ty_idx": [
+          42,
+          47,
+          56,
+          28
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 45
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 54
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 48
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 52
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 40,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 42
+          },
+          {
+            "name": "value",
+            "ty_idx": 47
+          },
+          {
+            "name": "dest",
+            "ty_idx": 56
+          },
+          {
+            "name": "body",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedRewardMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          14,
+          6,
+          14,
+          26
+        ],
+        "target_ty_idx": 17
+      },
+      {
+        "kind": "alias",
+        "name": "RewardBounceMessage",
+        "ty_idx": 27,
+        "ident_loc": [
+          1,
+          16,
+          6,
+          16,
+          25
+        ],
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 30,
+        "ident_loc": [
+          3,
+          1,
+          6,
+          1,
+          29
+        ],
+        "target_ty_idx": 31
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 32,
+        "ident_loc": [
+          3,
+          3,
+          14,
+          3,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 33,
+        "ident_loc": [
+          3,
+          7,
+          14,
+          7,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 28,
+        "ident_loc": [
+          3,
+          11,
+          21,
+          11,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 21
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 29
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateRewardBatch",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          53,
+          21,
+          53,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1212744705,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "root",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "metadataHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimReward",
+        "ty_idx": 15,
+        "ident_loc": [
+          4,
+          60,
+          21,
+          60,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1212744706,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRewardJettonWallet",
+        "ty_idx": 16,
+        "ident_loc": [
+          4,
+          66,
+          21,
+          66,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1212744707,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "rewardJettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RewardBatch",
+        "ty_idx": 22,
+        "ident_loc": [
+          5,
+          98,
+          8,
+          98,
+          19
+        ],
+        "fields": [
+          {
+            "name": "root",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "claimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "metadataHash",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingRewardTransfer",
+        "ty_idx": 25,
+        "ident_loc": [
+          5,
+          105,
+          8,
+          105,
+          29
+        ],
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EcosystemRewardStorage",
+        "ty_idx": 18,
+        "ident_loc": [
+          5,
+          111,
+          8,
+          111,
+          30
+        ],
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 20
+          },
+          {
+            "name": "rewardJettonWallet",
+            "ty_idx": 21
+          },
+          {
+            "name": "nextQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "batches",
+            "ty_idx": 23
+          },
+          {
+            "name": "claimed",
+            "ty_idx": 24
+          },
+          {
+            "name": "pendingTransfers",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EcosystemRewardConfig",
+        "ty_idx": 19,
+        "ident_loc": [
+          5,
+          120,
+          8,
+          120,
+          29
+        ],
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          41,
+          5,
+          41,
+          22
+        ],
+        "end_loc": [
+          1,
+          111,
+          1,
+          111,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          18,
+          5,
+          18,
+          21
+        ],
+        "end_loc": [
+          1,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "map<uint64, PendingRewardTransfer>.mustGet",
+        "return_ty_idx": 25,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "map<uint64, RewardBatch>.mustGet",
+        "return_ty_idx": 22,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "map<uint64, RewardBatch>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "claimKey",
+        "return_ty_idx": 14,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          152,
+          5,
+          152,
+          13
+        ],
+        "end_loc": [
+          1,
+          154,
+          1,
+          154,
+          2
+        ],
+        "params": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint256, bool>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint64, PendingRewardTransfer>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "EcosystemRewardStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          128,
+          28,
+          128,
+          32
+        ],
+        "end_loc": [
+          5,
+          130,
+          1,
+          130,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<EcosystemRewardConfig>.load",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint64, RewardBatch>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint256, bool>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "merkleRoot",
+        "return_ty_idx": 14,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          160,
+          5,
+          160,
+          15
+        ],
+        "end_loc": [
+          1,
+          177,
+          1,
+          177,
+          2
+        ],
+        "params": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "rewardLeaf",
+        "return_ty_idx": 14,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          156,
+          5,
+          156,
+          15
+        ],
+        "end_loc": [
+          1,
+          158,
+          1,
+          158,
+          2
+        ],
+        "params": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<uint256, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "sendRewardJettons",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          113,
+          5,
+          113,
+          22
+        ],
+        "end_loc": [
+          1,
+          150,
+          1,
+          150,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 18
+          },
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "map<uint64, PendingRewardTransfer>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "createMessage<AskToTransfer>",
+        "return_ty_idx": 37,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "batch_state",
+        "return_ty_idx": 59,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          179,
+          9,
+          179,
+          20
+        ],
+        "end_loc": [
+          1,
+          183,
+          1,
+          183,
+          2
+        ],
+        "params": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "has_claimed",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          185,
+          9,
+          185,
+          20
+        ],
+        "end_loc": [
+          1,
+          188,
+          1,
+          188,
+          2
+        ],
+        "params": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "EcosystemRewardVault",
+    "author": "100wan",
+    "version": "0.1.0",
+    "description": "HI V1 ecosystem Merkle reward vault",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateRewardBatch"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimReward"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetRewardJettonWallet"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EcosystemRewardStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EcosystemRewardConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RewardBatch"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 20
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingRewardTransfer"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInline"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PayloadInRef"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "stack_type_id": 137,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          13,
+          6,
+          6,
+          13
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 27,
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInline",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PayloadInRef",
+        "ty_idx": 30,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 19
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 26
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 27,
+            "client_ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateRewardBatch",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1212744705,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "root",
+            "ty_idx": 13
+          },
+          {
+            "name": "totalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "metadataHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimReward",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1212744706,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetRewardJettonWallet",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1212744707,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "rewardJettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RewardBatch",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "root",
+            "ty_idx": 13
+          },
+          {
+            "name": "totalHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "claimedHi",
+            "ty_idx": 6
+          },
+          {
+            "name": "metadataHash",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingRewardTransfer",
+        "ty_idx": 23,
+        "fields": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EcosystemRewardStorage",
+        "ty_idx": 16,
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 18
+          },
+          {
+            "name": "rewardJettonWallet",
+            "ty_idx": 19
+          },
+          {
+            "name": "nextQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "batches",
+            "ty_idx": 21
+          },
+          {
+            "name": "claimed",
+            "ty_idx": 22
+          },
+          {
+            "name": "pendingTransfers",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EcosystemRewardConfig",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "admin",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 16
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 25
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 107138,
+        "name": "batch_state",
+        "parameters": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 33
+      },
+      {
+        "tvm_method_id": 121798,
+        "name": "has_claimed",
+        "parameters": [
+          {
+            "name": "batchId",
+            "ty_idx": 11
+          },
+          {
+            "name": "claimant",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 49
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotAdmin",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientInventory",
+        "err_code": 204
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BatchExists",
+        "err_code": 210
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BatchMissing",
+        "err_code": 211
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.AlreadyClaimed",
+        "err_code": 212
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidProof",
+        "err_code": 213
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientAttachedTon",
+        "err_code": 214
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.JettonWalletNotConfigured",
+        "err_code": 215
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/EcosystemRewardVault.tolk",
+      "contents": "import \"errors\"\nimport \"messages\"\nimport \"tokenomics-messages\"\nimport \"tokenomics-storage\"\n\ncontract EcosystemRewardVault {\n    author: \"100wan\"\n    version: \"0.1.0\"\n    description: \"HI V1 ecosystem Merkle reward vault\"\n    storage: EcosystemRewardStorage\n    incomingMessages: AllowedRewardMessage\n}\n\ntype AllowedRewardMessage = CreateRewardBatch | ClaimReward | SetRewardJettonWallet\n\ntype RewardBounceMessage = AskToTransfer\n\nfun onBouncedMessage(in: InMessageBounced) {\n    in.bouncedBody.skipBouncedPrefix();\n    val msg = lazy RewardBounceMessage.fromSlice(in.bouncedBody);\n\n    var storage = lazy EcosystemRewardStorage.load();\n    val pending = storage.pendingTransfers.mustGet(msg.queryId, Errors.InvalidMessage);\n    val batch = storage.batches.mustGet(pending.batchId, Errors.BatchMissing);\n    storage\n        .batches\n        .set(\n            pending.batchId,\n            {\n                root: batch.root,\n                totalHi: batch.totalHi,\n                claimedHi: batch.claimedHi - pending.amount,\n                metadataHash: batch.metadataHash,\n            },\n        );\n    storage.claimed.delete(claimKey(pending.batchId, pending.claimant));\n    storage.pendingTransfers.delete(msg.queryId);\n    storage.save();\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedRewardMessage.fromSlice(in.body);\n\n    match (msg) {\n        CreateRewardBatch => {\n            var storage = lazy EcosystemRewardStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            assert (!storage.batches.exists(msg.batchId)) throw Errors.BatchExists;\n            storage\n                .batches\n                .set(\n                    msg.batchId,\n                    {\n                        root: msg.root,\n                        totalHi: msg.totalHi,\n                        claimedHi: 0,\n                        metadataHash: msg.metadataHash,\n                    },\n                );\n            storage.save();\n        }\n\n        SetRewardJettonWallet => {\n            var storage = lazy EcosystemRewardStorage.load();\n            val config = storage.config.load();\n            assert (in.senderAddress == config.admin) throw Errors.NotAdmin;\n            storage.rewardJettonWallet = msg.rewardJettonWallet;\n            storage.save();\n        }\n\n        ClaimReward => {\n            var storage = lazy EcosystemRewardStorage.load();\n            assert (in.valueCoins >= ton(\"0.25\")) throw Errors.InsufficientAttachedTon;\n            val batch = storage.batches.mustGet(msg.batchId, Errors.BatchMissing);\n            val key = claimKey(msg.batchId, in.senderAddress);\n            assert (!storage.claimed.exists(key)) throw Errors.AlreadyClaimed;\n            assert (\n                merkleRoot(msg.batchId, in.senderAddress, msg.amount, msg.proof) == batch.root\n            ) throw Errors.InvalidProof;\n            assert (\n                batch.claimedHi + msg.amount <= batch.totalHi\n            ) throw Errors.InsufficientInventory;\n\n            storage.claimed.set(key, true);\n            storage\n                .batches\n                .set(\n                    msg.batchId,\n                    {\n                        root: batch.root,\n                        totalHi: batch.totalHi,\n                        claimedHi: batch.claimedHi + msg.amount,\n                        metadataHash: batch.metadataHash,\n                    },\n                );\n            sendRewardJettons(\n                mutate storage,\n                msg.batchId,\n                in.senderAddress,\n                msg.amount,\n                in.valueCoins,\n            );\n            storage.save();\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun sendRewardJettons(\n    mutate storage: EcosystemRewardStorage,\n    batchId: uint64,\n    claimant: address,\n    amount: coins,\n    value: coins,\n) {\n    val config = storage.config.load();\n    val rewardJettonWallet = storage.rewardJettonWallet;\n    assert (rewardJettonWallet != null) throw Errors.JettonWalletNotConfigured;\n    val queryId = storage.nextQueryId;\n    storage.nextQueryId += 1;\n    storage\n        .pendingTransfers\n        .set(\n            queryId,\n            {\n                batchId,\n                claimant,\n                amount,\n            },\n        );\n    val transferMessage = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: rewardJettonWallet!,\n        value,\n        body: AskToTransfer {\n            queryId,\n            jettonAmount: amount,\n            transferRecipient: claimant,\n            sendExcessesTo: config.admin,\n            customPayload: null,\n            forwardTonAmount: 0,\n            forwardPayload: beginCell().storeUint(0, 1).endCell().beginParse(),\n        },\n    });\n    transferMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\nfun claimKey(batchId: uint64, claimant: address): uint256 {\n    return beginCell().storeUint(batchId, 64).storeAddress(claimant).hash();\n}\n\nfun rewardLeaf(batchId: uint64, claimant: address, amount: coins): uint256 {\n    return beginCell().storeUint(batchId, 64).storeAddress(claimant).storeCoins(amount).hash();\n}\n\nfun merkleRoot(batchId: uint64, claimant: address, amount: coins, proof: cell): uint256 {\n    var root = rewardLeaf(batchId, claimant, amount);\n    var proofSlice = proof.beginParse();\n    val proofLen = proofSlice.loadUint(8);\n    var i = 0;\n    while (i < proofLen) {\n        val sibling = proofSlice.loadUint(256);\n        val siblingOnLeft = proofSlice.loadBool();\n        if (siblingOnLeft) {\n            root = beginCell().storeUint(sibling, 256).storeUint(root, 256).hash();\n        } else {\n            root = beginCell().storeUint(root, 256).storeUint(sibling, 256).hash();\n        }\n        i += 1;\n    }\n    proofSlice.assertEnd();\n    return root;\n}\n\nget fun batch_state(batchId: uint64): (uint256, coins, coins, uint256) {\n    val storage = lazy EcosystemRewardStorage.load();\n    val batch = storage.batches.mustGet(batchId, Errors.BatchMissing);\n    return (batch.root, batch.totalHi, batch.claimedHi, batch.metadataHash);\n}\n\nget fun has_claimed(batchId: uint64, claimant: address): bool {\n    val storage = lazy EcosystemRewardStorage.load();\n    return storage.claimed.exists(claimKey(batchId, claimant));\n}\n"
+    },
+    {
+      "filename": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/errors.tolk",
+      "contents": "enum Errors {\n    BalanceError = 47\n    NotEnoughGas = 48\n    InvalidMessage = 49\n    InvalidOp = 72\n    NotOwner = 73\n    NotValidWallet = 74\n    WrongWorkchain = 333\n    NotAdmin = 100\n    SaleClosed = 200\n    BelowMinimum = 201\n    WalletCapExceeded = 202\n    PoolPaused = 203\n    InsufficientInventory = 204\n    NoClaimableAmount = 205\n    InvalidLevel = 206\n    InvalidPrice = 207\n    TimerNotStarted = 208\n    TimerNotMature = 209\n    BatchExists = 210\n    BatchMissing = 211\n    AlreadyClaimed = 212\n    InvalidProof = 213\n    InsufficientAttachedTon = 214\n    JettonWalletNotConfigured = 215\n}\n"
+    },
+    {
+      "filename": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/messages.tolk",
+      "contents": "type ForwardPayloadRemainder = RemainingBitsAndRefs\n\nstruct (0b0) PayloadInline {\n    value: RemainingBitsAndRefs\n}\n\nstruct (0b1) PayloadInRef {\n    value: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x0f8a7ea5) AskToTransfer {\n    queryId: uint64\n    jettonAmount: coins\n    transferRecipient: address\n    sendExcessesTo: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x7362d09c) TransferNotificationForRecipient {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0x178d4519) InternalTransferStep {\n    queryId: uint64\n    jettonAmount: coins\n    transferInitiator: address?\n    sendExcessesTo: address?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: ForwardPayloadRemainder\n}\n\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\nstruct (0x595f07bc) AskToBurn {\n    queryId: uint64\n    jettonAmount: coins\n    sendExcessesTo: address?\n    customPayload: cell?\n}\n\nstruct (0x7bdd97de) BurnNotificationForMinter {\n    queryId: uint64\n    jettonAmount: coins\n    burnInitiator: address\n    sendExcessesTo: address?\n}\n\nstruct (0x2c76b973) RequestWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeOwnerAddress: bool\n}\n\nstruct (0xd1735400) ResponseWalletAddress {\n    queryId: uint64\n    jettonWalletAddress: address?\n    ownerAddress: Cell<address>?\n}\n\nstruct (0x642b7d07) MintNewJettons {\n    queryId: uint64\n    mintRecipient: address\n    tonAmount: coins\n    internalTransferMsg: Cell<InternalTransferStep>\n}\n\nstruct (0x6501f354) ChangeMinterAdmin {\n    queryId: uint64\n    newAdminAddress: address\n}\n\nstruct (0xfb88e119) ClaimMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x7431f221) DropMinterAdmin {\n    queryId: uint64\n}\n\nstruct (0x2508d66a) UpgradeMinterCode {\n    queryId: uint64\n    newData: cell\n    newCode: cell\n}\n\nstruct (0xcb862902) ChangeMinterMetadata {\n    queryId: uint64\n    newMetadata: cell\n}\n\nstruct (0xd372158c) TopUpTons {}\n\nfun ForwardPayloadRemainder.checkIsCorrectTlbEither(self) {\n    var mutableCopy = self;\n    if (mutableCopy.loadMaybeRef() != null) {\n        mutableCopy.assertEnd();\n    }\n}\n"
+    },
+    {
+      "filename": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/tokenomics-messages.tolk",
+      "contents": "struct (0x48490101) BuyInstant {\n    tonAmount: coins\n}\n\nstruct (0x48490102) BuyLocked {\n    tonAmount: coins\n}\n\nstruct (0x48490103) SetPoolEnabled {\n    instantPool: bool\n    enabled: bool\n}\n\nstruct (0x48490104) CloseSale {}\n\nstruct (0x48490105) ClaimLocked {}\n\nstruct (0x48490106) SetConfirmedLevel {\n    confirmedLevel: uint8\n}\n\nstruct (0x48490107) SweepProjectFund {}\n\nstruct (0x48490108) WithdrawSaleTons {\n    amount: coins\n}\n\nstruct (0x48490109) SetSaleJettonWallet {\n    saleJettonWallet: address\n}\n\nstruct (0x48490201) ReportPrice {\n    price: uint64\n}\n\nstruct (0x48490202) ConfirmLevel {}\n\nstruct (0x48490203) SetOracleTargets {\n    publicSale: address\n    teamVestingVault: address\n}\n\nstruct (0x48490301) SyncLevel10 {\n    confirmedAt: uint32\n}\n\nstruct (0x48490302) ClaimTeam {}\n\nstruct (0x48490303) SetTeamJettonWallet {\n    teamJettonWallet: address\n}\n\nstruct (0x48490401) CreateRewardBatch {\n    batchId: uint64\n    root: uint256\n    totalHi: coins\n    metadataHash: uint256\n}\n\nstruct (0x48490402) ClaimReward {\n    batchId: uint64\n    amount: coins\n    proof: cell\n}\n\nstruct (0x48490403) SetRewardJettonWallet {\n    rewardJettonWallet: address\n}\n"
+    },
+    {
+      "filename": "tmp/c76205f7-7b6f-4da4-99b8-da36b7edf8f8/contracts/tokenomics-storage.tolk",
+      "contents": "struct PurchasePosition {\n    totalLockedHi: coins\n    claimedHi: coins\n    entryLevel: uint8\n    missedHi: coins\n}\n\nstruct PendingSaleTransfer {\n    kind: uint8\n    owner: address\n    hiAmount: coins\n    tonAmount: coins\n}\n\nstruct PublicSaleConfig {\n    admin: address\n    projectFundWallet: address\n}\n\nstruct PublicSaleStorage {\n    config: Cell<PublicSaleConfig>\n    counters: Cell<PublicSaleCounters>\n    maps: Cell<PublicSaleMaps>\n    oracle: address\n    saleJettonWallet: address?\n    instantSaleEnabled: bool\n    lockedSaleEnabled: bool\n    permanentlyClosed: bool\n    confirmedLevel: uint8\n    nextQueryId: uint64\n}\n\nstruct PublicSaleMaps {\n    purchasedTon: map<address, coins>\n    positions: map<address, PurchasePosition>\n    pendingTransfers: map<uint64, PendingSaleTransfer>\n}\n\nstruct PublicSaleCounters {\n    instantPoolTotalHi: coins\n    lockedPoolTotalHi: coins\n    instantSoldHi: coins\n    lockedSoldHi: coins\n    lockedClaimedHi: coins\n    lockedMissedHi: coins\n}\n\nfun PublicSaleStorage.load(): PublicSaleStorage {\n    return PublicSaleStorage.fromCell(contract.getData());\n}\n\nfun PublicSaleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct PriceOracleStorage {\n    admin: address\n    publicSale: address?\n    teamVestingVault: address?\n    confirmedLevel: uint8\n    candidateLevel: uint8\n    levelStartedAt: uint32\n    lastPrice: uint64\n}\n\nfun PriceOracleStorage.load(): PriceOracleStorage {\n    return PriceOracleStorage.fromCell(contract.getData());\n}\n\nfun PriceOracleStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct TeamVestingConfig {\n    admin: address\n    teamWallet: address\n}\n\nstruct TeamVestingStorage {\n    config: Cell<TeamVestingConfig>\n    oracle: address\n    teamJettonWallet: address?\n    totalHi: coins\n    claimedHi: coins\n    level10ConfirmedAt: uint32\n    nextQueryId: uint64\n    pendingTransfers: map<uint64, coins>\n}\n\nfun TeamVestingStorage.load(): TeamVestingStorage {\n    return TeamVestingStorage.fromCell(contract.getData());\n}\n\nfun TeamVestingStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct RewardBatch {\n    root: uint256\n    totalHi: coins\n    claimedHi: coins\n    metadataHash: uint256\n}\n\nstruct PendingRewardTransfer {\n    batchId: uint64\n    claimant: address\n    amount: coins\n}\n\nstruct EcosystemRewardStorage {\n    config: Cell<EcosystemRewardConfig>\n    rewardJettonWallet: address?\n    nextQueryId: uint64\n    batches: map<uint64, RewardBatch>\n    claimed: map<uint256, bool>\n    pendingTransfers: map<uint64, PendingRewardTransfer>\n}\n\nstruct EcosystemRewardConfig {\n    admin: address\n}\n\nfun EcosystemRewardStorage.load(): EcosystemRewardStorage {\n    return EcosystemRewardStorage.fromCell(contract.getData());\n}\n\nfun EcosystemRewardStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

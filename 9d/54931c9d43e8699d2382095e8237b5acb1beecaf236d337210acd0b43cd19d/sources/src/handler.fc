@@ -1,0 +1,85 @@
+#include "vault/handlerVault.fc";
+#include "vault/interface.fc";
+#include "token/op-codes.fc";
+
+
+;;; =============================== PERMISSIONS =================================
+() _checkPermissions(int op, cell $md) impure inline {
+
+    ;; ----------- Ethena wallet permissions --------------
+    if (op == op::transfer_notification) {
+        assertShareMinterOrAssetWallet();
+    } elseif (
+        ;; ----------- OApp permissions --------------
+        (op == OP::SetRewarderAddress)
+        | (op == OP::SetMintNanos)
+        | (op == OP::SetAssetWalletAddress)
+        | (op == OP::SetShareMinterAddress)
+        | (op == OP::SetCooldownDuration)
+        | (op == OP::SetVestingDuration)
+        | (op == OP::TransferOwnership)
+        | (op == OP::UpgradeCode)
+    ) {
+        assertOwner();
+    } elseif (op == OP::ClaimOwnership) {
+        assertTentativeOwner();
+
+    ;; ----------- Default permissions --------------
+    } else {
+        ;; we must put a check for all opcodes to make sure we don't
+        ;; mistakenly miss an opp code's permissions
+        throw(BaseInterface::ERROR::invalidOpcode);
+    }
+}
+
+;;; =============================== OPCODES =================================
+tuple _executeOpcode(int op, cell $md) impure inline {
+
+    ;; ----------- Ethena Vault opcodes --------------
+    if (op == op::transfer_notification) {
+        return handleTransferNotification($md);
+    ;; ----------- Management opcodes -----------
+    } elseif (op == OP::SetRewarderAddress) {
+        return setRewarderAddress($md);
+    } elseif (op == OP::SetMintNanos) {
+        return setMintNanos($md);
+    } elseif (op == OP::SetAssetWalletAddress) {
+        return setAssetWalletAddress($md);
+    } elseif (op == OP::SetShareMinterAddress) {
+        return setShareMinterAddress($md);
+    } elseif (op == OP::SetCooldownDuration) {
+        return setCooldownDuration($md);
+    } elseif (op == OP::SetVestingDuration) {
+        return setVestingDuration($md);
+    } elseif (op == OP::ClaimOwnership) {
+        return claimOwnership($md);
+    } elseif (op == OP::TransferOwnership) {
+        return transferOwnership($md);
+    } elseif (op == OP::UpgradeCode) {
+        return upgradeCode($md);
+    ;; ---------- Opcode not found -------------
+    } else {
+        throw(BaseInterface::ERROR::invalidOpcode);
+    }
+
+    ;; Wont ever hit, but compiler requires this
+    return emptyActions();
+}
+
+;;; =============================== ACTIONS =================================
+int _executeAction(int actionType, tuple action) impure inline {
+    if (actionType == action::event::NAME) {
+        return executeEvent(action);
+    } elseif (actionType == action::call::NAME) {
+        return executeCall(action);
+    } elseif (actionType == action::rawCall::NAME) {
+        return executeRawCall(action);
+    } elseif (actionType == action::sendJettons::NAME) {
+        return executeSendJettons(action);
+    }  else {
+        throw(BaseInterface::ERROR::invalidActionType);
+    }
+
+    ;; Wont ever hit, but compiler requires this
+    return false;
+}
