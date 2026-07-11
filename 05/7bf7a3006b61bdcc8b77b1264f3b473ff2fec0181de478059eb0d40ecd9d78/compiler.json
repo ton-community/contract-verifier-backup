@@ -1,0 +1,4283 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from ton-pool.tolk, constants.tolk, deployment-types.tolk, errors.tolk, pool-types.tolk, sparse-set.tolk, ton-pool-types.tolk, verifier-insert.tolk, verifier-withdraw.tolk, bls-helpers.tolk, bls-scalar.tolk, verifier-insert-vk.tolk, verifier-withdraw-vk.tolk\nPROGRAM{\n  DECLPROC sparseSetIsCanonicalSiblingChunk()\n  DECLPROC sparseSetApplyUpdate()\n  DECLPROC MerkleState.commitSparseSetUpdate()\n  DECLPROC MerkleState.isKnownRoot()\n  DECLPROC isWellFormedZkProofCell()\n  DECLPROC vkInsertIc()\n  DECLPROC verifyInsertProof()\n  DECLPROC vkWithdrawIc()\n  DECLPROC verifyWithdrawProof()\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC handleDeposit()\n  82386 DECLMETHOD factory()\n  130873 DECLMETHOD denomination()\n  86586 DECLMETHOD currentRoot()\n  70866 DECLMETHOD nextIndex()\n  86149 DECLMETHOD sparseRoot()\n  93276 DECLMETHOD rentRunway()\n  114879 DECLMETHOD relayerReserve()\n  84123 DECLMETHOD pendingWithdrawTon()\n  113066 DECLMETHOD withdrawalCount()\n  86776 DECLMETHOD treeDepth()\n  // 28 functions inlined in-place:\n  // - sparseSetIsKnownDomain (1 call)\n  // - sparseSetBucketId (2 calls)\n  // - sparseSetPath (1 call)\n  // - sparseSetLeafHash (1 call)\n  // - sparseSetNonEmptyNodeHashWithHeader (1 call)\n  // - MerkleState.sparseSetRoot (1 call)\n  // - MerkleState.prepareSparseSetUpdate (2 calls)\n  // - MerkleState.poolRentRunway (4 calls)\n  // - MerkleState.insertCommitmentBounded (1 call)\n  // - MerkleState.markNullifierSpentBounded (1 call)\n  // - isOrdinaryProofPoint (3 calls)\n  // - TonPoolStorage.load (12 calls)\n  // - TonPoolStorage.save (2 calls)\n  // - calculateTonPoolWithdrawalCount (1 call)\n  // - blsScalarIsCanonical (5 calls)\n  // - vkInsertAlpha1 (1 call)\n  // - vkInsertBeta2 (1 call)\n  // - vkInsertGamma2 (1 call)\n  // - vkInsertDelta2 (1 call)\n  // - vkWithdrawAlpha1 (1 call)\n  // - vkWithdrawBeta2 (1 call)\n  // - vkWithdrawGamma2 (1 call)\n  // - vkWithdrawDelta2 (1 call)\n  // - onBouncedMessage (0 calls)\n  // - handleConfirmPoolDeployment (1 call)\n  // - refundDeposit (7 calls)\n  // - handleWithdraw (1 call)\n  // - MapLookupResult<uint256>.loadValue (2 calls)\n  // - MapEntry<uint32, uint256>.loadValue (1 call)\n  sparseSetIsCanonicalSiblingChunk() PROCINLINE:<{\n    IF:<{\n      DROP\n      FALSE\n    }>ELSE<{\n      DUP\n      SBITS\n      SWAP\n      SREFS\n      DUP\n      1 EQINT\n      IFJMP:<{\n        DROP\n        768 PUSHINT\n        EQUAL\n      }>\n      IF:<{\n        0 PUSHINT\n      }>ELSE<{\n        DUP\n        768 PUSHINT\n        LEQ\n        0 NEQINT\n      }>\n      IF:<{\n        8 MODPOW2#\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n    }>\n  }>\n  sparseSetApplyUpdate() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s2 PUSH\n    8 PUSHPOW2DEC\n    AND\n    s4 PUSH\n    1514881793 PUSHINT\n    EQUAL\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s4 PUSH\n      1514884609 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    IFNOTJMP:<{\n      3 1 BLKDROP2\n      1 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    s3 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    GEQ\n    IFJMP:<{\n      3 1 BLKDROP2\n      2 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    SWAP\n    XCTOS\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SBITS\n      503 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      1 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      s1 s3 XCHG\n      3 BLKDROP\n      3 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    256 LDU\n    247 LDU\n    PLDREF\n    s2 s4 XCPU\n    NEQ\n    IFJMP:<{\n      s2 s4 XCHG\n      4 BLKDROP\n      4 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    SWAP\n    XCTOS\n    s1 s(-1) PUXC\n    sparseSetIsCanonicalSiblingChunk() INLINECALLDICT\n    IFNOTJMP:<{\n      s2 s4 XCHG\n      4 BLKDROP\n      3 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    0 PUSHINT\n    s6 PUSH\n    8 LSHIFT#\n    1 PUSHINT\n    OR\n    NEWC\n    40 STU\n    s6 PUSH\n    256 STUR\n    HASHBU\n    s0 s6 XCHG\n    8 RSHIFT#\n    s1 s0 s7 PUXC2\n    8 LSHIFT#\n    2 PUSHINT\n    OR\n    NEWC\n    40 STU\n    247 PUSHINT\n    REPEAT:<{\n      0 PUSHINT\n      s5 PUSH\n      1 PUSHINT\n      AND\n      IF:<{\n        DROP\n        s3 PUSH\n        SBITS\n        IFNOT:<{\n          s3 PUSH\n          SREFS\n          1 NEQINT\n          IFJMP:<{\n            s5 s7 XCHG\n            7 BLKDROP\n            3 PUSHINT\n            s2 POP\n            0 PUSHINT\n            FALSE\n            RETALT\n          }>\n          s0 s3 XCHG\n          PLDREF\n          XCTOS\n          s1 s(-1) PUXC\n          sparseSetIsCanonicalSiblingChunk() INLINECALLDICT\n          IFNOTJMP:<{\n            s5 s7 XCHG\n            7 BLKDROP\n            3 PUSHINT\n            s2 POP\n            0 PUSHINT\n            FALSE\n            RETALT\n          }>\n          DUP\n          SBITS\n          IFNOTJMP:<{\n            s5 s7 XCHG\n            7 BLKDROP\n            3 PUSHINT\n            s2 POP\n            0 PUSHINT\n            FALSE\n            RETALT\n          }>\n          s0 s3 XCHG\n        }>\n        s0 s3 XCHG\n        256 LDU\n        OVER\n        IFNOTJMP:<{\n          s6 s8 XCHG\n          8 BLKDROP\n          3 PUSHINT\n          s2 POP\n          0 PUSHINT\n          FALSE\n          RETALT\n        }>\n        s4 s4 XCHG2\n      }>\n      s1 s9 PUSH2\n      8 STUR\n      s3 PUSH\n      1 PUSHINT\n      AND\n      IF:<{\n        OVER\n        256 STUR\n        s4 PUSH\n        IF:<{\n          NIP\n          -1 PUSHINT\n        }>ELSE<{\n          SWAP\n          0 NEQINT\n          0 NEQINT\n        }>\n        IF:<{\n          s3 s3 XCPU\n          256 STU\n          HASHBU\n          s0 s3 XCHG\n        }>\n        s1 s8 XCHG\n        256 STU\n        HASHBU\n      }>ELSE<{\n        s4 PUSH\n        IF:<{\n          -1 PUSHINT\n        }>ELSE<{\n          OVER\n          0 NEQINT\n          0 NEQINT\n        }>\n        IF:<{\n          s4 s4 XCPU\n          256 STU\n          OVER\n          256 STUR\n          HASHBU\n          s0 s4 XCHG\n        }>\n        s1 s9 XCHG\n        256 STU\n        s1 s8 XCHG\n        256 STU\n        HASHBU\n      }>\n      SWAP\n      1 RSHIFT#\n      s0 s4 XCHG\n      1 RSHIFT#\n      s0 s8 XCHG\n      INC\n      s0 s8 XCHG\n      s4 s4 XCHG2\n      s0 s7 XCHG\n    }>\n    2DROP\n    s6 POP\n    NIP\n    SEMPTY\n    IFNOTJMP:<{\n      2 1 BLKDROP2\n      3 PUSHINT\n      s2 POP\n      0 PUSHINT\n      FALSE\n    }>\n    s0 s3 XCHG\n    NEQ\n    IFJMP:<{\n      DROP\n      5 PUSHINT\n      SWAP\n      0 PUSHINT\n      FALSE\n    }>\n    0 PUSHINT\n    -ROT\n    FALSE\n  }>\n  MerkleState.commitSparseSetUpdate() PROC:<{\n    65534 PUSHINT\n    s0 s4 XCHG2\n    THROWANYIF\n    s0 s4 XCHG\n    CTOS\n    16 LDU\n    16 LDU\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s6 PUSH\n    1514881793 PUSHINT\n    EQUAL\n    IF:<{\n      s6 POP\n      s0 s4 XCHG\n      IFNOT:<{\n        65534 PUSHINT\n        s2 PUSH\n        8 PUSHPOW2\n        LESS\n        THROWANYIFNOT\n        SWAP\n        INC\n        SWAP\n      }>\n      s0 s5 XCHG\n      NEWC\n      256 STU\n      s0 s0 s3 XCHG3\n      8 PUSHINT\n      DICTUSETB\n    }>ELSE<{\n      65534 PUSHINT\n      s0 s7 XCHG\n      1514884609 PUSHINT\n      EQUAL\n      s1 s7 XCHG\n      THROWANYIFNOT\n      s0 s4 XCHG\n      IFNOT:<{\n        65534 PUSHINT\n        OVER\n        8 PUSHPOW2\n        LESS\n        THROWANYIFNOT\n        INC\n      }>\n      s0 s5 XCHG\n      NEWC\n      256 STU\n      s0 s0 s4 XCHG3\n      8 PUSHINT\n      DICTUSETB\n      -ROT\n    }>\n    SWAP\n    NEWC\n    16 STU\n    s1 s3 XCHG\n    16 STU\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n  }>\n  MerkleState.isKnownRoot() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    NIP\n    s3 POP\n    s2 s1 PUXC\n    EQUAL\n    IFJMP:<{\n      2DROP\n      TRUE\n    }>\n    DUP\n    32 PUSHINT\n    DICTUMIN NULLSWAPIFNOT2\n    WHILE:<{\n    }>DO<{\n      SWAP\n      256 LDU\n      ENDS\n      s3 PUSH\n      EQUAL\n      IFJMP:<{\n        3 BLKDROP\n        TRUE\n        RETALT\n      }>\n      OVER\n      32 PUSHINT\n      DICTUGETNEXT NULLSWAPIFNOT2\n    }>\n    4 BLKDROP\n    FALSE\n  }>\n  isWellFormedZkProofCell() PROC:<{\n    XCTOS\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SBITS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      3 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n      FALSE\n    }>\n    LDREF\n    LDREF\n    PLDREF\n    384 PUSHINT\n    s0 s3 XCHG\n    XCTOS\n    NOT\n    IF:<{\n      DUP\n      SBITS\n      s0 s4 XCHG2\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      s3 POP\n      0 PUSHINT\n    }>\n    IF:<{\n      s0 s2 XCHG\n      SREFS\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      0 PUSHINT\n    }>\n    IF:<{\n      768 PUSHINT\n      SWAP\n      XCTOS\n      NOT\n      IF:<{\n        DUP\n        SBITS\n        ROT\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      IF:<{\n        SREFS\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IF:<{\n      384 PUSHINT\n      SWAP\n      XCTOS\n      NOT\n      IF:<{\n        DUP\n        SBITS\n        ROT\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      IF:<{\n        SREFS\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n  }>\n  vkInsertIc() PROC:<{\n    DUP\n    IFNOTJMP:<{\n      DROP\n      NEWC\n      x{a221c6aff555335cdfee9e5260799fedde78dd643fd8be23d2a97be4f1a6} STSLICECONST\n      x{5810846c72fc983fbc33c12c296cbfc192b8} STSLICECONST\n      BTOS\n    }>\n    DUP\n    1 EQINT\n    IFJMP:<{\n      DROP\n      NEWC\n      x{a89c47290d616f105c5e3d20d320ca0326537a1038090ab2cf80171f67b8} STSLICECONST\n      x{3c4d30b828fd256fdacbf1093849f176bf3c} STSLICECONST\n      BTOS\n    }>\n    DUP\n    2 EQINT\n    IFJMP:<{\n      DROP\n      NEWC\n      x{8e19dc365ef60940b0cd3f09073806094e0188ebe97c3f1e696e3e8b6e85} STSLICECONST\n      x{39d8b90911d443cdd33128510993bfaa3b74} STSLICECONST\n      BTOS\n    }>\n    3 EQINT\n    IFJMP:<{\n      NEWC\n      x{8b1468a98955143867bc2db53db6e45d6e567b1f1cd36e95a01f8b0859ca} STSLICECONST\n      x{40e6cfaf3db6f6051d530042656384ef61db} STSLICECONST\n      BTOS\n    }>\n    NEWC\n    x{939e1b43bbcb14b678d1719a6dbc9bcc4da30e045bfd5f5ec291d8f24775} STSLICECONST\n    x{439c164057f56e91a425b5415e0b7ab402a9} STSLICECONST\n    BTOS\n  }>\n  verifyInsertProof() PROC:<{\n    s2 PUSH\n    SBITS\n    384 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s2 PUSH\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    OVER\n    SBITS\n    768 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    DUP\n    SBITS\n    384 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    s6 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    LESS\n    IFNOTJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    s5 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    LESS\n    IFNOTJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    s4 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    LESS\n    IFNOTJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    s2 PUSH\n    BLS_G1_INGROUP\n    NOT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      BLS_G2_INGROUP\n      NOT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      BLS_G1_INGROUP\n      NOT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    s2 PUSH\n    BLS_G1_ISZERO\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      BLS_G2_ISZERO\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      BLS_G1_ISZERO\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      FALSE\n    }>\n    0 PUSHINT\n    vkInsertIc() CALLDICT\n    1 PUSHINT\n    vkInsertIc() CALLDICT\n    s0 s8 XCHG2\n    BLS_G1_MUL\n    s1 s7 XCHG\n    BLS_G1_ADD\n    2 PUSHINT\n    vkInsertIc() CALLDICT\n    s0 s6 XCHG2\n    BLS_G1_MUL\n    s1 s5 XCHG\n    BLS_G1_ADD\n    3 PUSHINT\n    vkInsertIc() CALLDICT\n    s0 s4 XCHG2\n    BLS_G1_MUL\n    s1 s3 XCHG\n    BLS_G1_ADD\n    4 PUSHINT\n    vkInsertIc() CALLDICT\n    ROT\n    BLS_G1_MUL\n    BLS_G1_ADD\n    SWAP\n    BLS_G1_NEG\n    NEWC\n    x{a672a327701e8bd99415e35ff20edc3cbc1144a2dfc1b5f9d17cf63d204f} STSLICECONST\n    x{511857f1b8d558ad9bebda825be4d6b10669} STSLICECONST\n    BTOS\n    NEWC\n    x{95f3cccd6ab4ec1e4c85a64b98fb830cde07a2fc37b355e6} STSLICECONST\n    x{b6a496989dae6526643620336b9a2492d676e32c357507ef} STSLICECONST\n    x{14c5f8a2a8cf770df1b0de97066ff62e864d37a59bbb48df} STSLICECONST\n    x{d46494cf24ffaa9839eb3e48634e6f42caf6971e3128bd79} STSLICECONST\n    BTOS\n    NEWC\n    x{93e02b6052719f607dacd3a088274f65596bd0d09920b61a} STSLICECONST\n    x{b5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e} STSLICECONST\n    x{024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02} STSLICECONST\n    x{b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8} STSLICECONST\n    BTOS\n    NEWC\n    x{a0e098a54b96bec1a54687043c81fe1cbfac5b94845b3bb0} STSLICECONST\n    x{ef4f87d49b87b9806bde7322000fef19e64f8767e8198c59} STSLICECONST\n    x{0572d3850887181994286628338239bc2fa6654332e04b8c} STSLICECONST\n    x{10d6d5362221bb0c3dc97f02857bb3c7eedc1ab90d1d5653} STSLICECONST\n    BTOS\n    s4 s7 XCHG\n    s3 s5 XCHG\n    s1 s4 s0 XCHG3\n    4 PUSHINT BLS_PAIRING\n  }>\n  vkWithdrawIc() PROC:<{\n    DUP\n    IFNOTJMP:<{\n      DROP\n      NEWC\n      x{97152d8f6c18a280962b1102b7fd6dc0af3b493dfa26599bc29791f8bf3d} STSLICECONST\n      x{73beddf18cbb3ae6788cef6b8c1a5c76f7a5} STSLICECONST\n      BTOS\n    }>\n    DUP\n    1 EQINT\n    IFJMP:<{\n      DROP\n      NEWC\n      x{92dc60dc4f596b56e7f8bdbba835bc81cbfe894f921ca370450adfe305ee} STSLICECONST\n      x{fcc315c46cf70148420828d42dd17550d0e1} STSLICECONST\n      BTOS\n    }>\n    2 EQINT\n    IFJMP:<{\n      NEWC\n      x{a5b6a8ff90411a8dd1e98184a7d61e1c4399806d63ca0e956e01324dd755} STSLICECONST\n      x{840f1f6401a3cac174f1035f02915ead54e5} STSLICECONST\n      BTOS\n    }>\n    NEWC\n    x{af41175e7273bf7b09d9ff210b21eb6017ea9f010e0cb4a5724b0390a441} STSLICECONST\n    x{f6357d3ce5d86d633177967edcd9e99f7944} STSLICECONST\n    BTOS\n  }>\n  verifyWithdrawProof() PROC:<{\n    s2 PUSH\n    SBITS\n    384 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s2 PUSH\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    OVER\n    SBITS\n    768 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    DUP\n    SBITS\n    384 PUSHINT\n    NEQ\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    s5 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    LESS\n    IFNOTJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    s4 PUSH\n    52435875175126190479447740508185965837690552500527637822603658699938581184513 PUSHINT\n    LESS\n    IFNOTJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    s2 PUSH\n    BLS_G1_INGROUP\n    NOT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      BLS_G2_INGROUP\n      NOT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      BLS_G1_INGROUP\n      NOT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    s2 PUSH\n    BLS_G1_ISZERO\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      BLS_G2_ISZERO\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      BLS_G1_ISZERO\n      0 NEQINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      FALSE\n    }>\n    0 PUSHINT\n    vkWithdrawIc() CALLDICT\n    1 PUSHINT\n    vkWithdrawIc() CALLDICT\n    s0 s7 XCHG2\n    BLS_G1_MUL\n    s1 s6 XCHG\n    BLS_G1_ADD\n    2 PUSHINT\n    vkWithdrawIc() CALLDICT\n    s0 s5 XCHG2\n    BLS_G1_MUL\n    s1 s4 XCHG\n    BLS_G1_ADD\n    3 PUSHINT\n    vkWithdrawIc() CALLDICT\n    s0 s3 XCHG2\n    BLS_G1_MUL\n    s1 s2 XCHG\n    BLS_G1_ADD\n    SWAP\n    BLS_G1_NEG\n    NEWC\n    x{a672a327701e8bd99415e35ff20edc3cbc1144a2dfc1b5f9d17cf63d204f} STSLICECONST\n    x{511857f1b8d558ad9bebda825be4d6b10669} STSLICECONST\n    BTOS\n    NEWC\n    x{95f3cccd6ab4ec1e4c85a64b98fb830cde07a2fc37b355e6} STSLICECONST\n    x{b6a496989dae6526643620336b9a2492d676e32c357507ef} STSLICECONST\n    x{14c5f8a2a8cf770df1b0de97066ff62e864d37a59bbb48df} STSLICECONST\n    x{d46494cf24ffaa9839eb3e48634e6f42caf6971e3128bd79} STSLICECONST\n    BTOS\n    NEWC\n    x{93e02b6052719f607dacd3a088274f65596bd0d09920b61a} STSLICECONST\n    x{b5da61bbdc7f5049334cf11213945d57e5ac7d055d042b7e} STSLICECONST\n    x{024aa2b2f08f0a91260805272dc51051c6e47ad4fa403b02} STSLICECONST\n    x{b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8} STSLICECONST\n    BTOS\n    NEWC\n    x{8fc0bba2e85444d79886b871c7e27c6d163109d94bf6deb6} STSLICECONST\n    x{05670eb180d123ebc359d3aafe32ab197bb2f7b7d0d270c3} STSLICECONST\n    x{19a0ec46473199e00f6e654685b28dc7427bf658c1f2d733} STSLICECONST\n    x{ddf5c4ac5693b02643d42b83342e0bfc3bd109b3c6d90c5f} STSLICECONST\n    BTOS\n    s4 s7 XCHG\n    s3 s5 XCHG\n    s1 s4 s0 XCHG3\n    4 PUSHINT BLS_PAIRING\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{46504300} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      ENDS\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      120 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDREF\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDREF\n      NIP\n      ENDS\n      CTOS\n      LDSTDADDR\n      LDGRAMS\n      DROP\n      10000000 PUSHINT\n      PUSHNULL\n      NEWC\n      b{010000} STSLICECONST\n      s1 s4 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      1179665153 PUSHINT\n      139 STUR\n      s1 s3 XCHG\n      64 STU\n      STOPTSTDADDR\n      SWAP\n      STGRAMS\n      ENDC\n      16 PUSHINT\n      SENDRAWMSG\n    }>\n    x{d6e05112} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      LDSTDADDR\n      256 LDU\n      256 LDU\n      LDREF\n      LDREF\n      SEMPTY\n      IFNOTJMP:<{\n        s4 s5 XCHG\n        5 BLKDROP\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        0 PUSHINT\n        111 STUR\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>\n      INMSG_SRC\n      INMSG_VALUE\n      6 2 BLKSWAP\n      handleDeposit() CALLDICT\n    }>\n    x{4b6f0b51} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      NIP\n      256 LDU\n      256 LDU\n      LDSTDADDR\n      LDREF\n      LDREF\n      16 PUSHPOW2DEC\n      SWAP\n      SEMPTY\n      THROWANYIFNOT\n      INMSG_SRC\n      INMSG_VALUE\n      DUP\n      100000000 PUSHINT\n      GEQ\n      120 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDREF\n      LDGRAMS\n      LDGRAMS\n      PLDREF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      LDGRAMS\n      ENDS\n      SWAP\n      CTOS\n      32 LDU\n      256 LDU\n      LDOPTREF\n      LDREF\n      ENDS\n      s12 PUSH\n      REWRITESTDADDR\n      SWAP\n      130 THROWIF\n      DUP\n      130 THROWIFNOT\n      248 PUSHPOW2DEC\n      AND\n      s4 s3 s2 PUSH3\n      s4 PUSH\n      19 s() PUSH\n      MerkleState.isKnownRoot() CALLDICT\n      121 THROWIFNOT\n      1514884609 PUSHINT\n      s15 PUSH\n      8 PUSHPOW2DEC\n      AND\n      0 PUSHINT\n      FALSE\n      s5 PUSH\n      CTOS\n      16 LDU\n      NIP\n      16 LDU\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      ENDS\n      s1 s3 XCHG\n      8 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      IF:<{\n        2 1 BLKDROP2\n        256 LDU\n        ENDS\n        TRUE\n        SWAP\n      }>ELSE<{\n        DROP\n      }>\n      17 s() PUSH\n      s0 s1 s15 XCHG3\n      sparseSetApplyUpdate() CALLDICT\n      DROP\n      s2 PUSH\n      4 EQINT\n      IFJMP:<{\n        133 THROW\n      }>\n      s2 PUSH\n      5 EQINT\n      IFJMP:<{\n        122 THROW\n      }>\n      s2 PUSH\n      134 THROWIF\n      s0 s15 XCHG\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      s0 s2 XCHG\n      CTOS\n      SWAP\n      CTOS\n      s0 s2 XCHG\n      CTOS\n      s4 20 s() XCHG\n      19 s() PUSH\n      s0 s4 XCHG\n      s0 s6 XCHG\n      s3 s3 XCHG2\n      verifyWithdrawProof() CALLDICT\n      124 THROWIFNOT\n      s5 s7 PUSH2\n      300000000 PUSHINT\n      GEQ\n      127 THROWIFNOT\n      s7 s6 PUSH2\n      GEQ\n      127 THROWIFNOT\n      BALANCE\n      FIRST\n      s11 PUSH\n      SUB\n      s3 PUSH\n      CTOS\n      16 LDU\n      16 LDU\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      s8 PUSH\n      100 PUSHINT\n      MIN\n      s0 s2 XCHG\n      ADD\n      270000000 PUSHINT\n      2600000 PUSHINT\n      s0 s3 XCHG2\n      MUL\n      s1 s2 XCHG\n      ADD\n      2600000 PUSHINT\n      ROT\n      MUL\n      ADD\n      s0 s10 PUSH2\n      ADD\n      s10 PUSH\n      ADD\n      s1 s2 XCHG\n      GEQ\n      128 THROWIFNOT\n      s0 s9 XCHG\n      300000000 PUSHINT\n      SUB\n      s8 s7 XCHG2\n      SUB\n      1514884609 PUSHINT\n      s0 s2 XCHG\n      s1 17 s() XCHG\n      s0 s14 s13 PU2XC\n      MerkleState.commitSparseSetUpdate() CALLDICT\n      DUP\n      CTOS\n      16 LDU\n      16 LDU\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      s5 PUSH\n      100 PUSHINT\n      MIN\n      s0 s2 XCHG\n      ADD\n      270000000 PUSHINT\n      2600000 PUSHINT\n      s0 s3 XCHG2\n      MUL\n      s1 s2 XCHG\n      ADD\n      2600000 PUSHINT\n      ROT\n      MUL\n      ADD\n      s0 s7 XCHG2\n      SUB\n      s0 s3 XCHG\n      NEWC\n      32 STU\n      s1 s2 XCHG\n      256 STU\n      STOPTREF\n      s1 s4 XCHG\n      STREF\n      ENDC\n      s0 s4 XCHG\n      NEWC\n      STREF\n      SWAP\n      STGRAMS\n      s0 s10 XCHG2\n      STGRAMS\n      s1 s2 XCHG\n      STREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s6 s(-1) PUXC\n      STSTDADDR\n      s8 PUSH\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n      s0 s3 XCHG\n      NEWC\n      8 STU\n      s1 s4 XCHG\n      256 STU\n      ENDC\n      NEWC\n      x{00717d3b} STSLICECONST\n      s1 s6 XCHG\n      256 STU\n      s1 s4 XCHG\n      STSTDADDR\n      s5 PUSH\n      STGRAMS\n      s1 s4 XCHG\n      STREF\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      7437627 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      BALANCE\n      FIRST\n      SUBR\n      300000000 PUSHINT\n      SUB\n      s0 s3 XCHG2\n      SUB\n      ADD\n      2 PUSHINT\n      RAWRESERVE\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      144 PUSHINT\n      SENDRAWMSG\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  handleDeposit() PROC:<{\n    s5 POP\n    s6 POP\n    c4 PUSH\n    CTOS\n    LDREF\n    LDGRAMS\n    LDGRAMS\n    PLDREF\n    s3 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    ENDS\n    SWAP\n    CTOS\n    32 LDU\n    256 LDU\n    LDOPTREF\n    LDREF\n    ENDS\n    s4 PUSH\n    370000000 PUSHINT\n    ADD\n    s13 s0 PUSH2\n    LESS\n    IFJMP:<{\n      s11 s14 XCHG\n      14 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s4 PUSH\n    20 PUSHPOW2\n    GEQ\n    IFJMP:<{\n      s11 s14 XCHG\n      14 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s14 PUSH\n    isWellFormedZkProofCell() CALLDICT\n    IFNOTJMP:<{\n      s11 s14 XCHG\n      14 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    1514881793 PUSHINT\n    s11 PUSH\n    8 PUSHPOW2DEC\n    AND\n    0 PUSHINT\n    FALSE\n    s5 PUSH\n    CTOS\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    s1 s3 XCHG\n    8 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      2 1 BLKDROP2\n      256 LDU\n      ENDS\n      TRUE\n      SWAP\n    }>ELSE<{\n      DROP\n    }>\n    s13 PUSH\n    s0 s2 XCHG\n    s0 16 s() XCHG\n    sparseSetApplyUpdate() CALLDICT\n    DROP\n    s2 PUSH\n    IFJMP:<{\n      s14 s15 XCHG\n      15 BLKDROP\n      2 1 BLKDROP2\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s0 17 s() XCHG\n    CTOS\n    LDREF\n    LDREF\n    LDREF\n    ENDS\n    s0 s2 XCHG\n    CTOS\n    SWAP\n    CTOS\n    s0 s2 XCHG\n    CTOS\n    s8 PUSH\n    s3 s15 XCPU\n    s0 s3 XCHG\n    17 s() PUSH\n    s3 s12 XCPU\n    s3 s3 XCHG2\n    verifyInsertProof() CALLDICT\n    IFNOTJMP:<{\n      s13 s15 XCHG\n      15 BLKDROP\n      NIP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s5 s6 XCHG\n    s4 s6 XCHG\n    s3 s6 XCHG\n    s2 s6 XCHG\n    1514881793 PUSHINT\n    s2 s2 s0 XC2PU\n    18 s() PUSH\n    SWAP\n    s0 17 s() XCHG\n    MerkleState.commitSparseSetUpdate() CALLDICT\n    s2 POP\n    s2 PUSH\n    INC\n    s3 PUSH\n    100 PUSHINT\n    MOD\n    s10 PUSH\n    NEWC\n    256 STU\n    s0 s1 s3 XCHG3\n    32 PUSHINT\n    DICTUSETB\n    s9 PUSH\n    s14 s5 XCHG2\n    SUB\n    s0 s7 XCHG\n    300000000 PUSHINT\n    ADD\n    s6 s5 XCHG2\n    ADD\n    OVER\n    CTOS\n    16 LDU\n    16 LDU\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    s7 PUSH\n    100 PUSHINT\n    MIN\n    s0 s2 XCHG\n    ADD\n    270000000 PUSHINT\n    2600000 PUSHINT\n    s0 s3 XCHG2\n    MUL\n    s1 s2 XCHG\n    ADD\n    2600000 PUSHINT\n    ROT\n    MUL\n    ADD\n    BALANCE\n    FIRST\n    s8 PUSH\n    SUB\n    s1 s6 XCPU\n    ADD\n    s2 PUSH\n    ADD\n    50000000 PUSHINT\n    ADD\n    LESS\n    IFJMP:<{\n      s10 s13 XCHG\n      13 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s0 s5 XCHG\n    NEWC\n    32 STU\n    s1 s3 XCHG\n    256 STU\n    s1 s11 XCHG\n    STOPTREF\n    STREF\n    ENDC\n    s0 s4 XCHG\n    NEWC\n    STREF\n    SWAP\n    STGRAMS\n    SWAP\n    STGRAMS\n    s1 s2 XCHG\n    STREF\n    ENDC\n    c4 POP\n    s0 s4 XCHG\n    NEWC\n    8 STU\n    s1 s6 XCHG\n    256 STU\n    ENDC\n    NEWC\n    x{00de9052} STSLICECONST\n    s1 s5 XCHG\n    32 STU\n    256 STU\n    s1 s4 XCHG\n    256 STU\n    s3 s(-1) PUXC\n    STSTDADDR\n    s1 s2 XCHG\n    STREF\n    ENDC\n    NEWC\n    b{11000110000000000000000} STSLICECONST\n    14585938 PUSHINT\n    248 STUR\n    1 PUSHINT\n    98 STUR\n    STREF\n    ENDC\n    0 PUSHINT\n    SENDRAWMSG\n    DUP\n    0 GTINT\n    IFJMP:<{\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n    }>\n    2DROP\n  }>\n  factory() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  denomination() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    ENDS\n  }>\n  currentRoot() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    32 LDU\n    NIP\n    256 LDU\n    LDOPTREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  nextIndex() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    32 LDU\n    256 LDU\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  sparseRoot() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    32 LDU\n    NIP\n    256 LDU\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s0 s3 XCHG\n    1514881793 PUSHINT\n    EQUAL\n    IF:<{\n      1 2 BLKDROP2\n      8 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n    }>ELSE<{\n      DROP\n      SWAP\n      8 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n    }>\n    IF:<{\n      256 LDU\n      ENDS\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n  }>\n  rentRunway() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    32 LDU\n    256 LDU\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    16 LDU\n    16 LDU\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    s0 s2 XCHG\n    100 PUSHINT\n    MIN\n    s0 s2 XCHG\n    ADD\n    270000000 PUSHINT\n    2600000 PUSHINT\n    s0 s3 XCHG2\n    MUL\n    s1 s2 XCHG\n    ADD\n    2600000 PUSHINT\n    ROT\n    MUL\n    ADD\n  }>\n  relayerReserve() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    DROP\n  }>\n  pendingWithdrawTon() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    NIP\n    LDGRAMS\n    DROP\n  }>\n  withdrawalCount() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDGRAMS\n    NIP\n    LDGRAMS\n    PLDREF\n    s0 s2 XCHG\n    CTOS\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    ENDS\n    s0 s2 XCHG\n    CTOS\n    32 LDU\n    256 LDU\n    NIP\n    LDOPTREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s2 PUSH\n    0 GTINT\n    202 THROWIFNOT\n    s1 s2 PUSH2\n    MOD\n    207 THROWIF\n    s0 s2 XCHG\n    DIV\n    s0 s1 PUSH2\n    LEQ\n    207 THROWIFNOT\n    SUB\n  }>\n  treeDepth() PROC:<{\n    20 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECUwEAETQAART/APSkE/S88sgLAQIBYgIDAgLMFhcCASAEBQIBIAYHAgEgEhMAK7lNLtRNDUMddM0NMf0/8x9AQx1DHRgCASAICQIBIAoLAIu1i52omhqGP0AGP0AGOpo6GmP6f+Y+gIY6mjoaYfph/oCGPoCGOiBQDJbBAFQQQgIC+/AQQQT1iAoAdQJUEEEE9YgLFRQQAgEgDA0CAWIODwAdrOl2omhrpmh9JH0AGOjAABesTfaiaH0AGP0AGEAAg6UL2omhqGOumaGmPmOn/mPoCGOpo6GmHmOmHmPoCegJogcEILSWhgN1Ltgk8egc30MuYALx6BzfQ8Unp/+jJGDhxQIBSBARACm7rtRNDUMddM0NMfMdP/9AQx1DHRgAB7+IAUgAc7uartRNDU+gAx+gDXTALQ+kgx+gDRAtDTH9P/MfQEMdQx0SLCAPLgylMSqQjy0M8CqQRTAbvy4M+hgCASAUFQARtBf9qJofQAYQAB235z2omhrpmh9JBj9AGjACASAYGQIBSD4/AgEgGhsCASApKgLlT4kZEw4CDXLCIyghgEjkgx0z/R+JeCCTEtAL7y4HjtRNDU+gAx+gAx1DHR0PpI+gAwggiYloBtyM+FCBT6UgH6AoIQRlBDAc8LihPLP/pUAfoCyYAQ+wDg1ywmtwKIlOMC1ywiW3hajOMCMIQPAccA8vSBwdAgEgIiMAVjHTP/pI0//T/9TUxwCOExBFXwXIz4UI+lJwzwtuyYBA+wDh+JL4l1VR8AoC/jHTPzHT/9P/+kjU1IQPAccA8vT4kviXIIIQBfXhAL7y4HjtRNDU+gD6ANdMI9D6SDH6ANEB0NMf0//0BNTRLPpEAfLQgiDy4IKE97BUdDIkVhPwBPLgeYIQWktOAS+EB7BwcCXQ0w8x0w8x9AQx9ATRE3j0Dm+hkTDjDVYRQB8eHwAObCHT/9F/AQH68AIwIsAEk/LAheAiwAWT8sB64CLy0IYP0NTU1NEC0AHQAtAEERQEVhMEBlAz8Any4HxTV4IQEeGjAL7y4H9Tdr7y4H/4J28QK6Ej0NMP0w/0BDH0BDHRKIBktggCoIIQEBffgIIIJ6xAUAOoEqCCCCesQFiooFMKoCqgEr4gAfzy4IAJghAR4aMAoVCHoYIQWktOAQIBEREBVGD/8AMg0NMP0w/0BDH0BDHRJYBktggCoIIQEBffgIIIJ6xAUAOoEqCCCCesQFiooFAHoQPIyx8Sy//0ABTMyQTIzAH6AlAK+gISzMntVMjPhQhSYPpSKPoCcM8LasmAEfsAA8ghAKbLBxTL/8nIz5ABxfTuFsv/FPpSJfoCFMzJyM+PGAAEgghxfTvPC/dxzwthzMlw+wD4J28QooIQEeGjAKFQA6GgcvsCyM+FCPpScM8LbsmBAJD7AAH1O2i7fsihAewJIIQWktDAbqRf5okghBaS04BusMA4pZsMXEycHDhI4Lwc+2nUymdfUgzOdgICaHYBVO9pAL//lv+/////wAAAAG+lmwxcjJwcOAB1zmRf5kg10mBAfe9wwDikX+XINdKwwHDAOKXE18DczJwcODT/9P2gJADdIIA//5QBPLyBNDTD9MP9AT0BNEmghBaS0MBuo4aNgSdggD//iKDB7ny9AGkAd8FyMv/QAN49EOOJ4IA//4HghBaS04Buhfy9ASbggD//iGDB7ny9KTfBcjL/0AEePRDWeIByMsPE8sPEvQA9ADJgA/7XTFEkvZgQJF8EdDJwcOAB1zlSEJIwcI4nINdJAddKIMABlTCBAwC64JFwlyCBAwC7wwDil6k4B8AAwwCSMHDi4pgQJF8EczJwcOFwJqoHcbHIyycmzwv/+RYGqwdUQRiqB3KxyMsngQD3iuRbNjHHAJZsIXMycHDhA73jAnBZJSYnAbZwJXGw4wBTGc8LByNxsI4dIc8L/ySSMX+VAcMAwwDil1Ezy//5FgPeGMv/+RaOHySRf5UhwwDDAOKbUUTL/yHPC//5FgTeGcv/GMv/+RbiAasABKsACKQIUEQHKAAKMHUBcHAAAnAA9DAj10mOYSPXSsMBmhBXXwdzMnBw2zHgA9dM1zlSEJIwcI4nINdJAddKIMABlTCBAwC64JFwlyCBAwC7wwDil6k4B8AAwwCSMHDi4poQV18HczJwcNsx4SDXSZoQV18HczJwcNsx4QPfA9P/IZoQaF8IczJwcNsx4VBEAgEgKywCASAuLwBfO2i7fsxM1IiupJbf+AggCD0hm+lkI4UAdP/0SO6lV8Df9sx4CGAIPR8b6XoXwRwgAdc1zmRf5cg10nDAMMA4pF/lyDXSsMDwwDikjBw4NTU10yBAYAD1zmzmCDXSVAEusMAkjNw4pcC10rAAMMAkjJw4o4ggQMAAdc5s5cg10lYusMAkjFw4pbXSsAAwwCSMHDiwwCSMHDikjBw4w2AtAECBAYAB1zmzlyDXSVi6wwCSMXDiltdKwADDAJIwcOLDAATpCCOPjDIjQeoiHGr/VVM1zf7p5SYHmf7d543WQ/2L4j0ql75PGmgzxaNBJYEIRscvyYP7wzwSwpbL/BkriDPFs9Q4SDAAeMCIMAC4wLAA+MCyI0HpOeG0O7yxS2eNFxmm28m8xNow4EW/1fXsKR2PJHdYM8WgMDEyMwHfCLXSYEBgL2Rf5ci10rDAMMA4pNfB3DgIddJgQMAvZF/lyHXSsMAwwDik18HcOAg10mBAYC9kX+XINdKwwDDAOKTXwdw4CaC8HPtp1MpnX1IMznYCAmh2AVTvaQC//5b/v////8AAAABuZNfB3DhJYDUAfDDIjQeqJxHKQ1hbxBcXj0g0yDKAyZTehA4CQqyz4AXH2e4gzxaNBI8TTC4KP0lb9rL8Qk4SfF2vzyDPFs9QAHwwyI0Ho4Z3DZe9glAsM0/CQc4BglOAYjr6Xw/HmluPotuhYM8WjQSOdi5CRHUQ83TMShRCZO/qjt0gzxbPUAB6yI0HosUaKmJVRQ4Z7wttT225F1uVnsfHNNulaAfiwhZyoM8WjQSQObPrz229gUdUwBCZWOE72HbgzxbPUAEKic8Wz1A0ACRDnBZAV/VukaQltUFeC3q0AqkC/ILwc+2nUymdfUgzOdgICaHYBVO9pAL//lv+/////wAAAAG5k18HcOEkgvBz7adTKZ19SDM52AgJodgFU72kAv/+W/7/////AAAAAbmTXwdw4SL5MBezkX+XIfkwJ7PDAOKRf5cg+TAXs8MA4pNfB3DgIvkwGJYh+TAowwDjDTY3AAJ/Af6Rf5Yg+TAYwwDik18HcOBw8AZx8AZQCPkwExf5MBBy8AZQBvkwExX5MBBz8AZQBPkwExP5MBB08AZY+TAT+TAQAfkwEsiNB6mcqMncB6L2ZQV41/yDtw8vBFEot/BtfnRfPY9IE+DPFo0ElEYV/G41Vitm+vaglvk1rEGaYM8WOAP8z1DIjQYlfPMzWq07B5MhaZLmPuDDN4Hovw3s1XmgzxaNBi2pJaYna5lJmQ2IDNrmiSS1nbjLDV1B++DPFo0GBTF+KKoz3cN8bDelwZv9i6GTTelm7tI34M8WjQY1GSUzyT/qpg56z5IY05vQsr2lx4xKL15gzxbPUMiJzxaJSzk6ADC12mG73H9QSTNM8RITlF1X5ax9BV0EK34D/s8WjQYAkqisvCPCpEmCAUnLcUQUcbketT6QDsCgzxaNBi0UQtkeuPRdwusAyaoBbvv1IBWyMEhvbiDPFs9QyI0GKDgmKVLlr7BpUaHBDyB/hy/rFuUhFs7sIM8WjQY70+H1JuHuYBr3nMiAA/vGeZPh2foGYxZgzxaJzxaJzxY7PD0AMAVy04UIhxgZlChmKDOCObwvpmVDMuBLjAAwENbVNiIhuww9yX8ChXuzx+7cGrkNHVZTABjPUBBHEDVBQHT5MDACASBAQQH3Q1Nu1E0NT6APoA10wj0PpIMfoA0QHQ0x/T//QE1NEkghAWDcCAoFPQuY4TEL5fDsjPhQj6UnDPC27JgED7AOAkgxO+jhMQvl8OyM+FCPpScM8LbsmAQPsA4C7wBY4TEL5fDsjPhQj6UnDPC27JgED7AOGCEFpLQwErhAeE8D6Qgjj4wyI0HpcVLY9sGKKAlisRArf9bcCvO0k9+iZZm8KXkfi/PYM8WjQSc77d8Yy7OuZ4jO9rjBpcdvelgzxbPUOEgwAHjAsAC4wLIjQer0EXXnJzv3sJ2f8hCyHrYBfqnwEODLSlcksDkKRBgzxaJzxbPUIEJDRAHfCLXSYEBgL2Rf5ci10rDAMMA4pNfBnDgIddJgQMAvZF/lyHXSsMAwwDik18GcOAg10mBAYC9kX+XINdKwwDDAOKTXwZw4CWC8HPtp1MpnX1IMznYCAmh2AVTvaQC//5b/v////8AAAABuZNfBnDhJIEUAfDDIjQektxg3E9Za1bn+L27qDW8gcv+iU+SHKNwRQrf4wXugzxaNBL8wxXEbPcBSEIIKNQt0XVQ0OGDPFs9QAHrIjQepbao/5BBGo3R6YGEp9YeHEOZgG1jyg6VbgEyTddVgzxaNBKEDx9kAaPKwXTxA18CkV6tVOWDPFs9QACT2NX085dhtYzF3ln7c2emfeUQB+oLwc+2nUymdfUgzOdgICaHYBVO9pAL//lv+/////wAAAAG5k18GcOEi+TAXs5F/lyH5MCezwwDikX+XIPkwF7PDAOKTXwZw4CL5MBiRf5Yh+TAowwDikX+WIPkwGMMA4pNfBnDgcPAIcfAIUAf5MBMW+TAQcvAIUAX5MBMURgT0+TAQc/AIUAP5MBMS+TAQAfkwEsiNB6mcqMncB6L2ZQV41/yDtw8vBFEot/BtfnRfPY9IE+DPFo0ElEYV/G41Vitm+vaglvk1rEGaYM8Wz1DIjQYlfPMzWq07B5MhaZLmPuDDN4Hovw3s1XmgzxaJzxaJzxaJzxbPUMhHSElKADC2pJaYna5lJmQ2IDNrmiSS1nbjLDV1B+8AMBTF+KKoz3cN8bDelwZv9i6GTTelm7tI3wAw1GSUzyT/qpg56z5IY05vQsr2lx4xKL15BPyJzxaNBi12mG73H9QSTNM8RITlF1X5ax9BV0EK36DPFo0GAJKorLwjwqRJggFJy3FEFHG5HrU+kA7AoM8WjQYtFELZHrj0XcLrAMmqAW779SAVsjBIb24gzxbPUMiNBiPwLui6FRE15iGuHHH4nxtFjEJ2Uv23raDPFonPFolLTE1OADCT4CtgUnGfYH2s06CIJ09lWWvQ0JkgthoAMAVnDrGA0SPrw1nTqv4yqxl7sve30NJwwwAwGaDsRkcxmeAPbmVGhbKNx0J79ljB8tczAFbPFo0GN31xKxWk7AmQ9QrgzQuC/w70QmzxtkMX4M8Wz1AQRxA1QUB0+TAwAfSwcHAl0NMPMdMPMfQE9AQx0RN49A5voZdsIdP/0X8BkTDiLQIREPACMCKOFRDvXw9sIcjPhQj6UnDPC27JgED7AOAREdDU1NTRAtAB0ALQKFE/A1YRUTxQM/AHjhQQ318PMcjPhQj6UnDPC27JgED7AOEQVhBGEDYQJlAC/oIQWktDAVQSIFYSARER8AMyIqQjgGSpCCrIy/9AE4Ag9EMpUOWhB4IQEeGjAKBQZaAh0NMP0w/0BDH0BDHRJ4BktggCoIIQEBffgIIIJ6xAUAOoEqCCCCesQFiooPgnbxAooVEWoCKgggr68ICgueMCBcjLHxPL/xv0AMzJBMhRUgAmEK1fDcjPhQj6UnDPC27JgED7AAC0zAH6AgH6AhLMye1UBMjLBxbL/8nIz5ADekFKFcsfy/8Uy/9SMPpSEszJyM+PGAAEggjekFLPC/dxzwthzMlw+wAgwgCOEsjPhQgS+lIB+gJwzwtqyXL7AOBb",
+  "codeHashHex": "057BF7A3006B61BDCC8B77B1264F3B473FF2FEC0181DE478059EB0D40ECD9D78",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/ton-pool.tolk",
+        "size_chars": 13085,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/constants.tolk",
+        "size_chars": 3967,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/deployment-types.tolk",
+        "size_chars": 790,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/errors.tolk",
+        "size_chars": 1131,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/pool-types.tolk",
+        "size_chars": 10347,
+        "imports": [
+          10,
+          2,
+          3,
+          6
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/sparse-set.tolk",
+        "size_chars": 7955,
+        "imports": [
+          10,
+          2
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/ton-pool-types.tolk",
+        "size_chars": 3282,
+        "imports": [
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-insert.tolk",
+        "size_chars": 2987,
+        "imports": [
+          11,
+          12,
+          13
+        ]
+      },
+      {
+        "file_id": 9,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-withdraw.tolk",
+        "size_chars": 3056,
+        "imports": [
+          11,
+          12,
+          14
+        ]
+      },
+      {
+        "file_id": 10,
+        "file_name": "@stdlib/exotic-cells.tolk",
+        "size_chars": 1623,
+        "imports": []
+      },
+      {
+        "file_id": 11,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/bls-helpers.tolk",
+        "size_chars": 2603,
+        "imports": []
+      },
+      {
+        "file_id": 12,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/bls-scalar.tolk",
+        "size_chars": 117,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 13,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-insert-vk.tolk",
+        "size_chars": 4549,
+        "imports": []
+      },
+      {
+        "file_id": 14,
+        "file_name": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-withdraw-vk.tolk",
+        "size_chars": 4123,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedTonMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolConfirmPoolDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonDepositPayload"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TonPoolZkProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ZkProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "G1Point"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "G2Point"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TonPoolSparseSetUpdateProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetUpdateProof"
+      },
+      {
+        "kind": "uintN",
+        "n": 247
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonWithdraw"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1179665152,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 3605025042,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 1265568593,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 6
+          }
+        ],
+        "stack_width": 7
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolIdentity"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 31
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MerkleState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 15
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetRoots"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 37,
+        "value_ty_idx": 15
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 35
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetUpdateResult"
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "SparseSetUpdateStatus"
+      },
+      {
+        "kind": "uintN",
+        "n": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          9,
+          15
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          48,
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeployConfirmed"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          52
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 55,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 60
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          59
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 62,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          64,
+          15
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 67,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 69,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 65,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 66,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          73
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          15
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          77
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetEventUpdate"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 79
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonWithdrawEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          81
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 85,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 86,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 83,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 84,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          73
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonDepositEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          90
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 46,
+        "struct_name": "MapEntry<uint32, uint256>",
+        "monomorphic_fields_ty_idx": [
+          47,
+          9,
+          5
+        ]
+      },
+      {
+        "ty_idx": 54,
+        "struct_name": "CreateMessageOptions<PoolDeployConfirmed>",
+        "monomorphic_fields_ty_idx": [
+          58,
+          63,
+          72,
+          52
+        ]
+      },
+      {
+        "ty_idx": 75,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          58,
+          63,
+          72,
+          0
+        ]
+      },
+      {
+        "ty_idx": 76,
+        "struct_name": "MapLookupResult<uint256>",
+        "monomorphic_fields_ty_idx": [
+          47,
+          5
+        ]
+      },
+      {
+        "ty_idx": 82,
+        "struct_name": "CreateExternalLogMessageOptions<TonWithdrawEvent>",
+        "monomorphic_fields_ty_idx": [
+          88,
+          81
+        ]
+      },
+      {
+        "ty_idx": 91,
+        "struct_name": "CreateExternalLogMessageOptions<TonDepositEvent>",
+        "monomorphic_fields_ty_idx": [
+          88,
+          90
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 78,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 47
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1038,
+          8,
+          1038,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 47
+          },
+          {
+            "name": "key",
+            "ty_idx": 48
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 59,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 61
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 67,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 69,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 70
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 64
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 68
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 55,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 56,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 74,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 58
+          },
+          {
+            "name": "value",
+            "ty_idx": 63
+          },
+          {
+            "name": "dest",
+            "ty_idx": 72
+          },
+          {
+            "name": "body",
+            "ty_idx": 73
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 84,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 87
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 89,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 88
+          },
+          {
+            "name": "body",
+            "ty_idx": 73
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolDeployConfirmed",
+        "ty_idx": 52,
+        "ident_loc": [
+          3,
+          15,
+          21,
+          15,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1179665153,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 53
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetRoots",
+        "ty_idx": 35,
+        "ident_loc": [
+          5,
+          50,
+          8,
+          50,
+          22
+        ],
+        "fields": [
+          {
+            "name": "commitmentBucketCount",
+            "ty_idx": 36
+          },
+          {
+            "name": "nullifierBucketCount",
+            "ty_idx": 36
+          },
+          {
+            "name": "commitmentSeenRoots",
+            "ty_idx": 38
+          },
+          {
+            "name": "nullifierSpentRoots",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetEventUpdate",
+        "ty_idx": 79,
+        "ident_loc": [
+          5,
+          66,
+          8,
+          66,
+          28
+        ],
+        "fields": [
+          {
+            "name": "bucketId",
+            "ty_idx": 37
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MerkleState",
+        "ty_idx": 33,
+        "ident_loc": [
+          5,
+          71,
+          8,
+          71,
+          19
+        ],
+        "fields": [
+          {
+            "name": "nextIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "currentRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "rootHistory",
+            "ty_idx": 34
+          },
+          {
+            "name": "sparseSets",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ZkProof",
+        "ty_idx": 17,
+        "ident_loc": [
+          5,
+          284,
+          8,
+          284,
+          15
+        ],
+        "fields": [
+          {
+            "name": "proofA",
+            "ty_idx": 20
+          },
+          {
+            "name": "proofB",
+            "ty_idx": 22
+          },
+          {
+            "name": "proofC",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "G1Point",
+        "ty_idx": 18,
+        "ident_loc": [
+          5,
+          313,
+          8,
+          313,
+          15
+        ],
+        "fields": [
+          {
+            "name": "raw",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "G2Point",
+        "ty_idx": 21,
+        "ident_loc": [
+          5,
+          317,
+          8,
+          317,
+          15
+        ],
+        "fields": [
+          {
+            "name": "raw",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetUpdateProof",
+        "ty_idx": 25,
+        "ident_loc": [
+          6,
+          19,
+          8,
+          19,
+          28
+        ],
+        "fields": [
+          {
+            "name": "expectedRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "siblingBitmap",
+            "ty_idx": 26
+          },
+          {
+            "name": "siblings",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "SparseSetUpdateStatus",
+        "ty_idx": 42,
+        "ident_loc": [
+          6,
+          25,
+          6,
+          25,
+          27
+        ],
+        "encoded_as_ty_idx": 43,
+        "members": [
+          {
+            "name": "Ok",
+            "value": "0"
+          },
+          {
+            "name": "InvalidDomain",
+            "value": "1"
+          },
+          {
+            "name": "InvalidKey",
+            "value": "2"
+          },
+          {
+            "name": "MalformedProof",
+            "value": "3"
+          },
+          {
+            "name": "StaleRoot",
+            "value": "4"
+          },
+          {
+            "name": "NonEmptyLeafOrInvalidWitness",
+            "value": "5"
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetUpdateResult",
+        "ty_idx": 41,
+        "ident_loc": [
+          6,
+          36,
+          8,
+          36,
+          29
+        ],
+        "fields": [
+          {
+            "name": "status",
+            "ty_idx": 42
+          },
+          {
+            "name": "bucketId",
+            "ty_idx": 37
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "bucketWasPresent",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "TonPoolZkProof",
+        "ty_idx": 16,
+        "ident_loc": [
+          7,
+          7,
+          6,
+          7,
+          20
+        ],
+        "target_ty_idx": 17
+      },
+      {
+        "kind": "alias",
+        "name": "TonPoolSparseSetUpdateProof",
+        "ty_idx": 24,
+        "ident_loc": [
+          7,
+          9,
+          6,
+          9,
+          33
+        ],
+        "target_ty_idx": 25
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolConfirmPoolDeployment",
+        "ty_idx": 13,
+        "ident_loc": [
+          7,
+          13,
+          21,
+          13,
+          49
+        ],
+        "prefix": {
+          "prefix_num": 1179665152,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolIdentity",
+        "ty_idx": 31,
+        "ident_loc": [
+          7,
+          24,
+          8,
+          24,
+          23
+        ],
+        "fields": [
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolStorage",
+        "ty_idx": 30,
+        "ident_loc": [
+          7,
+          31,
+          8,
+          31,
+          22
+        ],
+        "fields": [
+          {
+            "name": "identity",
+            "ty_idx": 32
+          },
+          {
+            "name": "relayerReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingWithdrawTon",
+            "ty_idx": 6
+          },
+          {
+            "name": "merkle",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonDepositPayload",
+        "ty_idx": 14,
+        "ident_loc": [
+          7,
+          64,
+          21,
+          64,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 3605025042,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "fromUser",
+            "ty_idx": 7
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 15
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "insertProof",
+            "ty_idx": 23
+          },
+          {
+            "name": "commitmentSetProof",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonWithdraw",
+        "ty_idx": 28,
+        "ident_loc": [
+          7,
+          74,
+          21,
+          74,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1265568593,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "root",
+            "ty_idx": 15
+          },
+          {
+            "name": "nullifierHash",
+            "ty_idx": 15
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "proof",
+            "ty_idx": 23
+          },
+          {
+            "name": "nullifierSetProof",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonDepositEvent",
+        "ty_idx": 90,
+        "ident_loc": [
+          7,
+          83,
+          21,
+          83,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 14585938,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "leafIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 15
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "fromUser",
+            "ty_idx": 7
+          },
+          {
+            "name": "sparseUpdate",
+            "ty_idx": 80
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonWithdrawEvent",
+        "ty_idx": 81,
+        "ident_loc": [
+          7,
+          91,
+          21,
+          91,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 7437627,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "nullifierHash",
+            "ty_idx": 15
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "sparseUpdate",
+            "ty_idx": 80
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedTonMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          7,
+          102,
+          6,
+          102,
+          23
+        ],
+        "target_ty_idx": 29
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "sparseSetIsCanonicalSiblingChunk",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          94,
+          5,
+          94,
+          37
+        ],
+        "end_loc": [
+          6,
+          104,
+          1,
+          104,
+          2
+        ],
+        "params": [
+          {
+            "name": "chunk",
+            "ty_idx": 2
+          },
+          {
+            "name": "isExotic",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "sparseSetApplyUpdate",
+        "return_ty_idx": 41,
+        "num_params": 4,
+        "ident_loc": [
+          6,
+          109,
+          5,
+          109,
+          25
+        ],
+        "end_loc": [
+          6,
+          262,
+          1,
+          262,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          },
+          {
+            "name": "storedRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "proofCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "sparseSetBucketId",
+        "return_ty_idx": 37,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          51,
+          5,
+          51,
+          22
+        ],
+        "end_loc": [
+          6,
+          53,
+          1,
+          53,
+          2
+        ],
+        "params": [
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "sparseSetIsKnownDomain",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          45,
+          5,
+          45,
+          27
+        ],
+        "end_loc": [
+          6,
+          47,
+          1,
+          47,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "sparseSetLeafHash",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          63,
+          5,
+          63,
+          22
+        ],
+        "end_loc": [
+          6,
+          68,
+          1,
+          68,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "sparseSetPath",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          57,
+          5,
+          57,
+          18
+        ],
+        "end_loc": [
+          6,
+          59,
+          1,
+          59,
+          2
+        ],
+        "params": [
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "MerkleState.commitSparseSetUpdate",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          112,
+          17,
+          112,
+          38
+        ],
+        "end_loc": [
+          5,
+          135,
+          1,
+          135,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "update",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Cell<SparseSetRoots>.load",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "map<uint8, uint256>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "key",
+            "ty_idx": 37
+          },
+          {
+            "name": "value",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "SparseSetRoots.toCell",
+        "return_ty_idx": 39,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MerkleState.isKnownRoot",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          149,
+          17,
+          149,
+          28
+        ],
+        "end_loc": [
+          5,
+          162,
+          1,
+          162,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "root",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint32, uint256>.findFirst",
+        "return_ty_idx": 46,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "MapEntry<uint32, uint256>.loadValue",
+        "return_ty_idx": 15,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1052,
+          20,
+          1052,
+          29
+        ],
+        "end_loc": [
+          0,
+          1058,
+          1,
+          1058,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "uint256.fromSlice",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<uint32, uint256>.iterateNext",
+        "return_ty_idx": 46,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "current",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "isWellFormedZkProofCell",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          290,
+          5,
+          290,
+          28
+        ],
+        "end_loc": [
+          5,
+          305,
+          1,
+          305,
+          2
+        ],
+        "params": [
+          {
+            "name": "proofCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "isOrdinaryProofPoint",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          307,
+          5,
+          307,
+          25
+        ],
+        "end_loc": [
+          5,
+          311,
+          1,
+          311,
+          2
+        ],
+        "params": [
+          {
+            "name": "point",
+            "ty_idx": 3
+          },
+          {
+            "name": "expectedBits",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "vkInsertIc",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          13,
+          67,
+          5,
+          67,
+          15
+        ],
+        "end_loc": [
+          13,
+          134,
+          1,
+          134,
+          2
+        ],
+        "params": [
+          {
+            "name": "i",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "verifyInsertProof",
+        "return_ty_idx": 5,
+        "num_params": 7,
+        "ident_loc": [
+          8,
+          16,
+          5,
+          16,
+          22
+        ],
+        "end_loc": [
+          8,
+          83,
+          1,
+          83,
+          2
+        ],
+        "params": [
+          {
+            "name": "oldRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 15
+          },
+          {
+            "name": "leafIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "proofA",
+            "ty_idx": 2
+          },
+          {
+            "name": "proofB",
+            "ty_idx": 2
+          },
+          {
+            "name": "proofC",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "blsScalarIsCanonical",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          12,
+          5,
+          5,
+          5,
+          25
+        ],
+        "end_loc": [
+          12,
+          7,
+          1,
+          7,
+          2
+        ],
+        "params": [
+          {
+            "name": "value",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "vkInsertAlpha1",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          13,
+          7,
+          5,
+          7,
+          19
+        ],
+        "end_loc": [
+          13,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "vkInsertBeta2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          13,
+          22,
+          5,
+          22,
+          18
+        ],
+        "end_loc": [
+          13,
+          34,
+          1,
+          34,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 22,
+        "name": "vkInsertGamma2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          13,
+          37,
+          5,
+          37,
+          19
+        ],
+        "end_loc": [
+          13,
+          49,
+          1,
+          49,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 23,
+        "name": "vkInsertDelta2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          13,
+          52,
+          5,
+          52,
+          19
+        ],
+        "end_loc": [
+          13,
+          64,
+          1,
+          64,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 24,
+        "name": "vkWithdrawIc",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          14,
+          67,
+          5,
+          67,
+          17
+        ],
+        "end_loc": [
+          14,
+          121,
+          1,
+          121,
+          2
+        ],
+        "params": [
+          {
+            "name": "i",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "verifyWithdrawProof",
+        "return_ty_idx": 5,
+        "num_params": 6,
+        "ident_loc": [
+          9,
+          19,
+          5,
+          19,
+          24
+        ],
+        "end_loc": [
+          9,
+          81,
+          1,
+          81,
+          2
+        ],
+        "params": [
+          {
+            "name": "root",
+            "ty_idx": 15
+          },
+          {
+            "name": "nullifierHash",
+            "ty_idx": 15
+          },
+          {
+            "name": "recipientField",
+            "ty_idx": 15
+          },
+          {
+            "name": "proofA",
+            "ty_idx": 2
+          },
+          {
+            "name": "proofB",
+            "ty_idx": 2
+          },
+          {
+            "name": "proofC",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "vkWithdrawAlpha1",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          14,
+          7,
+          5,
+          7,
+          21
+        ],
+        "end_loc": [
+          14,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "vkWithdrawBeta2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          14,
+          22,
+          5,
+          22,
+          20
+        ],
+        "end_loc": [
+          14,
+          34,
+          1,
+          34,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 28,
+        "name": "vkWithdrawGamma2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          14,
+          37,
+          5,
+          37,
+          21
+        ],
+        "end_loc": [
+          14,
+          49,
+          1,
+          49,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 29,
+        "name": "vkWithdrawDelta2",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          14,
+          52,
+          5,
+          52,
+          21
+        ],
+        "end_loc": [
+          14,
+          64,
+          1,
+          64,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 30,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          22,
+          5,
+          22,
+          22
+        ],
+        "end_loc": [
+          1,
+          50,
+          1,
+          50,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          52,
+          5,
+          52,
+          21
+        ],
+        "end_loc": [
+          1,
+          56,
+          1,
+          56,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "handleConfirmPoolDeployment",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          65,
+          5,
+          65,
+          32
+        ],
+        "end_loc": [
+          1,
+          82,
+          1,
+          82,
+          2
+        ],
+        "params": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "TonPoolStorage.load",
+        "return_ty_idx": 30,
+        "num_params": 0,
+        "ident_loc": [
+          7,
+          38,
+          20,
+          38,
+          24
+        ],
+        "end_loc": [
+          7,
+          40,
+          1,
+          40,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 34,
+        "name": "TonPoolStorage.fromCell",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "createMessage<PoolDeployConfirmed>",
+        "return_ty_idx": 51,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "refundDeposit",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          88,
+          5,
+          88,
+          18
+        ],
+        "end_loc": [
+          1,
+          98,
+          1,
+          98,
+          2
+        ],
+        "params": [
+          {
+            "name": "fromUser",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "createMessage<void>",
+        "return_ty_idx": 51,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 75
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "handleWithdraw",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          192,
+          5,
+          192,
+          19
+        ],
+        "end_loc": [
+          1,
+          296,
+          1,
+          296,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "Cell<TonPoolIdentity>.load",
+        "return_ty_idx": 31,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "Cell<MerkleState>.load",
+        "return_ty_idx": 33,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "MerkleState.prepareSparseSetUpdate",
+        "return_ty_idx": 41,
+        "num_params": 4,
+        "ident_loc": [
+          5,
+          90,
+          17,
+          90,
+          39
+        ],
+        "end_loc": [
+          5,
+          110,
+          1,
+          110,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "map<uint8, uint256>.get",
+        "return_ty_idx": 76,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "key",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "MapLookupResult<uint256>.loadValue",
+        "return_ty_idx": 15,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 76
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "Cell<TonPoolZkProof>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "Cell<G1Point>.load",
+        "return_ty_idx": 18,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 46,
+        "name": "Cell<G2Point>.load",
+        "return_ty_idx": 21,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "MerkleState.poolRentRunway",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          138,
+          17,
+          138,
+          31
+        ],
+        "end_loc": [
+          5,
+          145,
+          1,
+          145,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "MerkleState.markNullifierSpentBounded",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          179,
+          17,
+          179,
+          42
+        ],
+        "end_loc": [
+          5,
+          184,
+          1,
+          184,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "nullifierUpdate",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "MerkleState.toCell",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 50,
+        "name": "TonPoolStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          42,
+          20,
+          42,
+          24
+        ],
+        "end_loc": [
+          7,
+          44,
+          1,
+          44,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 51,
+        "name": "SparseSetEventUpdate.toCell",
+        "return_ty_idx": 80,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 79
+          },
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 52,
+        "name": "createExternalLogMessage<TonWithdrawEvent>",
+        "return_ty_idx": 51,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 82
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "handleDeposit",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          100,
+          5,
+          100,
+          18
+        ],
+        "end_loc": [
+          1,
+          186,
+          1,
+          186,
+          2
+        ],
+        "params": [
+          {
+            "name": "_sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "MerkleState.insertCommitmentBounded",
+        "return_ty_idx": 9,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          164,
+          17,
+          164,
+          40
+        ],
+        "end_loc": [
+          5,
+          177,
+          1,
+          177,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 15
+          },
+          {
+            "name": "commitmentUpdate",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 55,
+        "name": "map<uint32, uint256>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          },
+          {
+            "name": "value",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 56,
+        "name": "createExternalLogMessage<TonDepositEvent>",
+        "return_ty_idx": 51,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 91
+          }
+        ]
+      },
+      {
+        "f_idx": 57,
+        "name": "factory",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          302,
+          9,
+          302,
+          16
+        ],
+        "end_loc": [
+          1,
+          305,
+          1,
+          305,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 58,
+        "name": "denomination",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          307,
+          9,
+          307,
+          21
+        ],
+        "end_loc": [
+          1,
+          310,
+          1,
+          310,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 59,
+        "name": "currentRoot",
+        "return_ty_idx": 15,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          312,
+          9,
+          312,
+          20
+        ],
+        "end_loc": [
+          1,
+          315,
+          1,
+          315,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 60,
+        "name": "nextIndex",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          317,
+          9,
+          317,
+          18
+        ],
+        "end_loc": [
+          1,
+          320,
+          1,
+          320,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 61,
+        "name": "sparseRoot",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          322,
+          9,
+          322,
+          19
+        ],
+        "end_loc": [
+          1,
+          325,
+          1,
+          325,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "bucketId",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 62,
+        "name": "MerkleState.sparseSetRoot",
+        "return_ty_idx": 15,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          78,
+          17,
+          78,
+          30
+        ],
+        "end_loc": [
+          5,
+          88,
+          1,
+          88,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "bucketId",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 63,
+        "name": "rentRunway",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          327,
+          9,
+          327,
+          19
+        ],
+        "end_loc": [
+          1,
+          329,
+          1,
+          329,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 64,
+        "name": "relayerReserve",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          331,
+          9,
+          331,
+          23
+        ],
+        "end_loc": [
+          1,
+          334,
+          1,
+          334,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 65,
+        "name": "pendingWithdrawTon",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          336,
+          9,
+          336,
+          27
+        ],
+        "end_loc": [
+          1,
+          339,
+          1,
+          339,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 66,
+        "name": "withdrawalCount",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          341,
+          9,
+          341,
+          24
+        ],
+        "end_loc": [
+          1,
+          350,
+          1,
+          350,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 67,
+        "name": "calculateTonPoolWithdrawalCount",
+        "return_ty_idx": 9,
+        "num_params": 3,
+        "ident_loc": [
+          7,
+          46,
+          5,
+          46,
+          36
+        ],
+        "end_loc": [
+          7,
+          56,
+          1,
+          56,
+          2
+        ],
+        "params": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          },
+          {
+            "name": "deposits",
+            "ty_idx": 9
+          },
+          {
+            "name": "pendingWithdrawTon",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 68,
+        "name": "treeDepth",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          352,
+          9,
+          352,
+          18
+        ],
+        "end_loc": [
+          1,
+          354,
+          1,
+          354,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "TonPool",
+    "author": "ZKResistor",
+    "version": "2.0.0",
+    "description": "ZK mixer pool for native TON. Proof binds recipient by construction; sender of withdraw tx receives RELAYER_REIMBURSEMENT.",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolConfirmPoolDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonDepositPayload"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TonPoolZkProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ZkProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "G1Point"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "G2Point"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TonPoolSparseSetUpdateProof"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetUpdateProof"
+      },
+      {
+        "kind": "uintN",
+        "n": 247
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonWithdraw"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolIdentity"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 29
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MerkleState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetRoots"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 35,
+        "value_ty_idx": 14
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 31
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeployConfirmed"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonDepositEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetEventUpdate"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 42
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonWithdrawEvent"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PoolDeployConfirmed",
+        "ty_idx": 39,
+        "prefix": {
+          "prefix_num": 1179665153,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 40
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetRoots",
+        "ty_idx": 33,
+        "fields": [
+          {
+            "name": "commitmentBucketCount",
+            "ty_idx": 34,
+            "default_value": {
+              "kind": "int",
+              "v": "0"
+            }
+          },
+          {
+            "name": "nullifierBucketCount",
+            "ty_idx": 34,
+            "default_value": {
+              "kind": "int",
+              "v": "0"
+            }
+          },
+          {
+            "name": "commitmentSeenRoots",
+            "ty_idx": 36
+          },
+          {
+            "name": "nullifierSpentRoots",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetEventUpdate",
+        "ty_idx": 42,
+        "fields": [
+          {
+            "name": "bucketId",
+            "ty_idx": 35
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MerkleState",
+        "ty_idx": 31,
+        "fields": [
+          {
+            "name": "nextIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "currentRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "rootHistory",
+            "ty_idx": 32,
+            "default_value": {
+              "kind": "shapedTuple",
+              "items": []
+            }
+          },
+          {
+            "name": "sparseSets",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ZkProof",
+        "ty_idx": 16,
+        "fields": [
+          {
+            "name": "proofA",
+            "ty_idx": 19
+          },
+          {
+            "name": "proofB",
+            "ty_idx": 21
+          },
+          {
+            "name": "proofC",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "G1Point",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "raw",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "G2Point",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "raw",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetUpdateProof",
+        "ty_idx": 24,
+        "fields": [
+          {
+            "name": "expectedRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "siblingBitmap",
+            "ty_idx": 25
+          },
+          {
+            "name": "siblings",
+            "ty_idx": 3
+          }
+        ],
+        "description": "Canonical proof root. `siblings` is a packed chain ordered by increasing\ntree level; its exact shape is validated by `sparseSetApplyUpdate`."
+      },
+      {
+        "kind": "alias",
+        "name": "TonPoolZkProof",
+        "ty_idx": 15,
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "alias",
+        "name": "TonPoolSparseSetUpdateProof",
+        "ty_idx": 23,
+        "target_ty_idx": 24,
+        "description": "Canonical proof root. `siblings` is a packed chain ordered by increasing\ntree level; its exact shape is validated by `sparseSetApplyUpdate`."
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolConfirmPoolDeployment",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1179665152,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolIdentity",
+        "ty_idx": 29,
+        "fields": [
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolStorage",
+        "ty_idx": 28,
+        "fields": [
+          {
+            "name": "identity",
+            "ty_idx": 30
+          },
+          {
+            "name": "relayerReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingWithdrawTon",
+            "ty_idx": 6
+          },
+          {
+            "name": "merkle",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonDepositPayload",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 3605025042,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "fromUser",
+            "ty_idx": 7
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "insertProof",
+            "ty_idx": 22
+          },
+          {
+            "name": "commitmentSetProof",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonWithdraw",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 1265568593,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "root",
+            "ty_idx": 14
+          },
+          {
+            "name": "nullifierHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "proof",
+            "ty_idx": 22
+          },
+          {
+            "name": "nullifierSetProof",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonDepositEvent",
+        "ty_idx": 41,
+        "prefix": {
+          "prefix_num": 14585938,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "leafIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 14
+          },
+          {
+            "name": "fromUser",
+            "ty_idx": 7
+          },
+          {
+            "name": "sparseUpdate",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonWithdrawEvent",
+        "ty_idx": 44,
+        "prefix": {
+          "prefix_num": 7437627,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "nullifierHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "sparseUpdate",
+            "ty_idx": 43
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 28
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 27
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 39
+      }
+    ],
+    "emitted_events": [
+      {
+        "body_ty_idx": 41
+      },
+      {
+        "body_ty_idx": 44
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 82386,
+        "name": "factory",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 130873,
+        "name": "denomination",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 86586,
+        "name": "currentRoot",
+        "parameters": [],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 70866,
+        "name": "nextIndex",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 86149,
+        "name": "sparseRoot",
+        "parameters": [
+          {
+            "name": "domain",
+            "ty_idx": 9
+          },
+          {
+            "name": "bucketId",
+            "ty_idx": 35
+          }
+        ],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 93276,
+        "name": "rentRunway",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 114879,
+        "name": "relayerReserve",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 84123,
+        "name": "pendingWithdrawTon",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 113066,
+        "name": "withdrawalCount",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 86776,
+        "name": "treeDepth",
+        "parameters": [],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientGas",
+        "err_code": 120
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.UnknownRoot",
+        "err_code": 121
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NullifierAlreadySpent",
+        "err_code": 122
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidWithdrawProof",
+        "err_code": 124
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientReserve",
+        "err_code": 127
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientBalance",
+        "err_code": 128
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidRecipient",
+        "err_code": 130
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.StaleSparseSetRoot",
+        "err_code": 133
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidSparseSetProof",
+        "err_code": 134
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidDenomination",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.FactoryInvariantViolation",
+        "err_code": 207
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65534
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/ton-pool.tolk",
+      "contents": "import \"constants\"\nimport \"deployment-types\"\nimport \"errors\"\nimport \"pool-types\" // MerkleState helpers (shared)\nimport \"sparse-set\"\nimport \"ton-pool-types\"\nimport \"verifier-insert\"\nimport \"verifier-withdraw\"\n\ncontract TonPool {\n    author: \"ZKResistor\"\n    version: \"2.0.0\"\n    description: \"ZK mixer pool for native TON. Proof binds recipient by construction; sender of withdraw tx receives RELAYER_REIMBURSEMENT.\"\n    storage: TonPoolStorage\n    incomingMessages: AllowedTonMessage\n}\n\n// ============================================================================\n// ENTRYPOINT\n// ============================================================================\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedTonMessage.fromSlice(in.body);\n\n    match (msg) {\n        TonPoolConfirmPoolDeployment => {\n            msg.forceLoadLazyObject().assertEnd();\n            handleConfirmPoolDeployment(in.valueCoins, msg);\n        }\n        TonDepositPayload => {\n            val trailing = msg.forceLoadLazyObject();\n            if (!trailing.isEmpty()) {\n                return refundDeposit(msg.fromUser);\n            }\n            handleDeposit(in.senderAddress, in.valueCoins, msg);\n        }\n        TonWithdraw => {\n            val trailing = msg.forceLoadLazyObject();\n            assert (trailing.isEmpty()) throw Errors.InvalidMessage;\n            handleWithdraw(in.senderAddress, in.valueCoins, msg);\n        }\n        else => {\n            // Empty body accepted as factory's deploy message (init surplus)\n            // or a passive top-up. The TON stays on the pool as a storage-rent\n            // buffer above POOL_TON_RESERVE + earmarks. Withdraw reserves the\n            // complete pre-message balance, so later callers cannot sweep it.\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {\n    // No state changes on bounces. Funds return to the pool's balance and\n    // stay there; storage counters reflect committed state, not in-flight\n    // payouts, so any inconsistency self-heals.\n}\n\n// ============================================================================\n// FACTORY DEPLOYMENT CONFIRMATION\n// ============================================================================\n\nconst TON_POOL_CONFIRM_VALUE: coins = 10000000 // 0.01 TON\nconst TON_POOL_CONFIRM_HANDLER_BUDGET: coins = 10000000 // 0.01 TON\n\nfun handleConfirmPoolDeployment(valueCoins: coins, msg: TonPoolConfirmPoolDeployment) {\n    assert (\n        valueCoins >= TON_POOL_CONFIRM_VALUE + TON_POOL_CONFIRM_HANDLER_BUDGET\n    ) throw Errors.InsufficientGas;\n\n    val identity = lazy TonPoolStorage.load().identity.load();\n    val confirmation = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: identity.factory,\n        value: TON_POOL_CONFIRM_VALUE,\n        body: PoolDeployConfirmed {\n            queryId: msg.queryId,\n            jettonMaster: null,\n            denomination: identity.denomination,\n        },\n    });\n    confirmation.send(SEND_MODE_REGULAR | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\n// ============================================================================\n// DEPOSIT\n// ============================================================================\n\nfun refundDeposit(fromUser: address) {\n    // CARRY_ALL_REMAINING_MESSAGE_VALUE forwards the inbound value minus\n    // action fees. Paying fees from the pool's own balance would let a\n    // spammer drain a freshly-deployed pool by triggering failing deposits.\n    val refundMsg = createMessage({\n        bounce: false,\n        dest: fromUser,\n        value: 0,\n    });\n    refundMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nfun handleDeposit(_sender: address, valueCoins: coins, msg: TonDepositPayload) {\n    var storage = lazy TonPoolStorage.load();\n    val identity = storage.identity.load();\n    var merkle = storage.merkle.load();\n\n    // Deposit must attach denomination + MIN_DEPOSIT_VALUE. Any excess is\n    // refunded to msg.fromUser at the end of the success path.\n    val requiredValue: coins = identity.denomination + MIN_DEPOSIT_VALUE;\n    if (valueCoins < requiredValue) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    if (merkle.nextIndex >= MERKLE_TREE_CAPACITY) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    if (!isWellFormedZkProofCell(msg.insertProof)) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    val commitmentUpdate = merkle.prepareSparseSetUpdate(\n        SPARSE_SET_COMMITMENT_DOMAIN,\n        msg.commitment,\n        msg.commitmentSetProof,\n    );\n    if (commitmentUpdate.status != SparseSetUpdateStatus.Ok) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    val proof = msg.insertProof.load();\n    val ok = verifyInsertProof(\n        merkle.currentRoot,\n        msg.newRoot,\n        msg.commitment,\n        merkle.nextIndex,\n        proof.proofA.load().raw,\n        proof.proofB.load().raw,\n        proof.proofC.load().raw,\n    );\n    if (!ok) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    val leafIndex = merkle.insertCommitmentBounded(msg.newRoot, commitmentUpdate);\n    val depositExcess: coins = valueCoins - requiredValue;\n    val newRelayerReserve: coins = storage.relayerReserve + RELAYER_REIMBURSEMENT;\n    val newPendingWithdrawTon: coins = storage.pendingWithdrawTon + identity.denomination;\n    val newRentRunway = merkle.poolRentRunway();\n    if (\n        contract.getOriginalBalance() - depositExcess <\n        newRentRunway + newRelayerReserve + newPendingWithdrawTon + POOL_DEPOSIT_FEE_MARGIN\n    ) {\n        return refundDeposit(msg.fromUser);\n    }\n\n    storage.merkle = merkle.toCell();\n    storage.relayerReserve = newRelayerReserve;\n    storage.pendingWithdrawTon = newPendingWithdrawTon;\n    storage.save();\n\n    val depositEvent = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic: 0x00de9052 },\n        body: TonDepositEvent {\n            leafIndex,\n            commitment: msg.commitment,\n            newRoot: msg.newRoot,\n            fromUser: msg.fromUser,\n            sparseUpdate: (SparseSetEventUpdate {\n                bucketId: commitmentUpdate.bucketId as uint8,\n                newRoot: commitmentUpdate.newRoot,\n            }).toCell(),\n        },\n    });\n    depositEvent.send(SEND_MODE_REGULAR);\n\n    // Refund the user the TON attached beyond requiredValue. IGNORE_ERRORS\n    // so dust below the forwarding fee falls back to the pool's rent\n    // buffer instead of reverting the whole transaction.\n    if (depositExcess > 0) {\n        val refundExcess = createMessage({\n            bounce: false,\n            dest: msg.fromUser,\n            value: depositExcess,\n        });\n        refundExcess.send(SEND_MODE_REGULAR | SEND_MODE_IGNORE_ERRORS);\n    }\n}\n\n// ============================================================================\n// WITHDRAW\n// ============================================================================\n\nfun handleWithdraw(sender: address, valueCoins: coins, msg: TonWithdraw) {\n    assert (valueCoins >= MIN_WITHDRAW_GAS) throw Errors.InsufficientGas;\n\n    var storage = lazy TonPoolStorage.load();\n    val identity = storage.identity.load();\n    var merkle = storage.merkle.load();\n\n    // Derive the field the proof is bound to from msg.recipient. Reject\n    // malformed shapes (non-basechain, hash=0) so we never burn a nullifier\n    // without a payable destination.\n    val (workchain, recipientHash) = msg.recipient.getWorkchainAndHash();\n    assert (workchain == 0) throw Errors.InvalidRecipient;\n    assert (recipientHash != 0) throw Errors.InvalidRecipient;\n    val recipientField: uint256 = recipientHash & ADDRESS_FIELD_MASK;\n\n    assert (merkle.isKnownRoot(msg.root)) throw Errors.UnknownRoot;\n    val nullifierUpdate = merkle.prepareSparseSetUpdate(\n        SPARSE_SET_NULLIFIER_DOMAIN,\n        msg.nullifierHash,\n        msg.nullifierSetProof,\n    );\n    if (nullifierUpdate.status == SparseSetUpdateStatus.StaleRoot) {\n        throw Errors.StaleSparseSetRoot;\n    }\n    if (nullifierUpdate.status == SparseSetUpdateStatus.NonEmptyLeafOrInvalidWitness) {\n        throw Errors.NullifierAlreadySpent;\n    }\n    assert (nullifierUpdate.status == SparseSetUpdateStatus.Ok) throw Errors.InvalidSparseSetProof;\n\n    val proof = msg.proof.load();\n    val ok = verifyWithdrawProof(\n        msg.root,\n        msg.nullifierHash,\n        recipientField,\n        proof.proofA.load().raw,\n        proof.proofB.load().raw,\n        proof.proofC.load().raw,\n    );\n    assert (ok) throw Errors.InvalidWithdrawProof;\n\n    val recipientAmount = identity.denomination;\n\n    // Nullifier-uniqueness guarantees deposits >= withdraws; assert\n    // underflow defensively.\n    assert (storage.relayerReserve >= RELAYER_REIMBURSEMENT) throw Errors.InsufficientReserve;\n    assert (storage.pendingWithdrawTon >= identity.denomination) throw Errors.InsufficientReserve;\n\n    // Before this caller-funded transaction, the pool must already cover its\n    // measured rent runway and every outstanding reward/native payout.\n    val balanceAvailable: coins = contract.getOriginalBalance() - valueCoins;\n    val currentRentRunway = merkle.poolRentRunway();\n    assert (\n        balanceAvailable >= currentRentRunway + storage.relayerReserve + storage.pendingWithdrawTon\n    ) throw Errors.InsufficientBalance;\n\n    storage.relayerReserve = storage.relayerReserve - RELAYER_REIMBURSEMENT;\n    storage.pendingWithdrawTon = storage.pendingWithdrawTon - identity.denomination;\n    merkle.markNullifierSpentBounded(nullifierUpdate);\n    val newRentRunway = merkle.poolRentRunway();\n    val rentGrowth: coins = newRentRunway - currentRentRunway;\n    storage.merkle = merkle.toCell();\n    storage.save();\n\n    // bounce: false activates fresh wallets on first delivery, important\n    // for anonymity since the recipient is often a fresh address.\n    val recipientPay = createMessage({\n        bounce: false,\n        dest: msg.recipient,\n        value: recipientAmount,\n    });\n    recipientPay.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n\n    val withdrawEvent = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic: 0x00717d3b },\n        body: TonWithdrawEvent {\n            nullifierHash: msg.nullifierHash,\n            recipient: msg.recipient,\n            payout: recipientAmount,\n            sparseUpdate: (SparseSetEventUpdate {\n                bucketId: nullifierUpdate.bucketId as uint8,\n                newRoot: nullifierUpdate.newRoot,\n            }).toCell(),\n        },\n    });\n    withdrawEvent.send(SEND_MODE_REGULAR);\n\n    // Pay the broadcaster their released earmark plus the unused part of the\n    // gas they attached. The reserve pins the pool to (balance before this\n    // message minus the released earmark minus the recipient payout), so the\n    // accumulated buffer is preserved: every later withdraw still finds its\n    // own earmark + denomination intact and no broadcaster can sweep the pool.\n    reserveToncoinsOnBalance(\n        contract.getOriginalBalance() - valueCoins - RELAYER_REIMBURSEMENT - recipientAmount +\n        rentGrowth,\n        RESERVE_MODE_AT_MOST,\n    );\n    val senderPay = createMessage({\n        bounce: false,\n        dest: sender,\n        value: 0,\n    });\n    // SAFETY: reserveToncoinsOnBalance pins the pool buffer, every remaining\n    // earmark, and every pending native payout before the surplus is carried.\n    senderPay.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\n// ============================================================================\n// GETTERS\n// ============================================================================\n\nget fun factory(): address {\n    val storage = lazy TonPoolStorage.load();\n    return storage.identity.load().factory;\n}\n\nget fun denomination(): coins {\n    val storage = lazy TonPoolStorage.load();\n    return storage.identity.load().denomination;\n}\n\nget fun currentRoot(): uint256 {\n    val storage = lazy TonPoolStorage.load();\n    return storage.merkle.load().currentRoot;\n}\n\nget fun nextIndex(): uint32 {\n    val storage = lazy TonPoolStorage.load();\n    return storage.merkle.load().nextIndex;\n}\n\nget fun sparseRoot(domain: uint32, bucketId: uint8): uint256 {\n    val storage = lazy TonPoolStorage.load();\n    return storage.merkle.load().sparseSetRoot(domain, bucketId);\n}\n\nget fun rentRunway(): coins {\n    return TonPoolStorage.load().merkle.load().poolRentRunway();\n}\n\nget fun relayerReserve(): coins {\n    val storage = lazy TonPoolStorage.load();\n    return storage.relayerReserve;\n}\n\nget fun pendingWithdrawTon(): coins {\n    val storage = lazy TonPoolStorage.load();\n    return storage.pendingWithdrawTon;\n}\n\nget fun withdrawalCount(): uint32 {\n    val storage = lazy TonPoolStorage.load();\n    val identity = storage.identity.load();\n    val deposits = storage.merkle.load().nextIndex;\n    return calculateTonPoolWithdrawalCount(\n        identity.denomination,\n        deposits,\n        storage.pendingWithdrawTon,\n    );\n}\n\nget fun treeDepth(): int {\n    return MERKLE_TREE_DEPTH;\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/constants.tolk",
+      "contents": "// Lower 248 bits of an address hash, used as the field-element binding for\n// the recipient in the withdraw circuit. 248 bits fit safely inside the\n// BLS12-381 Fr field (255 bits) and match the frontend's encoding.\nconst ADDRESS_FIELD_MASK: uint256 = (1 << 248) - 1\n\n// BLS12-381 scalar field order `r`. Any uint256 public input passed to the\n// verifier MUST be < r: otherwise `x` and `x + r` reduce to the same scalar\n// inside Groth16 but to different map keys here, opening a double-spend on\n// `nullifierHash` and a duplicate-commitment slip on the deposit side.\nconst BLS12_381_R: uint256 = 0x73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001\n\n// Merkle tree: depth 20, 1_048_576 leaves per pool.\nconst MERKLE_TREE_DEPTH: int = 20\nconst MERKLE_TREE_CAPACITY: int = 1 << 20\n\n// Empty-tree root for depth 20 under Poseidon BLS12-381. MUST match what the\n// circuit and client compute; otherwise the first deposit's insertion proof\n// does not verify against the on-chain root.\nconst EMPTY_TREE_ROOT: uint256 = 0x276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3\n\n// Historical roots retained so withdrawals stay valid across the window of\n// concurrent deposits.\nconst ROOT_HISTORY_SIZE: int = 100\n\n// Minimum incoming value required to process a withdraw. Covers the hard\n// outflow (jetton transfer + compute + event forwarding) with ~0.03 TON\n// margin. The handler reserves POOL_TON_RESERVE + earmarks and sends the\n// rest back to the broadcaster.\nconst MIN_WITHDRAW_GAS: coins = 100000000 // 0.10 TON\n\n// Factory base runway: more than twice the measured ten-year storage cost of\n// the empty v2 Factory StateInit (0.362488844 TON at the release config).\nconst POOL_TON_RESERVE: coins = 50000000 // legacy compatibility; v2 uses poolRentRunway()\nconst FACTORY_TON_RESERVE: coins = 370000000 // 0.37 TON\n\n// Each deposit earmarks this amount into the pool's relayerReserve; the\n// matching withdraw releases it to the tx sender. The relayer is not bound\n// in the proof, so anyone broadcasting a published proof earns it.\nconst RELAYER_REIMBURSEMENT: coins = 300000000 // 0.30 TON\n\n// A Jetton create funds the TEP-89 query before the authenticated master\n// response activates the Pool. Native TON pools do not need that handshake.\nconst MIN_CREATE_JETTON_POOL_FEE: coins = 450000000 // 0.45 TON\nconst MIN_CREATE_TON_POOL_FEE: coins = 450000000 // 0.45 TON\n\n// Kept from the current create message only. This funds the 0.02 TON registry\n// allocation plus Factory compute/action fees; all other current-message value\n// is forwarded explicitly, without sweeping prior donations.\nconst FACTORY_CREATE_RETAINED_VALUE: coins = 40000000 // 0.04 TON\n\n// Retained by the factory per CreatePool to fund storage rent for the pool's\n// index entries (forward, reverse, create-sender). Caps the slow-burn\n// registry-bloat griefing surface: a spammer at 0.20 TON / pool funds their\n// own rent.\nconst REGISTRY_RENT_PER_POOL: coins = 20000000 // 0.02 TON\n\n// Minimum TON a deposit must attach beyond the denomination. Splits as\n// RELAYER_REIMBURSEMENT (0.30) + worst integrated sparse handler/event gas\n// + progressive rent for a new history slot and commitment bucket. Any excess\n// is refunded to msg.fromUser.\nconst MIN_DEPOSIT_VALUE: coins = 370000000 // 0.37 TON\n\n// Shared opcodes used outside their `struct (0x...)` definitions.\nconst OP_JETTON_TRANSFER: int = 0x0f8a7ea5\nconst OP_DEPOSIT_PAYLOAD: int = 0xd6e05112\n\n// Whitelisted TON pool denominations. Bounded set so anonymity sets\n// concentrate at a few standard sizes.\nconst TON_POOL_DENOM_10: coins = 10000000000 // 10 TON\nconst TON_POOL_DENOM_100: coins = 100000000000 // 100 TON\nconst TON_POOL_DENOM_1K: coins = 1000000000000 // 1 000 TON\nconst TON_POOL_DENOM_10K: coins = 10000000000000 // 10 000 TON\n\nfun isWhitelistedTonDenom(d: coins): bool {\n    return d == TON_POOL_DENOM_10 || d == TON_POOL_DENOM_100 || d == TON_POOL_DENOM_1K ||\n    d == TON_POOL_DENOM_10K;\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/deployment-types.tolk",
+      "contents": "// Shared Factory <-> Pool deployment handshake. This module has no storage\n// dependencies, so Pool, TonPool and Factory can all import it without cycles.\n\nconst OP_CONFIRM_POOL_DEPLOYMENT: int = 0x46504300\nconst OP_POOL_DEPLOY_CONFIRMED: int = 0x46504301\n\n// Permissionless, retriggerable activation command. The receiving pool funds\n// its confirmation callback strictly from the value attached to this message.\nstruct (0x46504300) ConfirmPoolDeployment {\n    queryId: uint64\n}\n\n// The identity fields let Factory authenticate the sender against a permanent\n// forward registry after the transient reverse/creator entries are cleaned.\nstruct (0x46504301) PoolDeployConfirmed {\n    queryId: uint64\n    jettonMaster: address? // null identifies a native TON pool\n    denomination: coins\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/errors.tolk",
+      "contents": "// Numeric codes are stable across versions: external indexers and the SDK\n// key off these numbers. Gaps in the sequence are intentional. New errors\n// take the next free slot in their subsystem.\nenum Errors {\n    // Generic\n    InvalidMessage = 0xFFFF\n\n    // Pool: deploy / init\n    JettonWalletAlreadySet = 103\n    JettonWalletNotSet = 104\n    NotJettonMaster = 105\n\n    // Pool: deposit\n    InvalidAmount = 111\n    CommitmentAlreadyExists = 113\n    TreeFull = 114\n    InvalidInsertProof = 115\n    InsufficientDepositValue = 116\n    InvalidDepositPayload = 117\n\n    // Pool: withdraw\n    InsufficientGas = 120\n    UnknownRoot = 121\n    NullifierAlreadySpent = 122\n    InvalidWithdrawProof = 124\n    InsufficientReserve = 127\n    InsufficientBalance = 128\n    InvalidRecipient = 130\n    StaleSparseSetRoot = 133\n    InvalidSparseSetProof = 134\n    WithdrawalCapacityReached = 135\n\n    // Factory\n    PoolAlreadyExists = 200\n    InvalidDenomination = 202\n    InsufficientCreatePoolFee = 203\n    FactoryCapacityReached = 204\n    TooManyInFlightCreates = 205\n    InvalidPoolConfirmation = 206\n    FactoryInvariantViolation = 207\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/pool-types.tolk",
+      "contents": "import \"@stdlib/exotic-cells\"\nimport \"constants\"\nimport \"deployment-types\"\nimport \"sparse-set\"\n\n// Acton 1.0.0 wrappers import only this direct ABI module. Local aliases keep\n// generated wrappers self-contained while preserving the referenced layouts.\ntype PoolSparseSetUpdateProof = SparseSetUpdateProof\n\ntype PoolConfirmPoolDeployment = ConfirmPoolDeployment\n\n// Jetton withdrawals must self-fund the direct TEP-74 payout. The shared\n// MIN_WITHDRAW_GAS remains the native-TON floor; this higher floor is verified\n// against integrated sparse + Groth16 traces.\nconst MIN_JETTON_WITHDRAW_GAS: coins = 250000000 // 0.25 TON\nconst JETTON_PAYOUT_VALUE: coins = 150000000 // 0.15 TON\n\n// Ten-year basechain storage runway at the Acton configuration used by the\n// release gates, with a 2x margin. Growth is charged progressively because the\n// 512 sparse roots can materialize long before the note tree reaches capacity.\nconst POOL_BASE_RENT_RUNWAY: coins = 270000000 // empty Pool StateInit: >2x 0.132522803\nconst POOL_ROOT_HISTORY_RENT_PER_SLOT: coins = 2600000\nconst POOL_SPARSE_BUCKET_RENT: coins = 2600000\nconst POOL_DEPOSIT_FEE_MARGIN: coins = 50000000 // dense integrated path + event margin\n\n// ============================================================================\n// STORAGE\n// ============================================================================\n//\n// Field order is TL-B compatible and address-determining. Changing it bumps\n// the code hash and so the pool address.\n\n// Immutable identity. Pool address depends on (poolCode, this struct).\nstruct PoolIdentity {\n    jettonMaster: address\n    factory: address\n    denomination: coins\n}\n\n// jettonWallet starts null and is bound by the authenticated TEP-89 response.\n// Only that wallet may forward jetton-transfer-notifications.\nstruct Storage {\n    identity: Cell<PoolIdentity>\n    jettonWallet: address?\n    relayerReserve: coins\n    merkle: Cell<MerkleState>\n    withdrawalCount: uint32\n}\n\nstruct SparseSetRoots {\n    commitmentBucketCount: uint16 = 0\n    nullifierBucketCount: uint16 = 0\n    commitmentSeenRoots: map<uint8, uint256>\n    nullifierSpentRoots: map<uint8, uint256>\n}\n\nfun createEmptySparseSetRoots(): Cell<SparseSetRoots> {\n    return (SparseSetRoots {\n        commitmentBucketCount: 0,\n        nullifierBucketCount: 0,\n        commitmentSeenRoots: [],\n        nullifierSpentRoots: [],\n    }).toCell();\n}\n\nstruct SparseSetEventUpdate {\n    bucketId: uint8\n    newRoot: uint256\n}\n\nstruct MerkleState {\n    nextIndex: uint32\n    currentRoot: uint256\n    rootHistory: map<uint32, uint256> = [] // circular buffer; index = leafIndex % ROOT_HISTORY_SIZE\n    sparseSets: Cell<SparseSetRoots>\n}\n\nfun MerkleState.sparseSetRoot(\n    self,\n    domain: uint32,\n    bucketId: uint8,\n): uint256 {\n    val roots = self.sparseSets.load();\n    val entry = domain == SPARSE_SET_COMMITMENT_DOMAIN\n        ? roots.commitmentSeenRoots.get(bucketId)\n        : roots.nullifierSpentRoots.get(bucketId);\n    return entry.isFound ? entry.loadValue() : 0;\n}\n\nfun MerkleState.prepareSparseSetUpdate(\n    self,\n    domain: uint32,\n    key: uint256,\n    proof: cell,\n): SparseSetUpdateResult {\n    val bucketId = sparseSetBucketId(key) as uint8;\n    var storedRoot: uint256 = 0;\n    var bucketWasPresent = false;\n    val roots = self.sparseSets.load();\n    val entry = domain == SPARSE_SET_COMMITMENT_DOMAIN\n        ? roots.commitmentSeenRoots.get(bucketId)\n        : roots.nullifierSpentRoots.get(bucketId);\n    if (entry.isFound) {\n        storedRoot = entry.loadValue();\n        bucketWasPresent = true;\n    }\n    var update = sparseSetApplyUpdate(domain, key, storedRoot, proof);\n    update.bucketWasPresent = bucketWasPresent;\n    return update;\n}\n\nfun MerkleState.commitSparseSetUpdate(\n    mutate self,\n    domain: uint32,\n    update: SparseSetUpdateResult,\n) {\n    assert (update.status == SparseSetUpdateStatus.Ok) throw 0xFFFE;\n    val bucketId = update.bucketId as uint8;\n    var roots = self.sparseSets.load();\n    if (domain == SPARSE_SET_COMMITMENT_DOMAIN) {\n        if (!update.bucketWasPresent) {\n            assert (roots.commitmentBucketCount < 256) throw 0xFFFE;\n            roots.commitmentBucketCount += 1;\n        }\n        roots.commitmentSeenRoots.set(bucketId, update.newRoot);\n    } else {\n        assert (domain == SPARSE_SET_NULLIFIER_DOMAIN) throw 0xFFFE;\n        if (!update.bucketWasPresent) {\n            assert (roots.nullifierBucketCount < 256) throw 0xFFFE;\n            roots.nullifierBucketCount += 1;\n        }\n        roots.nullifierSpentRoots.set(bucketId, update.newRoot);\n    }\n    self.sparseSets = roots.toCell();\n}\n\n@inline\nfun MerkleState.poolRentRunway(self): coins {\n    val roots = self.sparseSets.load();\n    val historySlots = min(self.nextIndex, ROOT_HISTORY_SIZE as uint32);\n    val bucketCount: uint32 = (roots.commitmentBucketCount as uint32) +\n    (roots.nullifierBucketCount as uint32);\n    return POOL_BASE_RENT_RUNWAY + POOL_ROOT_HISTORY_RENT_PER_SLOT * historySlots +\n    POOL_SPARSE_BUCKET_RENT * bucketCount;\n}\n\n// ------ MerkleState mutate methods (state transitions live near the data) ------\n\nfun MerkleState.isKnownRoot(self, root: uint256): bool {\n    if (root == self.currentRoot) {\n        return true;\n    }\n    // Iterate only the present slots (bounded by ROOT_HISTORY_SIZE = 100).\n    var entry = self.rootHistory.findFirst();\n    while (entry.isFound) {\n        if (entry.loadValue() == root) {\n            return true;\n        }\n        entry = self.rootHistory.iterateNext(entry);\n    }\n    return false;\n}\n\nfun MerkleState.insertCommitmentBounded(\n    mutate self,\n    newRoot: uint256,\n    commitmentUpdate: SparseSetUpdateResult,\n): uint32 {\n    self.commitSparseSetUpdate(SPARSE_SET_COMMITMENT_DOMAIN, commitmentUpdate);\n    val leafIndex = self.nextIndex;\n    self.nextIndex = leafIndex + 1;\n\n    val slot: uint32 = leafIndex % ROOT_HISTORY_SIZE;\n    self.rootHistory.set(slot, newRoot);\n    self.currentRoot = newRoot;\n    return leafIndex;\n}\n\nfun MerkleState.markNullifierSpentBounded(\n    mutate self,\n    nullifierUpdate: SparseSetUpdateResult,\n) {\n    self.commitSparseSetUpdate(SPARSE_SET_NULLIFIER_DOMAIN, nullifierUpdate);\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ============================================================================\n// MESSAGES\n// ============================================================================\n\n// TEP-74 transfer notification. forward_payload (Either Cell ^Cell) carries\n// the user's commitment + insertion proof as a DepositPayload.\nstruct (0x7362d09c) JettonTransferNotification {\n    queryId: uint64\n    amount: coins\n    fromUser: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Forward payload inside the TEP-74 notification. Generated client-side\n// alongside the insertion proof.\nstruct (0xd6e05112) DepositPayload {\n    queryId: uint64\n    commitment: uint256\n    newRoot: uint256\n    insertProof: Cell<ZkProof>\n    commitmentSetProof: Cell<PoolSparseSetUpdateProof>\n}\n\n// Withdraw: the recipient field binding is derived inside handleWithdraw\n// from msg.recipient, so the message cannot disagree with the proof.\nstruct (0x4b6f0b51) Withdraw {\n    clientQueryId: uint64\n    root: uint256\n    nullifierHash: uint256\n    recipient: address\n    proof: Cell<ZkProof>\n    nullifierSetProof: Cell<PoolSparseSetUpdateProof>\n}\n\n// Permissionless wallet-binding retrigger. It repeats the TEP-89 query while\n// no wallet is bound, then repeats the Factory confirmation once binding is complete.\nstruct (0xa0c0c0c1) InitWalletBinding {\n    queryId: uint64\n}\n\n// TEP-89 outgoing query (pool -> jettonMaster). includeAddress=false: we\n// already know the owner.\nstruct (0x2c76b973) ProvideWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeAddress: bool\n}\n\n// TEP-89 incoming response (jettonMaster -> pool). The trailing\n// `owner_address:(Maybe ^MsgAddress)` is slurped by `rest` for compat with\n// masters that always echo it.\nstruct (0xd1735400) TakeWalletAddress {\n    queryId: uint64\n    walletAddress: address\n    rest: RemainingBitsAndRefs\n}\n\n// Pool transitions to ready: jettonWallet locked.\nstruct (0x00def002) PoolReadyEvent {\n    jettonWallet: address\n}\n\nstruct (0x00de9052) DepositEvent {\n    leafIndex: uint32\n    commitment: uint256\n    newRoot: uint256\n    fromUser: address\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\nstruct (0x00717d3c) WithdrawalAcceptedEvent {\n    clientQueryId: uint64\n    nullifierHash: uint256\n    recipient: address\n    payout: coins\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\n// Outgoing TEP-74 jetton transfer.\nstruct (0x0f8a7ea5) JettonTransfer {\n    queryId: uint64\n    amount: coins\n    destination: address\n    responseDestination: address\n    customPayload: cell? = null\n    forwardAmount: coins = 0\n    forwardPayload: cell? = null\n}\n\n// Groth16 BLS12-381 proof. G1 = 48 bytes, G2 = 96 bytes, compressed BLST.\nstruct ZkProof {\n    proofA: Cell<G1Point>\n    proofB: Cell<G2Point>\n    proofC: Cell<G1Point>\n}\n\nfun isWellFormedZkProofCell(proofCell: cell): bool {\n    val (initialProofSlice, proofIsExotic) = proofCell.beginParseSpecial();\n    var proofSlice = initialProofSlice;\n    if (\n        proofIsExotic || proofSlice.remainingBitsCount() != 0 ||\n        proofSlice.remainingRefsCount() != 3\n    ) {\n        return false;\n    }\n\n    val proofA = proofSlice.loadRef();\n    val proofB = proofSlice.loadRef();\n    val proofC = proofSlice.loadRef();\n    return isOrdinaryProofPoint(proofA, 384) && isOrdinaryProofPoint(proofB, 768) &&\n    isOrdinaryProofPoint(proofC, 384);\n}\n\nfun isOrdinaryProofPoint(point: cell, expectedBits: int): bool {\n    val (pointSlice, pointIsExotic) = point.beginParseSpecial();\n    return !pointIsExotic && pointSlice.remainingBitsCount() == expectedBits &&\n    pointSlice.remainingRefsCount() == 0;\n}\n\nstruct G1Point {\n    raw: RemainingBitsAndRefs\n}\n\nstruct G2Point {\n    raw: RemainingBitsAndRefs\n}\n\n// ============================================================================\n// DISPATCH UNION\n// ============================================================================\n\ntype AllowedMessage =\n    | PoolConfirmPoolDeployment\n    | InitWalletBinding\n    | TakeWalletAddress\n    | JettonTransferNotification\n    | Withdraw\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/sparse-set.tolk",
+      "contents": "import \"@stdlib/exotic-cells\"\nimport \"constants\"\n\n// Transparent sparse sets used for duplicate commitments and spent nullifiers.\n// The value zero is the empty-subtree sentinel; non-empty hashes are domain\n// separated so the two sets cannot share witnesses.\nconst SPARSE_SET_COMMITMENT_DOMAIN: uint32 = 0x5a4b4301\nconst SPARSE_SET_NULLIFIER_DOMAIN: uint32 = 0x5a4b4e01\nconst SPARSE_SET_LEAF_TAG: uint8 = 1\nconst SPARSE_SET_NODE_TAG: uint8 = 2\nconst SPARSE_SET_BUCKET_BITS: int = 8\nconst SPARSE_SET_BUCKET_MASK: int = (1 << SPARSE_SET_BUCKET_BITS) - 1\nconst SPARSE_SET_DEPTH: int = 247\nconst SPARSE_SET_PROOF_BITS: int = 256 + SPARSE_SET_DEPTH\nconst SPARSE_SET_SIBLINGS_PER_CELL: int = 3\n\n/// Canonical proof root. `siblings` is a packed chain ordered by increasing\n/// tree level; its exact shape is validated by `sparseSetApplyUpdate`.\nstruct SparseSetUpdateProof {\n    expectedRoot: uint256\n    siblingBitmap: uint247\n    siblings: cell\n}\n\nenum SparseSetUpdateStatus {\n    Ok = 0\n    InvalidDomain = 1\n    InvalidKey = 2\n    MalformedProof = 3\n    StaleRoot = 4\n    NonEmptyLeafOrInvalidWitness = 5\n}\n\n/// Runtime-only result. Pool handlers translate the status into their stable\n/// deposit/withdraw error codes and persist `newRoot` only when status is Ok.\nstruct SparseSetUpdateResult {\n    status: SparseSetUpdateStatus\n    bucketId: uint8\n    newRoot: uint256\n    bucketWasPresent: bool = false\n}\n\n@pure\n@inline\nfun sparseSetIsKnownDomain(domain: uint32): bool {\n    return domain == SPARSE_SET_COMMITMENT_DOMAIN || domain == SPARSE_SET_NULLIFIER_DOMAIN;\n}\n\n@pure\n@inline\nfun sparseSetBucketId(key: uint256): uint8 {\n    return (key & SPARSE_SET_BUCKET_MASK) as uint8;\n}\n\n@pure\n@inline\nfun sparseSetPath(key: uint256): int {\n    return key >> SPARSE_SET_BUCKET_BITS;\n}\n\n@pure\n@inline\nfun sparseSetLeafHash(domain: uint32, key: uint256): uint256 {\n    return beginCell()\n        .storeUint((domain << 8) | SPARSE_SET_LEAF_TAG, 40)\n        .storeUint(key, 256)\n        .hash();\n}\n\n@pure\n@inline\nfun sparseSetNonEmptyNodeHashWithHeader(\n    header: uint48,\n    left: uint256,\n    right: uint256,\n): uint256 {\n    return beginCell().storeUint(header, 48).storeUint(left, 256).storeUint(right, 256).hash();\n}\n\n@pure\n@inline\nfun sparseSetNonEmptyNodeHash(\n    domain: uint32,\n    level: uint8,\n    left: uint256,\n    right: uint256,\n): uint256 {\n    val header = ((domain << 16) | (SPARSE_SET_NODE_TAG << 8) | level) as uint48;\n    return sparseSetNonEmptyNodeHashWithHeader(header, left, right);\n}\n\n@pure\n@inline\nfun sparseSetIsCanonicalSiblingChunk(chunk: slice, isExotic: bool): bool {\n    if (isExotic) {\n        return false;\n    }\n    val bits = chunk.remainingBitsCount();\n    val refs = chunk.remainingRefsCount();\n    if (refs == 1) {\n        return bits == SPARSE_SET_SIBLINGS_PER_CELL * 256;\n    }\n    return refs == 0 && bits <= SPARSE_SET_SIBLINGS_PER_CELL * 256 && bits % 256 == 0;\n}\n\n/// Verify an empty-leaf witness against `storedRoot` and return the only root\n/// that can result from inserting `key`. The caller never supplies `newRoot`.\n@pure\nfun sparseSetApplyUpdate(\n    domain: uint32,\n    key: uint256,\n    storedRoot: uint256,\n    proofCell: cell,\n): SparseSetUpdateResult {\n    val bucketId = sparseSetBucketId(key);\n    if (!sparseSetIsKnownDomain(domain)) {\n        return {\n            status: SparseSetUpdateStatus.InvalidDomain,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n    if (key >= BLS12_381_R) {\n        return {\n            status: SparseSetUpdateStatus.InvalidKey,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    // check-disable-next-line mutable-variable-can-be-immutable\n    var (proof, proofIsExotic) = proofCell.beginParseSpecial();\n    if (\n        proofIsExotic || proof.remainingBitsCount() != SPARSE_SET_PROOF_BITS ||\n        proof.remainingRefsCount() != 1\n    ) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    val expectedRoot = proof.loadUint(256);\n    val siblingBitmap = proof.loadUint(SPARSE_SET_DEPTH);\n    val siblingChain = proof.loadRef();\n    if (expectedRoot != storedRoot) {\n        return {\n            status: SparseSetUpdateStatus.StaleRoot,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    // The chain is validated while it is consumed. Every shape check happens\n    // before a load, so malformed proofs return a status instead of throwing.\n    // check-disable-next-line mutable-variable-can-be-immutable\n    var (chain, chainIsExotic) = siblingChain.beginParseSpecial();\n    if (!sparseSetIsCanonicalSiblingChunk(chain, chainIsExotic)) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    var oldRoot: uint256 = 0;\n    var newRoot = sparseSetLeafHash(domain, key);\n    var path = sparseSetPath(key);\n    var bitmap = siblingBitmap;\n    var level: uint8 = 0;\n    val nodeDomainBuilder = beginCell().storeUint(\n        (domain << 8) | SPARSE_SET_NODE_TAG,\n        40,\n    );\n\n    repeat (SPARSE_SET_DEPTH) {\n        var sibling: uint256 = 0;\n        if ((bitmap & 1) != 0) {\n            if (chain.remainingBitsCount() == 0) {\n                if (chain.remainingRefsCount() != 1) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n                val nextChunk = chain.loadRef();\n                // check-disable-next-line mutable-variable-can-be-immutable\n                (chain, chainIsExotic) = nextChunk.beginParseSpecial();\n                if (!sparseSetIsCanonicalSiblingChunk(chain, chainIsExotic)) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n                if (chain.remainingBitsCount() == 0) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n            }\n            sibling = chain.loadUint(256);\n            if (sibling == 0) {\n                return {\n                    status: SparseSetUpdateStatus.MalformedProof,\n                    bucketId,\n                    newRoot: 0,\n                };\n            }\n        }\n\n        var prefixBuilder = nodeDomainBuilder;\n        prefixBuilder.storeUint(level, 8);\n        if ((path & 1) == 0) {\n            if (oldRoot != 0 || sibling != 0) {\n                var oldBuilder = prefixBuilder;\n                oldRoot = oldBuilder.storeUint(oldRoot, 256).storeUint(sibling, 256).hash();\n            }\n            var newBuilder = prefixBuilder;\n            newRoot = newBuilder.storeUint(newRoot, 256).storeUint(sibling, 256).hash();\n        } else {\n            var leftPrefixBuilder = prefixBuilder;\n            leftPrefixBuilder.storeUint(sibling, 256);\n            if (oldRoot != 0 || sibling != 0) {\n                var oldBuilder = leftPrefixBuilder;\n                oldRoot = oldBuilder.storeUint(oldRoot, 256).hash();\n            }\n            var newBuilder = leftPrefixBuilder;\n            newRoot = newBuilder.storeUint(newRoot, 256).hash();\n        }\n\n        path >>= 1;\n        bitmap >>= 1;\n        level += 1;\n    }\n\n    if (!chain.isEmpty()) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    if (oldRoot != storedRoot) {\n        return {\n            status: SparseSetUpdateStatus.NonEmptyLeafOrInvalidWitness,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    return {\n        status: SparseSetUpdateStatus.Ok,\n        bucketId,\n        newRoot,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/ton-pool-types.tolk",
+      "contents": "import \"errors\"\nimport \"pool-types\" // for MerkleState (shared with jetton pool)\nimport \"sparse-set\"\n\n// Acton 1.0.0 wrappers import only this direct ABI module. Local aliases keep\n// the generated wrapper self-contained while preserving the exact cell layout.\ntype TonPoolZkProof = ZkProof\n\ntype TonPoolSparseSetUpdateProof = SparseSetUpdateProof\n\n// Local wire-equivalent declaration keeps Acton 1.0.0's generated wrapper\n// independent from transitive imports.\nstruct (0x46504300) TonPoolConfirmPoolDeployment {\n    queryId: uint64\n}\n\n// ============================================================================\n// STORAGE\n// ============================================================================\n//\n// Mirror of the jetton Pool for native TON. Identity drops jettonMaster /\n// jettonWallet; the deposit value is plain TON carried by the message.\n\nstruct TonPoolIdentity {\n    factory: address\n    denomination: coins\n}\n\n// pendingWithdrawTon = denomination * (deposits - withdraws); enforces the\n// pool keeps enough TON to pay every pending recipient.\nstruct TonPoolStorage {\n    identity: Cell<TonPoolIdentity>\n    relayerReserve: coins\n    pendingWithdrawTon: coins\n    merkle: Cell<MerkleState>\n}\n\nfun TonPoolStorage.load(): TonPoolStorage {\n    return TonPoolStorage.fromCell(contract.getData());\n}\n\nfun TonPoolStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun calculateTonPoolWithdrawalCount(\n    denomination: coins,\n    deposits: uint32,\n    pendingWithdrawTon: coins,\n): uint32 {\n    assert (denomination > 0) throw Errors.InvalidDenomination;\n    assert (pendingWithdrawTon % denomination == 0) throw Errors.FactoryInvariantViolation;\n    val pendingCount = pendingWithdrawTon / denomination;\n    assert (pendingCount <= deposits) throw Errors.FactoryInvariantViolation;\n    return deposits - (pendingCount as uint32);\n}\n\n// ============================================================================\n// MESSAGES\n// ============================================================================\n\n// Direct TON deposit. Requires msg.value >= denomination + MIN_DEPOSIT_VALUE;\n// below the floor, the pool refunds the full TON value to fromUser.\nstruct (0xd6e05112) TonDepositPayload {\n    queryId: uint64\n    fromUser: address\n    commitment: uint256\n    newRoot: uint256\n    insertProof: Cell<TonPoolZkProof>\n    commitmentSetProof: Cell<TonPoolSparseSetUpdateProof>\n}\n\n// Same body / circuit as jetton Pool's Withdraw.\nstruct (0x4b6f0b51) TonWithdraw {\n    queryId: uint64\n    root: uint256\n    nullifierHash: uint256\n    recipient: address\n    proof: Cell<TonPoolZkProof>\n    nullifierSetProof: Cell<TonPoolSparseSetUpdateProof>\n}\n\nstruct (0x00de9052) TonDepositEvent {\n    leafIndex: uint32\n    commitment: uint256\n    newRoot: uint256\n    fromUser: address\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\nstruct (0x00717d3b) TonWithdrawEvent {\n    nullifierHash: uint256\n    recipient: address\n    payout: coins\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\n// ============================================================================\n// DISPATCH UNION\n// ============================================================================\n\ntype AllowedTonMessage =\n    | TonPoolConfirmPoolDeployment\n    | TonDepositPayload\n    | TonWithdraw\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-insert.tolk",
+      "contents": "import \"bls-helpers\"\nimport \"bls-scalar\"\nimport \"verifier-insert-vk\" // auto-generated by scripts/vk-to-tolk.js\n\n// Groth16 BLS12-381 verifier for the Merkle insertion circuit.\n//\n// Circuit (insert.circom) public inputs (in this order):\n//   0. oldRoot          : root before insertion\n//   1. newRoot          : root after inserting `commitment` at `leafIndex`\n//   2. commitment       : the leaf being inserted\n//   3. leafIndex        : position in the tree\n//\n// The VK constants live in `verifier-insert-vk.tolk` and are regenerated\n// from `circuits/build/insert_*_vk.json` after each ceremony pass.\n\nfun verifyInsertProof(\n    oldRoot: uint256,\n    newRoot: uint256,\n    commitment: uint256,\n    leafIndex: uint32,\n    proofA: slice,\n    proofB: slice,\n    proofC: slice,\n): bool {\n    // Strict slice-shape gate. MUST run before any BLS opcode that reads\n    // the slice: TVM 2023-07 silently truncates over-length inputs to\n    // 48/96 bytes (G1/G2) and throws cell_underflow on under-length —\n    // both surface as soundness or liveness defects without this guard.\n    // Compressed BLST: G1 = 48 bytes = 384 bits, G2 = 96 bytes = 768 bits,\n    // no refs in either case.\n    if (proofA.remainingBitsCount() != 384 || proofA.remainingRefsCount() != 0) {\n        return false;\n    }\n    if (proofB.remainingBitsCount() != 768 || proofB.remainingRefsCount() != 0) {\n        return false;\n    }\n    if (proofC.remainingBitsCount() != 384 || proofC.remainingRefsCount() != 0) {\n        return false;\n    }\n\n    // Public-input range check: reject inputs >= r so a malleated `x` and\n    // `x + r` cannot collide as different uint256 storage keys while pairing\n    // to the same scalar in Fr. `leafIndex: uint32` is trivially in range\n    // and skipped.\n    if (!blsScalarIsCanonical(oldRoot)) {\n        return false;\n    }\n    if (!blsScalarIsCanonical(newRoot)) {\n        return false;\n    }\n    if (!blsScalarIsCanonical(commitment)) {\n        return false;\n    }\n\n    // Subgroup membership + non-zero check on prover-supplied points.\n    // Without these, small-order torsion points and identity points can be\n    // combined to forge Groth16 proofs (canonical malleability vector;\n    // closed by every production verifier: snarkjs, gnark, ark).\n    if (!blsG1InGroup(proofA) || !blsG2InGroup(proofB) || !blsG1InGroup(proofC)) {\n        return false;\n    }\n    if (blsG1IsZero(proofA) || blsG2IsZero(proofB) || blsG1IsZero(proofC)) {\n        return false;\n    }\n\n    var vkX = vkInsertIc(0);\n    vkX = blsG1Add(vkX, blsG1Mul(vkInsertIc(1), oldRoot));\n    vkX = blsG1Add(vkX, blsG1Mul(vkInsertIc(2), newRoot));\n    vkX = blsG1Add(vkX, blsG1Mul(vkInsertIc(3), commitment));\n    vkX = blsG1Add(vkX, blsG1Mul(vkInsertIc(4), leafIndex));\n\n    val negA = blsG1Neg(proofA);\n    return blsPairingCheck4(\n        negA,\n        proofB,\n        vkInsertAlpha1(),\n        vkInsertBeta2(),\n        vkX,\n        vkInsertGamma2(),\n        proofC,\n        vkInsertDelta2(),\n    );\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-withdraw.tolk",
+      "contents": "import \"bls-helpers\"\nimport \"bls-scalar\"\nimport \"verifier-withdraw-vk\" // auto-generated by scripts/vk-to-tolk.js\n\n// Groth16 BLS12-381 verifier for the withdrawal circuit.\n//\n// Public inputs (in this order):\n//   0. root             : must be a recently-known root of the pool\n//   1. nullifierHash    : Poseidon(nullifier, 0)\n//   2. recipientField   : recipient address as field element\n//                         (lower 248 bits of address hash, derived in the\n//                          handler from msg.recipient; see ADDRESS_FIELD_MASK)\n//\n// The transaction sender automatically receives RELAYER_REIMBURSEMENT; the\n// relayer is NOT committed in the proof, so anyone may broadcast a published\n// proof. The first to land wins; replays bounce on the nullifier check,\n// refunding the loser's attached gas.\n\nfun verifyWithdrawProof(\n    root: uint256,\n    nullifierHash: uint256,\n    recipientField: uint256,\n    proofA: slice,\n    proofB: slice,\n    proofC: slice,\n): bool {\n    // Strict slice-shape gate. MUST run before any BLS opcode that reads\n    // the slice: TVM 2023-07 silently truncates over-length inputs to\n    // 48/96 bytes (G1/G2) and throws cell_underflow on under-length —\n    // both surface as soundness or liveness defects without this guard.\n    // Compressed BLST: G1 = 48 bytes = 384 bits, G2 = 96 bytes = 768 bits,\n    // no refs in either case.\n    if (proofA.remainingBitsCount() != 384 || proofA.remainingRefsCount() != 0) {\n        return false;\n    }\n    if (proofB.remainingBitsCount() != 768 || proofB.remainingRefsCount() != 0) {\n        return false;\n    }\n    if (proofC.remainingBitsCount() != 384 || proofC.remainingRefsCount() != 0) {\n        return false;\n    }\n\n    // Public-input range check: reject inputs >= r so a malleated\n    // `nullifierHash` and `nullifierHash + r` cannot bypass the spent-map\n    // by hashing to different uint256 keys while pairing to the same Fr\n    // scalar (direct double-spend vector). `recipientField` is masked to\n    // 248 bits at the caller and is trivially in range.\n    if (!blsScalarIsCanonical(root)) {\n        return false;\n    }\n    if (!blsScalarIsCanonical(nullifierHash)) {\n        return false;\n    }\n\n    // Subgroup membership + non-zero check on prover-supplied points.\n    // Required for Groth16 soundness against small-order / identity point\n    // forgery attacks.\n    if (!blsG1InGroup(proofA) || !blsG2InGroup(proofB) || !blsG1InGroup(proofC)) {\n        return false;\n    }\n    if (blsG1IsZero(proofA) || blsG2IsZero(proofB) || blsG1IsZero(proofC)) {\n        return false;\n    }\n\n    var vkX = vkWithdrawIc(0);\n    vkX = blsG1Add(vkX, blsG1Mul(vkWithdrawIc(1), root));\n    vkX = blsG1Add(vkX, blsG1Mul(vkWithdrawIc(2), nullifierHash));\n    vkX = blsG1Add(vkX, blsG1Mul(vkWithdrawIc(3), recipientField));\n\n    val negA = blsG1Neg(proofA);\n    return blsPairingCheck4(\n        negA,\n        proofB,\n        vkWithdrawAlpha1(),\n        vkWithdrawBeta2(),\n        vkX,\n        vkWithdrawGamma2(),\n        proofC,\n        vkWithdrawDelta2(),\n    );\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/bls-helpers.tolk",
+      "contents": "// Thin asm wrappers for the BLS12-381 TVM opcodes.\n//\n// All four primitives are native TVM instructions (see `acton doc tvm BLS_*`).\n// We expose them as pure Tolk functions so the verifier code stays readable.\n//\n// BLS12-381 point encodings follow the BLST compressed format:\n//   - G1 points: 48 bytes (384 bits)\n//   - G2 points: 96 bytes (768 bits)\n\n/// # Safety\n/// `x` and `y` must be valid BLS12-381 G1 points in BLST compressed\n/// encoding (48 bytes / 384 bits each). Callers MUST length-check inputs\n/// to exactly 384 bits and validate subgroup membership + non-identity\n/// before calling, as TVM silently truncates over-length inputs and\n/// throws `cell_underflow` on under-length — both are soundness defects\n/// without the caller-side gate.\n@pure\nfun blsG1Add(x: slice, y: slice): slice\n    asm \"BLS_G1_ADD\"\n\n/// # Safety\n/// `x` must be a valid G1 point (see blsG1Add). `scalar` is any 256-bit\n/// integer; the TVM handles modular reduction internally.\n@pure\nfun blsG1Mul(x: slice, scalar: int): slice\n    asm \"BLS_G1_MUL\"\n\n/// # Safety\n/// `x` must be a valid G1 point (see blsG1Add).\n@pure\nfun blsG1Neg(x: slice): slice\n    asm \"BLS_G1_NEG\"\n\n// Subgroup check. TVM's BLS opcodes validate that a point lies on the\n// curve but do NOT verify it belongs to the prime-order subgroup; without\n// this check, a prover can craft pairings using small-order torsion points.\n/// # Safety\n/// Returns true iff `x` is on the curve AND in the prime-order subgroup.\n@pure\nfun blsG1InGroup(x: slice): bool\n    asm \"BLS_G1_INGROUP\"\n\n/// # Safety\n/// Returns true iff `x` is on the curve AND in the prime-order subgroup G2.\n@pure\nfun blsG2InGroup(x: slice): bool\n    asm \"BLS_G2_INGROUP\"\n\n// Identity check. e(0_G1, anything) = 1_GT collapses the pairing, which is\n// a known forgery vector — a zero point is trivially in the subgroup, so\n// INGROUP alone is insufficient.\n/// # Safety\n/// Returns true iff `x` encodes the identity element of G1.\n@pure\nfun blsG1IsZero(x: slice): bool\n    asm \"BLS_G1_ISZERO\"\n\n/// # Safety\n/// Returns true iff `x` encodes the identity element of G2.\n@pure\nfun blsG2IsZero(x: slice): bool\n    asm \"BLS_G2_ISZERO\"\n\n// Multi-pairing check. Returns true iff the product of pairings equals 1\n// in F_p12. For Groth16, n = 4:\n//   e(-A, B) * e(alpha, beta) * e(vk_x, gamma) * e(C, delta) == 1\n/// # Safety\n/// All eight slices must be valid points in alternating G1/G2 groups.\n@pure\nfun blsPairingCheck4(\n    a1: slice,\n    a2: slice,\n    b1: slice,\n    b2: slice,\n    c1: slice,\n    c2: slice,\n    d1: slice,\n    d2: slice,\n): bool\n    asm \"4 PUSHINT BLS_PAIRING\"\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/bls-scalar.tolk",
+      "contents": "import \"constants\"\n\n@pure\n@inline\nfun blsScalarIsCanonical(value: uint256): bool {\n    return value < BLS12_381_R;\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-insert-vk.tolk",
+      "contents": "// Auto-generated by scripts/vk-to-tolk.js\n// Source: vk/insert_vk.json\n// Circuit tag: INSERT\n// DO NOT EDIT: re-run the script after each ceremony pass.\n\n@pure\nfun vkInsertAlpha1(): slice {\n    return beginCell()\n        .storeUint(183011293753374, 48)\n        .storeUint(153766608626527, 48)\n        .storeUint(266145638431761, 48)\n        .storeUint(75466329404921, 48)\n        .storeUint(230334637350991, 48)\n        .storeUint(89164996524245, 48)\n        .storeUint(97502668511874, 48)\n        .storeUint(101038412596841, 48)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkInsertBeta2(): slice {\n    return beginCell()\n        .storeUint(46408002589580840726232933963, 96)\n        .storeUint(47345780740936842582462518758, 96)\n        .storeUint(56525246792141261468662636595, 96)\n        .storeUint(33301243340976382265661917167, 96)\n        .storeUint(6429032730315346955197275799, 96)\n        .storeUint(1992263385287759932813953247, 96)\n        .storeUint(65732417395468142527703105096, 96)\n        .storeUint(30733837601032853270691364217, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkInsertGamma2(): slice {\n    return beginCell()\n        .storeUint(45765300665918301128790692768, 96)\n        .storeUint(42137484379184671317244818970, 96)\n        .storeUint(56280794141317933024253112594, 96)\n        .storeUint(6059577009407902906031811454, 96)\n        .storeUint(709198854518927808499549479, 96)\n        .storeUint(14165060894806320894179293954, 96)\n        .storeUint(55805278558791767872231965478, 96)\n        .storeUint(52000413785700509085167893944, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkInsertDelta2(): slice {\n    return beginCell()\n        .storeUint(49789121803873806817509672708, 96)\n        .storeUint(18726252031417989091448011696, 96)\n        .storeUint(74063063928443088317504713506, 96)\n        .storeUint(19263010647859157794393177, 96)\n        .storeUint(1686241465902126740349150760, 96)\n        .storeUint(15941168503749452830055877516, 96)\n        .storeUint(5211477145183535490501541634, 96)\n        .storeUint(41311053173765659121573254739, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkInsertIc(i: int): slice {\n    // Auto-generated from vk/insert_vk.json\n    if (i == 0) {\n        return beginCell()\n            .storeUint(178265951040853, 48)\n            .storeUint(56473986965074, 48)\n            .storeUint(106075490475640, 48)\n            .storeUint(243422637637155, 48)\n            .storeUint(231625369907622, 48)\n            .storeUint(96827964420860, 48)\n            .storeUint(167399507869996, 48)\n            .storeUint(45547050341048, 48)\n            .endCell()\n            .beginParse();\n    }\n    if (i == 1) {\n        return beginCell()\n            .storeUint(185389162237281, 48)\n            .storeUint(122116059839776, 48)\n            .storeUint(232137781618259, 48)\n            .storeUint(134210078182066, 48)\n            .storeUint(228149050697656, 48)\n            .storeUint(66302227523837, 48)\n            .storeUint(41162342396169, 48)\n            .storeUint(61890234859324, 48)\n            .endCell()\n            .beginParse();\n    }\n    if (i == 2) {\n        return beginCell()\n            .storeUint(156241719877366, 48)\n            .storeUint(10173448797961, 48)\n            .storeUint(7937200836097, 48)\n            .storeUint(150546815926046, 48)\n            .storeUint(115922216644229, 48)\n            .storeUint(63602980098516, 48)\n            .storeUint(74551290570833, 48)\n            .storeUint(10530180447092, 48)\n            .endCell()\n            .beginParse();\n    }\n    if (i == 3) {\n        return beginCell()\n            .storeUint(152919771547989, 48)\n            .storeUint(22232491109813, 48)\n            .storeUint(67855724670550, 48)\n            .storeUint(135373557821077, 48)\n            .storeUint(176057337010634, 48)\n            .storeUint(71360071024054, 48)\n            .storeUint(270501827248194, 48)\n            .storeUint(111478106448347, 48)\n            .endCell()\n            .beginParse();\n    }\n    // Verifier callers use the fixed circuit arity, so the last IC\n    // point is the exhaustive final case.\n    return beginCell()\n        .storeUint(162307271539659, 48)\n        .storeUint(22773943595418, 48)\n        .storeUint(120656835136931, 48)\n        .storeUint(15411885989726, 48)\n        .storeUint(213931665803125, 48)\n        .storeUint(74337667274741, 48)\n        .storeUint(121571803247937, 48)\n        .storeUint(103403396268713, 48)\n        .endCell()\n        .beginParse();\n}\n"
+    },
+    {
+      "filename": "tmp/0096fed5-39ea-4bbb-b0f2-72299ba39724/contracts/verifier-withdraw-vk.tolk",
+      "contents": "// Auto-generated by scripts/vk-to-tolk.js\n// Source: vk/withdraw_vk.json\n// Circuit tag: WITHDRAW\n// DO NOT EDIT: re-run the script after each ceremony pass.\n\n@pure\nfun vkWithdrawAlpha1(): slice {\n    return beginCell()\n        .storeUint(183011293753374, 48)\n        .storeUint(153766608626527, 48)\n        .storeUint(266145638431761, 48)\n        .storeUint(75466329404921, 48)\n        .storeUint(230334637350991, 48)\n        .storeUint(89164996524245, 48)\n        .storeUint(97502668511874, 48)\n        .storeUint(101038412596841, 48)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkWithdrawBeta2(): slice {\n    return beginCell()\n        .storeUint(46408002589580840726232933963, 96)\n        .storeUint(47345780740936842582462518758, 96)\n        .storeUint(56525246792141261468662636595, 96)\n        .storeUint(33301243340976382265661917167, 96)\n        .storeUint(6429032730315346955197275799, 96)\n        .storeUint(1992263385287759932813953247, 96)\n        .storeUint(65732417395468142527703105096, 96)\n        .storeUint(30733837601032853270691364217, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkWithdrawGamma2(): slice {\n    return beginCell()\n        .storeUint(45765300665918301128790692768, 96)\n        .storeUint(42137484379184671317244818970, 96)\n        .storeUint(56280794141317933024253112594, 96)\n        .storeUint(6059577009407902906031811454, 96)\n        .storeUint(709198854518927808499549479, 96)\n        .storeUint(14165060894806320894179293954, 96)\n        .storeUint(55805278558791767872231965478, 96)\n        .storeUint(52000413785700509085167893944, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkWithdrawDelta2(): slice {\n    return beginCell()\n        .storeUint(44489356249464271601400199281, 96)\n        .storeUint(61861321775418624911642910390, 96)\n        .storeUint(1672013796013733172731302826, 96)\n        .storeUint(78670446780353010448274190531, 96)\n        .storeUint(7931669151564060420173882694, 96)\n        .storeUint(41377364631497146911379609395, 96)\n        .storeUint(68693302759231991051715881859, 96)\n        .storeUint(16148887697333271642739641439, 96)\n        .endCell()\n        .beginParse();\n}\n\n@pure\nfun vkWithdrawIc(i: int): slice {\n    // Auto-generated from vk/withdraw_vk.json\n    if (i == 0) {\n        return beginCell()\n            .storeUint(166117214481432, 48)\n            .storeUint(178673158918402, 48)\n            .storeUint(202299095953211, 48)\n            .storeUint(80530538650011, 48)\n            .storeUint(213956244848445, 48)\n            .storeUint(127263604575419, 48)\n            .storeUint(64761539391339, 48)\n            .storeUint(154044848338853, 48)\n            .endCell()\n            .beginParse();\n    }\n    if (i == 1) {\n        return beginCell()\n            .storeUint(161475215511385, 48)\n            .storeUint(118021003197883, 48)\n            .storeUint(184948749356030, 48)\n            .storeUint(150974846772080, 48)\n            .storeUint(75913008186862, 48)\n            .storeUint(277914814016759, 48)\n            .storeUint(1409857104084, 48)\n            .storeUint(50377639645409, 48)\n            .endCell()\n            .beginParse();\n    }\n    if (i == 2) {\n        return beginCell()\n            .storeUint(182203937951809, 48)\n            .storeUint(29196414452100, 48)\n            .storeUint(184538070008729, 48)\n            .storeUint(141207313976981, 48)\n            .storeUint(120951417984853, 48)\n            .storeUint(145200486023587, 48)\n            .storeUint(222932239450975, 48)\n            .storeUint(2823381931237, 48)\n            .endCell()\n            .beginParse();\n    }\n    // Verifier callers use the fixed circuit arity, so the last IC\n    // point is the exhaustive final case.\n    return beginCell()\n        .storeUint(192694099800691, 48)\n        .storeUint(210535167164193, 48)\n        .storeUint(12240310769642, 48)\n        .storeUint(174826879497381, 48)\n        .storeUint(125666507924545, 48)\n        .storeUint(270709594842584, 48)\n        .storeUint(120272799110782, 48)\n        .storeUint(242828485556548, 48)\n        .endCell()\n        .beginParse();\n}\n"
+    }
+  ]
+}

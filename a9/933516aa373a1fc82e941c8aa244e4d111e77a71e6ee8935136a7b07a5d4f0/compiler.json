@@ -1,0 +1,5154 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from SubdomainCollection.tolk, dns-utils.tolk, errors.tolk, messages.tolk, prices.tolk, storage.tolk, SubdomainItem.code.tolk\nPROGRAM{\n  DECLPROC checkDomainString()\n  DECLPROC PriceConfig.priceForCharCount()\n  DECLPROC onBouncedMessage()\n  0 DECLMETHOD onInternalMessage()\n  102491 DECLMETHOD get_collection_data()\n  85719 DECLMETHOD royalty_params()\n  92067 DECLMETHOD get_nft_address_by_index()\n  120741 DECLMETHOD get_last_parent_fill_up()\n  68099 DECLMETHOD get_minted_count()\n  68445 DECLMETHOD get_nft_content()\n  108963 DECLMETHOD get_price()\n  113456 DECLMETHOD get_min_chars()\n  113142 DECLMETHOD get_admin()\n  66233 DECLMETHOD get_parent_domain()\n  88174 DECLMETHOD get_linked_admin()\n  97097 DECLMETHOD is_locked()\n  120147 DECLMETHOD get_is_linked()\n  123660 DECLMETHOD dnsresolve()\n  // 17 functions inlined in-place:\n  // - address.forceBasechain (2 calls)\n  // - address.toNextResolver (2 calls)\n  // - dnsQueryStartsWithZero (2 calls)\n  // - getTopDomainBits (1 call)\n  // - DnsRecords.packToBuilder (0 calls)\n  // - DnsRecords.unpackFromSlice (0 calls)\n  // - CollectionStorage.save (9 calls)\n  // - startLoadingCollection (14 calls)\n  // - CollectionLoader.isLocked (14 calls)\n  // - CollectionLoader.parseSkeleton (3 calls)\n  // - CollectionLoader.parseLocked (13 calls)\n  // - calcDeployedItem (4 calls)\n  // - emptyReserved (2 calls)\n  // - assertAdmin (6 calls)\n  // - sendParentHeartbeat (1 call)\n  // - pinNextResolver (2 calls)\n  // - notifyFactory (2 calls)\n  // - notifyParentHandoffComplete (2 calls)\n  checkDomainString() PROCREF:<{\n    c2 SAVE\n    SAMEALTSAVE\n    0 PUSHINT\n    SWAP\n    3 RSHIFT#\n    DUP\n    DEC\n    SWAP\n    REPEAT:<{\n      s0 s2 XCHG\n      8 LDU\n      OVER\n      47 GTINT\n      IF:<{\n        OVER\n        58 LESSINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      s2 PUSH\n      96 GTINT\n      IF:<{\n        s2 PUSH\n        123 LESSINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      SWAP\n      IF:<{\n        DROP\n        -1 PUSHINT\n      }>ELSE<{\n        0 NEQINT\n      }>\n      DUP\n      IFNOT:<{\n        DROP\n        SWAP\n        45 EQINT\n        IF:<{\n          OVER\n          0 GTINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          s1 s2 PUSH2\n          LESS\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        SWAP\n      }>ELSE<{\n        s2 POP\n      }>\n      SWAP\n      IFNOTJMP:<{\n        3 BLKDROP\n        FALSE\n        RETALT\n      }>\n      SWAP\n      INC\n      ROT\n    }>\n    3 BLKDROP\n    TRUE\n  }>\n  PriceConfig.priceForCharCount() PROC:<{\n    s12 POP\n    s11 PUSH\n    2 LESSINT\n    IFJMP:<{\n      s10 s11 XCHG\n      11 BLKDROP\n    }>\n    s10 POP\n    s10 PUSH\n    2 EQINT\n    IFJMP:<{\n      s8 s10 XCHG\n      10 BLKDROP\n    }>\n    s8 POP\n    s9 PUSH\n    3 EQINT\n    IFJMP:<{\n      s6 s9 XCHG\n      9 BLKDROP\n    }>\n    s6 POP\n    s8 PUSH\n    4 EQINT\n    IFJMP:<{\n      s4 s8 XCHG\n      8 BLKDROP\n    }>\n    s4 POP\n    s7 PUSH\n    5 EQINT\n    IFJMP:<{\n      s2 s7 XCHG\n      7 BLKDROP\n    }>\n    s2 POP\n    s6 PUSH\n    6 EQINT\n    IFJMP:<{\n      6 1 BLKDROP2\n    }>\n    DROP\n    s5 PUSH\n    7 EQINT\n    IFJMP:<{\n      5 1 BLKDROP2\n    }>\n    DROP\n    s4 PUSH\n    8 EQINT\n    IFJMP:<{\n      4 1 BLKDROP2\n    }>\n    DROP\n    s3 PUSH\n    9 EQINT\n    IFJMP:<{\n      3 1 BLKDROP2\n    }>\n    DROP\n    s0 s2 XCHG\n    10 EQINT\n    IFJMP:<{\n      DROP\n    }>\n    NIP\n  }>\n  onBouncedMessage() PROC:<{\n    DUP\n    SBITS\n    32 LESSINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      32 PLDU\n      4294967294 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n    }>\n    x{fffffffe} SDBEGINSQ\n    63 THROWIFNOT\n    PLDREF\n    CTOS\n    DUP\n    SBITS\n    32 LESSINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      32 PLDU\n      606644902 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n    }>\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      2DROP\n    }>\n    LDSTDADDR\n    LDSTDADDR\n    LDSTDADDR\n    LDREF\n    1 LDI\n    32 LDU\n    LDREF\n    LDOPTREF\n    LDOPTREF\n    32 LDU\n    ENDS\n    \"te6ccgECGgEABGoAART/APSkE/S88sgLAQIBYgIDBLbQ+JGRMODtRNAg10rCAOMD0//6SPpI1NTTH9MfMdMf0SfHAJJfCOAn10nCH50n1wsfghDVMnbbusMAkXDikl8I4AfXLCL+Yeik4wLXLCDQXOqM4wLXLCJ1j4fMBAUGBwIBIAwNAfbT//pI0fiSIccF8uGUhA8D1ywhIUVVNBTy9ALTPzHT//pI1NIA9AUj+kQw8tDTUUW68uDcIdDIzvkWJbry4NwjbrObA9DTBwHy0Zz0BNGSM23iA+MA+CPIz4QCFPQAySMFyMv/FvpSEvpSFMwTzMsfyx/PkAAAAALJ7VQIAvz4kiXHBfLhkdM/+kj6UPQEMfoA+CdvEPiTcPg6JfpEMPLQ0wGCCvrwgKEjwgCUUzGgod4kbrMgkgKhkTLiIML/8uGSI8IAjifIz5AUTjZGJ88LPxv6VBLOycjPhQhSUPpSUAP6AnHPC2oSzMlx+wCTOmwh4pMwNTDjDfgjJsgJCgBqM/iSJMcF8uGRAtdM0NMHAfLRnPQE0cjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VQByI5Q+JIlxwXy4ZED0NMHAfLRnPQE0QPTPzHT/yDXSsIAmNdMQBSDB/QXmDBQA4MH9Fsw4sjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VTgN18EAtcsIX5ZNRTjAoQP8vALAGyC8OjUQFCHPbqGWqfBcKtMzmTZCDmjTc/Wz3HRTgIFRDsbyM+Kf05SMPpSz4QCyUAUgwf0FwIAQCD6RDDy0NPIz4UI+lJQBvoCghDVMnbbzwuKyz/JcfsAAE7L/zdSV/pSNVI1+lIzUhPMMSHPFDEhzwsfMSHPCx8xIc8LHzHJ7VQATtcLP/iSyM+SLdxc1hLLPxLL/xL6UsnIz4UIEvpScc8LbszJgED7AAIBIA4PAgEgEhMATbt07tRNAg10rCAI4W0/8x+kgx+kgx1DHUMdMf0x8x0x8x0ZIwcOKAIBIBARAE21gV2omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmP6Y+Y6MkYOHFAASbQOnaiaBBrpWEASRg28On/mP0kGP0kahjqGOmPmOmPmOmPmOjACA5z8FBUCASAWFwBLs92omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmPmOmP6MkYOHFAAVbH9qJoEGulYQBM6f/9JGi4LLa28On//SR9JGoY6mmPmOmPmOmPmOi/qphAATbZKXaiaBBrpWEASZhFhHDp/5j9JBj9JBjqGOppj5jpj5jpj5jo6EAL5tGGEOukkWukkGEDy9ScAWAAYYBJGDhxeXAjAWuFA/loI3aiaBBrpWEASi+BuDbw6f+Y/SQY/SQY6moY6Y+Y6Y+Y6Y+Y6Ohpg4D5aM56AmiBYQRHEZhBeAz4EiD3LEftk3cSWStG6Brh5JA3CNXLzfMXKqrFDov/7xBxgYDAYGQAGMHgBAB6DB/QOb6GTMHht4XgB1NE=\" base64>B B>boc PUSHREF\n    s0 s11 XCHG\n    x{2428aaa6} SDBEGINSQ\n    63 THROWIFNOT\n    64 LDU\n    256 LDU\n    LDSTDADDR\n    PLDREF\n    INMSG_SRC\n    MYADDR\n    s4 PUSH\n    NEWC\n    256 STU\n    STSTDADDR\n    ENDC\n    SWAP\n    s0 16 s() XCHG\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    s1 s15 XCHG\n    SDEQ\n    404 THROWIFNOT\n    s13 PUSH\n    CTOS\n    NEWC\n    STSLICE\n    HASHBU\n    s2 PUSH\n    EQUAL\n    220 THROWIFNOT\n    s1 s4 PUSH2\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    NIP\n    IFNOTJMP:<{\n      14 BLKDROP\n    }>\n    s0 s4 XCHG\n    8 PUSHPOW2\n    DICTUDEL\n    DROP\n    s2 PUSH\n    0 GTINT\n    IF:<{\n      s0 s2 XCHG\n      DEC\n      s0 s2 XCHG\n    }>\n    s0 s11 XCHG\n    NEWC\n    STSTDADDR\n    s1 s10 XCHG\n    STSTDADDR\n    s1 s8 XCHG\n    STSTDADDR\n    s1 s6 XCHG\n    STREF\n    s1 s4 XCHG\n    1 STI\n    s1 s2 XCHG\n    32 STU\n    OVER\n    STREFR\n    s1 s2 XCHG\n    STOPTREF\n    s1 s5 XCHG\n    STOPTREF\n    s1 s2 XCHG\n    32 STU\n    ENDC\n    c4 POP\n    s0 s3 XCHG\n    CTOS\n    SBITS\n    s0 s2 XCHG\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    8 LDU\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s0 s13 XCHG\n    3 RSHIFT#\n    s11 s12 XCHG\n    s10 s11 XCHG\n    s9 s10 XCHG\n    s8 s9 XCHG\n    s7 s8 XCHG\n    s6 s7 XCHG\n    s5 s6 XCHG\n    s4 s5 XCHG\n    s3 s4 XCHG\n    s1 s3 s0 XCHG3\n    s1 s13 XCHG\n    PriceConfig.priceForCharCount() CALLDICT\n    INMSG_VALUE\n    ADD\n    NEWC\n    b{010000} STSLICECONST\n    s1 s3 XCHG\n    STSTDADDR\n    ROT\n    STGRAMS\n    3576854235 PUSHINT\n    139 STUR\n    64 STU\n    ENDC\n    1 PUSHINT\n    SENDRAWMSG\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      onBouncedMessage() CALLDICT\n    }>\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      OVER\n      SEMPTY\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        OVER\n        SBITS\n        32 LESSINT\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        OVER\n        32 PLDU\n        1812744983 PUSHINT\n        NEQ\n        0 NEQINT\n      }>\n      IFJMP:<{\n        2DROP\n      }>\n      LDSTDADDR\n      LDSTDADDR\n      1 LDI\n      LDSTDADDR\n      ENDS\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      405 THROWIFNOT\n      s0 s4 XCHG\n      x{6c0c4b17} SDBEGINSQ\n      63 THROWIFNOT\n      64 LDU\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      1 LDI\n      PLDREF\n      s3 s7 XCPU\n      SDEQ\n      405 THROWIFNOT\n      s5 PUSH\n      EQUAL\n      405 THROWIFNOT\n      s4 PUSH\n      IF:<{\n        s0 s7 PUSH2\n        SDEQ\n        403 THROWIFNOT\n      }>\n      PUSHNULL\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s5 PUSH\n      1 STIR\n      s1 s8 XCHG\n      STOPTREF\n      ENDC\n      NOW\n      NEWDICT\n      NEWDICT\n      s9 s8 s10 PUSH3\n      s10 PUSH\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      STSTDADDR\n      s1 s5 XCHG\n      STREF\n      s1 s4 XCHG\n      1 STI\n      s1 s2 XCHG\n      32 STU\n      s1 s3 XCHG\n      STREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      x{00000000} STSLICECONST\n      ENDC\n      c4 POP\n      10000000 PUSHINT\n      NEWC\n      x{52445931} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      64 STU\n      s1 s3 XCHG\n      STSTDADDR\n      s4 s(-1) PUXC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      1 STI\n      b{1} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    LDSTDADDR\n    LDSTDADDR\n    LDSTDADDR\n    LDREF\n    1 LDI\n    32 LDU\n    LDREF\n    LDOPTREF\n    LDOPTREF\n    32 LDU\n    ENDS\n    s10 PUSH\n    SEMPTY\n    IFJMP:<{\n      11 BLKDROP\n    }>\n    s10 PUSH\n    SBITS\n    31 GTINT\n    IF:<{\n      s10 PUSH\n      32 PLDU\n      85167505 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      INMSG_SRC\n      s9 PUSH\n      SDEQ\n      IFJMP:<{\n        PUSHNULL\n        PUSHNULL\n        PUSHNULL\n        PUSHNULL\n        0 PUSHINT\n        s0 s15 XCHG\n        x{05138d91} SDBEGINSQ\n        63 THROWIFNOT\n        64 LDU\n        LDOPTSTDADDR\n        DUP\n        SBITS\n        0 GTINT\n        IF:<{\n          1 LDI\n          SWAP\n          IF:<{\n            DUP\n            SREFS\n            0 GTINT\n            0 NEQINT\n          }>ELSE<{\n            17 s() PUSH\n          }>\n          IF:<{\n            PLDREF\n            CTOS\n          }>\n        }>\n        OVER\n        ISNULL\n        NOT\n        IF:<{\n          SWAP\n          16 s() PUSH\n          SDEQ\n          0 NEQINT\n        }>ELSE<{\n          NIP\n          16 s() PUSH\n        }>\n        IF:<{\n          DUP\n          SBITS\n          31 GTINT\n          0 NEQINT\n        }>ELSE<{\n          16 s() PUSH\n        }>\n        IF:<{\n          DUP\n          32 PLDU\n          1212239428 PUSHINT\n          EQUAL\n          0 NEQINT\n        }>ELSE<{\n          16 s() PUSH\n        }>\n        IF:<{\n          s5 POP\n          s15 POP\n          3 BLKDROP\n          x{48414e44} SDBEGINSQ\n          63 THROWIFNOT\n          64 LDU\n          64 LDU\n          LDSTDADDR\n          ENDS\n          s2 s13 PUSH2\n          EQUAL\n          405 THROWIFNOT\n          s0 s10 PUSH2\n          SDEQ\n          NOT\n          133 PUSHINT\n          s0 s11 XCHG\n          CTOS\n          LDSTDADDR\n          1 LDI\n          LDOPTREF\n          NIP\n          ENDS\n          s5 PUSH\n          NEWC\n          64 STU\n          s5 PUSH\n          64 STUR\n          s4 s(-1) PUXC\n          STSTDADDR\n          s3 PUSH\n          1 STIR\n          ENDC\n          s0 s2 XCHG\n          NEWC\n          STSTDADDR\n          1 STI\n          STOPTREF\n          ENDC\n          s14 PUSH\n          NEWC\n          STSTDADDR\n          s14 s(-1) PUXC\n          STSTDADDR\n          s13 s(-1) PUXC\n          STSTDADDR\n          OVER\n          STREFR\n          s11 PUSH\n          1 STIR\n          s10 PUSH\n          32 STUR\n          s9 PUSH\n          STREFR\n          s8 s(-1) PUXC\n          STOPTREF\n          s7 s(-1) PUXC\n          STOPTREF\n          s6 PUSH\n          32 STUR\n          ENDC\n          c4 POP\n          s0 s11 XCHG\n          s0 s15 XCHG\n        }>ELSE<{\n          DROP\n        }>\n        s15 PUSH\n        0 NEQINT\n        IF:<{\n          SWAP\n          0 NEQINT\n        }>ELSE<{\n          NIP\n          0 PUSHINT\n        }>\n        IFJMP:<{\n          DROP\n          6 3 BLKDROP2\n          s3 POP\n          s3 POP\n          s5 POP\n          PUSHNULL\n          NEWC\n          b{1} STSLICECONST\n          NEWC\n          x{48414e44} STSLICECONST\n          s7 PUSH\n          64 STUR\n          s1 s4 XCHG\n          64 STU\n          s2 s(-1) PUXC\n          STSTDADDR\n          ENDC\n          s0 s3 XCHG2\n          STREF\n          BTOS\n          NEWC\n          x{5fcc3d14} STSLICECONST\n          s1 s6 XCHG\n          64 STU\n          STSTDADDR\n          s1 s3 XCHG\n          STOPTSTDADDR\n          s1 s2 XCHG\n          STOPTREF\n          x{0} STSLICECONST\n          s1 s2 XCHG\n          STSLICE\n          ENDC\n          NEWC\n          b{011000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          b{00000} STSLICECONST\n          3 PUSHINT\n          STGRAMS\n          1 PUSHINT\n          102 STUR\n          STREF\n          ENDC\n          64 PUSHINT\n          SENDRAWMSG\n        }>\n        s0 s9 XCHG\n        IF:<{\n          s12 PUSH\n          NEWC\n          STSTDADDR\n          s12 s(-1) PUXC\n          STSTDADDR\n          s1 s11 XCHG\n          STSTDADDR\n          s1 s9 XCHG\n          STREF\n          b{0} STSLICECONST\n          s1 s6 XCHG\n          32 STU\n          s1 s4 XCHG\n          STREF\n          s1 s2 XCHG\n          STOPTREF\n          STOPTREF\n          32 STU\n          ENDC\n          c4 POP\n          s0 s2 XCHG\n        }>ELSE<{\n          s10 POP\n          s8 s6 XCHG2\n          6 BLKDROP\n        }>\n        3 PUSHINT\n        NEWC\n        MYADDR\n        NEWC\n        x{ba93} STSLICECONST\n        STSTDADDR\n        ENDC\n        STREFR\n        BTOS\n        50000000 PUSHINT\n        NEWC\n        x{4eb1f0f9} STSLICECONST\n        s1 s5 XCHG\n        64 STU\n        x{19f02441ee588fdb26ee24b2568dd035c3c9206e11ab979be62e55558a1d17ff} STSLICECONST\n        STSLICE\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        s7 s(-1) PUXC\n        STSTDADDR\n        s0 s4 XCHG2\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        s1 s3 XCHG\n        STREF\n        ENDC\n        ROT\n        SENDRAWMSG\n        s0 s5 XCHG\n        IF:<{\n          10000000 PUSHINT\n          NEWC\n          x{48444f4b} STSLICECONST\n          s1 s2 XCHG\n          64 STU\n          s1 s5 XCHG\n          64 STU\n          s1 s2 XCHG\n          STSTDADDR\n          STSTDADDR\n          ENDC\n          NEWC\n          b{010000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          ROT\n          STGRAMS\n          1 PUSHINT\n          107 STUR\n          STREF\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          5 BLKDROP\n        }>\n      }>\n      11 BLKDROP\n    }>\n    s10 PUSH\n    SBITS\n    31 GTINT\n    IF:<{\n      s10 PUSH\n      32 PLDU\n      3576854235 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      11 BLKDROP\n    }>\n    s10 PUSH\n    SBITS\n    31 GTINT\n    IF:<{\n      s10 PUSH\n      32 PLDU\n      1812744983 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      6 BLKDROP\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      405 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      NIP\n      1 LDI\n      LDOPTREF\n      NIP\n      ENDS\n      s0 s4 XCHG\n      x{6c0c4b17} SDBEGINSQ\n      63 THROWIFNOT\n      64 LDU\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      1 PLDI\n      s2 s6 PUXC\n      SDEQ\n      405 THROWIFNOT\n      s5 s7 PUXC\n      EQUAL\n      405 THROWIFNOT\n      10000000 PUSHINT\n      NEWC\n      x{52445931} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      s2 PUSH\n      64 STUR\n      STSTDADDR\n      s6 s(-1) PUXC\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      1 STI\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s4 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s2 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      3576854235 PUSHINT\n      143 STUR\n      64 STU\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s0 s10 XCHG\n    x{49278399} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      REWRITESTDADDR\n      DROP\n      211 THROWIF\n      64 LDU\n      LDREF\n      1 LDI\n      PLDOPTREF\n      s2 PUSH\n      CTOS\n      DUP\n      SBITS\n      s8 PUSH\n      CTOS\n      LDREF\n      LDREF\n      NIP\n      LDREF\n      NIP\n      ENDS\n      CTOS\n      8 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s11 PUSH\n      3 LSHIFT#\n      s13 PUSH\n      LEQ\n      200 THROWIFNOT\n      s12 PUSH\n      1008 PUSHINT\n      LEQ\n      201 THROWIFNOT\n      s12 PUSH\n      3 MODPOW2#\n      202 THROWIF\n      s13 s12 PUSH2\n      checkDomainString() INLINECALLDICT\n      202 THROWIFNOT\n      s13 PUSH\n      SREFS\n      202 THROWIF\n      s14 PUSH\n      ISNULL\n      IFNOT:<{\n        s14 PUSH\n        CTOS\n        8 LDU\n        SWAP\n        412 THROWIF\n        LDDICT\n        NIP\n        ENDS\n      }>\n      s0 s13 XCHG\n      NEWC\n      STSLICE\n      HASHBU\n      DUP\n      19 s() PUSH\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      207 THROWIF\n      DUP\n      20 s() PUSH\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      IF:<{\n        INMSG_SRC\n        25 s() PUSH\n        SDEQ\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IFJMP:<{\n        203 THROW\n      }>\n      s0 s12 XCHG\n      3 RSHIFT#\n      s11 s12 XCHG\n      s10 s11 XCHG\n      s9 s10 XCHG\n      s8 s9 XCHG\n      s7 s8 XCHG\n      s6 s7 XCHG\n      s5 s6 XCHG\n      s4 s5 XCHG\n      s3 s4 XCHG\n      s1 s3 s0 XCHG3\n      s1 s13 XCHG\n      PriceConfig.priceForCharCount() CALLDICT\n      INMSG_VALUE\n      OVER\n      70000000 PUSHINT\n      ADD\n      30000000 PUSHINT\n      ADD\n      GEQ\n      204 THROWIFNOT\n      \"te6ccgECGgEABGoAART/APSkE/S88sgLAQIBYgIDBLbQ+JGRMODtRNAg10rCAOMD0//6SPpI1NTTH9MfMdMf0SfHAJJfCOAn10nCH50n1wsfghDVMnbbusMAkXDikl8I4AfXLCL+Yeik4wLXLCDQXOqM4wLXLCJ1j4fMBAUGBwIBIAwNAfbT//pI0fiSIccF8uGUhA8D1ywhIUVVNBTy9ALTPzHT//pI1NIA9AUj+kQw8tDTUUW68uDcIdDIzvkWJbry4NwjbrObA9DTBwHy0Zz0BNGSM23iA+MA+CPIz4QCFPQAySMFyMv/FvpSEvpSFMwTzMsfyx/PkAAAAALJ7VQIAvz4kiXHBfLhkdM/+kj6UPQEMfoA+CdvEPiTcPg6JfpEMPLQ0wGCCvrwgKEjwgCUUzGgod4kbrMgkgKhkTLiIML/8uGSI8IAjifIz5AUTjZGJ88LPxv6VBLOycjPhQhSUPpSUAP6AnHPC2oSzMlx+wCTOmwh4pMwNTDjDfgjJsgJCgBqM/iSJMcF8uGRAtdM0NMHAfLRnPQE0cjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VQByI5Q+JIlxwXy4ZED0NMHAfLRnPQE0QPTPzHT/yDXSsIAmNdMQBSDB/QXmDBQA4MH9Fsw4sjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VTgN18EAtcsIX5ZNRTjAoQP8vALAGyC8OjUQFCHPbqGWqfBcKtMzmTZCDmjTc/Wz3HRTgIFRDsbyM+Kf05SMPpSz4QCyUAUgwf0FwIAQCD6RDDy0NPIz4UI+lJQBvoCghDVMnbbzwuKyz/JcfsAAE7L/zdSV/pSNVI1+lIzUhPMMSHPFDEhzwsfMSHPCx8xIc8LHzHJ7VQATtcLP/iSyM+SLdxc1hLLPxLL/xL6UsnIz4UIEvpScc8LbszJgED7AAIBIA4PAgEgEhMATbt07tRNAg10rCAI4W0/8x+kgx+kgx1DHUMdMf0x8x0x8x0ZIwcOKAIBIBARAE21gV2omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmP6Y+Y6MkYOHFAASbQOnaiaBBrpWEASRg28On/mP0kGP0kahjqGOmPmOmPmOmPmOjACA5z8FBUCASAWFwBLs92omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmPmOmP6MkYOHFAAVbH9qJoEGulYQBM6f/9JGi4LLa28On//SR9JGoY6mmPmOmPmOmPmOi/qphAATbZKXaiaBBrpWEASZhFhHDp/5j9JBj9JBjqGOppj5jpj5jpj5jo6EAL5tGGEOukkWukkGEDy9ScAWAAYYBJGDhxeXAjAWuFA/loI3aiaBBrpWEASi+BuDbw6f+Y/SQY/SQY6moY6Y+Y6Y+Y6Y+Y6Ohpg4D5aM56AmiBYQRHEZhBeAz4EiD3LEftk3cSWStG6Brh5JA3CNXLzfMXKqrFDov/7xBxgYDAYGQAGMHgBAB6DB/QOb6GTMHht4XgB1NE=\" base64>B B>boc PUSHREF\n      MYADDR\n      s3 PUSH\n      NEWC\n      256 STU\n      STSTDADDR\n      ENDC\n      70000000 PUSHINT\n      INMSG_SRC\n      s9 s5 PUSH2\n      NEWC\n      x{2428aaa6} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      256 STU\n      STSTDADDR\n      s1 s8 XCHG\n      STREF\n      s1 s6 XCHG\n      1 STI\n      s1 s4 XCHG\n      STOPTREF\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s5 s4 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      s0 s6 XCHG2\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      141 PUSHINT\n      108 STUR\n      s1 s3 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      NEWC\n      s0 s1 s4 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      s0 s11 XCHG\n      INC\n      NOW\n      s7 PUSH\n      NOT\n      IF:<{\n        s0 s6 PUSH2\n        SUB\n        86400 PUSHINT\n        GREATER\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s6 POP\n        10000000 PUSHINT\n        <b b> PUSHREF\n        NEWC\n        b{011000} STSLICECONST\n        s12 s(-1) PUXC\n        STSTDADDR\n        ROT\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n      }>\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      1 STI\n      32 STU\n      STREF\n      STOPTREF\n      s1 s4 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      32 STU\n      ENDC\n      c4 POP\n      INMSG_VALUE\n      ROT\n      SUB\n      70000000 PUSHINT\n      SUB\n      30000000 PUSHINT\n      SUB\n      DUP\n      0 GTINT\n      IF:<{\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        SWAP\n        STGRAMS\n        3576854235 PUSHINT\n        139 STUR\n        64 STU\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{7969d64e} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      s8 PUSH\n      SDEQ\n      403 THROWIFNOT\n      PLDREF\n      CTOS\n      LDREF\n      NIP\n      LDREF\n      LDREF\n      ENDS\n      s0 s4 XCHG\n      CTOS\n      LDREF\n      LDREF\n      NIP\n      LDREF\n      NIP\n      ENDS\n      NEWC\n      STREF\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      1 STI\n      32 STU\n      s1 s3 XCHG\n      STREF\n      STOPTREF\n      STOPTREF\n      32 STU\n      ENDC\n      c4 POP\n    }>\n    x{1e4b7535} SDBEGINSQ\n    IFJMP:<{\n      s8 POP\n      6 BLKDROP\n      2 2 BLKDROP2\n      INMSG_SRC\n      OVER\n      SDEQ\n      403 THROWIFNOT\n      BALANCE\n      FIRST\n      70000000 PUSHINT\n      INMSG_VALUE\n      s1 s2 XCHG\n      SUB\n      SUBR\n      DUP\n      0 LESSINT\n      IF:<{\n        DROP\n        0 PUSHINT\n      }>\n      s0 s2 XCHG\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      DUP\n      IF:<{\n        s0 s2 PUSH2\n        GREATER\n        0 NEQINT\n      }>ELSE<{\n        -1 PUSHINT\n      }>\n      IF:<{\n        DROP\n      }>ELSE<{\n        s2 POP\n      }>\n      OVER\n      0 GTINT\n      IF:<{\n        <b b> PUSHREF\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{2b8af82e} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      s8 PUSH\n      SDEQ\n      403 THROWIFNOT\n      64 LDU\n      LDSTDADDR\n      DROP\n      DUP\n      REWRITESTDADDR\n      DROP\n      211 THROWIF\n      s0 s10 PUXC\n      NEWC\n      STSTDADDR\n      s1 s10 XCHG\n      STSTDADDR\n      s1 s10 XCHG\n      STSTDADDR\n      s1 s6 XCHG\n      STREF\n      s1 s4 XCHG\n      1 STI\n      s1 s2 XCHG\n      32 STU\n      STREF\n      STOPTREF\n      STOPTREF\n      s1 s4 XCHG\n      32 STU\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      2671430556 PUSHINT\n      143 STUR\n      64 STU\n      STSTDADDR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{97be5c56} SDBEGINSQ\n    IFJMP:<{\n      s6 POP\n      4 BLKDROP\n      s4 POP\n      s4 POP\n      INMSG_SRC\n      SDEQ\n      403 THROWIFNOT\n      SWAP\n      214 THROWIF\n      SWAP\n      64 LDU\n      256 LDU\n      OVER\n      11732114750494247458678882651681748623800183221773167493832867265755123357695 PUSHINT\n      NEQ\n      406 THROWIFNOT\n      NEWC\n      x{4eb1f0f9} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      256 STU\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{5cfedae5} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s3 POP\n      s3 PUSH\n      214 THROWIF\n      INMSG_VALUE\n      50000000 PUSHINT\n      GEQ\n      402 THROWIFNOT\n      <b b> PUSHREF\n      NEWC\n      b{011000} STSLICECONST\n      s8 s(-1) PUXC\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n      NOW\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      1 STI\n      s1 s4 XCHG\n      32 STU\n      STREF\n      STOPTREF\n      STOPTREF\n      32 STU\n      ENDC\n      c4 POP\n    }>\n    x{e0329a90} SDBEGINSQ\n    IFJMP:<{\n      s6 POP\n      4 BLKDROP\n      s2 POP\n      s3 POP\n      s3 POP\n      s0 s2 XCHG\n      214 THROWIF\n      INMSG_VALUE\n      100000000 PUSHINT\n      GEQ\n      402 THROWIFNOT\n      64 PLDU\n      1 PUSHINT\n      NEWC\n      MYADDR\n      NEWC\n      x{ba93} STSLICECONST\n      STSTDADDR\n      ENDC\n      STREFR\n      BTOS\n      50000000 PUSHINT\n      NEWC\n      x{4eb1f0f9} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      x{19f02441ee588fdb26ee24b2568dd035c3c9206e11ab979be62e55558a1d17ff} STSLICECONST\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s4 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s2 XCHG\n      STREF\n      ENDC\n      SWAP\n      SENDRAWMSG\n    }>\n    x{ccef6e14} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      s8 PUSH\n      SDEQ\n      403 THROWIFNOT\n      64 LDU\n      NIP\n      256 LDU\n      1 PLDI\n      IF:<{\n        NEWC\n        s0 s1 s3 XCHG3\n        8 PUSHPOW2\n        DICTUSETB\n      }>ELSE<{\n        ROT\n        8 PUSHPOW2\n        DICTUDEL\n        DROP\n      }>\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      1 STI\n      32 STU\n      STREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      32 STU\n      ENDC\n      c4 POP\n    }>\n    s10 POP\n    4 BLKDROP\n    s0 s5 XCHG\n    x{2096dda6} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      s3 POP\n      INMSG_SRC\n      OVER\n      SDEQ\n      403 THROWIFNOT\n      s0 s2 XCHG\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      s0 s5 XCHG\n      IF:<{\n        s2 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s2 PUXC\n        SDEQ\n        NOT\n        0 NEQINT\n      }>\n      212 THROWIFNOT\n      x{} PUSHSLICE\n      PUSHNULL\n      NEWC\n      x{5fcc3d14} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s5 POP\n    s0 s4 XCHG\n    x{693d3950} SDBEGINSQ\n    IFJMP:<{\n      3 2 BLKDROP2\n      64 PLDU\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      2831876269 PUSHINT\n      143 STUR\n      64 STU\n      x{000003e8} STSLICECONST\n      STSTDADDR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    NIP\n    x{48445052} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      405 THROWIFNOT\n      64 LDU\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      s1 s4 XCPU\n      SDEQ\n      405 THROWIFNOT\n      s0 s5 XCHG\n      CTOS\n      LDSTDADDR\n      NIP\n      1 LDI\n      NIP\n      LDOPTREF\n      ENDS\n      DUP\n      ISNULL\n      IFJMP:<{\n        6 BLKDROP\n      }>\n      CTOS\n      64 LDU\n      64 LDU\n      LDSTDADDR\n      1 LDI\n      ENDS\n      s3 s5 PUXC\n      NEQ\n      IF:<{\n        s3 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s1 s3 PUXC\n        NEQ\n        0 NEQINT\n      }>\n      IF:<{\n        s6 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s2 s6 PUXC\n        SDEQ\n        NOT\n        0 NEQINT\n      }>\n      IFJMP:<{\n        6 BLKDROP\n      }>\n      s0 s2 XCHG\n      IFNOTJMP:<{\n        10000000 PUSHINT\n        NEWC\n        x{48444f4b} STSLICECONST\n        s1 s3 XCHG\n        64 STU\n        s1 s5 XCHG\n        64 STU\n        s1 s2 XCHG\n        STSTDADDR\n        s1 s3 XCHG\n        STSTDADDR\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1 PUSHINT\n        107 STUR\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>\n      PUSHNULL\n      NEWC\n      b{1} STSLICECONST\n      NEWC\n      x{48414e44} STSLICECONST\n      s4 PUSH\n      64 STUR\n      s1 s7 XCHG\n      64 STU\n      s2 s(-1) PUXC\n      STSTDADDR\n      ENDC\n      s0 s6 XCHG2\n      STREF\n      BTOS\n      NEWC\n      x{5fcc3d14} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      STSTDADDR\n      s1 s3 XCHG\n      STOPTSTDADDR\n      s1 s3 XCHG\n      STOPTREF\n      x{0} STSLICECONST\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      b{00000} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    16 PUSHPOW2DEC\n    THROWANY\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      -1 PUSHINT\n      <b b> PUSHREF\n      PUSHNULL\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    -1 PUSHINT\n    SWAP\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    ROT\n  }>\n  royalty_params() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n      1000 PUSHINT\n      MYADDR\n    }>\n    0 PUSHINT\n    1000 PUSHINT\n    s0 s2 XCHG\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    s1 s2 XCHG\n  }>\n  get_nft_address_by_index() PROC:<{\n    \"te6ccgECGgEABGoAART/APSkE/S88sgLAQIBYgIDBLbQ+JGRMODtRNAg10rCAOMD0//6SPpI1NTTH9MfMdMf0SfHAJJfCOAn10nCH50n1wsfghDVMnbbusMAkXDikl8I4AfXLCL+Yeik4wLXLCDQXOqM4wLXLCJ1j4fMBAUGBwIBIAwNAfbT//pI0fiSIccF8uGUhA8D1ywhIUVVNBTy9ALTPzHT//pI1NIA9AUj+kQw8tDTUUW68uDcIdDIzvkWJbry4NwjbrObA9DTBwHy0Zz0BNGSM23iA+MA+CPIz4QCFPQAySMFyMv/FvpSEvpSFMwTzMsfyx/PkAAAAALJ7VQIAvz4kiXHBfLhkdM/+kj6UPQEMfoA+CdvEPiTcPg6JfpEMPLQ0wGCCvrwgKEjwgCUUzGgod4kbrMgkgKhkTLiIML/8uGSI8IAjifIz5AUTjZGJ88LPxv6VBLOycjPhQhSUPpSUAP6AnHPC2oSzMlx+wCTOmwh4pMwNTDjDfgjJsgJCgBqM/iSJMcF8uGRAtdM0NMHAfLRnPQE0cjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VQByI5Q+JIlxwXy4ZED0NMHAfLRnPQE0QPTPzHT/yDXSsIAmNdMQBSDB/QXmDBQA4MH9Fsw4sjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VTgN18EAtcsIX5ZNRTjAoQP8vALAGyC8OjUQFCHPbqGWqfBcKtMzmTZCDmjTc/Wz3HRTgIFRDsbyM+Kf05SMPpSz4QCyUAUgwf0FwIAQCD6RDDy0NPIz4UI+lJQBvoCghDVMnbbzwuKyz/JcfsAAE7L/zdSV/pSNVI1+lIzUhPMMSHPFDEhzwsfMSHPCx8xIc8LHzHJ7VQATtcLP/iSyM+SLdxc1hLLPxLL/xL6UsnIz4UIEvpScc8LbszJgED7AAIBIA4PAgEgEhMATbt07tRNAg10rCAI4W0/8x+kgx+kgx1DHUMdMf0x8x0x8x0ZIwcOKAIBIBARAE21gV2omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmP6Y+Y6MkYOHFAASbQOnaiaBBrpWEASRg28On/mP0kGP0kahjqGOmPmOmPmOmPmOjACA5z8FBUCASAWFwBLs92omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmPmOmP6MkYOHFAAVbH9qJoEGulYQBM6f/9JGi4LLa28On//SR9JGoY6mmPmOmPmOmPmOi/qphAATbZKXaiaBBrpWEASZhFhHDp/5j9JBj9JBjqGOppj5jpj5jpj5jo6EAL5tGGEOukkWukkGEDy9ScAWAAYYBJGDhxeXAjAWuFA/loI3aiaBBrpWEASi+BuDbw6f+Y/SQY/SQY6moY6Y+Y6Y+Y6Y+Y6Ohpg4D5aM56AmiBYQRHEZhBeAz4EiD3LEftk3cSWStG6Brh5JA3CNXLzfMXKqrFDov/7xBxgYDAYGQAGMHgBAB6DB/QOb6GTMHht4XgB1NE=\" base64>B B>boc PUSHREF\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    256 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_last_parent_fill_up() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n  }>\n  get_minted_count() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    ENDS\n  }>\n  get_nft_content() PROC:<{\n    NIP\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      2DROP\n      <b b> PUSHREF\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    NEWC\n    STSLICE\n    STREF\n    ENDC\n  }>\n  get_price() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      2DROP\n      0 PUSHINT\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    8 LDU\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    12 ROLL\n    PriceConfig.priceForCharCount() CALLDICT\n  }>\n  get_min_chars() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    8 LDU\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  get_admin() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      PUSHNULL\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n  }>\n  get_parent_domain() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      1 LDI\n      NIP\n      LDSTDADDR\n      NIP\n      ENDS\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n  }>\n  get_linked_admin() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      NIP\n      1 LDI\n      NIP\n      LDSTDADDR\n      ENDS\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    1 LDI\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n    CTOS\n    LDSTDADDR\n    1 LDI\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n  }>\n  is_locked() PROC:<{\n    c4 PUSH\n    CTOS\n    SREFS\n    0 GTINT\n  }>\n  get_is_linked() PROC:<{\n    c4 PUSH\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    IFNOTJMP:<{\n      DROP\n      FALSE\n    }>\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    1 LDI\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    32 LDU\n    NIP\n    ENDS\n  }>\n  dnsresolve() PROC:<{\n    DROP\n    DUP\n    SBITS\n    DUP\n    7 GTINT\n    IF:<{\n      3 MODPOW2#\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    70 THROWIFNOT\n    DUP\n    8 PLDI\n    DUP\n    0 EQINT\n    SWAP\n    IF:<{\n      0 PUSHINT\n    }>ELSE<{\n      OVER\n      SBITS\n      8 EQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      2DROP\n      8 PUSHINT\n      PUSHNULL\n    }>\n    DUP\n    IF:<{\n      SWAP\n      8 LDU\n      NIP\n      SWAP\n    }>\n    OVER\n    0 PUSHINT\n    FALSE\n    WHILE:<{\n      NOT\n    }>DO<{\n      OVER\n      SBITS\n      7 GTINT\n      70 THROWIFNOT\n      SWAP\n      8 LDU\n      OVER\n      0 EQINT\n      s0 s2 XCHG\n      IF:<{\n        s0 s2 XCHG\n        8 ADDCONST\n        s0 s2 XCHG\n      }>\n      -ROT\n    }>\n    NIP\n    DUP\n    0 GTINT\n    200 THROWIFNOT\n    s2 s2 XCPU\n    PLDSLICEX\n    NEWC\n    STSLICE\n    HASHBU\n    \"te6ccgECGgEABGoAART/APSkE/S88sgLAQIBYgIDBLbQ+JGRMODtRNAg10rCAOMD0//6SPpI1NTTH9MfMdMf0SfHAJJfCOAn10nCH50n1wsfghDVMnbbusMAkXDikl8I4AfXLCL+Yeik4wLXLCDQXOqM4wLXLCJ1j4fMBAUGBwIBIAwNAfbT//pI0fiSIccF8uGUhA8D1ywhIUVVNBTy9ALTPzHT//pI1NIA9AUj+kQw8tDTUUW68uDcIdDIzvkWJbry4NwjbrObA9DTBwHy0Zz0BNGSM23iA+MA+CPIz4QCFPQAySMFyMv/FvpSEvpSFMwTzMsfyx/PkAAAAALJ7VQIAvz4kiXHBfLhkdM/+kj6UPQEMfoA+CdvEPiTcPg6JfpEMPLQ0wGCCvrwgKEjwgCUUzGgod4kbrMgkgKhkTLiIML/8uGSI8IAjifIz5AUTjZGJ88LPxv6VBLOycjPhQhSUPpSUAP6AnHPC2oSzMlx+wCTOmwh4pMwNTDjDfgjJsgJCgBqM/iSJMcF8uGRAtdM0NMHAfLRnPQE0cjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VQByI5Q+JIlxwXy4ZED0NMHAfLRnPQE0QPTPzHT/yDXSsIAmNdMQBSDB/QXmDBQA4MH9Fsw4sjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VTgN18EAtcsIX5ZNRTjAoQP8vALAGyC8OjUQFCHPbqGWqfBcKtMzmTZCDmjTc/Wz3HRTgIFRDsbyM+Kf05SMPpSz4QCyUAUgwf0FwIAQCD6RDDy0NPIz4UI+lJQBvoCghDVMnbbzwuKyz/JcfsAAE7L/zdSV/pSNVI1+lIzUhPMMSHPFDEhzwsfMSHPCx8xIc8LHzHJ7VQATtcLP/iSyM+SLdxc1hLLPxLL/xL6UsnIz4UIEvpScc8LbszJgED7AAIBIA4PAgEgEhMATbt07tRNAg10rCAI4W0/8x+kgx+kgx1DHUMdMf0x8x0x8x0ZIwcOKAIBIBARAE21gV2omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmP6Y+Y6MkYOHFAASbQOnaiaBBrpWEASRg28On/mP0kGP0kahjqGOmPmOmPmOmPmOjACA5z8FBUCASAWFwBLs92omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmPmOmP6MkYOHFAAVbH9qJoEGulYQBM6f/9JGi4LLa28On//SR9JGoY6mmPmOmPmOmPmOi/qphAATbZKXaiaBBrpWEASZhFhHDp/5j9JBj9JBjqGOppj5jpj5jpj5jo6EAL5tGGEOukkWukkGEDy9ScAWAAYYBJGDhxeXAjAWuFA/loI3aiaBBrpWEASi+BuDbw6f+Y/SQY/SQY6moY6Y+Y6Y+Y6Y+Y6Ohpg4D5aM56AmiBYQRHEZhBeAz4EiD3LEftk3cSWStG6Brh5JA3CNXLzfMXKqrFDov/7xBxgYDAYGQAGMHgBAB6DB/QOb6GTMHht4XgB1NE=\" base64>B B>boc PUSHREF\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    256 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    SWAP\n    8 PUSHINT\n    0 PUSHINT\n    CONDSEL\n    s1 s2 XCHG\n    ADD\n    NEWC\n    x{ba93} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECXgEAE5YAART/APSkE/S88sgLAQIBYgIDAgLOBgcCASAEBQIBICkqAgEgNTYE30+JGS8APg7UTQINdKwgDjA/pI+kj6SNTSANMf1PQE9ATTH9EqxwCSXwvgKtdJwh+dKtcLH4IQBRONkbrDAJFw4o6J+JIpxwXjAl8L4CrXScIfnSrXCx+CENUydtu6wwCRcOKSXwvgKtdJwh+RcOMNgMDQ4PAgEgCAkAtQ8K8EClBCrXwvgOirAApQQil8K4DgpwAOUEGlfCeA2KMAElBBIXwjgNCfABZQQJ18H4DImwAaSbGHgMCXAB5JsUeAwJMAIkmxB4DAjwAmSbDHgMALACpEw4DGAC9wg10nBIJF/nSDXCx+CEP////69wwDikTDg1ywn////9PK/10zQINdJwSCRf50g1wsfghAkKKqmvcMA4pEw4O1E0CDXSsIAkVvh+kj6SPpI1NIA0x/U9AT0BNMf0YgL1ywhIUVVNPK/0z/T//pI10z4kvgoJMjL//pSyQGBCCgH+ERDIz4TQzMz5FsjPigBAy//PUB/HBfLhlC3QyM75FiK68uDcUxSDB/QOb6Exkl8O4QSDB/RbMCLCAJMCpQLeC8j6Uhr6Uhj6UhbMFMoAEssfIc8UEvQAFfQAEssfye1UA9DXSQLQ1NQx1DHR0NMH+gD6APoA+gD6APoA+gD6AAsAevoA+gD6ANENqwIQvBCrEJoQiRB4EGcQVhBFEDRBMB3wAviXoMjPhQgT+lJY+gKCENUydtvPC4rLP8lx+wAB/iHHAJF/lyHXScEgwwDikX+dIdcLH4IQbAxLF73DAOKRW+D6SPpI0gD6SNH4kiTHBfLhlQTXLCNgYli88r/TP9M/+kj6SNIA10xRN8cF8uGVJbry4ZUkl1MHxwXy4ZPebQjI+lIlzwoAGPQAyfgjbW1UeYoqA8j6UhL6UvpSFcwQBPhtbW1tcA/XLCAonGyM8r/TP/pQINdJwgCOFNIAAZcg10rCAMMAklYR4pPXTNDe3iFus5cBVhDHBcMAkzFWEOKXINdJwh/DAJJWEOKdINcLH4IQSEFORLrDAJJWEOKRMOMNL8MAkwHDAJIxcOLjAgmVOlCGXwbjDXPI+CjIERITFAAaKtcLH4IQbAxLF7rDAAS+4wIK1ywiSTwczOMC1ywjy06ydI45+JIoxwXy4ZPXTNDUMdTU0QTQ1NQx1DHRyMzME8zJCMj6Uhf6UhX6UhPMygDLHxPM9AD0AMsfye1U4NcsIPJbqazjAtcsIVxXwXQXGBkaAJQUygASyx8TzBL0APQAz5AAAAACye1UggiYloDIz5FJEWTGE8s/yz8T+lJSQPpSFPpSE8oAz4PJyM+FCBL6Ulj6AnHPC2rMyXH7AADiNT9fA9csIkIKciTyv9M/0z/6SNFTLbry4ZVTCscFs4EAhQvQ+kjSAPQEMdElyMs/Jc8LP1JA+lIjzwoAyQLI+lLKAPQAyS7I+lJS4PpSUtD6UiHPFCvPCgAqzwsfKc8UUoD0AFJw9AAmzwsfye1UCw8AojBsYzMzNW3Iz4PIz5EhBTkSJ88LPxTLP1Ig+lLJUAPMz1DIz5F/MPRSFss/+lIT+lQS9ADPhCASzsnIz4WIEvpSz4QQc/oCcc8LZczJgED7AAA+LMj6UlLA+lIb+lIZzM+BFssfFMwS9AD0AMsfye1UAgK4ic8W+lLJzxTPUIIK+vCAyM+ROsfD5hXLP40IBnwJEHuWI/bJu4kslaN0DXDySBuEauXm+YuVVWKHRf/gzxbOycjPhYhScPpSUAT6AnHPC2oTzMlY+wAFkl8F4w0VFgAEupMAVoIImJaAyM+RIRE9LhLLPxXLPxL6UvpSycjPhQgS+lJY+gJxzwtqzMlx+wAB/l8G+JIkxwXy4ZXQ+kgx0gD0BDHRBNcsI2BiWLzyv9M/0z/6SPpI1woAUifHBfLhlVJYuvLhlYIImJaAyM+RSRFkxhTLPyLPCz/6UlJg+lIT+lITygDPgcnIz4UIFPpSWPoCcc8LahLMyXH7AMjPhQgS+lKCENUydtvPC47LP8kbAv74kvpEMPLQ09M/1NIA9AUi0CDXSSjQ1NQx1DHR0NMH+gD6APoA+gD6APoA+gD6APoA+gD6ANErqgItu/LgyCyBA/C78uDJLKk4AvLQylPc2zzy4Mot10ry0Moubpwu0NMHAfLRnPQEMdHfDcjO+RYgVhODB/QOb6Ex8tDPIFYUHB0BqjhfBmwi+JIhxwXy4ZP4J28QghAELB2A+JcSoaIgwQCSMHDeAtM/MfoAMCCVUwK8wwCRf+KRMJEy4iHCAI6UiMjPhQgS+lJY+gJxzwtqzMlx+wCRW+I5BN6OSviSKMcF8uGT0z/6SDAg+kQw8tDTUgvI+lIa+lIa+lIWzBTKABLLH8z0APQAFMsfye1UyM+FCPpSghCfOsuczwuOyz/6UsmAQPsA4NcsJL3y4rTjAtcsIuf21yzjAtcsJwGU1ITjAtcsJmd7cKQgISIjAAiAQPsAALjtou37cAGrAiClAY5LAtMHIcIvlSHBOsMAkXDiIsJglSLBe8MAkXDiAZIwf5LDAOIgkTKOFzABwC2VIcIAwwCRcOKVUxK5wwCRcOIB4gGVXwNw2zHhAaRY5F8DfwL+gwf0Dm+hMZn4klYZxwWzwwCRcOKT8sDL4AyrAhC8EKsQmhCJEHgQZxBWEEUQNEEwHfAC+JchghAELB2AoIIJycOAoL7y4MyI+CgjyMv/+lLJghAELB2A+JJTlcjPkJCiqpoSyz/L//pSGMwWygAU9ADJyM+JiAFTVMjPhNDMzEIeAvT5Fs8L/1AG+gLPgXP6AoEAjc8LaxPME8wTzMlx+wDIQBSDB/RDC6T4IyezmlMGoYIBUYC8wwCRcOKOmzaCCJiWgIjIz4WIUsD6Ulj6AnHPC2rMyXH7AJEw4grI+lIZ+lIX+lIVzBPKAMsfzPQAFPQAEssfye1U+JdYoTkfAF6CEAQsHYChggnJw4ChIMIAjhr4ksjPhQj6UgH6AoIQ1TJ2288Liss/yXH7AJFb4gC2Nl8ENDT4kscF8uGTAfLQ1gHTP9P/IYLwGfAkQe5Yj9sm7iSyVo3QNcPJIG4Rq5eb5i5VVYodF/+98uGWyM+ROsfD5hPLP8v/zsnIz4WIEvpScc8LbszJgED7AAGCMDMj8tDW+JeCCvrwgL7y4ZKIyM+FiFKA+lJxzwtuzMmAQPsA+CMIyPpSF/pSFfpSE8zKABTLH8z0APQAyx/J7VQ5AOY2XwQyMzMC8tDW+JeCEAX14QC+8uGS1ws/ccj4KMjPiupO+lLJzxTPUIIK+vCAyM+ROsfD5hTLP40IBnwJEHuWI/bJu4kslaN0DXDySBuEauXm+YuVVWKHRf/gzxbOycjPhYgU+lJY+gJxzwtqEszJAfsAA/yOO/iSKMcF8uGT0z8x0//XCgCXyEATgwf0Q5ZYgwf0WzDiCMj6Uhf6UhX6UhPMygDLH8wS9AD0AMsfye1U4DpfBAXXLCEEtu004wI1BNcsI0npyoSOJWwy1ws/+JLIz4UI+lKCEKjLAK3PC47LP8+QAAAPovpSyYBA+wDgMYkkJSYAnjEz+JIhxwXy4ZMC0z/6SPpIMAWSMn+XUgPHBbPDAOLy4NSLCG3Iz5F/MPRSE8s/FfpSE/pUEvQAz4QgEs7JyM+FiBL6UnHPC27MyYBA+wAACEhEUFIBENcn4wKED/LwJwH++JIjxwXy4ZXTP9M/+kj6SDBRFMcF8uGVBdD6SDHSADH0BNEgbpJfBuDQ0z/TP/pI0gDRUja9kjN/lVIUvcMA4pI2f5dSJ8cFs8MA4pJfBuACjiyCCJiWgMjPkSERPS4Tyz8Vyz8S+lIT+lLJyM+FCBL6Ulj6AnHPC2rMyXH7ACgAluFtyM+DyM+RIQU5EiTPCz8Xyz9SIPpSyVAGzM9QyM+RfzD0UhPLP/pSE/pUE/QAz4QgzsnIz4WIEvpSz4QQc/oCcc8LZczJgED7AAIBYissAgEgLzAAaa1c9qJoEGulYQBOfSQY/SRpABj9JBjo8P0kGP0kfSQY6hjpABjpj5jqGPoCGPoCGOmPmOjAAgFmLS4AU6APtRNAg10rCAJIwcOH6SDH6SDH6SDHUMdIAMdMfMdQx9AQx9AQx0x/RgFvoXTHtRNAg10rCAI6CW4jh+kgx+kgx+kgx1DHSADHTHzHU9AQx9AQx0x8x0dDUMdQx1NHQyM7MyY5AgEgMTICASAzNABrs7X7UTQINdKwgCXMHCBA+j4KOFwgQPoAvpIMfpIMfpI1DHSADHTHzHUMfQEMfQEMdMfMdESgAH2yG7tRNAg10rCAJz6SDH6SDHSADH6SNHh+kgx+kgx+kgx1NIAMdMfMdQx9AQx9AQx0x8x0dD6SNIAMfQEMdGABP7Ho4j4KALIy/8S+lLJAcjPhNDMzPkWyM+KAEDL/89QgQgATstJ7UTQ10rCAIAIBIDc4AgEgPj8BbbYLfaiaBBrpWEAR0IYP8Q28P0kGP0kGP0kahjpABjpj5jqegIY+gIY6Y+Y6L+A6GoY6moY6KxA5AgEgOjsAAACfsmj7UTQINdKwgCSW3Dh+kgx+kgx+kgx1DHSADHTHzHU9AQx9AQx0x8x0dDU1DHUMdHQ0wf6APoA+gD6APoA+gD6APoA+gD6APoA0VUL8AKACAWo8PQBTp+3aiaBBrpWEASRg28P0kGP0kGP0kahjpABjpj5jqGPoCGPoCGOmPmOjAKumYdqJoEGulYQBJGDhw/SQY/SQY/SQY6hjpABjpj5jqegIY+gIY6Y+Y6OhqahjqGOjoaYP9ABj9ABj9ABj9ABj9ABj9ABj9ABj9ABj9ABj9ABj9ABjowICdUBBA/u0YYYEGukkGEDy9ScAWAAYYBJGDhxeXAjEGuFA5BgAADIuEuQ66TgBGGAcUmtvDbwEEqA6YOYgO8QuDhI2ccLEOuk4QP5cCMA6YOQ4AABSgFTBAFvLPQYkGEAeXBkKJFrjORnfItEfBQBZGX/iX0pZIDkZ8JoZmZ8i2RE54tBCQ0QAU6an2omgQa6VhAEkYOHD9JBj9JBj9JBjqGOkAaY+Y6hj6Ahj6Ahjpj5jowBTp0vaiaBBrpWEASRg4cP0kGP0kGP0kGOoY6QAY6Y/qGPoCGPoCGOmPmOjART/APSkE/S88sgLRQADgBAAKMv/z1ABeHDjBBKgyM+K6k4S+lLJAgFiRkcEttD4kZEw4O1E0CDXSsIA4wPT//pI+kjU1NMf0x8x0x/RJ8cAkl8I4CfXScIfnSfXCx+CENUydtu6wwCRcOKSXwjgB9csIv5h6KTjAtcsINBc6ozjAtcsInWPh8xISUpLAgEgUFEB9tP/+kjR+JIhxwXy4ZSEDwPXLCEhRVU0FPL0AtM/MdP/+kjU0gD0BSP6RDDy0NNRRbry4Nwh0MjO+RYluvLg3CNus5sD0NMHAfLRnPQE0ZIzbeID4wD4I8jPhAIU9ADJIwXIy/8W+lIS+lIUzBPMyx/LH8+QAAAAAsntVEwC/PiSJccF8uGR0z/6SPpQ9AQx+gD4J28Q+JNw+Dol+kQw8tDTAYIK+vCAoSPCAJRTMaCh3iRusyCSAqGRMuIgwv/y4ZIjwgCOJ8jPkBRONkYnzws/G/pUEs7JyM+FCFJQ+lJQA/oCcc8LahLMyXH7AJM6bCHikzA1MOMN+CMmyE1OAGoz+JIkxwXy4ZEC10zQ0wcB8tGc9ATRyM+EAvQAyfgjBsjL/xX6UhP6UhPMzMsfyx/LH8ntVAHIjlD4kiXHBfLhkQPQ0wcB8tGc9ATRA9M/MdP/INdKwgCY10xAFIMH9BeYMFADgwf0WzDiyM+EAvQAyfgjBsjL/xX6UhP6UhPMzMsfyx/LH8ntVOA3XwQC1ywhflk1FOMChA/y8E8AbILw6NRAUIc9uoZap8Fwq0zOZNkIOaNNz9bPcdFOAgVEOxvIz4p/TlIw+lLPhALJQBSDB/QXAgBAIPpEMPLQ08jPhQj6UlAG+gKCENUydtvPC4rLP8lx+wAATsv/N1JX+lI1UjX6UjNSE8wxIc8UMSHPCx8xIc8LHzEhzwsfMcntVABO1ws/+JLIz5It3FzWEss/Esv/EvpSycjPhQgS+lJxzwtuzMmAQPsAAgEgUlMCASBWVwBNu3Tu1E0CDXSsIAjhbT/zH6SDH6SDHUMdQx0x/THzHTHzHRkjBw4oAgEgVFUATbWBXaiaBBrpWEARwtp/5j9JBj9JBjqGOoY6Y+Y6Y/pj5joyRg4cUABJtA6dqJoEGulYQBJGDbw6f+Y/SQY/SRqGOoY6Y+Y6Y+Y6Y+Y6MAIDnPxYWQIBIFpbAEuz3aiaBBrpWEARwtp/5j9JBj9JBjqGOoY6Y+Y6Y+Y6Y/oyRg4cUABVsf2omgQa6VhAEzp//0kaLgstrbw6f/9JH0kahjqaY+Y6Y+Y6Y+Y6L+qmEABNtkpdqJoEGulYQBJmEWEcOn/mP0kGP0kGOoY6mmPmOmPmOmPmOjoQAvm0YYQ66SRa6SQYQPL1JwBYABhgEkYOHF5cCMBa4UD+WgjdqJoEGulYQBKL4G4NvDp/5j9JBj9JBjqahjpj5jpj5jpj5jo6GmDgPloznoCaIFhBEcRmEF4DPgSIPcsR+2TdxJZK0boGuHkkDcI1cvN8xcqqsUOi//vEHGBgMFxdAAYweAEAHoMH9A5voZMweG3heAHU0Q==",
+  "codeHashHex": "A9933516AA373A1FC82E941C8AA244E4D111E77A71E6EE8935136A7B07A5D4F0",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/SubdomainCollection.tolk",
+        "size_chars": 27200,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/dns-utils.tolk",
+        "size_chars": 3168,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/errors.tolk",
+        "size_chars": 900,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/messages.tolk",
+        "size_chars": 4160,
+        "imports": [
+          6
+        ]
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/prices.tolk",
+        "size_chars": 2496,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/storage.tolk",
+        "size_chars": 5093,
+        "imports": [
+          2,
+          3,
+          5
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/gen/SubdomainItem.code.tolk",
+        "size_chars": 2105,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedCollectionMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegisterSubdomain"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DnsRecords"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 17,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetContent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMeta"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawFees"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProxyEditParentRecord"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FillUpParent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EnforceResolver"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetLabelReserved"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RescueNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GetRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmParentHandoff"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1227326361,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 2036979278,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 508261685,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 730527790,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 2545835094,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1560206053,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 3761412752,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 3438243348,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 546758054,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 1765620048,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 1212436562,
+            "prefix_len": 32,
+            "stack_type_id": 144,
+            "stack_width": 4
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionOrigin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryHandoffReceipt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 40
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 38
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": []
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 17,
+        "value_ty_idx": 43
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionSkeleton"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceOriginalMsgInfo"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 49
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 47
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceComputePhaseInfo"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 52,
+        "stack_type_id": 145,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SubdomainInit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionLoader"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 59,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 61,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemStorageNotInitialized"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          69
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 71,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 73,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          48
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 75,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 146,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          58,
+          17
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 77,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 147,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          79
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LockCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionReady"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          82
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OwnershipAssigned"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TransferForwardPayload"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 39,
+        "stack_type_id": 133,
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryHandoff"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 88
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnership"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnershipData"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          90
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeDnsRecord"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          94
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ParentHandoffComplete"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          96
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          54
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdminAssigned"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          100
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportRoyaltyParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          102
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DnsResolveResponse"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 70,
+        "struct_name": "CreateMessageOptions<Excesses>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          69
+        ]
+      },
+      {
+        "ty_idx": 83,
+        "struct_name": "CreateMessageOptions<CollectionReady>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          82
+        ]
+      },
+      {
+        "ty_idx": 93,
+        "struct_name": "CreateMessageOptions<TransferOwnership>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          90
+        ]
+      },
+      {
+        "ty_idx": 95,
+        "struct_name": "CreateMessageOptions<ChangeDnsRecord>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          94
+        ]
+      },
+      {
+        "ty_idx": 97,
+        "struct_name": "CreateMessageOptions<ParentHandoffComplete>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          96
+        ]
+      },
+      {
+        "ty_idx": 98,
+        "struct_name": "CreateMessageOptions<SubdomainInit>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          54
+        ]
+      },
+      {
+        "ty_idx": 99,
+        "struct_name": "CreateMessageOptions<cell>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          3
+        ]
+      },
+      {
+        "ty_idx": 101,
+        "struct_name": "CreateMessageOptions<AdminAssigned>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          100
+        ]
+      },
+      {
+        "ty_idx": 104,
+        "struct_name": "CreateMessageOptions<ReportRoyaltyParams>",
+        "monomorphic_fields_ty_idx": [
+          74,
+          76,
+          78,
+          102
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 50
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 59,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 61,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 62
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 58
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 60
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 71,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 72,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 73,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 80,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 74
+          },
+          {
+            "name": "value",
+            "ty_idx": 76
+          },
+          {
+            "name": "dest",
+            "ty_idx": 78
+          },
+          {
+            "name": "body",
+            "ty_idx": 79
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 68,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceBody",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1955,
+          21,
+          1955,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 4294967294,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "originalBody",
+            "ty_idx": 3
+          },
+          {
+            "name": "originalInfo",
+            "ty_idx": 51
+          },
+          {
+            "name": "bouncedByPhase",
+            "ty_idx": 24
+          },
+          {
+            "name": "exitCode",
+            "ty_idx": 8
+          },
+          {
+            "name": "computePhase",
+            "ty_idx": 53
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceComputePhaseInfo",
+        "ty_idx": 52,
+        "ident_loc": [
+          0,
+          1964,
+          8,
+          1964,
+          34
+        ],
+        "fields": [
+          {
+            "name": "gasUsed",
+            "ty_idx": 9
+          },
+          {
+            "name": "vmSteps",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceOriginalMsgInfo",
+        "ty_idx": 47,
+        "ident_loc": [
+          0,
+          1975,
+          8,
+          1975,
+          33
+        ],
+        "fields": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "valueExtra",
+            "ty_idx": 48
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedCollectionMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          19,
+          6,
+          19,
+          30
+        ],
+        "target_ty_idx": 36
+      },
+      {
+        "kind": "alias",
+        "name": "TransferForwardPayload",
+        "ty_idx": 86,
+        "ident_loc": [
+          4,
+          4,
+          6,
+          4,
+          28
+        ],
+        "target_ty_idx": 14
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnershipData",
+        "ty_idx": 91,
+        "ident_loc": [
+          4,
+          7,
+          8,
+          7,
+          29
+        ],
+        "fields": [
+          {
+            "name": "newOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 85
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 92
+          },
+          {
+            "name": "forwardAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 86
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnership",
+        "ty_idx": 90,
+        "ident_loc": [
+          4,
+          15,
+          21,
+          15,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1607220500,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "transferData",
+            "ty_idx": 91
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OwnershipAssigned",
+        "ty_idx": 84,
+        "ident_loc": [
+          4,
+          20,
+          21,
+          20,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 85167505,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "oldOwnerAddress",
+            "ty_idx": 85
+          },
+          {
+            "name": "payload",
+            "ty_idx": 86
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 69,
+        "ident_loc": [
+          4,
+          26,
+          21,
+          26,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GetRoyaltyParams",
+        "ty_idx": 34,
+        "ident_loc": [
+          4,
+          41,
+          21,
+          41,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1765620048,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportRoyaltyParams",
+        "ty_idx": 102,
+        "ident_loc": [
+          4,
+          45,
+          21,
+          45,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 2831876269,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "numerator",
+            "ty_idx": 103
+          },
+          {
+            "name": "denominator",
+            "ty_idx": 103
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeDnsRecord",
+        "ty_idx": 94,
+        "ident_loc": [
+          4,
+          53,
+          21,
+          53,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1320284409,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "key",
+            "ty_idx": 17
+          },
+          {
+            "name": "value",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LockCollection",
+        "ty_idx": 81,
+        "ident_loc": [
+          4,
+          69,
+          21,
+          69,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1812744983,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "meta",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionReady",
+        "ty_idx": 82,
+        "ident_loc": [
+          4,
+          79,
+          21,
+          79,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1380210993,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "currentAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "isNew",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ParentHandoffComplete",
+        "ty_idx": 96,
+        "ident_loc": [
+          4,
+          90,
+          21,
+          90,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1212436299,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmParentHandoff",
+        "ty_idx": 35,
+        "ident_loc": [
+          4,
+          98,
+          21,
+          98,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1212436562,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryHandoff",
+        "ty_idx": 88,
+        "ident_loc": [
+          4,
+          120,
+          21,
+          120,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1212239428,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "requestQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SubdomainInit",
+        "ty_idx": 54,
+        "ident_loc": [
+          4,
+          127,
+          21,
+          127,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 606644902,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "index",
+            "ty_idx": 17
+          },
+          {
+            "name": "minter",
+            "ty_idx": 7
+          },
+          {
+            "name": "label",
+            "ty_idx": 15
+          },
+          {
+            "name": "setWalletToMinter",
+            "ty_idx": 5
+          },
+          {
+            "name": "initialRecords",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RegisterSubdomain",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          136,
+          21,
+          136,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1227326361,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "label",
+            "ty_idx": 15
+          },
+          {
+            "name": "setWalletToMinter",
+            "ty_idx": 5
+          },
+          {
+            "name": "initialRecords",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetContent",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          143,
+          21,
+          143,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 2036979278,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "meta",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawFees",
+        "ty_idx": 27,
+        "ident_loc": [
+          4,
+          148,
+          21,
+          148,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 508261685,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAdmin",
+        "ty_idx": 28,
+        "ident_loc": [
+          4,
+          153,
+          21,
+          153,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 730527790,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AdminAssigned",
+        "ty_idx": 100,
+        "ident_loc": [
+          4,
+          158,
+          21,
+          158,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 2671430556,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProxyEditParentRecord",
+        "ty_idx": 29,
+        "ident_loc": [
+          4,
+          163,
+          21,
+          163,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 2545835094,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "key",
+            "ty_idx": 17
+          },
+          {
+            "name": "value",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FillUpParent",
+        "ty_idx": 30,
+        "ident_loc": [
+          4,
+          169,
+          21,
+          169,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1560206053,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EnforceResolver",
+        "ty_idx": 31,
+        "ident_loc": [
+          4,
+          173,
+          21,
+          173,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 3761412752,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetLabelReserved",
+        "ty_idx": 32,
+        "ident_loc": [
+          4,
+          177,
+          21,
+          177,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 3438243348,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "labelHash",
+            "ty_idx": 17
+          },
+          {
+            "name": "reserved",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RescueNft",
+        "ty_idx": 33,
+        "ident_loc": [
+          4,
+          183,
+          21,
+          183,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 546758054,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "toAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceConfig",
+        "ty_idx": 23,
+        "ident_loc": [
+          5,
+          7,
+          8,
+          7,
+          19
+        ],
+        "fields": [
+          {
+            "name": "minChars",
+            "ty_idx": 24
+          },
+          {
+            "name": "p1",
+            "ty_idx": 6
+          },
+          {
+            "name": "p2",
+            "ty_idx": 6
+          },
+          {
+            "name": "p3",
+            "ty_idx": 6
+          },
+          {
+            "name": "p4",
+            "ty_idx": 6
+          },
+          {
+            "name": "p5",
+            "ty_idx": 6
+          },
+          {
+            "name": "p6",
+            "ty_idx": 6
+          },
+          {
+            "name": "p7",
+            "ty_idx": 6
+          },
+          {
+            "name": "p8",
+            "ty_idx": 6
+          },
+          {
+            "name": "p9",
+            "ty_idx": 6
+          },
+          {
+            "name": "p10",
+            "ty_idx": 6
+          },
+          {
+            "name": "pRest",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "DnsRecords",
+        "ty_idx": 16,
+        "ident_loc": [
+          6,
+          23,
+          6,
+          23,
+          16
+        ],
+        "target_ty_idx": 18,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "struct",
+        "name": "DnsResolveResponse",
+        "ty_idx": 107,
+        "ident_loc": [
+          6,
+          35,
+          8,
+          35,
+          26
+        ],
+        "fields": [
+          {
+            "name": "resolvedPrefixLengthBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "resolvedRecord",
+            "ty_idx": 92
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionSkeleton",
+        "ty_idx": 45,
+        "ident_loc": [
+          6,
+          42,
+          8,
+          42,
+          26
+        ],
+        "fields": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "linkedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMeta",
+        "ty_idx": 22,
+        "ident_loc": [
+          6,
+          51,
+          8,
+          51,
+          22
+        ],
+        "fields": [
+          {
+            "name": "priceConfig",
+            "ty_idx": 25
+          },
+          {
+            "name": "collectionContent",
+            "ty_idx": 3
+          },
+          {
+            "name": "itemContentBaseUri",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionOrigin",
+        "ty_idx": 38,
+        "ident_loc": [
+          6,
+          57,
+          8,
+          57,
+          24
+        ],
+        "fields": [
+          {
+            "name": "linkedAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinkedAtDeployment",
+            "ty_idx": 5
+          },
+          {
+            "name": "lastFactoryHandoff",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryHandoffReceipt",
+        "ty_idx": 39,
+        "ident_loc": [
+          6,
+          64,
+          8,
+          64,
+          29
+        ],
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "requestQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "returnRequired",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionStorage",
+        "ty_idx": 37,
+        "ident_loc": [
+          6,
+          71,
+          8,
+          71,
+          25
+        ],
+        "fields": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "origin",
+            "ty_idx": 42
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "lastParentFillUp",
+            "ty_idx": 9
+          },
+          {
+            "name": "meta",
+            "ty_idx": 26
+          },
+          {
+            "name": "reserved",
+            "ty_idx": 44
+          },
+          {
+            "name": "minted",
+            "ty_idx": 44
+          },
+          {
+            "name": "mintedCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionLoader",
+        "ty_idx": 55,
+        "ident_loc": [
+          6,
+          90,
+          8,
+          90,
+          24
+        ],
+        "fields": [
+          {
+            "name": "cs",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 105,
+        "ident_loc": [
+          6,
+          110,
+          8,
+          110,
+          27
+        ],
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemStorageNotInitialized",
+        "ty_idx": 64,
+        "ident_loc": [
+          6,
+          118,
+          8,
+          118,
+          33
+        ],
+        "fields": [
+          {
+            "name": "index",
+            "ty_idx": 17
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "checkDomainString",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          72,
+          5,
+          72,
+          22
+        ],
+        "end_loc": [
+          2,
+          97,
+          1,
+          97,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 2
+          },
+          {
+            "name": "len",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "PriceConfig.priceForCharCount",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          41,
+          17,
+          41,
+          34
+        ],
+        "end_loc": [
+          5,
+          73,
+          1,
+          73,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "n",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          116,
+          5,
+          116,
+          21
+        ],
+        "end_loc": [
+          1,
+          158,
+          1,
+          158,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "startLoadingCollection",
+        "return_ty_idx": 55,
+        "num_params": 0,
+        "ident_loc": [
+          6,
+          94,
+          5,
+          94,
+          27
+        ],
+        "end_loc": [
+          6,
+          96,
+          1,
+          96,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 4,
+        "name": "CollectionLoader.isLocked",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          98,
+          22,
+          98,
+          30
+        ],
+        "end_loc": [
+          6,
+          100,
+          1,
+          100,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "CollectionLoader.parseLocked",
+        "return_ty_idx": 37,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          106,
+          22,
+          106,
+          33
+        ],
+        "end_loc": [
+          6,
+          108,
+          1,
+          108,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "CollectionStorage.fromSlice",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "calcDeployedItem",
+        "return_ty_idx": 57,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          168,
+          5,
+          168,
+          21
+        ],
+        "end_loc": [
+          6,
+          171,
+          1,
+          171,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 17
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "ItemStorageNotInitialized.toCell",
+        "return_ty_idx": 65,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 64
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "Cell<RemainingBitsAndRefs>.load",
+        "return_ty_idx": 14,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint256, ()>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "key",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint256, ()>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "key",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "CollectionStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          86,
+          23,
+          86,
+          27
+        ],
+        "end_loc": [
+          6,
+          88,
+          1,
+          88,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "CollectionStorage.toCell",
+        "return_ty_idx": 67,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "Cell<CollectionMeta>.load",
+        "return_ty_idx": 22,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "Cell<PriceConfig>.load",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "createMessage<Excesses>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          160,
+          5,
+          160,
+          22
+        ],
+        "end_loc": [
+          1,
+          610,
+          1,
+          610,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "CollectionLoader.parseSkeleton",
+        "return_ty_idx": 45,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          102,
+          22,
+          102,
+          35
+        ],
+        "end_loc": [
+          6,
+          104,
+          1,
+          104,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "CollectionSkeleton.fromSlice",
+        "return_ty_idx": 45,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "CollectionOrigin.toCell",
+        "return_ty_idx": 42,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "emptyReserved",
+        "return_ty_idx": 44,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          32,
+          5,
+          32,
+          18
+        ],
+        "end_loc": [
+          1,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 23,
+        "name": "notifyFactory",
+        "return_ty_idx": 0,
+        "num_params": 8,
+        "ident_loc": [
+          1,
+          69,
+          5,
+          69,
+          18
+        ],
+        "end_loc": [
+          1,
+          94,
+          1,
+          94,
+          2
+        ],
+        "params": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "creatorAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "currentAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "isNew",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "createMessage<CollectionReady>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 83
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "FactoryHandoff.fromSlice",
+        "return_ty_idx": 88,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "Cell<CollectionOrigin>.load",
+        "return_ty_idx": 38,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "FactoryHandoffReceipt.toCell",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "FactoryHandoff.toCell",
+        "return_ty_idx": 89,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 88
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "createMessage<TransferOwnership>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 93
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "pinNextResolver",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          51,
+          5,
+          51,
+          20
+        ],
+        "end_loc": [
+          1,
+          67,
+          1,
+          67,
+          2
+        ],
+        "params": [
+          {
+            "name": "parent",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "address.toNextResolver",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          24,
+          13,
+          24,
+          27
+        ],
+        "end_loc": [
+          2,
+          26,
+          1,
+          26,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "createMessage<ChangeDnsRecord>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 95
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "notifyParentHandoffComplete",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          96,
+          5,
+          96,
+          32
+        ],
+        "end_loc": [
+          1,
+          113,
+          1,
+          113,
+          2
+        ],
+        "params": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "receipt",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "createMessage<ParentHandoffComplete>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 97
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "address.forceBasechain",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          19,
+          13,
+          19,
+          27
+        ],
+        "end_loc": [
+          2,
+          21,
+          1,
+          21,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "Cell<DnsRecords>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "DnsRecords.unpackFromSlice",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          30,
+          16,
+          30,
+          31
+        ],
+        "end_loc": [
+          6,
+          33,
+          1,
+          33,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "createMessage<SubdomainInit>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 98
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "map<uint256, ()>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "key",
+            "ty_idx": 17
+          },
+          {
+            "name": "value",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "sendParentHeartbeat",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          41,
+          5,
+          41,
+          24
+        ],
+        "end_loc": [
+          1,
+          49,
+          1,
+          49,
+          2
+        ],
+        "params": [
+          {
+            "name": "parent",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "createMessage<cell>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 99
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "assertAdmin",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          37,
+          5,
+          37,
+          16
+        ],
+        "end_loc": [
+          1,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "CollectionMeta.toCell",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "createMessage<AdminAssigned>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 101
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "createMessage<ReportRoyaltyParams>",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 104
+          }
+        ]
+      },
+      {
+        "f_idx": 46,
+        "name": "Cell<FactoryHandoffReceipt>.load",
+        "return_ty_idx": 39,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "get_collection_data",
+        "return_ty_idx": 105,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          612,
+          9,
+          612,
+          28
+        ],
+        "end_loc": [
+          1,
+          628,
+          1,
+          628,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 48,
+        "name": "royalty_params",
+        "return_ty_idx": 106,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          631,
+          9,
+          631,
+          23
+        ],
+        "end_loc": [
+          1,
+          637,
+          1,
+          637,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 49,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          639,
+          9,
+          639,
+          33
+        ],
+        "end_loc": [
+          1,
+          641,
+          1,
+          641,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 50,
+        "name": "get_last_parent_fill_up",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          643,
+          9,
+          643,
+          32
+        ],
+        "end_loc": [
+          1,
+          649,
+          1,
+          649,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 51,
+        "name": "get_minted_count",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          651,
+          9,
+          651,
+          25
+        ],
+        "end_loc": [
+          1,
+          657,
+          1,
+          657,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 52,
+        "name": "get_nft_content",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          659,
+          9,
+          659,
+          24
+        ],
+        "end_loc": [
+          1,
+          666,
+          1,
+          666,
+          2
+        ],
+        "params": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "get_price",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          668,
+          9,
+          668,
+          18
+        ],
+        "end_loc": [
+          1,
+          674,
+          1,
+          674,
+          2
+        ],
+        "params": [
+          {
+            "name": "charCount",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "get_min_chars",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          677,
+          9,
+          677,
+          22
+        ],
+        "end_loc": [
+          1,
+          683,
+          1,
+          683,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 55,
+        "name": "get_admin",
+        "return_ty_idx": 85,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          685,
+          9,
+          685,
+          18
+        ],
+        "end_loc": [
+          1,
+          691,
+          1,
+          691,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 56,
+        "name": "get_parent_domain",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          693,
+          9,
+          693,
+          26
+        ],
+        "end_loc": [
+          1,
+          699,
+          1,
+          699,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 57,
+        "name": "get_linked_admin",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          702,
+          9,
+          702,
+          25
+        ],
+        "end_loc": [
+          1,
+          708,
+          1,
+          708,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 58,
+        "name": "is_locked",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          710,
+          9,
+          710,
+          18
+        ],
+        "end_loc": [
+          1,
+          712,
+          1,
+          712,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 59,
+        "name": "get_is_linked",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          715,
+          9,
+          715,
+          22
+        ],
+        "end_loc": [
+          1,
+          721,
+          1,
+          721,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 60,
+        "name": "dnsresolve",
+        "return_ty_idx": 107,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          723,
+          9,
+          723,
+          19
+        ],
+        "end_loc": [
+          1,
+          744,
+          1,
+          744,
+          2
+        ],
+        "params": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "_category",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 61,
+        "name": "dnsQueryStartsWithZero",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          34,
+          5,
+          34,
+          27
+        ],
+        "end_loc": [
+          2,
+          38,
+          1,
+          38,
+          2
+        ],
+        "params": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 62,
+        "name": "getTopDomainBits",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          44,
+          5,
+          44,
+          21
+        ],
+        "end_loc": [
+          2,
+          60,
+          1,
+          60,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 2
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "SubdomainCollection",
+    "author": "tolk-subdomains",
+    "version": "2.0.0",
+    "description": "Per-domain registry with Locked or Linked parent custody, minting, DNS and transferable admin.",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegisterSubdomain"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DnsRecords"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetContent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMeta"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PriceConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WithdrawFees"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProxyEditParentRecord"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FillUpParent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "EnforceResolver"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetLabelReserved"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RescueNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "GetRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmParentHandoff"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionOrigin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryHandoffReceipt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 38
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": []
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 41
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionSkeleton"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeDnsRecord"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionReady"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ParentHandoffComplete"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnership"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferOwnershipData"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "TransferForwardPayload"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SubdomainInit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AdminAssigned"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReportRoyaltyParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DnsResolveResponse"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "TransferForwardPayload",
+        "ty_idx": 52,
+        "target_ty_idx": 13
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnershipData",
+        "ty_idx": 49,
+        "fields": [
+          {
+            "name": "newOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 50
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 51
+          },
+          {
+            "name": "forwardAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferOwnership",
+        "ty_idx": 48,
+        "prefix": {
+          "prefix_num": 1607220500,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "transferData",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 47,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "GetRoyaltyParams",
+        "ty_idx": 33,
+        "prefix": {
+          "prefix_num": 1765620048,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReportRoyaltyParams",
+        "ty_idx": 55,
+        "prefix": {
+          "prefix_num": 2831876269,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "numerator",
+            "ty_idx": 56
+          },
+          {
+            "name": "denominator",
+            "ty_idx": 56
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeDnsRecord",
+        "ty_idx": 44,
+        "prefix": {
+          "prefix_num": 1320284409,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          },
+          {
+            "name": "value",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionReady",
+        "ty_idx": 45,
+        "prefix": {
+          "prefix_num": 1380210993,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "currentAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "isNew",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ParentHandoffComplete",
+        "ty_idx": 46,
+        "prefix": {
+          "prefix_num": 1212436299,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmParentHandoff",
+        "ty_idx": 34,
+        "prefix": {
+          "prefix_num": 1212436562,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SubdomainInit",
+        "ty_idx": 53,
+        "prefix": {
+          "prefix_num": 606644902,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "index",
+            "ty_idx": 16
+          },
+          {
+            "name": "minter",
+            "ty_idx": 7
+          },
+          {
+            "name": "label",
+            "ty_idx": 14
+          },
+          {
+            "name": "setWalletToMinter",
+            "ty_idx": 5
+          },
+          {
+            "name": "initialRecords",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RegisterSubdomain",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1227326361,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "label",
+            "ty_idx": 14
+          },
+          {
+            "name": "setWalletToMinter",
+            "ty_idx": 5
+          },
+          {
+            "name": "initialRecords",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetContent",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 2036979278,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "meta",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WithdrawFees",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 508261685,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAdmin",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 730527790,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AdminAssigned",
+        "ty_idx": 54,
+        "prefix": {
+          "prefix_num": 2671430556,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProxyEditParentRecord",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 2545835094,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          },
+          {
+            "name": "value",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FillUpParent",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1560206053,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "EnforceResolver",
+        "ty_idx": 30,
+        "prefix": {
+          "prefix_num": 3761412752,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetLabelReserved",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 3438243348,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "labelHash",
+            "ty_idx": 16
+          },
+          {
+            "name": "reserved",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RescueNft",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 546758054,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "toAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PriceConfig",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "minChars",
+            "ty_idx": 23
+          },
+          {
+            "name": "p1",
+            "ty_idx": 6
+          },
+          {
+            "name": "p2",
+            "ty_idx": 6
+          },
+          {
+            "name": "p3",
+            "ty_idx": 6
+          },
+          {
+            "name": "p4",
+            "ty_idx": 6
+          },
+          {
+            "name": "p5",
+            "ty_idx": 6
+          },
+          {
+            "name": "p6",
+            "ty_idx": 6
+          },
+          {
+            "name": "p7",
+            "ty_idx": 6
+          },
+          {
+            "name": "p8",
+            "ty_idx": 6
+          },
+          {
+            "name": "p9",
+            "ty_idx": 6
+          },
+          {
+            "name": "p10",
+            "ty_idx": 6
+          },
+          {
+            "name": "pRest",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "DnsRecords",
+        "ty_idx": 15,
+        "target_ty_idx": 17,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "struct",
+        "name": "DnsResolveResponse",
+        "ty_idx": 59,
+        "fields": [
+          {
+            "name": "resolvedPrefixLengthBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "resolvedRecord",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionSkeleton",
+        "ty_idx": 43,
+        "fields": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "linkedAdmin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMeta",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "priceConfig",
+            "ty_idx": 24
+          },
+          {
+            "name": "collectionContent",
+            "ty_idx": 3
+          },
+          {
+            "name": "itemContentBaseUri",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionOrigin",
+        "ty_idx": 36,
+        "fields": [
+          {
+            "name": "linkedAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "isLinkedAtDeployment",
+            "ty_idx": 5
+          },
+          {
+            "name": "lastFactoryHandoff",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryHandoffReceipt",
+        "ty_idx": 37,
+        "fields": [
+          {
+            "name": "deploymentId",
+            "ty_idx": 11
+          },
+          {
+            "name": "requestQueryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "intendedAdmin",
+            "ty_idx": 7
+          },
+          {
+            "name": "returnRequired",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionStorage",
+        "ty_idx": 35,
+        "fields": [
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "parentDomain",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          },
+          {
+            "name": "origin",
+            "ty_idx": 40
+          },
+          {
+            "name": "isLinked",
+            "ty_idx": 5
+          },
+          {
+            "name": "lastParentFillUp",
+            "ty_idx": 9
+          },
+          {
+            "name": "meta",
+            "ty_idx": 25
+          },
+          {
+            "name": "reserved",
+            "ty_idx": 42
+          },
+          {
+            "name": "minted",
+            "ty_idx": 42
+          },
+          {
+            "name": "mintedCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 57,
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 50
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 35,
+      "storage_at_deployment_ty_idx": 43
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 20
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      },
+      {
+        "body_ty_idx": 28
+      },
+      {
+        "body_ty_idx": 29
+      },
+      {
+        "body_ty_idx": 30
+      },
+      {
+        "body_ty_idx": 31
+      },
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 33
+      },
+      {
+        "body_ty_idx": 34
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 3
+      },
+      {
+        "body_ty_idx": 44
+      },
+      {
+        "body_ty_idx": 45
+      },
+      {
+        "body_ty_idx": 46
+      },
+      {
+        "body_ty_idx": 47
+      },
+      {
+        "body_ty_idx": 48
+      },
+      {
+        "body_ty_idx": 53
+      },
+      {
+        "body_ty_idx": 54
+      },
+      {
+        "body_ty_idx": 55
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 57
+      },
+      {
+        "tvm_method_id": 85719,
+        "name": "royalty_params",
+        "parameters": [],
+        "return_ty_idx": 58
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 120741,
+        "name": "get_last_parent_fill_up",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 68099,
+        "name": "get_minted_count",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 68445,
+        "name": "get_nft_content",
+        "parameters": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ],
+        "return_ty_idx": 3
+      },
+      {
+        "tvm_method_id": 108963,
+        "name": "get_price",
+        "parameters": [
+          {
+            "name": "charCount",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 113456,
+        "name": "get_min_chars",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 113142,
+        "name": "get_admin",
+        "parameters": [],
+        "return_ty_idx": 50
+      },
+      {
+        "tvm_method_id": 66233,
+        "name": "get_parent_domain",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 88174,
+        "name": "get_linked_admin",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 97097,
+        "name": "is_locked",
+        "parameters": [],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 120147,
+        "name": "get_is_linked",
+        "parameters": [],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 123660,
+        "name": "dnsresolve",
+        "parameters": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "_category",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 59
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_DNS_INVALID_SUBDOMAIN_BITS",
+        "err_code": 70
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LABEL_TOO_SHORT",
+        "err_code": 200
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LABEL_TOO_LONG",
+        "err_code": 201
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LABEL_INVALID_CHARS",
+        "err_code": 202
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LABEL_RESERVED",
+        "err_code": 203
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_MINT_VALUE",
+        "err_code": 204
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LABEL_TAKEN",
+        "err_code": 207
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_WRONG_WORKCHAIN",
+        "err_code": 211
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_RESCUE_PARENT_FORBIDDEN",
+        "err_code": 212
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_LINKED_NO_CUSTODY",
+        "err_code": 214
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INDEX_MISMATCH",
+        "err_code": 220
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_BALANCE",
+        "err_code": 402
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_ADMIN",
+        "err_code": 403
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_FROM_COLLECTION",
+        "err_code": 404
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_FROM_MASTER",
+        "err_code": 405
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_CANNOT_EDIT_RESOLVER",
+        "err_code": 406
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_CONTENT_TAG_INVALID",
+        "err_code": 412
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNKNOWN_OP",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/SubdomainCollection.tolk",
+      "contents": "import \"dns-utils\"\nimport \"errors\"\nimport \"messages\"\nimport \"prices\"\nimport \"storage\"\n// Tier 1: one registry per parent domain. Custody/lock + mint + resolver + admin.\n// check-disable-next-line import-path-can-use-mappings\nimport \"../gen/SubdomainItem.code\"\n\ncontract SubdomainCollection {\n    author: \"tolk-subdomains\"\n    version: \"2.0.0\"\n    description: \"Per-domain registry with Locked or Linked parent custody, minting, DNS and transferable admin.\"\n    incomingMessages: AllowedCollectionMessage\n    storage: CollectionStorage\n    storageAtDeployment: CollectionSkeleton\n}\n\ntype AllowedCollectionMessage =\n    | RegisterSubdomain\n    | SetContent\n    | WithdrawFees\n    | TransferAdmin\n    | ProxyEditParentRecord\n    | FillUpParent\n    | EnforceResolver\n    | SetLabelReserved\n    | RescueNft\n    | GetRoyaltyParams\n    | ConfirmParentHandoff\n\nfun emptyReserved(): map<uint256, ()> {\n    val m: map<uint256, ()> = [];\n    return m;\n}\n\nfun assertAdmin(senderAddress: address, admin: address) {\n    assert (senderAddress == admin) throw ERROR_NOT_ADMIN;\n}\n\nfun sendParentHeartbeat(parent: address, amount: coins) {\n    val heartbeatMessage = createMessage({\n        bounce: true,\n        dest: parent,\n        value: amount,\n        body: beginCell().endCell(),\n    });\n    heartbeatMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun pinNextResolver(parent: address, queryId: uint64, mode: int) {\n    val recordValue = beginCell()\n        .storeRef(contract.getAddress().toNextResolver())\n        .endCell()\n        .beginParse();\n    val resolverPinMessage = createMessage({\n        bounce: true,\n        dest: parent,\n        value: ton(\"0.05\"),\n        body: ChangeDnsRecord {\n            queryId,\n            key: CAT_DNS_NEXT_RESOLVER,\n            value: recordValue,\n        },\n    });\n    resolverPinMessage.send(mode);\n}\n\nfun notifyFactory(\n    master: address,\n    deploymentId: uint64,\n    queryId: uint64,\n    parentDomain: address,\n    creatorAdmin: address,\n    currentAdmin: address,\n    isLinked: bool,\n    isNew: bool,\n) {\n    val ready = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: master,\n        value: FACTORY_READY_VALUE,\n        body: CollectionReady {\n            deploymentId,\n            queryId,\n            parentDomain,\n            admin: creatorAdmin,\n            currentAdmin,\n            isLinked,\n            isNew,\n        },\n    });\n    ready.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun notifyParentHandoffComplete(\n    master: address,\n    parentDomain: address,\n    receipt: FactoryHandoffReceipt,\n) {\n    val complete = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: master,\n        value: FACTORY_READY_VALUE,\n        body: ParentHandoffComplete {\n            deploymentId: receipt.deploymentId,\n            queryId: receipt.requestQueryId,\n            parentDomain,\n            intendedAdmin: receipt.intendedAdmin,\n        },\n    });\n    complete.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\n// Rich bounce authenticates a failed item init and releases its label.\nfun onBouncedMessage(in: InMessageBounced) {\n    if (in.bouncedBody.remainingBitsCount() < 32 || in.bouncedBody.preloadUint(32) != 0xfffffffe) {\n        return;\n    }\n\n    val rich = lazy RichBounceBody.fromSlice(in.bouncedBody);\n    val originalBody = rich.originalBody.beginParse();\n    if (originalBody.remainingBitsCount() < 32 || originalBody.preloadUint(32) != 0x2428aaa6) {\n        return;\n    }\n\n    val init = lazy SubdomainInit.fromSlice(originalBody);\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return;\n    }\n    var storage = loader.parseLocked();\n    val itemCode = subdomainItemCompiledCode();\n    assert (\n        in.senderAddress == calcDeployedItem(init.index, itemCode).calculateAddress()\n    ) throw ERROR_NOT_FROM_COLLECTION;\n    assert (init.label.load().hash() == init.index) throw ERROR_INDEX_MISMATCH;\n\n    if (!storage.minted.exists(init.index)) {\n        return;\n    }\n    storage.minted.delete(init.index);\n    // The set is authoritative; saturate its auxiliary count.\n    if (storage.mintedCount > 0) {\n        storage.mintedCount -= 1;\n    }\n    storage.save();\n\n    val labelBits = init.label.load().remainingBitsCount();\n    val price = storage.meta.load().priceConfig.load().priceForCharCount(labelBits / BYTE_SIZE);\n    val refund = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: init.minter,\n        value: price + in.valueCoins,\n        body: Excesses { queryId: init.queryId },\n    });\n    refund.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun onInternalMessage(in: InMessage) {\n    val loader = startLoadingCollection();\n\n    // ============================ SKELETON (not locked) ============================\n    if (!loader.isLocked()) {\n        // Ignore messages until the master initializes this skeleton.\n        if (\n            in.body.isEmpty() || in.body.remainingBitsCount() < 32 ||\n            in.body.preloadUint(32) != 0x6c0c4b17\n        ) {\n            return;\n        }\n\n        val lock = lazy LockCollection.fromSlice(in.body);\n        val sk = loader.parseSkeleton();\n        assert (in.senderAddress == sk.master) throw ERROR_NOT_FROM_MASTER;\n        assert (lock.parentDomain == sk.parentDomain) throw ERROR_NOT_FROM_MASTER;\n        assert (lock.isLinked == sk.isLinked) throw ERROR_NOT_FROM_MASTER;\n        if (sk.isLinked) {\n            // Enforce the creator committed into Linked StateInit.\n            assert (lock.admin == sk.linkedAdmin) throw ERROR_NOT_ADMIN;\n        }\n        // The factory validates workchains before transferring custody.\n\n        val locked: CollectionStorage = {\n            master: sk.master,\n            parentDomain: sk.parentDomain,\n            admin: lock.admin,\n            origin: CollectionOrigin {\n                linkedAdmin: sk.linkedAdmin,\n                isLinkedAtDeployment: sk.isLinked,\n                lastFactoryHandoff: null,\n            }.toCell(),\n            // Custody mode comes from StateInit, not the lock message.\n            isLinked: sk.isLinked,\n            lastParentFillUp: blockchain.now(),\n            meta: lock.meta,\n            reserved: emptyReserved(),\n            minted: emptyReserved(),\n            mintedCount: 0,\n        };\n        locked.save();\n        notifyFactory(\n            sk.master,\n            lock.deploymentId,\n            lock.queryId,\n            sk.parentDomain,\n            lock.admin,\n            lock.admin,\n            sk.isLinked,\n            true,\n        );\n        return;\n    }\n\n    // ============================ LOCKED ============================\n    var storage = loader.parseLocked();\n\n    if (in.body.isEmpty()) {\n        return;\n    }\n\n    if (in.body.remainingBitsCount() >= 32 && in.body.preloadUint(32) == 0x05138d91) {\n        // Parent landing either completes Locked creation or terminally upgrades Linked.\n        if (in.senderAddress == storage.parentDomain) {\n            val assigned = lazy OwnershipAssigned.fromSlice(in.body);\n            var factoryReceipt: FactoryHandoffReceipt? = null;\n            var handoffPayload = assigned.payload;\n            if (handoffPayload.remainingBitsCount() > 0) {\n                val payloadInRef = handoffPayload.loadBool();\n                if (payloadInRef && handoffPayload.remainingRefsCount() > 0) {\n                    handoffPayload = handoffPayload.loadRef().beginParse();\n                }\n            }\n            if (\n                assigned.oldOwnerAddress != null && assigned.oldOwnerAddress! == storage.master &&\n                handoffPayload.remainingBitsCount() >= 32 &&\n                handoffPayload.preloadUint(32) == 0x48414e44\n            ) {\n                val handoff = FactoryHandoff.fromSlice(handoffPayload);\n                assert (handoff.deploymentId == assigned.queryId) throw ERROR_NOT_FROM_MASTER;\n                factoryReceipt = FactoryHandoffReceipt {\n                    deploymentId: handoff.deploymentId,\n                    requestQueryId: handoff.requestQueryId,\n                    intendedAdmin: handoff.intendedAdmin,\n                    returnRequired: handoff.intendedAdmin != storage.admin,\n                };\n                var updatedOrigin = storage.origin.load();\n                updatedOrigin.lastFactoryHandoff = factoryReceipt!.toCell();\n                storage.origin = updatedOrigin.toCell();\n                storage.save();\n            }\n\n            // Return a re-auctioned parent when the active registry has a different admin.\n            if (factoryReceipt != null && factoryReceipt!.returnRequired) {\n                val returnParent = createMessage({\n                    bounce: BounceMode.RichBounce,\n                    dest: storage.parentDomain,\n                    value: 0,\n                    body: TransferOwnership {\n                        queryId: factoryReceipt!.deploymentId,\n                        transferData: {\n                            newOwnerAddress: factoryReceipt!.intendedAdmin,\n                            // The factory keeps pending until this canonical parent acknowledgement.\n                            responseDestination: storage.master,\n                            customPayload: null,\n                            forwardAmount: 0,\n                            forwardPayload: beginCell()\n                                .storeBool(true)\n                                .storeRef(\n                                    FactoryHandoff {\n                                        deploymentId: factoryReceipt!.deploymentId,\n                                        requestQueryId: factoryReceipt!.requestQueryId,\n                                        intendedAdmin: factoryReceipt!.intendedAdmin,\n                                    }.toCell(),\n                                )\n                                .endCell()\n                                .beginParse(),\n                        },\n                    },\n                });\n                returnParent.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n                return;\n            }\n            if (storage.isLinked) {\n                storage.isLinked = false;\n                storage.save();\n            }\n            // Commit custody even if the resolver pin must be repaired later.\n            pinNextResolver(\n                storage.parentDomain,\n                assigned.queryId,\n                SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_IGNORE_ERRORS,\n            );\n            if (factoryReceipt != null) {\n                notifyParentHandoffComplete(storage.master, storage.parentDomain, factoryReceipt!);\n            }\n        }\n        return;\n    }\n\n    if (in.body.remainingBitsCount() >= 32 && in.body.preloadUint(32) == 0xd53276db) {\n        return;\n    }\n\n    // Active-address retries report current state and return their attached value.\n    if (in.body.remainingBitsCount() >= 32 && in.body.preloadUint(32) == 0x6c0c4b17) {\n        val duplicate = lazy LockCollection.fromSlice(in.body);\n        assert (in.senderAddress == storage.master) throw ERROR_NOT_FROM_MASTER;\n        val origin = storage.origin.load();\n        assert (duplicate.parentDomain == storage.parentDomain) throw ERROR_NOT_FROM_MASTER;\n        assert (duplicate.isLinked == origin.isLinkedAtDeployment) throw ERROR_NOT_FROM_MASTER;\n        notifyFactory(\n            storage.master,\n            duplicate.deploymentId,\n            duplicate.queryId,\n            duplicate.parentDomain,\n            duplicate.admin,\n            storage.admin,\n            duplicate.isLinked,\n            false,\n        );\n        val duplicateRefund = createMessage({\n            bounce: false,\n            dest: duplicate.admin,\n            value: 0,\n            body: Excesses { queryId: duplicate.queryId },\n        });\n        duplicateRefund.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        return;\n    }\n\n    val msg = lazy AllowedCollectionMessage.fromSlice(in.body);\n\n    match (msg) {\n        // ---------------- MINT ----------------\n        RegisterSubdomain => {\n            // Reject before reserving a label the basechain item cannot use.\n            in.senderAddress.forceBasechain();\n\n            val label = msg.label.load();\n            val len = label.remainingBitsCount();\n            val cfg = storage.meta.load().priceConfig.load();\n            assert (\n                len >= cfg.minChars * BYTE_SIZE\n            ) throw ERROR_LABEL_TOO_SHORT;                                        // per-registry minimum\n            assert (len <= MAX_DOMAIN_SIZE * BYTE_SIZE) throw ERROR_LABEL_TOO_LONG;\n            assert (len % BYTE_SIZE == 0) throw ERROR_LABEL_INVALID_CHARS;\n            assert (checkDomainString(label, len)) throw ERROR_LABEL_INVALID_CHARS;\n            assert (label.remainingRefsCount() == 0) throw ERROR_LABEL_INVALID_CHARS;\n\n            // Validate records before reserving the label.\n            if (msg.initialRecords != null) {\n                val _validatedRecords = msg.initialRecords.load();\n            }\n\n            val index = label.hash();\n            assert (!storage.minted.exists(index)) throw ERROR_LABEL_TAKEN;\n\n            if (storage.reserved.exists(index) && in.senderAddress != storage.admin) {\n                throw ERROR_LABEL_RESERVED;\n            }\n\n            val price = cfg.priceForCharCount(len / BYTE_SIZE);\n            assert (\n                in.valueCoins >= price + ITEM_DEPLOY_COST + MINT_FEE_BUFFER\n            ) throw ERROR_INSUFFICIENT_MINT_VALUE;\n\n            val itemCode = subdomainItemCompiledCode();\n            val deployMsg = createMessage({\n                bounce: BounceMode.RichBounce,\n                dest: calcDeployedItem(index, itemCode),\n                value: ITEM_DEPLOY_COST,\n                body: SubdomainInit {\n                    queryId: msg.queryId,\n                    index,\n                    minter: in.senderAddress,\n                    label: msg.label,\n                    setWalletToMinter: msg.setWalletToMinter,\n                    initialRecords: msg.initialRecords,\n                },\n            });\n            deployMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n\n            storage.minted.set(index, ());\n            storage.mintedCount += 1;\n\n            // Only a Locked collection owns the parent and can renew it.\n            val nowTime = blockchain.now();\n            if (\n                !storage.isLinked && nowTime - storage.lastParentFillUp > PARENT_HEARTBEAT_INTERVAL\n            ) {\n                sendParentHeartbeat(storage.parentDomain, PARENT_HEARTBEAT_AMOUNT);\n                storage.lastParentFillUp = nowTime;\n            }\n            storage.save();\n\n            val refund = in.valueCoins - price - ITEM_DEPLOY_COST - MINT_FEE_BUFFER;\n            if (refund > 0) {\n                val refundMsg = createMessage({\n                    body: Excesses { queryId: msg.queryId },\n                    bounce: false,\n                    dest: in.senderAddress,\n                    value: refund,\n                });\n                refundMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n            }\n        }\n\n        // ---------------- admin: set content ----------------\n        SetContent => {\n            assertAdmin(in.senderAddress, storage.admin);\n            var newMeta = msg.meta.load();\n            newMeta.priceConfig = storage.meta.load().priceConfig;\n            storage.meta = newMeta.toCell();\n            storage.save();\n        }\n\n        WithdrawFees => {\n            assertAdmin(in.senderAddress, storage.admin);\n            val balance = contract.getOriginalBalance();\n            val keep = COLLECTION_MIN_BALANCE + FWD_FEE_RESERVE;\n            var maxWithdraw = balance - in.valueCoins - keep;\n            if (maxWithdraw < 0) {\n                maxWithdraw = 0;\n            }\n            var amount = msg.amount;\n            if (amount == 0 || amount > maxWithdraw) {\n                amount = maxWithdraw;\n            }\n            if (amount > 0) {\n                val payout = createMessage({\n                    bounce: false,\n                    dest: storage.admin,\n                    value: amount,\n                    body: beginCell().endCell(),\n                });\n                payout.send(SEND_MODE_PAY_FEES_SEPARATELY);\n            }\n        }\n\n        // ---------------- admin: transfer role ----------------\n        TransferAdmin => {\n            assertAdmin(in.senderAddress, storage.admin);\n            // An unusable admin would permanently lock privileged operations.\n            msg.newAdmin.forceBasechain();\n            val prev = storage.admin;\n            storage.admin = msg.newAdmin;\n            storage.save();\n            val notify = createMessage({\n                bounce: false,\n                dest: msg.newAdmin,\n                value: 0,\n                body: AdminAssigned {\n                    queryId: msg.queryId,\n                    prevAdmin: prev,\n                },\n            });\n            notify.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        // ---------------- admin: proxy-edit parent record ----------------\n        ProxyEditParentRecord => {\n            assertAdmin(in.senderAddress, storage.admin);\n            assert (!storage.isLinked) throw ERROR_LINKED_NO_CUSTODY; // we don't own the parent\n            assert (msg.key != CAT_DNS_NEXT_RESOLVER) throw ERROR_CANNOT_EDIT_RESOLVER;\n            val relay = createMessage({\n                bounce: true,\n                dest: storage.parentDomain,\n                value: 0,\n                body: ChangeDnsRecord {\n                    queryId: msg.queryId,\n                    key: msg.key,\n                    value: msg.value,\n                },\n            });\n            relay.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        // ---------------- public: fill up parent (caller-funded) ----------------\n        FillUpParent => {\n            // Caller-funded renewal forwards only the incoming remainder.\n            assert (\n                !storage.isLinked\n            ) throw ERROR_LINKED_NO_CUSTODY;                          // the owner renews their own .ton\n            assert (in.valueCoins >= MIN_PARENT_FILL) throw ERROR_INSUFFICIENT_BALANCE;\n            val heartbeat = createMessage({\n                bounce: true,\n                dest: storage.parentDomain,\n                value: 0,\n                body: beginCell().endCell(),\n            });\n            heartbeat.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n            storage.lastParentFillUp = blockchain.now();\n            storage.save();\n        }\n\n        // ---------------- public: enforce resolver ----------------\n        EnforceResolver => {\n            // Caller must fund the pin so spamming this drains the caller, not the collection.\n            assert (\n                !storage.isLinked\n            ) throw ERROR_LINKED_NO_CUSTODY;                          // we can't write the parent's records\n            assert (in.valueCoins >= RESOLVER_PIN_FUND) throw ERROR_INSUFFICIENT_BALANCE;\n            pinNextResolver(storage.parentDomain, msg.queryId, SEND_MODE_PAY_FEES_SEPARATELY);\n        }\n\n        SetLabelReserved => {\n            assertAdmin(in.senderAddress, storage.admin);\n            if (msg.reserved) {\n                storage.reserved.set(msg.labelHash, ());\n            } else {\n                storage.reserved.delete(msg.labelHash);\n            }\n            storage.save();\n        }\n\n        // ---------------- admin: rescue NFT ----------------\n        RescueNft => {\n            assertAdmin(in.senderAddress, storage.admin);\n            // Locked protects parent custody; Linked allows rescue of a mis-routed parent.\n            assert (\n                storage.isLinked || msg.nftAddress != storage.parentDomain\n            ) throw ERROR_RESCUE_PARENT_FORBIDDEN;\n            val emptyPayload = beginCell().endCell().beginParse();\n            val rescueMsg = createMessage({\n                bounce: true,\n                dest: msg.nftAddress,\n                value: 0,\n                body: TransferOwnership {\n                    queryId: msg.queryId,\n                    transferData: {\n                        newOwnerAddress: msg.toAddress,\n                        responseDestination: storage.admin,\n                        customPayload: null,\n                        forwardAmount: 0,\n                        forwardPayload: emptyPayload,\n                    },\n                },\n            });\n            rescueMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        // ---------------- TEP-66: royalty params query ----------------\n        GetRoyaltyParams => {\n            val reply = createMessage({\n                bounce: false,\n                dest: in.senderAddress,\n                value: 0,\n                body: ReportRoyaltyParams {\n                    queryId: msg.queryId,\n                    numerator: 0,\n                    denominator: 1000,\n                    destination: storage.admin,\n                },\n            });\n            reply.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        ConfirmParentHandoff => {\n            assert (in.senderAddress == storage.master) throw ERROR_NOT_FROM_MASTER;\n            assert (msg.parentDomain == storage.parentDomain) throw ERROR_NOT_FROM_MASTER;\n            val origin = storage.origin.load();\n            if (origin.lastFactoryHandoff == null) {\n                return;\n            }\n            val receipt = origin.lastFactoryHandoff!.load();\n            if (\n                receipt.deploymentId != msg.deploymentId || receipt.requestQueryId != msg.queryId ||\n                receipt.intendedAdmin != msg.intendedAdmin\n            ) {\n                return;\n            }\n\n            if (!receipt.returnRequired) {\n                notifyParentHandoffComplete(storage.master, storage.parentDomain, receipt);\n                return;\n            }\n\n            // Recover an interrupted return after TransferAdmin raced the handoff.\n            val returnParent = createMessage({\n                bounce: BounceMode.RichBounce,\n                dest: storage.parentDomain,\n                value: 0,\n                body: TransferOwnership {\n                    queryId: receipt.deploymentId,\n                    transferData: {\n                        newOwnerAddress: receipt.intendedAdmin,\n                        responseDestination: storage.master,\n                        customPayload: null,\n                        forwardAmount: 0,\n                        forwardPayload: beginCell()\n                            .storeBool(true)\n                            .storeRef(\n                                FactoryHandoff {\n                                    deploymentId: receipt.deploymentId,\n                                    requestQueryId: receipt.requestQueryId,\n                                    intendedAdmin: receipt.intendedAdmin,\n                                }.toCell(),\n                            )\n                            .endCell()\n                            .beginParse(),\n                    },\n                },\n            });\n            returnParent.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        else => throw ERROR_UNKNOWN_OP,\n    }\n}\n\nget fun get_collection_data(): CollectionDataReply {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return {\n            nextItemIndex: -1,\n            content: beginCell().endCell(),\n            ownerAddress: null,\n        };\n    }\n    val st = loader.parseLocked();\n    return {\n        // TEP-62 reserves -1 for non-sequential collections.\n        nextItemIndex: -1,\n        content: st.meta.load().collectionContent,\n        ownerAddress: st.admin,\n    };\n}\n\n// TEP-66, with zero royalty.\nget fun royalty_params(): (int, int, address) {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return (0, 1000, contract.getAddress());\n    }\n    return (0, 1000, loader.parseLocked().admin);\n}\n\nget fun get_nft_address_by_index(index: int): address {\n    return calcDeployedItem(index, subdomainItemCompiledCode()).calculateAddress();\n}\n\nget fun get_last_parent_fill_up(): int {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return 0;\n    }\n    return loader.parseLocked().lastParentFillUp;\n}\n\nget fun get_minted_count(): int {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return 0;\n    }\n    return loader.parseLocked().mintedCount;\n}\n\nget fun get_nft_content(_index: int, individualContent: cell): cell {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return beginCell().endCell();\n    }\n    val base = loader.parseLocked().meta.load().itemContentBaseUri;\n    return beginCell().storeSlice(base.beginParse()).storeRef(individualContent).endCell();\n}\n\nget fun get_price(charCount: int): coins {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return 0;\n    }\n    return loader.parseLocked().meta.load().priceConfig.load().priceForCharCount(charCount);\n}\n\n// the registry's chosen minimum subdomain length (1..4); 0 if not locked\nget fun get_min_chars(): int {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return 0;\n    }\n    return loader.parseLocked().meta.load().priceConfig.load().minChars;\n}\n\nget fun get_admin(): address? {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return null;\n    }\n    return loader.parseLocked().admin;\n}\n\nget fun get_parent_domain(): address {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return loader.parseSkeleton().parentDomain;\n    }\n    return loader.parseLocked().parentDomain;\n}\n\n// Immutable creator witness; Locked collections return the master sentinel.\nget fun get_linked_admin(): address {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return loader.parseSkeleton().linkedAdmin;\n    }\n    return loader.parseLocked().origin.load().linkedAdmin;\n}\n\nget fun is_locked(): bool {\n    return startLoadingCollection().isLocked();\n}\n\n// Current custody mode; is_locked() only reports initialization.\nget fun get_is_linked(): bool {\n    val loader = startLoadingCollection();\n    if (!loader.isLocked()) {\n        return false;\n    }\n    return loader.parseLocked().isLinked;\n}\n\nget fun dnsresolve(subdomain: slice, _category: int): DnsResolveResponse {\n    val startsWithZeroByte = dnsQueryStartsWithZero(subdomain);\n\n    if (startsWithZeroByte && subdomain.remainingBitsCount() == BYTE_SIZE) {\n        return { resolvedPrefixLengthBits: BYTE_SIZE, resolvedRecord: null };\n    }\n\n    if (startsWithZeroByte) {\n        subdomain.skipBits(BYTE_SIZE);\n    }\n\n    val topBits = getTopDomainBits(subdomain);\n    val topLabel = subdomain.loadBits(topBits);\n    val index = topLabel.hash();\n\n    val itemAddr = calcDeployedItem(index, subdomainItemCompiledCode()).calculateAddress();\n\n    return {\n        resolvedPrefixLengthBits: topBits + (startsWithZeroByte ? BYTE_SIZE : 0),\n        resolvedRecord: itemAddr.toNextResolver(),\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/dns-utils.tolk",
+      "contents": "// DNS helpers (TEP-81). Trimmed and adapted from the official acton-contracts/dns/dns-utils.tolk.\nimport \"errors\"\n\nconst BYTE_SIZE = 8\n\n// https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb (dns_next_resolver#ba93)\nconst DNS_NEXT_RESOLVER_PREFIX = 0xba93\n\nconst MAX_DOMAIN_SIZE = 126 // minimum is per-registry (PriceConfig.minChars)\n\n// TEP-81 dictionary keys are sha256(category-name), not raw category bytes.\nconst CAT_DNS_NEXT_RESOLVER = \"dns_next_resolver\".sha256()\nconst CAT_WALLET = \"wallet\".sha256()\nconst CAT_SITE = \"site\".sha256()\n// Category name and TL-B value type are distinct: clients use sha256(\"storage\") as the dictionary\n// key, while dns_storage_address#7473 is the record VALUE tag.\nconst CAT_STORAGE = \"storage\".sha256()\n\nfun address.forceBasechain(self) {\n    assert (self.getWorkchain() == BASECHAIN) throw ERROR_WRONG_WORKCHAIN;\n}\n\n// dns_next_resolver#ba93 resolver:MsgAddressInt = DNSRecord\nfun address.toNextResolver(self): cell {\n    return beginCell().storeUint(DNS_NEXT_RESOLVER_PREFIX, 16).storeAddress(self).endCell();\n}\n\n// dns_smc_address#9fd3 smc_addr:MsgAddressInt flags:(## 8) ... = DNSRecord  (wallet record)\nfun buildWalletRecord(wallet: address): cell {\n    return beginCell().storeUint(0x9fd3, 16).storeAddress(wallet).storeUint(0, 8).endCell();\n}\n\n// Shared TEP-81 query-shape validation for collection and item resolvers.\nfun dnsQueryStartsWithZero(subdomain: slice): bool {\n    val bits = subdomain.remainingBitsCount();\n    assert (bits >= BYTE_SIZE && bits % BYTE_SIZE == 0) throw ERROR_DNS_INVALID_SUBDOMAIN_BITS;\n    return subdomain.preloadInt(BYTE_SIZE) == 0;\n}\n\nfun assertDnsQueryStartsWithZero(subdomain: slice) {\n    assert (dnsQueryStartsWithZero(subdomain)) throw ERROR_DNS_INVALID_SUBDOMAIN_BITS;\n}\n\nfun getTopDomainBits(domain: slice): int {\n    var bytes = domain;\n    var bits = 0;\n    var shouldStop = false;\n\n    while (!shouldStop) {\n        assert (bytes.remainingBitsCount() >= BYTE_SIZE) throw ERROR_DNS_INVALID_SUBDOMAIN_BITS;\n        val ch = bytes.loadUint(BYTE_SIZE);\n        shouldStop = ch == 0;\n        if (!shouldStop) {\n            bits += BYTE_SIZE;\n        }\n    }\n\n    assert (bits > 0) throw ERROR_LABEL_TOO_SHORT;\n    return bits;\n}\n\nenum DomainChar {\n    Hyphen = 45\n    DigitZero = 48\n    DigitNine = 57\n    LowercaseA = 97\n    LowercaseZ = 122\n}\n\n// a-z / 0-9 / '-' (hyphen only in interior position, never first/last). `len` in bits.\n@inline_ref\nfun checkDomainString(domain: slice, len: int): bool {\n    var bytes = domain;\n    var i = 0;\n\n    val charCount = len / BYTE_SIZE;\n    val lastChar = charCount - 1;\n\n    repeat (charCount) {\n        val ch = bytes.loadUint(BYTE_SIZE);\n\n        val isDigit = ch >= (DomainChar.DigitZero as int) && ch <= (DomainChar.DigitNine as int);\n        val isLowercaseLetter = ch >= (DomainChar.LowercaseA as int) &&\n        ch <= (DomainChar.LowercaseZ as int);\n\n        var valid = isDigit || isLowercaseLetter;\n        if (!valid) {\n            valid = ch == (DomainChar.Hyphen as int) && i > 0 && i < lastChar;\n        }\n        if (!valid) {\n            return false;\n        }\n        i += 1;\n    }\n\n    return true;\n}\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/errors.tolk",
+      "contents": "// Error codes, canonical. Do not copy the .ton baseline codes.\n\nconst ERROR_DNS_INVALID_SUBDOMAIN_BITS = 70\n\n// Mint / labels\nconst ERROR_LABEL_TOO_SHORT = 200\nconst ERROR_LABEL_TOO_LONG = 201\nconst ERROR_LABEL_INVALID_CHARS = 202\nconst ERROR_LABEL_RESERVED = 203\nconst ERROR_INSUFFICIENT_MINT_VALUE = 204\nconst ERROR_LABEL_TAKEN = 207\n\n// Lock / custody\nconst ERROR_WRONG_WORKCHAIN = 211\nconst ERROR_RESCUE_PARENT_FORBIDDEN = 212\nconst ERROR_NULL_OLD_OWNER = 213\nconst ERROR_LINKED_NO_CUSTODY = 214 // a custody op was called on a Linked (self-custody) collection\nconst ERROR_INDEX_MISMATCH = 220\n\n// Ownership / access\nconst ERROR_NOT_OWNER = 401\nconst ERROR_INSUFFICIENT_BALANCE = 402\nconst ERROR_NOT_ADMIN = 403\nconst ERROR_NOT_FROM_COLLECTION = 404\nconst ERROR_NOT_FROM_MASTER = 405\nconst ERROR_CANNOT_EDIT_RESOLVER = 406\n\nconst ERROR_CONTENT_TAG_INVALID = 412\n\nconst ERROR_UNKNOWN_OP = 0xFFFF\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/messages.tolk",
+      "contents": "// Message bodies (opcode structs). Opcodes are crc32 (custom) or TEP-62 (reused).\nimport \"storage\"\n\ntype TransferForwardPayload = RemainingBitsAndRefs\n\n// ---------------- TEP-62 (reused) ----------------\nstruct TransferOwnershipData {\n    newOwnerAddress: address\n    responseDestination: address?\n    customPayload: cell?\n    forwardAmount: coins\n    forwardPayload: TransferForwardPayload\n}\n\nstruct (0x5fcc3d14) TransferOwnership {\n    queryId: uint64\n    transferData: TransferOwnershipData\n}\n\nstruct (0x05138d91) OwnershipAssigned {\n    queryId: uint64\n    oldOwnerAddress: address?\n    payload: TransferForwardPayload\n}\n\nstruct (0xd53276db) Excesses {\n    queryId: uint64\n}\n\nstruct (0x2fcb26a2) GetStaticData {\n    queryId: uint64\n}\n\nstruct (0x8b771735) ReportStaticData {\n    queryId: uint64\n    itemIndex: uint256\n    collectionAddress: address\n}\n\n// ---------------- TEP-66 royalties ----------------\nstruct (0x693d3950) GetRoyaltyParams {\n    queryId: uint64\n}\n\nstruct (0xa8cb00ad) ReportRoyaltyParams {\n    queryId: uint64\n    numerator: uint16\n    denominator: uint16\n    destination: address\n}\n\n// ---------------- DNS records ----------------\nstruct (0x4eb1f0f9) ChangeDnsRecord {\n    queryId: uint64\n    key: uint256\n    value: RemainingBitsAndRefs\n}\n\nstruct (0x1a0b9d51) EditContent {\n    queryId: uint64\n    newContent: Cell<DnsRecords>\n}\n\nstruct (0xba93) DnsNextResolver {\n    resolver: address\n}\n\n// ---------------- Factory (Tier 0) ----------------\nstruct (0x6c0c4b17) LockCollection {\n    deploymentId: uint64 = 0\n    queryId: uint64\n    parentDomain: address\n    admin: address\n    isLinked: bool\n    meta: Cell<CollectionMeta>\n}\n\n// Authenticated collection deployment acknowledgement.\nstruct (0x52445931) CollectionReady {\n    deploymentId: uint64\n    queryId: uint64\n    parentDomain: address\n    admin: address\n    currentAdmin: address\n    isLinked: bool\n    isNew: bool\n}\n\n// Confirms that the canonical parent completed a Locked handoff.\nstruct (0x48444f4b) ParentHandoffComplete {\n    deploymentId: uint64\n    queryId: uint64\n    parentDomain: address\n    intendedAdmin: address\n}\n\n// Recovery probe bound to a persisted handoff generation.\nstruct (0x48445052) ConfirmParentHandoff {\n    deploymentId: uint64\n    queryId: uint64\n    parentDomain: address\n    intendedAdmin: address\n}\n\n// Admin-funded replay of the factory's stored pending phase.\nstruct (0x52545259) RetryCollectionDeployment {\n    queryId: uint64\n    collectionAddress: address\n}\n\n// Linked create; the parent owner connects it later through next_resolver.\nstruct (0x4c494e4b) CreateLinkedCollection {\n    queryId: uint64\n    parentDomain: address\n    admin: address\n    meta: Cell<CollectionMeta>\n}\n\n// Generation proof forwarded through the parent during a Locked handoff.\nstruct (0x48414e44) FactoryHandoff {\n    deploymentId: uint64 = 0\n    requestQueryId: uint64 = 0\n    intendedAdmin: address\n}\n\n// ---------------- Collection (Tier 1) ----------------\nstruct (0x2428aaa6) SubdomainInit {\n    queryId: uint64\n    index: uint256\n    minter: address\n    label: Cell<RemainingBitsAndRefs>\n    setWalletToMinter: bool\n    initialRecords: Cell<DnsRecords>?\n}\n\nstruct (0x49278399) RegisterSubdomain {\n    queryId: uint64\n    label: Cell<RemainingBitsAndRefs> // bare label bytes, e.g. \"alice\" (no trailing \\0)\n    setWalletToMinter: bool\n    initialRecords: Cell<DnsRecords>?\n}\n\nstruct (0x7969d64e) SetContent {\n    queryId: uint64\n    meta: Cell<CollectionMeta>\n}\n\nstruct (0x1e4b7535) WithdrawFees {\n    queryId: uint64\n    amount: coins // 0 means max\n}\n\nstruct (0x2b8af82e) TransferAdmin {\n    queryId: uint64\n    newAdmin: address\n}\n\nstruct (0x9f3acb9c) AdminAssigned {\n    queryId: uint64\n    prevAdmin: address\n}\n\nstruct (0x97be5c56) ProxyEditParentRecord {\n    queryId: uint64\n    key: uint256\n    value: RemainingBitsAndRefs\n}\n\nstruct (0x5cfedae5) FillUpParent {\n    queryId: uint64\n}\n\nstruct (0xe0329a90) EnforceResolver {\n    queryId: uint64\n}\n\nstruct (0xccef6e14) SetLabelReserved {\n    queryId: uint64\n    labelHash: uint256\n    reserved: bool\n}\n\nstruct (0x2096dda6) RescueNft {\n    queryId: uint64\n    nftAddress: address\n    toAddress: address\n}\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/prices.tolk",
+      "contents": "// Pricing by label character count. Chosen at creation, immutable thereafter.\n// One price per length: p1 (1-char) .. p10 (10-char), then pRest (11+). Short names are the most\n// premium, so the grid is non-increasing. minChars gates the shortest mintable length.\n// 11 coins fit one cell for any realistic price (even 10M TON/name is ~712 bits < 1023); the\n// theoretical worst case (varuint16 max) is unreachable, so suppress the static overflow check.\n@overflow1023_policy(\"suppress\")\nstruct PriceConfig {\n    minChars: uint8 // shortest allowed subdomain (1..4), chosen at creation, frozen\n    p1: coins\n    p2: coins\n    p3: coins\n    p4: coins\n    p5: coins\n    p6: coins\n    p7: coins\n    p8: coins\n    p9: coins\n    p10: coins\n    pRest: coins    // 11+ chars\n}\n\nconst MIN_NAME_PRICE = ton(\"0.05\") // floor on the cheapest tier; rejects degenerate/zero grids at create\nconst MAX_MIN_CHARS = 4 // a registry may set its minimum to 1, 2, 3 or 4\n\n// A grid is valid iff minChars is in range, prices are non-increasing by length, and the cheapest\n// tier is above the floor.\nfun PriceConfig.isValid(self): bool {\n    return self.minChars >= 1 && self.minChars <= MAX_MIN_CHARS && self.p1 >= self.p2 &&\n    self.p2 >= self.p3 &&\n    self.p3 >= self.p4 &&\n    self.p4 >= self.p5 &&\n    self.p5 >= self.p6 &&\n    self.p6 >= self.p7 &&\n    self.p7 >= self.p8 &&\n    self.p8 >= self.p9 &&\n    self.p9 >= self.p10 &&\n    self.p10 >= self.pRest &&\n    self.pRest >= MIN_NAME_PRICE;\n}\n\nfun PriceConfig.priceForCharCount(self, n: int): coins {\n    if (n <= 1) {\n        return self.p1;\n    }\n    if (n == 2) {\n        return self.p2;\n    }\n    if (n == 3) {\n        return self.p3;\n    }\n    if (n == 4) {\n        return self.p4;\n    }\n    if (n == 5) {\n        return self.p5;\n    }\n    if (n == 6) {\n        return self.p6;\n    }\n    if (n == 7) {\n        return self.p7;\n    }\n    if (n == 8) {\n        return self.p8;\n    }\n    if (n == 9) {\n        return self.p9;\n    }\n    if (n == 10) {\n        return self.p10;\n    }\n    return self.pRest; // 11+\n}\n\n// Default preset (4-char minimum). p1..p3 are premium tiers, unused at minChars 4 but kept monotonic.\nfun defaultPriceConfig(): PriceConfig {\n    return {\n        minChars: 4,\n        p1: ton(\"100\"),\n        p2: ton(\"50\"),\n        p3: ton(\"20\"),\n        p4: ton(\"10\"),\n        p5: ton(\"5\"),\n        p6: ton(\"4\"),\n        p7: ton(\"3\"),\n        p8: ton(\"2\"),\n        p9: ton(\"1\"),\n        p10: ton(\"0.5\"),\n        pRest: ton(\"0.1\"),\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/contracts/storage.tolk",
+      "contents": "// Persistent storage + state loaders + deterministic address derivation.\nimport \"dns-utils\"\nimport \"errors\"\nimport \"prices\"\n\n// ---- fee/economy constants ----\nconst MIN_TONS_FOR_STORAGE = ton(\"0.05\")\nconst ITEM_DEPLOY_COST = ton(\"0.07\")\nconst MINT_FEE_BUFFER = ton(\"0.03\")\nconst COLLECTION_MIN_BALANCE = ton(\"0.05\")\nconst COLLECTION_DEPLOY_VALUE = ton(\"0.25\")\nconst FACTORY_READY_VALUE = ton(\"0.01\")\nconst FACTORY_GAS_MARGIN = ton(\"0.01\")\nconst RESOLVER_PIN_FUND = ton(\"0.1\")\nconst MIN_CREATE_VALUE = ton(\"0.5\")\nconst MIN_PARENT_FILL = ton(\"0.05\") // min incoming value for a caller-funded parent renew\nconst FWD_FEE_RESERVE = ton(\"0.02\")\nconst ONE_YEAR = 31622400\nconst PARENT_HEARTBEAT_INTERVAL = 86400 // 1 day\nconst PARENT_HEARTBEAT_AMOUNT = ton(\"0.01\")\n\n// ---- DNS records (TEP-81) ----\ntype DnsRecords = map<uint256, cell>\n\nfun DnsRecords.packToBuilder(self, mutate b: builder) {\n    b.storeUint(0, BYTE_SIZE);\n    b.storeDict(self.toLowLevelDict());\n}\n\nfun DnsRecords.unpackFromSlice(mutate s: slice): DnsRecords {\n    assert (s.loadUint(BYTE_SIZE) == 0) throw ERROR_CONTENT_TAG_INVALID;\n    return createMapFromLowLevelDict<uint256, cell>(s.loadDict());\n}\n\nstruct DnsResolveResponse {\n    resolvedPrefixLengthBits: int\n    resolvedRecord: cell?\n}\n\n// =========================== COLLECTION (Tier 1) ===========================\n\nstruct CollectionSkeleton {\n    master: address\n    parentDomain: address\n    // Part of StateInit: Linked and Locked cannot pre-occupy each other's address.\n    isLinked: bool\n    // Creator binding prevents third-party pre-deployment of a Linked collection.\n    linkedAdmin: address\n}\n\nstruct CollectionMeta {\n    priceConfig: Cell<PriceConfig>\n    collectionContent: cell  // TEP-64 offchain (collection)\n    itemContentBaseUri: cell // offchain prefix for items\n}\n\nstruct CollectionOrigin {\n    linkedAdmin: address\n    isLinkedAtDeployment: bool\n    lastFactoryHandoff: Cell<FactoryHandoffReceipt>?\n}\n\n// Receipt used to recover a lost factory handoff callback.\nstruct FactoryHandoffReceipt {\n    deploymentId: uint64\n    requestQueryId: uint64\n    intendedAdmin: address\n    returnRequired: bool\n}\n\nstruct CollectionStorage {\n    master: address\n    parentDomain: address\n    admin: address\n    // Immutable address witness plus the latest handoff receipt.\n    origin: Cell<CollectionOrigin>\n    // true = Linked; false = terminal Locked custody.\n    isLinked: bool\n    lastParentFillUp: uint32\n    meta: Cell<CollectionMeta>\n    reserved: map<uint256, ()>\n    minted: map<uint256, ()>\n    mintedCount: uint32\n}\n\nfun CollectionStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct CollectionLoader {\n    cs: slice\n}\n\nfun startLoadingCollection(): CollectionLoader {\n    return { cs: contract.getData().beginParse() };\n}\n\nfun CollectionLoader.isLocked(self): bool {\n    return self.cs.remainingRefsCount() > 0;\n}\n\nfun CollectionLoader.parseSkeleton(self): CollectionSkeleton {\n    return CollectionSkeleton.fromSlice(self.cs);\n}\n\nfun CollectionLoader.parseLocked(self): CollectionStorage {\n    return CollectionStorage.fromSlice(self.cs);\n}\n\nstruct CollectionDataReply {\n    nextItemIndex: int\n    content: cell\n    ownerAddress: address?\n}\n\n// =========================== ITEM (Tier 2) ===========================\n\nstruct ItemStorageNotInitialized {\n    index: uint256\n    collectionAddress: address\n}\n\nstruct ItemStorageInitialized {\n    index: uint256\n    collectionAddress: address\n    ownerAddress: address\n    records: Cell<DnsRecords>\n    label: Cell<RemainingBitsAndRefs>\n    mintedAt: uint32\n    lastTouch: uint32\n    validUntil: uint32 // 0 = perpetual (reserved)\n}\n\nfun ItemStorageInitialized.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct ItemLoader {\n    cs: slice\n}\n\nfun startLoadingItemStorage(): ItemLoader {\n    return { cs: contract.getData().beginParse() };\n}\n\nfun ItemLoader.isInitialized(self): bool {\n    return self.cs.remainingRefsCount() > 0;\n}\n\nfun ItemLoader.parseNotInitialized(self): ItemStorageNotInitialized {\n    return ItemStorageNotInitialized.fromSlice(self.cs);\n}\n\nfun ItemLoader.parseInitialized(self): ItemStorageInitialized {\n    return ItemStorageInitialized.fromSlice(self.cs);\n}\n\nstruct ItemNftDataReply {\n    isInitialized: bool\n    index: uint256\n    collectionAddress: address\n    ownerAddress: address?\n    content: cell?\n}\n\n// =========================== deterministic derivation ===========================\n\nfun calcDeployedItem(index: uint256, itemCode: cell): AutoDeployAddress {\n    val skeleton: ItemStorageNotInitialized = { index, collectionAddress: contract.getAddress() };\n    return { workchain: BASECHAIN, stateInit: { code: itemCode, data: skeleton.toCell() } };\n}\n\nfun calcDeployedCollection(\n    master: address,\n    parentDomain: address,\n    isLinked: bool,\n    linkedAdmin: address,\n    collectionCode: cell,\n): AutoDeployAddress {\n    val skeleton: CollectionSkeleton = {\n        master,\n        parentDomain,\n        isLinked,\n        linkedAdmin,\n    };\n    return { workchain: BASECHAIN, stateInit: { code: collectionCode, data: skeleton.toCell() } };\n}\n"
+    },
+    {
+      "filename": "tmp/19ad18b2-e59e-4925-888c-ed6844730ea0/gen/SubdomainItem.code.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n// Auto-generated dependency code for contract 'SubdomainItem'\n// Provides compiled BoC data for the 'SubdomainItem' contract\n//\n// This file is automatically generated by 'acton build'\n// Do not edit manually — changes will be overwritten\n\n/// Returns `SubdomainItem`'s code as a cell.\n///\n/// - Contract: `SubdomainItem`\n/// - Path: `contracts/SubdomainItem.tolk`\n///\n/// # Safety\n///\n/// This function always returns the correct cell with the contract code.\n@pure\nfun subdomainItemCompiledCode(): cell asm \"\"\"\n    \"te6ccgECGgEABGoAART/APSkE/S88sgLAQIBYgIDBLbQ+JGRMODtRNAg10rCAOMD0//6SPpI1NTTH9MfMdMf0SfHAJJfCOAn10nCH50n1wsfghDVMnbbusMAkXDikl8I4AfXLCL+Yeik4wLXLCDQXOqM4wLXLCJ1j4fMBAUGBwIBIAwNAfbT//pI0fiSIccF8uGUhA8D1ywhIUVVNBTy9ALTPzHT//pI1NIA9AUj+kQw8tDTUUW68uDcIdDIzvkWJbry4NwjbrObA9DTBwHy0Zz0BNGSM23iA+MA+CPIz4QCFPQAySMFyMv/FvpSEvpSFMwTzMsfyx/PkAAAAALJ7VQIAvz4kiXHBfLhkdM/+kj6UPQEMfoA+CdvEPiTcPg6JfpEMPLQ0wGCCvrwgKEjwgCUUzGgod4kbrMgkgKhkTLiIML/8uGSI8IAjifIz5AUTjZGJ88LPxv6VBLOycjPhQhSUPpSUAP6AnHPC2oSzMlx+wCTOmwh4pMwNTDjDfgjJsgJCgBqM/iSJMcF8uGRAtdM0NMHAfLRnPQE0cjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VQByI5Q+JIlxwXy4ZED0NMHAfLRnPQE0QPTPzHT/yDXSsIAmNdMQBSDB/QXmDBQA4MH9Fsw4sjPhAL0AMn4IwbIy/8V+lIT+lITzMzLH8sfyx/J7VTgN18EAtcsIX5ZNRTjAoQP8vALAGyC8OjUQFCHPbqGWqfBcKtMzmTZCDmjTc/Wz3HRTgIFRDsbyM+Kf05SMPpSz4QCyUAUgwf0FwIAQCD6RDDy0NPIz4UI+lJQBvoCghDVMnbbzwuKyz/JcfsAAE7L/zdSV/pSNVI1+lIzUhPMMSHPFDEhzwsfMSHPCx8xIc8LHzHJ7VQATtcLP/iSyM+SLdxc1hLLPxLL/xL6UsnIz4UIEvpScc8LbszJgED7AAIBIA4PAgEgEhMATbt07tRNAg10rCAI4W0/8x+kgx+kgx1DHUMdMf0x8x0x8x0ZIwcOKAIBIBARAE21gV2omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmP6Y+Y6MkYOHFAASbQOnaiaBBrpWEASRg28On/mP0kGP0kahjqGOmPmOmPmOmPmOjACA5z8FBUCASAWFwBLs92omgQa6VhAEcLaf+Y/SQY/SQY6hjqGOmPmOmPmOmP6MkYOHFAAVbH9qJoEGulYQBM6f/9JGi4LLa28On//SR9JGoY6mmPmOmPmOmPmOi/qphAATbZKXaiaBBrpWEASZhFhHDp/5j9JBj9JBjqGOppj5jpj5jpj5jo6EAL5tGGEOukkWukkGEDy9ScAWAAYYBJGDhxeXAjAWuFA/loI3aiaBBrpWEASi+BuDbw6f+Y/SQY/SQY6moY6Y+Y6Y+Y6Y+Y6Ohpg4D5aM56AmiBYQRHEZhBeAz4EiD3LEftk3cSWStG6Brh5JA3CNXLzfMXKqrFDov/7xBxgYDAYGQAGMHgBAB6DB/QOb6GTMHht4XgB1NE=\" base64>B B>boc PUSHREF\n\"\"\"\n"
+    }
+  ]
+}
