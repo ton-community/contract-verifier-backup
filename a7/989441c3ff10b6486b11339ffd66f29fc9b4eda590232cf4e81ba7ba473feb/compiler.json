@@ -1,0 +1,1741 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from nft-collection.tolk, errors.tolk, storage.tolk, messages.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  102491 DECLMETHOD get_collection_data()\n  92067 DECLMETHOD get_nft_address_by_index()\n  68445 DECLMETHOD get_nft_content()\n  // 7 functions inlined in-place:\n  // - SnakeString.unpackFromSlice (0 calls)\n  // - SnakeString.packToBuilder (0 calls)\n  // - NftCollectionStorage.load (6 calls)\n  // - NftCollectionStorage.save (3 calls)\n  // - calcDeployedNftItem (2 calls)\n  // - deployNftItem (2 calls)\n  // - MapEntry<uint64, BatchDeployDictItem>.getKey (1 call)\n  // - MapEntry<uint64, BatchDeployDictItem>.loadValue (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    DUP\n    x{00000001} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      DUP\n      LDREF\n      NIP\n      PLDREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s4 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      LDGRAMS\n      PLDREF\n      s2 s4 PUSH2\n      LEQ\n      402 THROWIFNOT\n      s2 s4 PUSH2\n      EQUAL\n      MYADDR\n      s0 s4 XCHG\n      NEWC\n      64 STU\n      s1 s4 XCHG\n      STSTDADDR\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s1 s8 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      s0 s3 XCHG2\n      STGRAMS\n      141 PUSHINT\n      113 STUR\n      s1 s7 XCHG\n      STREF\n      STREF\n      s1 s5 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      s0 s3 XCHG\n      IF:<{\n        INC\n        SWAP\n        NEWC\n        STSTDADDR\n        64 STU\n        STSLICE\n        ENDC\n        c4 POP\n      }>ELSE<{\n        3 BLKDROP\n      }>\n    }>\n    x{00000002} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      DUP\n      LDREF\n      NIP\n      PLDREF\n      INMSG_SRC\n      s4 PUSH\n      SDEQ\n      401 THROWIFNOT\n      0 PUSHINT\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      PLDOPTREF\n      DUP\n      64 PUSHINT\n      DICTUMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        s0 s7 XCHG\n        INC\n        DUP\n        250 PUSHINT\n        LESS\n        399 THROWIFNOT\n        s7 s7 s5 PUSH3\n        LEQ\n        IFNOTJMP:<{\n          s1 s7 XCHG\n          7 BLKDROP\n          401 PUSHINT\n          s2 POP\n          ADD\n          THROWANY\n        }>\n        s0 s2 XCHG\n        LDGRAMS\n        LDREF\n        ENDS\n        MYADDR\n        s4 PUSH\n        NEWC\n        64 STU\n        STSTDADDR\n        ENDC\n        s6 PUSH\n        NEWC\n        b{01100010000000000} STSLICECONST\n        s2 s1 PUSH2\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        256 STUR\n        s0 s4 XCHG2\n        STGRAMS\n        141 PUSHINT\n        113 STUR\n        s1 s3 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        s1 s5 XCPU\n        EQUAL\n        IF:<{\n          s0 s4 XCHG\n          INC\n          s0 s4 XCHG\n        }>\n        s6 s1 XCPU\n        64 PUSHINT\n        DICTUGETNEXT NULLSWAPIFNOT2\n      }>\n      4 BLKDROP\n      s3 POP\n      SWAP\n      NEWC\n      STSTDADDR\n      64 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{00000003} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      INMSG_SRC\n      ROT\n      SDEQ\n      401 THROWIFNOT\n      SWAP\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      NEWC\n      STSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    64 LDU\n    PLDREF\n    CTOS\n    PLDREF\n    ROT\n  }>\n  get_nft_address_by_index() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    64 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_nft_content() PROC:<{\n    NIP\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    NEWC\n    STSLICE\n    STREF\n    BTOS\n    NEWC\n    x{01} STSLICECONST\n    STSLICE\n    ENDC\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECCwEAAb4AART/APSkE/S88sgLAQIBYgIDAvbQ+JHyQCDXLCAAAAAMjmgx7UTQ+kjTPyDUMddM+JIkxwXy4ZEE0z8x0z/6ANdMUyS78uGSUyS6+CgEyMs/FPpSycjPiYgBUxjIz4TQzMz5Fs8L/1AD+gKBAI3PC3AXzMwVzMlx+wADm6QByPpSyz/Oye1Ukl8D4uCJ1ycEBQIBIAcIAAgAAAACAciOszHtRND6SNM/INQx10z4kiTHBfLhkXAF0z8x9AUggED0hm+lkIroXwQzAcj6Uss/zsntVODXLCAAAAAcjhwx7UTQ+kj4kljHBfLhkQHTPzH6SDDI+lLOye1U4DCEDwHHAPL0BgC8B6QggQD6ufLhj1R3dbuaF18HgQGRMqDy8OEC+gDU0fgoJMjLP/pSySbIz4mIAVMhyM+E0MzM+RbPC/9QBPoCgQCNzwtwE8wSzMzJcfsAURW6kwSkBN5RYYBA9HxvpQIBIAkKAB+8gt9qJofSRpn+umaGumLEADO4tdMe1E0NdM0NQx10zQyM7Mz1DIz4QGzsmABLuno+1E0NQx10z4KALIyz8S+lLJAcjPhNDMzPkWyM+KAEDL/89Qg=",
+  "codeHashHex": "A7989441C3FF10B6486B11339FFD66F29FC9B4EDA590232CF4E81BA7BA473FEB",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/nft-collection.tolk",
+        "size_chars": 4983,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/errors.tolk",
+        "size_chars": 589,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/storage.tolk",
+        "size_chars": 4232,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/messages.tolk",
+        "size_chars": 3099,
+        "imports": [
+          3
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToNftCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DeployNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SnakeString"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BatchDeployNfts"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BatchDeployDictItem"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeCollectionAdmin"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 2,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 3,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftCollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionContent"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 30,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemStorageNotInitialized"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          17
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 43
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          42
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          27,
+          47
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          50
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          11,
+          19
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          54,
+          55
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 59
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 37,
+        "struct_name": "CreateMessageOptions<Cell<NftItemInitAtDeployment>>",
+        "monomorphic_fields_ty_idx": [
+          41,
+          46,
+          49,
+          17
+        ]
+      },
+      {
+        "ty_idx": 52,
+        "struct_name": "MapEntry<uint64, BatchDeployDictItem>",
+        "monomorphic_fields_ty_idx": [
+          53,
+          11,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1041,
+          8,
+          1041,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 53
+          },
+          {
+            "name": "key",
+            "ty_idx": 54
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 44
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 31
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 27
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 29
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 39,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 41
+          },
+          {
+            "name": "value",
+            "ty_idx": 46
+          },
+          {
+            "name": "dest",
+            "ty_idx": 49
+          },
+          {
+            "name": "body",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 36,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToNftCollection",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          33,
+          6,
+          33,
+          35
+        ],
+        "target_ty_idx": 22
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 58,
+        "ident_loc": [
+          1,
+          112,
+          8,
+          112,
+          27
+        ],
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 59,
+        "ident_loc": [
+          1,
+          119,
+          15,
+          119,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "SnakeString",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          10,
+          6,
+          10,
+          17
+        ],
+        "target_ty_idx": 2,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionContent",
+        "ty_idx": 24,
+        "ident_loc": [
+          3,
+          26,
+          8,
+          26,
+          25
+        ],
+        "fields": [
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "commonContent",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftCollectionStorage",
+        "ty_idx": 23,
+        "ident_loc": [
+          3,
+          35,
+          8,
+          35,
+          28
+        ],
+        "fields": [
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "content",
+            "ty_idx": 25
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemStorageNotInitialized",
+        "ty_idx": 33,
+        "ident_loc": [
+          3,
+          58,
+          8,
+          58,
+          36
+        ],
+        "fields": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 14,
+        "ident_loc": [
+          4,
+          13,
+          8,
+          13,
+          31
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 16
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DeployNft",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          22,
+          21,
+          22,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "attachGrams",
+            "ty_idx": 6
+          },
+          {
+            "name": "initParams",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BatchDeployNfts",
+        "ty_idx": 18,
+        "ident_loc": [
+          4,
+          30,
+          21,
+          30,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 2,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "deployList",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BatchDeployDictItem",
+        "ty_idx": 19,
+        "ident_loc": [
+          4,
+          35,
+          8,
+          35,
+          27
+        ],
+        "fields": [
+          {
+            "name": "attachGrams",
+            "ty_idx": 6
+          },
+          {
+            "name": "initParams",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeCollectionAdmin",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          41,
+          21,
+          41,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 3,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          38,
+          5,
+          38,
+          22
+        ],
+        "end_loc": [
+          1,
+          110,
+          1,
+          110,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "deployNftItem",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          14,
+          5,
+          14,
+          18
+        ],
+        "end_loc": [
+          1,
+          31,
+          1,
+          31,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "attachGrams",
+            "ty_idx": 6
+          },
+          {
+            "name": "initParams",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "calcDeployedNftItem",
+        "return_ty_idx": 26,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          105,
+          5,
+          105,
+          24
+        ],
+        "end_loc": [
+          3,
+          121,
+          1,
+          121,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "NftItemStorageNotInitialized.toCell",
+        "return_ty_idx": 34,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "createMessage<Cell<NftItemInitAtDeployment>>",
+        "return_ty_idx": 36,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "NftCollectionStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          67,
+          26,
+          67,
+          30
+        ],
+        "end_loc": [
+          3,
+          69,
+          1,
+          69,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint64, BatchDeployDictItem>.findFirst",
+        "return_ty_idx": 52,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "MapEntry<uint64, BatchDeployDictItem>.getKey",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1048,
+          20,
+          1048,
+          26
+        ],
+        "end_loc": [
+          0,
+          1052,
+          1,
+          1052,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "MapEntry<uint64, BatchDeployDictItem>.loadValue",
+        "return_ty_idx": 19,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1055,
+          20,
+          1055,
+          29
+        ],
+        "end_loc": [
+          0,
+          1061,
+          1,
+          1061,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "BatchDeployDictItem.fromSlice",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint64, BatchDeployDictItem>.iterateNext",
+        "return_ty_idx": 52,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "current",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "get_collection_data",
+        "return_ty_idx": 58,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          123,
+          9,
+          123,
+          28
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          134,
+          9,
+          134,
+          33
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "get_nft_content",
+        "return_ty_idx": 60,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          144,
+          9,
+          144,
+          24
+        ],
+        "end_loc": [
+          1,
+          160,
+          1,
+          160,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "Cell<SnakeString>.load",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "SnakeString.unpackFromSlice",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          12,
+          17,
+          12,
+          32
+        ],
+        "end_loc": [
+          3,
+          18,
+          1,
+          18,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "OffchainMetadataReply.toCell",
+        "return_ty_idx": 60,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 59
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "SnakeString.packToBuilder",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          3,
+          20,
+          17,
+          20,
+          30
+        ],
+        "end_loc": [
+          3,
+          22,
+          1,
+          22,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "b",
+            "ty_idx": 4
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SnakeString"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "SnakeString",
+        "ty_idx": 13,
+        "target_ty_idx": 2,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 12,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 14
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 15
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 68445,
+        "name": "get_nft_content",
+        "parameters": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 14
+          }
+        ],
+        "return_ty_idx": 17
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_BATCH_LIMIT_EXCEEDED",
+        "err_code": 399
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_FROM_ADMIN",
+        "err_code": 401
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_ITEM_INDEX",
+        "err_code": 402
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/nft-collection.tolk",
+      "contents": "// TEP-62 NFT collection contract.\n//\n// This is the \"factory\" contract: it deploys and keeps track of\n// individual NFT item contracts (see nft-item.tolk). Only its admin can\n// mint new NFTs; anyone can read collection/item data.\n\nimport \"errors\";\nimport \"storage\";\nimport \"messages\";\n\n// Deploys (= creates on-chain) one NFT item contract at its predictable\n// address, and hands it its initial owner/content/royalty data in the\n// same message (see nft-item.tolk's \"not initialized\" branch).\nfun deployNftItem(\n    itemIndex: uint64,\n    nftItemCode: cell,\n    attachGrams: coins,\n    initParams: Cell<NftItemInitAtDeployment>,\n) {\n    val deployMsg = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: calcDeployedNftItem(\n            itemIndex,\n            contract.getAddress(),\n            nftItemCode,\n        ),\n        value: attachGrams,\n        body: initParams,\n    });\n    deployMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\ntype AllowedMessageToNftCollection =\n    | DeployNft\n    | BatchDeployNfts\n    | ChangeCollectionAdmin;\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToNftCollection.fromSlice(in.body);\n\n    match (msg) {\n        // MINT one new NFT (admin-only).\n        DeployNft => {\n            var storage = lazy NftCollectionStorage.load();\n            assert (in.senderAddress == storage.adminAddress)\n                throw ERROR_NOT_FROM_ADMIN;\n            assert (msg.itemIndex <= storage.nextItemIndex)\n                throw ERROR_INVALID_ITEM_INDEX;\n\n            val isLast = msg.itemIndex == storage.nextItemIndex;\n            deployNftItem(\n                msg.itemIndex,\n                storage.nftItemCode,\n                msg.attachGrams,\n                msg.initParams,\n            );\n            if (isLast) {\n                storage.nextItemIndex += 1;\n                storage.save();\n            }\n        }\n\n        // MINT many NFTs in one message (admin-only).\n        BatchDeployNfts => {\n            var storage = lazy NftCollectionStorage.load();\n            assert (in.senderAddress == storage.adminAddress)\n                throw ERROR_NOT_FROM_ADMIN;\n\n            var counter = 0;\n            var r = msg.deployList.findFirst();\n            while (r.isFound) {\n                counter += 1;\n                // due to limits of action list size\n                assert (counter < 250) throw ERROR_BATCH_LIMIT_EXCEEDED;\n\n                val itemIndex = r.getKey();\n                assert (itemIndex <= storage.nextItemIndex)\n                    throw ERROR_NOT_FROM_ADMIN + counter;\n\n                val dictItem = r.loadValue();\n                deployNftItem(\n                    itemIndex,\n                    storage.nftItemCode,\n                    dictItem.attachGrams,\n                    dictItem.initParams,\n                );\n\n                if (itemIndex == storage.nextItemIndex) {\n                    storage.nextItemIndex += 1;\n                }\n                r = msg.deployList.iterateNext(r);\n            }\n            storage.save();\n        }\n\n        // Transfer admin rights (mint permission) to a new address.\n        ChangeCollectionAdmin => {\n            var storage = lazy NftCollectionStorage.load();\n            assert (in.senderAddress == storage.adminAddress)\n                throw ERROR_NOT_FROM_ADMIN;\n            storage.adminAddress = msg.newAdminAddress;\n            storage.save();\n        }\n\n        else => {\n            // ignore empty messages, \"wrong opcode\" for others\n            assert (in.body.isEmpty()) throw 0xFFFF;\n        }\n    }\n}\n\nstruct CollectionDataReply {\n    nextItemIndex: int\n    collectionMetadata: cell\n    adminAddress: address\n}\n\n// TEP-64 offchain metadata format wrapper used by TEP-62.\nstruct (0x01) OffchainMetadataReply {\n    string: SnakeString\n}\n\nget fun get_collection_data(): CollectionDataReply {\n    val storage = lazy NftCollectionStorage.load();\n    val content = lazy storage.content.load();\n\n    return {\n        nextItemIndex: storage.nextItemIndex,\n        collectionMetadata: content.collectionMetadata,\n        adminAddress: storage.adminAddress,\n    }\n}\n\nget fun get_nft_address_by_index(itemIndex: int): address {\n    val storage = lazy NftCollectionStorage.load();\n    val nftDeployed = calcDeployedNftItem(\n        itemIndex as uint64,\n        contract.getAddress(),\n        storage.nftItemCode,\n    );\n    return nftDeployed.calculateAddress();\n}\n\nget fun get_nft_content(\n    itemIndex: int,\n    individualNftContent: Cell<SnakeString>,\n): Cell<OffchainMetadataReply> {\n    val storage = lazy NftCollectionStorage.load();\n    val content = lazy storage.content.load();\n\n    return OffchainMetadataReply {\n        string: beginCell()\n            // assume it's short (no refs)\n            .storeSlice(content.commonContent.load())\n            // so, it's the first ref (snake encoding)\n            .storeRef(individualNftContent)\n            .endCell()\n            .beginParse(),\n    }.toCell();\n}\n"
+    },
+    {
+      "filename": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/errors.tolk",
+      "contents": "// Error codes used by the NFT item/collection contracts.\n// Values follow the educational reference implementations where possible.\n\nconst ERROR_NOT_FROM_ADMIN = 401;\nconst ERROR_NOT_FROM_OWNER = 401;\nconst ERROR_NOT_FROM_COLLECTION = 405;\n\nconst ERROR_BATCH_LIMIT_EXCEEDED = 399;\nconst ERROR_INVALID_ITEM_INDEX = 402;\nconst ERROR_INCORRECT_FORWARD_PAYLOAD = 708;\nconst ERROR_INVALID_WORKCHAIN = 333;\nconst ERROR_TOO_SMALL_REST_AMOUNT = 402;\n\n// Raised when the attached TON is insufficient to cover royalty + forwarding/gas bounds.\nconst ERROR_NOT_ENOUGH_ATTACHED_TON_FOR_ROYALTY = 403;\n"
+    },
+    {
+      "filename": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/storage.tolk",
+      "contents": "// Storage layouts for the TEP-62 NFT collection + royalty-enabled NFT item.\n//\n// In TON, a contract's persistent state (\"storage\") is just a `cell` — a\n// binary blob. Tolk's `struct` + `.toCell()` / `.fromCell()` let us treat\n// that blob as a typed object instead of hand-packing bits ourselves.\n\n// SnakeString describes a (potentially long) string inside a cell.\n// Short strings are stored as-is, long strings are stored in nested refs\n// (\"snake\"-shaped, hence the name) so they can exceed one cell's ~1023 bits.\ntype SnakeString = slice;\n\nfun SnakeString.unpackFromSlice(mutate s: slice) {\n    // In the original reference implementation, the whole remaining slice is returned.\n    // We keep the behavior but skip extra reference-count validations.\n    val snakeRemainder = s;\n    s = createEmptySlice(); // no more left to read\n    return snakeRemainder;\n}\n\nfun SnakeString.packToBuilder(self, mutate b: builder) {\n    b.storeSlice(self);\n}\n\n// Content of the collection itself (its metadata JSON + a prefix shared by\n// every NFT's own metadata URI).\nstruct CollectionContent {\n    collectionMetadata: cell\n    commonContent: Cell<SnakeString>\n}\n\n// ---- Collection contract storage ----\n// One collection contract manages many NFT items. It only needs to\n// remember who's allowed to mint, how many items exist so far, its own\n// metadata, and the code every new NFT item should be deployed with.\nstruct NftCollectionStorage {\n    adminAddress: address   // only this address can mint new NFTs\n    nextItemIndex: uint64   // index to use for the next minted NFT (0, 1, 2, ...)\n    content: Cell<CollectionContent>\n    nftItemCode: cell       // compiled code every NFT item contract is deployed with\n}\n\n// ---- NFT item contract storage ----\n// Each individual NFT is its own tiny contract. It only needs to know\n// which item/collection it is, who owns it right now, its metadata, and\n// where the 2% transfer royalty should be paid.\nstruct NftItemStorage {\n    itemIndex: uint64\n    collectionAddress: address\n    ownerAddress: address\n    content: Cell<SnakeString>\n\n    // Address that receives the 2% royalty every time this NFT is transferred.\n    royaltyAddress: address\n}\n\n// Before the collection deploys an item, the item contract only knows its\n// own index and its parent collection — nothing else exists yet.\nstruct NftItemStorageNotInitialized {\n    itemIndex: uint64\n    collectionAddress: address\n}\n\nfun NftCollectionStorage.load() {\n    return NftCollectionStorage.fromCell(contract.getData());\n}\n\nfun NftCollectionStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun NftItemStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// An NFT item contract's storage cell is either \"not initialized yet\"\n// (just deployed, waiting for its first message from the collection) or\n// \"initialized\" (has an owner, content, royalty address). We tell the two\n// apart by checking whether the cell has any reference cells attached yet.\nstruct NftItemStorageMaybeNotInitialized {\n    contractData: slice\n}\n\nfun NftItemStorageMaybeNotInitialized.isInitialized(self): bool {\n    return self.contractData.remainingRefsCount() != 0;\n}\n\nfun NftItemStorageMaybeNotInitialized.parseNotInitialized(self) {\n    return NftItemStorageNotInitialized.fromSlice(self.contractData);\n}\n\nfun NftItemStorageMaybeNotInitialized.parseInitialized(self) {\n    return NftItemStorage.fromSlice(self.contractData);\n}\n\nfun startLoadingNftItemStorage(): NftItemStorageMaybeNotInitialized {\n    return {\n        contractData: contract.getData().beginParse(),\n    }\n}\n\n// Computes the on-chain address an NFT item with a given index *would*\n// have, without needing that contract to exist yet. TON addresses are\n// derived from (code + initial data), so this is fully deterministic —\n// the collection and anyone else can predict it in advance.\nfun calcDeployedNftItem(\n    itemIndex: uint64,\n    collectionAddress: address,\n    nftItemCode: cell,\n): AutoDeployAddress {\n    val emptyNftItemStorage: NftItemStorageNotInitialized = {\n        itemIndex,\n        collectionAddress,\n    };\n\n    return {\n        stateInit: {\n            code: nftItemCode,\n            data: emptyNftItemStorage.toCell(),\n        },\n    }\n}\n"
+    },
+    {
+      "filename": "tmp/c9da4746-55ea-4e29-ae0d-51f02e2b92a9/messages.tolk",
+      "contents": "// Message layouts used by the TEP-62 NFT contracts.\n//\n// TON contracts talk to each other by sending messages, and a message body\n// is just a cell that starts with a 32-bit \"opcode\" saying what kind of\n// message it is, followed by whatever data that message needs. Each\n// `struct (0x...)` below is one such message shape; the number in\n// parentheses is its opcode.\n\nimport \"storage\";\n\n// Sent by the collection to a freshly-deployed NFT item, to fill in its\n// real data (owner, content, royalty address) for the first time.\nstruct NftItemInitAtDeployment {\n    ownerAddress: address\n    content: Cell<SnakeString>\n    royaltyAddress: address\n}\n\n// ---- Messages the COLLECTION contract accepts ----\n\n// \"Mint one NFT.\" Only the collection's admin can send this.\nstruct (0x00000001) DeployNft {\n    queryId: uint64\n    itemIndex: uint64\n    attachGrams: coins                       // TON forwarded to fund the new NFT contract\n    initParams: Cell<NftItemInitAtDeployment>\n}\n\n// \"Mint many NFTs in one message.\" Same idea as DeployNft, just batched.\nstruct (0x00000002) BatchDeployNfts {\n    queryId: uint64\n    deployList: map<uint64, BatchDeployDictItem>\n}\n\nstruct BatchDeployDictItem {\n    attachGrams: coins\n    initParams: Cell<NftItemInitAtDeployment>\n}\n\n// \"Hand admin rights to someone else.\"\nstruct (0x00000003) ChangeCollectionAdmin {\n    queryId: uint64\n    newAdminAddress: address\n}\n\n// ---- Messages the ITEM (individual NFT) contract accepts ----\n\n// TEP-62 standard: \"Transfer this NFT to a new owner.\" Only the current\n// owner may send this. This is also what triggers the 2% royalty payout.\nstruct (0x5fcc3d14) Transfer {\n    queryId: uint64\n    newOwnerAddress: address\n    // If null => don't send excess TON back.\n    sendExcessesTo: address?\n    // Optional application data (not used by this contract).\n    customPayload: dict\n    // TON forwarded to the new owner as part of the \"you now own this\" notification.\n    forwardGrams: coins\n    // Remaining bits/refs forwarded to the new owner payload.\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Sent by the item TO the new owner, right after a transfer completes —\n// lets the new owner's wallet/dApp know \"you now own this NFT\".\nstruct (0x05138d91) NotificationForNewOwner {\n    queryId: uint64\n    oldOwnerAddress: address\n    payload: RemainingBitsAndRefs\n}\n\n// Sent back to whoever paid for the transfer, refunding any TON that\n// wasn't needed for gas/royalty/forwarding.\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\n// \"Tell me your index and collection address.\" Read-only-style request,\n// answered by ResponseStaticData below.\nstruct (0x2fcb26a2) RequestStaticData {\n    queryId: uint64\n}\n\nstruct (0x8b771735) ResponseStaticData {\n    queryId: uint64\n    itemIndex: uint256\n    collectionAddress: address\n}\n\n// Sent to the royalty address whenever a transfer pays out its 2% cut.\n// (There's no official TEP for \"royalty on transfer\" — this is just a\n// deterministic message body so the payment is easy to recognize on-chain.)\nstruct (0x44445555) RoyaltyPaid {\n    queryId: uint64\n}\n"
+    }
+  ]
+}

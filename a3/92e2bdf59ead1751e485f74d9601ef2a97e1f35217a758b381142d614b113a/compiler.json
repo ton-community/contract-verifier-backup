@@ -1,0 +1,2828 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from ReverseBuyTolkV1.tolk\nPROGRAM{\n  DECLPROC loadReverseBuy()\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC ReverseBuyRuntime.handleOwnershipAssigned()\n  DECLPROC marketplaceFee()\n  DECLPROC validateAcceptPayload()\n  DECLPROC validateConditions()\n  DECLPROC verifyEligibilityProof()\n  DECLPROC unwrapForwardPayload()\n  108998 DECLMETHOD get_buy_state()\n  // 12 functions inlined in-place:\n  // - ReverseBuyStorage.save (1 call)\n  // - ReverseBuyStorage.saveRuntime (7 calls)\n  // - onBouncedMessage (0 calls)\n  // - canAffordFillSends (3 calls)\n  // - ReverseBuyRuntime.clearPending (2 calls)\n  // - buyReverseSale (1 call)\n  // - refundAttached (3 calls)\n  // - refundInbound (3 calls)\n  // - sendTon (5 calls)\n  // - sendRemainingTon (4 calls)\n  // - transferNft (3 calls)\n  // - returnInboundNft (10 calls)\n  loadReverseBuy() PROC:<{\n    c4 PUSH\n    DUP\n    CTOS\n    1 PLDU\n    IFNOTJMP:<{\n      CTOS\n      b{0} SDBEGINSQ\n      63 THROWIFNOT\n      LDREF\n      ENDS\n      CTOS\n      16 LDU\n      64 LDU\n      NIP\n      LDSTDADDR\n      LDSTDADDR\n      LDSTDADDR\n      LDGRAMS\n      16 LDU\n      LDREF\n      LDREF\n      ENDS\n      SWAP\n      CTOS\n      256 LDU\n      LDREF\n      ENDS\n      DUP\n      CTOS\n      8 LDU\n      8 PLDU\n      59253 PUSHINT\n      s0 s11 XCHG\n      2 EQINT\n      s1 s11 XCHG\n      THROWANYIFNOT\n      12537 PUSHINT\n      s6 PUSH\n      0 GTINT\n      THROWANYIFNOT\n      52892 PUSHINT\n      s5 PUSH\n      1000 PUSHINT\n      LEQ\n      THROWANYIFNOT\n      20989 PUSHINT\n      s3 PUSH\n      THROWANYIFNOT\n      OVER\n      validateConditions() CALLDICT\n      s5 PUSH\n      s0 s2 XCHG\n      HASHCU\n      0 PUSHINT\n      FALSE\n      PUSHNULL\n      PUSHNULL\n      s3 s3 s13 PUSH3\n      NEWC\n      STSTDADDR\n      s15 s(-1) PUXC\n      STSTDADDR\n      s14 s(-1) PUXC\n      STSTDADDR\n      s9 PUSH\n      STGRAMS\n      s12 PUSH\n      16 STUR\n      ENDC\n      s8 PUSH\n      NEWC\n      8 STU\n      18 s() PUSH\n      8 STUR\n      s8 PUSH\n      256 STUR\n      s11 PUSH\n      256 STUR\n      ENDC\n      NEWC\n      x{00} STSLICECONST\n      s15 PUSH\n      STGRAMS\n      b{0} STSLICECONST\n      s6 s(-1) PUXC\n      STOPTSTDADDR\n      s5 s(-1) PUXC\n      STOPTSTDADDR\n      0 PUSHINT\n      68 STUR\n      ENDC\n      s13 PUSH\n      CTOS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s6 23 s() XCHG\n      s5 22 s() XCHG\n      17 s() 21 s() XCHG\n      s4 20 s() XCHG\n      s5 19 s() XCHG\n      17 s() 18 s() XCHG\n      s4 17 s() XCHG\n      s15 16 s() XCHG\n      s4 s15 XCHG\n      s6 s13 XCHG\n      s6 s12 XCHG\n      s4 s11 XCHG\n      s3 s10 XCHG\n      s9 s8 s7 XCHG3\n    }>\n    CTOS\n    b{1} SDBEGINSQ\n    63 THROWIFNOT\n    LDREF\n    LDREF\n    LDREF\n    LDREF\n    ENDS\n    s3 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    LDSTDADDR\n    LDGRAMS\n    16 LDU\n    ENDS\n    s7 PUSH\n    CTOS\n    8 LDU\n    8 LDU\n    256 LDU\n    256 LDU\n    ENDS\n    s10 PUSH\n    CTOS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s13 PUSH\n    CTOS\n    8 LDU\n    LDGRAMS\n    1 LDI\n    LDOPTSTDADDR\n    LDOPTSTDADDR\n    LDGRAMS\n    64 LDU\n    ENDS\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    loadReverseBuy() CALLDICT\n    24 s() PUSH\n    SEMPTY\n    IFJMP:<{\n      3 BLKDROP\n      s2 POP\n      9 3 BLKDROP2\n      s4 POP\n      s4 POP\n      s5 POP\n      s8 POP\n      OVER\n      ISNULL\n      NOT\n      IF:<{\n        INMSG_SRC\n        s2 PUSH\n        SDEQ\n        1 2 BLKDROP2\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      IF:<{\n        s2 PUSH\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        PUSHNULL\n        PUSHNULL\n        s0 s4 XCHG\n        NEWC\n        8 STU\n        s0 s8 XCHG2\n        STGRAMS\n        1 STI\n        s1 s6 XCHG\n        STOPTSTDADDR\n        STOPTSTDADDR\n        0 PUSHINT\n        68 STUR\n        ENDC\n        NEWC\n        b{1} STSLICECONST\n        s4 PUSH\n        STREFR\n        s4 POP\n        s2 s3 PUXC\n        STREF\n        s2 POP\n        s0 s1 PUXC\n        STREF\n        NIP\n        OVER\n        STREFR\n        NIP\n        ENDC\n        c4 POP\n      }>ELSE<{\n        s1 s6 XCHG\n        6 BLKDROP\n      }>\n      INMSG_VALUE\n      DUP\n      0 GTINT\n      IFJMP:<{\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          SWAP\n          STGRAMS\n          0 PUSHINT\n          107 STUR\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          2DROP\n        }>\n      }>\n      2DROP\n    }>\n    s0 24 s() XCHG\n    x{946a98b6} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s6 POP\n      s6 POP\n      s6 POP\n      s7 POP\n      s7 POP\n      s7 POP\n      s7 POP\n      s7 POP\n      s8 POP\n      s8 POP\n      s9 POP\n      7643 PUSHINT\n      INMSG_SRC\n      s9 PUSH\n      SDEQ\n      THROWANYIFNOT\n      s4 s6 XCHG2\n      ADD\n      63847 PUSHINT\n      INMSG_VALUE\n      s2 PUSH\n      GEQ\n      THROWANYIFNOT\n      33704 PUSHINT\n      s0 s8 XCHG\n      NOT\n      s1 s8 XCHG\n      THROWANYIFNOT\n      s0 s2 XCHG\n      NEWC\n      8 STU\n      s0 s4 XCHG2\n      STGRAMS\n      b{1} STSLICECONST\n      s1 s2 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STOPTSTDADDR\n      SWAP\n      STGRAMS\n      s1 s6 XCHG\n      64 STU\n      ENDC\n      NEWC\n      b{1} STSLICECONST\n      s5 PUSH\n      STREFR\n      s5 POP\n      s3 s4 PUXC\n      STREF\n      s3 POP\n      s1 s2 PUXC\n      STREF\n      NIP\n      s2 PUSH\n      STREFR\n      1 2 BLKDROP2\n      ENDC\n      c4 POP\n      INMSG_VALUE\n      SUBR\n      DUP\n      0 GTINT\n      IF:<{\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          SWAP\n          STGRAMS\n          0 PUSHINT\n          107 STUR\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          2DROP\n        }>\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{5242434e} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s4 POP\n      10 5 BLKDROP2\n      s5 POP\n      s5 POP\n      s6 POP\n      7643 PUSHINT\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      THROWANYIFNOT\n      SWAP\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s2 PUSH\n        ISNULL\n        NOT\n        0 NEQINT\n      }>\n      IFJMP:<{\n        9 BLKDROP\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        0 PUSHINT\n        111 STUR\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      NEWC\n      x{020} STSLICECONST\n      s1 s5 XCHG\n      1 STI\n      s1 s2 XCHG\n      STOPTSTDADDR\n      STOPTSTDADDR\n      ROT\n      STGRAMS\n      s1 s5 XCHG\n      64 STU\n      ENDC\n      NEWC\n      b{1} STSLICECONST\n      s4 PUSH\n      STREFR\n      s4 POP\n      s2 s3 PUXC\n      STREF\n      s2 POP\n      s0 s1 PUXC\n      STREF\n      NIP\n      OVER\n      STREFR\n      NIP\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      130 PUSHINT\n      SENDRAWMSG\n    }>\n    x{52425342} SDBEGINSQ\n    IFJMP:<{\n      s5 POP\n      2DROP\n      4 4 BLKDROP2\n      s13 POP\n      16 s() POP\n      7643 PUSHINT\n      INMSG_SRC\n      s12 PUSH\n      SDEQ\n      THROWANYIFNOT\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      LDGRAMS\n      PLDREF\n      19 s() PUSH\n      NOT\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s5 PUSH\n        0 NEQINT\n        0 NEQINT\n      }>\n      IF:<{\n        s15 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s15 XCHG\n        ISNULL\n        NOT\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s3 PUSH\n        0 EQINT\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        DUP\n        0 EQINT\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s10 PUSH2\n        GREATER\n        0 NEQINT\n      }>\n      IFJMP:<{\n        15 BLKDROP\n        4 BLKDROP\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        0 PUSHINT\n        111 STUR\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      1 PUSHINT\n      s14 PUSH\n      s8 s12 XCPU\n      s8 s15 XCHG\n      s7 s14 XCHG\n      s0 s6 XCHG\n      s5 s12 XCHG\n      s4 s11 XCHG\n      s3 s10 XCHG\n      s1 s15 s0 XCHG3\n      s11 s(-1) PUXC\n      18 s() PUSH\n      SWAP\n      s0 17 s() XCHG\n      17 s() PUSH\n      s13 PUSH\n      validateAcceptPayload() CALLDICT\n      IFNOTJMP:<{\n        12 BLKDROP\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        0 PUSHINT\n        111 STUR\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      s2 s0 s5 PUSH3\n      s6 s3 XCPU\n      SUB\n      s0 s7 XCHG\n      NEWC\n      8 STU\n      s0 s7 XCHG2\n      STGRAMS\n      s1 s13 XCHG\n      1 STI\n      s1 s12 XCHG\n      STOPTSTDADDR\n      STOPTSTDADDR\n      s0 s3 XCHG2\n      STGRAMS\n      64 STU\n      ENDC\n      NEWC\n      b{1} STSLICECONST\n      s8 PUSH\n      STREFR\n      s8 POP\n      s6 s7 PUXC\n      STREF\n      s6 POP\n      s4 s5 PUXC\n      STREF\n      s4 POP\n      s5 s3 PUXC\n      STREF\n      s5 POP\n      s0 s4 XCHG\n      ENDC\n      c4 POP\n      NEWC\n      x{52534242} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      STREF\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      s0 s3 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s2 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      INMSG_VALUE\n      DUP\n      0 GTINT\n      IF:<{\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          SWAP\n          STGRAMS\n          0 PUSHINT\n          107 STUR\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          2DROP\n        }>\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{05138d91} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      NIP\n      LDSTDADDR\n      INMSG_SRC\n      INMSG_VALUE\n      s9 27 s() XCHG\n      s8 26 s() XCHG\n      s7 25 s() XCHG\n      s6 24 s() XCHG\n      s5 23 s() XCHG\n      s4 22 s() XCHG\n      s9 21 s() XCHG\n      s8 20 s() XCHG\n      s7 19 s() XCHG\n      s6 18 s() XCHG\n      s5 17 s() XCHG\n      s4 16 s() XCHG\n      s9 s15 XCHG\n      s8 s14 XCHG\n      s7 s13 XCHG\n      s6 s12 XCHG\n      s5 s11 XCHG\n      s4 s10 XCHG\n      2SWAP\n      ReverseBuyRuntime.handleOwnershipAssigned() CALLDICT\n      11 BLKDROP\n    }>\n    s7 POP\n    5 BLKDROP\n    9 3 BLKDROP2\n    s3 POP\n    4 4 BLKDROP2\n    s4 POP\n    s0 s3 XCHG\n    x{5242524e} SDBEGINSQ\n    IFJMP:<{\n      7643 PUSHINT\n      INMSG_SRC\n      s0 s4 XCHG2\n      SDEQ\n      s1 s3 XCHG\n      THROWANYIFNOT\n      44257 PUSHINT\n      SWAP\n      THROWANYIFNOT\n      30731 PUSHINT\n      INMSG_VALUE\n      s0 s3 XCHG2\n      GEQ\n      s1 s2 XCHG\n      THROWANYIFNOT\n      64 LDU\n      NIP\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s1 s(-1) PUXC\n      STSTDADDR\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    130 THROW\n  }>\n  ReverseBuyRuntime.handleOwnershipAssigned() PROC:<{\n    s4 POP\n    s5 POP\n    s5 POP\n    22 s() PUSH\n    NOT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      24 s() PUSH\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      s4 POP\n      2DROP\n      s9 s10 XCHG2\n      9 BLKDROP\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    SWAP\n    unwrapForwardPayload() CALLDICT\n    DUP\n    SBITS\n    32 LESSINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      1 LESSINT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      32 LDU\n      SWAP\n      1380073795 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n      NIP\n      10 2 BLKDROP2\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    LDREF\n    SWAP\n    CTOS\n    0 PUSHINT\n    s0 s0 s2 PUSH3\n    SBITS\n    71 GTINT\n    IF:<{\n      2 1 BLKDROP2\n      s0 s2 XCHG\n      8 LDU\n      64 LDU\n      DUP\n      SBITS\n      0 GTINT\n      IF:<{\n        s4 POP\n        s0 s3 XCHG\n        LDGRAMS\n        DROP\n        s0 s3 XCHG\n      }>ELSE<{\n        DROP\n      }>\n    }>ELSE<{\n      s4 POP\n    }>\n    16 s() PUSH\n    s0 s5 XCHG\n    16 s() PUSH\n    s0 s5 XCHG\n    16 s() PUSH\n    s0 s5 XCHG\n    16 s() PUSH\n    s0 s5 XCHG\n    16 s() PUSH\n    s0 s5 XCHG\n    s4 16 s() XCHG\n    s3 s15 XCHG\n    s14 s13 s0 XCHG3\n    16 s() PUSH\n    s0 s15 XCHG2\n    verifyEligibilityProof() CALLDICT\n    IFNOTJMP:<{\n      s1 s5 XCHG\n      5 BLKDROP\n      s5 s6 XCHG2\n      5 BLKDROP\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    s3 PUSH\n    1 EQINT\n    IFJMP:<{\n      s7 POP\n      s7 POP\n      2DROP\n      s5 POP\n      s5 POP\n      s13 PUSH\n      ISNULL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s12 PUSH\n        ISNULL\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s2 s13 PUSH2\n        SDEQ\n        NOT\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s12 PUSH2\n        SDEQ\n        NOT\n        0 NEQINT\n      }>\n      IF:<{\n        s3 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s3 s10 XCPU\n        NEQ\n        0 NEQINT\n      }>\n      IF:<{\n        s3 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s3 s10 XCPU\n        NEQ\n        0 NEQINT\n      }>\n      IFJMP:<{\n        2 2 BLKDROP2\n        NEWC\n        x{5fcc3d140000000000000000} STSLICECONST\n        s1 s(-1) PUXC\n        STSTDADDR\n        STSTDADDR\n        b{0} STSLICECONST\n        10000000 PUSHINT\n        STGRAMS\n        b{0} STSLICECONST\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        1 PUSHINT\n        111 STUR\n        STREF\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      DROP\n      s3 POP\n      s6 POP\n      s6 POP\n      s6 POP\n      s6 POP\n      s7 POP\n      s7 POP\n      1 PUSHINT\n      0 PUSHINT\n      PUSHNULL\n      PUSHNULL\n      s2 s2 PUSH2\n      NEWC\n      x{010} STSLICECONST\n      s11 PUSH\n      1 STIR\n      s4 s(-1) PUXC\n      STOPTSTDADDR\n      s3 s(-1) PUXC\n      STOPTSTDADDR\n      0 PUSHINT\n      68 STUR\n      ENDC\n      NEWC\n      b{1} STSLICECONST\n      s14 PUSH\n      STREFR\n      s13 PUSH\n      STREFR\n      s11 PUSH\n      STREFR\n      OVER\n      STREFR\n      ENDC\n      c4 POP\n      BALANCE\n      FIRST\n      s8 PUSH\n      10000000 PUSHINT\n      ADD\n      GEQ\n      IFNOTJMP:<{\n        s7 POP\n        NEWC\n        x{5fcc3d140000000000000000} STSLICECONST\n        s8 s(-1) PUXC\n        STSTDADDR\n        s1 s8 XCHG\n        STSTDADDR\n        b{0} STSLICECONST\n        10000000 PUSHINT\n        STGRAMS\n        b{0} STSLICECONST\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s9 XCHG\n        STSTDADDR\n        1 PUSHINT\n        111 STUR\n        s1 s8 XCHG\n        STREF\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n        s3 s10 XCHG\n        s9 s1 s6 XCHG3\n        s0 s5 XCHG\n        s7 s4 XCHG2\n      }>\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s9 s(-1) PUXC\n      STSTDADDR\n      s9 s(-1) PUXC\n      STSTDADDR\n      b{000000} STSLICECONST\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s11 XCHG\n      STSTDADDR\n      s0 s8 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s9 XCHG\n      STREF\n      ENDC\n      s5 PUSH\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      s1 s7 XCHG\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      130 PUSHINT\n      SENDRAWMSG\n      s3 s10 XCHG\n      s9 s1 s6 XCHG3\n      s7 s4 XCHG2\n    }>\n    s4 POP\n    s2 PUSH\n    2 EQINT\n    IFJMP:<{\n      s2 POP\n      s3 s6 XCPU\n      NEQ\n      IFJMP:<{\n        s4 POP\n        2DROP\n        4 2 BLKDROP2\n        NEWC\n        x{5fcc3d140000000000000000} STSLICECONST\n        s2 s(-1) PUXC\n        STSTDADDR\n        s1 s2 XCHG\n        STSTDADDR\n        b{0} STSLICECONST\n        10000000 PUSHINT\n        STGRAMS\n        b{0} STSLICECONST\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        1 PUSHINT\n        111 STUR\n        STREF\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      s5 s2 PUSH2\n      ADD\n      BALANCE\n      FIRST\n      s1 s3 XCPU\n      ADD\n      10000000 PUSHINT\n      ADD\n      GEQ\n      IFNOTJMP:<{\n        s4 POP\n        2DROP\n        4 2 BLKDROP2\n        NEWC\n        x{5fcc3d140000000000000000} STSLICECONST\n        s2 s(-1) PUXC\n        STSTDADDR\n        s1 s2 XCHG\n        STSTDADDR\n        b{0} STSLICECONST\n        10000000 PUSHINT\n        STGRAMS\n        b{0} STSLICECONST\n        ENDC\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        1 PUSHINT\n        111 STUR\n        STREF\n        ENDC\n        66 PUSHINT\n        SENDRAWMSG\n      }>\n      s9 POP\n      17 s() POP\n      17 s() POP\n      s5 s4 s(-1) PUXC2\n      s4 s3 s(-2) PU2XC\n      s5 PUSH\n      marketplaceFee() CALLDICT\n      1 PUSHINT\n      0 PUSHINT\n      NEWC\n      x{010} STSLICECONST\n      16 s() PUSH\n      1 STIR\n      s15 s(-1) PUXC\n      STOPTSTDADDR\n      s14 s(-1) PUXC\n      STOPTSTDADDR\n      s13 PUSH\n      STGRAMS\n      s12 PUSH\n      64 STUR\n      ENDC\n      NEWC\n      b{1} STSLICECONST\n      s12 PUSH\n      STREFR\n      s11 PUSH\n      STREFR\n      s10 PUSH\n      STREFR\n      OVER\n      STREFR\n      ENDC\n      c4 POP\n      s4 s3 XCPU\n      SUB\n      SWAP\n      s0 18 s() XCHG\n      ADD\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s8 XCHG\n        STSTDADDR\n        s0 s7 XCHG2\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        s6 PUSH\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n        s6 POP\n      }>\n      DUP\n      0 GTINT\n      IF:<{\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s1 s3 XCHG\n          STSTDADDR\n          ROT\n          STGRAMS\n          0 PUSHINT\n          107 STUR\n          ENDC\n          s4 PUSH\n          SENDRAWMSG\n        }>ELSE<{\n          DROP\n          NIP\n        }>\n      }>ELSE<{\n        DROP\n        NIP\n      }>\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s3 s(-1) PUXC\n      STSTDADDR\n      s3 s(-1) PUXC\n      STSTDADDR\n      b{000000} STSLICECONST\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      s0 s13 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      s2 PUSH\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      130 PUSHINT\n      SENDRAWMSG\n      s0 s10 XCHG\n      s0 s9 XCHG\n    }>\n    s0 s2 XCHG\n    IF:<{\n      s3 POP\n      -1 PUSHINT\n    }>ELSE<{\n      s0 s3 XCHG\n      0 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      s4 POP\n      2DROP\n      4 2 BLKDROP2\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    s5 s2 PUSH2\n    ADD\n    BALANCE\n    FIRST\n    s1 s3 XCPU\n    ADD\n    10000000 PUSHINT\n    ADD\n    GEQ\n    IFNOTJMP:<{\n      s4 POP\n      2DROP\n      4 2 BLKDROP2\n      NEWC\n      x{5fcc3d140000000000000000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      b{0} STSLICECONST\n      10000000 PUSHINT\n      STGRAMS\n      b{0} STSLICECONST\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    s9 POP\n    17 s() POP\n    17 s() POP\n    s5 s4 s(-1) PUXC2\n    s4 s3 s(-2) PU2XC\n    s5 PUSH\n    marketplaceFee() CALLDICT\n    1 PUSHINT\n    0 PUSHINT\n    NEWC\n    x{010} STSLICECONST\n    16 s() PUSH\n    1 STIR\n    s15 s(-1) PUXC\n    STOPTSTDADDR\n    s14 s(-1) PUXC\n    STOPTSTDADDR\n    s13 PUSH\n    STGRAMS\n    s12 PUSH\n    64 STUR\n    ENDC\n    NEWC\n    b{1} STSLICECONST\n    s12 PUSH\n    STREFR\n    s11 PUSH\n    STREFR\n    s10 PUSH\n    STREFR\n    OVER\n    STREFR\n    ENDC\n    c4 POP\n    s4 s3 XCPU\n    SUB\n    SWAP\n    s0 18 s() XCHG\n    ADD\n    DUP\n    0 GTINT\n    IF:<{\n      NEWC\n      b{010000} STSLICECONST\n      s1 s8 XCHG\n      STSTDADDR\n      s0 s7 XCHG2\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      s6 PUSH\n      SENDRAWMSG\n    }>ELSE<{\n      DROP\n      s6 POP\n    }>\n    DUP\n    0 GTINT\n    IF:<{\n      DUP\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        s4 PUSH\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n        NIP\n      }>\n    }>ELSE<{\n      DROP\n      NIP\n    }>\n    NEWC\n    x{5fcc3d140000000000000000} STSLICECONST\n    s3 s(-1) PUXC\n    STSTDADDR\n    s3 s(-1) PUXC\n    STSTDADDR\n    b{000000} STSLICECONST\n    ENDC\n    NEWC\n    b{011000} STSLICECONST\n    s1 s3 XCHG\n    STSTDADDR\n    s0 s13 XCHG2\n    STGRAMS\n    1 PUSHINT\n    107 STUR\n    STREF\n    ENDC\n    s2 PUSH\n    SENDRAWMSG\n    NEWC\n    b{010000} STSLICECONST\n    STSTDADDR\n    0 PUSHINT\n    111 STUR\n    ENDC\n    130 PUSHINT\n    SENDRAWMSG\n    s0 s10 XCHG\n    s0 s9 XCHG\n  }>\n  marketplaceFee() PROC:<{\n    4 2 BLKDROP2\n    DUP\n    IF:<{\n      OVER\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      -1 PUSHINT\n    }>\n    IFJMP:<{\n      2DROP\n      0 PUSHINT\n    }>\n    MUL\n    10000 PUSHINT\n    DIV\n  }>\n  validateAcceptPayload() PROC:<{\n    s0 s3 XCHG\n    CTOS\n    DUP\n    SBITS\n    32 LESSINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      1 LESSINT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      32 LDU\n      SWAP\n      1380073795 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      14 BLKDROP\n      FALSE\n    }>\n    LDREF\n    SWAP\n    CTOS\n    OVER\n    SBITS\n    72 LESSINT\n    IF:<{\n      s3 POP\n      -1 PUSHINT\n    }>ELSE<{\n      SWAP\n      8 LDU\n      s0 s4 XCHG\n      NEQ\n      0 NEQINT\n      s1 s3 XCHG\n    }>\n    IF:<{\n      NIP\n      -1 PUSHINT\n    }>ELSE<{\n      64 LDU\n      s0 s2 XCHG\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      13 BLKDROP\n      FALSE\n    }>\n    DUP\n    SBITS\n    IF:<{\n      LDGRAMS\n      s0 s3 XCHG\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      -1 PUSHINT\n    }>\n    IFJMP:<{\n      12 BLKDROP\n      FALSE\n    }>\n    OVER\n    SBITS\n    32 LESSINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      SWAP\n      16 LDU\n      SWAP\n      2 NEQINT\n      0 NEQINT\n      s1 s2 XCHG\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      SWAP\n      16 LDU\n      s1 s8 XCPU\n      NEQ\n      0 NEQINT\n      s1 s2 XCHG\n    }>\n    IFJMP:<{\n      12 BLKDROP\n      FALSE\n    }>\n    SWAP\n    LDSTDADDR\n    DROP\n    s9 PUSH\n    SDEQ\n    IFNOTJMP:<{\n      11 BLKDROP\n      FALSE\n    }>\n    verifyEligibilityProof() CALLDICT\n  }>\n  validateConditions() PROC:<{\n    CTOS\n    8 LDU\n    8 LDU\n    19235 PUSHINT\n    s2 PUSH\n    17 LESSINT\n    THROWANYIFNOT\n    OVER\n    IFNOTJMP:<{\n      2DROP\n      7197 PUSHINT\n      SWAP\n      THROWANYIF\n    }>\n    7197 PUSHINT\n    s3 PUSH\n    1 EQINT\n    IF:<{\n      s3 POP\n      -1 PUSHINT\n    }>ELSE<{\n      s0 s3 XCHG\n      2 EQINT\n      0 NEQINT\n    }>\n    s1 s3 XCHG\n    THROWANYIFNOT\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      s1 s2 PUSH2\n      LESS\n    }>DO<{\n      63623 PUSHINT\n      s4 PUSH\n      SBITS\n      9 PUSHPOW2\n      GEQ\n      THROWANYIFNOT\n      s0 s3 XCHG\n      256 LDU\n      256 LDU\n      s2 PUSH\n      55104 PUSHINT\n      s0 s7 XCHG\n      GREATER\n      IF:<{\n        SWAP\n        0 NEQINT\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      s1 s5 XCHG\n      THROWANYIFNOT\n      SWAP\n      INC\n      SWAP\n    }>\n    4 BLKDROP\n  }>\n  verifyEligibilityProof() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    4 4 BLKDROP2\n    s4 POP\n    s5 POP\n    s0 s3 XCHG\n    NEWC\n    STSTDADDR\n    s1 s4 XCHG\n    STSTDADDR\n    s1 s3 XCHG\n    256 STU\n    HASHBU\n    AGAINEND\n    WHILE:<{\n      s2 PUSH\n      SBITS\n      257 PUSHINT\n      GEQ\n    }>DO<{\n      s0 s2 XCHG\n      1 LDI\n      256 LDU\n      s0 s2 XCHG\n      IF:<{\n        NEWC\n        256 STU\n        s1 s3 XCHG\n        256 STU\n        HASHBU\n      }>ELSE<{\n        s0 s3 XCHG\n        NEWC\n        256 STU\n        s1 s3 XCHG\n        256 STU\n        HASHBU\n      }>\n    }>\n    s2 PUSH\n    SREFS\n    IFNOTJMP:<{\n      s2 POP\n      EQUAL\n      RETALT\n    }>\n    s0 s2 XCHG\n    PLDREF\n    CTOS\n    s0 s2 XCHG\n  }>\n  unwrapForwardPayload() PROC:<{\n    DUP\n    SBITS\n    1 EQINT\n    IF:<{\n      DUP\n      SREFS\n      0 GTINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      1 LDI\n      NIP\n      PLDREF\n      CTOS\n    }>\n  }>\n  get_buy_state() PROC:<{\n    loadReverseBuy() CALLDICT\n    3 BLKDROP\n    4 4 BLKDROP2\n    s13 POP\n    s13 POP\n    s13 POP\n    s13 POP\n    0 PUSHINT\n    s0 s10 XCHG\n    ISNULL\n    IFNOT:<{\n      1 PUSHINT\n      s10 POP\n    }>\n    2 PUSHINT\n    s0 s13 XCHG\n    s0 s12 XCHG\n    s9 s11 XCHG\n    s8 s10 XCHG\n    s6 s9 XCHG\n    s0 s8 XCHG\n    s5 s7 XCHG\n    s5 s6 XCHG\n    s4 s5 XCHG\n    s3 s4 XCHG\n    s1 s3 s0 XCHG3\n    0 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECLQEAC5AAART/APSkE/S88sgLAQIBYgIDAgLNBAUAUaFTjeACvgbYiHp6enrgFN0k4nW+5BoYITYhFCDSECCuIKwgiiBogmDhAgEgBgcCASAlJgIBIAgJAgEgFRYEUT4kZEw4PABVhjHAOMCERjXLCSjVMW04wLXLCKSEhp04wLXLCKSEpoUgCgsMDQGRO1EINDXCwDjA9DXLAbyv9TU1NTRI9D6SPpI+kj6ANMP0SfQ0wfTB9P/0//RKtD6APoA+gD6ANEt0NMH+gDSAPpQ+lD6ANM/0YBIA8l8DMmyTNDQ1OCFus5n4kiLHBWwSwwCSMXDilSLAAMMAkXDijixtbQTIywdQCPoCygAW+lT6VHDPC0PJyM+DJM8UNFIkzDJSAswxIc8UMcntVJMWXwbi+JcgwgCOGiDCAI4SyM+FCBL6UgH6AnDPC2rJcfsAkVvi4FsA/jA2NjY3Nzc3Nzg4OYEd2/iSKccF8vRQRqCCAPln+JcivvL0ggCDqAizGPL0AsjLB1AE+gLPgxL6VBL6VAH6AhbLP8nIz4MlzxQ1UjXMM1ITzDEizxRsEsntVPiXoiDCAI4aIMIAjhLIz4UIEvpSAfoCcM8Laslx+wCRW+KRW+IA1jA0bKU1NTaBHdv4kibHBfL0AZF/lSJus8MA4o4TXwn4ksjPhQj6UnDPC27JgEL7AODIz4gIIBXKABL6VPpUWPoCFcs/ycjPgyTPFDRSJMwyUgLMMSHPFDHJ7VTIz4UI+lJwzwtuyYEAgvsAAtjjAtcsICicbIyOStM/MfpI+JL4lwkRGwkIERoIBxEZBwYRGAYFERcFBBEWBAkRFQkIERQIBxETBwYREgYFEREFBBEQBBCfEI4QfRBsEFsQSlrwAl8L4DdfBWyTM2xENAPXLCKSEpJ04wLywIIODwH+NVtsRD1XEIEd2/iSLMcF8vTTP/pI+kj6ANdMVhOzkX+VJcMAwwDikj9/lQ9us8MA4pF/lSPAAMMA4pF/lSDAAMMA4pF/lVMKvMMA4o4VXw9fBPiSyM+FCPpScM8LbsmAQvsA4HEuUYwQjxB+BhBcEEsQOkHwUrBWEgEREVYRLRAAtIEd2/iSUATHBRPy9IIArOEB8vSBeAv4l1ADvhLy9NM/MfpI+kgwyIvF/MPRQAAAAAAAAAAIzxZSEPpS+lLPgYIImJaA+gLPgcnIz4UIEvpScc8LbszJgEL7AAHs8ASOE18M+JLIz4UI+lJwzwtuyYBC+wDhVHIFUWOhB8jLB1AH+gIdygAc+lT6VFAD+gLLP8nIz4MozxQ4UmjMNlJGzDRSVMw1BMntVMjPkUlNCQoSyz/MycjPhYgS+lJQA/oCcc8LahLMyXH7APiXIMIAkVvjDREANCDCAI4SyM+FCBL6UgH6AnDPC2rJcfsAkVviAf7Q1ywC8r/U0dDTD9M/MfpI+kj6SPoA0w/U1NEB0NP/1NEg0NMH1wsHggDndQvAAhvy9IEw+SbCAPL0ggDOnCWBA+i78vSBUf0j8vQh8AUlAvkAcHBtbVRzPcj6UlLw+lJS4PpSKfoCLM8LD8koyMsHVhLPCwcozwv/K88L/8nIEwGgic8WL/oCz4FSYPpUUlD6VHDPC0PJLdD6APoA+gD6ANEGERcGBREWBRERERUREQQRFAQFERMFEREREhERBBERBA8REA8QTxBtEGwQSxA6SYcUAAIAAvUNDU1VhazkX+WVhjDAMMA4o47NFtQml8JyIvF/MPRQAAAAAAAAAAIzxZSIPpSEvpSz4GCCJiWgPoCz4HJyM+FCBL6UnHPC27MyYBC+wDgAfAHINdJwSCRf5cg10rBAcMA4pF/nNMfAYIQUkJBQ73DAOLjAtQB0HBUcAKAXGAAtGxCIJUhwADDAJF/4pJbcOCogScQqQSAAcjAxbKLIi8X8w9FAAAAAAAAAAAjPFlIg+lIS+lLPgYIImJaA+gLPgcnIz4UIEvpScc8LbszJgEL7AAH810nCR44WbCEC0wfTPyDXScIAljQD+gAwA5Ew4pE04lYQBVYQBVYQBVYQBVYQBQQREAQQP07QVhBQD/AGjjwVXwVQVl8FyIvF/MPRQAAAAAAAAAAIzxZSIPpSEvpSz4GCCJiWgPoCz4HJyM+FCBL6UnHPC27MyYBC+wDhI8ABGQT84wI0IsAC4wICkjN/lQPDAMMA4o45NFtsQsiLxfzD0UAAAAAAAAAACM8WUiD6UhL6Us+BggiYloD6As+BycjPhQgS+lJxzwtuzMmAQvsA4FNSoPgnbxBRE6CCCJiWgKC+4wM5VxFXEVRFUFRkQCXwA3FwyM+IBCBWEM8KAFLwGhsgHAH8NzdbNTUtbpF/lCxuwwDikX+XUy3HBbPDAOKRf5dTDMcFs8MA4pIzf5VROr3DAOKSM3+VUTq9wwDijjZsIsiLxfzD0UAAAAAAAAAACM8WUhD6UvpSz4GCCJiWgPoCz4HJyM+FCBL6UnHPC27MyYBC+wDgMDM2NjY2NzdxcG1tHQP+MlE2vY45NFtsQsiLxfzD0UAAAAAAAAAACM8WUiD6UhL6Us+BggiYloD6As+BycjPhQgS+lJxzwtuzMmAQvsA4FNSoPgnbxBRE6CCCJiWgKC+4wM5VxFXEVRFUFRkQCXwA3FwyM+IBCBWEM8KAFLw+lRS4PpULfoCLM8LP8nIiSAhIgH8+lRS4PpULfoCLM8LP8nIz4MszxQrzxQqzxQhzxTJ7VRRQ6EBERKgIMIAjhPIz4UIGPpSUAf6AnDPC2rJJvsAkjA24iDCAI4bIMIAjhLIz4UIE/pSWPoCcM8Laskk+wCSMDHikjAx4siLxfzD0UAAAAAAAAAACM8WUjD6UlIwJAL+UyLIz4gEICvPCgBSQPpUUjD6VHDPC0PJyM+DLs8ULc8UK88UIc8Uye1U+CdvECiCCJiWgKC+jj43yIvF/MPRQAAAAAAAAAAIzxZSgPpSGPpSz4GCCJiWgPoCz4HJyM+FCBn6UnHPC24YzMmAQvsAEDpJFgVQdOHIic8WUpD6Uh4fABhfzD0UAAAAAAAAAAAAaFKQ+lLPhAjJyM+FiBv6UlAI+gJxzwtqGczJJfsAyM+FCBf6UnDPC27JgQCC+wAQOkkWUHQAcjRbbELIi8X8w9FAAAAAAAAAAAjPFlIg+lIS+lLPgYIImJaA+gLPgcnIz4UIEvpScc8LbszJgEL7AAABwAH8zxYszxQrzxQqzxQhzxTJ7VRRQ6EBERKgIMIAjhPIz4UIGPpSUAf6AnDPC2rJJvsAkjA24iDCAI4bIMIAjhLIz4UIE/pSWPoCcM8Laskk+wCSMDHikjAx4siLxfzD0UAAAAAAAAAACM8WUjD6UlIw+lLPhAjJyM+FiBP6UlANIwA6+gJxzwtqzMki+wDIz4UI+lJwzwtuyYEAgvsACgkAWPpSz4QIycjPhYgT+lJQDfoCcc8LaszJIvsAyM+FCPpScM8LbsmBAIL7AAoJAgEgJygCASArLAL3APQINdJwSCRf5cg10rBAcMA4pF/nNMfAYIQUkJBQ73DAOKTXw5w4NQB0CHXScFIkjN/mAHTBwS9wwAT4pIxf5bTPwK9wwDik18NcOAg10mW+gADvcMAkjJ/4pNfDHDgIddJwSCRf5kB0w8BwwLDABLikX/jDpNfDHDgAYCkqALs0NMH0weBSyMiwRHy9CGXW4EcHQHy8uGBHB0jwAGSM3+VA8ACwwDiE/L0cCCTUxK5jiiCAPiHJNdJgwi+8vQD0//T/yKCANdAB7yVAcMAwwCSMXDiFfL0AaQB6F8EgABIB0w9RGL3DABIAGvpIMCnHBZNfC3Dh8AYAkTtou37bEQ0NQPI+lIU+lITy//5FuuXItdJgQEBvo4aAtIA0/8CmMjL/xPL//kWmQPIy/8Ty//5FuLoItdKlDK62zHhAtdM0AKAAMQg10nAAZcg10rCAMMAkXDiltIAMddM0OCA=",
+  "codeHashHex": "A392E2BDF59EAD1751E485F74D9601EF2A97E1F35217A758B381142D614B113A",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/d8a51160-4109-44ba-bef2-208e845b1453/contracts/ReverseBuyTolkV1.tolk",
+        "size_chars": 19975,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ReverseBuyIncomingMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Deploy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelBuyOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RescueStrandedNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuySaleOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OwnershipAssigned"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 2490013878,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1380074318,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1380078158,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1380078402,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 5
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 85167505,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 6
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyCore"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyEligibility"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyGasConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyRuntime"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyStorageAtDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyLoaded"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyInitialConfig"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyEligibilityConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 48
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          47
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          52,
+          26
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 55,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 57,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          61
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyState"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 42,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          46,
+          51,
+          60,
+          0
+        ]
+      },
+      {
+        "ty_idx": 63,
+        "struct_name": "CreateMessageOptions<cell>",
+        "monomorphic_fields_ty_idx": [
+          46,
+          51,
+          60,
+          3
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 47,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 49
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 55,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 58
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 52
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 56
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 44,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 62,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 46
+          },
+          {
+            "name": "value",
+            "ty_idx": 51
+          },
+          {
+            "name": "dest",
+            "ty_idx": 60
+          },
+          {
+            "name": "body",
+            "ty_idx": 61
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyStorageAtDeployment",
+        "ty_idx": 33,
+        "ident_loc": [
+          1,
+          36,
+          14,
+          36,
+          43
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyGasConfig",
+        "ty_idx": 28,
+        "ident_loc": [
+          1,
+          40,
+          8,
+          40,
+          27
+        ],
+        "fields": [
+          {
+            "name": "minContractReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "minAcceptValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minRejectStorageValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyEligibilityConfig",
+        "ty_idx": 37,
+        "ident_loc": [
+          1,
+          47,
+          8,
+          47,
+          35
+        ],
+        "fields": [
+          {
+            "name": "eligibilityRoot",
+            "ty_idx": 26
+          },
+          {
+            "name": "conditions",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyInitialConfig",
+        "ty_idx": 36,
+        "ident_loc": [
+          1,
+          52,
+          8,
+          52,
+          31
+        ],
+        "fields": [
+          {
+            "name": "economicVersion",
+            "ty_idx": 22
+          },
+          {
+            "name": "salt",
+            "ty_idx": 11
+          },
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeReceiver",
+            "ty_idx": 7
+          },
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 38
+          },
+          {
+            "name": "gas",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyCore",
+        "ty_idx": 21,
+        "ident_loc": [
+          1,
+          64,
+          8,
+          64,
+          22
+        ],
+        "fields": [
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeReceiver",
+            "ty_idx": 7
+          },
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyEligibility",
+        "ty_idx": 24,
+        "ident_loc": [
+          1,
+          72,
+          8,
+          72,
+          29
+        ],
+        "fields": [
+          {
+            "name": "conditionMode",
+            "ty_idx": 25
+          },
+          {
+            "name": "conditionCount",
+            "ty_idx": 25
+          },
+          {
+            "name": "conditionsHash",
+            "ty_idx": 26
+          },
+          {
+            "name": "eligibilityRoot",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyRuntime",
+        "ty_idx": 30,
+        "ident_loc": [
+          1,
+          79,
+          8,
+          79,
+          25
+        ],
+        "fields": [
+          {
+            "name": "status",
+            "ty_idx": 25
+          },
+          {
+            "name": "reservedBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "funded",
+            "ty_idx": 5
+          },
+          {
+            "name": "pendingSale",
+            "ty_idx": 31
+          },
+          {
+            "name": "pendingNft",
+            "ty_idx": 31
+          },
+          {
+            "name": "pendingSalePrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingDealId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyStorage",
+        "ty_idx": 20,
+        "ident_loc": [
+          1,
+          90,
+          14,
+          90,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "core",
+            "ty_idx": 23
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 27
+          },
+          {
+            "name": "gas",
+            "ty_idx": 29
+          },
+          {
+            "name": "runtime",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyLoaded",
+        "ty_idx": 34,
+        "ident_loc": [
+          1,
+          99,
+          8,
+          99,
+          24
+        ],
+        "fields": [
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 24
+          },
+          {
+            "name": "gas",
+            "ty_idx": 28
+          },
+          {
+            "name": "runtime",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuyState",
+        "ty_idx": 64,
+        "ident_loc": [
+          1,
+          107,
+          8,
+          107,
+          16
+        ],
+        "fields": [
+          {
+            "name": "economicVersion",
+            "ty_idx": 22
+          },
+          {
+            "name": "status",
+            "ty_idx": 25
+          },
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "reservedBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 22
+          },
+          {
+            "name": "feeReceiver",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditionMode",
+            "ty_idx": 25
+          },
+          {
+            "name": "conditionCount",
+            "ty_idx": 25
+          },
+          {
+            "name": "conditionsHash",
+            "ty_idx": 26
+          },
+          {
+            "name": "eligibilityRoot",
+            "ty_idx": 26
+          },
+          {
+            "name": "funded",
+            "ty_idx": 5
+          },
+          {
+            "name": "pendingMode",
+            "ty_idx": 25
+          },
+          {
+            "name": "pendingUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Deploy",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          125,
+          21,
+          125,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 2490013878,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelBuyOffer",
+        "ty_idx": 14,
+        "ident_loc": [
+          1,
+          129,
+          21,
+          129,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1380074318,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RescueStrandedNft",
+        "ty_idx": 15,
+        "ident_loc": [
+          1,
+          133,
+          21,
+          133,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1380078158,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuySaleOffer",
+        "ty_idx": 16,
+        "ident_loc": [
+          1,
+          139,
+          21,
+          139,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1380078402,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "saleContract",
+            "ty_idx": 7
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "salePrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "acceptPayload",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OwnershipAssigned",
+        "ty_idx": 17,
+        "ident_loc": [
+          1,
+          147,
+          21,
+          147,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 85167505,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ReverseBuyIncomingMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          153,
+          6,
+          153,
+          31
+        ],
+        "target_ty_idx": 19
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "loadReverseBuy",
+        "return_ty_idx": 34,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          169,
+          5,
+          169,
+          19
+        ],
+        "end_loc": [
+          1,
+          225,
+          1,
+          225,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 1,
+        "name": "ReverseBuyStorageAtDeployment.fromCell",
+        "return_ty_idx": 33,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "ReverseBuyInitialConfig.fromCell",
+        "return_ty_idx": 36,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<ReverseBuyEligibilityConfig>.load",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "ReverseBuyCore.toCell",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "ReverseBuyEligibility.toCell",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "ReverseBuyRuntime.toCell",
+        "return_ty_idx": 32,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Cell<ReverseBuyGasConfig>.load",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "ReverseBuyStorage.fromCell",
+        "return_ty_idx": 20,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<ReverseBuyCore>.load",
+        "return_ty_idx": 21,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "Cell<ReverseBuyEligibility>.load",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "Cell<ReverseBuyRuntime>.load",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "options",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          236,
+          5,
+          236,
+          22
+        ],
+        "end_loc": [
+          1,
+          325,
+          1,
+          325,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          328,
+          5,
+          328,
+          21
+        ],
+        "end_loc": [
+          1,
+          329,
+          1,
+          329,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "ReverseBuyRuntime.clearPending",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          446,
+          23,
+          446,
+          35
+        ],
+        "end_loc": [
+          1,
+          451,
+          1,
+          451,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "ReverseBuyStorage.saveRuntime",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          231,
+          23,
+          231,
+          34
+        ],
+        "end_loc": [
+          1,
+          234,
+          1,
+          234,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "runtime",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "ReverseBuyStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          227,
+          23,
+          227,
+          27
+        ],
+        "end_loc": [
+          1,
+          229,
+          1,
+          229,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "ReverseBuyStorage.toCell",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "refundAttached",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          558,
+          5,
+          558,
+          19
+        ],
+        "end_loc": [
+          1,
+          562,
+          1,
+          562,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "sendTon",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          573,
+          5,
+          573,
+          12
+        ],
+        "end_loc": [
+          1,
+          582,
+          1,
+          582,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "createMessage<void>",
+        "return_ty_idx": 41,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "refundInbound",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          564,
+          5,
+          564,
+          18
+        ],
+        "end_loc": [
+          1,
+          571,
+          1,
+          571,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "sendRemainingTon",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          584,
+          5,
+          584,
+          21
+        ],
+        "end_loc": [
+          1,
+          591,
+          1,
+          591,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "buyReverseSale",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          543,
+          5,
+          543,
+          19
+        ],
+        "end_loc": [
+          1,
+          556,
+          1,
+          556,
+          2
+        ],
+        "params": [
+          {
+            "name": "sale",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          },
+          {
+            "name": "dealId",
+            "ty_idx": 1
+          },
+          {
+            "name": "acceptPayload",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "createMessage<cell>",
+        "return_ty_idx": 41,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "returnInboundNft",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          612,
+          5,
+          612,
+          21
+        ],
+        "end_loc": [
+          1,
+          629,
+          1,
+          629,
+          2
+        ],
+        "params": [
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "ReverseBuyRuntime.handleOwnershipAssigned",
+        "return_ty_idx": 0,
+        "num_params": 9,
+        "ident_loc": [
+          1,
+          331,
+          23,
+          331,
+          46
+        ],
+        "end_loc": [
+          1,
+          433,
+          1,
+          433,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "storage",
+            "ty_idx": 20
+          },
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 24
+          },
+          {
+            "name": "gas",
+            "ty_idx": 28
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "inboundValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "prevOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "canAffordFillSends",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          442,
+          5,
+          442,
+          23
+        ],
+        "end_loc": [
+          1,
+          444,
+          1,
+          444,
+          2
+        ],
+        "params": [
+          {
+            "name": "gas",
+            "ty_idx": 28
+          },
+          {
+            "name": "payoutTotal",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "transferNft",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          593,
+          5,
+          593,
+          16
+        ],
+        "end_loc": [
+          1,
+          610,
+          1,
+          610,
+          2
+        ],
+        "params": [
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "newOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "marketplaceFee",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          435,
+          5,
+          435,
+          19
+        ],
+        "end_loc": [
+          1,
+          440,
+          1,
+          440,
+          2
+        ],
+        "params": [
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "validateAcceptPayload",
+        "return_ty_idx": 5,
+        "num_params": 7,
+        "ident_loc": [
+          1,
+          453,
+          5,
+          453,
+          26
+        ],
+        "end_loc": [
+          1,
+          480,
+          1,
+          480,
+          2
+        ],
+        "params": [
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 24
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "payloadCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          },
+          {
+            "name": "dealId",
+            "ty_idx": 1
+          },
+          {
+            "name": "executionPrice",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "validateConditions",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          482,
+          5,
+          482,
+          23
+        ],
+        "end_loc": [
+          1,
+          502,
+          1,
+          502,
+          2
+        ],
+        "params": [
+          {
+            "name": "conditions",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "verifyEligibilityProof",
+        "return_ty_idx": 5,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          504,
+          5,
+          504,
+          27
+        ],
+        "end_loc": [
+          1,
+          532,
+          1,
+          532,
+          2
+        ],
+        "params": [
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 24
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "proof",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "unwrapForwardPayload",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          534,
+          5,
+          534,
+          25
+        ],
+        "end_loc": [
+          1,
+          541,
+          1,
+          541,
+          2
+        ],
+        "params": [
+          {
+            "name": "payload",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "get_buy_state",
+        "return_ty_idx": 64,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          631,
+          9,
+          631,
+          22
+        ],
+        "end_loc": [
+          1,
+          657,
+          1,
+          657,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "ReverseBuyTolkV1",
+    "author": "Reverse NFT Marketplace",
+    "version": "1.0",
+    "description": "ReverseBuy economic v2 implemented in Tolk 1.4.2",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Deploy"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelBuyOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RescueStrandedNft"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuySaleOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OwnershipAssigned"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyCore"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyEligibility"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyGasConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 26
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyRuntime"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReverseBuyStorageAtDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BuyState"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "ReverseBuyStorageAtDeployment",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyGasConfig",
+        "ty_idx": 26,
+        "fields": [
+          {
+            "name": "minContractReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "minAcceptValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "nftTransferValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minRejectStorageValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyCore",
+        "ty_idx": 19,
+        "fields": [
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeReceiver",
+            "ty_idx": 7
+          },
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyEligibility",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "conditionMode",
+            "ty_idx": 23
+          },
+          {
+            "name": "conditionCount",
+            "ty_idx": 23
+          },
+          {
+            "name": "conditionsHash",
+            "ty_idx": 24
+          },
+          {
+            "name": "eligibilityRoot",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyRuntime",
+        "ty_idx": 28,
+        "fields": [
+          {
+            "name": "status",
+            "ty_idx": 23
+          },
+          {
+            "name": "reservedBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "funded",
+            "ty_idx": 5
+          },
+          {
+            "name": "pendingSale",
+            "ty_idx": 29
+          },
+          {
+            "name": "pendingNft",
+            "ty_idx": 29
+          },
+          {
+            "name": "pendingSalePrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingDealId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReverseBuyStorage",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "core",
+            "ty_idx": 21
+          },
+          {
+            "name": "eligibility",
+            "ty_idx": 25
+          },
+          {
+            "name": "gas",
+            "ty_idx": 27
+          },
+          {
+            "name": "runtime",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuyState",
+        "ty_idx": 32,
+        "fields": [
+          {
+            "name": "economicVersion",
+            "ty_idx": 20
+          },
+          {
+            "name": "status",
+            "ty_idx": 23
+          },
+          {
+            "name": "buyer",
+            "ty_idx": 7
+          },
+          {
+            "name": "collection",
+            "ty_idx": 7
+          },
+          {
+            "name": "price",
+            "ty_idx": 6
+          },
+          {
+            "name": "reservedBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 20
+          },
+          {
+            "name": "feeReceiver",
+            "ty_idx": 7
+          },
+          {
+            "name": "conditionMode",
+            "ty_idx": 23
+          },
+          {
+            "name": "conditionCount",
+            "ty_idx": 23
+          },
+          {
+            "name": "conditionsHash",
+            "ty_idx": 24
+          },
+          {
+            "name": "eligibilityRoot",
+            "ty_idx": 24
+          },
+          {
+            "name": "funded",
+            "ty_idx": 5
+          },
+          {
+            "name": "pendingMode",
+            "ty_idx": 23
+          },
+          {
+            "name": "pendingUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Deploy",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2490013878,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelBuyOffer",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1380074318,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RescueStrandedNft",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1380078158,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BuySaleOffer",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1380078402,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "saleContract",
+            "ty_idx": 7
+          },
+          {
+            "name": "nft",
+            "ty_idx": 7
+          },
+          {
+            "name": "salePrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "acceptPayload",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OwnershipAssigned",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 85167505,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "prevOwner",
+            "ty_idx": 7
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 17
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 18,
+      "storage_at_deployment_ty_idx": 31
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 3
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 108998,
+        "name": "get_buy_state",
+        "parameters": [],
+        "return_ty_idx": 32
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_INCOMING_MESSAGE",
+        "err_code": 130
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_CONDITION_MODE",
+        "err_code": 7197
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_BUYER",
+        "err_code": 7643
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_PRICE",
+        "err_code": 12537
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_TOO_MANY_CONDITIONS",
+        "err_code": 19235
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_MISSING_ROOT",
+        "err_code": 20989
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_RESCUE_VALUE",
+        "err_code": 30731
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_ALREADY_FUNDED",
+        "err_code": 33704
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_ORDER_STILL_ACTIVE",
+        "err_code": 44257
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_FEE_TOO_HIGH",
+        "err_code": 52892
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_CONDITION",
+        "err_code": 55104
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_CONFIG",
+        "err_code": 59253
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_CONDITION_DATA",
+        "err_code": 63623
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_DEPOSIT",
+        "err_code": 63847
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/d8a51160-4109-44ba-bef2-208e845b1453/contracts/ReverseBuyTolkV1.tolk",
+      "contents": "tolk 1.4.2\n\nconst ECONOMIC_VERSION = 2\n\nconst BUY_STATUS_ACTIVE = 0\nconst BUY_STATUS_FILLED = 1\nconst BUY_STATUS_CANCELLED = 2\n\nconst ROUTE_NONE = 0\nconst ROUTE_BUYER = 1\nconst ROUTE_SELLER = 2\n\nconst CONDITION_NONE = 0\nconst CONDITION_AND = 1\nconst CONDITION_OR = 2\nconst MAX_CONDITIONS = 16\n\nconst FILL_GAS_MARGIN = 10000000\n\n// Public exit codes inherited from ReverseBuy Tact economic v2.\nconst ERROR_INVALID_CONDITION_MODE = 7197\nconst ERROR_NOT_BUYER = 7643\nconst ERROR_INVALID_PRICE = 12537\nconst ERROR_TOO_MANY_CONDITIONS = 19235\nconst ERROR_MISSING_ROOT = 20989\nconst ERROR_INSUFFICIENT_RESCUE_VALUE = 30731\nconst ERROR_ALREADY_FUNDED = 33704\nconst ERROR_ORDER_STILL_ACTIVE = 44257\nconst ERROR_FEE_TOO_HIGH = 52892\nconst ERROR_INVALID_CONDITION = 55104\nconst ERROR_INVALID_CONFIG = 59253\nconst ERROR_INVALID_CONDITION_DATA = 63623\nconst ERROR_INSUFFICIENT_DEPOSIT = 63847\nconst ERROR_INVALID_INCOMING_MESSAGE = 130\n\nstruct (0b0) ReverseBuyStorageAtDeployment {\n    config: cell\n}\n\nstruct ReverseBuyGasConfig {\n    minContractReserve: coins\n    minAcceptValue: coins\n    nftTransferValue: coins\n    minRejectStorageValue: coins\n}\n\nstruct ReverseBuyEligibilityConfig {\n    eligibilityRoot: uint256\n    conditions: cell\n}\n\nstruct ReverseBuyInitialConfig {\n    economicVersion: uint16\n    salt: uint64\n    buyer: address\n    collection: address\n    feeReceiver: address\n    price: coins\n    feeBps: uint16\n    eligibility: Cell<ReverseBuyEligibilityConfig>\n    gas: Cell<ReverseBuyGasConfig>\n}\n\nstruct ReverseBuyCore {\n    buyer: address\n    collection: address\n    feeReceiver: address\n    price: coins\n    feeBps: uint16\n}\n\nstruct ReverseBuyEligibility {\n    conditionMode: uint8\n    conditionCount: uint8\n    conditionsHash: uint256\n    eligibilityRoot: uint256\n}\n\nstruct ReverseBuyRuntime {\n    status: uint8\n    reservedBalance: coins\n    funded: bool\n    pendingSale: address?\n    pendingNft: address?\n    pendingSalePrice: coins\n    pendingDealId: uint64\n}\n\n// The working state is split into refs so every valid coin encoding fits.\nstruct (0b1) ReverseBuyStorage {\n    core: Cell<ReverseBuyCore>\n    eligibility: Cell<ReverseBuyEligibility>\n    gas: Cell<ReverseBuyGasConfig>\n    runtime: Cell<ReverseBuyRuntime>\n}\n\n// Runtime-only decoded view. Returning it avoids serializing and parsing the\n// freshly initialized refs twice during the deployment transaction.\nstruct ReverseBuyLoaded {\n    storage: ReverseBuyStorage\n    core: ReverseBuyCore\n    eligibility: ReverseBuyEligibility\n    gas: ReverseBuyGasConfig\n    runtime: ReverseBuyRuntime\n}\n\nstruct BuyState {\n    economicVersion: uint16\n    status: uint8\n    buyer: address\n    collection: address\n    price: coins\n    reservedBalance: coins\n    feeBps: uint16\n    feeReceiver: address\n    conditionMode: uint8\n    conditionCount: uint8\n    conditionsHash: uint256\n    eligibilityRoot: uint256\n    funded: bool\n    pendingMode: uint8\n    pendingUntil: uint32\n}\n\nstruct (0x946a98b6) Deploy {\n    queryId: uint64\n}\n\nstruct (0x5242434e) CancelBuyOffer {\n    queryId: uint64\n}\n\nstruct (0x5242524e) RescueStrandedNft {\n    queryId: uint64\n    nft: address\n    recipient: address\n}\n\nstruct (0x52425342) BuySaleOffer {\n    queryId: uint64\n    saleContract: address\n    nft: address\n    salePrice: coins\n    acceptPayload: cell\n}\n\nstruct (0x05138d91) OwnershipAssigned {\n    queryId: uint64\n    prevOwner: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\ntype ReverseBuyIncomingMessage =\n    | Deploy\n    | CancelBuyOffer\n    | RescueStrandedNft\n    | BuySaleOffer\n    | OwnershipAssigned\n\ncontract ReverseBuyTolkV1 {\n    author: \"Reverse NFT Marketplace\"\n    version: \"1.0\"\n    description: \"ReverseBuy economic v2 implemented in Tolk 1.4.2\"\n    incomingMessages: ReverseBuyIncomingMessage\n    storage: ReverseBuyStorage\n    storageAtDeployment: ReverseBuyStorageAtDeployment\n}\n\nfun loadReverseBuy(): ReverseBuyLoaded {\n    val data = contract.getData();\n    val dataSlice = data.beginParse();\n    if (dataSlice.preloadUint(1) == 0) {\n        val deployment = ReverseBuyStorageAtDeployment.fromCell(data);\n        val config = ReverseBuyInitialConfig.fromCell(deployment.config);\n        val eligibilityConfig = config.eligibility.load();\n        val conditions = eligibilityConfig.conditions;\n        var conditionsSlice = conditions.beginParse();\n        val conditionMode = conditionsSlice.loadUint(8);\n        val conditionCount = conditionsSlice.loadUint(8);\n\n        assert (config.economicVersion == ECONOMIC_VERSION) throw ERROR_INVALID_CONFIG;\n        assert (config.price > 0) throw ERROR_INVALID_PRICE;\n        assert (config.feeBps <= 1000) throw ERROR_FEE_TOO_HIGH;\n        assert (eligibilityConfig.eligibilityRoot != 0) throw ERROR_MISSING_ROOT;\n        validateConditions(conditions);\n\n        val core: ReverseBuyCore = {\n            buyer: config.buyer,\n            collection: config.collection,\n            feeReceiver: config.feeReceiver,\n            price: config.price,\n            feeBps: config.feeBps,\n        };\n        val eligibility: ReverseBuyEligibility = {\n            conditionMode,\n            conditionCount,\n            conditionsHash: conditions.hash(),\n            eligibilityRoot: eligibilityConfig.eligibilityRoot,\n        };\n        val runtime: ReverseBuyRuntime = {\n            status: BUY_STATUS_ACTIVE,\n            reservedBalance: config.price,\n            funded: false,\n            pendingSale: null,\n            pendingNft: null,\n            pendingSalePrice: 0,\n            pendingDealId: 0,\n        };\n        val storage: ReverseBuyStorage = {\n            core: core.toCell(),\n            eligibility: eligibility.toCell(),\n            gas: config.gas,\n            runtime: runtime.toCell(),\n        };\n        return { storage, core, eligibility, gas: config.gas.load(), runtime };\n    }\n    val storage = ReverseBuyStorage.fromCell(data);\n    return {\n        storage,\n        core: storage.core.load(),\n        eligibility: storage.eligibility.load(),\n        gas: storage.gas.load(),\n        runtime: storage.runtime.load(),\n    };\n}\n\nfun ReverseBuyStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun ReverseBuyStorage.saveRuntime(mutate self, runtime: ReverseBuyRuntime) {\n    self.runtime = runtime.toCell();\n    self.save();\n}\n\nfun onInternalMessage(in: InMessage) {\n    val loaded = loadReverseBuy();\n    var storage = loaded.storage;\n    val core = loaded.core;\n    val eligibility = loaded.eligibility;\n    val gas = loaded.gas;\n    var runtime = loaded.runtime;\n\n    // ReverseSale refunds a failed buyer-initiated purchase with an empty body.\n    if (in.body.isEmpty()) {\n        if (runtime.pendingSale != null && in.senderAddress == runtime.pendingSale! && runtime.status == BUY_STATUS_ACTIVE) {\n            runtime.clearPending();\n            runtime.reservedBalance = core.price;\n            storage.saveRuntime(runtime);\n        }\n        refundAttached(core.buyer, in.valueCoins);\n        return;\n    }\n\n    val msg = lazy ReverseBuyIncomingMessage.fromSlice(in.body);\n    match (msg) {\n        Deploy => {\n            assert (in.senderAddress == core.buyer) throw ERROR_NOT_BUYER;\n            val required = core.price + gas.minContractReserve;\n            assert (in.valueCoins >= required) throw ERROR_INSUFFICIENT_DEPOSIT;\n            assert (!runtime.funded) throw ERROR_ALREADY_FUNDED;\n            runtime.funded = true;\n            storage.saveRuntime(runtime);\n            refundAttached(core.buyer, in.valueCoins - required);\n        }\n        CancelBuyOffer => {\n            assert (in.senderAddress == core.buyer) throw ERROR_NOT_BUYER;\n            if (runtime.status != BUY_STATUS_ACTIVE || runtime.pendingSale != null) {\n                refundInbound(in.senderAddress);\n                return;\n            }\n            runtime.status = BUY_STATUS_CANCELLED;\n            runtime.reservedBalance = 0;\n            storage.saveRuntime(runtime);\n            sendRemainingTon(core.buyer);\n        }\n        BuySaleOffer => {\n            assert (in.senderAddress == core.buyer) throw ERROR_NOT_BUYER;\n            if (\n                !runtime.funded ||\n                runtime.status != BUY_STATUS_ACTIVE ||\n                runtime.pendingSale != null ||\n                msg.queryId == 0 ||\n                msg.salePrice == 0 ||\n                msg.salePrice > core.price\n            ) {\n                refundInbound(in.senderAddress);\n                return;\n            }\n            if (!validateAcceptPayload(core, eligibility, msg.nft, msg.acceptPayload, ROUTE_BUYER, msg.queryId, msg.salePrice)) {\n                refundInbound(in.senderAddress);\n                return;\n            }\n            runtime.pendingSale = msg.saleContract;\n            runtime.pendingNft = msg.nft;\n            runtime.pendingSalePrice = msg.salePrice;\n            runtime.pendingDealId = msg.queryId;\n            runtime.reservedBalance = core.price - msg.salePrice;\n            storage.saveRuntime(runtime);\n            buyReverseSale(msg.saleContract, msg.salePrice, msg.queryId, msg.acceptPayload);\n            refundAttached(core.buyer, in.valueCoins);\n        }\n        OwnershipAssigned => {\n            runtime.handleOwnershipAssigned(\n                mutate storage,\n                core,\n                eligibility,\n                gas,\n                in.senderAddress,\n                in.valueCoins,\n                msg.prevOwner,\n                msg.forwardPayload,\n            );\n        }\n        RescueStrandedNft => {\n            assert (in.senderAddress == core.buyer) throw ERROR_NOT_BUYER;\n            assert (runtime.status != BUY_STATUS_ACTIVE) throw ERROR_ORDER_STILL_ACTIVE;\n            assert (in.valueCoins >= gas.nftTransferValue) throw ERROR_INSUFFICIENT_RESCUE_VALUE;\n            returnInboundNft(msg.nft, msg.recipient);\n        }\n        else => {\n            throw ERROR_INVALID_INCOMING_MESSAGE;\n        }\n    }\n}\n\n// Tact ignores bounced messages unless a bounced receiver is declared.\nfun onBouncedMessage(in: InMessageBounced) {\n}\n\nfun ReverseBuyRuntime.handleOwnershipAssigned(\n    mutate self,\n    mutate storage: ReverseBuyStorage,\n    core: ReverseBuyCore,\n    eligibility: ReverseBuyEligibility,\n    gas: ReverseBuyGasConfig,\n    nft: address,\n    inboundValue: coins,\n    prevOwner: address,\n    forwardPayload: slice,\n) {\n    if (!self.funded || self.status != BUY_STATUS_ACTIVE) {\n        returnInboundNft(nft, prevOwner);\n        return;\n    }\n\n    var payload = unwrapForwardPayload(forwardPayload);\n    if (payload.remainingBitsCount() < 32 || payload.remainingRefsCount() < 1 || payload.loadUint(32) != 0x52424143) {\n        returnInboundNft(nft, prevOwner);\n        return;\n    }\n    var proof = payload.loadRef().beginParse();\n    var routeMode = ROUTE_NONE;\n    var dealId = 0;\n    var executionPrice: coins = 0;\n    if (payload.remainingBitsCount() >= 72) {\n        routeMode = payload.loadUint(8);\n        dealId = payload.loadUint(64);\n        if (payload.remainingBitsCount() > 0) {\n            executionPrice = payload.loadCoins();\n        }\n    }\n    if (!verifyEligibilityProof(core, eligibility, nft, proof)) {\n        returnInboundNft(nft, prevOwner);\n        return;\n    }\n\n    if (routeMode == ROUTE_BUYER) {\n        if (\n            self.pendingSale == null ||\n            self.pendingNft == null ||\n            prevOwner != self.pendingSale! ||\n            nft != self.pendingNft! ||\n            dealId != self.pendingDealId ||\n            executionPrice != self.pendingSalePrice\n        ) {\n            returnInboundNft(nft, prevOwner);\n            return;\n        }\n        self.status = BUY_STATUS_FILLED;\n        self.reservedBalance = 0;\n        self.clearPending();\n        storage.saveRuntime(self);\n        if (!canAffordFillSends(gas, 0)) {\n            returnInboundNft(nft, core.buyer);\n            return;\n        }\n        transferNft(nft, core.buyer, gas.nftTransferValue);\n        sendRemainingTon(core.buyer);\n        return;\n    }\n\n    if (routeMode == ROUTE_SELLER) {\n        if (executionPrice != core.price) {\n            returnInboundNft(nft, prevOwner);\n            return;\n        }\n        if (!canAffordFillSends(gas, core.price + inboundValue)) {\n            returnInboundNft(nft, prevOwner);\n            return;\n        }\n        val fee = marketplaceFee(core, core.price);\n        self.status = BUY_STATUS_FILLED;\n        self.reservedBalance = 0;\n        storage.saveRuntime(self);\n        sendTon(prevOwner, core.price - fee + inboundValue);\n        if (fee > 0) {\n            sendTon(core.feeReceiver, fee);\n        }\n        transferNft(nft, core.buyer, gas.nftTransferValue);\n        sendRemainingTon(core.buyer);\n        return;\n    }\n\n    if (routeMode != ROUTE_NONE || executionPrice != 0) {\n        returnInboundNft(nft, prevOwner);\n        return;\n    }\n    if (!canAffordFillSends(gas, core.price + inboundValue)) {\n        returnInboundNft(nft, prevOwner);\n        return;\n    }\n    val fee = marketplaceFee(core, core.price);\n    self.status = BUY_STATUS_FILLED;\n    self.reservedBalance = 0;\n    storage.saveRuntime(self);\n    sendTon(prevOwner, core.price - fee + inboundValue);\n    if (fee > 0) {\n        sendTon(core.feeReceiver, fee);\n    }\n    transferNft(nft, core.buyer, gas.nftTransferValue);\n    sendRemainingTon(core.buyer);\n}\n\nfun marketplaceFee(core: ReverseBuyCore, value: coins): coins {\n    if (value == 0 || core.feeBps == 0) {\n        return 0;\n    }\n    return value * core.feeBps / 10000;\n}\n\nfun canAffordFillSends(gas: ReverseBuyGasConfig, payoutTotal: coins): bool {\n    return contract.getOriginalBalance() >= payoutTotal + gas.nftTransferValue + FILL_GAS_MARGIN;\n}\n\nfun ReverseBuyRuntime.clearPending(mutate self) {\n    self.pendingSale = null;\n    self.pendingNft = null;\n    self.pendingSalePrice = 0;\n    self.pendingDealId = 0;\n}\n\nfun validateAcceptPayload(\n    core: ReverseBuyCore,\n    eligibility: ReverseBuyEligibility,\n    nft: address,\n    payloadCell: cell,\n    mode: int,\n    dealId: int,\n    executionPrice: coins,\n): bool {\n    var payload = payloadCell.beginParse();\n    if (payload.remainingBitsCount() < 32 || payload.remainingRefsCount() < 1 || payload.loadUint(32) != 0x52424143) {\n        return false;\n    }\n    var proof = payload.loadRef().beginParse();\n    if (payload.remainingBitsCount() < 72 || payload.loadUint(8) != mode || payload.loadUint(64) != dealId) {\n        return false;\n    }\n    if (payload.remainingBitsCount() == 0 || payload.loadCoins() != executionPrice) {\n        return false;\n    }\n    if (payload.remainingBitsCount() < 32 || payload.loadUint(16) != ECONOMIC_VERSION || payload.loadUint(16) != core.feeBps) {\n        return false;\n    }\n    if (payload.loadAddress() != core.feeReceiver) {\n        return false;\n    }\n    return verifyEligibilityProof(core, eligibility, nft, proof);\n}\n\nfun validateConditions(conditions: cell) {\n    var data = conditions.beginParse();\n    val mode = data.loadUint(8);\n    val count = data.loadUint(8);\n    assert (count <= MAX_CONDITIONS) throw ERROR_TOO_MANY_CONDITIONS;\n    if (count == 0) {\n        assert (mode == CONDITION_NONE) throw ERROR_INVALID_CONDITION_MODE;\n        return;\n    }\n    assert (mode == CONDITION_AND || mode == CONDITION_OR) throw ERROR_INVALID_CONDITION_MODE;\n    var index = 0;\n    var previousKey = 0;\n    while (index < count) {\n        assert (data.remainingBitsCount() >= 512) throw ERROR_INVALID_CONDITION_DATA;\n        val key = data.loadUint(256);\n        val value = data.loadUint(256);\n        assert (key > previousKey && value != 0) throw ERROR_INVALID_CONDITION;\n        previousKey = key;\n        index += 1;\n    }\n}\n\nfun verifyEligibilityProof(\n    core: ReverseBuyCore,\n    eligibility: ReverseBuyEligibility,\n    nft: address,\n    proof: slice,\n): bool {\n    var current = beginCell()\n        .storeAddress(core.collection)\n        .storeAddress(nft)\n        .storeUint(eligibility.conditionsHash, 256)\n        .endCell()\n        .hash();\n    var cursor = proof;\n    while (true) {\n        while (cursor.remainingBitsCount() >= 257) {\n            val siblingOnLeft = cursor.loadBool();\n            val sibling = cursor.loadUint(256);\n            if (siblingOnLeft) {\n                current = beginCell().storeUint(sibling, 256).storeUint(current, 256).endCell().hash();\n            } else {\n                current = beginCell().storeUint(current, 256).storeUint(sibling, 256).endCell().hash();\n            }\n        }\n        if (cursor.remainingRefsCount() == 0) {\n            return current == eligibility.eligibilityRoot;\n        }\n        cursor = cursor.loadRef().beginParse();\n    }\n}\n\nfun unwrapForwardPayload(payload: slice): slice {\n    var result = payload;\n    if (result.remainingBitsCount() == 1 && result.remainingRefsCount() > 0) {\n        result.loadBool();\n        return result.loadRef().beginParse();\n    }\n    return result;\n}\n\nfun buyReverseSale(sale: address, value: coins, dealId: int, acceptPayload: cell) {\n    val body = beginCell()\n        .storeUint(0x52534242, 32)\n        .storeUint(dealId, 64)\n        .storeRef(acceptPayload)\n        .endCell();\n    val msg = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: sale,\n        value,\n        body,\n    });\n    msg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun refundAttached(to: address, amount: coins) {\n    if (amount > 0) {\n        sendTon(to, amount);\n    }\n}\n\nfun refundInbound(to: address) {\n    val msg = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: 0,\n    });\n    msg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_IGNORE_ERRORS);\n}\n\nfun sendTon(to: address, amount: coins) {\n    if (amount > 0) {\n        val msg = createMessage({\n            bounce: BounceMode.NoBounce,\n            dest: to,\n            value: amount,\n        });\n        msg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n}\n\nfun sendRemainingTon(to: address) {\n    val msg = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: 0,\n    });\n    msg.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_IGNORE_ERRORS);\n}\n\nfun transferNft(nft: address, newOwner: address, value: coins) {\n    val body = beginCell()\n        .storeUint(0x5fcc3d14, 32)\n        .storeUint(0, 64)\n        .storeAddress(newOwner)\n        .storeAddress(newOwner)\n        .storeBool(false)\n        .storeCoins(0)\n        .storeBool(false)\n        .endCell();\n    val msg = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: nft,\n        value,\n        body,\n    });\n    msg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun returnInboundNft(nft: address, newOwner: address) {\n    val body = beginCell()\n        .storeUint(0x5fcc3d14, 32)\n        .storeUint(0, 64)\n        .storeAddress(newOwner)\n        .storeAddress(newOwner)\n        .storeBool(false)\n        .storeCoins(10000000)\n        .storeBool(false)\n        .endCell();\n    val msg = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: nft,\n        value: 0,\n        body,\n    });\n    msg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_IGNORE_ERRORS);\n}\n\nget fun get_buy_state(): BuyState {\n    val loaded = loadReverseBuy();\n    val core = loaded.core;\n    val eligibility = loaded.eligibility;\n    val runtime = loaded.runtime;\n    var pendingMode = ROUTE_NONE;\n    if (runtime.pendingSale != null) {\n        pendingMode = ROUTE_BUYER;\n    }\n    return {\n        economicVersion: ECONOMIC_VERSION,\n        status: runtime.status,\n        buyer: core.buyer,\n        collection: core.collection,\n        price: core.price,\n        reservedBalance: runtime.reservedBalance,\n        feeBps: core.feeBps,\n        feeReceiver: core.feeReceiver,\n        conditionMode: eligibility.conditionMode,\n        conditionCount: eligibility.conditionCount,\n        conditionsHash: eligibility.conditionsHash,\n        eligibilityRoot: eligibility.eligibilityRoot,\n        funded: runtime.funded,\n        pendingMode,\n        pendingUntil: 0,\n    };\n}\n"
+    }
+  ]
+}

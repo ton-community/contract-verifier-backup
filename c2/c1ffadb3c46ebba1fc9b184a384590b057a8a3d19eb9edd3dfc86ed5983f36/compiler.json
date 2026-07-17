@@ -1,0 +1,3405 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from factory.tolk, constants.tolk, deployment-types.tolk, errors.tolk, factory-types.tolk, pool-types.tolk, ton-pool-types.tolk, sparse-set.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC onBouncedMessage()\n  DECLPROC handlePoolDeployConfirmed()\n  116193 DECLMETHOD poolCount()\n  84542 DECLMETHOD totalPoolCount()\n  76291 DECLMETHOD inFlightCreateCount()\n  113988 DECLMETHOD maxFactoryPools()\n  72583 DECLMETHOD maxInFlightCreates()\n  73484 DECLMETHOD pendingCreateSender()\n  112866 DECLMETHOD poolAddressFor()\n  82477 DECLMETHOD expectedPoolAddress()\n  103128 DECLMETHOD poolDeploymentPending()\n  130054 DECLMETHOD tonPoolCount()\n  117175 DECLMETHOD tonPoolAddressFor()\n  88385 DECLMETHOD expectedTonPoolAddress()\n  105805 DECLMETHOD tonPoolDeploymentPending()\n  // 12 functions inlined in-place:\n  // - isWhitelistedTonDenom (1 call)\n  // - FactoryStorage.load (15 calls)\n  // - FactoryStorage.save (5 calls)\n  // - sparseSetIsKnownDomain (1 call)\n  // - sparseSetBucketId (2 calls)\n  // - sparseSetPath (1 call)\n  // - sparseSetLeafHash (1 call)\n  // - sparseSetNonEmptyNodeHashWithHeader (1 call)\n  // - isOrdinaryProofPoint (3 calls)\n  // - handleCreatePool (1 call)\n  // - computeTonRegistryKey (3 calls)\n  // - handleCreateTonPool (1 call)\n  // - computeRegistryKey (3 calls)\n  // - factoryRentBudget (3 calls)\n  // - reserveFactoryRentBudget (2 calls)\n  // - refundDeployBounce (2 calls)\n  // - calcDeployedPool (5 calls)\n  // - calcDeployedTonPool (5 calls)\n  // - MapLookupResult<uint256>.loadValue (2 calls)\n  // - MapEntry<uint32, uint256>.loadValue (1 call)\n  // - MapLookupResult<address>.loadValue (8 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      onBouncedMessage() CALLDICT\n    }>\n    DUP\n    x{a0c0c0c0} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      LDSTDADDR\n      LDGRAMS\n      16 PUSHPOW2DEC\n      SWAP\n      SEMPTY\n      THROWANYIFNOT\n      INMSG_SRC\n      INMSG_VALUE\n      DUP\n      450000000 PUSHINT\n      GEQ\n      203 THROWIFNOT\n      s2 PUSH\n      0 GTINT\n      202 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDREF\n      32 LDU\n      32 LDU\n      16 LDU\n      LDREF\n      PLDREF\n      s5 PUSH\n      CTOS\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      s2 PUSH\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      NIP\n      ENDS\n      s0 s2 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s7 s6 PUSH2\n      ADD\n      s13 PUSH\n      NEWC\n      STSTDADDR\n      s13 PUSH\n      STGRAMS\n      HASHBU\n      s0 s5 XCHG2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      200 THROWIF\n      MYADDR\n      s13 s12 PUSH2\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      NEWC\n      x{00000000} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      ENDC\n      PUSHNULL\n      NEWC\n      x{00000000} STSLICECONST\n      x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n      s1 s4 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      SWAP\n      NEWC\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      x{0} STSLICECONST\n      STREF\n      x{00000000} STSLICECONST\n      ENDC\n      s0 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s0 s3 PUSH2\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      200 THROWIF\n      s9 PUSH\n      24572 PUSHINT\n      LESS\n      204 THROWIFNOT\n      s7 PUSH\n      24576 PUSHINT\n      LESS\n      205 THROWIFNOT\n      BALANCE\n      FIRST\n      s12 PUSH\n      SUB\n      370000000 PUSHINT\n      20000000 PUSHINT\n      s0 s8 XCHG2\n      MUL\n      s1 s7 XCHG\n      ADD\n      s1 s6 XCHG\n      GEQ\n      128 THROWIFNOT\n      s0 s11 XCHG\n      NEWC\n      STSTDADDR\n      s0 s4 s2 XCPUXC\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s6 XCHG\n      INC\n      s0 s4 XCHG\n      INC\n      s0 s7 XCHG\n      NEWC\n      STREF\n      s4 PUSH\n      32 STUR\n      s5 PUSH\n      32 STUR\n      s1 s7 XCHG\n      16 STU\n      s1 s2 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      ENDC\n      c4 POP\n      ADD\n      370000000 PUSHINT\n      20000000 PUSHINT\n      ROT\n      MUL\n      ADD\n      16 PUSHINT\n      RAWRESERVE\n      NEWC\n      x{00c0c0c0} STSLICECONST\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      STSTDADDR\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      12632256 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      s0 s2 XCHG\n      40000000 PUSHINT\n      SUB\n      NEWC\n      b{01100010000000000} STSLICECONST\n      2OVER\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      STREF\n      STREF\n      x{46504300} STSLICECONST\n      64 STU\n      ENDC\n      16 PUSHINT\n      SENDRAWMSG\n    }>\n    x{a0c0c0c2} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      64 LDU\n      LDGRAMS\n      16 PUSHPOW2DEC\n      SWAP\n      SEMPTY\n      THROWANYIFNOT\n      INMSG_SRC\n      INMSG_VALUE\n      DUP\n      450000000 PUSHINT\n      GEQ\n      203 THROWIFNOT\n      s2 PUSH\n      10000000000 PUSHINT\n      EQUAL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s2 PUSH\n        100000000000 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s2 PUSH\n        1000000000000 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s2 PUSH\n        10000000000000 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      202 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDREF\n      32 LDU\n      32 LDU\n      16 LDU\n      LDREF\n      PLDREF\n      s5 PUSH\n      CTOS\n      LDREF\n      NIP\n      LDREF\n      ENDS\n      s2 PUSH\n      CTOS\n      LDOPTREF\n      NIP\n      LDOPTREF\n      ENDS\n      s0 s2 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s7 s6 PUSH2\n      ADD\n      NEWC\n      s13 PUSH\n      STGRAMS\n      HASHBU\n      s0 s5 XCHG2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      200 THROWIF\n      MYADDR\n      s12 PUSH\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      NEWC\n      x{00000000} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      ROT\n      STGRAMS\n      ENDC\n      NEWC\n      x{00000000} STSLICECONST\n      x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      SWAP\n      NEWC\n      STREF\n      x{00} STSLICECONST\n      STREF\n      ENDC\n      s0 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s0 s2 PUSH2\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      200 THROWIF\n      s8 PUSH\n      4 LESSINT\n      204 THROWIFNOT\n      s7 PUSH\n      24576 PUSHINT\n      LESS\n      205 THROWIFNOT\n      BALANCE\n      FIRST\n      s12 PUSH\n      SUB\n      370000000 PUSHINT\n      20000000 PUSHINT\n      s0 s8 XCHG2\n      MUL\n      s1 s7 XCHG\n      ADD\n      s1 s6 XCHG\n      GEQ\n      128 THROWIFNOT\n      s0 s11 XCHG\n      NEWC\n      STSTDADDR\n      s4 s1 PUXC\n      267 PUSHINT\n      DICTSETB\n      SWAP\n      NEWC\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s5 XCHG\n      INC\n      s0 s4 XCHG\n      INC\n      s0 s7 XCHG\n      NEWC\n      STREF\n      s6 PUSH\n      32 STUR\n      s4 PUSH\n      32 STUR\n      s1 s7 XCHG\n      16 STU\n      s1 s2 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      c4 POP\n      s1 s2 XCHG\n      ADD\n      370000000 PUSHINT\n      20000000 PUSHINT\n      ROT\n      MUL\n      ADD\n      16 PUSHINT\n      RAWRESERVE\n      PUSHNULL\n      NEWC\n      x{00c0c0c0} STSLICECONST\n      STOPTSTDADDR\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      STSTDADDR\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      12632256 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n      40000000 PUSHINT\n      SUB\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s2 XCHG\n      STREF\n      STREF\n      x{46504300} STSLICECONST\n      64 STU\n      ENDC\n      16 PUSHINT\n      SENDRAWMSG\n    }>\n    x{46504301} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      LDOPTSTDADDR\n      LDGRAMS\n      DROP\n      INMSG_SRC\n      4 -ROLL\n      handlePoolDeployConfirmed() CALLDICT\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  onBouncedMessage() PROC:<{\n    32 LDU\n    NIP\n    DUP\n    SBITS\n    96 NEQINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      DUP\n      SREFS\n      0 NEQINT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      32 LDU\n      SWAP\n      1179665152 PUSHINT\n      NEQ\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n    }>\n    64 LDU\n    NIP\n    ENDS\n    c4 PUSH\n    CTOS\n    LDREF\n    32 LDU\n    32 LDU\n    16 LDU\n    LDREF\n    PLDREF\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    INMSG_SRC\n    s2 PUSH\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFJMP:<{\n      INMSG_SRC\n      s0 s3 XCHG2\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s6 PUSH\n      0 GTINT\n      IF:<{\n        s4 PUSH\n        0 GTINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      207 THROWIFNOT\n      s0 s6 XCHG\n      DEC\n      s0 s4 XCHG\n      DEC\n      s0 s6 XCHG\n      NEWC\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STREF\n      s1 s3 XCHG\n      32 STU\n      s1 s3 XCHG\n      32 STU\n      s1 s3 XCHG\n      16 STU\n      STREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      c4 POP\n      LDSTDADDR\n      ENDS\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    DROP\n    INMSG_SRC\n    OVER\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFJMP:<{\n      INMSG_SRC\n      ROT\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s5 PUSH\n      0 GTINT\n      IF:<{\n        s4 PUSH\n        0 GTINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      207 THROWIFNOT\n      s0 s5 XCHG\n      DEC\n      s0 s4 XCHG\n      DEC\n      s0 s2 XCHG\n      NEWC\n      STOPTREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STREF\n      s1 s5 XCHG\n      32 STU\n      s1 s2 XCHG\n      32 STU\n      s1 s3 XCHG\n      16 STU\n      s1 s2 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      c4 POP\n      LDSTDADDR\n      ENDS\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n    }>\n    8 BLKDROP\n  }>\n  handlePoolDeployConfirmed() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s0 s3 XCHG\n    NEWC\n    STSLICE\n    HASHBU\n    NEWC\n    x{46504301} STSLICECONST\n    s1 s3 XCHG\n    64 STU\n    s1 s(-1) PUXC\n    STOPTSTDADDR\n    s3 PUSH\n    STGRAMS\n    HASHBU\n    s1 s2 XCHG\n    EQUAL\n    206 THROWIFNOT\n    c4 PUSH\n    CTOS\n    LDREF\n    64 LDSLICE\n    16 LDU\n    LDREF\n    PLDREF\n    SWAP\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s0 s2 XCHG\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s7 PUSH\n    ISNULL\n    IF:<{\n      s7 POP\n      NEWC\n      s8 PUSH\n      STGRAMS\n      HASHBU\n      s6 PUSH\n      CTOS\n      LDREF\n      NIP\n      LDREF\n      ENDS\n      MYADDR\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      NEWC\n      x{00000000} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      s0 s12 XCHG2\n      STGRAMS\n      ENDC\n      NEWC\n      x{00000000} STSLICECONST\n      x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n      s1 s12 XCHG\n      STOPTREF\n      STREF\n      ENDC\n      s0 s10 XCHG\n      NEWC\n      STREF\n      x{00} STSLICECONST\n      s1 s10 XCHG\n      STREF\n      ENDC\n      s0 s9 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s9 PUSH\n      SDEQ\n      206 THROWIFNOT\n      s7 s2 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      IFJMP:<{\n        s8 POP\n        6 BLKDROP\n        SWAP\n        LDSTDADDR\n        ENDS\n        s2 PUSH\n        SDEQ\n        207 THROWIFNOT\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        NIP\n        207 THROWIF\n        RETALT\n      }>\n      DROP\n      s8 s6 PUSH2\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      206 THROWIFNOT\n      s3 PUSH\n      0 GTINT\n      207 THROWIFNOT\n      s8 s6 PUXC\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s7 s2 XCHG2\n      8 PUSHPOW2\n      DICTUSETB\n      SWAP\n      DEC\n    }>ELSE<{\n      s7 PUSH\n      NEWC\n      STSTDADDR\n      s9 PUSH\n      STGRAMS\n      HASHBU\n      s7 PUSH\n      CTOS\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      MYADDR\n      NEWDICT\n      NEWDICT\n      NEWDICT\n      NEWC\n      x{00000000} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      s0 s12 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      s0 s12 XCHG2\n      STGRAMS\n      ENDC\n      PUSHNULL\n      NEWC\n      x{00000000} STSLICECONST\n      x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n      s1 s13 XCHG\n      STOPTREF\n      s1 s11 XCHG\n      STREF\n      ENDC\n      s0 s10 XCHG\n      NEWC\n      STREF\n      s1 s11 XCHG\n      STOPTSTDADDR\n      x{0} STSLICECONST\n      s1 s9 XCHG\n      STREF\n      x{00000000} STSLICECONST\n      ENDC\n      s0 s9 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s9 PUSH\n      SDEQ\n      206 THROWIFNOT\n      s6 s1 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      IFJMP:<{\n        7 2 BLKDROP2\n        LDSTDADDR\n        ENDS\n        s2 PUSH\n        SDEQ\n        207 THROWIFNOT\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        NIP\n        207 THROWIF\n        RETALT\n      }>\n      DROP\n      s8 s0 PUSH2\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      206 THROWIFNOT\n      s3 PUSH\n      0 GTINT\n      207 THROWIFNOT\n      s8 s(-1) PUXC\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s0 s6 s6 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      SWAP\n      DEC\n      s1 s5 XCHG\n      s1 s6 XCHG\n      s1 s4 XCHG\n    }>\n    s0 s5 XCHG\n    NEWC\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s3 XCHG\n    NEWC\n    STOPTREF\n    s1 s5 XCHG\n    STOPTREF\n    ENDC\n    SWAP\n    NEWC\n    STREF\n    s1 s4 XCHG\n    STSLICE\n    s1 s2 XCHG\n    16 STU\n    STREF\n    STREF\n    ENDC\n    c4 POP\n  }>\n  poolCount() PROC:<{\n    c4 PUSH\n    CTOS\n    32 PLDU\n  }>\n  totalPoolCount() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 PLDU\n    ADD\n  }>\n  inFlightCreateCount() PROC:<{\n    c4 PUSH\n    CTOS\n    64 LDU\n    NIP\n    16 PLDU\n  }>\n  maxFactoryPools() PROC:<{\n    24576 PUSHINT\n  }>\n  maxInFlightCreates() PROC:<{\n    24576 PUSHINT\n  }>\n  pendingCreateSender() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s2 s1 PUXC\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFJMP:<{\n      2 1 BLKDROP2\n      LDSTDADDR\n      ENDS\n    }>\n    DROP\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IF:<{\n      LDSTDADDR\n      ENDS\n    }>ELSE<{\n      DROP\n      PUSHNULL\n    }>\n  }>\n  poolAddressFor() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    PLDREF\n    SWAP\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    s4 PUSH\n    NEWC\n    STSTDADDR\n    s4 PUSH\n    STGRAMS\n    HASHBU\n    SWAP\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFJMP:<{\n      4 1 BLKDROP2\n      LDSTDADDR\n      ENDS\n    }>\n    DROP\n    SWAP\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s6 XCHG\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    s0 s4 XCHG2\n    STGRAMS\n    ENDC\n    PUSHNULL\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s5 XCHG\n    STOPTREF\n    s1 s5 XCHG\n    STREF\n    ENDC\n    s0 s4 XCHG\n    NEWC\n    STREF\n    s1 s3 XCHG\n    STOPTSTDADDR\n    x{0} STSLICECONST\n    s1 s3 XCHG\n    STREF\n    x{00000000} STSLICECONST\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    SWAP\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    s1 s(-1) PUXC\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n    SWAP\n    PUSHNULL\n    CONDSEL\n  }>\n  expectedPoolAddress() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s5 XCHG\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    s0 s3 XCHG2\n    STGRAMS\n    ENDC\n    PUSHNULL\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s4 XCHG\n    STOPTREF\n    s1 s4 XCHG\n    STREF\n    ENDC\n    s0 s3 XCHG\n    NEWC\n    STREF\n    s1 s2 XCHG\n    STOPTSTDADDR\n    x{0} STSLICECONST\n    s1 s2 XCHG\n    STREF\n    x{00000000} STSLICECONST\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  poolDeploymentPending() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    PLDREF\n    SWAP\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s6 XCHG\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    s0 s4 XCHG2\n    STGRAMS\n    ENDC\n    PUSHNULL\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s5 XCHG\n    STOPTREF\n    s1 s5 XCHG\n    STREF\n    ENDC\n    s0 s4 XCHG\n    NEWC\n    STREF\n    s1 s3 XCHG\n    STOPTSTDADDR\n    x{0} STSLICECONST\n    s1 s3 XCHG\n    STREF\n    x{00000000} STSLICECONST\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    SWAP\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n  }>\n  tonPoolCount() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    32 PLDU\n  }>\n  tonPoolAddressFor() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    PLDREF\n    SWAP\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    ENDS\n    NEWC\n    s4 PUSH\n    STGRAMS\n    HASHBU\n    SWAP\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFJMP:<{\n      3 1 BLKDROP2\n      LDSTDADDR\n      ENDS\n    }>\n    DROP\n    SWAP\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s2 XCHG\n    NEWC\n    STSTDADDR\n    s0 s5 XCHG2\n    STGRAMS\n    ENDC\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s5 XCHG\n    STOPTREF\n    STREF\n    ENDC\n    s0 s3 XCHG\n    NEWC\n    STREF\n    x{00} STSLICECONST\n    s1 s3 XCHG\n    STREF\n    ENDC\n    ROT\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    SWAP\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    ENDS\n    s1 s(-1) PUXC\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n    SWAP\n    PUSHNULL\n    CONDSEL\n  }>\n  expectedTonPoolAddress() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s2 XCHG\n    NEWC\n    STSTDADDR\n    s0 s4 XCHG2\n    STGRAMS\n    ENDC\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s4 XCHG\n    STOPTREF\n    STREF\n    ENDC\n    s0 s2 XCHG\n    NEWC\n    STREF\n    x{00} STSLICECONST\n    s1 s2 XCHG\n    STREF\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  tonPoolDeploymentPending() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    PLDREF\n    SWAP\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    MYADDR\n    NEWDICT\n    NEWDICT\n    NEWDICT\n    NEWC\n    x{00000000} STSLICECONST\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    s0 s2 XCHG\n    NEWC\n    STSTDADDR\n    s0 s5 XCHG2\n    STGRAMS\n    ENDC\n    NEWC\n    x{00000000} STSLICECONST\n    x{276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3} STSLICECONST\n    s1 s5 XCHG\n    STOPTREF\n    STREF\n    ENDC\n    s0 s3 XCHG\n    NEWC\n    STREF\n    x{00} STSLICECONST\n    s1 s3 XCHG\n    STREF\n    ENDC\n    ROT\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    SWAP\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    ENDS\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECOAEACycAART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAZGgIBIAYHArVO2i7fsDyM75FsjPkRlBDAYTyz9SEPpUI/oC+RYSuvLgzu1E0NTWP9MP1NdMAdD0BPQE0QLQ9AT0BNEnbuMPBcj0APQAyQPI9AAV9ADJAcjMFM4Syw/MzMntVIFRYCbz4kZLwAeAg1ywlBgYGBOMC1ywlBgYGFOMC1ywiMoIYDJ3TP/pQ+gAw+JJVMPAC4DCEDwHHAPL0gCAkCsTTHzEg10nDYJF/lyDXSsMAwwDikX+c0x8BghBGUEMAvcMA4pEw4NM/MdHtRNDU0x/TH9MP1NdM0PQE9ATR+JIigQEL9ApvoeMCMPiSIYEBC/QKb6HjAl8IgExQC/jHTP/pI+gCEDwHHAPL0+JL4lyCCEBrSdIC+8uDLIsIA8uDK7UTQ1NMf0x/TD9TXTCXQ1NQx0SLQ9AT0BDHRAtD0BPQE0VN2oC3I+lIt+gL5FlAFgwf0Dm+hMfLQyPgoU9xtbW3Iz5AAAAACEvQA9ADJA8j6UhT6UgH6AsltyIkKCwH+MdM/+gCEDwHHAPL0+JL4lyCCEBrSdIC+8uDLIoISVAvkALqRf5sighgXSHboALrDAOKRf5sighjo1KUQALrDAOKRf5wigiAJGE5yoAC6wwDi8uDK7UTQ1NMf0x/TD9TXTCXQ1DHU0SLQ9AQx9ATRAtD0BPQE0VN2oMgt+gL5Fg8ACAAAAAAB/s8WjQgJ2s73fCqzNFz/LG30WfTTRBoD0X27WNjq3ziCWh04LODPFhT0ABLMyQHIzBL6VM+EIMzPkAAAAALJUwPIz4TQzMz5FsjPigBAy//PUFMDgQEL9ApvoTHy0MgpgV/8ufLgzCeBYAC58uDN+CdvECyhghAWDcCAggkxLQAMAf5QCKgXoBa+8uCAC8j6UlQgQ4EBC/RByPQA9ADJBqQEpAfIzCTPCx8lzwsfF8sPEswUzMntVKCCEBYNwICCCTEtAFiooIAQ+wLIz5ADAwMCFvpUUAT6AhT6UsnIz48YAASCCMDAwM8L93HPC2HMyXD7AAKCCmJaAKHIz4mIAV3IDQFEic8WzMz5Fs8L/wH6AoEAjM8LcMzMz5EZQQwCyz/JgBD7AA4AATQB/FAFgwf0Dm+hMfLQyPgoLG1tbcjPkAAAAAIS9AD0AMkDyPpSWPoCycjPkAAAAAKNCAnazvd8KrM0XP8sbfRZ9NNEGgPRfbtY2OrfOIJaHTgs4M8WEvQAEszJAcjMz4QCzMlTA8jPhNDMzPkWyM+KAEDL/89QUwKBAQv0Cm+hMRAC/vLQyCjBBPLgzCeBYAC58uDN+CdvECyhghAWDcCAggkxLQBQCKgXoBa+8uCAC8j6UlJCgQEL9EEByPQA9ADJBaQEpAfIzCbPCx8kzwsfF8sPEswTzMntVBKgghAWDcCAggkxLQBYqKCAEPsCbcjPkAMDAwL6VFAF+gIU+lLJyIkREgAFxgABAIjPFoIIwMDAzwv3cc8LYczJcPsAggpiWgChyM+JiAFTI8jPhNDMzPkWzwv/AfoCgQCMzwtwEszMz5EZQQwCyz/JgBD7AACQ+JJQA4EBC/RZMCbCAJUkwgDDAJFw4vLgzwalBKUGyPQA9ADJBsjME8sfE8sfE8sPzBLMye1U+kjRyM+FCPpScM8LbsmAQvsAAJL4kliBAQv0WTAlwgCVJMIAwwCRcOLy4M8FpQSlAsj0ABX0AMkGyMwVyx8Syx8Tyw8SzBLMye1U+kjRyM+FCPpScM8LbsmAQvsAAf43yCj6AvkWJtDUMdTR+ChtbW3Iz5AAAAACEvQA9ADJAsj6UlAM+gLJyM+QAAAAAo0ICdrO93wqszRc/yxt9Fn000QaA9F9u1jY6t84glodOCzgzxYc9ADMyQrIzM+EAhrMyVAJyM+E0MzM+RbIz4oAQMv/z1ApxwXy4M5TcoMHFwL8J8j6Uin6AvkWJ9DU1DHR+ChtbW3Iz5AAAAACEvQA9ADJDMj6UhL6UlAM+gLJbcjPkAAAAAKNCAnazvd8KrM0XP8sbfRZ9NNEGgPRfbtY2OrfOIJaHTgs4M8WHfQAG8zJCsjMG/pUz4QgGczPkAAAAALJUAnIz4TQzMz5FsiJLRgAkvQOb6GOGjhfBgH6SNEixwXy4M+BAQv0Cm+hMfLQz9sx4DBThoEBC/QKb6Ex8uDOI8IA8uDPUoeBAQv0WTAIyPpSUHKDB/RDAaUAtM8Wy//PUCnHBfLgzlNhgwf0Dm+hjhhscvpI0SLHBfLgz4EBC/QKb6Ex8tDP2zHgMFOAgQEL9ApvoTHy4M4jwgDy4M9SgIEBC/RZMAjI+lJAZoMH9EMBpRUWFAIBIBscAgEgJicCASAdHgIBSCEiAgFuHyAAF7VAfaiaGmfmOuFh8AAKq4eBYAAAYqsM7UTQ1DHUMddM0PQE9ATRUiKBAQv0Cm+hlWwh+kjR4DCBAQv0Cm+hk/pI0ZIwbeICASAjJADnslB7UTQ10zQ1DHU0fgobW1tyM+QAAAAAhL0APQAyQLI+lJQBPoCycjPkAAAAAKNCAnazvd8KrM0XP8sbfRZ9NNEGgPRfbtY2OrfOIJaHTgs4M8WFPQAzMkCyMzPhAISzMkByM+E0MzM+RbIz4oAQMv/z1CAB+60W9qJoa6ZoamoY6PwUNra25GfIAAAAAQl6AHoAZILkfSkJfSkoAf0BZLbkZ8gAAAABRoQE7Wd7vhVZmi5/ljb6LPppog0B6L7drGx1b5xBLQ6cFnBniwp6AApmZIHkZgl9KmfCEAlmZ8gAAAABZIDkZ8JoZmZ8i2RnxQAgQCUAF60fdqJoaY/rhY/QQAAIy//PUAIBICgpAgEgMjMCAVgqKwIBbi8wAfutbHaiaGpqGOumAOhqahjo/BQ2trbkZ8gAAAABCXoAegBkg2R9KQl9KSgCfQFktuRnyAAAAAFGhATtZ3u+FVmaLn+WNvos+mmiDQHovt2sbHVvnEEtDpwWcGeLCvoACuZkgmRmCf0qZ8IQCeZnyAAAAAFkgORnwmhmZnyLZEAsAfmupvaiaGpqGOumAOhqGOpo/BQ2trbkZ8gAAAABCXoAegBkgWR9KSgC/QFk5GfIAAAAAUaEBO1ne74VWZouf5Y2+iz6aaINAei+3axsdW+cQS0OnBZwZ4sK+gBmZIHkZmfCAQnmZKxkZ8JoZmZ8i2RnxQAgZf/nqADoegIYwC4BLonPFsv/z1AB0PQE9AQx0YEBC/QKb6ExLQADgBAAFvQE0YEBC/QKb6ExAfqo4u1E0NTU10wB0PQE9AQx0STI+lIk+gL5FgGDB/QOb6GVbEH6SNHgMAHQ1NQx0fgobW1tyM+QAAAAAhL0APQAyQbI+lIS+lJQBPoCyW3Iz5AAAAACjQgJ2s73fCqzNFz/LG30WfTTRBoD0X27WNjq3ziCWh04LODPFhX0ADEACqlEgWAAAHoVzMkEyMwT+lTPhCATzM+QAAAAAskByM+E0MzM+RbIz4oAQMv/z1AB0PQE9AQx0VIQgQEL9ApvoTEBbeMEAgFINDUAF7eA3aiaGmPmOuFj8AARrvD2omhrhY/AAvms2/aiaGpqa6YA6HoCGPoCaOQSfQF8iwDBg/oHN9DKthj9JGjwGADoahjqaPwUNra25GfIAAAAAQl6AHoAZIFkfSkoAv0BZORnyAAAAAFGhATtZ3u+FVmaLn+WNvos+mmiDQHovt2sbHVvnEEtDpwWcGeLCvoAZmSB5GZEwDY3AAIAAFrPFhPMyVjIz4TQzMz5FsjPigBAy//PUAHQ9AQx9ATRUhCBAQv0Cm+hMQFt4wQ=",
+  "codeHashHex": "C2C1FFADB3C46EBBA1FC9B184A384590B057A8A3D19EB9EDD3DFC86ED5983F36",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/factory.tolk",
+        "size_chars": 19485,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/constants.tolk",
+        "size_chars": 4097,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/deployment-types.tolk",
+        "size_chars": 784,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/errors.tolk",
+        "size_chars": 1131,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/factory-types.tolk",
+        "size_chars": 3103,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/pool-types.tolk",
+        "size_chars": 10331,
+        "imports": [
+          8,
+          2,
+          3,
+          9
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/ton-pool-types.tolk",
+        "size_chars": 3270,
+        "imports": [
+          4,
+          6,
+          9
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "@stdlib/exotic-cells.tolk",
+        "size_chars": 1625,
+        "imports": []
+      },
+      {
+        "file_id": 9,
+        "file_name": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/sparse-set.tolk",
+        "size_chars": 7955,
+        "imports": [
+          8,
+          2
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedFactoryMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreatePool"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateTonPool"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "FactoryPoolDeployConfirmed"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeployConfirmed"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 2696986816,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 2696986818,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1179665153,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryCodes"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Registries"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 24,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 23
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateSenders"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 35,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolIdentity"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SparseSetRoots"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 40,
+        "value_ty_idx": 24
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MerkleState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 24
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 38
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 44
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 48
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryPoolCreatedEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          51
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 55,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 56,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          59
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmPoolDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          61
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 63,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 65,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 68
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          67
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 70,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          32,
+          24
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 72,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          59
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolIdentity"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 75
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TonPoolStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 77
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          7
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          81
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 52,
+        "struct_name": "CreateExternalLogMessageOptions<FactoryPoolCreatedEvent>",
+        "monomorphic_fields_ty_idx": [
+          58,
+          51
+        ]
+      },
+      {
+        "ty_idx": 62,
+        "struct_name": "CreateMessageOptions<ConfirmPoolDeployment>",
+        "monomorphic_fields_ty_idx": [
+          66,
+          71,
+          73,
+          61
+        ]
+      },
+      {
+        "ty_idx": 79,
+        "struct_name": "MapLookupResult<address>",
+        "monomorphic_fields_ty_idx": [
+          80,
+          5
+        ]
+      },
+      {
+        "ty_idx": 83,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          66,
+          71,
+          73,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 82,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 80
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 67,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 69
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 36
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 32
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 34
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 63,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 64,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 65,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 74,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 66
+          },
+          {
+            "name": "value",
+            "ty_idx": 71
+          },
+          {
+            "name": "dest",
+            "ty_idx": 73
+          },
+          {
+            "name": "body",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 58
+          },
+          {
+            "name": "body",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmPoolDeployment",
+        "ty_idx": 61,
+        "ident_loc": [
+          3,
+          9,
+          21,
+          9,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1179665152,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolDeployConfirmed",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          15,
+          21,
+          15,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1179665153,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 17
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryCodes",
+        "ty_idx": 20,
+        "ident_loc": [
+          5,
+          22,
+          8,
+          22,
+          20
+        ],
+        "fields": [
+          {
+            "name": "poolCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "tonPoolCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Registries",
+        "ty_idx": 23,
+        "ident_loc": [
+          5,
+          27,
+          8,
+          27,
+          18
+        ],
+        "fields": [
+          {
+            "name": "poolRegistry",
+            "ty_idx": 25
+          },
+          {
+            "name": "tonPoolRegistry",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateSenders",
+        "ty_idx": 27,
+        "ident_loc": [
+          5,
+          32,
+          8,
+          32,
+          21
+        ],
+        "fields": [
+          {
+            "name": "poolAddressToCreator",
+            "ty_idx": 28
+          },
+          {
+            "name": "tonPoolAddressToCreator",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryStorage",
+        "ty_idx": 19,
+        "ident_loc": [
+          5,
+          37,
+          8,
+          37,
+          22
+        ],
+        "fields": [
+          {
+            "name": "codes",
+            "ty_idx": 21
+          },
+          {
+            "name": "poolCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "tonPoolCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "inFlightCreates",
+            "ty_idx": 22
+          },
+          {
+            "name": "registries",
+            "ty_idx": 26
+          },
+          {
+            "name": "createSenders",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreatePool",
+        "ty_idx": 13,
+        "ident_loc": [
+          5,
+          62,
+          21,
+          62,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 2696986816,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateTonPool",
+        "ty_idx": 14,
+        "ident_loc": [
+          5,
+          70,
+          21,
+          70,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 2696986818,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "FactoryPoolDeployConfirmed",
+        "ty_idx": 15,
+        "ident_loc": [
+          5,
+          77,
+          6,
+          77,
+          32
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedFactoryMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          5,
+          79,
+          6,
+          79,
+          27
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryPoolCreatedEvent",
+        "ty_idx": 51,
+        "ident_loc": [
+          5,
+          82,
+          21,
+          82,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 12632256,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 17
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          },
+          {
+            "name": "poolAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolIdentity",
+        "ty_idx": 38,
+        "ident_loc": [
+          6,
+          34,
+          8,
+          34,
+          20
+        ],
+        "fields": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 48,
+        "ident_loc": [
+          6,
+          42,
+          8,
+          42,
+          15
+        ],
+        "fields": [
+          {
+            "name": "identity",
+            "ty_idx": 46
+          },
+          {
+            "name": "jettonWallet",
+            "ty_idx": 17
+          },
+          {
+            "name": "relayerReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "merkle",
+            "ty_idx": 47
+          },
+          {
+            "name": "withdrawalCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SparseSetRoots",
+        "ty_idx": 39,
+        "ident_loc": [
+          6,
+          50,
+          8,
+          50,
+          22
+        ],
+        "fields": [
+          {
+            "name": "commitmentBucketCount",
+            "ty_idx": 22
+          },
+          {
+            "name": "nullifierBucketCount",
+            "ty_idx": 22
+          },
+          {
+            "name": "commitmentSeenRoots",
+            "ty_idx": 41
+          },
+          {
+            "name": "nullifierSpentRoots",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MerkleState",
+        "ty_idx": 44,
+        "ident_loc": [
+          6,
+          71,
+          8,
+          71,
+          19
+        ],
+        "fields": [
+          {
+            "name": "nextIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "currentRoot",
+            "ty_idx": 24
+          },
+          {
+            "name": "rootHistory",
+            "ty_idx": 45
+          },
+          {
+            "name": "sparseSets",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolIdentity",
+        "ty_idx": 75,
+        "ident_loc": [
+          7,
+          24,
+          8,
+          24,
+          23
+        ],
+        "fields": [
+          {
+            "name": "factory",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TonPoolStorage",
+        "ty_idx": 77,
+        "ident_loc": [
+          7,
+          31,
+          8,
+          31,
+          22
+        ],
+        "fields": [
+          {
+            "name": "identity",
+            "ty_idx": 76
+          },
+          {
+            "name": "relayerReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingWithdrawTon",
+            "ty_idx": 6
+          },
+          {
+            "name": "merkle",
+            "ty_idx": 47
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          22
+        ],
+        "end_loc": [
+          1,
+          42,
+          1,
+          42,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "handleCreatePool",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          176,
+          5,
+          176,
+          21
+        ],
+        "end_loc": [
+          1,
+          233,
+          1,
+          233,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<FactoryCodes>.load",
+        "return_ty_idx": 20,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<Registries>.load",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Cell<CreateSenders>.load",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "computeRegistryKey",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          304,
+          5,
+          304,
+          23
+        ],
+        "end_loc": [
+          1,
+          306,
+          1,
+          306,
+          2
+        ],
+        "params": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint256, address>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "calcDeployedPool",
+        "return_ty_idx": 31,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          331,
+          5,
+          331,
+          21
+        ],
+        "end_loc": [
+          1,
+          360,
+          1,
+          360,
+          2
+        ],
+        "params": [
+          {
+            "name": "poolCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "factoryAddr",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "SparseSetRoots.toCell",
+        "return_ty_idx": 42,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "PoolIdentity.toCell",
+        "return_ty_idx": 46,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MerkleState.toCell",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "Storage.toCell",
+        "return_ty_idx": 49,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 48
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "map<address, address>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "factoryRentBudget",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          308,
+          5,
+          308,
+          22
+        ],
+        "end_loc": [
+          1,
+          310,
+          1,
+          310,
+          2
+        ],
+        "params": [
+          {
+            "name": "totalPools",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<address, address>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "CreateSenders.toCell",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "FactoryStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          52,
+          20,
+          52,
+          24
+        ],
+        "end_loc": [
+          5,
+          54,
+          1,
+          54,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "reserveFactoryRentBudget",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          313,
+          5,
+          313,
+          29
+        ],
+        "end_loc": [
+          1,
+          318,
+          1,
+          318,
+          2
+        ],
+        "params": [
+          {
+            "name": "totalPools",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "createExternalLogMessage<FactoryPoolCreatedEvent>",
+        "return_ty_idx": 50,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "createMessage<ConfirmPoolDeployment>",
+        "return_ty_idx": 50,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "handleCreateTonPool",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          243,
+          5,
+          243,
+          24
+        ],
+        "end_loc": [
+          1,
+          298,
+          1,
+          298,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "isWhitelistedTonDenom",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          76,
+          5,
+          76,
+          26
+        ],
+        "end_loc": [
+          2,
+          79,
+          1,
+          79,
+          2
+        ],
+        "params": [
+          {
+            "name": "d",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "computeTonRegistryKey",
+        "return_ty_idx": 24,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          239,
+          5,
+          239,
+          26
+        ],
+        "end_loc": [
+          1,
+          241,
+          1,
+          241,
+          2
+        ],
+        "params": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "calcDeployedTonPool",
+        "return_ty_idx": 31,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          363,
+          5,
+          363,
+          24
+        ],
+        "end_loc": [
+          1,
+          386,
+          1,
+          386,
+          2
+        ],
+        "params": [
+          {
+            "name": "tonPoolCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "factoryAddr",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "TonPoolIdentity.toCell",
+        "return_ty_idx": 76,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 75
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "TonPoolStorage.toCell",
+        "return_ty_idx": 78,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 77
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          44,
+          5,
+          44,
+          21
+        ],
+        "end_loc": [
+          1,
+          91,
+          1,
+          91,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "map<address, address>.get",
+        "return_ty_idx": 79,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "map<address, address>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "MapLookupResult<address>.loadValue",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 79
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "address.fromSlice",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "refundDeployBounce",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          320,
+          5,
+          320,
+          23
+        ],
+        "end_loc": [
+          1,
+          327,
+          1,
+          327,
+          2
+        ],
+        "params": [
+          {
+            "name": "creator",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "createMessage<void>",
+        "return_ty_idx": 50,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 83
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "handlePoolDeployConfirmed",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          100,
+          5,
+          100,
+          30
+        ],
+        "end_loc": [
+          1,
+          166,
+          1,
+          166,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "rawBody",
+            "ty_idx": 2
+          },
+          {
+            "name": "msg",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "PoolDeployConfirmed.toCell",
+        "return_ty_idx": 84,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "map<uint256, address>.get",
+        "return_ty_idx": 79,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "map<uint256, address>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "key",
+            "ty_idx": 24
+          },
+          {
+            "name": "value",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "Registries.toCell",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          },
+          {
+            "name": "options",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "poolCount",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          408,
+          9,
+          408,
+          18
+        ],
+        "end_loc": [
+          1,
+          411,
+          1,
+          411,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 40,
+        "name": "totalPoolCount",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          413,
+          9,
+          413,
+          23
+        ],
+        "end_loc": [
+          1,
+          416,
+          1,
+          416,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 41,
+        "name": "inFlightCreateCount",
+        "return_ty_idx": 22,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          418,
+          9,
+          418,
+          28
+        ],
+        "end_loc": [
+          1,
+          421,
+          1,
+          421,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 42,
+        "name": "maxFactoryPools",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          423,
+          9,
+          423,
+          24
+        ],
+        "end_loc": [
+          1,
+          425,
+          1,
+          425,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 43,
+        "name": "maxInFlightCreates",
+        "return_ty_idx": 22,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          427,
+          9,
+          427,
+          27
+        ],
+        "end_loc": [
+          1,
+          429,
+          1,
+          429,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 44,
+        "name": "pendingCreateSender",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          431,
+          9,
+          431,
+          28
+        ],
+        "end_loc": [
+          1,
+          440,
+          1,
+          440,
+          2
+        ],
+        "params": [
+          {
+            "name": "poolAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "poolAddressFor",
+        "return_ty_idx": 17,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          442,
+          9,
+          442,
+          23
+        ],
+        "end_loc": [
+          1,
+          457,
+          1,
+          457,
+          2
+        ],
+        "params": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 46,
+        "name": "expectedPoolAddress",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          461,
+          9,
+          461,
+          28
+        ],
+        "end_loc": [
+          1,
+          473,
+          1,
+          473,
+          2
+        ],
+        "params": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "poolDeploymentPending",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          475,
+          9,
+          475,
+          30
+        ],
+        "end_loc": [
+          1,
+          484,
+          1,
+          484,
+          2
+        ],
+        "params": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "tonPoolCount",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          486,
+          9,
+          486,
+          21
+        ],
+        "end_loc": [
+          1,
+          489,
+          1,
+          489,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 49,
+        "name": "tonPoolAddressFor",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          491,
+          9,
+          491,
+          26
+        ],
+        "end_loc": [
+          1,
+          504,
+          1,
+          504,
+          2
+        ],
+        "params": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 50,
+        "name": "expectedTonPoolAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          506,
+          9,
+          506,
+          31
+        ],
+        "end_loc": [
+          1,
+          514,
+          1,
+          514,
+          2
+        ],
+        "params": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 51,
+        "name": "tonPoolDeploymentPending",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          516,
+          9,
+          516,
+          33
+        ],
+        "end_loc": [
+          1,
+          524,
+          1,
+          524,
+          2
+        ],
+        "params": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Factory",
+    "author": "ZKResistor",
+    "version": "2.0.1",
+    "description": "Unified factory: jetton pools (custom denoms) + TON pools (fixed whitelist)",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreatePool"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateTonPool"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "FactoryPoolDeployConfirmed"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeployConfirmed"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryCodes"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Registries"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 22,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateSenders"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 25
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FactoryPoolCreatedEvent"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmPoolDeployment"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "ConfirmPoolDeployment",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1179665152,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolDeployConfirmed",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1179665153,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 16
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryCodes",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "poolCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "tonPoolCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Registries",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "poolRegistry",
+            "ty_idx": 23
+          },
+          {
+            "name": "tonPoolRegistry",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateSenders",
+        "ty_idx": 25,
+        "fields": [
+          {
+            "name": "poolAddressToCreator",
+            "ty_idx": 26
+          },
+          {
+            "name": "tonPoolAddressToCreator",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryStorage",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "codes",
+            "ty_idx": 19
+          },
+          {
+            "name": "poolCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "tonPoolCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "inFlightCreates",
+            "ty_idx": 20
+          },
+          {
+            "name": "registries",
+            "ty_idx": 24
+          },
+          {
+            "name": "createSenders",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreatePool",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2696986816,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateTonPool",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 2696986818,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "FactoryPoolDeployConfirmed",
+        "ty_idx": 14,
+        "target_ty_idx": 15
+      },
+      {
+        "kind": "struct",
+        "name": "FactoryPoolCreatedEvent",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 12632256,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 16
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          },
+          {
+            "name": "poolAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 17
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 29
+      }
+    ],
+    "emitted_events": [
+      {
+        "body_ty_idx": 28
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 116193,
+        "name": "poolCount",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 84542,
+        "name": "totalPoolCount",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 76291,
+        "name": "inFlightCreateCount",
+        "parameters": [],
+        "return_ty_idx": 20
+      },
+      {
+        "tvm_method_id": 113988,
+        "name": "maxFactoryPools",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 72583,
+        "name": "maxInFlightCreates",
+        "parameters": [],
+        "return_ty_idx": 20
+      },
+      {
+        "tvm_method_id": 73484,
+        "name": "pendingCreateSender",
+        "parameters": [
+          {
+            "name": "poolAddress",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 112866,
+        "name": "poolAddressFor",
+        "parameters": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 82477,
+        "name": "expectedPoolAddress",
+        "parameters": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 103128,
+        "name": "poolDeploymentPending",
+        "parameters": [
+          {
+            "name": "jettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 130054,
+        "name": "tonPoolCount",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 117175,
+        "name": "tonPoolAddressFor",
+        "parameters": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 88385,
+        "name": "expectedTonPoolAddress",
+        "parameters": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 105805,
+        "name": "tonPoolDeploymentPending",
+        "parameters": [
+          {
+            "name": "denomination",
+            "ty_idx": 6
+          }
+        ],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientBalance",
+        "err_code": 128
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PoolAlreadyExists",
+        "err_code": 200
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidDenomination",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientCreatePoolFee",
+        "err_code": 203
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.FactoryCapacityReached",
+        "err_code": 204
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TooManyInFlightCreates",
+        "err_code": 205
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidPoolConfirmation",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.FactoryInvariantViolation",
+        "err_code": 207
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/factory.tolk",
+      "contents": "import \"constants\"\nimport \"deployment-types\"\nimport \"errors\"\nimport \"factory-types\"\nimport \"pool-types\" // Pool storage layout + InitWalletBinding body\nimport \"ton-pool-types\" // TonPool storage layout\n\ncontract Factory {\n    author: \"ZKResistor\"\n    version: \"2.0.1\"\n    description: \"Unified factory: jetton pools (custom denoms) + TON pools (fixed whitelist)\"\n    storage: FactoryStorage\n    incomingMessages: AllowedFactoryMessage\n}\n\n// ============================================================================\n// ENTRYPOINT\n// ============================================================================\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedFactoryMessage.fromSlice(in.body);\n\n    match (msg) {\n        CreatePool => {\n            val trailing = msg.forceLoadLazyObject();\n            assert (trailing.isEmpty()) throw Errors.InvalidMessage;\n            handleCreatePool(in.senderAddress, in.valueCoins, msg);\n        }\n        CreateTonPool => {\n            val trailing = msg.forceLoadLazyObject();\n            assert (trailing.isEmpty()) throw Errors.InvalidMessage;\n            handleCreateTonPool(in.senderAddress, in.valueCoins, msg);\n        }\n        PoolDeployConfirmed => {\n            handlePoolDeployConfirmed(in.senderAddress, in.body, msg);\n        }\n        else => {\n            // Accepts passive TON forwards from pools (empty body) without throwing.\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    // A pending pool address is not sufficient authentication on its own.\n    // Roll back only the unique deployment trigger sent by this Factory.\n    var bouncedBody = in.bouncedBody;\n    bouncedBody.skipBouncedPrefix();\n    if (\n        bouncedBody.remainingBitsCount() != 32 + 64 || bouncedBody.remainingRefsCount() != 0 ||\n        bouncedBody.loadUint(32) != OP_CONFIRM_POOL_DEPLOYMENT\n    ) {\n        return;\n    }\n    bouncedBody.loadUint(64); // queryId is not state-bearing\n    bouncedBody.assertEnd();\n\n    // A pending Pool is keyed by its deterministic address, so a deployment\n    // bounce can release the slot and refund its creator without a reverse map.\n    var storage = lazy FactoryStorage.load();\n    var createSenders = storage.createSenders.load();\n\n    val jettonCreator = createSenders.poolAddressToCreator.get(in.senderAddress);\n    if (jettonCreator.isFound) {\n        createSenders.poolAddressToCreator.delete(in.senderAddress);\n        assert (\n            storage.poolCount > 0 && storage.inFlightCreates > 0\n        ) throw Errors.FactoryInvariantViolation;\n        storage.poolCount -= 1;\n        storage.inFlightCreates -= 1;\n        storage.createSenders = createSenders.toCell();\n        storage.save();\n        refundDeployBounce(jettonCreator.loadValue());\n        return;\n    }\n\n    val tonCreator = createSenders.tonPoolAddressToCreator.get(in.senderAddress);\n    if (tonCreator.isFound) {\n        createSenders.tonPoolAddressToCreator.delete(in.senderAddress);\n        assert (\n            storage.tonPoolCount > 0 && storage.inFlightCreates > 0\n        ) throw Errors.FactoryInvariantViolation;\n        storage.tonPoolCount -= 1;\n        storage.inFlightCreates -= 1;\n        storage.createSenders = createSenders.toCell();\n        storage.save();\n        refundDeployBounce(tonCreator.loadValue());\n        return;\n    }\n    // Unknown bounce: no-op.\n}\n\n// ============================================================================\n// DEPLOY CONFIRMATION\n// ============================================================================\n\n// Authentication derives the expected sender from the immutable Pool code and\n// identity. The callback atomically moves a pending identity into the active\n// registry; an already-active callback is an idempotent no-op.\nfun handlePoolDeployConfirmed(sender: address, rawBody: slice, msg: PoolDeployConfirmed) {\n    // Reject trailing bits/refs and non-canonical encodings. Repacking the\n    // untouched inbound slice makes the comparison cover the complete body.\n    val receivedBody = beginCell().storeSlice(rawBody).endCell();\n    assert (receivedBody.hash() == msg.toCell().hash()) throw Errors.InvalidPoolConfirmation;\n\n    var storage = lazy FactoryStorage.load();\n    var registries = storage.registries.load();\n    var createSenders = storage.createSenders.load();\n\n    if (msg.jettonMaster != null) {\n        val key = computeRegistryKey(msg.jettonMaster!, msg.denomination);\n        val expected = calcDeployedPool(\n            storage.codes.load().poolCode,\n            msg.jettonMaster!,\n            contract.getAddress(),\n            msg.denomination,\n        ).calculateAddress();\n        assert (sender == expected) throw Errors.InvalidPoolConfirmation;\n\n        val registered = registries.poolRegistry.get(key);\n        if (registered.isFound) {\n            assert (registered.loadValue() == sender) throw Errors.FactoryInvariantViolation;\n            assert (\n                !createSenders.poolAddressToCreator.exists(sender)\n            ) throw Errors.FactoryInvariantViolation;\n            return;\n        }\n\n        assert (\n            createSenders.poolAddressToCreator.exists(sender)\n        ) throw Errors.InvalidPoolConfirmation;\n        assert (storage.inFlightCreates > 0) throw Errors.FactoryInvariantViolation;\n        createSenders.poolAddressToCreator.delete(sender);\n        registries.poolRegistry.set(key, sender);\n        storage.inFlightCreates -= 1;\n    } else {\n        val key = computeTonRegistryKey(msg.denomination);\n        val expected = calcDeployedTonPool(\n            storage.codes.load().tonPoolCode,\n            contract.getAddress(),\n            msg.denomination,\n        ).calculateAddress();\n        assert (sender == expected) throw Errors.InvalidPoolConfirmation;\n\n        val registered = registries.tonPoolRegistry.get(key);\n        if (registered.isFound) {\n            assert (registered.loadValue() == sender) throw Errors.FactoryInvariantViolation;\n            assert (\n                !createSenders.tonPoolAddressToCreator.exists(sender)\n            ) throw Errors.FactoryInvariantViolation;\n            return;\n        }\n\n        assert (\n            createSenders.tonPoolAddressToCreator.exists(sender)\n        ) throw Errors.InvalidPoolConfirmation;\n        assert (storage.inFlightCreates > 0) throw Errors.FactoryInvariantViolation;\n        createSenders.tonPoolAddressToCreator.delete(sender);\n        registries.tonPoolRegistry.set(key, sender);\n        storage.inFlightCreates -= 1;\n    }\n\n    storage.registries = registries.toCell();\n    storage.createSenders = createSenders.toCell();\n    storage.save();\n}\n\n// ============================================================================\n// CREATE POOL\n// ============================================================================\n//\n// Pool address depends only on PoolIdentity (jettonMaster, factory, denom).\n// The caller does NOT supply the wallet — the pool itself queries the master\n// via TEP-89 after deploy, so no caller can poison the binding.\n\nfun handleCreatePool(sender: address, valueCoins: coins, msg: CreatePool) {\n    assert (valueCoins >= MIN_CREATE_JETTON_POOL_FEE) throw Errors.InsufficientCreatePoolFee;\n    assert (msg.denomination > 0) throw Errors.InvalidDenomination;\n\n    var storage = lazy FactoryStorage.load();\n    val codes = storage.codes.load();\n    val registries = storage.registries.load();\n    var createSenders = storage.createSenders.load();\n    val totalPoolsBefore = storage.poolCount + storage.tonPoolCount;\n\n    val registryKey = computeRegistryKey(msg.jettonMaster, msg.denomination);\n    assert (!registries.poolRegistry.exists(registryKey)) throw Errors.PoolAlreadyExists;\n    val factoryAddr = contract.getAddress();\n    val poolDeployed = calcDeployedPool(\n        codes.poolCode,\n        msg.jettonMaster,\n        factoryAddr,\n        msg.denomination,\n    );\n    val poolAddress = poolDeployed.calculateAddress();\n    assert (!createSenders.poolAddressToCreator.exists(poolAddress)) throw Errors.PoolAlreadyExists;\n    assert (storage.poolCount < MAX_JETTON_POOLS) throw Errors.FactoryCapacityReached;\n    assert (storage.inFlightCreates < MAX_IN_FLIGHT_CREATES) throw Errors.TooManyInFlightCreates;\n    assert (\n        contract.getOriginalBalance() - valueCoins >= factoryRentBudget(totalPoolsBefore)\n    ) throw Errors.InsufficientBalance;\n\n    // Reserve the deterministic identity before sending deploy. The active\n    // registry is written only by the authenticated Pool callback.\n    createSenders.poolAddressToCreator.set(poolAddress, sender);\n    storage.createSenders = createSenders.toCell();\n    storage.poolCount = storage.poolCount + 1;\n    storage.inFlightCreates += 1;\n    storage.save();\n\n    reserveFactoryRentBudget(storage.poolCount + storage.tonPoolCount);\n\n    val createdEvent = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic: 0x00c0c0c0 },\n        body: FactoryPoolCreatedEvent {\n            jettonMaster: msg.jettonMaster,\n            denomination: msg.denomination,\n            poolAddress,\n        },\n    });\n    createdEvent.send(SEND_MODE_REGULAR);\n\n    // bounce: true keeps the rollback path live. Only value from this create\n    // is forwarded: prior donations and the historical rent runway remain on\n    // the Factory and cannot subsidize a later creator.\n    val deployMsg = createMessage({\n        bounce: true,\n        dest: poolDeployed,\n        value: valueCoins - FACTORY_CREATE_RETAINED_VALUE,\n        body: ConfirmPoolDeployment { queryId: msg.queryId },\n    });\n    deployMsg.send(SEND_MODE_REGULAR | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\n// ============================================================================\n// CREATE TON POOL: permissionless, fixed-denomination whitelist\n// ============================================================================\n\nfun computeTonRegistryKey(denomination: coins): uint256 {\n    return beginCell().storeCoins(denomination).endCell().hash();\n}\n\nfun handleCreateTonPool(sender: address, valueCoins: coins, msg: CreateTonPool) {\n    assert (valueCoins >= MIN_CREATE_TON_POOL_FEE) throw Errors.InsufficientCreatePoolFee;\n    assert (isWhitelistedTonDenom(msg.denomination)) throw Errors.InvalidDenomination;\n\n    var storage = lazy FactoryStorage.load();\n    val codes = storage.codes.load();\n    val registries = storage.registries.load();\n    var createSenders = storage.createSenders.load();\n    val totalPoolsBefore = storage.poolCount + storage.tonPoolCount;\n\n    val registryKey = computeTonRegistryKey(msg.denomination);\n    assert (!registries.tonPoolRegistry.exists(registryKey)) throw Errors.PoolAlreadyExists;\n    val factoryAddr = contract.getAddress();\n    val poolDeployed = calcDeployedTonPool(\n        codes.tonPoolCode,\n        factoryAddr,\n        msg.denomination,\n    );\n    val poolAddress = poolDeployed.calculateAddress();\n    assert (\n        !createSenders.tonPoolAddressToCreator.exists(poolAddress)\n    ) throw Errors.PoolAlreadyExists;\n    assert (storage.tonPoolCount < MAX_TON_POOLS) throw Errors.FactoryCapacityReached;\n    assert (storage.inFlightCreates < MAX_IN_FLIGHT_CREATES) throw Errors.TooManyInFlightCreates;\n    assert (\n        contract.getOriginalBalance() - valueCoins >= factoryRentBudget(totalPoolsBefore)\n    ) throw Errors.InsufficientBalance;\n\n    createSenders.tonPoolAddressToCreator.set(poolAddress, sender);\n    storage.createSenders = createSenders.toCell();\n    storage.tonPoolCount = storage.tonPoolCount + 1;\n    storage.inFlightCreates += 1;\n    storage.save();\n\n    reserveFactoryRentBudget(storage.poolCount + storage.tonPoolCount);\n\n    // TonPools have no jettonMaster: the event reuses the same shape with\n    // `jettonMaster = null`.\n    val createdEvent = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic: 0x00c0c0c0 },\n        body: FactoryPoolCreatedEvent {\n            jettonMaster: null,\n            denomination: msg.denomination,\n            poolAddress,\n        },\n    });\n    createdEvent.send(SEND_MODE_REGULAR);\n\n    val deployMsg = createMessage({\n        bounce: true,\n        dest: poolDeployed,\n        value: valueCoins - FACTORY_CREATE_RETAINED_VALUE,\n        body: ConfirmPoolDeployment { queryId: msg.queryId },\n    });\n    deployMsg.send(SEND_MODE_REGULAR | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\n// ============================================================================\n// HELPERS\n// ============================================================================\n\nfun computeRegistryKey(jettonMaster: address, denomination: coins): uint256 {\n    return beginCell().storeAddress(jettonMaster).storeCoins(denomination).endCell().hash();\n}\n\nfun factoryRentBudget(totalPools: uint32): coins {\n    return FACTORY_TON_RESERVE + REGISTRY_RENT_PER_POOL * totalPools;\n}\n\n// Reserve the factory's rent budget for the current set of registry entries.\nfun reserveFactoryRentBudget(totalPools: uint32) {\n    reserveToncoinsOnBalance(\n        factoryRentBudget(totalPools),\n        RESERVE_MODE_EXACT_AMOUNT | RESERVE_MODE_BOUNCE_ON_ACTION_FAIL,\n    );\n}\n\nfun refundDeployBounce(creator: address) {\n    val refund = createMessage({\n        bounce: false,\n        dest: creator,\n        value: 0,\n    });\n    refund.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_IGNORE_ERRORS);\n}\n\n// Initial Pool state. MUST match `Storage` byte-for-byte: any divergence\n// breaks address determinism.\nfun calcDeployedPool(\n    poolCode: cell,\n    jettonMaster: address,\n    factoryAddr: address,\n    denomination: coins,\n): AutoDeployAddress {\n    val initialIdentity: PoolIdentity = {\n        jettonMaster,\n        factory: factoryAddr,\n        denomination,\n    };\n    val initialMerkle: MerkleState = {\n        nextIndex: 0,\n        currentRoot: EMPTY_TREE_ROOT, // depth-20 Poseidon BLS12-381 empty root\n        rootHistory: [],\n        sparseSets: (SparseSetRoots {\n            commitmentSeenRoots: [],\n            nullifierSpentRoots: [],\n        }).toCell(),\n    };\n    val initialStorage: Storage = {\n        identity: initialIdentity.toCell(),\n        jettonWallet: null,\n        relayerReserve: 0,\n        merkle: initialMerkle.toCell(),\n        withdrawalCount: 0,\n    };\n\n    return { stateInit: { code: poolCode, data: initialStorage.toCell() } };\n}\n\n// Initial TonPool state. MUST match `TonPoolStorage` byte-for-byte.\nfun calcDeployedTonPool(\n    tonPoolCode: cell,\n    factoryAddr: address,\n    denomination: coins,\n): AutoDeployAddress {\n    val initialIdentity: TonPoolIdentity = { factory: factoryAddr, denomination };\n    val initialMerkle: MerkleState = {\n        nextIndex: 0,\n        currentRoot: EMPTY_TREE_ROOT,\n        rootHistory: [],\n        sparseSets: (SparseSetRoots {\n            commitmentSeenRoots: [],\n            nullifierSpentRoots: [],\n        }).toCell(),\n    };\n    val initialStorage: TonPoolStorage = {\n        identity: initialIdentity.toCell(),\n        relayerReserve: 0,\n        pendingWithdrawTon: 0,\n        merkle: initialMerkle.toCell(),\n    };\n\n    return { stateInit: { code: tonPoolCode, data: initialStorage.toCell() } };\n}\n\n// Empty initial Registries cell. Exported for deploy scripts.\nfun initialRegistries(): Registries {\n    return { poolRegistry: [], tonPoolRegistry: [] };\n}\n\nfun initialCreateSenders(): CreateSenders {\n    return { poolAddressToCreator: [], tonPoolAddressToCreator: [] };\n}\n\nfun initialFactoryCodes(\n    poolCode: cell,\n    tonPoolCode: cell,\n): FactoryCodes {\n    return { poolCode, tonPoolCode };\n}\n\n// ============================================================================\n// GETTERS\n// ============================================================================\n\nget fun poolCount(): uint32 {\n    val storage = lazy FactoryStorage.load();\n    return storage.poolCount;\n}\n\nget fun totalPoolCount(): uint32 {\n    val storage = lazy FactoryStorage.load();\n    return storage.poolCount + storage.tonPoolCount;\n}\n\nget fun inFlightCreateCount(): uint16 {\n    val storage = lazy FactoryStorage.load();\n    return storage.inFlightCreates;\n}\n\nget fun maxFactoryPools(): uint32 {\n    return MAX_FACTORY_POOLS as uint32;\n}\n\nget fun maxInFlightCreates(): uint16 {\n    return MAX_IN_FLIGHT_CREATES as uint16;\n}\n\nget fun pendingCreateSender(poolAddress: address): address? {\n    val storage = lazy FactoryStorage.load();\n    val senders = storage.createSenders.load();\n    val jettonCreator = senders.poolAddressToCreator.get(poolAddress);\n    if (jettonCreator.isFound) {\n        return jettonCreator.loadValue();\n    }\n    val tonCreator = senders.tonPoolAddressToCreator.get(poolAddress);\n    return tonCreator.isFound ? tonCreator.loadValue() : null;\n}\n\nget fun poolAddressFor(jettonMaster: address, denomination: coins): address? {\n    val storage = lazy FactoryStorage.load();\n    val registries = storage.registries.load();\n    val key = computeRegistryKey(jettonMaster, denomination);\n    val r = registries.poolRegistry.get(key);\n    if (r.isFound) {\n        return r.loadValue();\n    }\n    val expected = calcDeployedPool(\n        storage.codes.load().poolCode,\n        jettonMaster,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n    return storage.createSenders.load().poolAddressToCreator.exists(expected) ? expected : null;\n}\n\n// The address a pool for (jettonMaster, denomination) would have, whether\n// or not it has been deployed yet.\nget fun expectedPoolAddress(\n    jettonMaster: address,\n    denomination: coins,\n): address {\n    val storage = lazy FactoryStorage.load();\n    val codes = storage.codes.load();\n    return calcDeployedPool(\n        codes.poolCode,\n        jettonMaster,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n}\n\nget fun poolDeploymentPending(jettonMaster: address, denomination: coins): bool {\n    val storage = lazy FactoryStorage.load();\n    val expected = calcDeployedPool(\n        storage.codes.load().poolCode,\n        jettonMaster,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n    return storage.createSenders.load().poolAddressToCreator.exists(expected);\n}\n\nget fun tonPoolCount(): uint32 {\n    val storage = lazy FactoryStorage.load();\n    return storage.tonPoolCount;\n}\n\nget fun tonPoolAddressFor(denomination: coins): address? {\n    val storage = lazy FactoryStorage.load();\n    val registries = storage.registries.load();\n    val r = registries.tonPoolRegistry.get(computeTonRegistryKey(denomination));\n    if (r.isFound) {\n        return r.loadValue();\n    }\n    val expected = calcDeployedTonPool(\n        storage.codes.load().tonPoolCode,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n    return storage.createSenders.load().tonPoolAddressToCreator.exists(expected) ? expected : null;\n}\n\nget fun expectedTonPoolAddress(denomination: coins): address {\n    val storage = lazy FactoryStorage.load();\n    val codes = storage.codes.load();\n    return calcDeployedTonPool(\n        codes.tonPoolCode,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n}\n\nget fun tonPoolDeploymentPending(denomination: coins): bool {\n    val storage = lazy FactoryStorage.load();\n    val expected = calcDeployedTonPool(\n        storage.codes.load().tonPoolCode,\n        contract.getAddress(),\n        denomination,\n    ).calculateAddress();\n    return storage.createSenders.load().tonPoolAddressToCreator.exists(expected);\n}\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/constants.tolk",
+      "contents": "// A recipient's full canonical address is domain-hashed before this mask is\n// applied. 248 bits fit safely inside the BLS12-381 Fr field (255 bits).\nconst ADDRESS_FIELD_MASK: uint256 = (1 << 248) - 1\n\n// Domain for the full-address recipient binding:\n// Cell(uint32 domain, int32 workchain, uint256 accountHash).hash().\nconst RECIPIENT_FIELD_DOMAIN: uint32 = 0x5a4b5201\n\n// BLS12-381 scalar field order `r`. Any uint256 public input passed to the\n// verifier MUST be < r: otherwise `x` and `x + r` reduce to the same scalar\n// inside Groth16 but to different map keys here, opening a double-spend on\n// `nullifierHash` and a duplicate-commitment slip on the deposit side.\nconst BLS12_381_R: uint256 = 0x73eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001\n\n// Merkle tree: depth 20, 1_048_576 leaves per pool.\nconst MERKLE_TREE_DEPTH: int = 20\nconst MERKLE_TREE_CAPACITY: int = 1 << 20\n\n// Empty-tree root for depth 20 under Poseidon BLS12-381. MUST match what the\n// circuit and client compute; otherwise the first deposit's insertion proof\n// does not verify against the on-chain root.\nconst EMPTY_TREE_ROOT: uint256 = 0x276b3bddf0aaccd173fcb1b7d167d34d10680f45f6ed6363ab7ce2096874e0b3\n\n// Historical roots retained so withdrawals stay valid across the window of\n// concurrent deposits.\nconst ROOT_HISTORY_SIZE: int = 100\n\n// Minimum incoming value required to process a withdraw. Covers the hard\n// outflow (jetton transfer + compute + event forwarding) with ~0.03 TON\n// margin. The handler preserves the progressive rent runway plus every\n// outstanding obligation and sends the rest back to the broadcaster.\nconst MIN_WITHDRAW_GAS: coins = 100000000 // 0.10 TON\n\n// Factory base runway: more than twice the measured ten-year storage cost of\n// the empty final Factory StateInit (0.362488844 TON at the release config).\nconst POOL_TON_RESERVE: coins = 50000000 // compatibility floor; deposits use poolRentRunway()\nconst FACTORY_TON_RESERVE: coins = 370000000 // 0.37 TON\n\n// Each deposit earmarks this amount into the pool's relayerReserve; the\n// matching withdraw releases it to the tx sender. The relayer is not bound\n// in the proof, so anyone broadcasting a published proof earns it.\nconst RELAYER_REIMBURSEMENT: coins = 300000000 // 0.30 TON\n\n// A Jetton create funds the TEP-89 query before the authenticated master\n// response activates the Pool. Native TON pools do not need that handshake.\nconst MIN_CREATE_JETTON_POOL_FEE: coins = 450000000 // 0.45 TON\nconst MIN_CREATE_TON_POOL_FEE: coins = 450000000 // 0.45 TON\n\n// Kept from the current create message only. This funds the 0.02 TON registry\n// allocation plus Factory compute/action fees; all other current-message value\n// is forwarded explicitly, without sweeping prior donations.\nconst FACTORY_CREATE_RETAINED_VALUE: coins = 40000000 // 0.04 TON\n\n// Retained by the Factory per accepted create to fund one active or pending\n// registry entry. The entry moves between maps on activation without growing\n// the total state, and every creator funds its own storage runway.\nconst REGISTRY_RENT_PER_POOL: coins = 20000000 // 0.02 TON\n\n// Minimum TON a deposit must attach beyond the denomination. Splits as\n// RELAYER_REIMBURSEMENT (0.30) + worst integrated sparse handler/event gas\n// + progressive rent for a new history slot and commitment bucket. Any excess\n// is refunded to msg.fromUser.\nconst MIN_DEPOSIT_VALUE: coins = 370000000 // 0.37 TON\n\n// Shared opcodes used outside their `struct (0x...)` definitions.\nconst OP_JETTON_TRANSFER: int = 0x0f8a7ea5\nconst OP_DEPOSIT_PAYLOAD: int = 0xd6e05112\n\n// Whitelisted TON pool denominations. Bounded set so anonymity sets\n// concentrate at a few standard sizes.\nconst TON_POOL_DENOM_10: coins = 10000000000 // 10 TON\nconst TON_POOL_DENOM_100: coins = 100000000000 // 100 TON\nconst TON_POOL_DENOM_1K: coins = 1000000000000 // 1 000 TON\nconst TON_POOL_DENOM_10K: coins = 10000000000000 // 10 000 TON\n\nfun isWhitelistedTonDenom(d: coins): bool {\n    return d == TON_POOL_DENOM_10 || d == TON_POOL_DENOM_100 || d == TON_POOL_DENOM_1K ||\n    d == TON_POOL_DENOM_10K;\n}\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/deployment-types.tolk",
+      "contents": "// Shared Factory <-> Pool deployment handshake. This module has no storage\n// dependencies, so Pool, TonPool and Factory can all import it without cycles.\n\nconst OP_CONFIRM_POOL_DEPLOYMENT: int = 0x46504300\nconst OP_POOL_DEPLOY_CONFIRMED: int = 0x46504301\n\n// Permissionless, retriggerable activation command. The receiving pool funds\n// its confirmation callback strictly from the value attached to this message.\nstruct (0x46504300) ConfirmPoolDeployment {\n    queryId: uint64\n}\n\n// The identity fields let Factory derive the expected Pool address from its\n// pinned code, then atomically move the request from pending to active.\nstruct (0x46504301) PoolDeployConfirmed {\n    queryId: uint64\n    jettonMaster: address? // null identifies a native TON pool\n    denomination: coins\n}\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/errors.tolk",
+      "contents": "// Numeric codes are stable across versions: external indexers and the SDK\n// key off these numbers. Gaps in the sequence are intentional. New errors\n// take the next free slot in their subsystem.\nenum Errors {\n    // Generic\n    InvalidMessage = 0xFFFF\n\n    // Pool: deploy / init\n    JettonWalletAlreadySet = 103\n    JettonWalletNotSet = 104\n    NotJettonMaster = 105\n\n    // Pool: deposit\n    InvalidAmount = 111\n    CommitmentAlreadyExists = 113\n    TreeFull = 114\n    InvalidInsertProof = 115\n    InsufficientDepositValue = 116\n    InvalidDepositPayload = 117\n\n    // Pool: withdraw\n    InsufficientGas = 120\n    UnknownRoot = 121\n    NullifierAlreadySpent = 122\n    InvalidWithdrawProof = 124\n    InsufficientReserve = 127\n    InsufficientBalance = 128\n    InvalidRecipient = 130\n    StaleSparseSetRoot = 133\n    InvalidSparseSetProof = 134\n    WithdrawalCapacityReached = 135\n\n    // Factory\n    PoolAlreadyExists = 200\n    InvalidDenomination = 202\n    InsufficientCreatePoolFee = 203\n    FactoryCapacityReached = 204\n    TooManyInFlightCreates = 205\n    InvalidPoolConfirmation = 206\n    FactoryInvariantViolation = 207\n}\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/factory-types.tolk",
+      "contents": "import \"deployment-types\"\n\n// ============================================================================\n// FACTORY STORAGE\n// ============================================================================\n//\n// The factory has no admin. Active registries and pending creator maps are\n// disjoint: every accepted identity occupies exactly one dictionary entry.\n// A pool authenticates its activation with PoolDeployConfirmed, which moves\n// that identity from pending to active without changing the total slot count.\n\n// The measured worst-case state is 49,342 cells at this capacity, below the\n// basechain account-state limit of 65,536 cells with roughly 25% headroom.\nconst MAX_FACTORY_POOLS: int = 24576\nconst MAX_TON_POOLS: int = 4\nconst MAX_JETTON_POOLS: int = MAX_FACTORY_POOLS - MAX_TON_POOLS\n// Compatibility getter bound. Total capacity already enforces this value, so\n// pending deployments can no longer block creation before the registry is full.\nconst MAX_IN_FLIGHT_CREATES: int = MAX_FACTORY_POOLS\n\n// Keep both deployable code cells in one address-determining bundle.\nstruct FactoryCodes {\n    poolCode: cell\n    tonPoolCode: cell\n}\n\nstruct Registries {\n    poolRegistry: map<uint256, address>    // active hash(jettonMaster, denom) -> Pool\n    tonPoolRegistry: map<uint256, address> // active hash(denom) -> TonPool\n}\n\nstruct CreateSenders {\n    poolAddressToCreator: map<address, address>    // pending Pool -> create sender\n    tonPoolAddressToCreator: map<address, address> // pending TonPool -> create sender\n}\n\nstruct FactoryStorage {\n    // Deployment-only layout. Legacy Factory data is intentionally not\n    // decoded or migrated in place; changing these fields changes the address.\n    codes: Cell<FactoryCodes>\n    poolCount: uint32\n    tonPoolCount: uint32\n    inFlightCreates: uint16\n    registries: Cell<Registries>\n    createSenders: Cell<CreateSenders>\n}\n\nfun FactoryStorage.load(): FactoryStorage {\n    return FactoryStorage.fromCell(contract.getData());\n}\n\nfun FactoryStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ============================================================================\n// FACTORY MESSAGES\n// ============================================================================\n\n// Permissionless. The pool's jetton wallet is bound on-chain via TEP-89,\n// so the caller does NOT supply a wallet address.\nstruct (0xa0c0c0c0) CreatePool {\n    queryId: uint64\n    jettonMaster: address\n    denomination: coins\n}\n\n// Permissionless. Denomination MUST be in the whitelist to concentrate\n// anonymity sets.\nstruct (0xa0c0c0c2) CreateTonPool {\n    queryId: uint64\n    denomination: coins\n}\n\n// Local ABI alias keeps generated Factory wrappers self-contained even when\n// the underlying shared handshake type lives in deployment-types.tolk.\ntype FactoryPoolDeployConfirmed = PoolDeployConfirmed\n\ntype AllowedFactoryMessage = CreatePool | CreateTonPool | FactoryPoolDeployConfirmed\n\n// jettonMaster is null for TON pools.\nstruct (0x00c0c0c0) FactoryPoolCreatedEvent {\n    jettonMaster: address?\n    denomination: coins\n    poolAddress: address\n}\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/pool-types.tolk",
+      "contents": "import \"@stdlib/exotic-cells\"\nimport \"constants\"\nimport \"deployment-types\"\nimport \"sparse-set\"\n\n// Generated wrappers import only this direct ABI module. Local aliases keep\n// them self-contained while preserving the referenced layouts.\ntype PoolSparseSetUpdateProof = SparseSetUpdateProof\n\ntype PoolConfirmPoolDeployment = ConfirmPoolDeployment\n\n// Jetton withdrawals must self-fund the direct TEP-74 payout. The shared\n// MIN_WITHDRAW_GAS remains the native-TON floor; this higher floor is verified\n// against integrated sparse + Groth16 traces.\nconst MIN_JETTON_WITHDRAW_GAS: coins = 250000000 // 0.25 TON\nconst JETTON_PAYOUT_VALUE: coins = 150000000 // 0.15 TON\n\n// Ten-year basechain storage runway at the Acton configuration used by the\n// release gates, with a 2x margin. Growth is charged progressively because the\n// 512 sparse roots can materialize long before the note tree reaches capacity.\nconst POOL_BASE_RENT_RUNWAY: coins = 270000000 // empty Pool StateInit: >2x 0.132522803\nconst POOL_ROOT_HISTORY_RENT_PER_SLOT: coins = 2600000\nconst POOL_SPARSE_BUCKET_RENT: coins = 2600000\nconst POOL_DEPOSIT_FEE_MARGIN: coins = 50000000 // dense integrated path + event margin\n\n// ============================================================================\n// STORAGE\n// ============================================================================\n//\n// Field order is TL-B compatible and address-determining. Changing it bumps\n// the code hash and so the pool address.\n\n// Immutable identity. Pool address depends on (poolCode, this struct).\nstruct PoolIdentity {\n    jettonMaster: address\n    factory: address\n    denomination: coins\n}\n\n// jettonWallet starts null and is bound by the authenticated TEP-89 response.\n// Only that wallet may forward jetton-transfer-notifications.\nstruct Storage {\n    identity: Cell<PoolIdentity>\n    jettonWallet: address?\n    relayerReserve: coins\n    merkle: Cell<MerkleState>\n    withdrawalCount: uint32\n}\n\nstruct SparseSetRoots {\n    commitmentBucketCount: uint16 = 0\n    nullifierBucketCount: uint16 = 0\n    commitmentSeenRoots: map<uint8, uint256>\n    nullifierSpentRoots: map<uint8, uint256>\n}\n\nfun createEmptySparseSetRoots(): Cell<SparseSetRoots> {\n    return (SparseSetRoots {\n        commitmentBucketCount: 0,\n        nullifierBucketCount: 0,\n        commitmentSeenRoots: [],\n        nullifierSpentRoots: [],\n    }).toCell();\n}\n\nstruct SparseSetEventUpdate {\n    bucketId: uint8\n    newRoot: uint256\n}\n\nstruct MerkleState {\n    nextIndex: uint32\n    currentRoot: uint256\n    rootHistory: map<uint32, uint256> = [] // circular buffer; index = leafIndex % ROOT_HISTORY_SIZE\n    sparseSets: Cell<SparseSetRoots>\n}\n\nfun MerkleState.sparseSetRoot(\n    self,\n    domain: uint32,\n    bucketId: uint8,\n): uint256 {\n    val roots = self.sparseSets.load();\n    val entry = domain == SPARSE_SET_COMMITMENT_DOMAIN\n        ? roots.commitmentSeenRoots.get(bucketId)\n        : roots.nullifierSpentRoots.get(bucketId);\n    return entry.isFound ? entry.loadValue() : 0;\n}\n\nfun MerkleState.prepareSparseSetUpdate(\n    self,\n    domain: uint32,\n    key: uint256,\n    proof: cell,\n): SparseSetUpdateResult {\n    val bucketId = sparseSetBucketId(key) as uint8;\n    var storedRoot: uint256 = 0;\n    var bucketWasPresent = false;\n    val roots = self.sparseSets.load();\n    val entry = domain == SPARSE_SET_COMMITMENT_DOMAIN\n        ? roots.commitmentSeenRoots.get(bucketId)\n        : roots.nullifierSpentRoots.get(bucketId);\n    if (entry.isFound) {\n        storedRoot = entry.loadValue();\n        bucketWasPresent = true;\n    }\n    var update = sparseSetApplyUpdate(domain, key, storedRoot, proof);\n    update.bucketWasPresent = bucketWasPresent;\n    return update;\n}\n\nfun MerkleState.commitSparseSetUpdate(\n    mutate self,\n    domain: uint32,\n    update: SparseSetUpdateResult,\n) {\n    assert (update.status == SparseSetUpdateStatus.Ok) throw 0xFFFE;\n    val bucketId = update.bucketId as uint8;\n    var roots = self.sparseSets.load();\n    if (domain == SPARSE_SET_COMMITMENT_DOMAIN) {\n        if (!update.bucketWasPresent) {\n            assert (roots.commitmentBucketCount < 256) throw 0xFFFE;\n            roots.commitmentBucketCount += 1;\n        }\n        roots.commitmentSeenRoots.set(bucketId, update.newRoot);\n    } else {\n        assert (domain == SPARSE_SET_NULLIFIER_DOMAIN) throw 0xFFFE;\n        if (!update.bucketWasPresent) {\n            assert (roots.nullifierBucketCount < 256) throw 0xFFFE;\n            roots.nullifierBucketCount += 1;\n        }\n        roots.nullifierSpentRoots.set(bucketId, update.newRoot);\n    }\n    self.sparseSets = roots.toCell();\n}\n\n@inline\nfun MerkleState.poolRentRunway(self): coins {\n    val roots = self.sparseSets.load();\n    val historySlots = min(self.nextIndex, ROOT_HISTORY_SIZE as uint32);\n    val bucketCount: uint32 = (roots.commitmentBucketCount as uint32) +\n    (roots.nullifierBucketCount as uint32);\n    return POOL_BASE_RENT_RUNWAY + POOL_ROOT_HISTORY_RENT_PER_SLOT * historySlots +\n    POOL_SPARSE_BUCKET_RENT * bucketCount;\n}\n\n// ------ MerkleState mutate methods (state transitions live near the data) ------\n\nfun MerkleState.isKnownRoot(self, root: uint256): bool {\n    if (root == self.currentRoot) {\n        return true;\n    }\n    // Iterate only the present slots (bounded by ROOT_HISTORY_SIZE = 100).\n    var entry = self.rootHistory.findFirst();\n    while (entry.isFound) {\n        if (entry.loadValue() == root) {\n            return true;\n        }\n        entry = self.rootHistory.iterateNext(entry);\n    }\n    return false;\n}\n\nfun MerkleState.insertCommitmentBounded(\n    mutate self,\n    newRoot: uint256,\n    commitmentUpdate: SparseSetUpdateResult,\n): uint32 {\n    self.commitSparseSetUpdate(SPARSE_SET_COMMITMENT_DOMAIN, commitmentUpdate);\n    val leafIndex = self.nextIndex;\n    self.nextIndex = leafIndex + 1;\n\n    val slot: uint32 = leafIndex % ROOT_HISTORY_SIZE;\n    self.rootHistory.set(slot, newRoot);\n    self.currentRoot = newRoot;\n    return leafIndex;\n}\n\nfun MerkleState.markNullifierSpentBounded(\n    mutate self,\n    nullifierUpdate: SparseSetUpdateResult,\n) {\n    self.commitSparseSetUpdate(SPARSE_SET_NULLIFIER_DOMAIN, nullifierUpdate);\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ============================================================================\n// MESSAGES\n// ============================================================================\n\n// TEP-74 transfer notification. forward_payload (Either Cell ^Cell) carries\n// the user's commitment + insertion proof as a DepositPayload.\nstruct (0x7362d09c) JettonTransferNotification {\n    queryId: uint64\n    amount: coins\n    fromUser: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\n// Forward payload inside the TEP-74 notification. Generated client-side\n// alongside the insertion proof.\nstruct (0xd6e05112) DepositPayload {\n    queryId: uint64\n    commitment: uint256\n    newRoot: uint256\n    insertProof: Cell<ZkProof>\n    commitmentSetProof: Cell<PoolSparseSetUpdateProof>\n}\n\n// Withdraw: the recipient field binding is derived inside handleWithdraw\n// from msg.recipient, so the message cannot disagree with the proof.\nstruct (0x4b6f0b51) Withdraw {\n    clientQueryId: uint64\n    root: uint256\n    nullifierHash: uint256\n    recipient: address\n    proof: Cell<ZkProof>\n    nullifierSetProof: Cell<PoolSparseSetUpdateProof>\n}\n\n// Permissionless wallet-binding retrigger. It repeats the TEP-89 query while\n// no wallet is bound, then repeats the Factory confirmation once binding is complete.\nstruct (0xa0c0c0c1) InitWalletBinding {\n    queryId: uint64\n}\n\n// TEP-89 outgoing query (pool -> jettonMaster). includeAddress=false: we\n// already know the owner.\nstruct (0x2c76b973) ProvideWalletAddress {\n    queryId: uint64\n    ownerAddress: address\n    includeAddress: bool\n}\n\n// TEP-89 incoming response (jettonMaster -> pool). The trailing\n// `owner_address:(Maybe ^MsgAddress)` is slurped by `rest` for compat with\n// masters that always echo it.\nstruct (0xd1735400) TakeWalletAddress {\n    queryId: uint64\n    walletAddress: address\n    rest: RemainingBitsAndRefs\n}\n\n// Pool transitions to ready: jettonWallet locked.\nstruct (0x00def002) PoolReadyEvent {\n    jettonWallet: address\n}\n\nstruct (0x00de9052) DepositEvent {\n    leafIndex: uint32\n    commitment: uint256\n    newRoot: uint256\n    fromUser: address\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\nstruct (0x00717d3c) WithdrawalAcceptedEvent {\n    clientQueryId: uint64\n    nullifierHash: uint256\n    recipient: address\n    payout: coins\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\n// Outgoing TEP-74 jetton transfer.\nstruct (0x0f8a7ea5) JettonTransfer {\n    queryId: uint64\n    amount: coins\n    destination: address\n    responseDestination: address\n    customPayload: cell? = null\n    forwardAmount: coins = 0\n    forwardPayload: cell? = null\n}\n\n// Groth16 BLS12-381 proof. G1 = 48 bytes, G2 = 96 bytes, compressed BLST.\nstruct ZkProof {\n    proofA: Cell<G1Point>\n    proofB: Cell<G2Point>\n    proofC: Cell<G1Point>\n}\n\nfun isWellFormedZkProofCell(proofCell: cell): bool {\n    val (initialProofSlice, proofIsExotic) = proofCell.beginParseSpecial();\n    var proofSlice = initialProofSlice;\n    if (\n        proofIsExotic || proofSlice.remainingBitsCount() != 0 ||\n        proofSlice.remainingRefsCount() != 3\n    ) {\n        return false;\n    }\n\n    val proofA = proofSlice.loadRef();\n    val proofB = proofSlice.loadRef();\n    val proofC = proofSlice.loadRef();\n    return isOrdinaryProofPoint(proofA, 384) && isOrdinaryProofPoint(proofB, 768) &&\n    isOrdinaryProofPoint(proofC, 384);\n}\n\nfun isOrdinaryProofPoint(point: cell, expectedBits: int): bool {\n    val (pointSlice, pointIsExotic) = point.beginParseSpecial();\n    return !pointIsExotic && pointSlice.remainingBitsCount() == expectedBits &&\n    pointSlice.remainingRefsCount() == 0;\n}\n\nstruct G1Point {\n    raw: RemainingBitsAndRefs\n}\n\nstruct G2Point {\n    raw: RemainingBitsAndRefs\n}\n\n// ============================================================================\n// DISPATCH UNION\n// ============================================================================\n\ntype AllowedMessage =\n    | PoolConfirmPoolDeployment\n    | InitWalletBinding\n    | TakeWalletAddress\n    | JettonTransferNotification\n    | Withdraw\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/ton-pool-types.tolk",
+      "contents": "import \"errors\"\nimport \"pool-types\" // for MerkleState (shared with jetton pool)\nimport \"sparse-set\"\n\n// Generated wrappers import only this direct ABI module. Local aliases keep the\n// generated wrapper self-contained while preserving the exact cell layout.\ntype TonPoolZkProof = ZkProof\n\ntype TonPoolSparseSetUpdateProof = SparseSetUpdateProof\n\n// Local wire-equivalent declaration keeps the generated wrapper independent\n// from transitive imports.\nstruct (0x46504300) TonPoolConfirmPoolDeployment {\n    queryId: uint64\n}\n\n// ============================================================================\n// STORAGE\n// ============================================================================\n//\n// Mirror of the jetton Pool for native TON. Identity drops jettonMaster /\n// jettonWallet; the deposit value is plain TON carried by the message.\n\nstruct TonPoolIdentity {\n    factory: address\n    denomination: coins\n}\n\n// pendingWithdrawTon = denomination * (deposits - withdraws); enforces the\n// pool keeps enough TON to pay every pending recipient.\nstruct TonPoolStorage {\n    identity: Cell<TonPoolIdentity>\n    relayerReserve: coins\n    pendingWithdrawTon: coins\n    merkle: Cell<MerkleState>\n}\n\nfun TonPoolStorage.load(): TonPoolStorage {\n    return TonPoolStorage.fromCell(contract.getData());\n}\n\nfun TonPoolStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun calculateTonPoolWithdrawalCount(\n    denomination: coins,\n    deposits: uint32,\n    pendingWithdrawTon: coins,\n): uint32 {\n    assert (denomination > 0) throw Errors.InvalidDenomination;\n    assert (pendingWithdrawTon % denomination == 0) throw Errors.FactoryInvariantViolation;\n    val pendingCount = pendingWithdrawTon / denomination;\n    assert (pendingCount <= deposits) throw Errors.FactoryInvariantViolation;\n    return deposits - (pendingCount as uint32);\n}\n\n// ============================================================================\n// MESSAGES\n// ============================================================================\n\n// Direct TON deposit. Requires msg.value >= denomination + MIN_DEPOSIT_VALUE;\n// below the floor, the pool refunds the full TON value to fromUser.\nstruct (0xd6e05112) TonDepositPayload {\n    queryId: uint64\n    fromUser: address\n    commitment: uint256\n    newRoot: uint256\n    insertProof: Cell<TonPoolZkProof>\n    commitmentSetProof: Cell<TonPoolSparseSetUpdateProof>\n}\n\n// Same body / circuit as jetton Pool's Withdraw.\nstruct (0x4b6f0b51) TonWithdraw {\n    queryId: uint64\n    root: uint256\n    nullifierHash: uint256\n    recipient: address\n    proof: Cell<TonPoolZkProof>\n    nullifierSetProof: Cell<TonPoolSparseSetUpdateProof>\n}\n\nstruct (0x00de9052) TonDepositEvent {\n    leafIndex: uint32\n    commitment: uint256\n    newRoot: uint256\n    fromUser: address\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\nstruct (0x00717d3b) TonWithdrawEvent {\n    nullifierHash: uint256\n    recipient: address\n    payout: coins\n    sparseUpdate: Cell<SparseSetEventUpdate>\n}\n\n// ============================================================================\n// DISPATCH UNION\n// ============================================================================\n\ntype AllowedTonMessage =\n    | TonPoolConfirmPoolDeployment\n    | TonDepositPayload\n    | TonWithdraw\n"
+    },
+    {
+      "filename": "tmp/904deb25-2b66-4a72-bbd7-e874942292aa/contracts/sparse-set.tolk",
+      "contents": "import \"@stdlib/exotic-cells\"\nimport \"constants\"\n\n// Transparent sparse sets used for duplicate commitments and spent nullifiers.\n// The value zero is the empty-subtree sentinel; non-empty hashes are domain\n// separated so the two sets cannot share witnesses.\nconst SPARSE_SET_COMMITMENT_DOMAIN: uint32 = 0x5a4b4301\nconst SPARSE_SET_NULLIFIER_DOMAIN: uint32 = 0x5a4b4e01\nconst SPARSE_SET_LEAF_TAG: uint8 = 1\nconst SPARSE_SET_NODE_TAG: uint8 = 2\nconst SPARSE_SET_BUCKET_BITS: int = 8\nconst SPARSE_SET_BUCKET_MASK: int = (1 << SPARSE_SET_BUCKET_BITS) - 1\nconst SPARSE_SET_DEPTH: int = 247\nconst SPARSE_SET_PROOF_BITS: int = 256 + SPARSE_SET_DEPTH\nconst SPARSE_SET_SIBLINGS_PER_CELL: int = 3\n\n/// Canonical proof root. `siblings` is a packed chain ordered by increasing\n/// tree level; its exact shape is validated by `sparseSetApplyUpdate`.\nstruct SparseSetUpdateProof {\n    expectedRoot: uint256\n    siblingBitmap: uint247\n    siblings: cell\n}\n\nenum SparseSetUpdateStatus {\n    Ok = 0\n    InvalidDomain = 1\n    InvalidKey = 2\n    MalformedProof = 3\n    StaleRoot = 4\n    NonEmptyLeafOrInvalidWitness = 5\n}\n\n/// Runtime-only result. Pool handlers translate the status into their stable\n/// deposit/withdraw error codes and persist `newRoot` only when status is Ok.\nstruct SparseSetUpdateResult {\n    status: SparseSetUpdateStatus\n    bucketId: uint8\n    newRoot: uint256\n    bucketWasPresent: bool = false\n}\n\n@pure\n@inline\nfun sparseSetIsKnownDomain(domain: uint32): bool {\n    return domain == SPARSE_SET_COMMITMENT_DOMAIN || domain == SPARSE_SET_NULLIFIER_DOMAIN;\n}\n\n@pure\n@inline\nfun sparseSetBucketId(key: uint256): uint8 {\n    return (key & SPARSE_SET_BUCKET_MASK) as uint8;\n}\n\n@pure\n@inline\nfun sparseSetPath(key: uint256): int {\n    return key >> SPARSE_SET_BUCKET_BITS;\n}\n\n@pure\n@inline\nfun sparseSetLeafHash(domain: uint32, key: uint256): uint256 {\n    return beginCell()\n        .storeUint((domain << 8) | SPARSE_SET_LEAF_TAG, 40)\n        .storeUint(key, 256)\n        .hash();\n}\n\n@pure\n@inline\nfun sparseSetNonEmptyNodeHashWithHeader(\n    header: uint48,\n    left: uint256,\n    right: uint256,\n): uint256 {\n    return beginCell().storeUint(header, 48).storeUint(left, 256).storeUint(right, 256).hash();\n}\n\n@pure\n@inline\nfun sparseSetNonEmptyNodeHash(\n    domain: uint32,\n    level: uint8,\n    left: uint256,\n    right: uint256,\n): uint256 {\n    val header = ((domain << 16) | (SPARSE_SET_NODE_TAG << 8) | level) as uint48;\n    return sparseSetNonEmptyNodeHashWithHeader(header, left, right);\n}\n\n@pure\n@inline\nfun sparseSetIsCanonicalSiblingChunk(chunk: slice, isExotic: bool): bool {\n    if (isExotic) {\n        return false;\n    }\n    val bits = chunk.remainingBitsCount();\n    val refs = chunk.remainingRefsCount();\n    if (refs == 1) {\n        return bits == SPARSE_SET_SIBLINGS_PER_CELL * 256;\n    }\n    return refs == 0 && bits <= SPARSE_SET_SIBLINGS_PER_CELL * 256 && bits % 256 == 0;\n}\n\n/// Verify an empty-leaf witness against `storedRoot` and return the only root\n/// that can result from inserting `key`. The caller never supplies `newRoot`.\n@pure\nfun sparseSetApplyUpdate(\n    domain: uint32,\n    key: uint256,\n    storedRoot: uint256,\n    proofCell: cell,\n): SparseSetUpdateResult {\n    val bucketId = sparseSetBucketId(key);\n    if (!sparseSetIsKnownDomain(domain)) {\n        return {\n            status: SparseSetUpdateStatus.InvalidDomain,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n    if (key >= BLS12_381_R) {\n        return {\n            status: SparseSetUpdateStatus.InvalidKey,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    // check-disable-next-line mutable-variable-can-be-immutable\n    var (proof, proofIsExotic) = proofCell.beginParseSpecial();\n    if (\n        proofIsExotic || proof.remainingBitsCount() != SPARSE_SET_PROOF_BITS ||\n        proof.remainingRefsCount() != 1\n    ) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    val expectedRoot = proof.loadUint(256);\n    val siblingBitmap = proof.loadUint(SPARSE_SET_DEPTH);\n    val siblingChain = proof.loadRef();\n    if (expectedRoot != storedRoot) {\n        return {\n            status: SparseSetUpdateStatus.StaleRoot,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    // The chain is validated while it is consumed. Every shape check happens\n    // before a load, so malformed proofs return a status instead of throwing.\n    // check-disable-next-line mutable-variable-can-be-immutable\n    var (chain, chainIsExotic) = siblingChain.beginParseSpecial();\n    if (!sparseSetIsCanonicalSiblingChunk(chain, chainIsExotic)) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    var oldRoot: uint256 = 0;\n    var newRoot = sparseSetLeafHash(domain, key);\n    var path = sparseSetPath(key);\n    var bitmap = siblingBitmap;\n    var level: uint8 = 0;\n    val nodeDomainBuilder = beginCell().storeUint(\n        (domain << 8) | SPARSE_SET_NODE_TAG,\n        40,\n    );\n\n    repeat (SPARSE_SET_DEPTH) {\n        var sibling: uint256 = 0;\n        if ((bitmap & 1) != 0) {\n            if (chain.remainingBitsCount() == 0) {\n                if (chain.remainingRefsCount() != 1) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n                val nextChunk = chain.loadRef();\n                // check-disable-next-line mutable-variable-can-be-immutable\n                (chain, chainIsExotic) = nextChunk.beginParseSpecial();\n                if (!sparseSetIsCanonicalSiblingChunk(chain, chainIsExotic)) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n                if (chain.remainingBitsCount() == 0) {\n                    return {\n                        status: SparseSetUpdateStatus.MalformedProof,\n                        bucketId,\n                        newRoot: 0,\n                    };\n                }\n            }\n            sibling = chain.loadUint(256);\n            if (sibling == 0) {\n                return {\n                    status: SparseSetUpdateStatus.MalformedProof,\n                    bucketId,\n                    newRoot: 0,\n                };\n            }\n        }\n\n        var prefixBuilder = nodeDomainBuilder;\n        prefixBuilder.storeUint(level, 8);\n        if ((path & 1) == 0) {\n            if (oldRoot != 0 || sibling != 0) {\n                var oldBuilder = prefixBuilder;\n                oldRoot = oldBuilder.storeUint(oldRoot, 256).storeUint(sibling, 256).hash();\n            }\n            var newBuilder = prefixBuilder;\n            newRoot = newBuilder.storeUint(newRoot, 256).storeUint(sibling, 256).hash();\n        } else {\n            var leftPrefixBuilder = prefixBuilder;\n            leftPrefixBuilder.storeUint(sibling, 256);\n            if (oldRoot != 0 || sibling != 0) {\n                var oldBuilder = leftPrefixBuilder;\n                oldRoot = oldBuilder.storeUint(oldRoot, 256).hash();\n            }\n            var newBuilder = leftPrefixBuilder;\n            newRoot = newBuilder.storeUint(newRoot, 256).hash();\n        }\n\n        path >>= 1;\n        bitmap >>= 1;\n        level += 1;\n    }\n\n    if (!chain.isEmpty()) {\n        return {\n            status: SparseSetUpdateStatus.MalformedProof,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    if (oldRoot != storedRoot) {\n        return {\n            status: SparseSetUpdateStatus.NonEmptyLeafOrInvalidWitness,\n            bucketId,\n            newRoot: 0,\n        };\n    }\n\n    return {\n        status: SparseSetUpdateStatus.Ok,\n        bucketId,\n        newRoot,\n    };\n}\n"
+    }
+  ]
+}

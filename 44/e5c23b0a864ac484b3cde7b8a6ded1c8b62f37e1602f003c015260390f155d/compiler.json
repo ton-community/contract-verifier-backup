@@ -1,0 +1,1973 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from jetton_minter.tolk, constants.tolk, errors.tolk, fees_management.tolk, messages.tolk, storage.tolk, utils.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  106029 DECLMETHOD get_jetton_data()\n  103289 DECLMETHOD get_wallet_address()\n  126767 DECLMETHOD get_stablecoin_data()\n  // 6 functions inlined in-place:\n  // - MinterStorage.load (10 calls)\n  // - MinterStorage.save (6 calls)\n  // - calcDeployedJettonWallet (2 calls)\n  // - calcAddressOfJettonWallet (3 calls)\n  // - emptyForwardPayload (3 calls)\n  // - sendUsdtFromReserve (1 call)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      32 LDU\n      NIP\n      x{178d4519} SDBEGINSQ\n      IFJMP:<{\n        c4 PUSH\n        CTOS\n        SWAP\n        64 LDU\n        NIP\n        LDGRAMS\n        DROP\n        SWAP\n        LDGRAMS\n        s0 s2 XCHG\n        SUB\n        NEWC\n        SWAP\n        STGRAMS\n        STSLICE\n        ENDC\n        c4 POP\n      }>\n      x{0f8a7ea5} SDBEGINSQ\n      NIP\n      IFJMP:<{\n      }>\n      63 THROW\n    }>\n    DUP\n    x{7362d09c} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      DUP\n      LDSTDADDR\n      NIP\n      LDREF\n      NIP\n      LDREF\n      LDSTDADDR\n      NIP\n      LDOPTSTDADDR\n      DROP\n      DUP\n      ISNULL\n      77 THROWIF\n      INMSG_SRC\n      OVER\n      SDEQ\n      76 THROWIFNOT\n      s0 s4 XCHG\n      64 LDU\n      LDGRAMS\n      LDOPTSTDADDR\n      DROP\n      DUP\n      ISNULL\n      IFJMP:<{\n        7 BLKDROP\n      }>\n      OVER\n      1000000000 PUSHINT\n      15000 PUSHINT\n      MULDIV\n      DUP\n      0 EQINT\n      INMSG_VALUE\n      30000000 PUSHINT\n      LESS\n      OR\n      IFJMP:<{\n        DROP\n        3 3 BLKDROP2\n        PUSHNULL\n        b{0} PUSHSLICE\n        s2 PUSH\n        NEWC\n        x{0f8a7ea5} STSLICECONST\n        s1 s6 XCHG\n        64 STU\n        s0 s4 XCHG2\n        STGRAMS\n        s1 s4 XCHG\n        STSTDADDR\n        STOPTSTDADDR\n        s1 s2 XCHG\n        STOPTREF\n        x{0} STSLICECONST\n        STSLICE\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        1 PUSHINT\n        111 STUR\n        STREF\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>\n      s2 POP\n      s6 POP\n      s4 s4 XCPU\n      ADD\n      NEWC\n      SWAP\n      STGRAMS\n      s1 s3 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      MYADDR\n      s4 PUSH\n      NEWC\n      x{0} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{178d4519} STSLICECONST\n      s1 s5 XCHG\n      64 STU\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      STOPTSTDADDR\n      x{0} STSLICECONST\n      STSLICE\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      141 PUSHINT\n      117 STUR\n      s1 s3 XCHG\n      STREF\n      STREF\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{7bdd97de} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      SWAP\n      64 LDU\n      LDGRAMS\n      LDSTDADDR\n      LDOPTSTDADDR\n      DROP\n      s0 s4 XCHG\n      LDGRAMS\n      DUP\n      LDSTDADDR\n      NIP\n      LDREF\n      NIP\n      LDREF\n      LDSTDADDR\n      NIP\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      MYADDR\n      s6 PUSH\n      NEWC\n      x{0} STSLICECONST\n      STSTDADDR\n      STSTDADDR\n      ENDC\n      s0 s3 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s1 s2 XCHG\n      SDEQ\n      74 THROWIFNOT\n      DUP\n      ISNULL\n      77 THROWIF\n      s4 PUSH\n      15000 PUSHINT\n      1000000000 PUSHINT\n      MULDIV\n      DUP\n      0 GTINT\n      79 THROWIFNOT\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      709 THROWIFNOT\n      s3 s5 XCHG2\n      SUB\n      NEWC\n      SWAP\n      STGRAMS\n      STSLICE\n      ENDC\n      c4 POP\n      s4 PUSH\n      ISNULL\n      NOT\n      s0 s5 s2 XC2PU\n      CONDSEL\n      PUSHNULL\n      b{0} PUSHSLICE\n      NEWC\n      x{0f8a7ea5} STSLICECONST\n      s1 s6 XCHG\n      64 STU\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s2 XCHG\n      STSTDADDR\n      STOPTSTDADDR\n      STOPTREF\n      x{0} STSLICECONST\n      STSLICE\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      1 PUSHINT\n      111 STUR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{2c76b973} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      INMSG_FWDFEE\n      0 PUSHINT\n      GETORIGINALFWDFEE\n      10000000 PUSHINT\n      ADD\n      GREATER\n      75 THROWIFNOT\n      64 LDU\n      LDSTDADDR\n      1 PLDI\n      IF:<{\n        DUP\n        NEWC\n        STSTDADDR\n        ENDC\n      }>ELSE<{\n        PUSHNULL\n      }>\n      PUSHNULL\n      s2 PUSH\n      REWRITESTDADDR\n      DROP\n      IFNOT:<{\n        DROP\n        c4 PUSH\n        CTOS\n        LDREF\n        NIP\n        PLDREF\n        MYADDR\n        NEWC\n        x{0} STSLICECONST\n        s1 s4 XCHG\n        STSTDADDR\n        s1 s3 XCHG\n        STSTDADDR\n        ENDC\n        ROT\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        NEWC\n        b{10000000000} STSLICECONST\n        256 STU\n        BTOS\n        SWAP\n      }>ELSE<{\n        s2 POP\n      }>\n      INMSG_SRC\n      NEWC\n      b{011000} STSLICECONST\n      STSTDADDR\n      3513996288 PUSHINT\n      143 STUR\n      s1 s3 XCHG\n      64 STU\n      STOPTSTDADDR\n      STOPTREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{00000005} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      LDREF\n      LDREF\n      LDSTDADDR\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      73 THROWIFNOT\n      ISNULL\n      78 THROWIFNOT\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      STSTDADDR\n      STREF\n      STREF\n      s1 s2 XCHG\n      STSTDADDR\n      STOPTSTDADDR\n      ENDC\n      c4 POP\n    }>\n    x{00000003} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      INMSG_SRC\n      ROT\n      SDEQ\n      73 THROWIFNOT\n      s0 s2 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      NEWC\n      ROT\n      STGRAMS\n      STSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{00000004} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDGRAMS\n      LDSTDADDR\n      LDREF\n      NIP\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      73 THROWIFNOT\n      s0 s3 XCHG\n      PLDREF\n      NEWC\n      s0 s3 XCHG2\n      STGRAMS\n      STSTDADDR\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_jetton_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    LDSTDADDR\n    LDREF\n    PLDREF\n    TRUE\n    3 -ROLL\n  }>\n  get_wallet_address() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    MYADDR\n    NEWC\n    x{0} STSLICECONST\n    s1 s3 XCHG\n    STSTDADDR\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_stablecoin_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDGRAMS\n    NIP\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDOPTSTDADDR\n    DROP\n    15000 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEAEAA2IAART/APSkE/S88sgLAQIBYgIDBLDQ+JGOL9MfMdcsILxqKMyOF+1E0AHTPzH6ADAB+gACocgB+gLOye1U4NcsIHxT9Swx3PI/4CDXLCObFoTk4wLXLCPe7L704wLXLCFjtcuc4wLXLCAAAAAsBAUGBwIBWAwNAfwx7UTQ+gAg+kgx1DHU+kgx+lAwIG7y0E34kiHHBfLgTATTP/oA+lAwIG6SXwfgIYIQO5rKAIE6mKmEIMAA+JeCCcnDgLmxjjMwbDNtiwQiyM+QPin6lhbLP1AE+gIU+lL6VBL0AM+EIM7JyM+FiBL6UnHPC27MyYBA+wDgMjYIAv4x7UTQAdM/+gD6SPpQMAT6ACD6SDHUMdT6SDH6UDD4kvgoJsjPhCD6UvpSyVADyM+E0MzM+RbIz4oAQMv/z1ASxwXy4EogbvLQTSSBOpiCEDuaygCphCDCAPLgT/iXggkxLQC+8uLFUDWhyAH6As7J7VQkbrNUEFLjBG2LBMiJCQoA4jH4l/iTcPg6ggiYloCgvPLgS9M/+kjXCgCVIMj6UsmRbeJtIvpEMJEyjigw7UTQ1DHXTPgoyM+EIBT6UhP6UslYyM+E0MzM+RbIz4oAQMv/z1AB4viSyM+FiPpSghDRc1QAzwuOE8s/+lT0AMmAQPsAAeaONDHtRND6APpI1NT6SPpQMPiSJccF8uBJbvLgTgXTPzH6SDDIUAX6AhP6UszMEvpS+lTJ7VTg1ywgAAAAHI4hMe1E0PoA+kj4kljHBfLgSQLTPzH6SDDIWPoC+lLOye1U4NcsIAAAACTjAjCEDwHHAPL0CwCqUUSgyAH6AhPOye1U+CgkyM+EIPpS+lLJbYsEyM+QXjUUZhXLP1AF+gIU+lQU+lTPhCDOycjPiYgBUyPIz4TQzMz5Fs8L/4EAjc8LdBPMzMzJgED7AAAID4p+pQBMzxYWyz9QBPoCEvpS+lT0AM+EIM7JyM+FiBL6UnHPC27MyYBA+wAAQjHtRND6APpI1DH4kiLHBfLgSQPXTMhQA/oC+lLMzsntVAIBZg4PACe68v7UTQ+gAx+kgx+kj6UDCBOpiABRrbz2omhqGOumfBRkZ8IQCf0pCX0pZIDkZ8JoZmZ8i2RnxQAgZf/nqEAAH68W9qJofQB9JGprpj+qkEA=",
+  "codeHashHex": "44E5C23B0A864AC484B3CDE7B8A6DED1C8B62F37E1602F003C015260390F155D",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/jetton_minter.tolk",
+        "size_chars": 8139,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/constants.tolk",
+        "size_chars": 60,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/errors.tolk",
+        "size_chars": 519,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/fees_management.tolk",
+        "size_chars": 227,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/messages.tolk",
+        "size_chars": 1636,
+        "imports": []
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/storage.tolk",
+        "size_chars": 626,
+        "imports": []
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/utils.tolk",
+        "size_chars": 613,
+        "imports": [
+          7
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "BounceOpToMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransferStep"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 395134233,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 260734629,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MinterStorage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferNotificationForRecipient"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BurnNotificationForMinter"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestWalletAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetUsdtWallet"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ChangeMinterContent"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1935855772,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 2078119902,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 745978227,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 5,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 3,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 4,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          17
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 36
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          35
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 141,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          40,
+          41
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 46,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 42,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 142,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          50
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WalletStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 52
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          13
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 7
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 56
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseWalletAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          58
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StablecoinDataReply"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 30,
+        "struct_name": "CreateMessageOptions<AskToTransfer>",
+        "monomorphic_fields_ty_idx": [
+          34,
+          39,
+          49,
+          17
+        ]
+      },
+      {
+        "ty_idx": 55,
+        "struct_name": "CreateMessageOptions<InternalTransferStep>",
+        "monomorphic_fields_ty_idx": [
+          34,
+          39,
+          49,
+          13
+        ]
+      },
+      {
+        "ty_idx": 59,
+        "struct_name": "CreateMessageOptions<ResponseWalletAddress>",
+        "monomorphic_fields_ty_idx": [
+          34,
+          39,
+          49,
+          58
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 37
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 47
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 40
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 45
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 32,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 34
+          },
+          {
+            "name": "value",
+            "ty_idx": 39
+          },
+          {
+            "name": "dest",
+            "ty_idx": 49
+          },
+          {
+            "name": "body",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToMinter",
+        "ty_idx": 21,
+        "ident_loc": [
+          1,
+          9,
+          6,
+          9,
+          28
+        ],
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "alias",
+        "name": "BounceOpToMinter",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          44,
+          6,
+          44,
+          22
+        ],
+        "target_ty_idx": 19
+      },
+      {
+        "kind": "struct",
+        "name": "JettonDataReply",
+        "ty_idx": 60,
+        "ident_loc": [
+          1,
+          201,
+          8,
+          201,
+          23
+        ],
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 1
+          },
+          {
+            "name": "mintable",
+            "ty_idx": 5
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonContent",
+            "ty_idx": 3
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StablecoinDataReply",
+        "ty_idx": 61,
+        "ident_loc": [
+          1,
+          226,
+          8,
+          226,
+          27
+        ],
+        "fields": [
+          {
+            "name": "usdtJettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "usdtJettonWallet",
+            "ty_idx": 14
+          },
+          {
+            "name": "usdtUnitsPerXtr",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 15,
+        "ident_loc": [
+          6,
+          1,
+          6,
+          1,
+          29
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 17,
+        "ident_loc": [
+          6,
+          3,
+          21,
+          3,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 14
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 18
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferNotificationForRecipient",
+        "ty_idx": 22,
+        "ident_loc": [
+          6,
+          13,
+          21,
+          13,
+          53
+        ],
+        "prefix": {
+          "prefix_num": 1935855772,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferInitiator",
+            "ty_idx": 14
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransferStep",
+        "ty_idx": 13,
+        "ident_loc": [
+          6,
+          20,
+          21,
+          20,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 395134233,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferInitiator",
+            "ty_idx": 14
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 14
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BurnNotificationForMinter",
+        "ty_idx": 23,
+        "ident_loc": [
+          6,
+          40,
+          21,
+          40,
+          46
+        ],
+        "prefix": {
+          "prefix_num": 2078119902,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "burnInitiator",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestWalletAddress",
+        "ty_idx": 24,
+        "ident_loc": [
+          6,
+          47,
+          21,
+          47,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 745978227,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "includeOwnerAddress",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseWalletAddress",
+        "ty_idx": 58,
+        "ident_loc": [
+          6,
+          53,
+          21,
+          53,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 3513996288,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonWalletAddress",
+            "ty_idx": 14
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetUsdtWallet",
+        "ty_idx": 25,
+        "ident_loc": [
+          6,
+          59,
+          21,
+          59,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 5,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "usdtJettonWallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterAdmin",
+        "ty_idx": 26,
+        "ident_loc": [
+          6,
+          64,
+          21,
+          64,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 3,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ChangeMinterContent",
+        "ty_idx": 27,
+        "ident_loc": [
+          6,
+          69,
+          21,
+          69,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 4,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WalletStorage",
+        "ty_idx": 52,
+        "ident_loc": [
+          7,
+          1,
+          8,
+          1,
+          21
+        ],
+        "fields": [
+          {
+            "name": "jettonBalance",
+            "ty_idx": 6
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MinterStorage",
+        "ty_idx": 20,
+        "ident_loc": [
+          7,
+          7,
+          8,
+          7,
+          21
+        ],
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 6
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "usdtJettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "usdtJettonWallet",
+            "ty_idx": 14
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          60,
+          5,
+          60,
+          22
+        ],
+        "end_loc": [
+          1,
+          199,
+          1,
+          199,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          46,
+          5,
+          46,
+          21
+        ],
+        "end_loc": [
+          1,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "MinterStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          20,
+          19,
+          20,
+          23
+        ],
+        "end_loc": [
+          7,
+          22,
+          1,
+          22,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "sendUsdtFromReserve",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          21,
+          5,
+          21,
+          24
+        ],
+        "end_loc": [
+          1,
+          42,
+          1,
+          42,
+          2
+        ],
+        "params": [
+          {
+            "name": "usdtJettonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "usdtAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "emptyForwardPayload",
+        "return_ty_idx": 15,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          17,
+          5,
+          17,
+          24
+        ],
+        "end_loc": [
+          1,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "createMessage<AskToTransfer>",
+        "return_ty_idx": 29,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "calcDeployedJettonWallet",
+        "return_ty_idx": 43,
+        "num_params": 3,
+        "ident_loc": [
+          8,
+          3,
+          5,
+          3,
+          29
+        ],
+        "end_loc": [
+          8,
+          11,
+          1,
+          11,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "WalletStorage.toCell",
+        "return_ty_idx": 53,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 52
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "createMessage<InternalTransferStep>",
+        "return_ty_idx": 29,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "calcAddressOfJettonWallet",
+        "return_ty_idx": 7,
+        "num_params": 3,
+        "ident_loc": [
+          8,
+          13,
+          5,
+          13,
+          30
+        ],
+        "end_loc": [
+          8,
+          16,
+          1,
+          16,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "minterAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "address.toCell",
+        "return_ty_idx": 56,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<ResponseWalletAddress>",
+        "return_ty_idx": 29,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "get_jetton_data",
+        "return_ty_idx": 60,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          209,
+          9,
+          209,
+          24
+        ],
+        "end_loc": [
+          1,
+          219,
+          1,
+          219,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "get_wallet_address",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          221,
+          9,
+          221,
+          27
+        ],
+        "end_loc": [
+          1,
+          224,
+          1,
+          224,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "get_stablecoin_data",
+        "return_ty_idx": 61,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          232,
+          9,
+          232,
+          28
+        ],
+        "end_loc": [
+          1,
+          240,
+          1,
+          240,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AskToTransfer"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ForwardPayloadRemainder"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransferStep"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseWalletAddress"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 7
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StablecoinDataReply"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "JettonDataReply",
+        "ty_idx": 21,
+        "fields": [
+          {
+            "name": "totalSupply",
+            "ty_idx": 1
+          },
+          {
+            "name": "mintable",
+            "ty_idx": 5
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "jettonContent",
+            "ty_idx": 3
+          },
+          {
+            "name": "jettonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StablecoinDataReply",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "usdtJettonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "usdtJettonWallet",
+            "ty_idx": 13
+          },
+          {
+            "name": "usdtUnitsPerXtr",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ForwardPayloadRemainder",
+        "ty_idx": 15,
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "AskToTransfer",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 13
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 14
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransferStep",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 395134233,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "transferInitiator",
+            "ty_idx": 13
+          },
+          {
+            "name": "sendExcessesTo",
+            "ty_idx": 13
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseWalletAddress",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 3513996288,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonWalletAddress",
+            "ty_idx": 13
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 20
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 17
+      },
+      {
+        "body_ty_idx": 18
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 106029,
+        "name": "get_jetton_data",
+        "parameters": [],
+        "return_ty_idx": 21
+      },
+      {
+        "tvm_method_id": 103289,
+        "name": "get_wallet_address",
+        "parameters": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 126767,
+        "name": "get_stablecoin_data",
+        "parameters": [],
+        "return_ty_idx": 22
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERR_NOT_FROM_ADMIN",
+        "err_code": 73
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_UNAUTHORIZED_BURN",
+        "err_code": 74
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_NOT_ENOUGH_AMOUNT_TO_RESPOND",
+        "err_code": 75
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_NOT_FROM_USDT_WALLET",
+        "err_code": 76
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_USDT_WALLET_NOT_SET",
+        "err_code": 77
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_USDT_WALLET_ALREADY_SET",
+        "err_code": 78
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_BURN_PAYOUT_TOO_SMALL",
+        "err_code": 79
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_NOT_ENOUGH_TON",
+        "err_code": 709
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/jetton_minter.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"shared/constants\"\nimport \"shared/errors\"\nimport \"shared/fees_management\"\nimport \"shared/messages\"\nimport \"shared/storage\"\nimport \"shared/utils\"\n\ntype AllowedMessageToMinter =\n    | TransferNotificationForRecipient\n    | BurnNotificationForMinter\n    | RequestWalletAddress\n    | SetUsdtWallet\n    | ChangeMinterAdmin\n    | ChangeMinterContent\n\nfun emptyForwardPayload(): ForwardPayloadRemainder {\n    return beginCell().storeBool(false).endCell().beginParse();\n}\n\nfun sendUsdtFromReserve(\n    usdtJettonWallet: address,\n    queryId: uint64,\n    usdtAmount: coins,\n    recipient: address,\n) {\n    val transferMsg = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: usdtJettonWallet,\n        value: 0,\n        body: AskToTransfer {\n            queryId,\n            jettonAmount: usdtAmount,\n            transferRecipient: recipient,\n            sendExcessesTo: recipient,\n            customPayload: null,\n            forwardTonAmount: 0,\n            forwardPayload: emptyForwardPayload(),\n        },\n    });\n    transferMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\ntype BounceOpToMinter = InternalTransferStep | AskToTransfer\n\nfun onBouncedMessage(in: InMessageBounced) {\n    in.bouncedBody.skipBouncedPrefix();\n\n    val msg = lazy BounceOpToMinter.fromSlice(in.bouncedBody);\n    match (msg) {\n        InternalTransferStep => {\n            var storage = lazy MinterStorage.load();\n            storage.totalSupply -= msg.jettonAmount;\n            storage.save();\n        }\n        AskToTransfer => {}\n    }\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToMinter.fromSlice(in.body);\n\n    match (msg) {\n        TransferNotificationForRecipient => {\n            var storage = lazy MinterStorage.load();\n            assert (storage.usdtJettonWallet != null) throw ERR_USDT_WALLET_NOT_SET;\n            assert (in.senderAddress == storage.usdtJettonWallet!) throw ERR_NOT_FROM_USDT_WALLET;\n\n            if (msg.transferInitiator == null) {\n                return;\n            }\n            val depositor = msg.transferInitiator!;\n            val usdtAmount = msg.jettonAmount;\n            val xtrAmount = mulDivFloor(usdtAmount, ONE_XTR, USDT_UNITS_PER_XTR);\n\n            if ((xtrAmount == 0) | (in.valueCoins < MINT_GAS_REQUIRED)) {\n                sendUsdtFromReserve(storage.usdtJettonWallet!, msg.queryId, usdtAmount, depositor);\n                return;\n            }\n\n            storage.totalSupply += xtrAmount;\n            storage.save();\n\n            val mintMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                dest: calcDeployedJettonWallet(\n                    depositor,\n                    contract.getAddress(),\n                    storage.jettonWalletCode\n                ),\n                value: 0,\n                body: InternalTransferStep {\n                    queryId: msg.queryId,\n                    jettonAmount: xtrAmount,\n                    transferInitiator: null,\n                    sendExcessesTo: depositor,\n                    forwardTonAmount: 0,\n                    forwardPayload: emptyForwardPayload(),\n                },\n            });\n            mintMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        BurnNotificationForMinter => {\n            var storage = lazy MinterStorage.load();\n            assert (\n                in.senderAddress ==\n                calcAddressOfJettonWallet(\n                    msg.burnInitiator,\n                    contract.getAddress(),\n                    storage.jettonWalletCode\n                )\n            ) throw ERR_UNAUTHORIZED_BURN;\n            assert (storage.usdtJettonWallet != null) throw ERR_USDT_WALLET_NOT_SET;\n\n            val usdtAmount = mulDivFloor(msg.jettonAmount, USDT_UNITS_PER_XTR, ONE_XTR);\n            assert (usdtAmount > 0) throw ERR_BURN_PAYOUT_TOO_SMALL;\n            assert (in.valueCoins >= BURN_PAYOUT_GAS_REQUIRED) throw ERR_NOT_ENOUGH_TON;\n\n            storage.totalSupply -= msg.jettonAmount;\n            storage.save();\n\n            val excessesTo = msg.sendExcessesTo != null ? msg.sendExcessesTo! : msg.burnInitiator;\n            val payoutMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                dest: storage.usdtJettonWallet!,\n                value: 0,\n                body: AskToTransfer {\n                    queryId: msg.queryId,\n                    jettonAmount: usdtAmount,\n                    transferRecipient: msg.burnInitiator,\n                    sendExcessesTo: excessesTo,\n                    customPayload: null,\n                    forwardTonAmount: 0,\n                    forwardPayload: emptyForwardPayload(),\n                },\n            });\n            payoutMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        RequestWalletAddress => {\n            assert (\n                in.valueCoins > in.originalForwardFee + MINIMAL_MESSAGE_VALUE_BOUND\n            ) throw ERR_NOT_ENOUGH_AMOUNT_TO_RESPOND;\n\n            var respondOwnerAddress: Cell<address>? = msg.includeOwnerAddress\n                ? msg.ownerAddress.toCell()\n                : null;\n\n            var walletAddress: address? = null;\n            if (msg.ownerAddress.getWorkchain() == BASECHAIN) {\n                var storage = lazy MinterStorage.load();\n                walletAddress = calcAddressOfJettonWallet(\n                    msg.ownerAddress,\n                    contract.getAddress(),\n                    storage.jettonWalletCode\n                );\n            }\n\n            val respondMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                dest: in.senderAddress,\n                value: 0,\n                body: ResponseWalletAddress {\n                    queryId: msg.queryId,\n                    jettonWalletAddress: walletAddress,\n                    ownerAddress: respondOwnerAddress,\n                },\n            });\n            respondMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        SetUsdtWallet => {\n            var storage = lazy MinterStorage.load();\n            assert (in.senderAddress == storage.adminAddress) throw ERR_NOT_FROM_ADMIN;\n            assert (storage.usdtJettonWallet == null) throw ERR_USDT_WALLET_ALREADY_SET;\n            storage.usdtJettonWallet = msg.usdtJettonWallet;\n            storage.save();\n        }\n\n        ChangeMinterAdmin => {\n            var storage = lazy MinterStorage.load();\n            assert (in.senderAddress == storage.adminAddress) throw ERR_NOT_FROM_ADMIN;\n            storage.adminAddress = msg.newAdminAddress;\n            storage.save();\n        }\n\n        ChangeMinterContent => {\n            var storage = lazy MinterStorage.load();\n            assert (in.senderAddress == storage.adminAddress) throw ERR_NOT_FROM_ADMIN;\n            storage.content = msg.newContent;\n            storage.save();\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw 0xFFFF;\n        }\n    }\n}\n\nstruct JettonDataReply {\n    totalSupply: int\n    mintable: bool\n    adminAddress: address\n    jettonContent: cell\n    jettonWalletCode: cell\n}\n\nget fun get_jetton_data(): JettonDataReply {\n    val storage = lazy MinterStorage.load();\n\n    return {\n        totalSupply: storage.totalSupply,\n        mintable: true, // mintable, but only via USDT deposits\n        adminAddress: storage.adminAddress,\n        jettonContent: storage.content,\n        jettonWalletCode: storage.jettonWalletCode,\n    };\n}\n\nget fun get_wallet_address(ownerAddress: address): address {\n    val storage = lazy MinterStorage.load();\n    return calcAddressOfJettonWallet(ownerAddress, contract.getAddress(), storage.jettonWalletCode);\n}\n\nstruct StablecoinDataReply {\n    usdtJettonMaster: address\n    usdtJettonWallet: address?\n    usdtUnitsPerXtr: int\n}\n\nget fun get_stablecoin_data(): StablecoinDataReply {\n    val storage = lazy MinterStorage.load();\n\n    return {\n        usdtJettonMaster: storage.usdtJettonMaster,\n        usdtJettonWallet: storage.usdtJettonWallet,\n        usdtUnitsPerXtr: USDT_UNITS_PER_XTR,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/constants.tolk",
+      "contents": "const ONE_XTR = 1000000000\nconst USDT_UNITS_PER_XTR = 15000\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/errors.tolk",
+      "contents": "const ERR_INVALID_OP = 709\r\nconst ERR_NOT_FROM_ADMIN = 73\r\nconst ERR_UNAUTHORIZED_BURN = 74\r\nconst ERR_NOT_ENOUGH_AMOUNT_TO_RESPOND = 75\r\nconst ERR_NOT_FROM_OWNER = 705\r\nconst ERR_NOT_ENOUGH_TON = 709\r\nconst ERR_NOT_ENOUGH_GAS = 707\r\nconst ERR_INVALID_WALLET = 707\r\nconst ERR_WRONG_WORKCHAIN = 333\r\nconst ERR_NOT_ENOUGH_BALANCE = 706\r\nconst ERR_INVALID_PAYLOAD = 708\r\nconst ERR_NOT_FROM_USDT_WALLET = 76\r\nconst ERR_USDT_WALLET_NOT_SET = 77\r\nconst ERR_USDT_WALLET_ALREADY_SET = 78\r\nconst ERR_BURN_PAYOUT_TOO_SMALL = 79\r\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/fees_management.tolk",
+      "contents": "const MINIMAL_MESSAGE_VALUE_BOUND = ton(\"0.01\")\n\nconst MIN_TONS_FOR_STORAGE = ton(\"0.01\")\n\nconst JETTON_WALLET_GAS_CONSUMPTION = ton(\"0.015\")\n\nconst MINT_GAS_REQUIRED = ton(\"0.03\")\n\nconst BURN_PAYOUT_GAS_REQUIRED = ton(\"0.02\")\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/messages.tolk",
+      "contents": "type ForwardPayloadRemainder = RemainingBitsAndRefs\r\n\r\nstruct (0x0f8a7ea5) AskToTransfer {\r\n    queryId: uint64\r\n    jettonAmount: coins\r\n    transferRecipient: address\r\n    sendExcessesTo: address?\r\n    customPayload: cell?\r\n    forwardTonAmount: coins\r\n    forwardPayload: ForwardPayloadRemainder\r\n}\r\n\r\nstruct (0x7362d09c) TransferNotificationForRecipient {\r\n    queryId: uint64\r\n    jettonAmount: coins\r\n    transferInitiator: address?\r\n    forwardPayload: ForwardPayloadRemainder\r\n}\r\n\r\nstruct (0x178d4519) InternalTransferStep {\r\n    queryId: uint64\r\n    jettonAmount: coins\r\n    transferInitiator: address?\r\n    sendExcessesTo: address?\r\n    forwardTonAmount: coins\r\n    forwardPayload: ForwardPayloadRemainder\r\n}\r\n\r\nstruct (0xd53276db) ReturnExcessesBack {\r\n    queryId: uint64\r\n}\r\n\r\nstruct (0x595f07bc) AskToBurn {\r\n    queryId: uint64\r\n    jettonAmount: coins\r\n    sendExcessesTo: address?\r\n    customPayload: cell?\r\n}\r\n\r\nstruct (0x7bdd97de) BurnNotificationForMinter {\r\n    queryId: uint64\r\n    jettonAmount: coins\r\n    burnInitiator: address\r\n    sendExcessesTo: address?\r\n}\r\n\r\nstruct (0x2c76b973) RequestWalletAddress {\r\n    queryId: uint64\r\n    ownerAddress: address\r\n    includeOwnerAddress: bool\r\n}\r\n\r\nstruct (0xd1735400) ResponseWalletAddress {\r\n    queryId: uint64\r\n    jettonWalletAddress: address?\r\n    ownerAddress: Cell<address>?\r\n}\r\n\r\nstruct (0x00000005) SetUsdtWallet {\r\n    queryId: uint64\r\n    usdtJettonWallet: address\r\n}\r\n\r\nstruct (0x00000003) ChangeMinterAdmin {\r\n    queryId: uint64\r\n    newAdminAddress: address\r\n}\r\n\r\nstruct (0x00000004) ChangeMinterContent {\r\n    queryId: uint64\r\n    newContent: cell\r\n}\r\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/storage.tolk",
+      "contents": "struct WalletStorage {\r\n    jettonBalance: coins\r\n    ownerAddress: address\r\n    minterAddress: address\r\n}\r\n\r\nstruct MinterStorage {\r\n    totalSupply: coins\r\n    adminAddress: address\r\n    content: cell\r\n    jettonWalletCode: cell\r\n    usdtJettonMaster: address\r\n    usdtJettonWallet: address?\r\n}\r\n\r\nfun MinterStorage.load() {\r\n    return MinterStorage.fromCell(contract.getData());\r\n}\r\n\r\nfun MinterStorage.save(self) {\r\n    contract.setData(self.toCell());\r\n}\r\n\r\nfun WalletStorage.load() {\r\n    return WalletStorage.fromCell(contract.getData());\r\n}\r\n\r\nfun WalletStorage.save(self) {\r\n    contract.setData(self.toCell());\r\n}\r\n"
+    },
+    {
+      "filename": "tmp/86157454-f17b-4eec-9c64-df9b502a1881/shared/utils.tolk",
+      "contents": "import \"storage\"\r\n\r\nfun calcDeployedJettonWallet(ownerAddress: address, minterAddress: address, jettonWalletCode: cell): AutoDeployAddress {\r\n    val emptyWalletStorage: WalletStorage = {\r\n        jettonBalance: 0,\r\n        ownerAddress,\r\n        minterAddress,\r\n    };\r\n\r\n    return { stateInit: { code: jettonWalletCode, data: emptyWalletStorage.toCell() } };\r\n}\r\n\r\nfun calcAddressOfJettonWallet(ownerAddress: address, minterAddress: address, jettonWalletCode: cell) {\r\n    val jwDeployed = calcDeployedJettonWallet(ownerAddress, minterAddress, jettonWalletCode);\r\n    return jwDeployed.calculateAddress();\r\n}\r\n"
+    }
+  ]
+}
