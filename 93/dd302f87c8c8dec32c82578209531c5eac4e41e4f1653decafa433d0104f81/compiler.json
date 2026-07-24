@@ -1,0 +1,4742 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from ClaimableNftCollection.tolk, errors.tolk, fees-management.tolk, messages.tolk, types.tolk\nPROGRAM{\n  DECLPROC StringBuilder.appendInt()\n  DECLPROC StringBuilder.build()\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC onBouncedMessage()\n  102491 DECLMETHOD get_collection_data()\n  92067 DECLMETHOD get_nft_address_by_index()\n  68445 DECLMETHOD get_nft_content()\n  85719 DECLMETHOD royalty_params()\n  113817 DECLMETHOD get_claim_config()\n  125755 DECLMETHOD get_claimed_item_index()\n  99217 DECLMETHOD is_nonce_used()\n  103527 DECLMETHOD is_claim_retryable()\n  69961 DECLMETHOD get_max_collection_supply()\n  // 13 functions inlined in-place:\n  // - StringBuilder.create (2 calls)\n  // - StringBuilder.append (3 calls)\n  // - ClaimableCollectionStorage.load (21 calls)\n  // - ClaimableCollectionStorage.save (10 calls)\n  // - calcPersonalVault (1 call)\n  // - calcDeployedNftItem (4 calls)\n  // - requireOwner (7 calls)\n  // - requireBasechainAddress (5 calls)\n  // - requireValidMaxSupply (2 calls)\n  // - deployNftItem (1 call)\n  // - createIndividualContent (1 call)\n  // - MapLookupResult<FailedClaimRecord>.loadValue (1 call)\n  // - MapLookupResult<uint64>.loadValue (5 calls)\n  StringBuilder.appendInt() PROCREF:<{\n    NEWC\n    SWAP                      // b x\n    DUP                       // b x x\n    ISNEG\n    IF:<{                     // if x<0\n      SWAP                    // x b\n      x{2D} STSLICECONST      // store '-' = 45 = 0x2D\n      SWAP                    // b x\n      NEGATE                  // b |x|\n    }>\n    // now: b x (x is always >= 0)\n    0 PUSHINT                 // b x i=0\n    SWAP                      // b i=0 x\n    UNTIL:<{                  // loop: extract digits from x, push them under builder\n      10 PUSHINT DIVMOD       // b i x/10 x%10\n      48 ADDCONST             // b i x digit (digit = '0' + remainder)\n      s3 s1 s3 XCHG3          // digit b x i (digit goes under builder)\n      INC                     // digit b x i+1\n      s1 s0 XCPU              // digit b i x x (copy x to check if zero)\n      ISZERO                  // exit when x == 0\n    }>\n    DROP                      // remove x (now 0)\n    // stack: d1 d2 ... dN b i (digits in correct order, oldest at bottom)\n    REPEAT:<{ 8 STU }>        // store i digits (8 bits each) into builder\n    ENDC                      // finalize cell\n    TPUSH\n  }>\n  StringBuilder.build() PROCREF:<{\n    DUP\n    LAST\n    OVER\n    TLEN\n    DEC\n    DUP\n    REPEAT:<{\n      DEC\n      s2 s0 PUSH2\n      INDEXVAR\n      CTOS\n      DUP\n      SDEPTH\n      IF:<{\n        0 TUPLE\n        OVER\n        SDEPTH\n        REPEAT:<{\n          SWAP\n          LDREF\n          SWAP\n          CTOS\n          -ROT\n          TPUSH\n        }>\n        SWAP\n        TPUSH\n        DUP\n        TLEN\n        DEC\n        DUP\n        REPEAT:<{\n          2DUP\n          INDEXVAR\n          NEWC\n          STSLICE\n          s1 s4 XCHG\n          STREF\n          ENDC\n          s0 s3 XCHG\n          DEC\n        }>\n        DROP\n        FIRST\n      }>\n      NEWC\n      STSLICE\n      s1 s2 XCHG\n      STREF\n      ENDC\n      SWAP\n    }>\n    DROP\n    NIP\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      onBouncedMessage() CALLDICT\n    }>\n    DUP\n    x{6d1e7851} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      s2 PUSH\n      CTOS\n      s2 PUSH\n      CTOS\n      s0 s7 XCHG\n      64 LDU\n      LDREF\n      9 PUSHPOW2\n      PLDSLICEX\n      OVER\n      CTOS\n      x{41504556} SDBEGINSQ\n      63 THROWIFNOT\n      256 LDU\n      LDSTDADDR\n      64 LDU\n      LDSTDADDR\n      32 LDU\n      PLDREF\n      CTOS\n      s0 s10 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 s2 PUSH2\n      64 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      s7 s2 PUSH2\n      64 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      s2 PUSH\n      IF:<{\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      s0 s15 XCHG\n      64 LDU\n      256 LDU\n      LDREF\n      NIP\n      LDREF\n      NIP\n      PLDREF\n      s2 PUSH\n      0 GTINT\n      IF:<{\n        s2 PUSH\n        8000 PUSHINT\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      724 THROWIFNOT\n      s0 23 s() XCHG\n      LDGRAMS\n      1 LDI\n      1 LDU\n      NIP\n      LDSTDADDR\n      256 PLDU\n      s0 s2 XCHG\n      711 THROWIF\n      19 s() PUSH\n      70000000 PUSHINT\n      s4 PUSH\n      CONDSEL\n      INMSG_VALUE\n      OVER\n      GEQ\n      709 THROWIFNOT\n      s3 PUSH\n      150000000 PUSHINT\n      GEQ\n      710 THROWIFNOT\n      20 s() PUSH\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        24 s() PUSH\n        s6 PUSH\n        LESS\n        0 NEQINT\n      }>\n      712 THROWIFNOT\n      s14 PUSH\n      0 GTINT\n      720 THROWIFNOT\n      s14 s5 PUXC\n      LEQ\n      723 THROWIFNOT\n      s12 PUSH\n      REWRITESTDADDR\n      DROP\n      406 THROWIF\n      INMSG_SRC\n      s13 PUSH\n      SDEQ\n      713 THROWIFNOT\n      MYADDR\n      s1 s15 XCHG\n      SDEQ\n      714 THROWIFNOT\n      s14 s2 XCHG2\n      EQUAL\n      715 THROWIFNOT\n      s0 s8 XCHG\n      NOW\n      GEQ\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s15 PUSH\n        0 NEQINT\n      }>\n      716 THROWIFNOT\n      s15 PUSH\n      IF:<{\n        s7 POP\n        s11 POP\n        s11 POP\n        -1 PUSHINT\n      }>ELSE<{\n        s0 s13 XCHG\n        HASHCU\n        s0 s12 s7 XCHG3\n        CHKSIGNU\n        0 NEQINT\n        s5 s11 XCHG\n      }>\n      717 THROWIFNOT\n      s0 s13 XCHG\n      256 PLDU\n      s12 PUSH\n      IF:<{\n        s10 POP\n        s0 s8 XCHG\n        64 LDU\n        256 LDU\n        LDSTDADDR\n        ENDS\n        s0 s14 XCHG\n        64 LDU\n        ENDS\n        s2 PUSH\n        EQUAL\n        718 THROWIFNOT\n        s10 PUSH\n        EQUAL\n        719 THROWIFNOT\n        s12 s4 XCPU\n        SDEQ\n        713 THROWIFNOT\n        s8 s0 PUSH2\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        IF:<{\n          64 LDU\n          ENDS\n          s5 PUSH\n          EQUAL\n          0 NEQINT\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        719 THROWIFNOT\n        s4 s7 PUXC\n        64 PUSHINT\n        DICTUDEL\n        DROP\n      }>ELSE<{\n        s9 POP\n        s12 POP\n        s0 s8 XCHG\n        718 THROWIF\n        s6 s7 PUSH2\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        NIP\n        719 THROWIF\n        s13 s13 PUSH2\n        NEWC\n        64 STU\n        s0 s5 s2 XCPUXC\n        64 PUSHINT\n        DICTUSETB\n        s4 PUSH\n        NEWC\n        64 STU\n        s0 s8 s9 XCPUXC\n        8 PUSHPOW2\n        DICTUSETB\n        s0 s14 XCHG\n        INC\n        s0 s14 XCHG\n        s0 s7 XCHG\n        s8 s8 XCHG2\n        s0 s11 XCHG\n      }>\n      SWAP\n      NEWC\n      STOPTREF\n      s1 s7 XCHG\n      STOPTREF\n      s1 s6 XCHG\n      STOPTREF\n      ENDC\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s1 s12 XCHG\n      64 STU\n      s1 s10 XCHG\n      STREF\n      s1 s8 XCHG\n      STREF\n      s1 s10 XCHG\n      STREF\n      ENDC\n      c4 POP\n      100000000 PUSHINT\n      16 PUSHINT\n      RAWRESERVE\n      0 TUPLE\n      s7 PUSH\n      StringBuilder.appendInt() INLINECALLDICT\n      <b x{2e6a736f6e} s, b> PUSHREF\n      TPUSH\n      StringBuilder.build() INLINECALLDICT\n      s0 s7 XCHG\n      NEWC\n      64 STU\n      s1 s2 XCHG\n      256 STU\n      s4 PUSH\n      64 STUR\n      s7 s(-1) PUXC\n      STSTDADDR\n      ENDC\n      PUSHNULL\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STREF\n      s1 s6 XCHG\n      STREF\n      0 PUSHINT\n      64 STUR\n      s1 s6 XCHG\n      STOPTREF\n      ENDC\n      MYADDR\n      s0 s3 XCHG\n      NEWC\n      64 STU\n      s1 s3 XCHG\n      STSTDADDR\n      ENDC\n      80000000 PUSHINT\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s9 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      SWAP\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      141 PUSHINT\n      108 STUR\n      s1 s8 XCHG\n      STREF\n      s1 s7 XCHG\n      STREF\n      STREF\n      ENDC\n      16 PUSHINT\n      SENDRAWMSG\n      s4 PUSH\n      IF:<{\n        s3 POP\n        0 PUSHINT\n      }>ELSE<{\n        s0 s3 XCHG\n        80000000 PUSHINT\n        SUB\n        70000000 PUSHINT\n        SUB\n      }>\n      s0 s4 XCHG\n      NOT\n      IF:<{\n        s3 PUSH\n        0 GTINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2 2 BLKDROP2\n      }>\n      INMSG_VALUE\n      SUBR\n      DUP\n      0 GTINT\n      IF:<{\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        SWAP\n        STGRAMS\n        3576854235 PUSHINT\n        139 STUR\n        64 STU\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    x{693d3950} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      PLDREF\n      CTOS\n      SWAP\n      64 PLDU\n      SWAP\n      320 PUSHINT\n      SDSKIPFIRST\n      LDSTDADDR\n      DROP\n      INMSG_SRC\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      2831876269 PUSHINT\n      143 STUR\n      s1 s2 XCHG\n      64 STU\n      x{00050064} STSLICECONST\n      STSTDADDR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4d8d2f40} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      DUP\n      150000000 PUSHINT\n      GEQ\n      710 THROWIFNOT\n      SWAP\n      CTOS\n      LDGRAMS\n      NIP\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      NEWC\n      s0 s6 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      1 STI\n      s1 s2 XCHG\n      1 STI\n      STSTDADDR\n      256 STU\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{65c0e6f7} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      NIP\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      s0 s9 XCHG\n      64 LDU\n      NIP\n      1 PLDI\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      1 STI\n      s1 s2 XCHG\n      1 STI\n      STSTDADDR\n      256 STU\n      s1 s5 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{65f2ec04} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      NIP\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      s0 s9 XCHG\n      64 LDU\n      NIP\n      1 PLDI\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      1 STI\n      s1 s3 XCHG\n      1 STI\n      s1 s2 XCHG\n      STSTDADDR\n      256 STU\n      s1 s5 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{21a196a4} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      DUP\n      REWRITESTDADDR\n      DROP\n      406 THROWIF\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      NIP\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      1 STI\n      1 STI\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      256 STU\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{7f6a5c45} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      NIP\n      LDOPTSTDADDR\n      ENDS\n      s0 s9 XCHG\n      64 LDU\n      NIP\n      256 PLDU\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      1 STI\n      1 STI\n      STSTDADDR\n      256 STU\n      s1 s5 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{2c655d8e} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      s0 s5 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      DUP\n      REWRITESTDADDR\n      DROP\n      406 THROWIF\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      NIP\n      ENDS\n      NEWC\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      1 STI\n      1 STI\n      STSTDADDR\n      256 STU\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      64 STU\n      STREF\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{79f2d8ac} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      DUP\n      ISNULL\n      721 THROWIF\n      INMSG_SRC\n      SDEQ\n      403 THROWIFNOT\n      INMSG_SRC\n      PUSHNULL\n      NEWC\n      s0 s7 XCHG2\n      STGRAMS\n      s1 s5 XCHG\n      1 STI\n      s1 s3 XCHG\n      1 STI\n      STSTDADDR\n      256 STU\n      s1 s2 XCHG\n      STOPTSTDADDR\n      ENDC\n      SWAP\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      64 STU\n      s1 s2 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{19df9f21} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      64 LDU\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      INMSG_SRC\n      s5 PUSH\n      SDEQ\n      401 THROWIFNOT\n      SWAP\n      CTOS\n      LDGRAMS\n      1 LDI\n      1 LDI\n      LDSTDADDR\n      256 LDU\n      LDOPTSTDADDR\n      NIP\n      ENDS\n      PUSHNULL\n      NEWC\n      s0 s6 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      1 STI\n      s1 s2 XCHG\n      1 STI\n      STSTDADDR\n      256 STU\n      STOPTSTDADDR\n      ENDC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      64 STU\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{54524151} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      64 LDU\n      LDREF\n      PLDREF\n      SWAP\n      CTOS\n      SWAP\n      CTOS\n      s0 s3 XCHG\n      64 LDU\n      64 LDU\n      LDSTDADDR\n      LDSTDADDR\n      DROP\n      s0 s4 XCHG\n      LDREF\n      NIP\n      LDREF\n      NIP\n      LDREF\n      PLDREF\n      MYADDR\n      s4 PUSH\n      NEWC\n      64 STU\n      STSTDADDR\n      ENDC\n      ROT\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      INMSG_SRC\n      SDEQ\n      714 THROWIFNOT\n      s2 s5 XCHG2\n      LESS\n      714 THROWIFNOT\n      DUP\n      REWRITESTDADDR\n      DROP\n      406 THROWIF\n      s2 PUSH\n      REWRITESTDADDR\n      DROP\n      406 THROWIF\n      TRUE\n      s0 s5 XCHG\n      LDGRAMS\n      NIP\n      1 LDU\n      NIP\n      1 PLDI\n      IF:<{\n        s4 POP\n        s0 s3 XCHG\n        NEWC\n        STSTDADDR\n        ENDC\n        ROT\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        NEWC\n        b{10000000000} STSLICECONST\n        256 STU\n        BTOS\n        SDEQ\n        SWAP\n      }>ELSE<{\n        s1 s3 XCHG\n        3 BLKDROP\n      }>\n      INMSG_VALUE\n      20000000 PUSHINT\n      GREATER\n      709 THROWIFNOT\n      INMSG_VALUE\n      20000000 PUSHINT\n      SUB\n      INMSG_SRC\n      NEWC\n      b{011000} STSLICECONST\n      STSTDADDR\n      SWAP\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1414676818 PUSHINT\n      134 STUR\n      64 STU\n      1 STI\n      ENDC\n      16 PUSHINT\n      SENDRAWMSG\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    64 LDU\n    256 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    DUP\n    0 GTINT\n    IF:<{\n      DUP\n      8000 PUSHINT\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    724 THROWIFNOT\n    LEQ\n    724 THROWIFNOT\n  }>\n  onBouncedMessage() PROC:<{\n    x{fffffffe} SDBEGINSQ\n    63 THROWIFNOT\n    PLDREF\n    DUP\n    CTOS\n    DUP\n    SBITREFS\n    SWAP\n    97 EQINT\n    IF:<{\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IF:<{\n      32 PLDU\n      1414676818 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      DROP\n    }>\n    CTOS\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    64 LDU\n    LDREF\n    LDREF\n    LDREF\n    ENDS\n    s2 PUSH\n    CTOS\n    64 LDU\n    NIP\n    256 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    s0 s6 XCHG\n    64 LDU\n    256 LDU\n    64 LDU\n    LDSTDADDR\n    DROP\n    MYADDR\n    s2 PUSH\n    NEWC\n    64 STU\n    STSTDADDR\n    ENDC\n    s0 s10 XCHG2\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    INMSG_SRC\n    SDEQ\n    714 THROWIFNOT\n    s0 s3 XCHG\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s4 s2 PUSH2\n    64 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    s5 s3 PUSH2\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    s0 s2 XCHG\n    IF:<{\n      s0 s2 XCHG\n      64 LDU\n      ENDS\n      s8 PUSH\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      0 PUSHINT\n    }>\n    718 THROWIFNOT\n    IF:<{\n      64 LDU\n      ENDS\n      s5 PUSH\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    719 THROWIFNOT\n    s0 s5 XCHG\n    NEWC\n    64 STU\n    s1 s3 XCHG\n    256 STU\n    s1 s9 XCHG\n    STSTDADDR\n    s0 s0 s3 XCHG3\n    64 PUSHINT\n    DICTUSETB\n    s0 s6 XCHG\n    NEWC\n    STOPTREF\n    STOPTREF\n    s1 s5 XCHG\n    STOPTREF\n    ENDC\n    s0 s3 XCHG\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    64 STU\n    STREF\n    s1 s2 XCHG\n    STREF\n    STREF\n    ENDC\n    c4 POP\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    64 LDU\n    PLDREF\n    CTOS\n    PLDREF\n    ROT\n  }>\n  get_nft_address_by_index() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    64 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_nft_content() PROC:<{\n    NIP\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    0 TUPLE\n    SWAP\n    LDREF\n    NIP\n    PLDREF\n    TPUSH\n    SWAP\n    TPUSH\n    StringBuilder.build() INLINECALLDICT\n    NEWC\n    x{01} STSLICECONST\n    STREF\n    ENDC\n  }>\n  royalty_params() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    CTOS\n    320 PUSHINT\n    SDSKIPFIRST\n    LDSTDADDR\n    DROP\n    5 PUSHINT\n    100 PUSHINT\n    ROT\n  }>\n  get_claim_config() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    64 LDU\n    LDREF\n    PLDREF\n    SWAP\n    CTOS\n    SWAP\n    CTOS\n    SWAP\n    64 LDU\n    256 LDU\n    LDSTDADDR\n    DROP\n    s0 s3 XCHG\n    LDGRAMS\n    1 LDI\n    1 LDI\n    LDSTDADDR\n    256 LDU\n    LDOPTSTDADDR\n    DROP\n    s0 s9 XCHG\n    s0 s8 XCHG\n    s5 s6 XCHG\n    150000000 PUSHINT\n    s6 s6 XCHG2\n  }>\n  get_claimed_item_index() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    64 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      FALSE\n      0 PUSHINT\n    }>\n    TRUE\n    SWAP\n    64 LDU\n    ENDS\n  }>\n  is_nonce_used() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    NIP\n  }>\n  is_claim_retryable() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    64 LDU\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    ENDS\n    64 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    NIP\n  }>\n  get_max_collection_supply() PROC:<{\n    8000 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECLAEACVoAART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAbHATRT4kZLwA+Ag1ywjaPPCjOMC1ywjSenKhI41Me1E0NdM0AHXCz8BgQFA1yH6SDD4ksjPhQj6UoIQqMsArc8LjhLLP8+QABQBkvpSyYBA+wDg1ywibGl6BOMC1ywjLgc3vOMC1ywjL5dgJIBgcICQH1XXLCf////08r/XTCDQINdLAcBhlMAAwwCSMHDinNcLH4IQVFJBUrrDAJIwcOKRMODQ1DHXTNDtRND6SNM/1NTU0SLQ0z8x0/8x+kgx1DHUMdTUMdEG0z/T/9M/+kgw+CgiyMs/+lLJUArIz4TQzMz5FsjPigBAy//PUIGgH+Me1E0PpI0z/U1NTRItAi0AfTP9SDCNcZIdDXLCIKgiq08r/T//pI0z/6SNMf10zQCtD0BPQE9ATRU1KAQPQOb6FTcoBA9A5voSKSwwCSMHDiD9M/0//UMdQx10wiwgCXIoEfQLvDAJFw4vLi1BEX+gDSANMAMfpI1wv/AvLSxwoAqjHtRND6SNM/1NTU0fiSJccF8uGRBdM/MfoAMCCCEAjw0YC+8uLGAdD6ADHSANIA+kjT//pQ0chQBvoCFMoAEsoA+lLL//pUyQPI+lISyz/MzMzJ7VQAljHtRND6SNM/1NTU0fiSJccF8uGRAdD6ANIAMdIA+kjT//pQ0QnTPzHXCgDIUAX6AhTKABLKAPpSy/8V+lTJA8j6UhLLP8zMzMntVATijkwx7UTQ+kjTP9TU1NH4kiXHBfLhkQHQ+gDSANIAMfpI0//6UNEJ0z8x1woAyFAF+gITygATygAS+lLL/xX6VMkDyPpSEss/zMzMye1U4NcsIQ0MtSTjAtcsI/tS4izjAtcsIWMq7HTjAtcsI8+WxWQQERITAfxWE4IQBCwdgCTjBPiXIb7y4sUjghAI8NGAvvLixlYUkX+WVhgmucMA4vLiyC7CAPLi0FLmu/Li0yz6RDDy0Zb4ki3HBfLiyfgoH8cF8uLKUOK68uLLCPgjvpF/ky/DAOLy4swvlDc7O3+bDfkAQMf5EMMAEFvi8uLNDdcL/ywLAfyOPDoI0z/T//pI0Q7TP9EiuvLiziq68uLPUcTHBfLiyVOAgwf0Dm+hl9M/0SW6wwCSMHDi8uLPUkiAQPRbMI4wOTwI8tLOU2eDB/QOb6Ex8tLPU93Iyz9UIFOAQPRDJMjLP1QgioMH9EMOpA4HUIgL4gHI9AAX9AAW9ADJDcgMBPz6UhzLPxrMGMwazMntVIIQBfXhAIAQ+wJvACfbPIhvjNs8B8jLPxLL/yTPCz9ScPpSyW0IyPpSF8wWzHDPCz8W9ADJ+CgDyMs/E/pSyYIQBMS0AMjPiYgBUynIz4TQzMz5Fs8L/wH6As+Bc/oCgQCNzwtrGMwXzMzJgBD7ACQNDiEPAErIASDBAJYBz4S2AaPecAGceqkMpjBDE6RREMAA5jCSywfkyW+MAAouanNvbgC6kjNwnwOCEATEtAChghAELB2AoeIEs5UjwgDDAJFw4o4TyM+FCBP6UlAD+gJwzwtqyXD7AJJsIuL4l6IgwgCOGviSyM+FCPpSAfoCghDVMnbbzwuKyz/JcPsAkVviAKQx7UTQ+kjTP9TU1NH4kiXHBfLhkQXTPzH6SDAg+kQw8tGWAdD6ANIA0gD6SDHT//pQ0chQBfoCE8oAygAT+lISy//6VMkDyPpSEss/zMzMye1UAJQx7UTQ+kjTP9TU1NH4kiXHBfLhkQHQ+gDSANIA+kjT/zH6UNEJ0z8x1wv/yFAF+gITygDKAPpSy/8V+lTJA8j6UhLLP8zMzMntVACgMe1E0PpI0z/U1NTR+JIlxwXy4ZEF0z8x+kgwIPpEMPLRlgHQ+gDSANIA+kjT//pQMdHIUAX6AhPKAMoA+lLL//pUyQPI+lISyz/MzMzJ7VQD/I5NW+1E0PpIMdM/1NTU0QHQ+gDSANIA+kjT//pQ0SBu8tLR+JLHBfLhk/iSbchQB/oCFcoAE8oA+lLL/xL6VMkByPpSFMs/EswSzMzJ7VTg1ywgzvz5DOMC1ywiopIKjOMCMIQPAccA8vTtRND6SDHTP9TUMdQx0dDTP9P/MRQVFgCKW+1E0PpI0z/U1NTR+JIlxwXy4ZEB0PoA0gDSAPpI0//6UDHRbchQBvoCFMoAEsoA+lLL//pUyQTI+lITyz/MEszMye1UAv4x7UTQ+kgx0z/U10wB0AHQA9M/0z/6SPpIMATUMdQx1NdM+CgkyMs/+lLJWMjPhNDMzPkWyM+KAEDL/89Q+JLHBfLiylAlufLiyiD6RDDy0ZYi+kQw8tGWfwX6ADHTADHXCgCTE18D4w34l4IJMS0AvPLixfiXggkxLQCh+JLIFxgAQvpIMdQx1DHUMdQx0SDCAJcggR9Au8MAkXDi8uLUu/Li1AA2NAPI+lLJWMjPhNDMzPkWyM+KAEDL/89QxwUBAT6Jzxb6UgH6As+Bc/oCghBUUkFSzwuFyz/KAMmAEPsAGQABYgDQ+JLHBfLiygPQ9AT0BPQE0VNCgED0Dm+hU1ODB/QOb6ECmALTP9EousMAkjJw4vLizpfTP9ElusMAkjBw4vLizwXIyz8Ty/8Z+lJAA4BA9EMGyPQA9AAV9ADJA8j6UhLLP8wSzMzJ7VQCASAdHgIBICQlAgFIHyACASAiIwE7stdMe1E0NdM0G8AAdQx10xvjAFvjNs8yM+EBszJgIQALsFJgR9AgAIggb4shb4ilII43pVMgb4HQINdkjiVvACHXZJcB1AHQWW+M5AFvjCBviKUgmlxvgcjOFMzJA6XkMG8Q3sjOEszJAeQwMQAptdr9qJoa6ZoQICga5D9JBg6wDIsQAFW09H2omhrpmhqGOoY66Z8FAFkZZ+JfSlkgORnwmhmZnyLZGfFACBl/+eoQAgEgJicAV7qzvtRND6SDHTPzHUMdQx1NHQ9AT0BDH0BDHRgED0Dm+hkzBwcOF/AdM/0YAgEgKCkAZbeTPaiaH0kaZ/qa6YA6ADoAOmf6f/9JBgB/QBpAGkAfSRp//0oGASECCtBCAR4aMAoM0ABFsOR7UTQ+kgx0z8x1DHUMdTR0PQEMfQE9AQx0YMH9A5voTGACAUgqKwAeqFvtRND6SNM/10zQ10xYAESoZ+1E0PpIMdM/MdQx1DHU0dD0BDH0BDH0BNGAQPQOb6Ex",
+  "codeHashHex": "93DD302F87C8C8DEC32C82578209531C5EAC4E41E4F1653DECAFA433D0104F81",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/ClaimableNftCollection.tolk",
+        "size_chars": 19262,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/strings.tolk",
+        "size_chars": 7844,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/errors.tolk",
+        "size_chars": 833,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/fees-management.tolk",
+        "size_chars": 2471,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/messages.tolk",
+        "size_chars": 4820,
+        "imports": [
+          6
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/types.tolk",
+        "size_chars": 5287,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToClaimableCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimMint"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimVoucher"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimNonce"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetMintPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetTransferFrozen"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetVoucherSigner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BeginOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestTransferAuthorization"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1830713425,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1765620048,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 1301098304,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1707140855,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 1710418948,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 564237988,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 2137676869,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 744840590,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 2045958316,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 434085665,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 1414676817,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 4
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimableCollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionImmutableConfig"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 32
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMutableConfig"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 35
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimIndexes"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FailedClaimRecord"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 41
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 38
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StringBuilder"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          2,
+          3
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 47
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          11
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          53
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          41
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 31
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemClaimContext"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 57
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingNftTransfer"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 60
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 61
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 59
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 66,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 68,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemStorageNotInitialized"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 71
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 75,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 77,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 80
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          79
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 82,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 144,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          65,
+          15
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 84,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 145,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 64,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          86
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReturnExcessesBack"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          89
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RoyaltyParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          91
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PersonalVaultStorage"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 95
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAuthorization"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          97
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceOriginalMsgInfo"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 100
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceComputePhaseInfo"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 103,
+        "stack_type_id": 146,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 106
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimConfigReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimLookupReply"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 51,
+        "struct_name": "MapLookupResult<uint64>",
+        "monomorphic_fields_ty_idx": [
+          52,
+          5
+        ]
+      },
+      {
+        "ty_idx": 55,
+        "struct_name": "MapLookupResult<FailedClaimRecord>",
+        "monomorphic_fields_ty_idx": [
+          52,
+          5
+        ]
+      },
+      {
+        "ty_idx": 74,
+        "struct_name": "CreateMessageOptions<Cell<NftItemInitAtDeployment>>",
+        "monomorphic_fields_ty_idx": [
+          78,
+          83,
+          85,
+          63
+        ]
+      },
+      {
+        "ty_idx": 88,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          78,
+          83,
+          85,
+          0
+        ]
+      },
+      {
+        "ty_idx": 90,
+        "struct_name": "CreateMessageOptions<ReturnExcessesBack>",
+        "monomorphic_fields_ty_idx": [
+          78,
+          83,
+          85,
+          89
+        ]
+      },
+      {
+        "ty_idx": 94,
+        "struct_name": "CreateMessageOptions<ResponseRoyaltyParams>",
+        "monomorphic_fields_ty_idx": [
+          78,
+          83,
+          85,
+          91
+        ]
+      },
+      {
+        "ty_idx": 98,
+        "struct_name": "CreateMessageOptions<TransferAuthorization>",
+        "monomorphic_fields_ty_idx": [
+          78,
+          83,
+          85,
+          97
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 49,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 52
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 79,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 81
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 68,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 69
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 64,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 65
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 67
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 75,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 76,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 77,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 87,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 78
+          },
+          {
+            "name": "value",
+            "ty_idx": 83
+          },
+          {
+            "name": "dest",
+            "ty_idx": 85
+          },
+          {
+            "name": "body",
+            "ty_idx": 86
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 73,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceBody",
+        "ty_idx": 99,
+        "ident_loc": [
+          0,
+          1955,
+          21,
+          1955,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 4294967294,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "originalBody",
+            "ty_idx": 3
+          },
+          {
+            "name": "originalInfo",
+            "ty_idx": 101
+          },
+          {
+            "name": "bouncedByPhase",
+            "ty_idx": 102
+          },
+          {
+            "name": "exitCode",
+            "ty_idx": 8
+          },
+          {
+            "name": "computePhase",
+            "ty_idx": 104
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceComputePhaseInfo",
+        "ty_idx": 103,
+        "ident_loc": [
+          0,
+          1964,
+          8,
+          1964,
+          34
+        ],
+        "fields": [
+          {
+            "name": "gasUsed",
+            "ty_idx": 9
+          },
+          {
+            "name": "vmSteps",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceOriginalMsgInfo",
+        "ty_idx": 100,
+        "ident_loc": [
+          0,
+          1975,
+          8,
+          1975,
+          33
+        ],
+        "fields": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "valueExtra",
+            "ty_idx": 79
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToClaimableCollection",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          15,
+          6,
+          15,
+          41
+        ],
+        "target_ty_idx": 30
+      },
+      {
+        "kind": "struct",
+        "name": "StringBuilder",
+        "ty_idx": 44,
+        "ident_loc": [
+          2,
+          107,
+          8,
+          107,
+          21
+        ],
+        "fields": [
+          {
+            "name": "chunks",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 59,
+        "ident_loc": [
+          5,
+          4,
+          8,
+          4,
+          31
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 33
+          },
+          {
+            "name": "claimContext",
+            "ty_idx": 58
+          },
+          {
+            "name": "nextTransferNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "pendingTransfer",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemClaimContext",
+        "ty_idx": 57,
+        "ident_loc": [
+          5,
+          13,
+          8,
+          13,
+          24
+        ],
+        "fields": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 15
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestRoyaltyParams",
+        "ty_idx": 20,
+        "ident_loc": [
+          5,
+          21,
+          21,
+          21,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1765620048,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseRoyaltyParams",
+        "ty_idx": 91,
+        "ident_loc": [
+          5,
+          25,
+          21,
+          25,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 2831876269,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "royaltyParams",
+            "ty_idx": 92
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimVoucher",
+        "ty_idx": 14,
+        "ident_loc": [
+          5,
+          35,
+          21,
+          35,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1095779670,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "voucherDomain",
+            "ty_idx": 15
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "serial",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimNonce",
+        "ty_idx": 16,
+        "ident_loc": [
+          5,
+          46,
+          8,
+          46,
+          18
+        ],
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimMint",
+        "ty_idx": 13,
+        "ident_loc": [
+          5,
+          52,
+          21,
+          52,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1830713425,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "voucher",
+            "ty_idx": 18
+          },
+          {
+            "name": "signature",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetMintPrice",
+        "ty_idx": 21,
+        "ident_loc": [
+          5,
+          76,
+          21,
+          76,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1301098304,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPaused",
+        "ty_idx": 22,
+        "ident_loc": [
+          5,
+          81,
+          21,
+          81,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1707140855,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetTransferFrozen",
+        "ty_idx": 23,
+        "ident_loc": [
+          5,
+          89,
+          21,
+          89,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1710418948,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetTreasury",
+        "ty_idx": 24,
+        "ident_loc": [
+          5,
+          94,
+          21,
+          94,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 564237988,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetVoucherSigner",
+        "ty_idx": 25,
+        "ident_loc": [
+          5,
+          99,
+          21,
+          99,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 2137676869,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "signerPublicKey",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BeginOwnerTransfer",
+        "ty_idx": 26,
+        "ident_loc": [
+          5,
+          104,
+          21,
+          104,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 744840590,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptOwnerTransfer",
+        "ty_idx": 27,
+        "ident_loc": [
+          5,
+          109,
+          21,
+          109,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 2045958316,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOwnerTransfer",
+        "ty_idx": 28,
+        "ident_loc": [
+          5,
+          113,
+          21,
+          113,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 434085665,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReturnExcessesBack",
+        "ty_idx": 89,
+        "ident_loc": [
+          5,
+          143,
+          21,
+          143,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestTransferAuthorization",
+        "ty_idx": 29,
+        "ident_loc": [
+          5,
+          161,
+          21,
+          161,
+          49
+        ],
+        "prefix": {
+          "prefix_num": 1414676817,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "currentOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "newOwnerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAuthorization",
+        "ty_idx": 97,
+        "ident_loc": [
+          5,
+          169,
+          21,
+          169,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1414676818,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "allowed",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RoyaltyParams",
+        "ty_idx": 92,
+        "ident_loc": [
+          6,
+          1,
+          8,
+          1,
+          21
+        ],
+        "fields": [
+          {
+            "name": "numerator",
+            "ty_idx": 93
+          },
+          {
+            "name": "denominator",
+            "ty_idx": 93
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionImmutableConfig",
+        "ty_idx": 32,
+        "ident_loc": [
+          6,
+          8,
+          8,
+          8,
+          33
+        ],
+        "fields": [
+          {
+            "name": "maxSupply",
+            "ty_idx": 11
+          },
+          {
+            "name": "voucherDomain",
+            "ty_idx": 15
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "commonContent",
+            "ty_idx": 33
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "personalVaultCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMutableConfig",
+        "ty_idx": 35,
+        "ident_loc": [
+          6,
+          19,
+          8,
+          19,
+          31
+        ],
+        "fields": [
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "voucherSignerPublicKey",
+            "ty_idx": 15
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FailedClaimRecord",
+        "ty_idx": 41,
+        "ident_loc": [
+          6,
+          30,
+          8,
+          30,
+          25
+        ],
+        "fields": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 15
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimIndexes",
+        "ty_idx": 38,
+        "ident_loc": [
+          6,
+          36,
+          8,
+          36,
+          20
+        ],
+        "fields": [
+          {
+            "name": "claimedSerials",
+            "ty_idx": 39
+          },
+          {
+            "name": "usedNonces",
+            "ty_idx": 40
+          },
+          {
+            "name": "failedClaims",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimableCollectionStorage",
+        "ty_idx": 31,
+        "ident_loc": [
+          6,
+          43,
+          8,
+          43,
+          34
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "immutableConfig",
+            "ty_idx": 34
+          },
+          {
+            "name": "mutableConfig",
+            "ty_idx": 37
+          },
+          {
+            "name": "claimIndexes",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingNftTransfer",
+        "ty_idx": 60,
+        "ident_loc": [
+          6,
+          72,
+          8,
+          72,
+          26
+        ],
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "originalOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "transferBody",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemStorageNotInitialized",
+        "ty_idx": 71,
+        "ident_loc": [
+          6,
+          78,
+          8,
+          78,
+          36
+        ],
+        "fields": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PersonalVaultStorage",
+        "ty_idx": 95,
+        "ident_loc": [
+          6,
+          89,
+          8,
+          89,
+          28
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 105,
+        "ident_loc": [
+          6,
+          93,
+          8,
+          93,
+          27
+        ],
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimConfigReply",
+        "ty_idx": 108,
+        "ident_loc": [
+          6,
+          107,
+          8,
+          107,
+          24
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 36
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "maxSupply",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "minimumMintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "voucherSignerPublicKey",
+            "ty_idx": 15
+          },
+          {
+            "name": "voucherDomain",
+            "ty_idx": 15
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimLookupReply",
+        "ty_idx": 109,
+        "ident_loc": [
+          6,
+          122,
+          8,
+          122,
+          24
+        ],
+        "fields": [
+          {
+            "name": "claimed",
+            "ty_idx": 5
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 106,
+        "ident_loc": [
+          6,
+          127,
+          15,
+          127,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 33
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "StringBuilder.appendInt",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          128,
+          19,
+          128,
+          28
+        ],
+        "end_loc": [
+          2,
+          131,
+          1,
+          131,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "n",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "StringBuilder.build",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          137,
+          19,
+          137,
+          24
+        ],
+        "end_loc": [
+          2,
+          172,
+          1,
+          172,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "(slice, cell).toCell",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 47
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          76,
+          5,
+          76,
+          22
+        ],
+        "end_loc": [
+          1,
+          338,
+          1,
+          338,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "ClaimableCollectionStorage.load",
+        "return_ty_idx": 31,
+        "num_params": 0,
+        "ident_loc": [
+          6,
+          131,
+          32,
+          131,
+          36
+        ],
+        "end_loc": [
+          6,
+          133,
+          1,
+          133,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "ClaimableCollectionStorage.fromCell",
+        "return_ty_idx": 31,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Cell<ClaimIndexes>.load",
+        "return_ty_idx": 38,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint64, uint64>.get",
+        "return_ty_idx": 51,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "map<uint64, FailedClaimRecord>.get",
+        "return_ty_idx": 55,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "requireValidMaxSupply",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          36,
+          5,
+          36,
+          26
+        ],
+        "end_loc": [
+          1,
+          38,
+          1,
+          38,
+          2
+        ],
+        "params": [
+          {
+            "name": "maxSupply",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "requireBasechainAddress",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          32,
+          5,
+          32,
+          28
+        ],
+        "end_loc": [
+          1,
+          34,
+          1,
+          34,
+          2
+        ],
+        "params": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "MapLookupResult<FailedClaimRecord>.loadValue",
+        "return_ty_idx": 41,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "FailedClaimRecord.fromSlice",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "MapLookupResult<uint64>.loadValue",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "uint64.fromSlice",
+        "return_ty_idx": 11,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<uint256, uint64>.get",
+        "return_ty_idx": 51,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "map<uint64, FailedClaimRecord>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "map<uint256, uint64>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<uint64, uint64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "map<uint256, uint64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          },
+          {
+            "name": "value",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "ClaimIndexes.toCell",
+        "return_ty_idx": 43,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "ClaimableCollectionStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          135,
+          32,
+          135,
+          36
+        ],
+        "end_loc": [
+          6,
+          137,
+          1,
+          137,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "ClaimableCollectionStorage.toCell",
+        "return_ty_idx": 56,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "createIndividualContent",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          69,
+          5,
+          69,
+          28
+        ],
+        "end_loc": [
+          1,
+          74,
+          1,
+          74,
+          2
+        ],
+        "params": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "StringBuilder.create",
+        "return_ty_idx": 44,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          115,
+          19,
+          115,
+          25
+        ],
+        "end_loc": [
+          2,
+          117,
+          1,
+          117,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 25,
+        "name": "StringBuilder.append",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          120,
+          19,
+          120,
+          25
+        ],
+        "end_loc": [
+          2,
+          123,
+          1,
+          123,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "s",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "deployNftItem",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          40,
+          5,
+          40,
+          18
+        ],
+        "end_loc": [
+          1,
+          67,
+          1,
+          67,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 33
+          },
+          {
+            "name": "serial",
+            "ty_idx": 11
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "ItemClaimContext.toCell",
+        "return_ty_idx": 58,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 57
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "NftItemInitAtDeployment.toCell",
+        "return_ty_idx": 63,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 59
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "calcDeployedNftItem",
+        "return_ty_idx": 64,
+        "num_params": 3,
+        "ident_loc": [
+          6,
+          187,
+          5,
+          187,
+          24
+        ],
+        "end_loc": [
+          6,
+          194,
+          1,
+          194,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "NftItemStorageNotInitialized.toCell",
+        "return_ty_idx": 72,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 71
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "createMessage<Cell<NftItemInitAtDeployment>>",
+        "return_ty_idx": 73,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 74
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "createMessage<void>",
+        "return_ty_idx": 73,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 88
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "createMessage<ReturnExcessesBack>",
+        "return_ty_idx": 73,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 90
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "createMessage<ResponseRoyaltyParams>",
+        "return_ty_idx": 73,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 94
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "requireOwner",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          28,
+          5,
+          28,
+          17
+        ],
+        "end_loc": [
+          1,
+          30,
+          1,
+          30,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "Cell<CollectionMutableConfig>.load",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "CollectionMutableConfig.toCell",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "calcPersonalVault",
+        "return_ty_idx": 64,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          178,
+          5,
+          178,
+          22
+        ],
+        "end_loc": [
+          6,
+          181,
+          1,
+          181,
+          2
+        ],
+        "params": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "personalVaultCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "PersonalVaultStorage.toCell",
+        "return_ty_idx": 96,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 95
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "createMessage<TransferAuthorization>",
+        "return_ty_idx": 73,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 98
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "Cell<CollectionImmutableConfig>.load",
+        "return_ty_idx": 32,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 34
+          },
+          {
+            "name": "options",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          340,
+          5,
+          340,
+          21
+        ],
+        "end_loc": [
+          1,
+          384,
+          1,
+          384,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "map<uint64, FailedClaimRecord>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "get_collection_data",
+        "return_ty_idx": 105,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          386,
+          9,
+          386,
+          28
+        ],
+        "end_loc": [
+          1,
+          394,
+          1,
+          394,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 46,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          396,
+          9,
+          396,
+          33
+        ],
+        "end_loc": [
+          1,
+          404,
+          1,
+          404,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "get_nft_content",
+        "return_ty_idx": 107,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          406,
+          9,
+          406,
+          24
+        ],
+        "end_loc": [
+          1,
+          416,
+          1,
+          416,
+          2
+        ],
+        "params": [
+          {
+            "name": "_itemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "OffchainMetadataReply.toCell",
+        "return_ty_idx": 107,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 106
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "royalty_params",
+        "return_ty_idx": 92,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          418,
+          9,
+          418,
+          23
+        ],
+        "end_loc": [
+          1,
+          426,
+          1,
+          426,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 50,
+        "name": "get_claim_config",
+        "return_ty_idx": 108,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          428,
+          9,
+          428,
+          25
+        ],
+        "end_loc": [
+          1,
+          446,
+          1,
+          446,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 51,
+        "name": "get_claimed_item_index",
+        "return_ty_idx": 109,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          448,
+          9,
+          448,
+          31
+        ],
+        "end_loc": [
+          1,
+          456,
+          1,
+          456,
+          2
+        ],
+        "params": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 52,
+        "name": "is_nonce_used",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          458,
+          9,
+          458,
+          22
+        ],
+        "end_loc": [
+          1,
+          462,
+          1,
+          462,
+          2
+        ],
+        "params": [
+          {
+            "name": "nonce",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "is_claim_retryable",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          464,
+          9,
+          464,
+          27
+        ],
+        "end_loc": [
+          1,
+          468,
+          1,
+          468,
+          2
+        ],
+        "params": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "map<uint64, FailedClaimRecord>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 55,
+        "name": "get_max_collection_supply",
+        "return_ty_idx": 11,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          471,
+          9,
+          471,
+          34
+        ],
+        "end_loc": [
+          1,
+          473,
+          1,
+          473,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "ClaimableNftCollection",
+    "author": "Reza Apes",
+    "version": "1.0.0",
+    "description": "Signed entitlement NFT collection implementing TEP-62, TEP-64 and TEP-66",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimMint"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimVoucher"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimNonce"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetMintPrice"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetTransferFrozen"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetVoucherSigner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BeginOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOwnerTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestTransferAuthorization"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimableCollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionImmutableConfig"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMutableConfig"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 33
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimIndexes"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FailedClaimRecord"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 39
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 36
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemClaimContext"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 43
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingNftTransfer"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 45
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 46
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReturnExcessesBack"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ResponseRoyaltyParams"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RoyaltyParams"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAuthorization"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 54
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimConfigReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimLookupReply"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 42,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 31
+          },
+          {
+            "name": "claimContext",
+            "ty_idx": 44
+          },
+          {
+            "name": "nextTransferNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "pendingTransfer",
+            "ty_idx": 47
+          }
+        ],
+        "description": "Parameters sent by a collection to initialize a deterministic NFT item."
+      },
+      {
+        "kind": "struct",
+        "name": "ItemClaimContext",
+        "ty_idx": 43,
+        "fields": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 14
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          }
+        ],
+        "description": "Context returned intact in a rich bounce if item initialization fails."
+      },
+      {
+        "kind": "struct",
+        "name": "RequestRoyaltyParams",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1765620048,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ResponseRoyaltyParams",
+        "ty_idx": 49,
+        "prefix": {
+          "prefix_num": 2831876269,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "royaltyParams",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimVoucher",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1095779670,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "voucherDomain",
+            "ty_idx": 14
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "serial",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 16
+          }
+        ],
+        "description": "Domain-separated voucher signed by the backend Ed25519 key.\n\n`collectionAddress` and `voucherDomain` prevent a valid voucher from being\nreplayed on another collection or network deployment. Sign the raw 32-byte\nrepresentation hash of this cell; see the checked golden vector."
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimNonce",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "value",
+            "ty_idx": 14
+          }
+        ],
+        "description": "A full-width nonce kept in a reference so ClaimVoucher stays within one cell.\n`value` is exactly 32 big-endian bytes on the wire."
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimMint",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1830713425,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "voucher",
+            "ty_idx": 17
+          },
+          {
+            "name": "signature",
+            "ty_idx": 18
+          }
+        ],
+        "description": "Claim an entitled Ape. The signature is Ed25519 over the raw 32-byte\nrepresentation hash of `voucher`; see `docs/ABI.md`."
+      },
+      {
+        "kind": "struct",
+        "name": "SetMintPrice",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 1301098304,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPaused",
+        "ty_idx": 21,
+        "prefix": {
+          "prefix_num": 1707140855,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetTransferFrozen",
+        "ty_idx": 22,
+        "prefix": {
+          "prefix_num": 1710418948,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          }
+        ],
+        "description": "Toggle collection-wide transfer policy without pausing minting. New\ncollections start frozen. While frozen, canonical NFT items are authorized\nto move only into the deterministic personal vault of their current owner."
+      },
+      {
+        "kind": "struct",
+        "name": "SetTreasury",
+        "ty_idx": 23,
+        "prefix": {
+          "prefix_num": 564237988,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetVoucherSigner",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 2137676869,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "signerPublicKey",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BeginOwnerTransfer",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 744840590,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptOwnerTransfer",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 2045958316,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOwnerTransfer",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 434085665,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReturnExcessesBack",
+        "ty_idx": 48,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestTransferAuthorization",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 1414676817,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "currentOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "newOwnerAddress",
+            "ty_idx": 7
+          }
+        ],
+        "description": "Canonical item -> collection transfer-policy request. The collection\nauthenticates the deterministic item address from `itemIndex` before it\nreplies. The monotonically increasing nonce binds the reply to one pending\ntransfer and prevents delayed/replayed approvals."
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAuthorization",
+        "ty_idx": 52,
+        "prefix": {
+          "prefix_num": 1414676818,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "allowed",
+            "ty_idx": 5
+          }
+        ],
+        "description": "Canonical collection -> item policy decision."
+      },
+      {
+        "kind": "struct",
+        "name": "RoyaltyParams",
+        "ty_idx": 50,
+        "fields": [
+          {
+            "name": "numerator",
+            "ty_idx": 51
+          },
+          {
+            "name": "denominator",
+            "ty_idx": 51
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionImmutableConfig",
+        "ty_idx": 30,
+        "fields": [
+          {
+            "name": "maxSupply",
+            "ty_idx": 11
+          },
+          {
+            "name": "voucherDomain",
+            "ty_idx": 14
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "commonContent",
+            "ty_idx": 31
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "personalVaultCode",
+            "ty_idx": 3
+          }
+        ],
+        "description": "Values that are never modified after StateInit."
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMutableConfig",
+        "ty_idx": 33,
+        "fields": [
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "voucherSignerPublicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 34
+          }
+        ],
+        "description": "Owner-controlled collection settings."
+      },
+      {
+        "kind": "struct",
+        "name": "FailedClaimRecord",
+        "ty_idx": 39,
+        "fields": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 14
+          },
+          {
+            "name": "recipientAddress",
+            "ty_idx": 7
+          }
+        ],
+        "description": "A claim that reached asynchronous item deployment but bounced. Retaining the\noriginal index permits an exact retry without creating a marketplace index gap."
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimIndexes",
+        "ty_idx": 36,
+        "fields": [
+          {
+            "name": "claimedSerials",
+            "ty_idx": 37
+          },
+          {
+            "name": "usedNonces",
+            "ty_idx": 38
+          },
+          {
+            "name": "failedClaims",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimableCollectionStorage",
+        "ty_idx": 29,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "immutableConfig",
+            "ty_idx": 32
+          },
+          {
+            "name": "mutableConfig",
+            "ty_idx": 35
+          },
+          {
+            "name": "claimIndexes",
+            "ty_idx": 41
+          }
+        ],
+        "description": "Root is intentionally four references or fewer."
+      },
+      {
+        "kind": "struct",
+        "name": "PendingNftTransfer",
+        "ty_idx": 45,
+        "fields": [
+          {
+            "name": "authorizationNonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "originalOwnerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "transferBody",
+            "ty_idx": 3
+          }
+        ],
+        "description": "A standard TEP-62 transfer retained while the canonical collection makes\nthe current, collection-wide transfer-policy decision. The item accepts at\nmost one pending transfer and binds the reply to a monotonic nonce."
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 53,
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimConfigReply",
+        "ty_idx": 56,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "pendingOwnerAddress",
+            "ty_idx": 34
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "maxSupply",
+            "ty_idx": 11
+          },
+          {
+            "name": "mintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "minimumMintPrice",
+            "ty_idx": 6
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "transferFrozen",
+            "ty_idx": 5
+          },
+          {
+            "name": "treasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "voucherSignerPublicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "voucherDomain",
+            "ty_idx": 14
+          },
+          {
+            "name": "royaltyAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimLookupReply",
+        "ty_idx": 57,
+        "fields": [
+          {
+            "name": "claimed",
+            "ty_idx": 5
+          },
+          {
+            "name": "itemIndex",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 54,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 31
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 29
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      },
+      {
+        "body_ty_idx": 21
+      },
+      {
+        "body_ty_idx": 22
+      },
+      {
+        "body_ty_idx": 23
+      },
+      {
+        "body_ty_idx": 24
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      },
+      {
+        "body_ty_idx": 28
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 42
+      },
+      {
+        "body_ty_idx": 48
+      },
+      {
+        "body_ty_idx": 49
+      },
+      {
+        "body_ty_idx": 52
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 53
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 68445,
+        "name": "get_nft_content",
+        "parameters": [
+          {
+            "name": "_itemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 31
+          }
+        ],
+        "return_ty_idx": 55
+      },
+      {
+        "tvm_method_id": 85719,
+        "name": "royalty_params",
+        "parameters": [],
+        "return_ty_idx": 50
+      },
+      {
+        "tvm_method_id": 113817,
+        "name": "get_claim_config",
+        "parameters": [],
+        "return_ty_idx": 56
+      },
+      {
+        "tvm_method_id": 125755,
+        "name": "get_claimed_item_index",
+        "parameters": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 57
+      },
+      {
+        "tvm_method_id": 99217,
+        "name": "is_nonce_used",
+        "parameters": [
+          {
+            "name": "nonce",
+            "ty_idx": 14
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 103527,
+        "name": "is_claim_retryable",
+        "parameters": [
+          {
+            "name": "serial",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 69961,
+        "name": "get_max_collection_supply",
+        "parameters": [],
+        "return_ty_idx": 11,
+        "description": "Compile-time on-chain ceiling used by deployment tooling and verification."
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotFromOwner",
+        "err_code": 401
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotFromPendingOwner",
+        "err_code": 403
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidWorkchain",
+        "err_code": 406
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TooLittleValue",
+        "err_code": 709
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PriceBelowMinimum",
+        "err_code": 710
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.CollectionPaused",
+        "err_code": 711
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SupplyExhausted",
+        "err_code": 712
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongRecipient",
+        "err_code": 713
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongCollection",
+        "err_code": 714
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongVoucherDomain",
+        "err_code": 715
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.VoucherExpired",
+        "err_code": 716
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidSignature",
+        "err_code": 717
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SerialAlreadyClaimed",
+        "err_code": 718
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NonceAlreadyUsed",
+        "err_code": 719
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidSerial",
+        "err_code": 720
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PendingOwnerNotSet",
+        "err_code": 721
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SerialOutOfRange",
+        "err_code": 723
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.MaxSupplyOutOfRange",
+        "err_code": 724
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/ClaimableNftCollection.tolk",
+      "contents": "import \"@stdlib/strings\"\nimport \"errors\"\nimport \"fees-management\"\nimport \"messages\"\nimport \"types\"\n\ncontract ClaimableNftCollection {\n    author: \"Reza Apes\"\n    version: \"1.0.0\"\n    description: \"Signed entitlement NFT collection implementing TEP-62, TEP-64 and TEP-66\"\n    storage: ClaimableCollectionStorage\n    incomingMessages: AllowedMessageToClaimableCollection\n}\n\ntype AllowedMessageToClaimableCollection =\n    | ClaimMint\n    | RequestRoyaltyParams\n    | SetMintPrice\n    | SetPaused\n    | SetTransferFrozen\n    | SetTreasury\n    | SetVoucherSigner\n    | BeginOwnerTransfer\n    | AcceptOwnerTransfer\n    | CancelOwnerTransfer\n    | RequestTransferAuthorization\n\nfun requireOwner(sender: address, owner: address) {\n    assert (sender == owner) throw Errors.NotFromOwner;\n}\n\nfun requireBasechainAddress(addr: address) {\n    assert (addr.getWorkchain() == BASECHAIN) throw Errors.InvalidWorkchain;\n}\n\nfun requireValidMaxSupply(maxSupply: uint64) {\n    assert (maxSupply > 0 && maxSupply <= MAX_COLLECTION_SUPPLY) throw Errors.MaxSupplyOutOfRange;\n}\n\nfun deployNftItem(\n    itemIndex: uint64,\n    nftItemCode: cell,\n    recipient: address,\n    individualContent: string,\n    serial: uint64,\n    nonce: uint256,\n) {\n    val initParams = NftItemInitAtDeployment {\n        ownerAddress: recipient,\n        individualContent,\n        claimContext: ItemClaimContext {\n            serial,\n            nonce,\n            itemIndex,\n            recipientAddress: recipient,\n        }.toCell(),\n        nextTransferNonce: 0,\n        pendingTransfer: null,\n    }.toCell();\n    val deployMessage = createMessage({\n        bounce: BounceMode.RichBounce,\n        dest: calcDeployedNftItem(itemIndex, contract.getAddress(), nftItemCode),\n        value: NFT_ITEM_DEPLOY_VALUE,\n        body: initParams,\n    });\n    deployMessage.send(SEND_MODE_REGULAR | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\nfun createIndividualContent(serial: uint64): string {\n    var builder = StringBuilder.create();\n    builder.appendInt(serial);\n    builder.append(\".json\");\n    return builder.build();\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToClaimableCollection.fromSlice(in.body);\n\n    match (msg) {\n        ClaimMint => {\n            var storage = ClaimableCollectionStorage.load();\n            val immutableConfig = lazy storage.immutableConfig.load();\n            val mutableConfig = lazy storage.mutableConfig.load();\n            val voucher = lazy msg.voucher.load();\n            val nonce = lazy voucher.nonce.load();\n            var claimIndexes = storage.claimIndexes.load();\n\n            val claimedLookup = claimIndexes.claimedSerials.get(voucher.serial);\n            val failedLookup = claimIndexes.failedClaims.get(voucher.serial);\n            val isRetry = claimedLookup.isFound && failedLookup.isFound;\n\n            // Re-check the immutable StateInit value on every claim. This protects the runtime\n            // path even if a malformed StateInit was activated without the normal deploy message.\n            requireValidMaxSupply(immutableConfig.maxSupply);\n            assert (!mutableConfig.paused) throw Errors.CollectionPaused;\n            val requiredPayment = isRetry ? RETRY_CLAIM_PAYMENT : mutableConfig.mintPrice;\n            assert (in.valueCoins >= requiredPayment) throw Errors.TooLittleValue;\n            assert (mutableConfig.mintPrice >= MIN_CLAIM_PRICE) throw Errors.PriceBelowMinimum;\n            assert (\n                isRetry || storage.nextItemIndex < immutableConfig.maxSupply\n            ) throw Errors.SupplyExhausted;\n            assert (voucher.serial > 0) throw Errors.InvalidSerial;\n            assert (voucher.serial <= immutableConfig.maxSupply) throw Errors.SerialOutOfRange;\n\n            requireBasechainAddress(voucher.recipientAddress);\n            assert (in.senderAddress == voucher.recipientAddress) throw Errors.WrongRecipient;\n            assert (\n                voucher.collectionAddress == contract.getAddress()\n            ) throw Errors.WrongCollection;\n            assert (\n                voucher.voucherDomain == immutableConfig.voucherDomain\n            ) throw Errors.WrongVoucherDomain;\n            assert (voucher.expiresAt >= blockchain.now() || isRetry) throw Errors.VoucherExpired;\n            assert (\n                isRetry ||\n                isSignatureValid(\n                    msg.voucher.hash(),\n                    msg.signature as slice,\n                    mutableConfig.voucherSignerPublicKey,\n                )\n            ) throw Errors.InvalidSignature;\n\n            var itemIndex: uint64;\n            if (isRetry) {\n                val failed = failedLookup.loadValue();\n                assert (\n                    failed.itemIndex == claimedLookup.loadValue()\n                ) throw Errors.SerialAlreadyClaimed;\n                assert (failed.nonce == nonce.value) throw Errors.NonceAlreadyUsed;\n                assert (\n                    failed.recipientAddress == voucher.recipientAddress\n                ) throw Errors.WrongRecipient;\n                val nonceLookup = claimIndexes.usedNonces.get(nonce.value);\n                assert (\n                    nonceLookup.isFound && nonceLookup.loadValue() == voucher.serial\n                ) throw Errors.NonceAlreadyUsed;\n                itemIndex = failed.itemIndex;\n                claimIndexes.failedClaims.delete(voucher.serial);\n            } else {\n                assert (!claimedLookup.isFound) throw Errors.SerialAlreadyClaimed;\n                assert (!claimIndexes.usedNonces.exists(nonce.value)) throw Errors.NonceAlreadyUsed;\n                itemIndex = storage.nextItemIndex;\n                claimIndexes.claimedSerials.set(voucher.serial, itemIndex);\n                claimIndexes.usedNonces.set(nonce.value, voucher.serial);\n                storage.nextItemIndex += 1;\n            }\n            storage.claimIndexes = claimIndexes.toCell();\n            storage.save();\n\n            reserveToncoinsOnBalance(\n                COLLECTION_STORAGE_RESERVE,\n                RESERVE_MODE_EXACT_AMOUNT | RESERVE_MODE_BOUNCE_ON_ACTION_FAIL,\n            );\n\n            deployNftItem(\n                itemIndex,\n                immutableConfig.nftItemCode,\n                voucher.recipientAddress,\n                createIndividualContent(voucher.serial),\n                voucher.serial,\n                nonce.value,\n            );\n\n            val treasuryProceeds = isRetry\n                ? (0 as coins)\n                : mutableConfig.mintPrice - NFT_ITEM_DEPLOY_VALUE - CLAIM_PROCESSING_BUFFER;\n            if (!isRetry && treasuryProceeds > 0) {\n                val treasuryMessage = createMessage({\n                    bounce: BounceMode.NoBounce,\n                    dest: mutableConfig.treasuryAddress,\n                    value: treasuryProceeds,\n                });\n                treasuryMessage.send(SEND_MODE_REGULAR);\n            }\n\n            val overpayment = in.valueCoins - requiredPayment;\n            if (overpayment > 0) {\n                val refundMessage = createMessage({\n                    bounce: BounceMode.NoBounce,\n                    dest: in.senderAddress,\n                    value: overpayment,\n                    body: ReturnExcessesBack { queryId: msg.queryId },\n                });\n                refundMessage.send(SEND_MODE_REGULAR);\n            }\n        }\n\n        RequestRoyaltyParams => {\n            val storage = lazy ClaimableCollectionStorage.load();\n            val immutableConfig = lazy storage.immutableConfig.load();\n            val response = createMessage({\n                bounce: BounceMode.NoBounce,\n                dest: in.senderAddress,\n                value: 0,\n                body: ResponseRoyaltyParams {\n                    queryId: msg.queryId,\n                    royaltyParams: {\n                        numerator: 5,\n                        denominator: 100,\n                        royaltyAddress: immutableConfig.royaltyAddress,\n                    },\n                },\n            });\n            response.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        SetMintPrice => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            assert (msg.mintPrice >= MIN_CLAIM_PRICE) throw Errors.PriceBelowMinimum;\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.mintPrice = msg.mintPrice;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        SetPaused => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.paused = msg.paused;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        SetTransferFrozen => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.transferFrozen = msg.transferFrozen;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        SetTreasury => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            requireBasechainAddress(msg.treasuryAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.treasuryAddress = msg.treasuryAddress;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        SetVoucherSigner => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.voucherSignerPublicKey = msg.signerPublicKey;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        BeginOwnerTransfer => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            requireBasechainAddress(msg.pendingOwnerAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.pendingOwnerAddress = msg.pendingOwnerAddress;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        AcceptOwnerTransfer => {\n            var storage = ClaimableCollectionStorage.load();\n            var mutableConfig = storage.mutableConfig.load();\n            assert (mutableConfig.pendingOwnerAddress != null) throw Errors.PendingOwnerNotSet;\n            assert (\n                in.senderAddress == mutableConfig.pendingOwnerAddress\n            ) throw Errors.NotFromPendingOwner;\n            storage.ownerAddress = in.senderAddress;\n            mutableConfig.pendingOwnerAddress = null;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        CancelOwnerTransfer => {\n            var storage = ClaimableCollectionStorage.load();\n            requireOwner(in.senderAddress, storage.ownerAddress);\n            var mutableConfig = storage.mutableConfig.load();\n            mutableConfig.pendingOwnerAddress = null;\n            storage.mutableConfig = mutableConfig.toCell();\n            storage.save();\n        }\n\n        RequestTransferAuthorization => {\n            val storage = lazy ClaimableCollectionStorage.load();\n            val immutableConfig = lazy storage.immutableConfig.load();\n            val mutableConfig = lazy storage.mutableConfig.load();\n\n            // Only this collection's deterministic, immutable item bytecode may\n            // query policy. An arbitrary contract cannot use the collection as\n            // an authorization oracle or forge a response for a real item.\n            val expectedItemAddress = calcDeployedNftItem(\n                msg.itemIndex,\n                contract.getAddress(),\n                immutableConfig.nftItemCode,\n            ).calculateAddress();\n            assert (in.senderAddress == expectedItemAddress) throw Errors.WrongCollection;\n            assert (msg.itemIndex < storage.nextItemIndex) throw Errors.WrongCollection;\n            requireBasechainAddress(msg.currentOwnerAddress);\n            requireBasechainAddress(msg.newOwnerAddress);\n\n            var allowed = true;\n            if (mutableConfig.transferFrozen) {\n                val expectedVaultAddress = calcPersonalVault(\n                    msg.currentOwnerAddress,\n                    immutableConfig.personalVaultCode,\n                ).calculateAddress();\n                allowed = msg.newOwnerAddress == expectedVaultAddress;\n            }\n\n            assert (in.valueCoins > TRANSFER_POLICY_PROCESSING_BUFFER) throw Errors.TooLittleValue;\n            val response = createMessage({\n                bounce: BounceMode.RichBounce,\n                dest: in.senderAddress,\n                value: in.valueCoins - TRANSFER_POLICY_PROCESSING_BUFFER,\n                body: TransferAuthorization {\n                    authorizationNonce: msg.authorizationNonce,\n                    allowed,\n                },\n            });\n            response.send(SEND_MODE_REGULAR | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n        }\n\n        else => {\n            assert (in.body.isEmpty()) throw 0xFFFF;\n            // The generated deployment wrapper sends an empty body. Reject invalid immutable\n            // capacity before the StateInit can be considered a usable collection.\n            val storage = ClaimableCollectionStorage.load();\n            val immutableConfig = storage.immutableConfig.load();\n            requireValidMaxSupply(immutableConfig.maxSupply);\n            assert (\n                storage.nextItemIndex <= immutableConfig.maxSupply\n            ) throw Errors.MaxSupplyOutOfRange;\n        }\n    }\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    val richBounce = lazy RichBounceBody.fromSlice(in.bouncedBody);\n    val bouncedBody = richBounce.originalBody.beginParse();\n    val (bouncedBits, bouncedRefs) = bouncedBody.remainingBitsAndRefsCount();\n    if (bouncedBits == 97 && bouncedRefs == 0 && bouncedBody.preloadUint(32) == 0x54524152) {\n        // A policy response can bounce only from the deterministic item it was\n        // addressed to. It carries no collection state transition and the item\n        // kept its pending transfer, so safely ignore it rather than attempting\n        // to decode it as a bounced item-initialization body.\n        return;\n    }\n    val initParams = lazy NftItemInitAtDeployment.fromCell(richBounce.originalBody);\n    val context = lazy initParams.claimContext.load();\n\n    var storage = ClaimableCollectionStorage.load();\n    val immutableConfig = storage.immutableConfig.load();\n    val expectedItem = calcDeployedNftItem(\n        context.itemIndex,\n        contract.getAddress(),\n        immutableConfig.nftItemCode,\n    ).calculateAddress();\n    assert (in.senderAddress == expectedItem) throw Errors.WrongCollection;\n\n    var claimIndexes = storage.claimIndexes.load();\n    val serialLookup = claimIndexes.claimedSerials.get(context.serial);\n    val nonceLookup = claimIndexes.usedNonces.get(context.nonce);\n    assert (\n        serialLookup.isFound && serialLookup.loadValue() == context.itemIndex\n    ) throw Errors.SerialAlreadyClaimed;\n    assert (\n        nonceLookup.isFound && nonceLookup.loadValue() == context.serial\n    ) throw Errors.NonceAlreadyUsed;\n    claimIndexes\n        .failedClaims\n        .set(\n            context.serial,\n            {\n                itemIndex: context.itemIndex,\n                nonce: context.nonce,\n                recipientAddress: context.recipientAddress,\n            },\n        );\n    storage.claimIndexes = claimIndexes.toCell();\n    storage.save();\n}\n\nget fun get_collection_data(): CollectionDataReply {\n    val storage = lazy ClaimableCollectionStorage.load();\n    val immutableConfig = lazy storage.immutableConfig.load();\n    return {\n        nextItemIndex: storage.nextItemIndex,\n        collectionMetadata: immutableConfig.collectionMetadata,\n        ownerAddress: storage.ownerAddress,\n    };\n}\n\nget fun get_nft_address_by_index(itemIndex: int): address {\n    val storage = lazy ClaimableCollectionStorage.load();\n    val immutableConfig = lazy storage.immutableConfig.load();\n    return calcDeployedNftItem(\n        itemIndex as uint64,\n        contract.getAddress(),\n        immutableConfig.nftItemCode,\n    ).calculateAddress();\n}\n\nget fun get_nft_content(\n    _itemIndex: int,\n    individualNftContent: string,\n): Cell<OffchainMetadataReply> {\n    val storage = lazy ClaimableCollectionStorage.load();\n    val immutableConfig = lazy storage.immutableConfig.load();\n    var builder = StringBuilder.create();\n    builder.append(immutableConfig.commonContent);\n    builder.append(individualNftContent);\n    return OffchainMetadataReply { string: builder.build() }.toCell();\n}\n\nget fun royalty_params(): RoyaltyParams {\n    val storage = lazy ClaimableCollectionStorage.load();\n    val immutableConfig = lazy storage.immutableConfig.load();\n    return {\n        numerator: 5,\n        denominator: 100,\n        royaltyAddress: immutableConfig.royaltyAddress,\n    };\n}\n\nget fun get_claim_config(): ClaimConfigReply {\n    val storage = lazy ClaimableCollectionStorage.load();\n    val immutableConfig = lazy storage.immutableConfig.load();\n    val mutableConfig = lazy storage.mutableConfig.load();\n    return {\n        ownerAddress: storage.ownerAddress,\n        pendingOwnerAddress: mutableConfig.pendingOwnerAddress,\n        nextItemIndex: storage.nextItemIndex,\n        maxSupply: immutableConfig.maxSupply,\n        mintPrice: mutableConfig.mintPrice,\n        minimumMintPrice: MIN_CLAIM_PRICE,\n        paused: mutableConfig.paused,\n        transferFrozen: mutableConfig.transferFrozen,\n        treasuryAddress: mutableConfig.treasuryAddress,\n        voucherSignerPublicKey: mutableConfig.voucherSignerPublicKey,\n        voucherDomain: immutableConfig.voucherDomain,\n        royaltyAddress: immutableConfig.royaltyAddress,\n    };\n}\n\nget fun get_claimed_item_index(serial: uint64): ClaimLookupReply {\n    val storage = ClaimableCollectionStorage.load();\n    val claimIndexes = storage.claimIndexes.load();\n    val lookup = claimIndexes.claimedSerials.get(serial);\n    if (!lookup.isFound) {\n        return { claimed: false, itemIndex: 0 };\n    }\n    return { claimed: true, itemIndex: lookup.loadValue() };\n}\n\nget fun is_nonce_used(nonce: uint256): bool {\n    val storage = ClaimableCollectionStorage.load();\n    val claimIndexes = storage.claimIndexes.load();\n    return claimIndexes.usedNonces.exists(nonce);\n}\n\nget fun is_claim_retryable(serial: uint64): bool {\n    val storage = ClaimableCollectionStorage.load();\n    val claimIndexes = storage.claimIndexes.load();\n    return claimIndexes.failedClaims.exists(serial);\n}\n\n/// Compile-time on-chain ceiling used by deployment tooling and verification.\nget fun get_max_collection_supply(): uint64 {\n    return MAX_COLLECTION_SUPPLY as uint64;\n}\n"
+    },
+    {
+      "filename": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/errors.tolk",
+      "contents": "/// Stable contract exit codes. Do not renumber: backend settlement and diagnostics use them.\nenum Errors {\n    NotFromOwner = 401\n    NotFromPendingOwner = 403\n    NotFromCollection = 405\n    InvalidWorkchain = 406\n\n    InvalidForwardPayload = 708\n    TooLittleValue = 709\n    PriceBelowMinimum = 710\n    CollectionPaused = 711\n    SupplyExhausted = 712\n    WrongRecipient = 713\n    WrongCollection = 714\n    WrongVoucherDomain = 715\n    VoucherExpired = 716\n    InvalidSignature = 717\n    SerialAlreadyClaimed = 718\n    NonceAlreadyUsed = 719\n    InvalidSerial = 720\n    PendingOwnerNotSet = 721\n    InvalidAddress = 722\n    SerialOutOfRange = 723\n    MaxSupplyOutOfRange = 724\n    TransferPending = 725\n    NoPendingTransfer = 726\n    WrongTransferAuthorization = 727\n    TransferNonceExhausted = 728\n    InvalidContentId = 729\n}\n"
+    },
+    {
+      "filename": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/fees-management.tolk",
+      "contents": "/// The NFT item keeps this amount after each transfer, matching the reference TEP-62 item.\nconst NFT_ITEM_STORAGE_RESERVE = ton(\"0.05\")\n\n/// Hard on-chain limit for the three persistent claim dictionaries. This is intentionally\n/// conservative relative to TON's account-state cell limits and must not be raised without a\n/// fresh state-growth analysis and independent audit.\nconst MAX_COLLECTION_SUPPLY = 8000\n\n/// Signup Ape uses deterministic item indexes and stores no per-claim dictionaries in the\n/// collection account. Its capacity is therefore a business limit rather than an account-state\n/// growth limit. Keep this separate from MAX_COLLECTION_SUPPLY: the paid collection bytecode must\n/// never inherit this larger ceiling.\nconst MAX_SIGNUP_COLLECTION_SUPPLY = 1000000\n\n/// Each new item receives enough value to initialize and retain its storage reserve in local tests.\nconst NFT_ITEM_DEPLOY_VALUE = ton(\"0.08\")\n\n/// Minimum collection balance protected while processing a claim. There is deliberately no\n/// owner sweep: processing buffers remain in the collection until audited dynamic rent economics\n/// are available.\nconst COLLECTION_STORAGE_RESERVE = ton(\"0.10\")\n\n/// Amount left from each mint payment for compute/action fees and growing storage rent.\nconst CLAIM_PROCESSING_BUFFER = ton(\"0.07\")\n\n/// Owner cannot set a lower claim price. Re-evaluate after any code or network fee change.\nconst MIN_CLAIM_PRICE = NFT_ITEM_DEPLOY_VALUE + CLAIM_PROCESSING_BUFFER\n\n/// Every TEP-62 transfer performs an authenticated item -> collection -> item\n/// policy round trip so a freeze toggle applies immediately to already-minted\n/// NFTs. The item sends a fixed, bounded amount; the collection returns the\n/// remainder and never uses carry-all mode (which could sweep collection rent\n/// reserves or accumulated claim buffers).\nconst TRANSFER_POLICY_REQUEST_VALUE = ton(\"0.05\")\nconst TRANSFER_POLICY_PROCESSING_BUFFER = ton(\"0.02\")\nconst TRANSFER_POLICY_COMPLETION_BUFFER = ton(\"0.005\")\nconst MIN_NFT_TRANSFER_VALUE = ton(\"0.065\")\n\n/// A bounced item deployment already returned its deploy value to the collection.\n/// A retry only supplies a fresh compute/action budget and never pays treasury again.\nconst RETRY_CLAIM_PAYMENT = CLAIM_PROCESSING_BUFFER\n\n/// Personal vault storage reserve and withdrawal transaction budget.\nconst VAULT_STORAGE_RESERVE = ton(\"0.05\")\nconst VAULT_PROCESSING_BUFFER = ton(\"0.03\")\nconst MIN_VAULT_WITHDRAW_VALUE = ton(\"0.10\")\n"
+    },
+    {
+      "filename": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/messages.tolk",
+      "contents": "import \"types\"\n\n/// Parameters sent by a collection to initialize a deterministic NFT item.\nstruct NftItemInitAtDeployment {\n    ownerAddress: address\n    individualContent: string\n    claimContext: Cell<ItemClaimContext>\n    nextTransferNonce: uint64\n    pendingTransfer: Cell<PendingNftTransfer>?\n}\n\n/// Context returned intact in a rich bounce if item initialization fails.\nstruct ItemClaimContext {\n    serial: uint64\n    nonce: uint256\n    itemIndex: uint64\n    recipientAddress: address\n}\n\n// TEP-66 royalty request and response.\nstruct (0x693d3950) RequestRoyaltyParams {\n    queryId: uint64\n}\n\nstruct (0xa8cb00ad) ResponseRoyaltyParams {\n    queryId: uint64\n    royaltyParams: RoyaltyParams\n}\n\n/// Domain-separated voucher signed by the backend Ed25519 key.\n///\n/// `collectionAddress` and `voucherDomain` prevent a valid voucher from being\n/// replayed on another collection or network deployment. Sign the raw 32-byte\n/// representation hash of this cell; see the checked golden vector.\nstruct (0x41504556) ClaimVoucher {\n    voucherDomain: uint256\n    collectionAddress: address\n    serial: uint64\n    recipientAddress: address\n    expiresAt: uint32\n    nonce: Cell<ClaimNonce>\n}\n\n/// A full-width nonce kept in a reference so ClaimVoucher stays within one cell.\n/// `value` is exactly 32 big-endian bytes on the wire.\nstruct ClaimNonce {\n    value: uint256\n}\n\n/// Claim an entitled Ape. The signature is Ed25519 over the raw 32-byte\n/// representation hash of `voucher`; see `docs/ABI.md`.\nstruct (0x6d1e7851) ClaimMint {\n    queryId: uint64\n    voucher: Cell<ClaimVoucher>\n    signature: bits512\n}\n\n/// Signup vouchers additionally bind the immutable legacy artwork identifier. Many signup NFTs\n/// intentionally share one catalog image, so item metadata is stored once as `nft-<id>.json`.\nstruct (0x53554756) SignupClaimVoucher {\n    voucherDomain: uint256\n    collectionAddress: address\n    serial: uint64\n    contentId: uint64\n    recipientAddress: address\n    expiresAt: uint32\n    nonce: Cell<ClaimNonce>\n}\n\nstruct (0x53554743) ClaimSignupMint {\n    queryId: uint64\n    voucher: Cell<SignupClaimVoucher>\n    signature: bits512\n}\n\nstruct (0x4d8d2f40) SetMintPrice {\n    queryId: uint64\n    mintPrice: coins\n}\n\nstruct (0x65c0e6f7) SetPaused {\n    queryId: uint64\n    paused: bool\n}\n\n/// Toggle collection-wide transfer policy without pausing minting. New\n/// collections start frozen. While frozen, canonical NFT items are authorized\n/// to move only into the deterministic personal vault of their current owner.\nstruct (0x65f2ec04) SetTransferFrozen {\n    queryId: uint64\n    transferFrozen: bool\n}\n\nstruct (0x21a196a4) SetTreasury {\n    queryId: uint64\n    treasuryAddress: address\n}\n\nstruct (0x7f6a5c45) SetVoucherSigner {\n    queryId: uint64\n    signerPublicKey: uint256\n}\n\nstruct (0x2c655d8e) BeginOwnerTransfer {\n    queryId: uint64\n    pendingOwnerAddress: address\n}\n\nstruct (0x79f2d8ac) AcceptOwnerTransfer {\n    queryId: uint64\n}\n\nstruct (0x19df9f21) CancelOwnerTransfer {\n    queryId: uint64\n}\n\n// TEP-62 item messages.\nstruct (0x2fcb26a2) RequestStaticData {\n    queryId: uint64\n}\n\nstruct (0x8b771735) ResponseStaticData {\n    queryId: uint64\n    itemIndex: uint256\n    collectionAddress: address\n}\n\nstruct (0b0) PayloadInline {\n    value: RemainingBitsAndRefs\n}\n\nstruct (0b1) PayloadInRef {\n    value: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x05138d91) NotificationForNewOwner {\n    queryId: uint64\n    oldOwnerAddress: address\n    @abi.clientType(PayloadInline | PayloadInRef)\n    payload: RemainingBitsAndRefs\n}\n\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\nstruct (0x5fcc3d14) AskToChangeOwnership {\n    queryId: uint64\n    newOwnerAddress: address\n    sendExcessesTo: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: RemainingBitsAndRefs\n}\n\n/// Canonical item -> collection transfer-policy request. The collection\n/// authenticates the deterministic item address from `itemIndex` before it\n/// replies. The monotonically increasing nonce binds the reply to one pending\n/// transfer and prevents delayed/replayed approvals.\nstruct (0x54524151) RequestTransferAuthorization {\n    authorizationNonce: uint64\n    itemIndex: uint64\n    currentOwnerAddress: address\n    newOwnerAddress: address\n}\n\n/// Canonical collection -> item policy decision.\nstruct (0x54524152) TransferAuthorization {\n    authorizationNonce: uint64\n    allowed: bool\n}\n\n/// Deploy/activate a deterministic personal vault. It is intentionally a no-op\n/// after authenticating the immutable owner.\nstruct (0x5641554c) DeployPersonalVault {\n    queryId: uint64\n}\n\n/// Withdraw an NFT only to the vault's immutable original wallet.\nstruct (0x0f8a7ea5) WithdrawNftToOwner {\n    queryId: uint64\n    nftItemAddress: address\n}\n"
+    },
+    {
+      "filename": "tmp/30952a10-be97-4e43-b1be-2fcdff5748df/contracts/types.tolk",
+      "contents": "struct RoyaltyParams {\n    numerator: uint16\n    denominator: uint16\n    royaltyAddress: address\n}\n\n/// Values that are never modified after StateInit.\nstruct CollectionImmutableConfig {\n    maxSupply: uint64\n    voucherDomain: uint256\n    royaltyAddress: address\n    collectionMetadata: cell\n    commonContent: string\n    nftItemCode: cell\n    personalVaultCode: cell\n}\n\n/// Owner-controlled collection settings.\nstruct CollectionMutableConfig {\n    mintPrice: coins\n    paused: bool\n    transferFrozen: bool\n    treasuryAddress: address\n    voucherSignerPublicKey: uint256\n    pendingOwnerAddress: address?\n}\n\n/// A claim that reached asynchronous item deployment but bounced. Retaining the\n/// original index permits an exact retry without creating a marketplace index gap.\nstruct FailedClaimRecord {\n    itemIndex: uint64\n    nonce: uint256\n    recipientAddress: address\n}\n\nstruct ClaimIndexes {\n    claimedSerials: map<uint64, uint64>\n    usedNonces: map<uint256, uint64>\n    failedClaims: map<uint64, FailedClaimRecord>\n}\n\n/// Root is intentionally four references or fewer.\nstruct ClaimableCollectionStorage {\n    ownerAddress: address\n    nextItemIndex: uint64\n    immutableConfig: Cell<CollectionImmutableConfig>\n    mutableConfig: Cell<CollectionMutableConfig>\n    claimIndexes: Cell<ClaimIndexes>\n}\n\n/// Constant-size storage for Signup Ape. Claim replay protection is provided by the deterministic\n/// item address `serial - 1`: an initialized NFT item rejects every later initialization message.\n/// Keeping claim dictionaries out of this account is what permits a six-figure collection.\nstruct ScalableSignupCollectionStorage {\n    ownerAddress: address\n    immutableConfig: Cell<CollectionImmutableConfig>\n    mutableConfig: Cell<CollectionMutableConfig>\n}\n\nstruct NftItemStorage {\n    itemIndex: uint64\n    collectionAddress: address\n    ownerAddress: address\n    individualContent: string\n    nextTransferNonce: uint64\n    pendingTransfer: Cell<PendingNftTransfer>?\n}\n\n/// A standard TEP-62 transfer retained while the canonical collection makes\n/// the current, collection-wide transfer-policy decision. The item accepts at\n/// most one pending transfer and binds the reply to a monotonic nonce.\nstruct PendingNftTransfer {\n    authorizationNonce: uint64\n    originalOwnerAddress: address\n    transferBody: cell\n}\n\nstruct NftItemStorageNotInitialized {\n    itemIndex: uint64\n    collectionAddress: address\n}\n\nstruct NftItemStorageLoader {\n    itemIndex: uint64\n    collectionAddress: address\n    private rest: RemainingBitsAndRefs\n}\n\nstruct PersonalVaultStorage {\n    ownerAddress: address\n}\n\nstruct CollectionDataReply {\n    nextItemIndex: int\n    collectionMetadata: cell\n    ownerAddress: address\n}\n\nstruct NftDataReply {\n    isInitialized: bool\n    itemIndex: int\n    collectionAddress: address\n    ownerAddress: address? = null\n    individualContent: string? = null\n}\n\nstruct ClaimConfigReply {\n    ownerAddress: address\n    pendingOwnerAddress: address?\n    nextItemIndex: uint64\n    maxSupply: uint64\n    mintPrice: coins\n    minimumMintPrice: coins\n    paused: bool\n    transferFrozen: bool\n    treasuryAddress: address\n    voucherSignerPublicKey: uint256\n    voucherDomain: uint256\n    royaltyAddress: address\n}\n\nstruct ClaimLookupReply {\n    claimed: bool\n    itemIndex: uint64\n}\n\nstruct (0x01) OffchainMetadataReply {\n    string: string\n}\n\nfun ClaimableCollectionStorage.load(): ClaimableCollectionStorage {\n    return ClaimableCollectionStorage.fromCell(contract.getData());\n}\n\nfun ClaimableCollectionStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun ScalableSignupCollectionStorage.load(): ScalableSignupCollectionStorage {\n    return ScalableSignupCollectionStorage.fromCell(contract.getData());\n}\n\nfun ScalableSignupCollectionStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun ClaimIndexes.empty(): ClaimIndexes {\n    return {\n        claimedSerials: [],\n        usedNonces: [],\n        failedClaims: [],\n    };\n}\n\nfun NftItemStorage.startLoading(): NftItemStorageLoader {\n    return NftItemStorageLoader.fromCell(contract.getData());\n}\n\nfun NftItemStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun NftItemStorageLoader.isNotInitialized(self): bool {\n    return self.rest.isEmpty();\n}\n\nfun NftItemStorageLoader.endLoading(mutate self): NftItemStorage {\n    return {\n        itemIndex: self.itemIndex,\n        collectionAddress: self.collectionAddress,\n        ownerAddress: self.rest.loadAny(),\n        individualContent: self.rest.loadAny(),\n        nextTransferNonce: self.rest.loadAny(),\n        pendingTransfer: self.rest.loadAny(),\n    };\n}\n\nfun calcPersonalVault(ownerAddress: address, personalVaultCode: cell): AutoDeployAddress {\n    val initialStorage: PersonalVaultStorage = { ownerAddress };\n    return { stateInit: { code: personalVaultCode, data: initialStorage.toCell() } };\n}\n\nfun PersonalVaultStorage.load(): PersonalVaultStorage {\n    return PersonalVaultStorage.fromCell(contract.getData());\n}\n\nfun calcDeployedNftItem(\n    itemIndex: uint64,\n    collectionAddress: address,\n    nftItemCode: cell,\n): AutoDeployAddress {\n    val initialStorage: NftItemStorageNotInitialized = { itemIndex, collectionAddress };\n    return { stateInit: { code: nftItemCode, data: initialStorage.toCell() } };\n}\n"
+    }
+  ]
+}

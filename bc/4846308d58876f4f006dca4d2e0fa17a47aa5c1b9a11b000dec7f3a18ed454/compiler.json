@@ -1,0 +1,423 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from PowTestgiver.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC checkProofOfWork()\n  DECLPROC rescaleComplexity()\n  DECLPROC slice.updateParams()\n  -1 DECLMETHOD onExternalMessage()\n  85143 DECLMETHOD seqno()\n  101616 DECLMETHOD get_pow_params()\n  78748 DECLMETHOD get_public_key()\n  onInternalMessage() PROC:<{\n    DROP\n  }>\n  checkProofOfWork() PROCREF:<{\n    DUP\n    NEWC\n    STSLICE\n    HASHBU\n    c4 PUSH\n    CTOS\n    64 LDU\n    256 LDU\n    128 LDU\n    256 LDU\n    s5 s1 XCPU\n    LESS\n    24 THROWIFNOT\n    s0 s5 XCHG\n    32 LDU\n    NIP\n    8 LDI\n    32 LDU\n    256 LDU\n    256 LDU\n    128 LDU\n    256 LDU\n    ENDS\n    s0 s4 XCHG\n    NOW\n    SUB\n    10 PUSHINT\n    UFITSX\n    DROP\n    s0 s5 XCHG2\n    EQUAL\n    s4 s2 PUXC\n    EQUAL\n    s1 s2 XCHG\n    AND\n    25 THROWIFNOT\n    ACCEPT\n    LTIME\n    ADDRAND\n    s0 s2 XCHG\n    ADDRAND\n    s0 s4 XCHG\n    32 LDU\n    LDREF\n    ENDS\n    DUP\n    CTOS\n    LDGRAMS\n    32 LDU\n    8 LDU\n    8 LDU\n    ENDS\n    NOW\n    s0 s6 XCHG2\n    SUB\n    DUP\n    0 GTINT\n    IF:<{\n      ROT\n      128 LSHIFT#DIVR\n      297747071055821155530452781502797185024 PUSHINTX\n      MAX\n      382817662786055771396296433360739237888 PUSHINTX\n      MIN\n      s1 s9 XCHG\n      128 MULRSHIFTR#\n      s0 s8 XCHG\n      POW2\n      s1 s8 XCHG\n      MAX\n      s0 s2 XCHG\n      POW2\n      s1 s2 XCHG\n      MIN\n      s6 s6 XCHG2\n    }>ELSE<{\n      3 BLKDROP\n      s2 POP\n    }>\n    s0 s4 XCHG\n    NEWC\n    64 STU\n    s1 s3 XCHG\n    256 STU\n    RANDU256\n    128 RSHIFT#\n    128 STUR\n    s1 s5 XCHG\n    256 STU\n    NOW\n    32 STUR\n    s1 s2 XCHG\n    STREF\n    ENDC\n    c4 POP\n    COMMIT\n    OVER\n    1 PUSHINT\n    AND\n    6 LSHIFT#\n    132 PUSHINT\n    OR\n    NEWC\n    9 STU\n    s0 s2 XCHG\n    2 RSHIFT#\n    ROT\n    8 STI\n    s1 s2 XCHG\n    256 STU\n    SWAP\n    STGRAMS\n    0 PUSHINT\n    107 STUR\n    ENDC\n    3 PUSHINT\n    SENDRAWMSG\n  }>\n  rescaleComplexity() PROCREF:<{\n    32 LDU\n    NIP\n    32 LDU\n    ENDS\n    NOW\n    s0 s1 PUSH2\n    GREATER\n    28 THROWIFNOT\n    c4 PUSH\n    CTOS\n    448 PUSHINT\n    LDSLICEX\n    256 LDU\n    32 LDU\n    LDREF\n    ENDS\n    s5 s1 XCPU\n    GREATER\n    29 THROWIFNOT\n    s4 PUSH\n    CTOS\n    LDGRAMS\n    NIP\n    32 LDU\n    s5 s2 PUXC\n    SUB\n    OVER\n    4 LSHIFT#\n    OVER\n    LEQ\n    30 THROWIFNOT\n    ACCEPT\n    s0 s2 XCHG\n    8 LDU\n    NIP\n    8 LDU\n    ENDS\n    s2 s1 XCPU\n    128 LSHIFT#DIVR\n    s0 s2 XCHG\n    POW2\n    s0 s3 PUSH2\n    128 LSHIFT#DIV\n    s3 PUSH\n    LESS\n    IF:<{\n      2 2 BLKDROP2\n    }>ELSE<{\n      DROP\n      -ROT\n      128 MULRSHIFTR#\n    }>\n    s0 s3 XCHG\n    SUBR\n    SWAP\n    NEWC\n    STSLICE\n    s1 s2 XCHG\n    256 STU\n    32 STU\n    STREF\n    ENDC\n    c4 POP\n  }>\n  slice.updateParams() PROCREF:<{\n    CTOS\n    8 LDU\n    s0 s2 XCHG\n    128 LDU\n    256 PLDU\n    s2 PUSH\n    IF:<{\n      DROP\n      ADDRAND\n      POW2\n      RANDU256\n      128 RSHIFT#\n    }>ELSE<{\n      s2 POP\n    }>\n    NEWC\n    128 STU\n    256 STU\n    NOW\n    32 STUR\n    SWAP\n    NEWC\n    STSLICE\n    ENDC\n    STREFR\n    BTOS\n  }>\n  onExternalMessage() PROC:<{\n    DUP\n    32 PLDU\n    DUP\n    1298755173 PUSHINT\n    EQUAL\n    IFJMP:<{\n      DROP\n      checkProofOfWork() INLINECALLDICT\n    }>\n    1381196652 PUSHINT\n    EQUAL\n    IFJMP:<{\n      rescaleComplexity() INLINECALLDICT\n    }>\n    9 PUSHPOW2\n    LDSLICEX\n    DUP\n    32 LDU\n    32 LDU\n    32 LDU\n    s0 s2 XCHG\n    NOW\n    LEQ\n    35 THROWIF\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    256 LDU\n    s4 s3 XCPU\n    EQUAL\n    33 THROWIFNOT\n    s5 s1 PUSH2\n    EQUAL\n    s0 s6 XCHG\n    0 EQINT\n    s1 s6 XCHG\n    OR\n    34 THROWIFNOT\n    s0 s5 XCHG\n    NEWC\n    STSLICE\n    HASHBU\n    s0 s6 s4 XC2PU\n    CHKSIGNU\n    35 THROWIFNOT\n    ACCEPT\n    SWAP\n    WHILE:<{\n      DUP\n      SREFS\n    }>DO<{\n      LDREF\n      8 LDU\n      OVER\n      8 PUSHPOW2DEC\n      LESS\n      IF:<{\n        -ROT\n        SENDRAWMSG\n      }>ELSE<{\n        NIP\n        -ROT\n        slice.updateParams() INLINECALLDICT\n        SWAP\n      }>\n    }>\n    DROP\n    s0 s3 XCHG\n    INC\n    NEWC\n    32 STU\n    s1 s2 XCHG\n    32 STU\n    256 STU\n    STSLICE\n    ENDC\n    c4 POP\n  }>\n  seqno() PROC:<{\n    c4 PUSH\n    CTOS\n    32 PLDU\n  }>\n  get_pow_params() PROC:<{\n    c4 PUSH\n    CTOS\n    320 PUSHINT\n    SDSKIPFIRST\n    128 LDU\n    256 LDU\n    PLDREF\n    CTOS\n    LDGRAMS\n    32 PLDU\n  }>\n  get_public_key() PROC:<{\n    c4 PUSH\n    CTOS\n    64 LDU\n    NIP\n    256 PLDU\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEAEAAi0AART/APSkE/S88sgLAQIBIAIDAgFIBAUE+PIg1wsfIIIQTWluZbqOgzDbPOCCEFJTY2y6joLbPOCDCNcYINMf0x/THwL4I7vyY+1E0NMf0x/T/1FDuvKhU1G6BsAAFrHyogXIzvkWVBBk+RDyo/gAAZMg10qOk9TTByGEB7mTWfsAjoUxWds8AeLoMAOkyMsfEssfy/8KCwwNAATQMAIBIAYHAgEgCAkALbxnh2omhAgKBrkOm/6f/rpmh9AGuFj8ABe7Oc7UTQ0z8x1wv/gAEbjJftRNDXCx+AL0IMjO+RbtRNDTP9P/03/T/1FRufKYBdMfMdIH0x/T/9P/03/T/9EE+COherYBMFAFulJDuhKw8pn4APgl+BUC+BUE0x/U0SDQ+gDTH9MH0wfR+CNQBqEgwgCTXwMy4w0EyMs/E8v/+BCrf88LfxXL//gjzwsfEszJ7VQODwDA0x8x0x/R+CNTAbzynO1E0IEBwNcY0//TH9TRUVG88p0k0PoAMdMfUlOhIaoDIbvynvgAAtMHMdMH0VEhqdV/Aq5TA6nUfyO5kmwilTBZqbV/4gOiAcjOEsv/yx/Mye1UAFDQ0wcC03/XC/8imDD4Fa74EKt/kTLiyMt/y//4I88LHwHIzsnPFM9QAAjOye1UADxYqdV/d6p8tgl5qny2CBmptX8Irhi2CQKuErYIUGYARPgPIXGwqgWBAISxyMsIAqsBWMoHEsv/AfoCcM8Laslz+wA=",
+  "codeHashHex": "BC4846308D58876F4F006DCA4D2E0FA17A47AA5C1B9A11B000DEC7F3A18ED454",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/c6ae1f8a-a9ba-472f-b1f4-7f6bb5195b43/contracts/PowTestgiver.tolk",
+        "size_chars": 5467,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "@stdlib/tvm-lowlevel.tolk",
+        "size_chars": 3981,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          8,
+          5,
+          8,
+          22
+        ],
+        "end_loc": [
+          1,
+          10,
+          1,
+          10,
+          2
+        ],
+        "params": [
+          {
+            "name": "_inMsg",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "checkProofOfWork",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          13,
+          5,
+          13,
+          21
+        ],
+        "end_loc": [
+          1,
+          53,
+          1,
+          53,
+          2
+        ],
+        "params": [
+          {
+            "name": "cs",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "rescaleComplexity",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          56,
+          5,
+          56,
+          22
+        ],
+        "end_loc": [
+          1,
+          83,
+          1,
+          83,
+          2
+        ],
+        "params": [
+          {
+            "name": "cs",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "slice.updateParams",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          86,
+          11,
+          86,
+          23
+        ],
+        "end_loc": [
+          1,
+          103,
+          1,
+          103,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 2
+          },
+          {
+            "name": "pref",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          105,
+          5,
+          105,
+          22
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsg",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "seqno",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          134,
+          9,
+          134,
+          14
+        ],
+        "end_loc": [
+          1,
+          136,
+          1,
+          136,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 6,
+        "name": "get_pow_params",
+        "return_ty_idx": 13,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          138,
+          9,
+          138,
+          23
+        ],
+        "end_loc": [
+          1,
+          143,
+          1,
+          143,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 7,
+        "name": "get_public_key",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          145,
+          9,
+          145,
+          23
+        ],
+        "end_loc": [
+          1,
+          149,
+          1,
+          149,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 85143,
+        "name": "seqno",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 101616,
+        "name": "get_pow_params",
+        "parameters": [],
+        "return_ty_idx": 12
+      },
+      {
+        "tvm_method_id": 78748,
+        "name": "get_public_key",
+        "parameters": [],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "plain_int",
+        "err_code": 24
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 25
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 28
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 29
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 30
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 33
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 34
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 35
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/c6ae1f8a-a9ba-472f-b1f4-7f6bb5195b43/contracts/PowTestgiver.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"@stdlib/tvm-lowlevel\"\n// Advanced TestGiver smart contract with Proof-of-Work verification\n\nfun ufits(x: int, bits: int): int\n    asm \"UFITSX\";\n\nfun onInternalMessage(_inMsg: slice) {\n  // do nothing for internal messages\n}\n\n@inline_ref\nfun checkProofOfWork(cs: slice) {\n  var hash = cs.hash();\n  var ds = contract.getData().beginParse();\n  var (storedSeqnoSw, publicKey, seed, powComplexity) = (ds.loadUint(64), ds.loadUint(256), ds.loadUint(128), ds.loadUint(256));\n  assert(hash < powComplexity) throw 24;\n  var (op, flags, expire, whom, rdata1, rseed, rdata2) = (cs.loadUint(32), cs.loadInt(8), cs.loadUint(32), cs.loadUint(256), cs.loadUint(256), cs.loadUint(128), cs.loadUint(256));\n  cs.assertEnd();\n  ufits(expire - blockchain.now(), 10);\n  assert((rseed == seed) & (rdata1 == rdata2)) throw 25;\n  acceptExternalMessage();\n  random.initialize();\n  random.initializeBy(rdata1);\n  var (lastSuccess, xdata) = (ds.loadUint(32), ds.loadRef());\n  ds.assertEnd();\n  ds = xdata.beginParse();\n  var (amount, targetDelta, minCpl, maxCpl) = (ds.loadCoins(), ds.loadUint(32), ds.loadUint(8), ds.loadUint(8));\n  ds.assertEnd();\n  var delta: int = blockchain.now() - lastSuccess;\n  if (delta > 0) {\n    var factor: int = mulDivRound(delta, 1 << 128, targetDelta);\n    factor = min(max(factor, 7 << 125), 9 << 125);\n    powComplexity = mulDivRound(powComplexity, factor, 1 << 128);\n    powComplexity = min(max(powComplexity, 1 << minCpl), 1 << maxCpl);\n  }\n  contract.setData(beginCell()\n    .storeUint(storedSeqnoSw, 64)\n    .storeUint(publicKey, 256)\n    .storeUint(random.uint256() >> 128, 128)\n    .storeUint(powComplexity, 256)\n    .storeUint(blockchain.now(), 32)\n    .storeRef(xdata)\n    .endCell());\n  commitContractDataAndActions();\n  sendRawMessage(beginCell()\n    .storeUint(((flags & 1) << 6) | 0x84, 9)\n    .storeInt(flags >> 2, 8)\n    .storeUint(whom, 256)\n    .storeCoins(amount)\n    .storeUint(0, 1 + 4 + 4 + 64 + 32 + 1 + 1)\n  .endCell(), 3);\n}\n\n@inline_ref\nfun rescaleComplexity(cs: slice) {\n  var (op, expire) = (cs.loadUint(32), cs.loadUint(32));\n  cs.assertEnd();\n  var time: int = blockchain.now();\n  assert(time > expire) throw 28;\n  var ds = contract.getData().beginParse();\n  var (skippedData, powComplexity, lastSuccess, xdata) = (ds.loadBits(64 + 256 + 128), ds.loadUint(256), ds.loadUint(32), ds.loadRef());\n  ds.assertEnd();\n  assert(expire > lastSuccess) throw 29;\n  ds = xdata.beginParse();\n  var (amount, targetDelta) = (ds.loadCoins(), ds.loadUint(32));\n  var delta: int = time - lastSuccess;\n  assert(delta >= targetDelta * 16) throw 30;\n  acceptExternalMessage();\n  var (minCpl, maxCpl) = (ds.loadUint(8), ds.loadUint(8));\n  ds.assertEnd();\n  var factor: int = mulDivRound(delta, 1 << 128, targetDelta);\n  var maxComplexity: int = (1 << maxCpl);\n  var maxFactor: int = mulDivFloor(maxComplexity, 1 << 128, powComplexity);\n  powComplexity = (maxFactor < factor ? maxComplexity : mulDivRound(powComplexity, factor, 1 << 128));\n  lastSuccess = time - targetDelta;\n  contract.setData(beginCell()\n    .storeSlice(skippedData)\n    .storeUint(powComplexity, 256)\n    .storeUint(lastSuccess, 32)\n    .storeRef(xdata)\n    .endCell());\n}\n\n@inline_ref\nfun slice.updateParams(mutate self, pref: cell): void {\n  var cs = pref.beginParse();\n  var resetCpl = cs.loadUint(8);\n  var (seed, powComplexity, lastSuccess) = (self.loadUint(128), self.loadUint(256), self.loadUint(32));\n  if (resetCpl != 0) {\n    random.initializeBy(seed);\n    powComplexity = (1 << resetCpl);\n    seed = (random.uint256() >> 128);\n  }\n  var c = beginCell()\n    .storeUint(seed, 128)\n    .storeUint(powComplexity, 256)\n    .storeUint(blockchain.now(), 32)\n    .storeRef(beginCell().storeSlice(cs).endCell())\n    .endCell();\n  self = c.beginParse();\n  return;\n}\n\nfun onExternalMessage(inMsg: slice) {\n  var op = inMsg.preloadUint(32);\n  if (op == 0x4d696e65) { return checkProofOfWork(inMsg); }\n  if (op == 0x5253636c) { return rescaleComplexity(inMsg); }\n  var signature = inMsg.loadBits(512);\n  var cs = inMsg;\n  var (subwalletId, validUntil, msgSeqno) = (cs.loadUint(32), cs.loadUint(32), cs.loadUint(32));\n  assert(!(validUntil <= blockchain.now())) throw 35;\n  var ds = contract.getData().beginParse();\n  var (storedSeqno, storedSubwallet, publicKey) = (ds.loadUint(32), ds.loadUint(32), ds.loadUint(256));\n  assert(msgSeqno == storedSeqno) throw 33;\n  assert((subwalletId == storedSubwallet) | (subwalletId == 0)) throw 34;\n  assert(isSignatureValid(inMsg.hash(), signature, publicKey)) throw 35;\n  acceptExternalMessage();\n  cs.stackMoveToTop();\n  while (cs.remainingRefsCount() != 0) {\n    var ref = cs.loadRef();\n    var mode = cs.loadUint(8);\n    if (mode < 0xff) { sendRawMessage(ref, mode); }\n    else { ds.updateParams(ref); }\n  }\n  contract.setData(beginCell()\n    .storeUint(storedSeqno + 1, 32)\n    .storeUint(storedSubwallet, 32)\n    .storeUint(publicKey, 256)\n    .storeSlice(ds)\n    .endCell());\n}\n\nget fun seqno(): int {\n  return contract.getData().beginParse().preloadUint(32);\n}\n\nget fun get_pow_params(): (int, int, int, int) {\n  var ds = contract.getData().beginParse().skipBits(32 + 32 + 256);\n  var (seed, powComplexity, xdata) = (ds.loadUint(128), ds.loadUint(256), ds.preloadRef());\n  ds = xdata.beginParse();\n  return (seed, powComplexity, ds.loadCoins(), ds.preloadUint(32));\n}\n\nget fun get_public_key(): int {\n  var ds = contract.getData().beginParse();\n  ds.loadUint(32 + 32);\n  return ds.preloadUint(256);\n}\n"
+    }
+  ]
+}
