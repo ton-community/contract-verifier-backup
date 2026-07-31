@@ -1,0 +1,1704 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from DnsCollection.tolk, dns-utils.tolk, errors.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  DECLPROC checkDomainString()\n  0 DECLMETHOD onInternalMessage()\n  102491 DECLMETHOD get_collection_data()\n  92067 DECLMETHOD get_nft_address_by_index()\n  68445 DECLMETHOD get_nft_content()\n  123660 DECLMETHOD dnsresolve()\n  // 8 functions inlined in-place:\n  // - address.toNextResolver (1 call)\n  // - readDomainFromComment (1 call)\n  // - getTopDomainBits (1 call)\n  // - getMinPriceConfig (1 call)\n  // - getMinPrice (1 call)\n  // - DnsRecords.packToBuilder (0 calls)\n  // - DnsRecords.unpackFromSlice (0 calls)\n  // - loadDnsConfigMap (1 call)\n  // - CollectionStorage.load (3 calls)\n  // - calcDeployedNftItem (2 calls)\n  checkDomainString() PROCREF:<{\n    c2 SAVE\n    SAMEALTSAVE\n    0 PUSHINT\n    SWAP\n    3 RSHIFT#\n    DUP\n    DEC\n    SWAP\n    REPEAT:<{\n      s0 s2 XCHG\n      8 LDU\n      OVER\n      47 GTINT\n      IF:<{\n        OVER\n        58 LESSINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      s2 PUSH\n      96 GTINT\n      IF:<{\n        s2 PUSH\n        123 LESSINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      SWAP\n      IF:<{\n        DROP\n        -1 PUSHINT\n      }>ELSE<{\n        0 NEQINT\n      }>\n      DUP\n      IFNOT:<{\n        DROP\n        SWAP\n        45 EQINT\n        IF:<{\n          OVER\n          0 GTINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          s1 s2 PUSH2\n          LESS\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        SWAP\n      }>ELSE<{\n        s2 POP\n      }>\n      SWAP\n      IFNOTJMP:<{\n        3 BLKDROP\n        FALSE\n        RETALT\n      }>\n      SWAP\n      INC\n      ROT\n    }>\n    3 BLKDROP\n    TRUE\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    x{00000000} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      NOW\n      DUP\n      1659171600 PUSHINT\n      GREATER\n      199 THROWIFNOT\n      NEWC\n      s3 PUSH\n      SBITS\n      s1 s4 XCHG\n      LDSLICEX\n      s0 s4 XCHG\n      STSLICE\n      s3 PUSH\n      SDEPTH\n      REPEAT:<{\n        s3 PUSH\n        SREFS\n        1 EQINT\n        202 THROWIFNOT\n        s0 s3 XCHG\n        PLDREF\n        CTOS\n        DUP\n        SBITS\n        LDSLICEX\n        s0 s4 XCHG\n        STSLICE\n      }>\n      s3 POP\n      s0 s2 XCHG\n      BTOS\n      DUP\n      SBITS\n      DUP\n      24 GTINT\n      200 THROWIFNOT\n      DUP\n      1008 PUSHINT\n      LEQ\n      201 THROWIFNOT\n      DUP\n      3 MODPOW2#\n      202 THROWIF\n      2DUP\n      checkDomainString() INLINECALLDICT\n      203 THROWIFNOT\n      3 RSHIFT#\n      10 PUSHINT\n      1 PUSHINT\n      s2 PUSH\n      4 EQINT\n      IF:<{\n        2DROP\n        1000 PUSHINT\n        100 PUSHINT\n      }>\n      s2 PUSH\n      5 EQINT\n      IF:<{\n        2DROP\n        500 PUSHINT\n        50 PUSHINT\n      }>\n      s2 PUSH\n      6 EQINT\n      IF:<{\n        2DROP\n        400 PUSHINT\n        40 PUSHINT\n      }>\n      s2 PUSH\n      7 EQINT\n      IF:<{\n        2DROP\n        300 PUSHINT\n        30 PUSHINT\n      }>\n      s2 PUSH\n      8 EQINT\n      IF:<{\n        2DROP\n        200 PUSHINT\n        20 PUSHINT\n      }>\n      s2 PUSH\n      9 EQINT\n      IF:<{\n        2DROP\n        100 PUSHINT\n        10 PUSHINT\n      }>\n      s0 s2 XCHG\n      10 EQINT\n      IF:<{\n        2DROP\n        50 PUSHINT\n        5 PUSHINT\n        SWAP\n      }>\n      1000000000 PUSHINT\n      MUL\n      SWAP\n      1000000000 PUSHINT\n      MUL\n      s0 s4 XCHG\n      1659171600 PUSHINT\n      SUB\n      2592000 PUSHINT\n      DIV\n      DUP\n      21 GTINT\n      IF:<{\n        2DROP\n      }>ELSE<{\n        s4 POP\n        s0 s3 XCHG\n        REPEAT:<{\n          s0 s2 XCHG\n          90 MULCONST\n          100 PUSHINT\n          DIV\n          s0 s2 XCHG\n        }>\n      }>\n      INMSG_VALUE\n      s0 s3 XCHG2\n      GEQ\n      204 THROWIFNOT\n      OVER\n      NEWC\n      STSLICE\n      HASHBU\n      80 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      IFNOT:<{\n        CTOS\n        PLDDICT\n        s1 s(-1) PUXC\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        NIP\n        205 THROWIF\n      }>ELSE<{\n        DROP\n      }>\n      SWAP\n      LDREF\n      NIP\n      PLDREF\n      MYADDR\n      s0 s2 XCHG\n      NEWC\n      256 STU\n      s1 s2 XCHG\n      STSTDADDR\n      ENDC\n      INMSG_SRC\n      s0 s3 XCHG\n      NEWC\n      STSLICE\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      140 PUSHINT\n      117 STUR\n      s1 s3 XCHG\n      STREF\n      STREF\n      s1 s2 XCHG\n      STSTDADDR\n      STREF\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    x{370fec51} SDBEGINSQ\n    NIP\n    IFJMP:<{\n    }>\n    16 PUSHPOW2DEC\n    THROWANY\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    -1 PUSHINT\n    SWAP\n    PUSHNULL\n  }>\n  get_nft_address_by_index() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    256 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_nft_content() PROC:<{\n    NIP\n  }>\n  dnsresolve() PROC:<{\n    DROP\n    DUP\n    SBITS\n    3 MODPOW2#\n    70 THROWIF\n    DUP\n    8 PLDI\n    DUP\n    0 EQINT\n    SWAP\n    IF:<{\n      0 PUSHINT\n    }>ELSE<{\n      OVER\n      SBITS\n      8 EQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      2DROP\n      8 PUSHINT\n      PUSHNULL\n    }>\n    DUP\n    IF:<{\n      SWAP\n      8 LDU\n      NIP\n      SWAP\n    }>\n    OVER\n    0 PUSHINT\n    FALSE\n    WHILE:<{\n      NOT\n    }>DO<{\n      SWAP\n      8 LDU\n      OVER\n      0 EQINT\n      s0 s2 XCHG\n      IF:<{\n        s0 s2 XCHG\n        8 ADDCONST\n        s0 s2 XCHG\n      }>\n      -ROT\n    }>\n    NIP\n    DUP\n    0 GTINT\n    201 THROWIFNOT\n    s2 s2 XCPU\n    PLDSLICEX\n    NEWC\n    STSLICE\n    HASHBU\n    get_nft_address_by_index() CALLDICT\n    SWAP\n    8 PUSHINT\n    0 PUSHINT\n    CONDSEL\n    s1 s2 XCHG\n    ADD\n    NEWC\n    x{ba93} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDwEAAoIAART/APSkE/S88sgLAQIBYgIDATbQ+JHyQNcsIAAAAATjAtcsIbh/Yowx3IQP8vAEAgEgCQoD/u1E0PgjIIIQYuTzELzy4MfII9dJFNcYBM4j12SOEyPXSsAB8uDKA9dM0CDXSdcYBM7kMwLPUCDXSSDCGPLgyCCBA/C78uDJIKk4AvLQylzbPPLgy6sCenEiwASWW4ED6IBk3iLABZZbgQH0gDLeIsAGlluBAZCAKN4iwAfjACIFBgcAuO2i7ftwAasCIKUBjksC0wchwi+VIcE6wwCRcOIiwmCVIsF7wwCRcOIBkjB/ksMA4iCRMo4XMAHALZUhwgDDAJFw4pVTErnDAJFw4gHiAZVfA3DbMeEBpFjkXwN/AAxbgQEsgB4B/sAIlluBAMiAFN4iwAmUW4Bket4CwAqVW4AydQHeghA7msoAqAGCEDuaygCoBIIQYuTzEKGCCCeNAKkEIMIVkVucNAOYAqdagGSpBALk4viXUAO+8uDMIcjO+RaAUPgzIG6RMJ/Q9AVSEIMH9A5voTHy0M3iAdQx10z4KALIy/8IAFwS+lLJ+JIDyM7JyM+JiAFTI8jPhNDMzPkWzwv/gQCMzwt0E8zMEvpSzMmAQPsAAgEgCwwCASANDgAHuLXTGABLuno+1E0NQx1NH4KALIy/8S+lLJAcjPhNDMzPkWyM+KAEDL/89QgAGbkFvtRNDU1DHRfwFtgAz7owwwINdJqTgC8tBGINcKByDAAAGRcJch10nACMMA4pNbeG3gIJUB0wcxAd4hcHCRs54B0wchwAAClAKmCALeWegxIMIA8uDJUSLXGcjO+RaCAWej7UPYAXhw4wQSoMjPiupOEvpSyY",
+  "codeHashHex": "95D47906B295D536AB03EEC7715C9849DC7E1126EBC84B01798CE4C5D5C9145F",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/DnsCollection.tolk",
+        "size_chars": 3625,
+        "imports": [
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/dns-utils.tolk",
+        "size_chars": 4661,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/errors.tolk",
+        "size_chars": 878,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/messages.tolk",
+        "size_chars": 1884,
+        "imports": [
+          5
+        ]
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/storage.tolk",
+        "size_chars": 3070,
+        "imports": [
+          2,
+          3
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedCollectionMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DeployDnsDomain"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FillUp"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 0,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 923790417,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MinPriceConfig"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DnsConfigMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 19,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 27,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemStorageNotInitialized"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemInitData"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          35
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 43
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          42
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 135,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          24,
+          19
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 47,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DnsResolveResponse"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 37,
+        "struct_name": "CreateMessageOptions<ItemInitData>",
+        "monomorphic_fields_ty_idx": [
+          41,
+          46,
+          48,
+          35
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 44
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 28
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 23,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 24
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 26
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 39,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 41
+          },
+          {
+            "name": "value",
+            "ty_idx": 46
+          },
+          {
+            "name": "dest",
+            "ty_idx": 48
+          },
+          {
+            "name": "body",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedCollectionMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          14,
+          6,
+          14,
+          30
+        ],
+        "target_ty_idx": 16
+      },
+      {
+        "kind": "struct",
+        "name": "MinPriceConfig",
+        "ty_idx": 18,
+        "ident_loc": [
+          2,
+          107,
+          8,
+          107,
+          22
+        ],
+        "fields": [
+          {
+            "name": "startMinPrice",
+            "ty_idx": 1
+          },
+          {
+            "name": "endMinPrice",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DeployDnsDomain",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          11,
+          21,
+          11,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "payload",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FillUp",
+        "ty_idx": 15,
+        "ident_loc": [
+          4,
+          15,
+          21,
+          15,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 923790417,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemInitData",
+        "ty_idx": 35,
+        "ident_loc": [
+          4,
+          81,
+          8,
+          81,
+          20
+        ],
+        "fields": [
+          {
+            "name": "fromAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "domain",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "DnsConfigMap",
+        "ty_idx": 21,
+        "ident_loc": [
+          5,
+          16,
+          6,
+          16,
+          18
+        ],
+        "target_ty_idx": 22
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionStorage",
+        "ty_idx": 17,
+        "ident_loc": [
+          5,
+          23,
+          8,
+          23,
+          25
+        ],
+        "fields": [
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 51,
+        "ident_loc": [
+          5,
+          28,
+          8,
+          28,
+          27
+        ],
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DnsResolveResponse",
+        "ty_idx": 54,
+        "ident_loc": [
+          5,
+          44,
+          8,
+          44,
+          26
+        ],
+        "fields": [
+          {
+            "name": "resolvedPrefixLengthBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "resolvedRecord",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemStorageNotInitialized",
+        "ty_idx": 30,
+        "ident_loc": [
+          5,
+          49,
+          8,
+          49,
+          33
+        ],
+        "fields": [
+          {
+            "name": "index",
+            "ty_idx": 19
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "checkDomainString",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          78,
+          5,
+          78,
+          22
+        ],
+        "end_loc": [
+          2,
+          105,
+          1,
+          105,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 2
+          },
+          {
+            "name": "len",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          16,
+          5,
+          16,
+          22
+        ],
+        "end_loc": [
+          1,
+          64,
+          1,
+          64,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "readDomainFromComment",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          31,
+          5,
+          31,
+          26
+        ],
+        "end_loc": [
+          2,
+          44,
+          1,
+          44,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsgBody",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "getMinPrice",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          143,
+          5,
+          143,
+          16
+        ],
+        "end_loc": [
+          2,
+          165,
+          1,
+          165,
+          2
+        ],
+        "params": [
+          {
+            "name": "domainBitsLength",
+            "ty_idx": 1
+          },
+          {
+            "name": "nowTime",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "getMinPriceConfig",
+        "return_ty_idx": 18,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          112,
+          5,
+          112,
+          22
+        ],
+        "end_loc": [
+          2,
+          141,
+          1,
+          141,
+          2
+        ],
+        "params": [
+          {
+            "name": "domainCharCount",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "loadDnsConfigMap",
+        "return_ty_idx": 21,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          18,
+          5,
+          18,
+          21
+        ],
+        "end_loc": [
+          5,
+          21,
+          1,
+          21,
+          2
+        ],
+        "params": [
+          {
+            "name": "configCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint256, slice>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "calcDeployedNftItem",
+        "return_ty_idx": 23,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          54,
+          5,
+          54,
+          24
+        ],
+        "end_loc": [
+          5,
+          61,
+          1,
+          61,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 19
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "ItemStorageNotInitialized.toCell",
+        "return_ty_idx": 31,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "slice.toCell",
+        "return_ty_idx": 33,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "createMessage<ItemInitData>",
+        "return_ty_idx": 34,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "get_collection_data",
+        "return_ty_idx": 51,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          66,
+          9,
+          66,
+          28
+        ],
+        "end_loc": [
+          1,
+          73,
+          1,
+          73,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "CollectionStorage.load",
+        "return_ty_idx": 17,
+        "num_params": 0,
+        "ident_loc": [
+          5,
+          34,
+          23,
+          34,
+          27
+        ],
+        "end_loc": [
+          5,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "CollectionStorage.fromCell",
+        "return_ty_idx": 17,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 53
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          75,
+          9,
+          75,
+          33
+        ],
+        "end_loc": [
+          1,
+          78,
+          1,
+          78,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "get_nft_content",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          80,
+          9,
+          80,
+          24
+        ],
+        "end_loc": [
+          1,
+          82,
+          1,
+          82,
+          2
+        ],
+        "params": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "dnsresolve",
+        "return_ty_idx": 54,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          84,
+          9,
+          84,
+          19
+        ],
+        "end_loc": [
+          1,
+          108,
+          1,
+          108,
+          2
+        ],
+        "params": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "_category",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "getTopDomainBits",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          47,
+          5,
+          47,
+          21
+        ],
+        "end_loc": [
+          2,
+          67,
+          1,
+          67,
+          2
+        ],
+        "params": [
+          {
+            "name": "domain",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "address.toNextResolver",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          25,
+          13,
+          25,
+          27
+        ],
+        "end_loc": [
+          2,
+          27,
+          1,
+          27,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "DnsCollection",
+    "author": "The Tolk Team",
+    "version": "1.0.0",
+    "description": "DNS NFT Collection. Manages .ton domain auctions and minting",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DeployDnsDomain"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FillUp"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemInitData"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionDataReply"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DnsResolveResponse"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "DeployDnsDomain",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "payload",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FillUp",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 923790417,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemInitData",
+        "ty_idx": 16,
+        "fields": [
+          {
+            "name": "fromAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "domain",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionStorage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionDataReply",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "content",
+            "ty_idx": 3
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DnsResolveResponse",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "resolvedPrefixLengthBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "resolvedRecord",
+            "ty_idx": 21
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 16
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 18
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 68445,
+        "name": "get_nft_content",
+        "parameters": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualNftContent",
+            "ty_idx": 3
+          }
+        ],
+        "return_ty_idx": 3
+      },
+      {
+        "tvm_method_id": 123660,
+        "name": "dnsresolve",
+        "parameters": [
+          {
+            "name": "subdomain",
+            "ty_idx": 2
+          },
+          {
+            "name": "_category",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 20
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_DNS_INVALID_SUBDOMAIN_BITS",
+        "err_code": 70
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_AUCTION_NOT_STARTED",
+        "err_code": 199
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DOMAIN_TOO_SHORT",
+        "err_code": 200
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DOMAIN_TOO_LONG",
+        "err_code": 201
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DOMAIN_FORMAT_INVALID",
+        "err_code": 202
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DOMAIN_HAS_INVALID_CHARS",
+        "err_code": 203
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_BID_BELOW_MIN_PRICE",
+        "err_code": 204
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_DOMAIN_IS_BLACKLISTED",
+        "err_code": 205
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNKNOWN_OP",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/DnsCollection.tolk",
+      "contents": "import \"dns-utils\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\n\ncontract DnsCollection {\n    author: \"The Tolk Team\"\n    version: \"1.0.0\"\n    description: \"DNS NFT Collection. Manages .ton domain auctions and minting\"\n    incomingMessages: AllowedCollectionMessage\n    storage: CollectionStorage\n}\n\ntype AllowedCollectionMessage = DeployDnsDomain | FillUp\n\nfun onInternalMessage(in: InMessage) {\n    var msg = lazy AllowedCollectionMessage.fromSlice(in.body);\n\n    match (msg) {\n        DeployDnsDomain => {\n            val storage = lazy CollectionStorage.load();\n\n            val nowTime = blockchain.now();\n            assert (nowTime > AUCTION_START_TIME) throw ERROR_AUCTION_NOT_STARTED;\n\n            val domain = readDomainFromComment(mutate msg.payload);\n            val len = domain.remainingBitsCount();\n\n            assert (len > MIN_DOMAIN_SIZE * BYTE_SIZE) throw ERROR_DOMAIN_TOO_SHORT;\n            assert (len <= MAX_DOMAIN_SIZE * BYTE_SIZE) throw ERROR_DOMAIN_TOO_LONG;\n            assert (len % BYTE_SIZE == 0) throw ERROR_DOMAIN_FORMAT_INVALID;\n            assert (checkDomainString(domain, len)) throw ERROR_DOMAIN_HAS_INVALID_CHARS;\n\n            val minPrice = getMinPrice(len, nowTime);\n            assert (in.valueCoins >= minPrice) throw ERROR_BID_BELOW_MIN_PRICE;\n\n            val itemIndex = domain.hash();\n\n            val configCell = blockchain.configParam(DNS_CONFIG_ID);\n            if (configCell != null) {\n                val configDict = loadDnsConfigMap(configCell);\n                val found = configDict.exists(itemIndex);\n                assert (!found) throw ERROR_DOMAIN_IS_BLACKLISTED;\n            }\n\n            val deployItemMsg = createMessage({\n                bounce: BounceMode.Only256BitsOfBody,\n                dest: calcDeployedNftItem(itemIndex, storage.nftItemCode),\n                value: 0,\n                body: ItemInitData {\n                    fromAddress: in.senderAddress,\n                    domain: domain.toCell(),\n                },\n            });\n            deployItemMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n        }\n\n        FillUp => {\n            // Top up balance.\n        }\n\n        else => throw ERROR_UNKNOWN_OP,\n    }\n}\n\nget fun get_collection_data(): CollectionDataReply {\n    val st = CollectionStorage.load();\n    return {\n        nextItemIndex: -1,\n        content: st.content,\n        ownerAddress: null,\n    };\n}\n\nget fun get_nft_address_by_index(index: int): address {\n    val st = CollectionStorage.load();\n    return calcDeployedNftItem(index, st.nftItemCode).calculateAddress();\n}\n\nget fun get_nft_content(_index: int, individualNftContent: cell): cell {\n    return individualNftContent;\n}\n\nget fun dnsresolve(subdomain: slice, _category: int): DnsResolveResponse {\n    assert (subdomain.remainingBitsCount() % BYTE_SIZE == 0) throw ERROR_DNS_INVALID_SUBDOMAIN_BITS;\n\n    val startsWithZeroByte = subdomain.preloadInt(BYTE_SIZE) == 0;\n\n    // \".\" is resolved, without dns record\n    if (startsWithZeroByte && subdomain.remainingBitsCount() == BYTE_SIZE) {\n        return { resolvedPrefixLengthBits: BYTE_SIZE, resolvedRecord: null };\n    }\n\n    if (startsWithZeroByte) {\n        subdomain.skipBits(BYTE_SIZE);\n    }\n\n    val topSubdomainBits = getTopDomainBits(subdomain);\n    val topSubdomain = subdomain.loadBits(topSubdomainBits);\n    val itemIndex = topSubdomain.hash();\n\n    val nextResolverAddress = get_nft_address_by_index(itemIndex);\n\n    return {\n        resolvedPrefixLengthBits: topSubdomainBits + (startsWithZeroByte ? BYTE_SIZE : 0),\n        resolvedRecord: nextResolverAddress.toNextResolver(),\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/dns-utils.tolk",
+      "contents": "import \"errors\"\n\nconst ONE_MONTH = 60 * 60 * 24 * 30\nconst ONE_YEAR = 60 * 60 * 24 * 366\n\nconst AUCTION_START_TIME = 1659171600 // GMT: Monday, 30 July 2022 г., 09:00:00\nconst AUCTION_START_DURATION = 60 * 60 * 24 * 7\nconst AUCTION_END_DURATION = 60 * 60\nconst AUCTION_PROLONGATION = 60 * 60\n\nconst MIN_TONS_FOR_STORAGE = ton(\"1\")\nconst ONE_TON = ton(\"1\")\n\n// https://github.com/ton-blockchain/ton/blob/7e3df93ca2ab336716a230fceb1726d81bac0a06/crypto/block/block.tlb#L819\nconst DNS_NEXT_RESOLVER_PREFIX = 0xba93\nconst BYTE_SIZE = 8\nconst DNS_CONFIG_ID = 80\n\nconst TON_WWW_DOMAIN_SIZE = 8 // \"ton.www\" (6) + 2 null-encoding symbols\nconst TON_DOMAIN_SIZE = 4 // \"ton\" (3) + 1 null-encoding symbol\nconst TELEGRAM_DOMAIN_SIZE = 5 // \"t.me\" (3) + 2 null-encoding symbols\nconst MIN_DOMAIN_SIZE = 3\nconst MAX_DOMAIN_SIZE = 126\n\nfun address.toNextResolver(self): cell {\n    return beginCell().storeUint(DNS_NEXT_RESOLVER_PREFIX, 16).storeAddress(self).endCell();\n}\n\n// Snake-like domain in remaining bits/refs.\n// \"ab\".ref(\"cd\").ref(\"ef\") -> \"abcdef\"\nfun readDomainFromComment(mutate inMsgBody: slice): slice {\n    var result = beginCell();\n\n    result.storeSlice(inMsgBody.loadBits(inMsgBody.remainingBitsCount()));\n\n    repeat (inMsgBody.depth()) {\n        val refsLen = inMsgBody.remainingRefsCount();\n        assert (refsLen == 1) throw ERROR_DOMAIN_FORMAT_INVALID;\n        inMsgBody = inMsgBody.loadRef().beginParse();\n        result.storeSlice(inMsgBody.loadBits(inMsgBody.remainingBitsCount()));\n    }\n\n    return result.toSlice();\n}\n\n// \"ton\\0test\\0\" -> \"ton\"\nfun getTopDomainBits(domain: slice): int {\n    var bytes = domain;\n\n    var bits = 0;\n    var shouldStop = false;\n\n    while (!shouldStop) {\n        // we do not check domain.length because it MUST contain \\0 character\n        val ch = bytes.loadUint(BYTE_SIZE);\n\n        shouldStop = ch == 0;\n\n        if (!shouldStop) {\n            bits += BYTE_SIZE;\n        }\n    }\n\n    // matches original FunC exit code\n    assert (bits > 0) throw ERROR_DOMAIN_TOO_LONG;\n    return bits;\n}\n\nenum DomainChar {\n    Hyphen = 45      // ASCII '-': allowed only inside a label, not as the first/last checked char.\n    DigitZero = 48   // ASCII '0': lower bound for allowed digits\n    DigitNine = 57   // ASCII '9': upper bound for allowed digits\n    LowercaseA = 97  // ASCII 'a': lower bound for allowed lowercase letters\n    LowercaseZ = 122 // ASCII 'z': upper bound for allowed lowercase letters\n}\n\n@inline_ref\nfun checkDomainString(domain: slice, len: int): bool {\n    var bytes = domain;\n    var i = 0;\n\n    val charCount = len / BYTE_SIZE;\n    val lastChar = charCount - 1;\n\n    repeat (charCount) {\n        val ch = bytes.loadUint(BYTE_SIZE);\n\n        val isDigit = ch >= (DomainChar.DigitZero as int) && ch <= (DomainChar.DigitNine as int);\n        val isLowercaseLetter = ch >= (DomainChar.LowercaseA as int) &&\n        ch <= (DomainChar.LowercaseZ as int);\n\n        var valid = isDigit || isLowercaseLetter;\n        if (!valid) {\n            valid = ch == (DomainChar.Hyphen as int) && i > 0 && i < lastChar;\n        }\n\n        if (!valid) {\n            return false;\n        }\n\n        i += 1;\n    }\n\n    return true;\n}\n\nstruct MinPriceConfig {\n    startMinPrice: int\n    endMinPrice: int\n}\n\nfun getMinPriceConfig(domainCharCount: int): MinPriceConfig {\n    var res = MinPriceConfig {\n        startMinPrice: 10,\n        endMinPrice: 1,\n    };\n\n    if (domainCharCount == 4) {\n        res = { startMinPrice: 1000, endMinPrice: 100 };\n    }\n    if (domainCharCount == 5) {\n        res = { startMinPrice: 500, endMinPrice: 50 };\n    }\n    if (domainCharCount == 6) {\n        res = { startMinPrice: 400, endMinPrice: 40 };\n    }\n    if (domainCharCount == 7) {\n        res = { startMinPrice: 300, endMinPrice: 30 };\n    }\n    if (domainCharCount == 8) {\n        res = { startMinPrice: 200, endMinPrice: 20 };\n    }\n    if (domainCharCount == 9) {\n        res = { startMinPrice: 100, endMinPrice: 10 };\n    }\n    if (domainCharCount == 10) {\n        res = { startMinPrice: 50, endMinPrice: 5 };\n    }\n\n    return res;\n}\n\nfun getMinPrice(domainBitsLength: int, nowTime: int): int {\n    val config = getMinPriceConfig(domainBitsLength / BYTE_SIZE);\n    var startMinPrice = config.startMinPrice * ONE_TON;\n    val endMinPrice = config.endMinPrice * ONE_TON;\n\n    val seconds = nowTime - AUCTION_START_TIME;\n    val months = seconds / ONE_MONTH;\n\n    var res: int;\n\n    if (months > 21) {\n        res = endMinPrice;\n    } else {\n        repeat (months) {\n            // -10% each passing month\n            startMinPrice = startMinPrice * 90 / 100;\n        }\n\n        res = startMinPrice;\n    }\n\n    return res;\n}\n"
+    },
+    {
+      "filename": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/errors.tolk",
+      "contents": "const ERROR_DNS_INVALID_SUBDOMAIN_BITS = 70\n\nconst ERROR_AUCTION_NOT_STARTED = 199\nconst ERROR_DOMAIN_TOO_SHORT = 200\nconst ERROR_DOMAIN_TOO_LONG = 201\nconst ERROR_DOMAIN_FORMAT_INVALID = 202\nconst ERROR_DOMAIN_HAS_INVALID_CHARS = 203\nconst ERROR_BID_BELOW_MIN_PRICE = 204\nconst ERROR_DOMAIN_IS_BLACKLISTED = 205\n\nconst ERROR_NOT_OWNER = 401\nconst ERROR_NOT_ENOUGH_BALANCE = 402\nconst ERROR_NOT_FROM_COLLECTION = 405\nconst ERROR_ONLY_OWNER_CAN_FILL_UP_AFTER_AUCTION = 406\nconst ERROR_BID_TOO_LOW = 407\nconst ERROR_ONLY_OWNER_CAN_EDIT_CONTENT = 410\nconst ERROR_ONLY_OWNER_CAN_CHANGE_DNS = 411\nconst ERROR_CONTENT_TAG_INVALID = 412\nconst ERROR_GOVERNANCE_REQUIRES_NO_AUCTION = 413\nconst ERROR_DNS_BALANCE_RELEASE_FORBIDDEN = 414\nconst ERROR_CONFIG_ENTRY_NOT_FOUND = 415\nconst ERROR_CONFIG_OPERATION_INVALID = 416\n\nconst ERROR_WRONG_WORKCHAIN = 333\nconst ERROR_UNKNOWN_OP = 0xFFFF\n"
+    },
+    {
+      "filename": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/messages.tolk",
+      "contents": "import \"storage\"\n\ntype TransferForwardPayload = RemainingBitsAndRefs\n\n// type InlineString = string\n\n// fun InlineString.unpackFromSlice(mutate s: slice): InlineString {\n//     return s.loadRef().beginParse() as InlineString;\n// }\n\nstruct (0x00000000) DeployDnsDomain {\n    payload: RemainingBitsAndRefs\n}\n\nstruct (0x370fec51) FillUp {\n    queryId: uint64\n}\n\nstruct (0x557cea20) OutbidNotification {\n    queryId: uint64\n}\n\nstruct (0x05138d91) OwnershipAssigned {\n    queryId: uint64\n    oldOwnerAddress: address?\n    payload: TransferForwardPayload\n}\n\nstruct (0xd53276db) Excesses {\n    queryId: uint64\n}\n\nstruct (0x2fcb26a2) GetStaticData {\n    queryId: uint64\n}\n\nstruct (0x8b771735) ReportStaticData {\n    queryId: uint64\n    itemIndex: uint256\n    collectionAddress: address\n}\n\nstruct (0xba93) DnsNextResolver {\n    resolver: address\n}\n\nstruct TransferOwnershipData {\n    newOwnerAddress: address\n    responseDestination: address?\n    customPayload: cell?\n    forwardAmount: coins\n    forwardPayload: TransferForwardPayload\n}\n\nstruct (0x5fcc3d14) TransferOwnership {\n    queryId: uint64\n    transferData: TransferOwnershipData\n}\n\nstruct (0x1a0b9d51) EditContent {\n    queryId: uint64\n    newContent: Cell<DnsRecords>\n}\n\nstruct (0x4eb1f0f9) ChangeDnsRecord {\n    queryId: uint64\n    key: uint256\n    // func impl uses imperative parsing here\n    // value: cell?\n    value: RemainingBitsAndRefs\n}\n\nstruct (0x44beae41) ProcessGovernanceDecision {\n    queryId: uint64\n}\n\nstruct (0x4ed14b65) DnsRecordRelease {\n    queryId: uint64\n}\n\nstruct ItemInitData {\n    fromAddress: address\n    domain: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x00) GovernanceTransfer {\n    transferData: TransferOwnershipData\n}\n\nstruct (0x01) GovernanceRelease {}\n\nstruct (0x00000000) Op0WithQuery {\n    queryId: uint64\n}\n\nstruct MessageHeader {\n    op: uint32\n    queryId: uint64\n    rest: RemainingBitsAndRefs\n}\n"
+    },
+    {
+      "filename": "tmp/10ada1b8-dc24-4b4c-9459-1a60aa0a3fa9/dns/contracts/storage.tolk",
+      "contents": "import \"dns-utils\"\nimport \"errors\"\n\ntype DnsRecords = map<uint256, cell>\n\nfun DnsRecords.packToBuilder(self, mutate b: builder) {\n    b.storeUint(0, BYTE_SIZE);\n    b.storeDict(self.toLowLevelDict());\n}\n\nfun DnsRecords.unpackFromSlice(mutate s: slice): DnsRecords {\n    assert (s.loadUint(BYTE_SIZE) == 0) throw ERROR_CONTENT_TAG_INVALID;\n    return createMapFromLowLevelDict<uint256, cell>(s.loadDict());\n}\n\ntype DnsConfigMap = map<uint256, slice>\n\nfun loadDnsConfigMap(configCell: cell): DnsConfigMap {\n    var configSlice = configCell.beginParse();\n    return createMapFromLowLevelDict(configSlice.loadDict());\n}\n\nstruct CollectionStorage {\n    content: cell\n    nftItemCode: cell\n}\n\nstruct CollectionDataReply {\n    nextItemIndex: int\n    content: cell\n    ownerAddress: address?\n}\n\nfun CollectionStorage.load(): CollectionStorage {\n    return CollectionStorage.fromCell(contract.getData());\n}\n\nstruct RootDnsStorage {\n    tonAddress: address\n    tMeAddress: address\n    tonWwwAddress: address\n}\n\nstruct DnsResolveResponse {\n    resolvedPrefixLengthBits: int\n    resolvedRecord: cell?\n}\n\nstruct ItemStorageNotInitialized {\n    index: uint256\n    collectionAddress: address\n}\n\nfun calcDeployedNftItem(index: uint256, itemCode: cell): AutoDeployAddress {\n    val itemStorage = ItemStorageNotInitialized {\n        index,\n        collectionAddress: contract.getAddress(),\n    };\n\n    return { workchain: BASECHAIN, stateInit: { code: itemCode, data: itemStorage.toCell() } };\n}\n\nstruct ItemStorageInitialized {\n    index: uint256\n    collectionAddress: address\n    ownerAddress: address?\n    content: Cell<DnsRecords>\n    domain: cell\n    auction: Cell<AuctionState>?\n    lastFillUpTime: uint64\n}\n\nstruct NftDataReply {\n    isInitialized: bool\n    index: uint256\n    collectionAddress: address\n    ownerAddress: address?\n    content: Cell<DnsRecords>?\n}\n\nfun ItemStorageInitialized.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun ItemStorageInitialized.unpackAuction(self): (bool, AuctionState) {\n    var res: (bool, AuctionState);\n\n    if (self.auction == null) {\n        res = (\n            true,\n            {\n                auctionEndTime: 0,\n                maxBidAmount: 0,\n                maxBidAddress: null,\n            },\n        );\n    } else {\n        res = (false, self.auction.load());\n    }\n\n    return res;\n}\n\nstruct ItemStorageMaybeNotInitialized {\n    contractData: slice\n}\n\nfun startLoadingDnsItemStorage(): ItemStorageMaybeNotInitialized {\n    return { contractData: contract.getData().beginParse() };\n}\n\nfun ItemStorageMaybeNotInitialized.isInitialized(self): bool {\n    return self.contractData.remainingRefsCount() > 0;\n}\n\nfun ItemStorageMaybeNotInitialized.parseNotInitialized(self): ItemStorageNotInitialized {\n    return ItemStorageNotInitialized.fromSlice(self.contractData);\n}\n\nfun ItemStorageMaybeNotInitialized.parseInitialized(self): ItemStorageInitialized {\n    return ItemStorageInitialized.fromSlice(self.contractData);\n}\n\nstruct AuctionState {\n    maxBidAddress: address?\n    maxBidAmount: coins\n    auctionEndTime: uint64\n}\n"
+    }
+  ]
+}

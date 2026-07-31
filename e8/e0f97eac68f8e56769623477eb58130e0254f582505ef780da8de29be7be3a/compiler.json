@@ -1,0 +1,1713 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from PrizePool.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  109751 DECLMETHOD leader()\n  88685 DECLMETHOD bestBid()\n  111903 DECLMETHOD poolAmount()\n  116022 DECLMETHOD deadline()\n  92175 DECLMETHOD isPaidOut()\n  128178 DECLMETHOD feeRecipient()\n  80005 DECLMETHOD feeBps()\n  79140 DECLMETHOD feeAccrued()\n  89319 DECLMETHOD extensionWindow()\n  77505 DECLMETHOD secondsLeft()\n  105384 DECLMETHOD minimumNextBid()\n  111880 DECLMETHOD poolState()\n  // 6 functions inlined in-place:\n  // - minimumBidAfter (2 calls)\n  // - address.isDeliverable (3 calls)\n  // - Storage.load (15 calls)\n  // - Storage.save (2 calls)\n  // - registerBid (1 call)\n  // - payOutPrize (1 call)\n  // - onBouncedMessage (0 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    SEMPTY\n    IFJMP:<{\n      DROP\n      c4 PUSH\n      CTOS\n      32 LDU\n      LDOPTSTDADDR\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      1 PLDI\n      105 THROWIF\n      NOW\n      GREATER\n      101 THROWIFNOT\n    }>\n    16 PUSHPOW2DEC\n    OVER\n    SBITS\n    31 GTINT\n    THROWANYIFNOT\n    DUP\n    32 PLDU\n    16 PUSHPOW2DEC\n    OVER\n    1885497700 PUSHINT\n    EQUAL\n    IF:<{\n      NIP\n      -1 PUSHINT\n    }>ELSE<{\n      SWAP\n      1885564013 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    THROWANYIFNOT\n    16 PUSHPOW2DEC\n    OVER\n    SBITS\n    96 EQINT\n    THROWANYIFNOT\n    16 PUSHPOW2DEC\n    OVER\n    SREFS\n    THROWANYIF\n    x{70626964} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      INMSG_SRC\n      INMSG_VALUE\n      c4 PUSH\n      CTOS\n      32 LDU\n      LDOPTSTDADDR\n      NIP\n      LDGRAMS\n      LDGRAMS\n      1 LDI\n      LDSTDADDR\n      16 LDU\n      LDGRAMS\n      DUP\n      32 PLDU\n      NOW\n      s0 s9 XCHG2\n      LESS\n      101 THROWIFNOT\n      s4 PUSH\n      105 THROWIF\n      s8 s6 PUXC\n      GREATER\n      102 THROWIFNOT\n      s7 PUSH\n      50000000 PUSHINT\n      GEQ\n      106 THROWIFNOT\n      OVER\n      5000 PUSHINT\n      LEQ\n      108 THROWIFNOT\n      s2 PUSH\n      REWRITESTDADDR\n      DROP\n      DUP\n      IF:<{\n        -1 EQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        -1 PUSHINT\n      }>\n      109 THROWIFNOT\n      s6 PUSH\n      59 GTINT\n      IF:<{\n        s6 PUSH\n        86400 PUSHINT\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      112 THROWIFNOT\n      s7 PUSH\n      s5 s8 XCPU\n      ADD\n      s8 s2 XCPU\n      MUL\n      10000 PUSHINT\n      DIV\n      ADD\n      NOW\n      s0 s7 XCHG2\n      ADD\n      NEWC\n      32 STU\n      s1 s8 XCHG\n      STOPTSTDADDR\n      s0 s3 XCHG2\n      STGRAMS\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s4 XCHG\n      1 STI\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      16 STU\n      ROT\n      STGRAMS\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{70636c6d} SDBEGINSQ\n    IFJMP:<{\n      64 PLDU\n      c4 PUSH\n      CTOS\n      32 LDU\n      LDOPTSTDADDR\n      LDGRAMS\n      LDGRAMS\n      1 LDI\n      DUP\n      LDSTDADDR\n      16 LDU\n      LDGRAMS\n      DROP\n      NOW\n      s9 PUSH\n      GEQ\n      103 THROWIFNOT\n      s0 s4 XCHG\n      105 THROWIF\n      s6 s6 PUSH2\n      ISNULL\n      104 THROWIF\n      OVER\n      5000 PUSHINT\n      LEQ\n      108 THROWIFNOT\n      DUP\n      REWRITESTDADDR\n      DROP\n      DUP\n      IF:<{\n        -1 EQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        -1 PUSHINT\n      }>\n      110 THROWIFNOT\n      s5 s1 PUXC\n      MUL\n      10000 PUSHINT\n      DIV\n      s1 s4 XCHG\n      MIN\n      BALANCE\n      FIRST\n      52000000 PUSHINT\n      s2 PUSH\n      ADD\n      s5 PUSH\n      REWRITESTDADDR\n      DROP\n      -1 EQINT\n      IF:<{\n        30000000 PUSHINT\n        ADD\n      }>\n      s2 PUSH\n      0 GTINT\n      IF:<{\n        s3 PUSH\n        REWRITESTDADDR\n        DROP\n        DUP\n        IF:<{\n          -1 EQINT\n          0 NEQINT\n        }>ELSE<{\n          DROP\n          -1 PUSHINT\n        }>\n        109 THROWIFNOT\n        1000000 PUSHINT\n        ADD\n        s3 PUSH\n        REWRITESTDADDR\n        DROP\n        -1 EQINT\n        IF:<{\n          30000000 PUSHINT\n          ADD\n        }>\n      }>\n      GEQ\n      107 THROWIFNOT\n      s0 s7 XCHG\n      NEWC\n      32 STU\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s0 s4 XCHG2\n      STGRAMS\n      s2 PUSH\n      STGRAMS\n      b{1} STSLICECONST\n      s1 s3 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      50000000 PUSHINT\n      2 PUSHINT\n      RAWRESERVE\n      s3 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s3 s(-1) PUXC\n        STSTDADDR\n        s4 PUSH\n        STGRAMS\n        1885758821 PUSHINT\n        139 STUR\n        s5 PUSH\n        64 STUR\n        s1 s3 XCHG\n        STSTDADDR\n        s0 s3 XCHG2\n        STGRAMS\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        2 2 BLKDROP2\n      }>\n      NEWC\n      b{011000} STSLICECONST\n      s2 s(-1) PUXC\n      STSTDADDR\n      1886413161 PUSHINT\n      143 STUR\n      s1 s3 XCHG\n      64 STU\n      STSTDADDR\n      SWAP\n      STGRAMS\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n    }>\n    16 PUSHPOW2DEC\n    THROWANY\n  }>\n  leader() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    DROP\n  }>\n  bestBid() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    DROP\n  }>\n  poolAmount() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    DROP\n  }>\n  deadline() PROC:<{\n    c4 PUSH\n    CTOS\n    32 PLDU\n  }>\n  isPaidOut() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    1 PLDI\n  }>\n  feeRecipient() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    1 LDU\n    NIP\n    LDSTDADDR\n    DROP\n  }>\n  feeBps() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    1 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    16 PLDU\n  }>\n  feeAccrued() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    1 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    DROP\n  }>\n  extensionWindow() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    1 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    32 PLDU\n  }>\n  secondsLeft() PROC:<{\n    c4 PUSH\n    CTOS\n    NOW\n    SWAP\n    32 PLDU\n    2DUP\n    GEQ\n    IF:<{\n      2DROP\n      0 PUSHINT\n    }>ELSE<{\n      SUBR\n    }>\n  }>\n  minimumNextBid() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    DROP\n    INC\n    50000000 PUSHINT\n    MAX\n  }>\n  poolState() PROC:<{\n    c4 PUSH\n    CTOS\n    NOW\n    SWAP\n    32 LDU\n    LDOPTSTDADDR\n    LDGRAMS\n    LDGRAMS\n    1 LDI\n    LDSTDADDR\n    16 LDU\n    LDGRAMS\n    32 PLDU\n    s9 s8 PUSH2\n    GEQ\n    IF:<{\n      s9 POP\n      0 PUSHINT\n    }>ELSE<{\n      s8 s9 PUXC\n      SUB\n    }>\n    s6 PUSH\n    INC\n    50000000 PUSHINT\n    MAX\n    s9 s10 XCHG\n    s8 s9 XCHG\n    s7 s8 XCHG\n    s6 s7 XCHG\n    s5 s6 XCHG\n    s4 s5 XCHG\n    s3 s4 XCHG\n    s2 s3 XCHG\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHwEAA5oAART/APSkE/S88sgLAQIBYgIDAurQ+JGRMOAgxwCOGzDtRNDTH/pQMfoAMfoAMdcKAPLQafgjvPLgZeCEDyHXScIf8vQg1wsfhA8hghBwYmlkupIxf5oBghBwY2xtusMA4vL0hA8h10nAYPL0hA8h10ry8tcsI4MTSyTjAtcsI4MbY2zjAoQP8vAEBQIBIAkKAfww+JL4l+1E0NMf+lAx+gD6ANIA+kjTD/oAINcLH/gjUAm58uBlJPLQaVKHvPLgZieCCvrwgL7y4GohgROIu/LgbCL6RDAglMD/wwCSMH/i8uBtJsI7mCaCAVGAu8MAkXDi8uBwJ1FYoFGCqIEnEKkEoPgjUAegyMsfGPpUUAMGAv7XCz/tRNDTH/pQ+gD6ANIAIPpI0w/6ADD4Iym+8uBnBPLQaVNmbvLQaCGBE4i78uBsIPpEMCCUwP/DAJIwf+Ly4G5SUqiBJxCpBBS2CPgnbxCCCxl1ACKgJfpEMMD/loIJycOAoN4iwgDjAL7y4GsHyMsfFvpUUAT6AiL6As+DBwgALPoCUAX6AhTKABP6UhPLD1j6As7J7VQASiP6RDAglMD/wwCSMH/i8uBtgggPQkCgI/pEMMD/loIJycOAoN4ArhPOye1Uggr68IBy+wIjwgCOI8jPhQhSMPpSJPoCghBwZmVlzwuKJc8LPxP6UlAD+gLJcfsAkmwi4sjPhYhSIPpSghBwcGFpzwuOE8s/+lIB+gLJgwb7AAIBIAsMAgEgFRYCAVgNDgIBIBESACezsHtRND4IwHXCx9cvpJbcJGi4oAIBIA8QADuuknaiaGmPmP0oGP0AGP0AGOmAGP0kGOmHmP0AGEAANaxC9qJoaY+Y/SgY/QAY/QAY6YAY/SQY64WHwAIBbhMUACm1Af2omhpj5j9KBj9ABj9ABjrhQBAAHKpt7UTQ0x8x+lAx+gAwAECo5+1E0NMfMfpQMfoAMfoAMdMAMfpIMdMPMfoAMdcLHwIBIBcYAgEgHR4ALbd1HaiaGmPmP0oGP0AGFJBBX14QFsEwAgEgGRoAF7Mt+1E0NMfMfpQMIAIDnUQbHAB9pHaiaHwRgOmP/Sh9AH0AaQB9JGmH/QBrhY+pzF9JHLhJqUVQ8RNSQQV9eEBbBIhNCESIPAgziCsIIogaCBHAAB/ztRNDTHzH6UDH6ADH6ADCABG0pt2omhrhY/AAL7aWXaiaGmPmP0oGP0AGP0AGOmAGP0kGEA==",
+  "codeHashHex": "E8E0F97EAC68F8E56769623477EB58130E0254F582505EF780DA8DE29BE7BE3A",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/a72a9d66-7dba-4f37-9f71-f9844d7553f2/PrizePool.tolk",
+        "size_chars": 24860,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/a72a9d66-7dba-4f37-9f71-f9844d7553f2/types.tolk",
+        "size_chars": 36713,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PlaceBid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimPrize"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1885497700,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1885564013,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FeePaid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          21
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 28
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          27
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 135,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          19,
+          32
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 37,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          41
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PrizePaid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          43
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolState"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 22,
+        "struct_name": "CreateMessageOptions<FeePaid>",
+        "monomorphic_fields_ty_idx": [
+          26,
+          31,
+          40,
+          21
+        ]
+      },
+      {
+        "ty_idx": 44,
+        "struct_name": "CreateMessageOptions<PrizePaid>",
+        "monomorphic_fields_ty_idx": [
+          26,
+          31,
+          40,
+          43
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 29
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 38
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 19
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 36
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 23,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 24,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 26
+          },
+          {
+            "name": "value",
+            "ty_idx": 31
+          },
+          {
+            "name": "dest",
+            "ty_idx": 40
+          },
+          {
+            "name": "body",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          26,
+          6,
+          26,
+          20
+        ],
+        "target_ty_idx": 15
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          426,
+          8,
+          426,
+          15
+        ],
+        "fields": [
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "leader",
+            "ty_idx": 17
+          },
+          {
+            "name": "bestBid",
+            "ty_idx": 6
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "paidOut",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 18
+          },
+          {
+            "name": "feeAccrued",
+            "ty_idx": 6
+          },
+          {
+            "name": "extensionWindow",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PlaceBid",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          496,
+          21,
+          496,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 1885497700,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimPrize",
+        "ty_idx": 14,
+        "ident_loc": [
+          2,
+          501,
+          21,
+          501,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1885564013,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PrizePaid",
+        "ty_idx": 43,
+        "ident_loc": [
+          2,
+          507,
+          21,
+          507,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1886413161,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FeePaid",
+        "ty_idx": 21,
+        "ident_loc": [
+          2,
+          524,
+          21,
+          524,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 1885758821,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeAmount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolState",
+        "ty_idx": 45,
+        "ident_loc": [
+          2,
+          532,
+          8,
+          532,
+          17
+        ],
+        "fields": [
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "leader",
+            "ty_idx": 17
+          },
+          {
+            "name": "bestBid",
+            "ty_idx": 6
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "paidOut",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 18
+          },
+          {
+            "name": "feeAccrued",
+            "ty_idx": 6
+          },
+          {
+            "name": "extensionWindow",
+            "ty_idx": 9
+          },
+          {
+            "name": "secondsLeft",
+            "ty_idx": 9
+          },
+          {
+            "name": "minimumNextBid",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          272,
+          5,
+          272,
+          22
+        ],
+        "end_loc": [
+          1,
+          313,
+          1,
+          313,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          323,
+          5,
+          323,
+          21
+        ],
+        "end_loc": [
+          1,
+          323,
+          46,
+          323,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "registerBid",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          32,
+          5,
+          32,
+          16
+        ],
+        "end_loc": [
+          1,
+          114,
+          1,
+          114,
+          2
+        ],
+        "params": [
+          {
+            "name": "bidder",
+            "ty_idx": 7
+          },
+          {
+            "name": "bidValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "address.isDeliverable",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          268,
+          13,
+          268,
+          26
+        ],
+        "end_loc": [
+          2,
+          271,
+          1,
+          271,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          491,
+          13,
+          491,
+          17
+        ],
+        "end_loc": [
+          2,
+          493,
+          1,
+          493,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "payOutPrize",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          119,
+          5,
+          119,
+          16
+        ],
+        "end_loc": [
+          1,
+          270,
+          1,
+          270,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "createMessage<FeePaid>",
+        "return_ty_idx": 20,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "createMessage<PrizePaid>",
+        "return_ty_idx": 20,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "leader",
+        "return_ty_idx": 17,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          325,
+          9,
+          325,
+          15
+        ],
+        "end_loc": [
+          1,
+          328,
+          1,
+          328,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 9,
+        "name": "bestBid",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          330,
+          9,
+          330,
+          16
+        ],
+        "end_loc": [
+          1,
+          333,
+          1,
+          333,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 10,
+        "name": "poolAmount",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          335,
+          9,
+          335,
+          19
+        ],
+        "end_loc": [
+          1,
+          338,
+          1,
+          338,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 11,
+        "name": "deadline",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          340,
+          9,
+          340,
+          17
+        ],
+        "end_loc": [
+          1,
+          343,
+          1,
+          343,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "isPaidOut",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          345,
+          9,
+          345,
+          18
+        ],
+        "end_loc": [
+          1,
+          348,
+          1,
+          348,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "feeRecipient",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          350,
+          9,
+          350,
+          21
+        ],
+        "end_loc": [
+          1,
+          353,
+          1,
+          353,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "feeBps",
+        "return_ty_idx": 18,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          355,
+          9,
+          355,
+          15
+        ],
+        "end_loc": [
+          1,
+          358,
+          1,
+          358,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "feeAccrued",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          360,
+          9,
+          360,
+          19
+        ],
+        "end_loc": [
+          1,
+          363,
+          1,
+          363,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "extensionWindow",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          366,
+          9,
+          366,
+          24
+        ],
+        "end_loc": [
+          1,
+          369,
+          1,
+          369,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "secondsLeft",
+        "return_ty_idx": 9,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          377,
+          9,
+          377,
+          20
+        ],
+        "end_loc": [
+          1,
+          381,
+          1,
+          381,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "minimumNextBid",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          388,
+          9,
+          388,
+          23
+        ],
+        "end_loc": [
+          1,
+          391,
+          1,
+          391,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 19,
+        "name": "minimumBidAfter",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          181,
+          5,
+          181,
+          20
+        ],
+        "end_loc": [
+          2,
+          183,
+          1,
+          183,
+          2
+        ],
+        "params": [
+          {
+            "name": "bestBid",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "poolState",
+        "return_ty_idx": 45,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          393,
+          9,
+          393,
+          18
+        ],
+        "end_loc": [
+          1,
+          409,
+          1,
+          409,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "PrizePool",
+    "author": "Acton User",
+    "version": "1.1.0",
+    "description": "Winner-takes-all prize pool on a rolling window: bid more than the current leader and you are the leader, every accepted bid restarts the clock at extensionWindow seconds; the round ends when that long passes with no bid, and the last leader takes the pool",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PlaceBid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimPrize"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FeePaid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PrizePaid"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolState"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 14,
+        "fields": [
+          {
+            "name": "deadline",
+            "ty_idx": 9,
+            "description": "Bids are accepted while `blockchain.now() < deadline`, and the payout while\n`blockchain.now() >= deadline`. NOT immutable, and NOT a prize date: every ACCEPTED bid\nresets it to `blockchain.now() + extensionWindow`, so from the first bid on it is a\nrolling window and nothing else. The value baked into the state init is therefore only\nthe OPENING WINDOW — the moment an empty pool that never gets a bid closes with no\nleader (see `DEFAULT_OPENING_WINDOW`) — but it is the one that fixes the deterministic\naddress, so operator scripts keep addressing a pool by it forever."
+          },
+          {
+            "name": "leader",
+            "ty_idx": 15,
+            "description": "Current leader; null means nobody has bid yet."
+          },
+          {
+            "name": "bestBid",
+            "ty_idx": 6,
+            "description": "Value of the current best (highest) accepted bid."
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6,
+            "description": "Monotonic sum of all accepted bid values: 10 -> 20 -> 30 reads back as 60."
+          },
+          {
+            "name": "paidOut",
+            "ty_idx": 5,
+            "description": "Replay latch: set once the prize has been sent, never cleared."
+          },
+          {
+            "name": "feeRecipient",
+            "ty_idx": 7,
+            "description": "Where the accrued protocol fee is sent at claim time. Fixed at deploy time, and must be\nROUTABLE (workchain 0 or -1): `registerBid` refuses every bid on a pool that stores an\naddress in any other workchain, so no bidder can be trapped behind an undeliverable fee."
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 16,
+            "description": "Protocol fee in basis points (2000 = 20%), capped on the bid path at `MAX_FEE_BPS`."
+          },
+          {
+            "name": "feeAccrued",
+            "ty_idx": 6,
+            "description": "Monotonic sum of `value * feeBps / BPS_DENOMINATOR` over all accepted bids, rounded DOWN.\nIt is ACCRUED here and never sent per bid: the hot bid path emits no message at all. The\nrounding remainder is not tracked — it simply stays in the pool and goes to the winner.\nUNTRUSTED at payout time, because a state init can contain any value: `payOutPrize` pays\n`min(feeAccrued, poolAmount * feeBps / BPS_DENOMINATOR)`, so a pool deployed with\n`feeBps = 0` pays no fee whatever this says, and one deployed with a phantom accrual pays\nat most what its advertised `feeBps` could honestly have earned."
+          },
+          {
+            "name": "extensionWindow",
+            "ty_idx": 9,
+            "default_value": {
+              "kind": "int",
+              "v": "900"
+            },
+            "description": "Anti-snipe window in SECONDS: every ACCEPTED bid sets `deadline = now() + extensionWindow`.\nFixed at deploy time (there is no setter — it is part of the state init and therefore of\nthe address), defaulted to `DEFAULT_EXTENSION_WINDOW` (900 = 15 minutes) so that every\nconstruction that does not mention it deploys the canonical mechanic, and bounded ON CHAIN\nto `[MIN_EXTENSION_WINDOW, MAX_EXTENSION_WINDOW]` by `registerBid`: a pool outside that\nrange refuses every bid with `Errors.ExtensionWindowOutOfRange`, so a zero window can never\nsilently switch the mechanic off.\n\nAPPENDED at the end of the struct on purpose: the eight fields above keep their exact\nserialization offsets, so a parser written against the previous layout still reads all of\nthem correctly and only misses the new tail. The deterministic ADDRESS still changes (the\nstorage cell is one field longer, and the code cell changed too) — see docs/OPERATIONS.md.\n\nWHAT THE MECHANIC COSTS on the hot path, MEASURED the same way the fee guards were (same\npool, same bid, only the contract source changed; `tests/fee.test.tolk` pins the shipped\nnumber so it cannot silently grow):\n\n  | variant                                              | gas  | delta |\n  | ---------------------------------------------------- | ---- | ----- |\n  | pre-fee contract                                     | 2591 |     — |\n  | + the protocol fee accrual and its two storage guards | 3332 |  +741 |\n  | + the anti-snipe mechanic WITH a minimum raise step   | 4095 |  +763 |\n  | − the minimum raise step (SHIPPED)                    | 3844 |  −251 |\n\nSo the rolling window costs 512 gas units per accepted bid over the pre-extension 3332,\nand dropping the raise step gave 251 of them back. The CLAIM path is untouched by both:\n7581 with a fee message and 5723 without, unchanged to the unit."
+          }
+        ],
+        "description": "Contract storage. FIELD ORDER IS PART OF THE ABI (it is the serialization order)."
+      },
+      {
+        "kind": "struct",
+        "name": "PlaceBid",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1885497700,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "Incoming: place a bid, the attached value is the bid."
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimPrize",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1885564013,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "Incoming: pay the whole pool out to the stored leader. Callable by anyone."
+      },
+      {
+        "kind": "struct",
+        "name": "PrizePaid",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1886413161,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "winner",
+            "ty_idx": 7
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6
+          }
+        ],
+        "description": "Outgoing only (carried by the payout message, never accepted as input), so that\nindexers, dApps and `onBouncedMessage` can recognise the prize transfer."
+      },
+      {
+        "kind": "struct",
+        "name": "FeePaid",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 1885758821,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "recipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeAmount",
+            "ty_idx": 6
+          }
+        ],
+        "description": "Outgoing only (carried by the fee message, never accepted as input), so that indexers, dApps\nand `onBouncedMessage` can tell the fee transfer apart from the prize transfer. Emitted at\nmost once per round, and only when the PAYABLE fee is above zero.\n\nThe message carrying it is sent NON-BOUNCEABLE (`BounceMode.NoBounce`) with\n`SEND_MODE_PAY_FEES_SEPARATELY`. A fee collector is by construction an account that has never\nSENT anything, so on chain it is `uninitialized`, and TON bounces a bounceable message to such\nan account straight back — which, after `paidOut` is latched, stranded the whole fee in the\npool forever. Non-bounceable delivery creates the recipient account and credits it instead.\nThe trade: a recipient CONTRACT that throws on this opcode now keeps the coins rather than\nreturning them. See \"The fee must reach an uninitialized recipient\" in README.md."
+      },
+      {
+        "kind": "struct",
+        "name": "PoolState",
+        "ty_idx": 19,
+        "fields": [
+          {
+            "name": "deadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "leader",
+            "ty_idx": 15
+          },
+          {
+            "name": "bestBid",
+            "ty_idx": 6
+          },
+          {
+            "name": "poolAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "paidOut",
+            "ty_idx": 5
+          },
+          {
+            "name": "feeRecipient",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 16
+          },
+          {
+            "name": "feeAccrued",
+            "ty_idx": 6
+          },
+          {
+            "name": "extensionWindow",
+            "ty_idx": 9,
+            "description": "Seconds an accepted bid adds to the clock, straight out of storage."
+          },
+          {
+            "name": "secondsLeft",
+            "ty_idx": 9,
+            "description": "`deadline - now()`, clamped at 0 — the countdown itself, computed against the CHAIN's\nclock rather than the browser's, so a dApp does not have to trust (or correct) the\nuser's device to say \"4:32 left\". Zero means the round is over and `ClaimPrize` is the\nnext move."
+          },
+          {
+            "name": "minimumNextBid",
+            "ty_idx": 6,
+            "description": "The smallest value a bid must carry right now to be accepted: `minimumBidAfter(bestBid)`,\ni.e. `MIN_BID` while nobody has bid and `bestBid + 1` nanoton once there is a leader.\nA UI that pre-fills its input with this number always offers a winning bid."
+          }
+        ],
+        "description": "Aggregate get-method reply; the first eight fields mirror `Storage`, the rest is what a UI\nneeds to render the round in ONE call instead of five."
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 14
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 17
+      },
+      {
+        "body_ty_idx": 18
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 109751,
+        "name": "leader",
+        "parameters": [],
+        "return_ty_idx": 15
+      },
+      {
+        "tvm_method_id": 88685,
+        "name": "bestBid",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 111903,
+        "name": "poolAmount",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 116022,
+        "name": "deadline",
+        "parameters": [],
+        "return_ty_idx": 9
+      },
+      {
+        "tvm_method_id": 92175,
+        "name": "isPaidOut",
+        "parameters": [],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 128178,
+        "name": "feeRecipient",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 80005,
+        "name": "feeBps",
+        "parameters": [],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 79140,
+        "name": "feeAccrued",
+        "parameters": [],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 89319,
+        "name": "extensionWindow",
+        "parameters": [],
+        "return_ty_idx": 9,
+        "description": "Seconds an accepted bid pushes the deadline to (`deadline = now() + this`). Fixed at deploy."
+      },
+      {
+        "tvm_method_id": 77505,
+        "name": "secondsLeft",
+        "parameters": [],
+        "return_ty_idx": 9,
+        "description": "The live countdown: `deadline - now()`, clamped at 0.\n\nA UI must not compute this from the browser clock — a device that is a few minutes fast would\ntell a bidder the round is over while it still accepts bids, which under this mechanic is\nexactly the mistake that loses a round. Reading it here answers against the same clock the\ncontract itself compares against. 0 means bidding is closed and `ClaimPrize` is the next move."
+      },
+      {
+        "tvm_method_id": 105384,
+        "name": "minimumNextBid",
+        "parameters": [],
+        "return_ty_idx": 6,
+        "description": "The smallest value a bid must carry RIGHT NOW to be accepted: `MIN_BID` while nobody has bid,\nand `bestBid + 1` nanoton once there is a leader.\n\nIt is the same pair of rules `registerBid` enforces read as a single number, so a UI that\npre-fills its amount field with it always offers a bid the contract accepts."
+      },
+      {
+        "tvm_method_id": 111880,
+        "name": "poolState",
+        "parameters": [],
+        "return_ty_idx": 19
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.DeadlinePassed",
+        "description": "A bid arrived at or after `Storage.deadline`.",
+        "err_code": 101
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BidTooLow",
+        "description": "A bid value is not STRICTLY greater than `Storage.bestBid`.",
+        "err_code": 102
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DeadlineNotReached",
+        "description": "`ClaimPrize` arrived before `Storage.deadline`.",
+        "err_code": 103
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NoBids",
+        "description": "`ClaimPrize` arrived, but nobody ever bid (`Storage.leader` is null).",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.AlreadyPaidOut",
+        "description": "A second `ClaimPrize`, or a top-up after the pool was already paid out.",
+        "err_code": 105
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BidBelowMinimum",
+        "description": "A bid strictly greater than `bestBid`, but below `MIN_BID`.",
+        "err_code": 106
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PayoutUnfunded",
+        "description": "`ClaimPrize` on a pool whose balance does not exceed `STORAGE_RESERVE` plus the accrued\nfee by at least `PAYOUT_HEADROOM` (plus `MASTERCHAIN_PAYOUT_SURCHARGE` for each payout\nmessage that leaves the basechain), so a payout message could not pay its own forward fee\nand the transaction would die in the ACTION phase with the nameless TVM code 37. Reachable\nonly when the pool was deployed with far less than the reserve, or when storage rent\neroded a minimal pool for years. The prize stays claimable: attach the missing value to\nthe claim.",
+        "err_code": 107
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.FeeTooHigh",
+        "description": "`PlaceBid` or `ClaimPrize` on a pool whose stored `feeBps` exceeds `MAX_FEE_BPS`\n(5000 = 50%). Reachable only on a pool somebody deployed with an out-of-range fee:\n`Storage` is chosen by whoever builds the state init, so this is the guard that makes the\nceiling unbypassable, and it is checked on BOTH paths. Such a pool can never move a\nnanoton: every bid bounces back untouched (`leader` stays null, so a claim would answer\n`NoBids` (104) as well), and a claim on a pool whose state init baked a `leader` in is\nrefused with this code instead of paying an over-ceiling fee. No BIDDER can lose anything\nto it. It is not inert, though: like any pool that never got a bid it still accepts\nempty-body top-ups before the deadline, and those are then stranded forever, because\nnothing can ever pay out. Do not bid on it and do not top it up — deploy a new pool.",
+        "err_code": 108
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.FeeRecipientUnreachable",
+        "description": "A payout destination that TON cannot route to. Only workchains 0 (basechain) and -1\n(masterchain) exist; a message to any other one aborts the ACTION phase with the raw TVM\ncode 36 (\"invalid destination address\"), which does NOT bounce — it swallows the claimer's\nattached value, leaves `paidOut` false and traps the next claimer the same way.\n\n`FeeRecipientUnreachable` is thrown by `PlaceBid` on ANY pool whose stored `feeRecipient`\nis unroutable (so no bid can ever be trapped behind one, the bid bounces back untouched)\nand by `ClaimPrize` when a fee is payable to one. Reachable only on a pool somebody\ndeployed with such an address: `scripts/deploy.tolk` refuses to publish one.",
+        "err_code": 109
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.LeaderUnreachable",
+        "description": "`ClaimPrize` on a pool whose stored `leader` is unroutable — see\n`FeeRecipientUnreachable` for what the raw TVM code 36 would have done instead. A real\nbid can never produce this (a message sender always lives in workchain 0 or -1), so it\ntakes a hand-built state init with a `leader` baked in. Nothing can settle such a pool,\nwhich is exactly why the claim must be a bounced, named refusal rather than a trap.",
+        "err_code": 110
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ExtensionWindowOutOfRange",
+        "description": "`PlaceBid` on a pool whose stored `extensionWindow` is outside\n`[MIN_EXTENSION_WINDOW, MAX_EXTENSION_WINDOW]` (60..86400 seconds). Reachable only on a\npool somebody deployed with an out-of-range window: `Storage` is chosen by whoever builds\nthe state init, so — exactly like `FeeTooHigh` — this is the guard that makes the bounds\nunbypassable rather than a courtesy of `scripts/deploy.tolk`. Such a pool can never take a\nbid, so it can never fill up and no bidder can lose anything to it; every bid bounces back\nuntouched and `leader` stays null, so a claim answers `NoBids` (104).\n\nIt is deliberately NOT re-checked on the claim path, unlike `FeeTooHigh`: the window\ncannot misdirect or inflate a payment, it can only decide when bidding stops, so refusing\nthe CLAIM would strand the funds of a hand-built pool instead of protecting anybody.",
+        "err_code": 112
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.UnknownOp",
+        "description": "A non-empty body this contract cannot interpret, in either of the two ways:\n  * the leading 32 bits are not a known opcode — including a body too short to carry\n    one, and the usual wallet transfer with a text comment (op `0x00000000`);\n  * the opcode IS known but the payload is not exactly `opcode + queryId` with no refs\n    (truncated, padded, or ref-carrying). Without that shape check a truncated\n    `PlaceBid` would be accepted as a bid (the lazy parse never reads `queryId`) and a\n    truncated `ClaimPrize` would abort with the raw TVM \"cell underflow\" code 9.\nOne code, because from the sender's point of view it is one failure: the body is not a\nmessage of this protocol. The error set is frozen by the cross-unit ABI.",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/a72a9d66-7dba-4f37-9f71-f9844d7553f2/PrizePool.tolk",
+      "contents": "import \"types\"\n\n/// Winner-takes-all prize pool on a PURE ROLLING WINDOW.\n///\n/// The rule in one sentence: **bid more than the current leader and you are the leader; every\n/// accepted bid restarts the clock at `extensionWindow` seconds; the round ends when that long\n/// passes with no accepted bid, and the last leader takes the pool.**\n///\n/// There is NO scheduled prize date. The `deadline` in the state init is the OPENING WINDOW only —\n/// how long an empty pool waits for its VERY FIRST bid before it closes with no leader — and every\n/// accepted bid overwrites it with `now() + extensionWindow`. So a round can end minutes after it\n/// opens if exactly one person bids, and a funded pair can hold the clock for as long as they keep\n/// bidding: the entry price does not rise on its own. What a hold costs is not an increment but\n/// the WHOLE bid — every accepted bid is added to the pool in full — plus the protocol fee out of\n/// the final payout, which is the only economic brake; at `feeBps = 0` there is none beyond the\n/// bid itself and gas.\ncontract PrizePool {\n    author: \"Acton User\"\n    version: \"1.1.0\"\n    description: \"Winner-takes-all prize pool on a rolling window: bid more than the current leader and you are the leader, every accepted bid restarts the clock at extensionWindow seconds; the round ends when that long passes with no bid, and the last leader takes the pool\"\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\n/// `PrizePaid` and `FeePaid` are outgoing only, so they are deliberately not part of this union.\ntype AllowedMessage = PlaceBid | ClaimPrize\n\n/// Validates a bid and, on success, records the new leader, accrues the protocol fee and\n/// EXTENDS THE DEADLINE. `InMessage` may not be passed around as an object, so the two fields we\n/// need are passed explicitly. `bidValue` is `in.valueCoins`, i.e. the amount actually credited\n/// to this account after forward fees — the contract can never record more than it got.\nfun registerBid(bidder: address, bidValue: coins) {\n    var storage = lazy Storage.load();\n\n    // Order matters: it makes every rejection map to exactly one exit code. The three original\n    // checks keep their original order, so every pre-fee rejection keeps its original code, and\n    // every check added since is appended BELOW them for the same reason.\n    assert (blockchain.now() < storage.deadline) throw Errors.DeadlinePassed;\n    // The settled-round latch, and the FIRST reason the extension can never reopen a paid-out\n    // pool. It is checked AFTER the deadline, not before, so that the ordinary post-payout bid\n    // keeps answering `DeadlinePassed` (101) exactly as it did before this rule existed: a pool\n    // that settled honestly has `now() >= deadline` by construction (`payOutPrize` requires it),\n    // so 101 is the code it has always produced and still produces. What this line adds is the\n    // one shape the deadline check cannot catch — a hand-built state init with `paidOut: true`\n    // AND a deadline still in the future. Without it such a pool would accept bids, extend its\n    // clock forever and strand every one of them, because `payOutPrize` can never run again.\n    assert (!storage.paidOut) throw Errors.AlreadyPaidOut;\n    // THE WINNING RULE, and the only comparison against `bestBid`: strictly greater. One nanoton\n    // over the leader is a legal bid, and it costs its full value like any other — `poolAmount`\n    // grows by the whole bid below, so there is no cheap way to move the clock at any step size.\n    assert (bidValue > storage.bestBid) throw Errors.BidTooLow;\n    // `MIN_BID` is a FLOOR, not a raise rule: it gates the FIRST bid of a round (where `bestBid`\n    // is 0, so the assert above is satisfied by a single nanoton) and it keeps dust out — below\n    // the network's bounce floor a rejected bid is swallowed instead of returned. Against a\n    // non-zero `bestBid` it can never be the binding rule: the leader had to clear it too.\n    assert (bidValue >= MIN_BID) throw Errors.BidBelowMinimum;\n    // The fee ceiling is checked HERE, on the only path that can ever make `feeBps` earn\n    // anything, so that no bidder can ever put a nanoton into an over-fee pool. There is no\n    // constructor to guard — `Storage` is whatever the deployer put in the state init — so\n    // `payOutPrize` re-checks it as well: a pool whose state init ALSO bakes in a `leader` would\n    // otherwise skip this path entirely and pay an over-ceiling fee out of top-ups.\n    assert (storage.feeBps <= MAX_FEE_BPS) throw Errors.FeeTooHigh;\n    // Same reasoning for the destination: `feeRecipient` is frozen into the state init, and only\n    // workchains 0 and -1 exist. A message to any other workchain is not a message TON can route\n    // — the ACTION phase aborts with the raw TVM code 36 and, unlike a compute-phase throw,\n    // swallows the claimer's value instead of bouncing it. Refusing the BID keeps such a pool\n    // empty in the first place, so nobody's coins are ever trapped behind an unroutable fee.\n    assert (storage.feeRecipient.isDeliverable()) throw Errors.FeeRecipientUnreachable;\n    // And the same reasoning once more for the anti-snipe window, which this function is about to\n    // write into the deadline. `extensionWindow` comes out of a state init nobody validated: 0\n    // would end the round on its first bid (a deadline of `now()`), and an enormous value would\n    // let one bid hold every bidder's funds for years. Both bounds are therefore enforced where\n    // the value is USED, so a pool outside them cannot take a single nanoton and no bidder can be\n    // trapped in one. It is the LAST check on purpose: every rejection that existed before this\n    // feature still reaches its own assert first and keeps its own code.\n    assert (\n        storage.extensionWindow >= MIN_EXTENSION_WINDOW &&\n        storage.extensionWindow <= MAX_EXTENSION_WINDOW\n    ) throw Errors.ExtensionWindowOutOfRange;\n\n    storage.leader = bidder;\n    storage.bestBid = bidValue;\n    storage.poolAmount += bidValue;\n    // The comparison above stayed on the GROSS value, and so does the accounting: `bestBid` and\n    // `poolAmount` mean exactly what they always did. The fee is only ACCRUED — no message is\n    // produced on this hot path. Integer division rounds DOWN, and the remainder is deliberately\n    // not tracked: it stays in the pool and leaves with the prize.\n    storage.feeAccrued += bidValue * storage.feeBps / BPS_DENOMINATOR;\n    // THE ANTI-SNIPE RULE, and the whole point of this revision. Under a hard deadline, bidding\n    // early is strictly dominated — you get outbid and lose the round anyway — so the equilibrium\n    // is \"everybody waits, one sniper bids in the last block\", the pool never accumulates and\n    // 10 -> 20 -> 30 never happens. Resetting the clock on every ACCEPTED bid removes the last\n    // block as a strategy: whoever is beaten always has `extensionWindow` seconds to answer, so\n    // bidding early is safe and the pool can actually grow.\n    //\n    // It is an ASSIGNMENT, not a `max(deadline, ...)`: the round always ends exactly\n    // `extensionWindow` after the last accepted bid, whether that bid arrived one second or one\n    // month before the initial deadline. A bid FAR from the deadline therefore pulls the end IN,\n    // which is the same promise read forwards — \"the round ends when it goes quiet\". The initial\n    // deadline is only the OPENING WINDOW: what a round NOBODY has bid on expires at. There is no\n    // scheduled prize date anywhere in this contract.\n    //\n    // It is reached only by an ACCEPTED bid: every rejection above threw before this line, so a\n    // bid that does not beat the leader, is below `MIN_BID` or is late cannot move the clock by a\n    // second. Stalling with junk bids is therefore not free — it is impossible. Moving it with a\n    // REAL bid is not free either: `poolAmount += bidValue` above adds the whole bid, not the\n    // increment, so one more window always costs one more full bid.\n    //\n    // `now() + extensionWindow` must fit the `uint32` field: with `MAX_EXTENSION_WINDOW` the last\n    // moment that is true is 4294880895 (2106-02-06), i.e. one day short of what a `uint32`\n    // deadline can express anyway.\n    storage.deadline = blockchain.now() + storage.extensionWindow;\n    storage.save();\n}\n\n/// Pays the accrued fee to the STORED fee recipient and the rest of the balance (minus the\n/// storage reserve) to the STORED leader. Anyone may trigger it; the money never follows the\n/// sender.\nfun payOutPrize(queryId: uint64) {\n    var storage = lazy Storage.load();\n\n    assert (blockchain.now() >= storage.deadline) throw Errors.DeadlineNotReached;\n    assert (!storage.paidOut) throw Errors.AlreadyPaidOut;\n    val winner = storage.leader;\n    assert (winner != null) throw Errors.NoBids;\n    // The bid path is NOT the only way a `leader` can come to exist: a state init may bake one\n    // in, and then `registerBid` — where the storage-level ceilings live — is never executed at\n    // all. Both of them are therefore re-checked here, so that no hand-built state init can buy\n    // itself a payout the bid path would have refused. `MAX_FEE_BPS` first: an over-fee pool is\n    // dead on BOTH paths, which is exactly what makes the ceiling unbypassable.\n    assert (storage.feeBps <= MAX_FEE_BPS) throw Errors.FeeTooHigh;\n    // Only workchains 0 (basechain) and -1 (masterchain) exist. A message to any other one is\n    // not routable: the ACTION phase aborts with the raw TVM code 36 and, unlike a compute-phase\n    // throw, that does NOT bounce — the claimer's attached value is swallowed, `paidOut` stays\n    // false and the next claimer walks into the same trap. A named refusal bounces instead, and\n    // no amount of attached value could ever have made an unroutable address deliverable.\n    assert (winner.isDeliverable()) throw Errors.LeaderUnreachable;\n\n    // Both payout messages have to be able to leave. `SEND_MODE_CARRY_ALL_BALANCE` after the\n    // reserve and after the fee carries `balance - STORAGE_RESERVE - fee - feeForwardFee`,\n    // so a balance that does not exceed `STORAGE_RESERVE + fee` by at least the required\n    // headroom would produce a message that cannot pay its own forward fee: the ACTION phase\n    // would abort with the nameless TVM code 37 and, worse, swallow the claimer's coins instead\n    // of bouncing them. Failing here instead keeps the transaction a clean compute-phase\n    // rejection: nothing is committed, the claim bounces back, and the prize stays claimable.\n    // `contract.getOriginalBalance()` already includes what this claim attached, so attaching the\n    // missing amount is exactly how a rent-starved or under-deployed pool is settled.\n    //\n    // The payable fee is `feeAccrued` CLAMPED to what `feeBps` could honestly have accrued on\n    // `poolAmount`. `Storage` is chosen by whoever builds the state init, so `feeAccrued` is an\n    // untrusted number: a pool could be published with `feeBps = 1` and 9.9 TON already\n    // \"accrued\", and paying that out would be a ~99% fee on a pool whose `feeBps()` get-method\n    // advertises 0.01%. The clamp is exact, not conservative: `registerBid` adds\n    // `floor(v * feeBps / BPS)` per bid and a sum of floors is never above the floor of the sum,\n    // so an honestly accrued fee is ALWAYS <= this ceiling and is never touched by the clamp.\n    // Together with the `MAX_FEE_BPS` assert above it also bounds the fee at half of `poolAmount`\n    // — the on-chain ceiling holds no matter what the state init says. `feeBps = 0` yields a\n    // ceiling of 0, i.e. \"no fee, unconditionally\", whatever `feeAccrued` a state init contains.\n    val honestCeiling: coins = storage.poolAmount * storage.feeBps / BPS_DENOMINATOR;\n    val fee: coins = min(storage.feeAccrued, honestCeiling);\n    val balanceAtClaim = contract.getOriginalBalance();\n    // `PAYOUT_HEADROOM` covers the prize message to a BASECHAIN destination — the pre-fee\n    // requirement, unchanged, so a pool that pays no fee accepts and refuses exactly the balances\n    // it did before the fee existed. `FEE_MESSAGE_HEADROOM` is added only when the fee message is\n    // actually emitted. A message to the masterchain is forwarded at masterchain prices, which\n    // are ~24x higher, and BOTH destinations here are chosen by somebody else: `feeRecipient` by\n    // the deployer, `winner` by whoever bid. Each masterchain destination therefore adds its own\n    // measured surcharge, so that TVM code 37 stays unreachable for every routable address.\n    var required = STORAGE_RESERVE + PAYOUT_HEADROOM + fee;\n    if (winner.getWorkchain() == MASTERCHAIN) {\n        required += MASTERCHAIN_PAYOUT_SURCHARGE;\n    }\n    if (fee > 0) {\n        // An unroutable fee recipient is the same code-36 trap as an unroutable leader, and it\n        // only matters when a fee message is actually emitted.\n        assert (storage.feeRecipient.isDeliverable()) throw Errors.FeeRecipientUnreachable;\n        required += FEE_MESSAGE_HEADROOM;\n        if (storage.feeRecipient.getWorkchain() == MASTERCHAIN) {\n            required += MASTERCHAIN_PAYOUT_SURCHARGE;\n        }\n    }\n    assert (balanceAtClaim >= required) throw Errors.PayoutUnfunded;\n\n    // The replay latch is committed to c4 BEFORE any action is produced.\n    storage.paidOut = true;\n    storage.save();\n\n    // Storage survival, not a naive \"send everything\": `RESERVE_MODE_AT_MOST` reserves\n    // min(STORAGE_RESERVE, balance), so the reserve action can never fail on a thin balance and\n    // the account is never drained to zero — whatever the bid count, whatever the claimer\n    // attaches. One year of rent costs ~0.0016 TON, so 0.05 TON covers decades of post-mortem\n    // get-method reads. Everything above the reserve leaves with the fee and the prize.\n    reserveToncoinsOnBalance(STORAGE_RESERVE, RESERVE_MODE_AT_MOST);\n\n    // The fee action comes FIRST, because the prize below carries whatever is left. The guard is\n    // on `fee`, the CLAMPED amount, so a pool that owes nothing produces byte-for-byte the\n    // actions of the pre-fee contract: one reserve, one mode-128 send, no fee message at all —\n    // whatever `feeAccrued` its state init happens to contain.\n    if (fee > 0) {\n        val feeMessage = createMessage({\n            // NON-BOUNCEABLE, and this is the whole point of the message. A fee collector is by\n            // construction an account that has never SENT anything, so on chain it is\n            // `uninitialized` — and TON bounces a BOUNCEABLE message to an uninitialized (or\n            // frozen) account back to the sender, because there is no code to run. `paidOut` is\n            // already latched and the deadline has passed, so the returned fee could never be\n            // sent again: the operator lost 100% of the fee on the very first round. Reproduced\n            // against the field report in `tests/fee.test.tolk`\n            // (`test an uninitialized fee recipient is paid in full and nothing is stranded`):\n            // with `Only256BitsOfBody` the pool kept 169908599 nanoton instead of the 50000000\n            // reserve, exactly the on-chain figure. Non-bounceable delivery instead CREATES the\n            // recipient account and credits it, which is what \"the fee must reach the recipient\"\n            // means. `PrizePaid` stays bounceable — see the audit note on it below.\n            bounce: BounceMode.NoBounce,\n            value: fee,\n            dest: storage.feeRecipient,\n            body: FeePaid {\n                queryId,\n                recipient: storage.feeRecipient,\n                feeAmount: fee,\n            },\n        });\n        // `SEND_MODE_PAY_FEES_SEPARATELY` is what makes \"the recipient receives exactly\n        // `feeAccrued`\" true: the forward fee is taken from the balance instead of from the\n        // message value. It comes out of what the winner would otherwise get, which is the same\n        // side of the trade the claim gas is already on.\n        feeMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n\n    val payoutMessage = createMessage({\n        // BOUNCEABLE, deliberately — but NOT because a bounce is a safe outcome here. It is not:\n        // a bounced prize lands back on the balance of a pool whose `paidOut` is already latched,\n        // and `payOutPrize` is the only code path that moves value out, so those coins are\n        // stranded exactly the way the bounced fee was. Three rounds where a SUCCESSFUL claim\n        // therefore leaves the pool above `STORAGE_RESERVE` are measured and pinned in\n        // `tests/fee.test.tolk`: a leader CONTRACT that throws on `PrizePaid`, a hand-built state\n        // init whose `leader` is an uninitialized account and which never takes a bid, and the\n        // same state init after third parties topped it up. The bid path itself cannot produce an\n        // uninitialized leader — `storage.leader` is only ever assigned in `registerBid` from\n        // `in.senderAddress` of an ACCEPTED bid, and an internal message comes from the compute\n        // phase of a transaction, which an account with no code does not have — but a leader that\n        // is a CONTRACT can arise from the bid path, and a baked-in leader is never overwritten on\n        // a pool that takes no bid.\n        //\n        // The flag stays because for the PRIZE the two sides of the trade are not the fee's. The\n        // fee destination is the operator's own address, so unconditional delivery is a trade the\n        // operator makes with themselves. The prize destination is `storage.leader`, which an\n        // outsider chooses — by bidding, or by baking one into a state init. Measured on the third\n        // round above with the flag flipped to `NoBounce`: the deployer's baked-in address\n        // collects 10349336401 nanoton of THIRD-PARTY top-ups instead of the coins being returned\n        // to a pool nobody can drain. Bounceable keeps that shape a griefing loss; non-bounceable\n        // would make it a profitable rug-pull, which is a strictly worse failure than the strand.\n        // The strand is pre-existing: all three rounds produce byte-identical figures on the tree\n        // before this repair (measured on `main` @ 472e1d0), so it is not created or widened by\n        // the fee, and it is disclosed in \"Residual fund risks\" in README.md.\n        bounce: BounceMode.Only256BitsOfBody,\n        value: 0,\n        dest: winner,\n        body: PrizePaid {\n            queryId,\n            winner,\n            poolAmount: storage.poolAmount,\n        },\n    });\n    // SAFETY: draining the balance is the whole point of the payout, and it is bounded:\n    // `reserveToncoinsOnBalance` above keeps STORAGE_RESERVE for rent, the destination is the\n    // stored leader (never the sender), and `paidOut` is already committed so this runs at most\n    // once. No ignore-errors flag is set on either message, so a failing action phase reverts the\n    // latch as well and the transaction stays atomic.\n    payoutMessage.send(SEND_MODE_CARRY_ALL_BALANCE);\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.isEmpty()) {\n        // An empty body is a documented plain TOP-UP, not a bid: it changes no state and\n        // is what lets the deploy message (which carries an empty body) through.\n        val storage = lazy Storage.load();\n        // Once the prize is gone the coins could never leave again, and once the deadline has\n        // passed the round is closed — a top-up could then only be swept to the leader, or be\n        // locked forever if nobody ever bid. Both cases throw, so the coins bounce back.\n        assert (!storage.paidOut) throw Errors.AlreadyPaidOut;\n        assert (blockchain.now() < storage.deadline) throw Errors.DeadlinePassed;\n        return;\n    }\n\n    // The opcode is matched BEFORE the body shape, so that EVERY unrecognised prefix maps to\n    // `UnknownOp` — a body too short to carry an opcode and the most common real-world\n    // accident, a wallet transfer with a text comment (op `0x00000000`), included.\n    assert (in.body.remainingBitsCount() >= OPCODE_BITS) throw Errors.UnknownOp;\n    val opcode = in.body.preloadUint(OPCODE_BITS);\n    assert (opcode == OP_PLACE_BID || opcode == OP_CLAIM_PRIZE) throw Errors.UnknownOp;\n\n    // Both accepted bodies are exactly `opcode: uint32` + `queryId: uint64` and carry no refs.\n    // Without this a bare `PlaceBid` opcode would be silently accepted as a bid (the lazy parse\n    // never touches `queryId`), and a bare `ClaimPrize` opcode would abort with the raw TVM\n    // \"cell underflow\" code 9. A known opcode with a broken payload is still a body this\n    // protocol does not accept, so it shares the `UnknownOp` code (the ABI freezes the set).\n    assert (in.body.remainingBitsCount() == BODY_BITS) throw Errors.UnknownOp;\n    assert (in.body.remainingRefsCount() == 0) throw Errors.UnknownOp;\n\n    val msg = lazy AllowedMessage.fromSlice(\n        in.body,\n        { throwIfOpcodeDoesNotMatch: Errors.UnknownOp },\n    );\n\n    match (msg) {\n        PlaceBid => {\n            registerBid(in.senderAddress, in.valueCoins);\n        }\n        ClaimPrize => {\n            payOutPrize(msg.queryId);\n        }\n    }\n}\n\n/// A payout that comes back (a leader contract refusing `PrizePaid`, or a bounceable prize to an\n/// uninitialized leader baked into a state init) credits the coins to the balance again. Storage\n/// is intentionally left untouched: `paidOut` stays true, the leader is unchanged and `feeAccrued`\n/// is unchanged, so a bounce can never be used to replay the prize or the fee. The returned coins\n/// are then UNRECOVERABLE — `payOutPrize` is the only path that moves value out and it is gated on\n/// `!paidOut` — which is the pre-existing residual risk documented in README.md, not a safe\n/// outcome. `FeePaid` is sent non-bounceable, so the network can no longer produce a bounce for\n/// the fee at all; this handler stays inert for that opcode too.\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun leader(): address? {\n    val storage = lazy Storage.load();\n    return storage.leader;\n}\n\nget fun bestBid(): coins {\n    val storage = lazy Storage.load();\n    return storage.bestBid;\n}\n\nget fun poolAmount(): coins {\n    val storage = lazy Storage.load();\n    return storage.poolAmount;\n}\n\nget fun deadline(): uint32 {\n    val storage = lazy Storage.load();\n    return storage.deadline;\n}\n\nget fun isPaidOut(): bool {\n    val storage = lazy Storage.load();\n    return storage.paidOut;\n}\n\nget fun feeRecipient(): address {\n    val storage = lazy Storage.load();\n    return storage.feeRecipient;\n}\n\nget fun feeBps(): uint16 {\n    val storage = lazy Storage.load();\n    return storage.feeBps;\n}\n\nget fun feeAccrued(): coins {\n    val storage = lazy Storage.load();\n    return storage.feeAccrued;\n}\n\n/// Seconds an accepted bid pushes the deadline to (`deadline = now() + this`). Fixed at deploy.\nget fun extensionWindow(): uint32 {\n    val storage = lazy Storage.load();\n    return storage.extensionWindow;\n}\n\n/// The live countdown: `deadline - now()`, clamped at 0.\n///\n/// A UI must not compute this from the browser clock — a device that is a few minutes fast would\n/// tell a bidder the round is over while it still accepts bids, which under this mechanic is\n/// exactly the mistake that loses a round. Reading it here answers against the same clock the\n/// contract itself compares against. 0 means bidding is closed and `ClaimPrize` is the next move.\nget fun secondsLeft(): uint32 {\n    val storage = lazy Storage.load();\n    val now = blockchain.now();\n    return now >= storage.deadline ? 0 : storage.deadline - now;\n}\n\n/// The smallest value a bid must carry RIGHT NOW to be accepted: `MIN_BID` while nobody has bid,\n/// and `bestBid + 1` nanoton once there is a leader.\n///\n/// It is the same pair of rules `registerBid` enforces read as a single number, so a UI that\n/// pre-fills its amount field with it always offers a bid the contract accepts.\nget fun minimumNextBid(): coins {\n    val storage = lazy Storage.load();\n    return minimumBidAfter(storage.bestBid);\n}\n\nget fun poolState(): PoolState {\n    val storage = lazy Storage.load();\n    val now = blockchain.now();\n    return PoolState {\n        deadline: storage.deadline,\n        leader: storage.leader,\n        bestBid: storage.bestBid,\n        poolAmount: storage.poolAmount,\n        paidOut: storage.paidOut,\n        feeRecipient: storage.feeRecipient,\n        feeBps: storage.feeBps,\n        feeAccrued: storage.feeAccrued,\n        extensionWindow: storage.extensionWindow,\n        secondsLeft: now >= storage.deadline ? 0 : storage.deadline - now,\n        minimumNextBid: minimumBidAfter(storage.bestBid),\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/a72a9d66-7dba-4f37-9f71-f9844d7553f2/types.tolk",
+      "contents": "/// Shared types, opcodes and error codes of the `PrizePool` \"winner takes all\" pool.\n///\n/// In one sentence, the rule a player has to understand: **bid more than the current leader and\n/// you are the leader; every accepted bid restarts the clock at `extensionWindow` seconds; the\n/// round ends when that long passes with no accepted bid, and the last leader takes the pool.**\n///\n/// The pool is therefore a PURE ROLLING WINDOW. There is NO scheduled prize date and no\n/// calendar moment at which the prize is awarded: bidders send `PlaceBid` with TON attached,\n/// every accepted bid must be STRICTLY GREATER than the current best bid, its value stays\n/// in the pool and it sets `deadline = now() + extensionWindow`, unconditionally. Once the\n/// stored deadline passes anyone may send `ClaimPrize`, and the whole balance (minus\n/// `STORAGE_RESERVE` and minus the accrued protocol fee) is paid to the stored leader exactly\n/// once, while the fee goes to `feeRecipient`.\n///\n/// `MIN_BID` is the floor for the FIRST bid of a round and the dust floor, nothing else: it\n/// never participates in a comparison against a non-zero `bestBid`, so once a leader exists the\n/// only rule is \"more than the leader\".\n///\n/// Two consequences of that, stated honestly because both are reachable:\n///   * a round can END MINUTES AFTER IT OPENS. One bid, nobody answers within\n///     `extensionWindow`, and the single bidder takes the pool;\n///   * the entry price does NOT rise on its own — one nanoton over the leader is a legal bid —\n///     so a round ends only when the bidders stop, and a funded pair can hold the clock for as\n///     long as they keep bidding. What that costs them is not the increment but the WHOLE bid:\n///     every accepted bid is added to the pool in full, so moving the clock is never cheap at any\n///     step size. The protocol fee, taken out of the final payout, is the only economic brake;\n///     at `feeBps = 0` there is none beyond the bid itself and gas.\n///\n/// The deadline stored in the state init answers exactly ONE question: how long an EMPTY pool\n/// waits for its VERY FIRST bid before it closes with no leader — see `DEFAULT_OPENING_WINDOW`.\n\n/// Recommended OPENING WINDOW, as a DURATION in SECONDS: 3600 (one hour).\n///\n/// It is NOT a timestamp and NOT a prize date. The only thing it bounds is how long a pool\n/// nobody has bid on yet waits for its FIRST bid: an operator deploys with an initial\n/// `deadline` of `now() + DEFAULT_OPENING_WINDOW`, and if that hour passes with no accepted\n/// bid the pool closes with no leader (`ClaimPrize` then answers `NoBids`, 104). From the\n/// first accepted bid on, the initial value is irrelevant to the round — `registerBid` writes\n/// `now() + extensionWindow` over it — and it survives only as the number the pool's\n/// deterministic address was derived from, which every operator script keeps addressing it by\n/// (`tests/extension.test.tolk` pins both halves of that).\n///\n/// WHY ABOUT AN HOUR. Too short and an operator who announces a pool cannot get the\n/// announcement in front of anybody before it closes empty; too long and a pool that nobody\n/// ever bids on sits there advertising a live round for days, which is the misreading this\n/// framing exists to kill. An hour is long enough to publish the address and for the first\n/// bidder to act on it, and short enough that a stillborn pool is visibly over the same\n/// afternoon. Nothing on chain enforces it — the initial deadline is a plain script argument,\n/// and a longer or shorter one is a legitimate deploy-time choice — so this is a default, not\n/// a bound: it is `MIN_EXTENSION_WINDOW`/`MAX_EXTENSION_WINDOW` that the CONTRACT enforces, on\n/// the window that actually decides the round.\n///\n/// Absolute timestamps belong on the command line, not in this file:\n/// `acton run deploy-testnet <feeRecipient> 2000 $(( $(date +%s) + 3600 )) 900`.\nconst DEFAULT_OPENING_WINDOW = 3600\n\n/// Nanotons kept on the balance after the payout, so the contract survives storage rent.\n/// Measured with `testing.getAccountStorageFee(pool, 31536000)`, one year of rent costs\n/// 1624054 nanoton (~0.0016 TON, up from ~0.0012 before the three fee fields widened the\n/// storage cell), so this still covers decades. `payOutPrize` reserves it unconditionally with\n/// `RESERVE_MODE_AT_MOST`, i.e. min(STORAGE_RESERVE, balance): the account is never drained.\nconst STORAGE_RESERVE = ton(\"0.05\")\n\n/// How far the balance must exceed `STORAGE_RESERVE` plus the payable fee at claim time for the\n/// PRIZE message to be sendable to a BASECHAIN destination. The fee message adds\n/// `FEE_MESSAGE_HEADROOM` on top when it is emitted, and each masterchain destination adds\n/// `MASTERCHAIN_PAYOUT_SURCHARGE` — see both below.\n///\n/// UNCHANGED from the pre-fee contract, deliberately. `payOutPrize` emits up to two actions after\n/// the reserve: the fee message carries the payable fee with `SEND_MODE_PAY_FEES_SEPARATELY` (so\n/// the recipient gets exactly that amount and the forward fee comes off the balance), and the\n/// prize leaves with `SEND_MODE_CARRY_ALL_BALANCE`, i.e. it carries `balance - STORAGE_RESERVE -\n/// fee - feeForwardFee`. If that does not cover this transaction's gas plus the forward fee of\n/// the prize message, the ACTION phase aborts with the raw TVM code 37 (\"Not enough Toncoin\")\n/// instead of a named error. `payOutPrize` checks the balance up front and throws\n/// `Errors.PayoutUnfunded` instead, which keeps the claim bounceable and the prize claimable.\n///\n/// MEASURED, not guessed. The floor below is the smallest `balance - STORAGE_RESERVE - fee` at\n/// which the ACTION phase still executes, found by binary search with the guards temporarily\n/// disabled (`PAYOUT_HEADROOM = 1`, `FEE_MESSAGE_HEADROOM = 0`, `MASTERCHAIN_PAYOUT_SURCHARGE =\n/// 0`) and a FRESH pool per candidate — a claim that passes the guard and dies in the action\n/// phase does NOT bounce, it keeps the attached value, so re-probing one pool would measure a\n/// moving balance:\n///\n///   | contract                        | claim gas | floor (nanoton) | requirement | factor |\n///   | ------------------------------- | --------- | --------------- | ----------- | ------ |\n///   | pre-fee (main), one message     |      4617 |          407869 |  0.002      |  4.90x |\n///   | this contract, no payable fee   |      5723 |          481654 |  0.002      |  4.15x |\n///   | this contract, feeBps = 2000    |      7581 |          694322 |  0.003      |  4.32x |\n///   | this contract, feeBps = 5000    |      7581 |          694855 |  0.003      |  4.32x |\n///\n/// The second message costs 213201 nanoton of floor (694855 - 481654) and is charged for\n/// separately (`FEE_MESSAGE_HEADROOM`), so the fee-free requirement stays exactly what it was:\n/// measured on both trees with the same construction, a fee-free pool holding 52000000 nanoton at\n/// claim time pays out and one holding 51999999 is refused, on `main` and here alike.\n/// `tests/fee.test.tolk` pins both ends of both thresholds. Any claimer can satisfy them by\n/// attaching value to `ClaimPrize` (that value counts towards the balance).\nconst PAYOUT_HEADROOM = ton(\"0.002\")\n\n/// Added to the claim-time requirement ONLY when the fee message is actually emitted, i.e. only\n/// when the payable fee is above zero.\n///\n/// It is a separate constant on purpose. `feeBps = 0` (and any pool that owes nothing) must\n/// accept and refuse EXACTLY the balances the pre-fee contract did, down to the nanoton — a\n/// single merged headroom of 0.003 TON would have created a 1000000-nanoton band in which the\n/// old contract paid out and this one answers `PayoutUnfunded`, which is a behavioural difference\n/// on the fee-free path, not just a gas one. Splitting the term keeps the fee-free decision\n/// identical and charges the second message to the rounds that actually produce it.\n///\n/// MEASURED: the second message costs 213201 nanoton of action-phase floor (694855 - 481654), so\n/// 0.001 TON is 4.69x that increment, and the two terms together are 4.32x the worst measured\n/// two-message floor.\nconst FEE_MESSAGE_HEADROOM = ton(\"0.001\")\n\n/// Added to the claim-time balance requirement for EACH payout message whose destination is not\n/// in the basechain (workchain 0).\n///\n/// A message to or from the masterchain is forwarded at masterchain prices (config param 24\n/// instead of 25), which are ~24x higher — and both destinations are chosen by somebody other\n/// than this contract: `feeRecipient` is frozen into the state init by the deployer, `winner` is\n/// whoever bid the most. Without this term the guard would pass on a thin pool and the ACTION\n/// phase would then abort with the raw TVM code 37: no bounce, the claimer's whole attached value\n/// swallowed, `paidOut` still false, and repeatable for the next claimer. `PAYOUT_HEADROOM` alone\n/// only ever covered basechain destinations — on `main`, where the leader is the only\n/// destination, a masterchain leader had the same hole (reproduced: raw code 37, 0.005 TON\n/// swallowed). This surcharge is the one part of this contract that is NOT in the mandated fee\n/// design; it is kept, and disclosed here and in README.md, because the fee gave the payout a\n/// second attacker-chosen destination and the raw code 37 it prevents is the same class of defect\n/// as the raw code 36 `address.isDeliverable` prevents.\n///\n/// MEASURED the same way (binary search, fresh pool per candidate, `PAYOUT_HEADROOM = 1`,\n/// `FEE_MESSAGE_HEADROOM = 0` and this surcharge 0), one `MIN_BID` bid at `feeBps = MAX_FEE_BPS`:\n///\n///   | destinations                       | floor (nanoton) | delta vs all-basechain |\n///   | ---------------------------------- | --------------- | ---------------------- |\n///   | leader BC, recipient BC (2 msgs)   |          694855 |                      — |\n///   | leader BC, recipient MC (2 msgs)   |        15585988 |               14891133 |\n///   | leader MC, recipient BC (2 msgs)   |        15585988 |               14891133 |\n///   | leader MC, recipient MC (2 msgs)   |        30477120 |            2x 14891133 |\n///   | leader MC, no fee      (1 msg)     |        15372787 |               14891133 |\n///   | main, leader MC        (1 msg)     |        15297935 |               14890066 |\n///\n/// The surcharge is the same ~14891133 nanoton per masterchain destination in every combination\n/// (14890066 on main, where the message body is one field shorter), and it is dominated by the\n/// masterchain lump price (0.01 TON), which is a config constant rather than a gas figure.\n/// 0.03 TON is 2.01x it, so a full doubling of masterchain forward prices is still covered.\n/// `tests/fee.test.tolk` pins both ends of this threshold too, for a masterchain recipient, a\n/// masterchain leader, and both at once.\nconst MASTERCHAIN_PAYOUT_SURCHARGE = ton(\"0.03\")\n\n/// Smallest accepted bid value: a gas and rent floor, ~300x the ~0.00016 TON dust window that\n/// TON absorbs before a rejected bid can bounce (see \"Dust below the bounce floor\" in README.md)\n/// and ~300x the ~0.00017 TON of gas the pool burns while accepting a bid.\n///\n/// WHAT IT GATES, and what it does NOT. It is the floor for the FIRST bid of a round and the\n/// dust floor — a bid below the bounce floor is silently swallowed by the network rather than\n/// returned, so the floor is real protection and not a courtesy. It is NOT a raise rule: once a\n/// leader exists the only comparison against `bestBid` is the strictly-greater one, and `MIN_BID`\n/// never enters it (a bid that beats a non-zero `bestBid` is above `MIN_BID` anyway, because the\n/// leader itself had to clear it).\n///\n/// This value is part of the cross-unit ABI, so a dApp may advertise it verbatim;\n/// `tests/deploy-state.test.tolk` pins the literal so it can never drift again.\nconst MIN_BID = ton(\"0.05\")\n\n/// Denominator of `Storage.feeBps`: the fee is quoted in basis points, so 2000 = 20%.\nconst BPS_DENOMINATOR = 10000\n\n/// Smallest value that would be ACCEPTED right now on a pool whose current best bid is\n/// `bestBid`: `MIN_BID` while nobody has bid, and `bestBid + 1` nanoton once there is a leader.\n///\n/// It is exactly the two asserts `registerBid` runs (`bidValue > bestBid` and\n/// `bidValue >= MIN_BID`) read as a number, which is why `max()` and not a special case: at\n/// `bestBid = 0` the strictly-greater term is 1 and the floor wins, and at any `bestBid` a real\n/// round can reach (>= `MIN_BID`, because the leader had to clear the floor) the floor is\n/// irrelevant and the answer is one nanoton more than the leader.\n///\n/// ONE definition, shared by the `minimumNextBid()` get method a UI reads and the operator\n/// scripts — so the number a dApp shows in its input field and the number the chain enforces can\n/// never drift apart. `tests/extension.test.tolk` pins the exact literal at several magnitudes.\nfun minimumBidAfter(bestBid: coins): coins {\n    return max(bestBid + 1, MIN_BID);\n}\n\n/// The `extensionWindow` baked into the canonical deployed storage AND the default of the\n/// `Storage` field: 900 seconds = 15 minutes.\n///\n/// It is the anti-snipe window: an accepted bid moves the deadline to `now() + 900`, so a round\n/// ends 15 minutes after the last accepted bid. Long enough for a human on a phone to see the\n/// notification, sign and land a counter-bid; short enough that a quiet round settles the same\n/// afternoon.\nconst DEFAULT_EXTENSION_WINDOW = 900\n\n/// On-chain FLOOR for `Storage.extensionWindow`: 60 seconds.\n///\n/// The floor is what stops the mechanic from being silently disabled. `extensionWindow = 0` would\n/// serialize, deploy and read back perfectly while setting `deadline = now()` on every accepted\n/// bid — i.e. the round would END on the first bid, which is worse than no extension at all, and\n/// no getter would say anything was wrong. A one-second window would be the same defect with a\n/// nicer number: TON blocks are ~5 s on the masterchain and 2-3 s on a basechain shard, so any\n/// window shorter than a handful of blocks cannot be reacted to at all and the sniper wins by\n/// construction. 60 s is >= 12 masterchain blocks, which is the smallest window in which \"see the\n/// bid, sign, land the counter-bid\" is physically possible for a human.\n///\n/// `registerBid` refuses EVERY bid on a pool outside `[MIN_EXTENSION_WINDOW,\n/// MAX_EXTENSION_WINDOW]` with `Errors.ExtensionWindowOutOfRange`, so such a pool can never take\n/// a nanoton — `Storage` is whatever the deployer put in the state init, exactly like `feeBps`,\n/// so this is the guard that makes the bound unbypassable rather than a deploy-script courtesy.\nconst MIN_EXTENSION_WINDOW = 60\n\n/// On-chain CEILING for `Storage.extensionWindow`: 86400 seconds = 24 hours.\n///\n/// WHAT IT BOUNDS: the deadline is reset to `now() + extensionWindow` by every accepted bid, so\n/// this constant is the maximum time ONE accepted bid can hold everyone else's funds locked in\n/// the pool. It is not a bound on the round (a contested round is extended as often as bidders\n/// keep bidding) — it is the bound on what a SINGLE bid buys, which is the only thing the\n/// contract can bound at all.\n///\n/// MEASURED, not guessed. Three independent numbers say 86400 is defensible, all of them pinned\n/// in `tests/extension.test.tolk`:\n///\n///   1. What the hold COSTS THE HOLDER. Holding the pool for one more maximum window costs ONE\n///      MORE ACCEPTED BID, and an accepted bid costs its FULL value — `poolAmount += bidValue`,\n///      not the increment. The cheapest possible stall therefore still puts a whole entry bid on\n///      the table per window, in a pool the staller may lose. MEASURED on chain\n///      (`tests/extension.test.tolk`, always raising by ONE NANOTON from a `MIN_BID` start, i.e.\n///      the cheapest legal ladder there is):\n///\n///        | accepted bids | days held at the ceiling | pool (nanoton) | factor vs MIN_BID |\n///        | ------------- | ------------------------ | -------------- | ----------------- |\n///        |             1 |                        1 |       50000000 |             1.00x |\n///        |             8 |                        8 |      400000028 |             8.00x |\n///        |            20 |                       20 |     1000000190 |            20.00x |\n///        |           320 |                      320 |    16000051040 |           320.00x |\n///\n///      A stall is therefore not free the way a `sleep()` is: it is linear in the number of\n///      windows held, at one full bid each, and every one of those bids is added to the prize\n///      the staller is trying to deny everybody else. What it is NOT is self-accelerating — the\n///      entry price does not rise on its own, so the brake is the capital tied up plus the\n///      protocol fee, and at `feeBps = 0` there is no fee brake at all.\n///   2. What the hold COSTS THE POOL. Storage rent for one maximum window, measured with\n///      `testing.getAccountStorageFee(pool, 86400)` on a live two-bid pool, is 5874 nanoton —\n///      0.0117% of `STORAGE_RESERVE` (50000000). Even an unbroken chain of maximum-length\n///      extensions running for years cannot eat the reserve that keeps the post-mortem state\n///      readable (the same measurement over a full year reads 2143752).\n///   3. What the CLOCK can take. `Storage.deadline` is a `uint32`, so `now() + extensionWindow`\n///      must stay below 4294967296 or the `save()` would abort with a raw serialization error\n///      rather than a named one. With this ceiling the last safe moment is 4294880895\n///      (2106-02-06), i.e. the ceiling costs the contract exactly one day of its natural uint32\n///      lifetime and cannot be the thing that breaks it.\n///\n/// Why not longer: 24 h is the point past which a single bid stops being an auction move and\n/// becomes a lockup — a bidder who has to be able to answer within one day can plan around it,\n/// one who may be locked for a week cannot. Why not shorter: a deployer running a weekend-long\n/// round for a global audience needs a window that survives one night of sleep, and 86400 is the\n/// smallest number that does. The bounds cost 274 gas units per accepted bid and the deadline\n/// write another 60 — measured, see the table on `Storage.extensionWindow`.\nconst MAX_EXTENSION_WINDOW = 86400\n\n/// Whether TON can route a message to this address at all.\n///\n/// Only two workchains exist: 0 (basechain) and -1 (masterchain). An address in any other one is\n/// a well-formed `MsgAddressInt` that no shard is responsible for, so an outgoing message to it\n/// does not fail in the compute phase — it aborts the ACTION phase with the raw TVM code 36,\n/// which does not bounce and swallows whatever the incoming message attached. Both payout\n/// destinations are chosen outside this contract (`feeRecipient` by the deployer, `leader` by\n/// whoever bid), so both are checked against this before a message is ever built.\nfun address.isDeliverable(self): bool {\n    val workchain = self.getWorkchain();\n    return workchain == BASECHAIN || workchain == MASTERCHAIN;\n}\n\n/// Hard on-chain ceiling for `Storage.feeBps`: 5000 bps = 50%.\n///\n/// A new leader's profit is `(1 - f) * previousPoolTotal - f * bid` (the winner receives the whole\n/// accounted pool minus the fee on it, and paid `bid` for that), so at `f = 1/2` a bid is only\n/// profitable while `previousPoolTotal > bid`, which the strictly-greater rule already makes hard\n/// to reach.\n///\n/// CORRECTION to the product spec, proven rather than assumed: above 50% the profitable window\n/// NARROWS, it does not close. The spec's \"above 50% the game is structurally dead, because the\n/// profitable window vs the strictly-greater rule closes\" is false as stated. Its own profit\n/// formula is what disproves it — at `f = 0.8` the bids 10, 11, ..., 24 leave\n/// `previousPoolTotal = 255`, and a strictly-greater bid of 25 yields\n/// `0.2 * 255 - 0.8 * 25 = +31`. In general a profitable bid reappears once the bid count exceeds\n/// about `2f / (1 - f)`. (Also note the FIRST bidder can never profit at any `f > 0`:\n/// `previousPoolTotal = 0` makes the profit `-f * bid`.) 5000 bps is therefore a POLICY ceiling —\n/// the point past which the pool takes more of a round than the winner does — and it is enforced\n/// as an absolute on-chain rule regardless of the economics argument behind the number.\n///\n/// It is enforced on BOTH paths that a fee can flow through, because either one alone is\n/// bypassable. `Storage` is chosen by whoever builds the state init, so there is no constructor\n/// to guard:\n///   * `registerBid` — the only place `feeBps` can start earning honestly. Refusing the bid keeps\n///     an over-fee pool empty, so no bidder can lose a nanoton to one;\n///   * `payOutPrize` — because a state init can bake in a `leader` as well, and then the bid path\n///     is never executed at all. Guarding only the bid path left exactly that hole: such a pool\n///     still accepted empty-body top-ups and then paid a 90% fee out of them.\n/// With both, an over-ceiling pool can never move a nanoton: bids are refused with `FeeTooHigh`,\n/// and so is the claim. `payOutPrize` additionally CLAMPS the payable fee to\n/// `poolAmount * feeBps / BPS_DENOMINATOR`, which bounds a `feeAccrued` baked into the state init\n/// by what `feeBps` could honestly have accrued — without it, `feeBps = 1` plus 9.9 TON of\n/// phantom accrual paid a ~99% fee on a pool advertising 0.01%.\n///\n/// The cost of putting the ceiling on the hot path is MEASURED, not assumed. `PlaceBid` gas, same\n/// pool, same bid, only the contract source changed:\n///\n///   | variant                                             | gas  | delta |\n///   | --------------------------------------------------- | ---- | ----- |\n///   | pre-fee contract (main)                             | 2591 |     — |\n///   | fee storage fields added, nothing read on the path   | 2591 |    +0 |\n///   | + `feeAccrued` accrual                              | 3019 |  +428 |\n///   | + this ceiling assert                               | 3123 |  +104 |\n///   | + `feeRecipient.isDeliverable()` assert (shipped)    | 3332 |  +209 |\n///\n/// So the bid-path half of the ceiling costs **104 gas units per accepted bid**, 3.3% on top of\n/// the accrual and 4.0% of the 2591 the bid used to cost, and the routability check that keeps\n/// bids out of a pool with an unroutable `feeRecipient` costs another 209. The payout-path half\n/// (the ceiling re-check, the clamp and the two routability checks) costs 638 gas units on a\n/// fee-bearing claim and 329 on a fee-free one — measured the same way, by removing them and\n/// re-running the same probe. `tests/fee.test.tolk` pins 3332, 7581 and 5723 so neither path can\n/// silently get more expensive.\nconst MAX_FEE_BPS = 5000\n\n/// The fee baked into the canonical deployed storage: 2000 bps = 20%.\n/// `scripts/deploy.tolk` takes `feeBps` as an argument, so this is the value to pass for a\n/// canonical pool; tests and docs must use this constant instead of the literal.\nconst DEPLOY_FEE_BPS = 2000\n\n/// One distinct exit code per failure mode.\n/// Every one of them is thrown from the compute phase, so a bounceable incoming\n/// message returns its coins to the sender instead of being silently kept.\nenum Errors {\n    /// A bid arrived at or after `Storage.deadline`.\n    DeadlinePassed = 101\n    /// A bid value is not STRICTLY greater than `Storage.bestBid`.\n    BidTooLow = 102\n    /// `ClaimPrize` arrived before `Storage.deadline`.\n    DeadlineNotReached = 103\n    /// `ClaimPrize` arrived, but nobody ever bid (`Storage.leader` is null).\n    NoBids = 104\n    /// A second `ClaimPrize`, or a top-up after the pool was already paid out.\n    AlreadyPaidOut = 105\n    /// A bid strictly greater than `bestBid`, but below `MIN_BID`.\n    BidBelowMinimum = 106\n    /// `ClaimPrize` on a pool whose balance does not exceed `STORAGE_RESERVE` plus the accrued\n    /// fee by at least `PAYOUT_HEADROOM` (plus `MASTERCHAIN_PAYOUT_SURCHARGE` for each payout\n    /// message that leaves the basechain), so a payout message could not pay its own forward fee\n    /// and the transaction would die in the ACTION phase with the nameless TVM code 37. Reachable\n    /// only when the pool was deployed with far less than the reserve, or when storage rent\n    /// eroded a minimal pool for years. The prize stays claimable: attach the missing value to\n    /// the claim.\n    PayoutUnfunded = 107\n    /// `PlaceBid` or `ClaimPrize` on a pool whose stored `feeBps` exceeds `MAX_FEE_BPS`\n    /// (5000 = 50%). Reachable only on a pool somebody deployed with an out-of-range fee:\n    /// `Storage` is chosen by whoever builds the state init, so this is the guard that makes the\n    /// ceiling unbypassable, and it is checked on BOTH paths. Such a pool can never move a\n    /// nanoton: every bid bounces back untouched (`leader` stays null, so a claim would answer\n    /// `NoBids` (104) as well), and a claim on a pool whose state init baked a `leader` in is\n    /// refused with this code instead of paying an over-ceiling fee. No BIDDER can lose anything\n    /// to it. It is not inert, though: like any pool that never got a bid it still accepts\n    /// empty-body top-ups before the deadline, and those are then stranded forever, because\n    /// nothing can ever pay out. Do not bid on it and do not top it up — deploy a new pool.\n    FeeTooHigh = 108\n    /// A payout destination that TON cannot route to. Only workchains 0 (basechain) and -1\n    /// (masterchain) exist; a message to any other one aborts the ACTION phase with the raw TVM\n    /// code 36 (\"invalid destination address\"), which does NOT bounce — it swallows the claimer's\n    /// attached value, leaves `paidOut` false and traps the next claimer the same way.\n    ///\n    /// `FeeRecipientUnreachable` is thrown by `PlaceBid` on ANY pool whose stored `feeRecipient`\n    /// is unroutable (so no bid can ever be trapped behind one, the bid bounces back untouched)\n    /// and by `ClaimPrize` when a fee is payable to one. Reachable only on a pool somebody\n    /// deployed with such an address: `scripts/deploy.tolk` refuses to publish one.\n    FeeRecipientUnreachable = 109\n    /// `ClaimPrize` on a pool whose stored `leader` is unroutable — see\n    /// `FeeRecipientUnreachable` for what the raw TVM code 36 would have done instead. A real\n    /// bid can never produce this (a message sender always lives in workchain 0 or -1), so it\n    /// takes a hand-built state init with a `leader` baked in. Nothing can settle such a pool,\n    /// which is exactly why the claim must be a bounced, named refusal rather than a trap.\n    LeaderUnreachable = 110\n    // 111 is RETIRED and deliberately left UNUSED — nothing below is renumbered. It was\n    // `RaiseTooSmall`, thrown when a bid beat `bestBid` but not by the minimum raise step. The\n    // step is gone (the only rule against a non-zero `bestBid` is the strictly-greater one\n    // again), and the code is NOT reused for anything else, so an old client that still decodes\n    // 111 can never be told a new meaning by this contract.\n    /// `PlaceBid` on a pool whose stored `extensionWindow` is outside\n    /// `[MIN_EXTENSION_WINDOW, MAX_EXTENSION_WINDOW]` (60..86400 seconds). Reachable only on a\n    /// pool somebody deployed with an out-of-range window: `Storage` is chosen by whoever builds\n    /// the state init, so — exactly like `FeeTooHigh` — this is the guard that makes the bounds\n    /// unbypassable rather than a courtesy of `scripts/deploy.tolk`. Such a pool can never take a\n    /// bid, so it can never fill up and no bidder can lose anything to it; every bid bounces back\n    /// untouched and `leader` stays null, so a claim answers `NoBids` (104).\n    ///\n    /// It is deliberately NOT re-checked on the claim path, unlike `FeeTooHigh`: the window\n    /// cannot misdirect or inflate a payment, it can only decide when bidding stops, so refusing\n    /// the CLAIM would strand the funds of a hand-built pool instead of protecting anybody.\n    ExtensionWindowOutOfRange = 112\n    /// A non-empty body this contract cannot interpret, in either of the two ways:\n    ///   * the leading 32 bits are not a known opcode — including a body too short to carry\n    ///     one, and the usual wallet transfer with a text comment (op `0x00000000`);\n    ///   * the opcode IS known but the payload is not exactly `opcode + queryId` with no refs\n    ///     (truncated, padded, or ref-carrying). Without that shape check a truncated\n    ///     `PlaceBid` would be accepted as a bid (the lazy parse never reads `queryId`) and a\n    ///     truncated `ClaimPrize` would abort with the raw TVM \"cell underflow\" code 9.\n    /// One code, because from the sender's point of view it is one failure: the body is not a\n    /// message of this protocol. The error set is frozen by the cross-unit ABI.\n    UnknownOp = 0xFFFF\n}\n\n/// Width of the leading opcode of every message body.\nconst OPCODE_BITS = 32\n\n/// Exact size of every accepted message body: `opcode: uint32` + `queryId: uint64`.\nconst BODY_BITS = OPCODE_BITS + 64\n\n/// Message opcodes, so that `onInternalMessage` can match an incoming prefix against the\n/// accepted set BEFORE it looks at the body shape. A struct prefix must be a literal, so these\n/// mirror the `struct (0x...)` headers below; `tests/funds.test.tolk` pins them to the real\n/// wrapper-built bodies so the two can never drift apart.\nconst OP_PLACE_BID = 0x70626964\nconst OP_CLAIM_PRIZE = 0x70636c6d\nconst OP_PRIZE_PAID = 0x70706169\nconst OP_FEE_PAID = 0x70666565\n\n/// Contract storage. FIELD ORDER IS PART OF THE ABI (it is the serialization order).\nstruct Storage {\n    /// Bids are accepted while `blockchain.now() < deadline`, and the payout while\n    /// `blockchain.now() >= deadline`. NOT immutable, and NOT a prize date: every ACCEPTED bid\n    /// resets it to `blockchain.now() + extensionWindow`, so from the first bid on it is a\n    /// rolling window and nothing else. The value baked into the state init is therefore only\n    /// the OPENING WINDOW — the moment an empty pool that never gets a bid closes with no\n    /// leader (see `DEFAULT_OPENING_WINDOW`) — but it is the one that fixes the deterministic\n    /// address, so operator scripts keep addressing a pool by it forever.\n    deadline: uint32\n    /// Current leader; null means nobody has bid yet.\n    leader: address?\n    /// Value of the current best (highest) accepted bid.\n    bestBid: coins\n    /// Monotonic sum of all accepted bid values: 10 -> 20 -> 30 reads back as 60.\n    poolAmount: coins\n    /// Replay latch: set once the prize has been sent, never cleared.\n    paidOut: bool\n    /// Where the accrued protocol fee is sent at claim time. Fixed at deploy time, and must be\n    /// ROUTABLE (workchain 0 or -1): `registerBid` refuses every bid on a pool that stores an\n    /// address in any other workchain, so no bidder can be trapped behind an undeliverable fee.\n    feeRecipient: address\n    /// Protocol fee in basis points (2000 = 20%), capped on the bid path at `MAX_FEE_BPS`.\n    feeBps: uint16\n    /// Monotonic sum of `value * feeBps / BPS_DENOMINATOR` over all accepted bids, rounded DOWN.\n    /// It is ACCRUED here and never sent per bid: the hot bid path emits no message at all. The\n    /// rounding remainder is not tracked — it simply stays in the pool and goes to the winner.\n    /// UNTRUSTED at payout time, because a state init can contain any value: `payOutPrize` pays\n    /// `min(feeAccrued, poolAmount * feeBps / BPS_DENOMINATOR)`, so a pool deployed with\n    /// `feeBps = 0` pays no fee whatever this says, and one deployed with a phantom accrual pays\n    /// at most what its advertised `feeBps` could honestly have earned.\n    feeAccrued: coins\n    /// Anti-snipe window in SECONDS: every ACCEPTED bid sets `deadline = now() + extensionWindow`.\n    /// Fixed at deploy time (there is no setter — it is part of the state init and therefore of\n    /// the address), defaulted to `DEFAULT_EXTENSION_WINDOW` (900 = 15 minutes) so that every\n    /// construction that does not mention it deploys the canonical mechanic, and bounded ON CHAIN\n    /// to `[MIN_EXTENSION_WINDOW, MAX_EXTENSION_WINDOW]` by `registerBid`: a pool outside that\n    /// range refuses every bid with `Errors.ExtensionWindowOutOfRange`, so a zero window can never\n    /// silently switch the mechanic off.\n    ///\n    /// APPENDED at the end of the struct on purpose: the eight fields above keep their exact\n    /// serialization offsets, so a parser written against the previous layout still reads all of\n    /// them correctly and only misses the new tail. The deterministic ADDRESS still changes (the\n    /// storage cell is one field longer, and the code cell changed too) — see docs/OPERATIONS.md.\n    ///\n    /// WHAT THE MECHANIC COSTS on the hot path, MEASURED the same way the fee guards were (same\n    /// pool, same bid, only the contract source changed; `tests/fee.test.tolk` pins the shipped\n    /// number so it cannot silently grow):\n    ///\n    ///   | variant                                              | gas  | delta |\n    ///   | ---------------------------------------------------- | ---- | ----- |\n    ///   | pre-fee contract                                     | 2591 |     — |\n    ///   | + the protocol fee accrual and its two storage guards | 3332 |  +741 |\n    ///   | + the anti-snipe mechanic WITH a minimum raise step   | 4095 |  +763 |\n    ///   | − the minimum raise step (SHIPPED)                    | 3844 |  −251 |\n    ///\n    /// So the rolling window costs 512 gas units per accepted bid over the pre-extension 3332,\n    /// and dropping the raise step gave 251 of them back. The CLAIM path is untouched by both:\n    /// 7581 with a fee message and 5723 without, unchanged to the unit.\n    extensionWindow: uint32 = DEFAULT_EXTENSION_WINDOW\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n/// Incoming: place a bid, the attached value is the bid.\nstruct (0x70626964) PlaceBid {\n    queryId: uint64\n}\n\n/// Incoming: pay the whole pool out to the stored leader. Callable by anyone.\nstruct (0x70636c6d) ClaimPrize {\n    queryId: uint64\n}\n\n/// Outgoing only (carried by the payout message, never accepted as input), so that\n/// indexers, dApps and `onBouncedMessage` can recognise the prize transfer.\nstruct (0x70706169) PrizePaid {\n    queryId: uint64\n    winner: address\n    poolAmount: coins\n}\n\n/// Outgoing only (carried by the fee message, never accepted as input), so that indexers, dApps\n/// and `onBouncedMessage` can tell the fee transfer apart from the prize transfer. Emitted at\n/// most once per round, and only when the PAYABLE fee is above zero.\n///\n/// The message carrying it is sent NON-BOUNCEABLE (`BounceMode.NoBounce`) with\n/// `SEND_MODE_PAY_FEES_SEPARATELY`. A fee collector is by construction an account that has never\n/// SENT anything, so on chain it is `uninitialized`, and TON bounces a bounceable message to such\n/// an account straight back — which, after `paidOut` is latched, stranded the whole fee in the\n/// pool forever. Non-bounceable delivery creates the recipient account and credits it instead.\n/// The trade: a recipient CONTRACT that throws on this opcode now keeps the coins rather than\n/// returning them. See \"The fee must reach an uninitialized recipient\" in README.md.\nstruct (0x70666565) FeePaid {\n    queryId: uint64\n    recipient: address\n    feeAmount: coins\n}\n\n/// Aggregate get-method reply; the first eight fields mirror `Storage`, the rest is what a UI\n/// needs to render the round in ONE call instead of five.\nstruct PoolState {\n    deadline: uint32\n    leader: address?\n    bestBid: coins\n    poolAmount: coins\n    paidOut: bool\n    feeRecipient: address\n    feeBps: uint16\n    feeAccrued: coins\n    /// Seconds an accepted bid adds to the clock, straight out of storage.\n    extensionWindow: uint32\n    /// `deadline - now()`, clamped at 0 — the countdown itself, computed against the CHAIN's\n    /// clock rather than the browser's, so a dApp does not have to trust (or correct) the\n    /// user's device to say \"4:32 left\". Zero means the round is over and `ClaimPrize` is the\n    /// next move.\n    secondsLeft: uint32\n    /// The smallest value a bid must carry right now to be accepted: `minimumBidAfter(bestBid)`,\n    /// i.e. `MIN_BID` while nobody has bid and `bestBid + 1` nanoton once there is a leader.\n    /// A UI that pre-fills its input with this number always offers a winning bid.\n    minimumNextBid: coins\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,1585 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from WalletV5.tolk, c5-register-validation.tolk, errors.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  DECLPROC processExtraActions()\n  -1 DECLMETHOD onExternalMessage()\n  0 DECLMETHOD onInternalMessage()\n  88459 DECLMETHOD is_signature_allowed()\n  85143 DECLMETHOD seqno()\n  81467 DECLMETHOD get_subwallet_id()\n  78748 DECLMETHOD get_public_key()\n  117729 DECLMETHOD get_extensions()\n  // 5 functions inlined in-place:\n  // - SnakedExtraActions.hasNext (1 call)\n  // - SnakedExtraActions.getNext (1 call)\n  // - OutActionsCell.verifyC5Actions (1 call)\n  // - Storage.load (11 calls)\n  // - Storage.save (5 calls)\n  // - processActions (3 calls)\n  processExtraActions() PROCREF:<{\n    c2 SAVE\n    SAMEALTSAVE\n    AGAINEND\n    OVER\n    x{02} SDBEGINSQ\n    IF:<{\n      LDSTDADDR\n      DROP\n      REWRITESTDADDR\n      MYADDR\n      REWRITESTDADDR\n      DROP\n      ROT\n      EQUAL\n      145 THROWIFNOT\n      c4 PUSH\n      CTOS\n      321 PUSHINT\n      LDSLICEX\n      PLDOPTREF\n      NEWC\n      b{1} STSLICECONST\n      s0 s3 s3 XCHG3\n      8 PUSHPOW2\n      DICTUADDB\n      139 THROWIFNOT\n      SWAP\n      NEWC\n      STSLICE\n      STOPTREF\n      ENDC\n      c4 POP\n    }>ELSE<{\n      x{03} SDBEGINSQ\n      IF:<{\n        LDSTDADDR\n        DROP\n        REWRITESTDADDR\n        MYADDR\n        REWRITESTDADDR\n        DROP\n        ROT\n        EQUAL\n        145 THROWIFNOT\n        c4 PUSH\n        CTOS\n        1 LDI\n        320 PUSHINT\n        LDSLICEX\n        PLDOPTREF\n        s1 s3 XCHG\n        8 PUSHPOW2\n        DICTUDEL\n        140 THROWIFNOT\n        OVER\n        IFNOT:<{\n          DUP\n          DICTEMPTY\n          144 THROWIF\n        }>\n        SWAP\n        NEWC\n        1 STI\n        s1 s2 XCHG\n        STSLICE\n        STOPTREF\n        ENDC\n        c4 POP\n      }>ELSE<{\n        x{04} SDBEGINSQ\n        IFNOTJMP:<{\n          141 THROW\n        }>\n        OVER\n        146 THROWIFNOT\n        c4 PUSH\n        CTOS\n        SWAP\n        1 PLDI\n        SWAP\n        1 LDI\n        DUP\n        320 PUSHINT\n        SDSKIPFIRST\n        PLDOPTREF\n        s2 s3 XCPU\n        NEQ\n        143 THROWIFNOT\n        s2 PUSH\n        IFNOT:<{\n          SWAP\n          DICTEMPTY\n          142 THROWIF\n        }>ELSE<{\n          NIP\n        }>\n        SWAP\n        NEWC\n        1 STI\n        STSLICE\n        ENDC\n        c4 POP\n      }>\n    }>\n    OVER\n    SREFS\n    IFNOTJMP:<{\n      2DROP\n      RETALT\n    }>\n    SWAP\n    PLDREF\n    CTOS\n    SWAP\n  }>\n  onExternalMessage() PROC:<{\n    DUP\n    9 PUSHPOW2\n    SDCUTLAST\n    SWAP\n    9 PUSHPOW2\n    SDSKIPLAST\n    DUP\n    x{7369676e} SDBEGINSQ\n    138 THROWIFNOT\n    32 LDU\n    32 LDU\n    32 LDU\n    LDOPTREF\n    1 LDI\n    c4 PUSH\n    CTOS\n    1 LDI\n    32 LDU\n    DUP\n    32 LDU\n    256 LDU\n    PLDOPTREF\n    s0 s12 XCHG\n    NEWC\n    STSLICE\n    HASHBU\n    s0 s13 s13 XCHG3\n    CHKSIGNU\n    135 THROWIFNOT\n    s0 s9 XCHG\n    DICTEMPTY\n    s1 s2 XCHG\n    OR\n    132 THROWIFNOT\n    s4 s4 XCPU\n    EQUAL\n    133 THROWIFNOT\n    s5 s7 XCHG2\n    EQUAL\n    134 THROWIFNOT\n    s0 s2 XCHG\n    NOW\n    GREATER\n    136 THROWIFNOT\n    ACCEPT\n    INC\n    NEWC\n    b{1} STSLICECONST\n    32 STU\n    s1 s3 XCHG\n    STSLICE\n    ENDC\n    c4 POP\n    COMMIT\n    FALSE\n    s2 PUSH\n    ISNULL\n    IFNOT:<{\n      0 PUSHINT\n      s3 PUSH\n      XCTOS\n      DROP\n      UNTIL:<{\n        DUP\n        SBITREFS\n        2 EQINT\n        147 THROWIFNOT\n        40 EQINT\n        147 THROWIFNOT\n        x{0ec3c86d} SDBEGINSQ\n        147 THROWIFNOT\n        LDREF\n        8 PLDU\n        2 PUSHINT\n        AND\n        137 THROWIFNOT\n        XCTOS\n        DROP\n        SWAP\n        INC\n        OVER\n        SEMPTY\n        s1 s2 XCHG\n      }>\n      DROP\n      8 PUSHPOW2DEC\n      LEQ\n      147 THROWIFNOT\n      s0 s2 XCHG\n      c5 POP\n    }>ELSE<{\n      s2 POP\n    }>\n    IFJMP:<{\n      processExtraActions() INLINECALLDICT\n    }>\n    2DROP\n  }>\n  onInternalMessage() PROC:<{\n    DUP\n    x{73696e74} SDBEGINSQ\n    IFJMP:<{\n      OVER\n      SBITS\n      640 PUSHINT\n      GEQ\n      IFNOTJMP:<{\n        2DROP\n      }>\n      OVER\n      9 PUSHPOW2\n      SDCUTLAST\n      s0 s2 XCHG\n      9 PUSHPOW2\n      SDSKIPLAST\n      c4 PUSH\n      CTOS\n      1 LDI\n      32 LDU\n      DUP\n      32 LDU\n      256 LDU\n      PLDOPTREF\n      s0 s6 XCHG\n      NEWC\n      STSLICE\n      HASHBU\n      s0 s8 s8 XCHG3\n      CHKSIGNU\n      IFNOTJMP:<{\n        6 BLKDROP\n      }>\n      s0 s3 XCHG\n      DICTEMPTY\n      s1 s2 XCHG\n      OR\n      132 THROWIFNOT\n      s0 s2 XCHG\n      32 LDU\n      32 LDU\n      32 LDU\n      LDOPTREF\n      1 LDI\n      s3 s7 XCPU\n      EQUAL\n      133 THROWIFNOT\n      s4 s7 XCHG2\n      EQUAL\n      134 THROWIFNOT\n      SWAP\n      NOW\n      GREATER\n      136 THROWIFNOT\n      s0 s3 XCHG\n      INC\n      NEWC\n      b{1} STSLICECONST\n      32 STU\n      s1 s2 XCHG\n      STSLICE\n      ENDC\n      c4 POP\n      FALSE\n      OVER\n      ISNULL\n      IFNOT:<{\n        0 PUSHINT\n        s2 PUSH\n        XCTOS\n        DROP\n        UNTIL:<{\n          DUP\n          SBITREFS\n          2 EQINT\n          147 THROWIFNOT\n          40 EQINT\n          147 THROWIFNOT\n          x{0ec3c86d} SDBEGINSQ\n          147 THROWIFNOT\n          PLDREF\n          XCTOS\n          DROP\n          SWAP\n          INC\n          OVER\n          SEMPTY\n          s1 s2 XCHG\n        }>\n        DROP\n        8 PUSHPOW2DEC\n        LEQ\n        147 THROWIFNOT\n        SWAP\n        c5 POP\n      }>ELSE<{\n        NIP\n      }>\n      s0 s2 XCHG\n      IF:<{\n        SWAP\n        processExtraActions() INLINECALLDICT\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    NIP\n    x{6578746e} SDBEGINSQ\n    IFJMP:<{\n      INMSG_SRC\n      REWRITESTDADDR\n      MYADDR\n      REWRITESTDADDR\n      DROP\n      ROT\n      NEQ\n      IFJMP:<{\n        2DROP\n      }>\n      c4 PUSH\n      CTOS\n      321 PUSHINT\n      SDSKIPFIRST\n      PLDOPTREF\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      IFNOTJMP:<{\n        DROP\n      }>\n      64 LDU\n      NIP\n      LDOPTREF\n      1 LDI\n      TRUE\n      s3 PUSH\n      ISNULL\n      IFNOT:<{\n        0 PUSHINT\n        s4 PUSH\n        XCTOS\n        DROP\n        UNTIL:<{\n          DUP\n          SBITREFS\n          2 EQINT\n          147 THROWIFNOT\n          40 EQINT\n          147 THROWIFNOT\n          x{0ec3c86d} SDBEGINSQ\n          147 THROWIFNOT\n          PLDREF\n          XCTOS\n          DROP\n          SWAP\n          INC\n          OVER\n          SEMPTY\n          s1 s2 XCHG\n        }>\n        DROP\n        8 PUSHPOW2DEC\n        LEQ\n        147 THROWIFNOT\n        s0 s3 XCHG\n        c5 POP\n      }>ELSE<{\n        s3 POP\n      }>\n      SWAP\n      IF:<{\n        SWAP\n        processExtraActions() INLINECALLDICT\n      }>ELSE<{\n        2DROP\n      }>\n    }>\n    DROP\n  }>\n  is_signature_allowed() PROC:<{\n    c4 PUSH\n    CTOS\n    1 PLDI\n  }>\n  seqno() PROC:<{\n    c4 PUSH\n    CTOS\n    1 LDU\n    NIP\n    32 PLDU\n  }>\n  get_subwallet_id() PROC:<{\n    c4 PUSH\n    CTOS\n    33 LDU\n    NIP\n    32 PLDU\n  }>\n  get_public_key() PROC:<{\n    c4 PUSH\n    CTOS\n    65 LDU\n    NIP\n    256 PLDU\n  }>\n  get_extensions() PROC:<{\n    c4 PUSH\n    CTOS\n    321 PUSHINT\n    SDSKIPFIRST\n    PLDOPTREF\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEwEAAxcAART/APSkE/S88sgLAQIBIAIDAgFIBAUC4PIggwjXIgGDCNcjINcsI5tLO3Ty4IrTH9Mf0x/0BNIA7UTQ0gDTHyDTH9P/9AUMyM75FkDd+RDy4IcJbhKx8uCEUUS68uCFUFe68uCGAvgjvPLgiPgApMjPg8sfE87J7VT4D3AibpEy4w6Ogts84FsQEQP40CDXLCObS3Okj3Ah10mBAoC+kVvhIYMI1yICgwjXI+1E0NIA0x8g0x/T//QFBsjO+RZAiPkQkl8G4QNuErHy4IQC0x/TH9Mf9ATSAFE3uvLghVBHuvLghgH4I7zy4IgDpMjPg8sfEs7J7VRwIW6RMeMOAo6DAds8kVvi4AYRBwIBIAgJAGhwItc5MI4iINdLwALy4JPAKPLgk9csIHYeQ2zy4JPXTNc5MAGkIccAEuYwhAe78uCTAe1VAfQx1ywjK8OjdI7u+JL6RPgo+kQwWL2RW+DtRNCBAUHXIfQFgwf0Dm+hMZEw4dM/MfQE0gB/I26RM440cCTXOTCOIiDXS8AC8uCTwCjy4JPXLCB2HkNs8uCT10zXOTABpCHHABLmMIQHu/LgkwPtVeIBjoMB2zyRW+LgMBECASAKCwAZvl8PaiaECAoOuQ+gLAIBbgwNAgFIDg8AF63OdqJoaaAY64X/wAAXrx32omhpkBjrhY/AABezJftRNDTADHXCx+AAEbJi+1E0NcKAIAB2cCPXOTCOKSDXS8AC8uCTwCjy4JPXLCB2HkNs8uCT1NcLB3Kw8uCJ1zkwAaQhxwAS5jCEB7vy4JMC7VUBkO2i7fvrIdcsCBSOLfpIMPpE+Cj6RDBYuvLgke1E0IEBQdcY9AXIz4NAM4MH9FPy4IsByM70AMntVOMOIddKk1vbMeEB10zQARIA7NcsCByONvpIMPpE+Cj6RDBYuvLgke1E0NIAgQFA1xj0BRODB/Rb8uCMIZUgbvLQkN8ByMoAEs70AMntVI431ywIJJPywI3hIfLgku1E0AHXCgAB0gAggQFA1yH0BVEjvfLgjyKRMZUBbvLQjuIByMoAzsntVOI=",
+  "codeHashHex": "6398C607B11B539775A583F7BACB80C1D22087100C4F40DF5FB502D2B726AED2",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/WalletV5.tolk",
+        "size_chars": 7575,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/c5-register-validation.tolk",
+        "size_chars": 1752,
+        "imports": [
+          4,
+          5
+        ]
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/errors.tolk",
+        "size_chars": 544,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/messages.tolk",
+        "size_chars": 2170,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/storage.tolk",
+        "size_chars": 362,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToWalletV5"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtensionActionRequest"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OutActionsCell"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutActionWithSendMessageOnly"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OutActionWithSendMessageOnlyOrEmpty"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 247711853,
+            "prefix_len": 32,
+            "stack_type_id": 129,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 0,
+            "prefix_num": 0,
+            "prefix_len": 0,
+            "stack_type_id": 10,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 21
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SnakedExtraActions"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalSignedRequest"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1702392942,
+            "prefix_len": 32,
+            "stack_type_id": 130,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1936289396,
+            "prefix_len": 32,
+            "stack_type_id": 131,
+            "stack_width": 6
+          }
+        ],
+        "stack_width": 7
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedExternalMessageToWalletV5"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExternalSignedRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtensionsDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 30,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddExtensionExtraAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RemoveExtensionExtraAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetSignatureAllowedExtraAction"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 2,
+            "prefix_len": 8,
+            "stack_type_id": 132,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 3,
+            "prefix_len": 8,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 4,
+            "prefix_len": 8,
+            "stack_type_id": 134,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToWalletV5",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          91,
+          6,
+          91,
+          30
+        ],
+        "target_ty_idx": 26
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedExternalMessageToWalletV5",
+        "ty_idx": 27,
+        "ident_loc": [
+          1,
+          93,
+          6,
+          93,
+          38
+        ],
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "struct",
+        "name": "AddExtensionExtraAction",
+        "ty_idx": 34,
+        "ident_loc": [
+          5,
+          1,
+          15,
+          1,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 2,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RemoveExtensionExtraAction",
+        "ty_idx": 35,
+        "ident_loc": [
+          5,
+          5,
+          15,
+          5,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 3,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetSignatureAllowedExtraAction",
+        "ty_idx": 36,
+        "ident_loc": [
+          5,
+          9,
+          15,
+          9,
+          45
+        ],
+        "prefix": {
+          "prefix_num": 4,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "allowSignature",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraAction",
+        "ty_idx": 33,
+        "ident_loc": [
+          5,
+          13,
+          6,
+          13,
+          17
+        ],
+        "target_ty_idx": 37
+      },
+      {
+        "kind": "alias",
+        "name": "OutActionsCell",
+        "ty_idx": 14,
+        "ident_loc": [
+          5,
+          19,
+          6,
+          19,
+          20
+        ],
+        "target_ty_idx": 3
+      },
+      {
+        "kind": "struct",
+        "name": "OutActionWithSendMessageOnly",
+        "ty_idx": 16,
+        "ident_loc": [
+          5,
+          23,
+          21,
+          23,
+          49
+        ],
+        "prefix": {
+          "prefix_num": 247711853,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "prev",
+            "ty_idx": 19
+          },
+          {
+            "name": "sendMode",
+            "ty_idx": 20
+          },
+          {
+            "name": "outMsg",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OutActionWithSendMessageOnlyOrEmpty",
+        "ty_idx": 17,
+        "ident_loc": [
+          5,
+          29,
+          6,
+          29,
+          41
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "alias",
+        "name": "SnakedExtraActions",
+        "ty_idx": 23,
+        "ident_loc": [
+          5,
+          32,
+          6,
+          32,
+          24
+        ],
+        "target_ty_idx": 24
+      },
+      {
+        "kind": "struct",
+        "name": "ExtensionActionRequest",
+        "ty_idx": 13,
+        "ident_loc": [
+          5,
+          47,
+          21,
+          47,
+          43
+        ],
+        "prefix": {
+          "prefix_num": 1702392942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 15
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalSignedRequest",
+        "ty_idx": 25,
+        "ident_loc": [
+          5,
+          55,
+          21,
+          55,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1936289396,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "walletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 15
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExternalSignedRequest",
+        "ty_idx": 28,
+        "ident_loc": [
+          5,
+          66,
+          21,
+          66,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1936287598,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "walletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 15
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtensionsDict",
+        "ty_idx": 31,
+        "ident_loc": [
+          6,
+          1,
+          6,
+          1,
+          20
+        ],
+        "target_ty_idx": 32
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 29,
+        "ident_loc": [
+          6,
+          3,
+          8,
+          3,
+          15
+        ],
+        "fields": [
+          {
+            "name": "isSignatureAllowed",
+            "ty_idx": 5
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "subwalletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 30
+          },
+          {
+            "name": "extensions",
+            "ty_idx": 31
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "processExtraActions",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          19,
+          5,
+          19,
+          24
+        ],
+        "end_loc": [
+          1,
+          73,
+          1,
+          73,
+          2
+        ],
+        "params": [
+          {
+            "name": "extraActions",
+            "ty_idx": 23
+          },
+          {
+            "name": "isExtension",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "map<uint256, bool>.addIfNotExists",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "key",
+            "ty_idx": 30
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          15,
+          13,
+          15,
+          17
+        ],
+        "end_loc": [
+          6,
+          17,
+          1,
+          17,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "map<uint256, bool>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "key",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "SnakedExtraActions.hasNext",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          34,
+          24,
+          34,
+          31
+        ],
+        "end_loc": [
+          5,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "SnakedExtraActions.getNext",
+        "return_ty_idx": 23,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          38,
+          24,
+          38,
+          31
+        ],
+        "end_loc": [
+          5,
+          40,
+          1,
+          40,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          95,
+          5,
+          95,
+          22
+        ],
+        "end_loc": [
+          1,
+          125,
+          1,
+          125,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsgBody",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "AllowedExternalMessageToWalletV5.fromSlice",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "processActions",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          75,
+          5,
+          75,
+          19
+        ],
+        "end_loc": [
+          1,
+          89,
+          1,
+          89,
+          2
+        ],
+        "params": [
+          {
+            "name": "outActions",
+            "ty_idx": 15
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 23
+          },
+          {
+            "name": "isExternal",
+            "ty_idx": 5
+          },
+          {
+            "name": "isExtension",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "OutActionsCell.verifyC5Actions",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          3,
+          19,
+          20,
+          19,
+          35
+        ],
+        "end_loc": [
+          3,
+          47,
+          1,
+          47,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "isExternal",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          128,
+          5,
+          128,
+          22
+        ],
+        "end_loc": [
+          1,
+          183,
+          1,
+          183,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint256, bool>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 32
+          },
+          {
+            "name": "key",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "is_signature_allowed",
+        "return_ty_idx": 5,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          185,
+          9,
+          185,
+          29
+        ],
+        "end_loc": [
+          1,
+          188,
+          1,
+          188,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "seqno",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          190,
+          9,
+          190,
+          14
+        ],
+        "end_loc": [
+          1,
+          193,
+          1,
+          193,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "get_subwallet_id",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          195,
+          9,
+          195,
+          25
+        ],
+        "end_loc": [
+          1,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "get_public_key",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          200,
+          9,
+          200,
+          23
+        ],
+        "end_loc": [
+          1,
+          203,
+          1,
+          203,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "get_extensions",
+        "return_ty_idx": 32,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          206,
+          9,
+          206,
+          23
+        ],
+        "end_loc": [
+          1,
+          209,
+          1,
+          209,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "WalletV5",
+    "author": "The Tolk Team",
+    "version": "5.1",
+    "description": "Wallet V5. Extensible wallet with plugins support",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtensionActionRequest"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OutActionsCell"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutActionWithSendMessageOnly"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OutActionWithSendMessageOnlyOrEmpty"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 247711853,
+            "prefix_len": 32,
+            "stack_type_id": 129,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 0,
+            "prefix_num": 0,
+            "prefix_len": 0,
+            "stack_type_id": 10,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SnakedExtraActions"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalSignedRequest"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedExternalMessageToWalletV5"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExternalSignedRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtensionsDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 28,
+        "value_ty_idx": 5
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "AllowedExternalMessageToWalletV5",
+        "ty_idx": 25,
+        "target_ty_idx": 26
+      },
+      {
+        "kind": "alias",
+        "name": "OutActionsCell",
+        "ty_idx": 13,
+        "target_ty_idx": 3,
+        "description": "\"OutActionList\" is what's pushed to c5."
+      },
+      {
+        "kind": "struct",
+        "name": "OutActionWithSendMessageOnly",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 247711853,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "prev",
+            "ty_idx": 18
+          },
+          {
+            "name": "sendMode",
+            "ty_idx": 19
+          },
+          {
+            "name": "outMsg",
+            "ty_idx": 3
+          }
+        ],
+        "description": "For instance, it contains \"send message\" actions (the only we allow)\nsee block.tlb: https://github.com/ton-blockchain/ton/blob/5c392e0f2d946877bb79a09ed35068f7b0bd333a/crypto/block/block.tlb#L380"
+      },
+      {
+        "kind": "alias",
+        "name": "OutActionWithSendMessageOnlyOrEmpty",
+        "ty_idx": 16,
+        "target_ty_idx": 17
+      },
+      {
+        "kind": "alias",
+        "name": "SnakedExtraActions",
+        "ty_idx": 22,
+        "target_ty_idx": 23
+      },
+      {
+        "kind": "struct",
+        "name": "ExtensionActionRequest",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1702392942,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 14,
+            "client_ty_idx": 21
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InternalSignedRequest",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 1936289396,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "walletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 14,
+            "client_ty_idx": 21
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExternalSignedRequest",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 1936287598,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "walletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "outActions",
+            "ty_idx": 14,
+            "client_ty_idx": 21
+          },
+          {
+            "name": "hasExtraActions",
+            "ty_idx": 5
+          },
+          {
+            "name": "extraActions",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtensionsDict",
+        "ty_idx": 29,
+        "target_ty_idx": 30
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 27,
+        "fields": [
+          {
+            "name": "isSignatureAllowed",
+            "ty_idx": 5
+          },
+          {
+            "name": "seqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "subwalletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 28
+          },
+          {
+            "name": "extensions",
+            "ty_idx": 29
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 27
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 24
+      }
+    ],
+    "incoming_external": [
+      {
+        "body_ty_idx": 25
+      }
+    ],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 88459,
+        "name": "is_signature_allowed",
+        "parameters": [],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 85143,
+        "name": "seqno",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 81467,
+        "name": "get_subwallet_id",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 78748,
+        "name": "get_public_key",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 117729,
+        "name": "get_extensions",
+        "parameters": [],
+        "return_ty_idx": 30
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.SignatureDisabled",
+        "err_code": 132
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidSeqno",
+        "err_code": 133
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidWalletId",
+        "err_code": 134
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidSignature",
+        "err_code": 135
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.Expired",
+        "err_code": 136
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ExternalSendMessageMustHaveIgnoreErrorsSendMode",
+        "err_code": 137
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessageOperation",
+        "err_code": 138
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.AddExtension",
+        "err_code": 139
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RemoveExtension",
+        "err_code": 140
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.UnsupportedAction",
+        "err_code": 141
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DisableSignatureWhenExtensionsIsEmpty",
+        "err_code": 142
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ThisSignatureModeAlreadySet",
+        "err_code": 143
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RemoveLastExtensionWhenSignatureDisabled",
+        "err_code": 144
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ExtensionWrongWorkchain",
+        "err_code": 145
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.OnlyExtensionCanChangeSignatureMode",
+        "err_code": 146
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidC5",
+        "err_code": 147
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/WalletV5.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"c5-register-validation\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\n\ncontract WalletV5 {\n    author: \"The Tolk Team\"\n    version: \"5.1\"\n    description: \"Wallet V5. Extensible wallet with plugins support\"\n    storage: Storage\n    incomingMessages: AllowedMessageToWalletV5\n    incomingExternal: AllowedExternalMessageToWalletV5\n}\n\nconst SIZE_SIGNATURE = 512\n\n@inline_ref\nfun processExtraActions(extraActions: SnakedExtraActions, isExtension: bool) {\n    while (true) {\n        val action = lazy ExtraAction.fromSlice(extraActions);\n        match (action) {\n            AddExtensionExtraAction => {\n                val (extensionWorkchain, extensionAddrHash) = action.addr.getWorkchainAndHash();\n                val myWorkchain = contract.getAddress().getWorkchain();\n                assert (myWorkchain == extensionWorkchain) throw Errors.ExtensionWrongWorkchain;\n\n                var storage = lazy Storage.load();\n                val inserted = storage.extensions.addIfNotExists(extensionAddrHash, true);\n                assert (inserted) throw Errors.AddExtension;\n                storage.save();\n            }\n\n            RemoveExtensionExtraAction => {\n                val (extensionWorkchain, extensionAddrHash) = action.addr.getWorkchainAndHash();\n                val myWorkchain = contract.getAddress().getWorkchain();\n                assert (myWorkchain == extensionWorkchain) throw Errors.ExtensionWrongWorkchain;\n\n                var storage = lazy Storage.load();\n                val removed = storage.extensions.delete(extensionAddrHash);\n                assert (removed) throw Errors.RemoveExtension;\n                if (!storage.isSignatureAllowed) {\n                    assert (\n                        !storage.extensions.isEmpty()\n                    ) throw Errors.RemoveLastExtensionWhenSignatureDisabled;\n                }\n                storage.save();\n            }\n\n            SetSignatureAllowedExtraAction => {\n                assert (isExtension) throw Errors.OnlyExtensionCanChangeSignatureMode;\n\n                var storage = lazy Storage.load();\n                assert (\n                    storage.isSignatureAllowed != action.allowSignature\n                ) throw Errors.ThisSignatureModeAlreadySet;\n                if (!action.allowSignature) {\n                    assert (\n                        !storage.extensions.isEmpty()\n                    ) throw Errors.DisableSignatureWhenExtensionsIsEmpty;\n                }\n                storage.isSignatureAllowed = action.allowSignature;\n                storage.save();\n            }\n\n            else => throw Errors.UnsupportedAction,\n        }\n        if (!extraActions.hasNext()) {\n            return;\n        }\n        extraActions = extraActions.getNext();\n    }\n}\n\nfun processActions(\n    outActions: OutActionsCell?,\n    hasExtraActions: bool,\n    extraActions: SnakedExtraActions,\n    isExternal: bool,\n    isExtension: bool,\n) {\n    if (outActions != null) {\n        // Simply set the C5 register with all pre-computed actions after verification:\n        setTvmRegisterC5(outActions.verifyC5Actions(isExternal));\n    }\n    if (hasExtraActions) {\n        processExtraActions(extraActions, isExtension);\n    }\n}\n\ntype AllowedMessageToWalletV5 = ExtensionActionRequest | InternalSignedRequest\n\ntype AllowedExternalMessageToWalletV5 = ExternalSignedRequest\n\nfun onExternalMessage(inMsgBody: slice) {\n    val signature = inMsgBody.getLastBits(SIZE_SIGNATURE);\n    val signedSlice = inMsgBody.removeLastBits(SIZE_SIGNATURE);\n\n    val msg = AllowedExternalMessageToWalletV5.fromSlice(\n        signedSlice,\n        { throwIfOpcodeDoesNotMatch: Errors.InvalidMessageOperation },\n    );\n\n    var storage = lazy Storage.load();\n\n    assert (\n        isSignatureValid(signedSlice.hash(), signature, storage.publicKey)\n    ) throw Errors.InvalidSignature;\n    assert (\n        storage.isSignatureAllowed | storage.extensions.isEmpty()\n    ) throw Errors.SignatureDisabled;\n    assert (msg.seqno == storage.seqno) throw Errors.InvalidSeqno;\n    assert (msg.walletId == storage.subwalletId) throw Errors.InvalidWalletId;\n    assert (msg.validUntil > blockchain.now()) throw Errors.Expired;\n\n    acceptExternalMessage();\n\n    // Store and commit the seqno increment to prevent replays even if the subsequent requests fail.\n    storage.isSignatureAllowed = true;\n    storage.seqno += 1;\n    storage.save();\n\n    commitContractDataAndActions();\n    processActions(msg.outActions, msg.hasExtraActions, msg.extraActions, true, false);\n}\n\n@on_bounced_policy(\"manual\")\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToWalletV5.fromSlice(in.body);\n\n    match (msg) {\n        InternalSignedRequest => {\n            val bodyLongEnough = in.body.remainingBitsCount() >= SIZE_SIGNATURE + 128;\n            if (!bodyLongEnough) {\n                return; // don't try to parse it (it will fail), just ignore\n            }\n\n            val signature = in.body.getLastBits(SIZE_SIGNATURE);\n            val signedSlice = in.body.removeLastBits(SIZE_SIGNATURE);\n\n            var storage = lazy Storage.load();\n            if (!isSignatureValid(signedSlice.hash(), signature, storage.publicKey)) {\n                return;\n            }\n\n            assert (\n                storage.isSignatureAllowed | storage.extensions.isEmpty()\n            ) throw Errors.SignatureDisabled;\n            assert (msg.seqno == storage.seqno) throw Errors.InvalidSeqno;\n            assert (msg.walletId == storage.subwalletId) throw Errors.InvalidWalletId;\n            assert (msg.validUntil > blockchain.now()) throw Errors.Expired;\n\n            // Store and commit the seqno increment to prevent replays even if the subsequent requests fail.\n            storage.isSignatureAllowed = true;\n            storage.seqno += 1;\n            storage.save();\n\n            processActions(msg.outActions, msg.hasExtraActions, msg.extraActions, false, false);\n        }\n\n        ExtensionActionRequest => {\n            val (senderWorkchain, senderAddrHash) = in.senderAddress.getWorkchainAndHash();\n            val myWorkchain = contract.getAddress().getWorkchain();\n            if (myWorkchain != senderWorkchain) {\n                return;\n            }\n\n            val storage = lazy Storage.load();\n            if (!storage.extensions.exists(senderAddrHash)) {\n                // Note that some random contract may have deposited funds with this prefix,\n                // so we accept the funds silently instead of throwing an error (wallet v4 does the same).\n                return;\n            }\n\n            processActions(msg.outActions, msg.hasExtraActions, msg.extraActions, false, true);\n        }\n\n        else => {\n            // if opcode is strange or body is empty at all (for instance, bounced messages)\n            // just ignore, do not throw\n        }\n    }\n}\n\nget fun is_signature_allowed(): bool {\n    val storage = lazy Storage.load();\n    return storage.isSignatureAllowed;\n}\n\nget fun seqno(): int {\n    val storage = lazy Storage.load();\n    return storage.seqno;\n}\n\nget fun get_subwallet_id(): int {\n    val storage = lazy Storage.load();\n    return storage.subwalletId;\n}\n\nget fun get_public_key(): int {\n    val storage = lazy Storage.load();\n    return storage.publicKey;\n}\n\n// Returns raw dictionary (or null if empty) where keys are address hashes. Workchains of extensions are same with wallet smart contract workchain\nget fun get_extensions(): map<uint256, bool> {\n    val storage = lazy Storage.load();\n    return storage.extensions;\n}\n"
+    },
+    {
+      "filename": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/c5-register-validation.tolk",
+      "contents": "// The wallet contract is low-level.\n// For instance, it operates with the TVM register c5 (out actions) and validates actions before pushing there.\n// This file is dedicated to parsing and validating out actions.\n\nimport \"errors\"\nimport \"messages\"\n\n/// put a raw list of OutActions to C5 register\n// acton-disable-next-line asm-function-missing-safety-comment\nfun setTvmRegisterC5(actionList: cell): void\n    asm \"c5 POP\"\n\n/// transform an ordinary or exotic cell into a slice, as if it were an ordinary cell\n// acton-disable-next-line asm-function-missing-safety-comment\nfun OutActionsCell.beginParseAllowExotic(self): slice\n    asm \"XCTOS\" \"DROP\"\n\n/// verify a cell containing OutActionList that it contains only \"send message\" actions\nfun OutActionsCell.verifyC5Actions(self, isExternal: bool): self {\n    var count = 0;\n\n    var cs = self.beginParseAllowExotic();\n    do {\n        // these checks could be cheaper in terms of gas if we just try to parse cs;\n        // but we want to throw exactly `Errors.InvalidC5` (not `9` \"cell underflow\")\n        val (nBits, nRefs) = cs.remainingBitsAndRefsCount();\n        assert (nRefs == 2) throw Errors.InvalidC5;\n        assert (nBits == 32 + 8) throw Errors.InvalidC5;\n\n        val outAction = lazy OutActionWithSendMessageOnly.fromSlice(\n            cs,\n            { throwIfOpcodeDoesNotMatch: Errors.InvalidC5 },\n        );\n\n        if (isExternal) {\n            assert (\n                (outAction.sendMode & SEND_MODE_IGNORE_ERRORS) != 0\n            ) throw Errors.ExternalSendMessageMustHaveIgnoreErrorsSendMode;\n        }\n\n        cs = outAction.prev.beginParseAllowExotic();\n        count += 1;\n    } while (!cs.isEmpty());\n\n    assert (count <= 255) throw Errors.InvalidC5;\n    return self;\n}\n"
+    },
+    {
+      "filename": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/errors.tolk",
+      "contents": "enum Errors {\n    SignatureDisabled = 132\n    InvalidSeqno = 133\n    InvalidWalletId = 134\n    InvalidSignature = 135\n    Expired = 136\n    ExternalSendMessageMustHaveIgnoreErrorsSendMode = 137\n    InvalidMessageOperation = 138\n    AddExtension = 139\n    RemoveExtension = 140\n    UnsupportedAction = 141\n    DisableSignatureWhenExtensionsIsEmpty = 142\n    ThisSignatureModeAlreadySet = 143\n    RemoveLastExtensionWhenSignatureDisabled = 144\n    ExtensionWrongWorkchain = 145\n    OnlyExtensionCanChangeSignatureMode = 146\n    InvalidC5 = 147\n}\n"
+    },
+    {
+      "filename": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/messages.tolk",
+      "contents": "struct (0x02) AddExtensionExtraAction {\n    addr: address\n}\n\nstruct (0x03) RemoveExtensionExtraAction {\n    addr: address\n}\n\nstruct (0x04) SetSignatureAllowedExtraAction {\n    allowSignature: bool\n}\n\ntype ExtraAction =\n    | AddExtensionExtraAction\n    | RemoveExtensionExtraAction\n    | SetSignatureAllowedExtraAction\n\n/// \"OutActionList\" is what's pushed to c5.\ntype OutActionsCell = cell\n\n/// For instance, it contains \"send message\" actions (the only we allow)\n/// see block.tlb: https://github.com/ton-blockchain/ton/blob/5c392e0f2d946877bb79a09ed35068f7b0bd333a/crypto/block/block.tlb#L380\nstruct (0x0ec3c86d) OutActionWithSendMessageOnly {\n    prev: Cell<OutActionWithSendMessageOnlyOrEmpty>\n    sendMode: uint8\n    outMsg: cell\n}\n\ntype OutActionWithSendMessageOnlyOrEmpty = OutActionWithSendMessageOnly | void\n\n// \"extra actions\" are represented in a snake format: \"data\".ref(\"data.ref(\"data\"...))\ntype SnakedExtraActions = RemainingBitsAndRefs\n\nfun SnakedExtraActions.hasNext(self): bool {\n    return self.remainingRefsCount() != 0;\n}\n\nfun SnakedExtraActions.getNext(self): SnakedExtraActions {\n    return self.preloadRef().beginParse();\n}\n\nstruct SnakedExtraActionsClientType {\n    action: ExtraAction\n    next: Cell<SnakedExtraActionsClientType> | void\n}\n\nstruct (0x6578746E) ExtensionActionRequest {\n    queryId: uint64\n    @abi.clientType(Cell<OutActionWithSendMessageOnly>?)\n    outActions: OutActionsCell?\n    hasExtraActions: bool\n    extraActions: SnakedExtraActions\n}\n\nstruct (0x73696E74) InternalSignedRequest {\n    walletId: uint32\n    validUntil: uint32\n    seqno: uint32\n    @abi.clientType(Cell<OutActionWithSendMessageOnly>?)\n    outActions: OutActionsCell?\n    hasExtraActions: bool\n    extraActions: SnakedExtraActions\n    // ends with a signature (512 bits), but it's parsed and compared separately\n}\n\nstruct (0x7369676E) ExternalSignedRequest {\n    walletId: uint32\n    validUntil: uint32\n    seqno: uint32\n    @abi.clientType(Cell<OutActionWithSendMessageOnly>?)\n    outActions: OutActionsCell?\n    hasExtraActions: bool\n    extraActions: SnakedExtraActions\n    // ends with a signature (512 bits), but it's parsed and compared separately\n}\n"
+    },
+    {
+      "filename": "tmp/534d9a55-d481-40d7-b5c1-e1fb388beac6/w5.2/contracts/storage.tolk",
+      "contents": "type ExtensionsDict = map<uint256, bool>\n\nstruct Storage {\n    isSignatureAllowed: bool\n    seqno: uint32\n    subwalletId: uint32\n    publicKey: uint256\n    extensions: ExtensionsDict // from address hash to true\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,1404 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from HighloadWalletV3.tolk, bitmap.tolk, errors.tolk, messages.tolk, storage.tolk, validate-c5.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  -1 DECLMETHOD onExternalMessage()\n  78748 DECLMETHOD get_public_key()\n  81467 DECLMETHOD get_subwallet_id()\n  80822 DECLMETHOD get_last_clean_time()\n  105070 DECLMETHOD get_timeout()\n  117746 DECLMETHOD processed?()\n  // 10 functions inlined in-place:\n  // - Bitmap.build (1 call)\n  // - QueryBitmapMap.isProcessedInQueryMap (3 calls)\n  // - QueryBitmapMap.markProcessed (1 call)\n  // - HighloadWalletStorage.load (6 calls)\n  // - HighloadWalletStorage.save (1 call)\n  // - HighloadWalletStorage.cleanupQueryWindows (2 calls)\n  // - EitherBody.checkIsCorrectTlbEither (1 call)\n  // - validateMessageToSend (1 call)\n  // - queryIdShift (1 call)\n  // - queryIdBitNumber (1 call)\n  // - MapLookupResult<Bitmap>.loadValue (2 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    DUP\n    SBITREFS\n    1 NEQINT\n    IF:<{\n      DROP\n      -1 PUSHINT\n    }>ELSE<{\n      96 NEQINT\n      0 NEQINT\n    }>\n    IFJMP:<{\n      DROP\n    }>\n    INMSG_SRC\n    MYADDR\n    SDEQ\n    IFNOTJMP:<{\n      DROP\n    }>\n    DUP\n    32 PLDU\n    2923619748 PUSHINT\n    NEQ\n    IFJMP:<{\n      DROP\n    }>\n    x{ae42e5a4} SDBEGINSQ\n    63 THROWIFNOT\n    PLDREF\n    c5 POP\n    MYCODE\n    SETCODE\n  }>\n  onExternalMessage() PROC:<{\n    9 PUSHPOW2\n    LDSLICEX\n    PLDREF\n    NOW\n    c4 PUSH\n    CTOS\n    256 LDU\n    32 LDU\n    LDOPTREF\n    LDOPTREF\n    64 LDU\n    22 PLDU\n    s0 s1 s6 PUSH3\n    s2 PUSH\n    SUB\n    OVER\n    GREATER\n    IF:<{\n      s3 POP\n      s4 POP\n      NEWDICT\n      s0 s4 XCHG\n      1 LSHIFT#\n      s7 PUSH\n      SUBR\n      s1 s2 XCHG\n      LESS\n      IF:<{\n        NIP\n        NEWDICT\n        SWAP\n      }>\n      s2 s5 s(-1) XCPUXC\n    }>ELSE<{\n      2DROP\n    }>\n    s7 PUSH\n    HASHCU\n    s0 s9 s6 XC2PU\n    CHKSIGNU\n    33 THROWIFNOT\n    s0 s6 XCHG\n    CTOS\n    32 LDU\n    LDREF\n    8 LDU\n    13 LDU\n    10 LDU\n    64 LDU\n    22 LDU\n    ENDS\n    s13 PUSH\n    s7 s10 XCPU\n    EQUAL\n    34 THROWIFNOT\n    s6 PUSH\n    EQUAL\n    38 THROWIFNOT\n    s10 s5 PUXC\n    SUB\n    s5 PUSH\n    LESS\n    35 THROWIFNOT\n    s4 s9 XCHG2\n    LEQ\n    35 THROWIFNOT\n    s2 s4 PUSH2\n    13 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      ENDS\n      CTOS\n      s8 PUSH\n      SDSKIPFIRST\n      1 PLDI\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      FALSE\n    }>\n    36 THROWIF\n    s2 s3 PUSH2\n    13 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      ENDS\n      CTOS\n      s0 s8 XCHG2\n      LDSLICEX\n      1 LDI\n      SWAP\n      36 THROWIF\n      SWAP\n      NEWC\n      STSLICE\n      b{1} STSLICECONST\n      STSLICE\n      ENDC\n    }>ELSE<{\n      DROP\n      NEWC\n      s8 PUSH\n      STZEROES\n      b{1} STSLICECONST\n      10 PUSHPOW2DEC\n      s0 s9 XCHG2\n      SUB\n      DEC\n      s1 s8 XCHG\n      STZEROES\n      ENDC\n    }>\n    ACCEPT\n    s0 s0 s3 XCHG3\n    13 PUSHINT\n    DICTUSETREF\n    s0 s4 XCHG\n    NEWC\n    256 STU\n    s1 s3 XCHG\n    32 STU\n    STOPTREF\n    s1 s2 XCHG\n    STOPTREF\n    s1 s3 XCHG\n    64 STU\n    s1 s3 XCHG\n    22 STU\n    ENDC\n    c4 POP\n    COMMIT\n    DUP\n    CTOS\n    b{0} SDBEGINSQ\n    37 THROWIFNOT\n    1 LDI\n    NIP\n    1 LDI\n    NIP\n    1 LDI\n    LDMSGADDR\n    LDSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    NIP\n    LDVARUINT16\n    NIP\n    LDGRAMS\n    NIP\n    64 LDU\n    NIP\n    32 LDU\n    NIP\n    1 LDI\n    s0 s3 XCHG\n    IF:<{\n      3 BLKDROP\n      FALSE\n    }>ELSE<{\n      SWAP\n      b{00} SDBEGINSQ\n      NIP\n      37 THROWIFNOT\n      37 THROWIF\n      LDOPTREF\n      SWAP\n      ISNULL\n      IFNOT:<{\n        ENDS\n      }>ELSE<{\n        DROP\n      }>\n      TRUE\n    }>\n    IFNOTJMP:<{\n      2DROP\n    }>\n    SWAP\n    2 PUSHINT\n    OR\n    SENDRAWMSG\n  }>\n  get_public_key() PROC:<{\n    c4 PUSH\n    CTOS\n    256 PLDU\n  }>\n  get_subwallet_id() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 PLDU\n  }>\n  get_last_clean_time() PROC:<{\n    c4 PUSH\n    CTOS\n    288 PUSHINT\n    SDSKIPFIRST\n    SKIPOPTREF\n    SKIPOPTREF\n    64 PLDU\n  }>\n  get_timeout() PROC:<{\n    c4 PUSH\n    CTOS\n    288 PUSHINT\n    SDSKIPFIRST\n    SKIPOPTREF\n    SKIPOPTREF\n    64 LDU\n    NIP\n    22 PLDU\n  }>\n  processed?() PROC:<{\n    OVER\n    10 RSHIFT#\n    s0 s2 XCHG\n    10 PUSHPOW2DEC\n    AND\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    LDOPTREF\n    LDOPTREF\n    64 LDU\n    22 PLDU\n    s0 s5 XCHG\n    IF:<{\n      NOW\n      s0 s5 PUSH2\n      SUB\n      s2 PUSH\n      GREATER\n      IF:<{\n        s3 POP\n        NEWDICT\n        s0 s5 XCHG\n        1 LSHIFT#\n        s3 PUSH\n        SUBR\n        1 3 BLKDROP2\n        LESS\n        IF:<{\n          DROP\n          NEWDICT\n        }>\n      }>ELSE<{\n        2DROP\n        s3 POP\n      }>\n    }>ELSE<{\n      DROP\n      s3 POP\n    }>\n    s3 s(-1) PUXC\n    13 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      ENDS\n      CTOS\n      OVER\n      SDSKIPFIRST\n      1 PLDI\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      FALSE\n    }>\n    IFJMP:<{\n      3 BLKDROP\n      TRUE\n    }>\n    -ROT\n    13 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      ENDS\n      CTOS\n      SWAP\n      SDSKIPFIRST\n      1 PLDI\n      0 NEQINT\n    }>ELSE<{\n      2DROP\n      FALSE\n    }>\n    IFJMP:<{\n      TRUE\n    }>\n    FALSE\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEgEAAk0AART/APSkE/S88sgLAQIBIAIDAgFIBAUC+PKDCNcY10z4I+1E0NP/0x/0BPQE0z/XCxVUcBYioSG8jhIzNG0EqgAnohK5kzFtAd5UIlCRW+In+QBUEJb5EPKhBtDTH9TTB9MM0wnTP9MV0S1Rerryoia68qZSpqElufKjUEm78qNTJIAN9A5voZIwcOMN8mRTI4AN9A4ODwB80PiR8kAg10vDAZIwf5TDYMMA4pEw4PiS+CjHBZEw4SDXCx+CEK5C5aS9kTDg1ywlchctJPK/10ztVfgq+wQCASAGBwICcwgJAgEgDA0AEa3OdqJoa4X/wAIBIAoLACKrtu1E0IEBINch9AH0AdcLPwAWqjvtRNDT/zHXCx8AKbmm7tRNCBASDXIfQB9AHTPzHXCxWADpuL8iGrCQKECbDtRNDT/zHTHzH0BPQE0z/XCxUFjhr4I1MFoSK8njNtBaoAI6JsE7mSMG3eklsz4pIwM+JSMIAN9A5voZvU0dAh1yHXCgDDAJIwcOKTXwN/4FmADfQOb6Gb1NHQAdch1woAwwCSW3DikX/gcIABbU0dAo1yHXCgDDAAL+b6GOE9TR0FAI1xjSAAHyZAHIzs+DzsmOETDIKM9Az4OECVAJoaUYz0DJ4vgAQAOADfQXBMjL/xPLH/QAEvQAE8s/E8sVye1U+A8g0NcsAvKl0gAx0gAx0gD6QPpIMfoAMfQEMfoAMfoAMdM/MdMfMdIAA5NfA3DjDpFb4QFysRARACYB1ywBMfKl8mX0BAFukTCR0eJ/AAT7AA==",
+  "codeHashHex": "B5FC9CA76C66AA99893FF5E1B70EBEF0D6296197B8DBDDEE5E519B95445A39C3",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/HighloadWalletV3.tolk",
+        "size_chars": 3514,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/bitmap.tolk",
+        "size_chars": 1343,
+        "imports": [
+          4
+        ]
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/errors.tolk",
+        "size_chars": 217,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/messages.tolk",
+        "size_chars": 382,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/storage.tolk",
+        "size_chars": 850,
+        "imports": [
+          3
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/validate-c5.tolk",
+        "size_chars": 1462,
+        "imports": [
+          4
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HighloadWalletStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "QueryBitmapMap"
+      },
+      {
+        "kind": "uintN",
+        "n": 13
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Bitmap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "uintN",
+        "n": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExternalTransferRequest"
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MsgInner"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 10
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          17
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          29
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MessageRelaxed"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "IntMsgInfoRelaxed"
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CurrencyCollection"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 35
+      },
+      {
+        "kind": "varuintN",
+        "n": 16
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "EitherBody"
+      },
+      {
+        "kind": "remaining"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 27,
+        "struct_name": "MapLookupResult<Bitmap>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1013,
+          8,
+          1013,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 28
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "Bitmap",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          10,
+          6,
+          10,
+          12
+        ],
+        "target_ty_idx": 3
+      },
+      {
+        "kind": "alias",
+        "name": "QueryBitmapMap",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          20,
+          6,
+          20,
+          20
+        ],
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransfer",
+        "ty_idx": 12,
+        "ident_loc": [
+          5,
+          3,
+          21,
+          3,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 2923619748,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "actions",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MsgInner",
+        "ty_idx": 22,
+        "ident_loc": [
+          5,
+          8,
+          8,
+          8,
+          16
+        ],
+        "fields": [
+          {
+            "name": "subwalletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "messageToSend",
+            "ty_idx": 3
+          },
+          {
+            "name": "sendMode",
+            "ty_idx": 23
+          },
+          {
+            "name": "shift",
+            "ty_idx": 16
+          },
+          {
+            "name": "bitNumber",
+            "ty_idx": 24
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 11
+          },
+          {
+            "name": "timeout",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExternalTransferRequest",
+        "ty_idx": 20,
+        "ident_loc": [
+          5,
+          18,
+          8,
+          18,
+          31
+        ],
+        "fields": [
+          {
+            "name": "signature",
+            "ty_idx": 21
+          },
+          {
+            "name": "inner",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HighloadWalletStorage",
+        "ty_idx": 13,
+        "ident_loc": [
+          6,
+          5,
+          8,
+          5,
+          29
+        ],
+        "fields": [
+          {
+            "name": "publicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "subwalletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "oldQueries",
+            "ty_idx": 15
+          },
+          {
+            "name": "queries",
+            "ty_idx": 15
+          },
+          {
+            "name": "lastCleanTime",
+            "ty_idx": 11
+          },
+          {
+            "name": "timeout",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CurrencyCollection",
+        "ty_idx": 34,
+        "ident_loc": [
+          7,
+          7,
+          8,
+          7,
+          26
+        ],
+        "fields": [
+          {
+            "name": "grams",
+            "ty_idx": 6
+          },
+          {
+            "name": "other",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "IntMsgInfoRelaxed",
+        "ty_idx": 32,
+        "ident_loc": [
+          7,
+          12,
+          14,
+          12,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 1
+        },
+        "fields": [
+          {
+            "name": "ihrDisabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "bounce",
+            "ty_idx": 5
+          },
+          {
+            "name": "bounced",
+            "ty_idx": 5
+          },
+          {
+            "name": "src",
+            "ty_idx": 33
+          },
+          {
+            "name": "dest",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 34
+          },
+          {
+            "name": "extraFlags",
+            "ty_idx": 37
+          },
+          {
+            "name": "fwdFee",
+            "ty_idx": 6
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "EitherBody",
+        "ty_idx": 38,
+        "ident_loc": [
+          7,
+          25,
+          6,
+          25,
+          16
+        ],
+        "target_ty_idx": 39
+      },
+      {
+        "kind": "struct",
+        "name": "MessageRelaxed",
+        "ty_idx": 31,
+        "ident_loc": [
+          7,
+          37,
+          8,
+          37,
+          22
+        ],
+        "fields": [
+          {
+            "name": "info",
+            "ty_idx": 32
+          },
+          {
+            "name": "maybeStateInit",
+            "ty_idx": 5
+          },
+          {
+            "name": "body",
+            "ty_idx": 38
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          16,
+          5,
+          16,
+          22
+        ],
+        "end_loc": [
+          1,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          37,
+          5,
+          37,
+          22
+        ],
+        "end_loc": [
+          1,
+          81,
+          1,
+          81,
+          2
+        ],
+        "params": [
+          {
+            "name": "inBody",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "HighloadWalletStorage.cleanupQueryWindows",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          22,
+          27,
+          22,
+          46
+        ],
+        "end_loc": [
+          6,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 13
+          },
+          {
+            "name": "now",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Cell<MsgInner>.load",
+        "return_ty_idx": 22,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "options",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "QueryBitmapMap.isProcessedInQueryMap",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          22,
+          20,
+          22,
+          41
+        ],
+        "end_loc": [
+          3,
+          37,
+          1,
+          37,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "shift",
+            "ty_idx": 16
+          },
+          {
+            "name": "bitNumber",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<uint13, Bitmap>.get",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "MapLookupResult<Bitmap>.loadValue",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1019,
+          29,
+          1019,
+          38
+        ],
+        "end_loc": [
+          0,
+          1025,
+          1,
+          1025,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "Bitmap.fromSlice",
+        "return_ty_idx": 17,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "QueryBitmapMap.markProcessed",
+        "return_ty_idx": 17,
+        "num_params": 3,
+        "ident_loc": [
+          3,
+          39,
+          20,
+          39,
+          33
+        ],
+        "end_loc": [
+          3,
+          55,
+          1,
+          55,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "shift",
+            "ty_idx": 16
+          },
+          {
+            "name": "bitNumber",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Bitmap.build",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          12,
+          12,
+          12,
+          17
+        ],
+        "end_loc": [
+          3,
+          18,
+          1,
+          18,
+          2
+        ],
+        "params": [
+          {
+            "name": "bitNumber",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint13, Bitmap>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "key",
+            "ty_idx": 16
+          },
+          {
+            "name": "value",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "HighloadWalletStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          6,
+          18,
+          27,
+          18,
+          31
+        ],
+        "end_loc": [
+          6,
+          20,
+          1,
+          20,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "validateMessageToSend",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          43,
+          5,
+          43,
+          26
+        ],
+        "end_loc": [
+          7,
+          62,
+          1,
+          62,
+          2
+        ],
+        "params": [
+          {
+            "name": "messageToSend",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "EitherBody.checkIsCorrectTlbEither",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          29,
+          16,
+          29,
+          39
+        ],
+        "end_loc": [
+          7,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "get_public_key",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          83,
+          9,
+          83,
+          23
+        ],
+        "end_loc": [
+          1,
+          86,
+          1,
+          86,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "get_subwallet_id",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          88,
+          9,
+          88,
+          25
+        ],
+        "end_loc": [
+          1,
+          91,
+          1,
+          91,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "get_last_clean_time",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          93,
+          9,
+          93,
+          28
+        ],
+        "end_loc": [
+          1,
+          96,
+          1,
+          96,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "get_timeout",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          98,
+          9,
+          98,
+          20
+        ],
+        "end_loc": [
+          1,
+          101,
+          1,
+          101,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "processed?",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          111,
+          9,
+          111,
+          19
+        ],
+        "end_loc": [
+          1,
+          128,
+          1,
+          128,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          },
+          {
+            "name": "needClean",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "queryIdShift",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          103,
+          5,
+          103,
+          17
+        ],
+        "end_loc": [
+          1,
+          105,
+          1,
+          105,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "queryIdBitNumber",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          107,
+          5,
+          107,
+          21
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "HighloadWalletV3",
+    "author": "The Tolk Team",
+    "version": "1.0.0",
+    "description": "Highload Wallet V3. Batch transaction wallet for high-volume operations",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InternalTransfer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HighloadWalletStorage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "QueryBitmapMap"
+      },
+      {
+        "kind": "uintN",
+        "n": 13
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "Bitmap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 16,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "uintN",
+        "n": 22
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "Bitmap",
+        "ty_idx": 17,
+        "target_ty_idx": 3
+      },
+      {
+        "kind": "alias",
+        "name": "QueryBitmapMap",
+        "ty_idx": 15,
+        "target_ty_idx": 18
+      },
+      {
+        "kind": "struct",
+        "name": "InternalTransfer",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2923619748,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "actions",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HighloadWalletStorage",
+        "ty_idx": 13,
+        "fields": [
+          {
+            "name": "publicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "subwalletId",
+            "ty_idx": 9
+          },
+          {
+            "name": "oldQueries",
+            "ty_idx": 15
+          },
+          {
+            "name": "queries",
+            "ty_idx": 15
+          },
+          {
+            "name": "lastCleanTime",
+            "ty_idx": 11
+          },
+          {
+            "name": "timeout",
+            "ty_idx": 19
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 13
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "incoming_external": [
+      {
+        "body_ty_idx": 2
+      }
+    ],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 78748,
+        "name": "get_public_key",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 81467,
+        "name": "get_subwallet_id",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 80822,
+        "name": "get_last_clean_time",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 105070,
+        "name": "get_timeout",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 117746,
+        "name": "processed?",
+        "parameters": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          },
+          {
+            "name": "needClean",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 5
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SIGNATURE",
+        "err_code": 33
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SUBWALLET_ID",
+        "err_code": 34
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_CREATED_AT",
+        "err_code": 35
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_ALREADY_EXECUTED",
+        "err_code": 36
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_MESSAGE_TO_SEND",
+        "err_code": 37
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_TIMEOUT",
+        "err_code": 38
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/HighloadWalletV3.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"bitmap\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\nimport \"validate-c5\"\n\ncontract HighloadWalletV3 {\n    author: \"The Tolk Team\"\n    version: \"1.0.0\"\n    description: \"Highload Wallet V3. Batch transaction wallet for high-volume operations\"\n    incomingMessages: InternalTransfer\n    storage: HighloadWalletStorage\n}\n\nfun onInternalMessage(in: InMessage) {\n    val (bodyBits, bodyRefs) = in.body.remainingBitsAndRefsCount();\n    if (bodyRefs != 1 || bodyBits != INTERNAL_TRANSFER_BODY_BITS) {\n        return; // just accept tons\n    }\n\n    if (in.senderAddress != contract.getAddress()) {\n        return; // just accept tons\n    }\n\n    if (in.body.preloadUint(32) != OP_INTERNAL_TRANSFER) {\n        return;\n    }\n\n    val msg = lazy InternalTransfer.fromSlice(in.body);\n\n    setTvmRegisterC5(msg.actions);\n    val oldCode = contract.getCode();\n    contract.setCodePostponed(oldCode); // prevent actions from changing code\n}\n\nfun onExternalMessage(inBody: slice) {\n    val msg = lazy ExternalTransferRequest.fromSlice(inBody);\n\n    val msgInner = msg.inner;\n    val signature = msg.signature;\n\n    val now = blockchain.now();\n    var storage = lazy HighloadWalletStorage.load();\n    storage.cleanupQueryWindows(now);\n\n    assert (\n        isSignatureValid(msgInner.hash(), signature as slice, storage.publicKey)\n    ) throw ERROR_INVALID_SIGNATURE;\n\n    val request = msgInner.load();\n\n    val createdAt = request.createdAt;\n    val timeout = storage.timeout;\n    val shift = request.shift;\n    val bitNumber = request.bitNumber;\n\n    assert (request.subwalletId == storage.subwalletId) throw ERROR_INVALID_SUBWALLET_ID;\n    assert (request.timeout == timeout) throw ERROR_INVALID_TIMEOUT;\n    assert (createdAt > (now - timeout)) throw ERROR_INVALID_CREATED_AT;\n    assert (createdAt <= now) throw ERROR_INVALID_CREATED_AT;\n\n    assert (\n        !storage.oldQueries.isProcessedInQueryMap(shift, bitNumber)\n    ) throw ERROR_ALREADY_EXECUTED;\n\n    val updatedBitmap = storage.queries.markProcessed(shift, bitNumber);\n\n    acceptExternalMessage();\n\n    storage.queries.set(shift, updatedBitmap);\n\n    storage.save();\n    commitContractDataAndActions();\n\n    if (!validateMessageToSend(request.messageToSend)) {\n        return;\n    }\n\n    sendRawMessage(request.messageToSend, request.sendMode | SEND_MODE_IGNORE_ERRORS);\n}\n\nget fun get_public_key(): int {\n    val storage = lazy HighloadWalletStorage.load();\n    return storage.publicKey;\n}\n\nget fun get_subwallet_id(): int {\n    val storage = lazy HighloadWalletStorage.load();\n    return storage.subwalletId;\n}\n\nget fun get_last_clean_time(): int {\n    val storage = lazy HighloadWalletStorage.load();\n    return storage.lastCleanTime;\n}\n\nget fun get_timeout(): int {\n    val storage = lazy HighloadWalletStorage.load();\n    return storage.timeout;\n}\n\nfun queryIdShift(queryId: int): uint13 {\n    return (queryId >> BIT_NUMBER_SIZE);\n}\n\nfun queryIdBitNumber(queryId: int): int {\n    return queryId & CELL_BITS_SIZE;\n}\n\nget fun `processed?`(queryId: int, needClean: int): bool {\n    val shift = queryIdShift(queryId);\n    val bitNumber = queryIdBitNumber(queryId);\n\n    var storage = lazy HighloadWalletStorage.load();\n    if (needClean != 0) {\n        storage.cleanupQueryWindows(blockchain.now());\n    }\n\n    if (storage.oldQueries.isProcessedInQueryMap(shift, bitNumber)) {\n        return true;\n    }\n    if (storage.queries.isProcessedInQueryMap(shift, bitNumber)) {\n        return true;\n    }\n\n    return false;\n}\n"
+    },
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/bitmap.tolk",
+      "contents": "import \"errors\"\n\nconst CELL_BITS_SIZE = 1023\nconst BIT_NUMBER_SIZE = 10\n\n// SAFETY: single safe builder mutation\nfun builder.storeZeroes(mutate self, len: int): self\n    asm \"STZEROES\"\n\ntype Bitmap = cell\n\nfun Bitmap.build(bitNumber: int): Bitmap {\n    var b = beginCell();\n    b.storeZeroes(bitNumber);\n    b.storeBool(true);\n    b.storeZeroes(CELL_BITS_SIZE - bitNumber - 1);\n    return b.endCell();\n}\n\ntype QueryBitmapMap = map<uint13, Bitmap>\n\nfun QueryBitmapMap.isProcessedInQueryMap(self, shift: uint13, bitNumber: int): bool {\n    val lookup = self.get(shift);\n\n    var res: bool;\n\n    if (!lookup.isFound) {\n        res = false;\n    } else {\n        var valueSlice = lookup.loadValue().beginParse();\n        valueSlice.skipBits(bitNumber);\n\n        res = valueSlice.preloadInt(1) != 0;\n    }\n\n    return res;\n}\n\nfun QueryBitmapMap.markProcessed(self, shift: uint13, bitNumber: int): Bitmap {\n    val nextQueries = self;\n    val lookup = nextQueries.get(shift);\n\n    var res: Bitmap;\n\n    if (lookup.isFound) {\n        var tail = lookup.loadValue().beginParse();\n        val head = tail.loadBits(bitNumber);\n        assert (!tail.loadBool()) throw ERROR_ALREADY_EXECUTED;\n        res = beginCell().storeSlice(head).storeBool(true).storeSlice(tail).endCell();\n    } else {\n        res = Bitmap.build(bitNumber);\n    }\n\n    return res;\n}\n"
+    },
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/errors.tolk",
+      "contents": "const ERROR_INVALID_SIGNATURE = 33\nconst ERROR_INVALID_SUBWALLET_ID = 34\nconst ERROR_INVALID_CREATED_AT = 35\nconst ERROR_ALREADY_EXECUTED = 36\nconst ERROR_INVALID_MESSAGE_TO_SEND = 37\nconst ERROR_INVALID_TIMEOUT = 38\n"
+    },
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/messages.tolk",
+      "contents": "const OP_INTERNAL_TRANSFER = 0xae42e5a4\n\nstruct (0xae42e5a4) InternalTransfer {\n    queryId: uint64\n    actions: cell // c5\n}\n\nstruct MsgInner {\n    subwalletId: uint32\n    messageToSend: cell\n    sendMode: uint8\n    shift: uint13\n    bitNumber: uint10\n    createdAt: uint64\n    timeout: uint22\n}\n\nstruct ExternalTransferRequest {\n    signature: bits512\n    inner: Cell<MsgInner>\n}\n"
+    },
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/storage.tolk",
+      "contents": "import \"bitmap\"\n\nconst INTERNAL_TRANSFER_BODY_BITS = 32 + 64\n\nstruct HighloadWalletStorage {\n    publicKey: uint256\n    subwalletId: uint32\n    oldQueries: QueryBitmapMap\n    queries: QueryBitmapMap\n    lastCleanTime: uint64\n    timeout: uint22\n}\n\nfun HighloadWalletStorage.load(): HighloadWalletStorage {\n    return HighloadWalletStorage.fromCell(contract.getData());\n}\n\nfun HighloadWalletStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun HighloadWalletStorage.cleanupQueryWindows(mutate self, now: int) {\n    val timeout = self.timeout;\n    val lastCleanTime = self.lastCleanTime;\n\n    if (lastCleanTime < (now - timeout)) {\n        self.oldQueries = self.queries;\n        self.queries = [];\n\n        if (lastCleanTime < (now - (timeout * 2))) {\n            self.oldQueries = [];\n        }\n\n        self.lastCleanTime = now;\n    }\n}\n"
+    },
+    {
+      "filename": "tmp/4925c673-6b4f-4b8b-b526-882580869c24/highload-v3.1/contracts/validate-c5.tolk",
+      "contents": "import \"errors\"\n\n// SAFETY: we validate raw actions before setting them\nfun setTvmRegisterC5(actions: cell): void\n    asm \"c5 POP\"\n\nstruct CurrencyCollection {\n    grams: coins\n    other: map<int32, varuint32>\n}\n\nstruct (0b0) IntMsgInfoRelaxed {\n    ihrDisabled: bool\n    bounce: bool\n    bounced: bool\n    src: any_address\n    dest: address\n    value: CurrencyCollection\n    extraFlags: varuint16\n    fwdFee: coins\n    createdLt: uint64\n    createdAt: uint32\n}\n\ntype EitherBody = RemainingBitsAndRefs\n\n// \"body\" is TL/B `(Either Cell ^Cell)`;\n// we want to test, that if ^Cell, no other data exists in a slice\nfun EitherBody.checkIsCorrectTlbEither(self) {\n    var mutableCopy = self;\n    if (mutableCopy.loadMaybeRef() != null) {\n        // throw \"cell underflow\" if there is data besides a ref\n        mutableCopy.assertEnd();\n    }\n}\n\nstruct MessageRelaxed {\n    info: IntMsgInfoRelaxed\n    maybeStateInit: bool\n    body: EitherBody\n}\n\nfun validateMessageToSend(messageToSend: cell): bool {\n    val msg = lazy MessageRelaxed.fromCell(\n        messageToSend,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_MESSAGE_TO_SEND },\n    );\n\n    var res: bool;\n\n    if (msg.info.bounced) {\n        res = false;\n    } else {\n        assert (msg.info.src.isNone()) throw ERROR_INVALID_MESSAGE_TO_SEND;\n        assert (!msg.maybeStateInit) throw ERROR_INVALID_MESSAGE_TO_SEND;\n        msg.body.checkIsCorrectTlbEither();\n\n        res = true;\n    }\n\n    return res;\n}\n"
+    }
+  ]
+}

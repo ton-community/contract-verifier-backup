@@ -1,0 +1,4767 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Config.tolk, config-helpers.tolk, errors.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  DECLPROC ConfigDict.getById()\n  DECLPROC ConfigDict.setByIdAndGetPrevious()\n  1666 DECLMETHOD afterCodeUpgrade()\n  DECLPROC unpackValidatorDescr()\n  DECLPROC acceptProposal()\n  DECLPROC performProposedAction()\n  DECLPROC updateProposalStatus()\n  DECLPROC registerVote()\n  DECLPROC proceedRegisterVote()\n  DECLPROC scanProposal()\n  DECLPROC scanRandomProposal()\n  DECLPROC registerVotingProposal()\n  0 DECLMETHOD onInternalMessage()\n  -1 DECLMETHOD onExternalMessage()\n  -2 DECLMETHOD onRunTickTock()\n  85143 DECLMETHOD seqno()\n  94347 DECLMETHOD get_proposal()\n  107394 DECLMETHOD list_proposals()\n  75077 DECLMETHOD proposal_storage_price()\n  // 31 functions inlined in-place:\n  // - MapLookupResult<slice>.loadValue (4 calls)\n  // - ConfigDict.setById (2 calls)\n  // - ConfigDict.deleteById (2 calls)\n  // - ConfigDict.packToBuilder (0 calls)\n  // - ConfigDict.unpackFromSlice (0 calls)\n  // - Storage.load (9 calls)\n  // - Storage.save (8 calls)\n  // - Storage.setConfigParam (2 calls)\n  // - VoteForProposalRequest.loadSignedVotePayload (1 call)\n  // - ConfigProposalSetup.calculateStoragePrice (2 calls)\n  // - ConfigVotingSetup.selectProposalSetup (1 call)\n  // - getVoteConfigInternal (2 calls)\n  // - getVoteConfig (1 call)\n  // - getVoteRoundRulesInternal (1 call)\n  // - getVoteRoundRules (2 calls)\n  // - checkValidatorSet (1 call)\n  // - sendConfirmation (3 calls)\n  // - sendError (2 calls)\n  // - changeElectorCode (1 call)\n  // - applyCodeUpgrade (1 call)\n  // - getCurrentValidatorSetMeta (2 calls)\n  // - getCurrentValidatorContext (2 calls)\n  // - Storage.incrementSeqno (1 call)\n  // - unpackProposal (2 calls)\n  // - proposalParameterViewToTuple (1 call)\n  // - proposalViewToTuple (2 calls)\n  // - MapLookupResult<cell>.loadValue (2 calls)\n  // - MapEntry<uint256, slice>.getKey (2 calls)\n  // - MapEntry<uint256, slice>.loadValue (2 calls)\n  // - lisp_list<int>.prependHead (1 call)\n  // - MapEntry<uint16, uint32>.getKey (1 call)\n  // - lisp_list<tuple>.prependHead (1 call)\n  ConfigDict.getById() PROC:<{\n    SWAP\n    32 PUSHINT\n    DICTIGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      PUSHNULL\n    }>\n    LDREF\n    ENDS\n  }>\n  ConfigDict.setByIdAndGetPrevious() PROC:<{\n    NEWC\n    STREF\n    s0 s2 XCHG\n    32 PUSHINT\n    DICTISETGETB NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      PUSHNULL\n    }>\n    LDREF\n    ENDS\n  }>\n  afterCodeUpgrade() PROC:<{\n    2DROP\n  }>\n  unpackValidatorDescr() PROC:<{\n    x{53} SDBEGINSQ\n    IFJMP:<{\n      32 LDU\n      256 LDU\n      64 PLDU\n      s0 s2 XCHG\n      2390828938 PUSHINT\n      EQUAL\n      41 THROWIFNOT\n      SWAP\n    }>\n    x{73} SDBEGINSQ\n    IFJMP:<{\n      32 LDU\n      256 LDU\n      64 PLDU\n      s0 s2 XCHG\n      2390828938 PUSHINT\n      EQUAL\n      41 THROWIFNOT\n      SWAP\n    }>\n    41 THROW\n  }>\n  acceptProposal() PROCREF:<{\n    c2 SAVE\n    SAMEALTSAVE\n    SWAP\n    CTOS\n    x{f3} SDBEGINSQ\n    63 THROWIFNOT\n    32 LDI\n    LDOPTREF\n    1 LDU\n    SWAP\n    IF:<{\n      256 LDU\n    }>ELSE<{\n      PUSHNULL\n      SWAP\n    }>\n    ENDS\n    s4 s2 PUSH2\n    ConfigDict.getById() CALLDICT\n    DUP\n    ISNULL\n    IF:<{\n      DROP\n      0 PUSHINT\n    }>ELSE<{\n      HASHCU\n    }>\n    OVER\n    ISNULL\n    NOT\n    IF:<{\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      2DROP\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      3 BLKDROP\n      0 PUSHINT\n      PUSHNULL\n    }>\n    OVER\n    10 PUSHNEGPOW2\n    EQUAL\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      -1025 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    IFJMP:<{\n      3 BLKDROP\n      0 PUSHINT\n      PUSHNULL\n    }>\n    s3 PUSH\n    9 PUSHINT\n    ConfigDict.getById() CALLDICT\n    DUP\n    ISNULL\n    NOT\n    IF:<{\n      OVER\n      ISNULL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s2 s(-1) PUXC\n      32 PUSHINT\n      DICTIGET NULLSWAPIFNOT\n      NIP\n      IFJMP:<{\n        3 BLKDROP\n        0 PUSHINT\n        PUSHNULL\n        RETALT\n      }>\n    }>ELSE<{\n      DROP\n    }>\n    s3 PUSH\n    10 PUSHINT\n    ConfigDict.getById() CALLDICT\n    DUP\n    ISNULL\n    IFNOT:<{\n      s2 s(-1) PUXC\n      32 PUSHINT\n      DICTIGET NULLSWAPIFNOT\n      NIP\n      IF:<{\n        s0 s2 XCHG\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        s2 POP\n        0 PUSHINT\n      }>\n      IFJMP:<{\n        2DROP\n        0 PUSHINT\n        PUSHNULL\n        RETALT\n      }>\n    }>ELSE<{\n      DROP\n      s2 POP\n    }>\n    OVER\n    ISNULL\n    IF:<{\n      s0 s2 PUXC\n      32 PUSHINT\n      DICTIDEL\n      DROP\n    }>ELSE<{\n      s1 s(-1) s2 PU2XC\n      32 PUSHINT\n      DICTISETREF\n    }>\n    -ROT\n  }>\n  performProposedAction() PROCREF:<{\n    OVER\n    -999 PUSHINT\n    EQUAL\n    IFJMP:<{\n      2 1 BLKDROP2\n      DUP\n      ISNULL\n      IF:<{\n        DROP\n        0 PUSHINT\n      }>ELSE<{\n        CTOS\n        256 PLDU\n      }>\n    }>\n    DUP\n    ISNULL\n    IFJMP:<{\n      2DROP\n    }>\n    OVER\n    -1000 PUSHINT\n    EQUAL\n    IFJMP:<{\n      2 1 BLKDROP2\n      CTOS\n      LDREF\n      OVER\n      SETCODE\n      c3 PUSH\n      s0 s2 XCHG\n      CTOS\n      BLESS\n      c3 POP\n      SWAP\n      afterCodeUpgrade() CALLDICT\n      0 THROW\n    }>\n    SWAP\n    -1001 PUSHINT\n    EQUAL\n    IF:<{\n      CTOS\n      1 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      37 THROWIF\n      CTOS\n      256 PLDU\n      NOW\n      30 PUSHPOW2\n      -1 PUSHINT\n      NEWC\n      x{4e436f64} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      s1 s4 XCHG\n      STSLICE\n      ENDC\n      NEWC\n      b{011000100} STSLICECONST\n      s1 s2 XCHG\n      8 STI\n      s1 s2 XCHG\n      256 STU\n      ROT\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>ELSE<{\n      DROP\n    }>\n  }>\n  updateProposalStatus() PROCREF:<{\n    11 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    44 THROWIF\n    CTOS\n    x{91} SDBEGINSQ\n    44 THROWIFNOT\n    LDREF\n    LDREF\n    ENDS\n    s9 PUSH\n    s0 s2 XCHG\n    CONDSEL\n    CTOS\n    x{36} SDBEGINSQ\n    44 THROWIFNOT\n    8 LDU\n    NIP\n    8 LDU\n    NIP\n    8 LDU\n    NIP\n    8 PLDU\n    SWAP\n    -1 GTINT\n    IF:<{\n      SWAP\n      INC\n      SWAP\n    }>\n    OVER\n    LESS\n    IFJMP:<{\n      9 BLKDROP\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      0 PUSHINT\n    }>\n    s0 s2 XCHG\n    DEC\n    DUP\n    0 LESSINT\n    IFJMP:<{\n      9 BLKDROP\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      PUSHNULL\n      0 PUSHINT\n    }>\n    s0 s2 XCHG\n    133 PUSHINT\n  }>\n  registerVote() PROCREF:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s4 s5 PUSH2\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      6 BLKDROP\n      PUSHNULL\n      -1 PUSHINT\n    }>\n    x{ce} SDBEGINSQ\n    44 THROWIFNOT\n    32 LDU\n    LDREF\n    1 LDI\n    LDOPTREF\n    64 LDI\n    256 LDU\n    8 LDU\n    8 LDU\n    8 LDU\n    ENDS\n    s8 PUSH\n    NOW\n    LEQ\n    IFJMP:<{\n      13 BLKDROP\n      SWAP\n      8 PUSHPOW2\n      DICTUDEL\n      DROP\n      PUSHNULL\n      -1 PUSHINT\n    }>\n    s3 s10 PUSH2\n    NEQ\n    IF:<{\n      s4 PUSH\n      updateProposalStatus() INLINECALLDICT\n      s4 POP\n      s4 POP\n      s4 POP\n      SWAP\n      IFNOTJMP:<{\n        10 BLKDROP\n        SWAP\n        8 PUSHPOW2\n        DICTUDEL\n        DROP\n        PUSHNULL\n        -1 PUSHINT\n        RETALT\n      }>\n      NEWDICT\n      s0 s7 XCHG\n      3 PUSHINT\n      2 MULRSHIFT#\n      s3 s8 XCHG\n      s0 s1 s7 XCHG3\n      s3 s3 XCHG2\n    }>ELSE<{\n      s9 POP\n      s9 POP\n    }>\n    s10 s3 PUSH2\n    16 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    NIP\n    IFJMP:<{\n      12 BLKDROP\n      PUSHNULL\n      -2 PUSHINT\n    }>\n    NOW\n    NEWC\n    32 STU\n    s0 s11 s4 XCHG3\n    16 PUSHINT\n    DICTUSETB\n    s0 s0 s8 XCPUXC\n    SUB\n    s0 s8 PUXC\n    XOR\n    -1 GTINT\n    IFJMP:<{\n      NEWC\n      x{ce} STSLICECONST\n      s1 s5 XCHG\n      32 STU\n      s1 s3 XCHG\n      STREF\n      1 STI\n      s1 s2 XCHG\n      STOPTREF\n      s1 s4 XCHG\n      64 STI\n      s1 s3 XCHG\n      256 STU\n      s1 s3 XCHG\n      8 STU\n      s1 s2 XCHG\n      8 STU\n      8 STU\n      BTOS\n      s0 s2 XCHG\n      8 PUSHPOW2\n      DICTUSET\n      PUSHNULL\n      2 PUSHINT\n    }>\n    11 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    44 THROWIF\n    CTOS\n    x{91} SDBEGINSQ\n    44 THROWIFNOT\n    LDREF\n    LDREF\n    ENDS\n    s4 PUSH\n    s0 s2 XCHG\n    CONDSEL\n    CTOS\n    x{36} SDBEGINSQ\n    44 THROWIFNOT\n    8 LDU\n    NIP\n    8 LDU\n    NIP\n    8 PLDU\n    s0 s7 XCHG\n    INC\n    s0 s7 PUXC\n    GEQ\n    IFJMP:<{\n      2DROP\n      s5 s6 XCHG2\n      5 BLKDROP\n      s2 s3 XCHG2\n      8 PUSHPOW2\n      DICTUDEL\n      DROP\n      SWAP\n      7 PUSHINT\n      6 PUSHINT\n      CONDSEL\n      s1 s2 XCHG\n    }>\n    NEWC\n    x{ce} STSLICECONST\n    s1 s5 XCHG\n    32 STU\n    s1 s3 XCHG\n    STREF\n    1 STI\n    s1 s2 XCHG\n    STOPTREF\n    s1 s4 XCHG\n    64 STI\n    s1 s3 XCHG\n    256 STU\n    s1 s3 XCHG\n    8 STU\n    s1 s2 XCHG\n    8 STU\n    8 STU\n    BTOS\n    s0 s2 XCHG\n    8 PUSHPOW2\n    DICTUSET\n    PUSHNULL\n    2 PUSHINT\n  }>\n  proceedRegisterVote() PROCREF:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    32 LDSLICE\n    256 LDU\n    PLDOPTREF\n    s0 s5 XCHG\n    s4 s8 XCHG\n    s3 s7 XCHG\n    s6 s0 s8 XCHG3\n    registerVote() INLINECALLDICT\n    s4 PUSH\n    NEWC\n    STREF\n    s4 PUSH\n    STSLICER\n    s6 PUSH\n    256 STUR\n    s3 s(-1) PUXC\n    STOPTREF\n    ENDC\n    c4 POP\n    OVER\n    ISNULL\n    IFNOT:<{\n      DUP\n      7 EQINT\n      s5 s5 s0 XCHG3\n      acceptProposal() INLINECALLDICT\n      s2 PUSH\n      NEWC\n      STREF\n      s5 PUSH\n      STSLICER\n      s7 PUSH\n      256 STUR\n      s4 s(-1) PUXC\n      STOPTREF\n      ENDC\n      c4 POP\n      OVER\n      IF:<{\n        COMMIT\n        s2 s6 XCHG\n        performProposedAction() INLINECALLDICT\n        s0 s4 XCHG\n        NEWC\n        STREF\n        s1 s2 XCHG\n        STSLICE\n        s1 s3 XCHG\n        256 STU\n        s1 s2 XCHG\n        STOPTREF\n        ENDC\n        c4 POP\n      }>ELSE<{\n        s5 s6 XCHG\n        6 BLKDROP\n      }>\n    }>ELSE<{\n      5 1 BLKDROP2\n    }>\n  }>\n  scanProposal() PROCREF:<{\n    34 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    40 THROWIF\n    DUP\n    CTOS\n    x{12} SDBEGINSQ\n    40 THROWIFNOT\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    64 PLDU\n    SWAP\n    HASHCU\n    s2 PUSH\n    x{ce} SDBEGINSQ\n    44 THROWIFNOT\n    32 LDU\n    LDREF\n    1 LDI\n    LDOPTREF\n    64 LDI\n    256 LDU\n    8 LDU\n    8 LDU\n    8 LDU\n    ENDS\n    s8 PUSH\n    NOW\n    LEQ\n    IFJMP:<{\n      12 BLKDROP\n      PUSHNULL\n      TRUE\n    }>\n    s3 s9 PUSH2\n    EQUAL\n    IFJMP:<{\n      11 BLKDROP\n      FALSE\n    }>\n    s11 POP\n    s3 PUSH\n    s8 s9 XCHG\n    s7 s8 XCHG\n    s6 s7 XCHG\n    s0 s5 XCHG\n    s0 s6 XCHG\n    s3 s4 XCHG\n    s1 s11 s11 XCHG3\n    s0 s3 XCHG\n    updateProposalStatus() INLINECALLDICT\n    s4 POP\n    s4 POP\n    s4 POP\n    SWAP\n    IFNOTJMP:<{\n      8 BLKDROP\n      PUSHNULL\n      TRUE\n    }>\n    NEWDICT\n    s0 s7 XCHG\n    3 PUSHINT\n    2 MULRSHIFT#\n    NEWC\n    x{ce} STSLICECONST\n    s1 s7 XCHG\n    32 STU\n    s1 s5 XCHG\n    STREF\n    s1 s3 XCHG\n    1 STI\n    s1 s5 XCHG\n    STOPTREF\n    s1 s3 XCHG\n    64 STI\n    s1 s4 XCHG\n    256 STU\n    s1 s3 XCHG\n    8 STU\n    8 STU\n    8 STU\n    BTOS\n    TRUE\n  }>\n  scanRandomProposal() PROC:<{\n    DUP\n    DICTEMPTY\n    IFJMP:<{\n    }>\n    LTIME\n    ADDRAND\n    RANDU256\n    OVER\n    8 PUSHPOW2\n    DICTUGETNEXTEQ NULLSWAPIFNOT2\n    IFNOTJMP:<{\n      2DROP\n    }>\n    SWAP\n    scanProposal() INLINECALLDICT\n    IF:<{\n      DUP\n      ISNULL\n      IF:<{\n        DROP\n        SWAP\n        8 PUSHPOW2\n        DICTUDEL\n        DROP\n      }>ELSE<{\n        s0 s2 XCHG\n        8 PUSHPOW2\n        DICTUSET\n      }>\n    }>ELSE<{\n      2DROP\n    }>\n  }>\n  registerVotingProposal() PROCREF:<{\n    s4 POP\n    s2 PUSH\n    30 RSHIFT#\n    IF:<{\n      s0 s2 XCHG\n      NOW\n      SUB\n      s0 s2 XCHG\n    }>\n    DUP\n    CTOS\n    x{f3} SDBEGINSQ\n    63 THROWIFNOT\n    32 LDI\n    LDOPTREF\n    1 LDU\n    SWAP\n    IF:<{\n      256 LDU\n    }>ELSE<{\n      PUSHNULL\n      SWAP\n    }>\n    ENDS\n    s2 PUSH\n    10 PUSHNEGPOW2\n    EQUAL\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s2 PUSH\n      -1025 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    IFJMP:<{\n      7 BLKDROP\n      -3279055190 PUSHINT\n    }>\n    DUP\n    ISNULL\n    -1 PUSHINT\n    ROT\n    CONDSEL\n    DUP\n    -1 GTINT\n    IF:<{\n      s2 PUSH\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      IF:<{\n        DROP\n        0 PUSHINT\n      }>ELSE<{\n        HASHCU\n      }>\n      OVER\n      NEQ\n      IF:<{\n        DROP\n        -3798229846 PUSHINT\n      }>\n    }>ELSE<{\n      9 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      IFNOT:<{\n        s3 s(-1) PUXC\n        32 PUSHINT\n        DICTIGET NULLSWAPIFNOT\n        NIP\n        IF:<{\n          DROP\n          -3444600428 PUSHINT\n        }>\n      }>ELSE<{\n        DROP\n      }>\n    }>\n    OVER\n    ISNULL\n    NOT\n    IF:<{\n      OVER\n      CDEPTH\n      8 PUSHPOW2\n      GEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      DROP\n      -3261162582 PUSHINT\n    }>\n    DUP\n    -1 LESSINT\n    IFJMP:<{\n      6 1 BLKDROP2\n    }>\n    s4 PUSH\n    IFNOT:<{\n      10 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      IFNOT:<{\n        s1 s3 XCHG\n        32 PUSHINT\n        DICTIGET NULLSWAPIFNOT\n        NIP\n        IF:<{\n          -3279055188 PUSHINT\n          s2 POP\n        }>\n      }>ELSE<{\n        DROP\n        s2 POP\n      }>\n    }>ELSE<{\n      s2 POP\n    }>\n    OVER\n    -1 LESSINT\n    IFJMP:<{\n      s1 s5 XCHG\n      5 BLKDROP\n    }>\n    NIP\n    11 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    44 THROWIF\n    CTOS\n    x{91} SDBEGINSQ\n    44 THROWIFNOT\n    LDREF\n    LDREF\n    ENDS\n    s4 PUSH\n    IF:<{\n      NIP\n      CTOS\n      x{36} SDBEGINSQ\n      63 THROWIFNOT\n      8 LDU\n      NIP\n      8 LDU\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      32 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      ENDS\n    }>ELSE<{\n      DROP\n      CTOS\n      x{36} SDBEGINSQ\n      63 THROWIFNOT\n      8 LDU\n      NIP\n      8 LDU\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      32 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      ENDS\n    }>\n    s8 s3 PUXC\n    LESS\n    IFJMP:<{\n      9 BLKDROP\n      -3313004649 PUSHINT\n    }>\n    s0 s7 XCHG\n    MIN\n    0 PUSHINT\n    s0 s4 PUSH2\n    ISNULL\n    IFNOT:<{\n      2DROP\n      s0 s3 XCHG\n      10 PUSHPOW2\n      CDATASIZE\n      s2 POP\n      s1 s4 XCHG\n    }>ELSE<{\n      s5 POP\n    }>\n    10 PUSHPOW2\n    ADD\n    s1 s7 XCHG\n    MUL\n    s0 s3 XCHG\n    2 ADDCONST\n    MUL\n    s1 s2 XCHG\n    ADD\n    s0 s4 PUSH2\n    MUL\n    s0 s5 XCHG\n    NOW\n    ADD\n    c4 PUSH\n    CTOS\n    LDREF\n    288 PUSHINT\n    LDSLICEX\n    PLDOPTREF\n    s6 PUSH\n    HASHCU\n    s0 s1 PUSH2\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFJMP:<{\n      s7 POP\n      s7 POP\n      s8 POP\n      s0 s4 XCHG\n      x{ce} SDBEGINSQ\n      44 THROWIFNOT\n      32 LDU\n      LDREF\n      1 LDI\n      LDOPTREF\n      64 LDI\n      256 LDU\n      8 LDU\n      8 LDU\n      8 LDU\n      ENDS\n      s6 s14 PUXC\n      NEQ\n      IFJMP:<{\n        15 BLKDROP\n        DROP\n        -3279055189 PUSHINT\n      }>\n      s7 s9 PUSH2\n      GEQ\n      IFJMP:<{\n        15 BLKDROP\n        DROP\n        -3245109829 PUSHINT\n      }>\n      s9 s7 PUXC\n      SUB\n      14 PUSHPOW2\n      ADD\n      s1 s10 XCHG\n      MUL\n      s14 s14 XCPU\n      SUB\n      30 PUSHPOW2\n      LESS\n      IFJMP:<{\n        14 BLKDROP\n        -4032919844 PUSHINT\n      }>\n      NEWC\n      x{ce} STSLICECONST\n      s1 s8 XCHG\n      32 STU\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      1 STI\n      STOPTREF\n      64 STI\n      s1 s3 XCHG\n      256 STU\n      s1 s3 XCHG\n      8 STU\n      8 STU\n      s1 s4 XCHG\n      8 STU\n      BTOS\n      s0 s0 s4 XCHG3\n      8 PUSHPOW2\n      DICTUSET\n      SWAP\n      NEWC\n      STREF\n      s1 s2 XCHG\n      STSLICE\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    s5 POP\n    s9 s8 XCPU\n    SUB\n    30 PUSHPOW2\n    LESS\n    IFJMP:<{\n      9 BLKDROP\n      -4032919844 PUSHINT\n    }>\n    34 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    40 THROWIF\n    DUP\n    CTOS\n    x{12} SDBEGINSQ\n    40 THROWIFNOT\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    64 PLDU\n    SWAP\n    HASHCU\n    SWAP\n    3 PUSHINT\n    2 MULRSHIFT#\n    NEWDICT\n    NEWC\n    x{ce} STSLICECONST\n    s1 s6 XCHG\n    32 STU\n    s1 s8 XCHG\n    STREF\n    s1 s8 XCHG\n    1 STI\n    s1 s3 XCHG\n    STOPTREF\n    s1 s5 XCHG\n    64 STI\n    s1 s5 XCHG\n    256 STU\n    s1 s2 XCHG\n    8 STU\n    x{0000} STSLICECONST\n    BTOS\n    s0 s1 s5 XCHG3\n    8 PUSHPOW2\n    DICTUSET\n    s0 s3 XCHG\n    NEWC\n    STREF\n    STSLICE\n    s1 s2 XCHG\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    INMSG_SRC\n    x{8007F47468A5DDDEF8519BCC1A2229D8B792C8A727355B68B644941B72CEE5CA479_} PUSHSLICE\n    SDEQ\n    DUP\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      INMSG_SRC\n      REWRITESTDADDR\n      DROP\n      -1 EQINT\n      0 NEQINT\n    }>\n    NOT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      SEMPTY\n      0 NEQINT\n    }>\n    IFJMP:<{\n      2DROP\n    }>\n    OVER\n    32 PLDU\n    OVER\n    IF:<{\n      DUP\n      1849906028 PUSHINT\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      37 THROW\n    }>\n    DUP\n    IF:<{\n      31 PUSHPOW2\n      AND\n      0 NEQINT\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      -1 PUSHINT\n    }>\n    IFJMP:<{\n      2DROP\n    }>\n    SWAP\n    x{4e565354} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      1 PUSHINT\n      CONFIGOPTPARAM\n      FALSE\n      s0 s2 XCHG\n      64 LDU\n      PLDREF\n      s2 PUSH\n      ISNULL\n      IFNOT:<{\n        INMSG_SRC\n        REWRITESTDADDR\n        NIP\n        s0 s3 XCHG\n        CTOS\n        256 PLDU\n        s1 s3 XCHG\n        EQUAL\n        IF:<{\n          s2 POP\n          DUP\n          CTOS\n          x{12} SDBEGINSQ\n          9 THROWIFNOT\n          32 LDU\n          32 LDU\n          16 LDU\n          16 PLDU\n          DUP\n          0 GTINT\n          9 THROWIFNOT\n          GEQ\n          9 THROWIFNOT\n          OVER\n          NOW\n          GREATER\n          IF:<{\n            LESS\n            0 NEQINT\n          }>ELSE<{\n            2DROP\n            0 PUSHINT\n          }>\n          s0 s2 XCHG\n        }>\n      }>ELSE<{\n        s2 POP\n      }>\n      s0 s2 XCHG\n      IF:<{\n        36 PUSHINT\n        c4 PUSH\n        CTOS\n        LDREF\n        3 -ROLL\n        32 PUSHINT\n        DICTISETREF\n        NEWC\n        STREF\n        STSLICE\n        ENDC\n        c4 POP\n        INMSG_SRC\n        NEWC\n        b{011000} STSLICECONST\n        STSTDADDR\n        4000730955 PUSHINT\n        143 STUR\n        64 STU\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        DROP\n        INMSG_SRC\n        NEWC\n        b{011000} STSLICECONST\n        STSTDADDR\n        4000730991 PUSHINT\n        143 STUR\n        64 STU\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>\n    }>\n    x{6e43536c} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      32 LDI\n      LDSTDADDR\n      PLDREF\n      DUP\n      XCTOS\n      NIP\n      s3 PUSH\n      10 PUSHNEGPOW2\n      EQUAL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s3 PUSH\n        -1025 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      SWAP\n      NOT\n      IF:<{\n        OVER\n        CDEPTH\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      IF:<{\n        s0 s4 XCHG\n        0 NEQINT\n      }>ELSE<{\n        s4 POP\n        0 PUSHINT\n      }>\n      IF:<{\n        c4 PUSH\n        CTOS\n        LDREF\n        s5 s3 s3 XCHG3\n        32 PUSHINT\n        DICTISETREF\n        NEWC\n        STREF\n        STSLICE\n        ENDC\n        c4 POP\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        4017508171 PUSHINT\n        143 STUR\n        64 STU\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        NIP\n        s2 POP\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        4017508207 PUSHINT\n        143 STUR\n        64 STU\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n      }>\n    }>\n    NIP\n    x{6e565052} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      32 LDU\n      1 LDI\n      PLDREF\n      INMSG_VALUE\n      s4 PUSH\n      4 -ROLL\n      registerVotingProposal() INLINECALLDICT\n      64 PUSHINT\n      OVER\n      NEGATE\n      s2 PUSH\n      -1 GTINT\n      IF:<{\n        2DROP\n        4 PUSHINT\n        RAWRESERVE\n        3998634066 PUSHINT\n        7 PUSHPOW2\n      }>ELSE<{\n        s2 POP\n      }>\n      INMSG_SRC\n      s0 s2 XCHG\n      32 PUSHPOW2DEC\n      AND\n      NEWC\n      b{011000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      s1 s2 XCHG\n      32 STU\n      s1 s2 XCHG\n      64 STU\n      ENDC\n      SWAP\n      SENDRAWMSG\n    }>\n    x{566f7465} SDBEGINSQ\n    IFJMP:<{\n      64 LDU\n      9 PUSHPOW2\n      LDSLICEX\n      DUP\n      x{566f7445} SDBEGINSQ\n      37 THROWIFNOT\n      16 LDU\n      256 LDU\n      ENDS\n      34 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      40 THROWIF\n      DUP\n      CTOS\n      x{12} SDBEGINSQ\n      40 THROWIFNOT\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      16 LDU\n      NIP\n      64 LDU\n      LDOPTREF\n      ENDS\n      s4 s(-1) PUXC\n      16 PUSHINT\n      DICTUGET\n      41 THROWIFNOT\n      unpackValidatorDescr() CALLDICT\n      s0 s3 XCHG\n      HASHCU\n      s6 s7 s7 XCHG3\n      CHKSIGNS\n      34 THROWIFNOT\n      s0 s4 s3 XCHG3\n      proceedRegisterVote() INLINECALLDICT\n      INMSG_SRC\n      3597947456 PUSHINT\n      ROT\n      ADD\n      32 PUSHPOW2DEC\n      AND\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      32 STU\n      64 STU\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    37 THROW\n  }>\n  onExternalMessage() PROC:<{\n    DUP\n    SDEPTH\n    7 PUSHPOW2\n    LEQ\n    39 THROWIFNOT\n    DUP\n    9 PUSHPOW2\n    LDSLICEX\n    x{566f7465} SDBEGINSQ\n    0 THROWIFNOT\n    32 LDU\n    32 LDU\n    16 LDU\n    256 PLDU\n    s0 s2 XCHG\n    NOW\n    GEQ\n    35 THROWIFNOT\n    c4 PUSH\n    CTOS\n    LDREF\n    32 LDU\n    256 LDU\n    PLDOPTREF\n    s6 s2 XCPU\n    EQUAL\n    33 THROWIFNOT\n    34 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    40 THROWIF\n    DUP\n    CTOS\n    x{12} SDBEGINSQ\n    40 THROWIFNOT\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    64 LDU\n    LDOPTREF\n    ENDS\n    s6 s(-1) PUXC\n    16 PUSHINT\n    DICTUGET\n    41 THROWIFNOT\n    unpackValidatorDescr() CALLDICT\n    s0 s3 XCHG\n    HASHCU\n    s0 s11 XCHG\n    9 PUSHPOW2\n    SDSKIPFIRST\n    s0 s10 s10 XCHG3\n    CHKSIGNS\n    34 THROWIFNOT\n    ACCEPT\n    s0 s2 XCHG\n    INC\n    32 MODPOW2#\n    s0 s3 XCHG\n    NEWC\n    STREF\n    s1 s3 XCHG\n    32 STU\n    s1 s2 XCHG\n    256 STU\n    s1 s4 XCHG\n    STOPTREF\n    ENDC\n    c4 POP\n    COMMIT\n    s4 s3 XCHG2\n    proceedRegisterVote() INLINECALLDICT\n    DROP\n  }>\n  onRunTickTock() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    288 PUSHINT\n    LDSLICEX\n    PLDOPTREF\n    FALSE\n    s3 PUSH\n    36 PUSHINT\n    ConfigDict.getById() CALLDICT\n    DUP\n    ISNULL\n    IFNOT:<{\n      DUP\n      CTOS\n      DUP\n      SBITS\n      39 GTINT\n      IF:<{\n        8 LDU\n        32 PLDU\n        NOW\n        LEQ\n        IF:<{\n          18 EQINT\n          0 NEQINT\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        IF:<{\n          NIP\n          s1 s3 XCHG\n          34 PUSHINT\n          SWAP\n          ConfigDict.setByIdAndGetPrevious() CALLDICT\n          DUP\n          ISNULL\n          IF:<{\n            DROP\n            32 PUSHINT\n            TUCK\n            DICTIDEL\n            DROP\n          }>ELSE<{\n            32 PUSHINT\n            s0 s2 s1 XC2PU\n            DICTISETREF\n          }>\n          36 PUSHINT\n          SWAP\n          32 PUSHINT\n          DICTIDEL\n          DROP\n          s0 s2 XCHG\n          TRUE\n        }>ELSE<{\n          DROP\n        }>\n      }>ELSE<{\n        2DROP\n      }>\n    }>ELSE<{\n      DROP\n    }>\n    IFNOT:<{\n      scanRandomProposal() CALLDICT\n    }>\n    s0 s2 XCHG\n    NEWC\n    STREF\n    STSLICE\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  seqno() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    32 PLDU\n  }>\n  get_proposal() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    288 PUSHINT\n    SDSKIPFIRST\n    PLDOPTREF\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      PUSHNULL\n    }>\n    x{ce} SDBEGINSQ\n    44 THROWIFNOT\n    32 LDU\n    LDREF\n    1 LDI\n    LDOPTREF\n    64 LDI\n    256 LDU\n    8 LDU\n    8 LDU\n    8 LDU\n    ENDS\n    s0 s7 XCHG\n    CTOS\n    x{f3} SDBEGINSQ\n    63 THROWIFNOT\n    32 LDI\n    LDOPTREF\n    1 LDU\n    SWAP\n    IF:<{\n      256 LDU\n    }>ELSE<{\n      PUSHNULL\n      SWAP\n    }>\n    ENDS\n    PUSHNULL\n    s8 PUSH\n    16 PUSHINT\n    DICTUMAX NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      s0 s1 PUXC\n      2 TUPLE\n      s1 s9 XCPU\n      16 PUSHINT\n      DICTUGETPREV NULLSWAPIFNOT2\n      s2 POP\n    }>\n    DROP\n    s8 POP\n    DUP\n    ISNULL\n    IF:<{\n      DROP\n      -1 PUSHINT\n    }>ELSE<{\n    }>\n    3 TUPLE\n    s0 s6 XCHG\n    s0 s7 XCHG\n    s3 s5 XCHG\n    s3 s4 XCHG\n    9 TUPLE\n  }>\n  list_proposals() PROC:<{\n    c4 PUSH\n    CTOS\n    PUSHNULL\n    SWAP\n    LDREF\n    NIP\n    288 PUSHINT\n    SDSKIPFIRST\n    PLDOPTREF\n    DUP\n    8 PUSHPOW2\n    DICTUMAX NULLSWAPIFNOT2\n    WHILE:<{\n    }>DO<{\n      s0 s1 PUXC\n      x{ce} SDBEGINSQ\n      44 THROWIFNOT\n      32 LDU\n      LDREF\n      1 LDI\n      LDOPTREF\n      64 LDI\n      256 LDU\n      8 LDU\n      8 LDU\n      8 LDU\n      ENDS\n      s0 s7 XCHG\n      CTOS\n      x{f3} SDBEGINSQ\n      63 THROWIFNOT\n      32 LDI\n      LDOPTREF\n      1 LDU\n      SWAP\n      IF:<{\n        256 LDU\n      }>ELSE<{\n        PUSHNULL\n        SWAP\n      }>\n      ENDS\n      PUSHNULL\n      s8 PUSH\n      16 PUSHINT\n      DICTUMAX NULLSWAPIFNOT2\n      s2 POP\n      WHILE:<{\n        SWAP\n      }>DO<{\n        s0 s1 PUXC\n        2 TUPLE\n        s1 s9 XCPU\n        16 PUSHINT\n        DICTUGETPREV NULLSWAPIFNOT2\n        s2 POP\n      }>\n      DROP\n      s8 POP\n      DUP\n      ISNULL\n      IF:<{\n        DROP\n        -1 PUSHINT\n      }>ELSE<{\n      }>\n      3 TUPLE\n      s0 s6 XCHG\n      s0 s7 XCHG\n      s3 s5 XCHG\n      s3 s4 XCHG\n      9 TUPLE\n      s1 s2 XCHG\n      2 TUPLE\n      s0 s3 XCHG2\n      2 TUPLE\n      s2 s1 XCPU\n      8 PUSHPOW2\n      DICTUGETPREV NULLSWAPIFNOT2\n    }>\n    3 BLKDROP\n  }>\n  proposal_storage_price() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    11 PUSHINT\n    ConfigDict.getById() CALLDICT\n    DUP\n    ISNULL\n    44 THROWIF\n    CTOS\n    x{91} SDBEGINSQ\n    44 THROWIFNOT\n    LDREF\n    LDREF\n    ENDS\n    s0 s5 XCHG\n    IF:<{\n      DROP\n      s0 s3 XCHG\n      CTOS\n      x{36} SDBEGINSQ\n      63 THROWIFNOT\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      32 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      ENDS\n    }>ELSE<{\n      s4 POP\n      s0 s3 XCHG\n      CTOS\n      x{36} SDBEGINSQ\n      63 THROWIFNOT\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      32 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      ENDS\n    }>\n    s5 s3 PUXC\n    LESS\n    IFJMP:<{\n      6 BLKDROP\n      -1 PUSHINT\n    }>\n    s0 s4 XCHG\n    MIN\n    s0 s2 XCHG\n    10 PUSHPOW2\n    ADD\n    s1 s3 XCHG\n    MUL\n    s0 s3 XCHG\n    2 ADDCONST\n    s1 s2 XCHG\n    MUL\n    s1 s2 XCHG\n    ADD\n    MUL\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECMAEAC64AART/APSkE/S88sgLAQIBIAIDAgFIBAUCAvElJgICxQYHAgEgHh8CAc0ICQAGqoJbAgFICgsBWbRA3bnwS/Ar8CBDBg/o+t9LIrfCA7Z5HCJA3S5gAwYP6LZhKgUGD+gtxSK3xRwCASAMDQIBIBobA/c+JHyQPiSjQhgAf0dGil3d74UZvMGiIp2LeSyKcnNVtotkSUG3LO5cpHkxwUgkX+Z+JL6RDDA/8MA4rORf5UhxwDDAOKRW+Ah1wsfIZogghBuQ1NsvcMAkXDikvIl4CCXgx6wwwDDAJIwf+KRW+AB1ywicrKapOMCidcngDg8QABsAYAg9AxvoZIwbeHU0YAHKMXH4M3AC0z/XTCJukTKONviS+kQxA9DXC/8Tuo4nMiDQ1ywIlPKJ0x/TH9MP1wsPIMIA8om+8okh+CO8k7nDAJJbcOIC3uICjhkw+JLIz4WI+lKCEO52T2/PC47LP8mAQPsA4w0RAAhuQ1NsAf6OfNM/0h/6SNdMINc5MSOFCbqRf5cjgfv/usMA4gGzlyHXZcAAwwCRcOKSwwCSMHDikwTDAJI0cOKOJ+1E0NRFM4Ag9BXIzM7J7VTIz4WIEvpSghDvdk9LzwuOyz/JgED7AI4ZMTLIz4WIEvpSghDvdk9vzwuOyz/JgED7AOLgEgBUgCTtRNDUVSCAIPQVyMzOye1U+JLIz4WI+lKCEO52T0vPC47LP8mAQPsAAq4x1ywjcrKClI7B0z/TH9IA10z4lyRVMNs8gEAhoyLC/5xbdPsCghDuVlBSgwaRMuL4kgKEH7DIz4WIE/pScM8LbhLLHxLLP8kB+wDg1ywis3ujLOMC8iUTFAH2NCKrHZUC+COhAt4g0NcsD5zyv9If9ATTAAGS0/+SbQHi0SKFCbqRf5cigfv/usMA4phfB4IXPI2WquAgbn9Y4wQgwv+OFyL4MyBukjBwkvkA4iG9lzCCFx2bnKrejhx5+DMgbpEwjhJSMIAg9AxvoTGXMIIXMq+RlN7iFQHc0z+DCNcYINcsIrN7oizypdMP0//RgCL4MyBu8mgg0NcsCJTyqNMfMdMfMdMPMdMPMdM/9ATRUkCAEPQO8qnwAwP5AEZ3+RHyokBD2zz4koIQ1nRSQFighB+wyM+FiBL6UnDPC27LH8s/yYBA+wAoAvziIW6zmCHXZYMHvsMAkXDilzCCFz2em6reIMH/kmxh4CSRMo4cevgzIG6SMDKOEROAIPQMb6Exl4IXPI2WrDLe4uIhwf+TFV8F4DGAC/gzIG7ybNDXLAyM8qzU1NEkjhww0NcsCbTyv9MHMdMH0wcx0wcx0x/TH9Mf0x/R4w0WFwA4MdDXLAm08r/TBzHTB9MHMdMHMdMf0x/TH9Mf0QL+UoS5mF8Jghc6h4+X4Ae2CHBTBG6RNZhbA4MJ+UEyFOKDCaAXqAOmAqgSoFMEqAX4I6DtRNDUgQEg1xj0BSb5AFMBgwf0Dm+h4wIwNVGYoYMduZhfCYIXD56G3OCAIvgzIG7yaCDQ1ywIlPKo0x8x0x8x0w8x0w8x1ws/AfkAARgZAPo3NzgE1ywOdPKs0x/U0gD0BNI/0//TB9MH0wfRUm+9mV8PMIIXPI2Wq+BTeb6ZXw8wghc+k4274FKYoYMNoBqoUe6hgx25mF8OghcPnobc4MjPhzoYyx8UzBLKAPQAyj8Ty/8TywfLBxTLB89QQASDB/QWAcjMEs70AMntVABmc6m0AW3Iz4c6FssfGMwYygAT9AAVyj8Vy/8SywfPiAACz1BAFYMH9BYDyMzOEvQAye1UAB8yMwCgCD0Rm+hkjBt4dTRgAGk1ywKnI4S0x/T/9cLPwKCEI6BJ4q68qkB4NcsC5yOEtMf0//XCz8CghCOgSeKuvKpAeDyKYAL2gCL4MyBu8mgg0NcsCJTyqNMfMdMfMdMPMdMPMdcLPwH5ACLXLA508qzTH9TSAPQE0j/T/9MH0wfTB9Eo+CO7lF8MbX/gUzm6k18LcOA7IxCJEHgQZwUGEDRBuwPbPDQ0NAGUXwhtf+FtB3OptAHIz4c6F8sfFcwTygAVLB0AJPQAE8o/FMv/E8sHywfLB89QfwIBICAhATm9HBdqJoNoDqGMCAkGuQ+gKQQYP6RzfSyEV0L4HCQA6bpUXtRNDXTIAL8AEgbvJs0NcsDIzyrNTU0QWOHjAD0NcsCbTyv9MHMdMHMdMHMdMHMdMf0x/TH9Mf0Y4eNAPQ1ywJtPK/0wcx0wcx0wcx0wcx0x/TH9Mf0x/R4lJUuZNfBn/gBLYIAoMJoBOoA6YCEqgSoKiAIBICIjABW1kv2omhqGOuFj8ADnthF9qJoahjAgJBrkPoCwYP6BzfQyRg28OuWBzp5VmmP6mkAegJpH+n/6YPpg+mD6IPoa5YHznlf6Q/6AmmAAMlp/8k2gPFotpRACHpHN9KZSIDOqQE3gSiMwAh6PzfSmXQYHBA3SRg/7zeBgwOIGogaN4TAA2FIC1ywOdPKs0x/U0gD0BNI/0//TB9MH0wfRB9DXLA+c8r/SH/QE0wABktP/km0B4tFtKIAQ9I5vpTKRAZ1SAm8CURmAEPR+b6Uy6DA4IG6SMH/ebwMGBxA1EDRvCRJvAlADbwJRIYMH9H5vpQDXO1E0NSBASDXGPQFcCOAJPABIG6RMI5GINAg10nCJ4460wfXCx/4I7uUwBLDAJIwcOKOJDETgCIB8AIgbpcwgCBm9Fowl4AgVBAh9BXigCQBgCD0WjACf5Ew4pFb4uKS8ArfAsjMzvQAye1UgAfcINdkgwa78qcggwjXGNcsIrN7oyzygNMf0x/TD9cL/wL4I77yo+1E0NTTH9P/9AVRYrryoYAi+DMgbvJoINDXLAiU8qjTHzHTHzHTDzHTDzHTP/QE0VJggBD0DvKp8AMD+QALgwjXIUCq+RHyovgAAqSpOB8DyMwTyx8SgJwEey/8U9ADJ7VT4D1BD2zwwKAPC7UTQ1NYf0//0BQUQSBA3RgjbPCTIzCTPFibPC/9SMPQAye1UIW6SbFGPNSDAB0VQ2zwiyMwlzxYnzwv/UkD0AMntVCGOlPgPECbbPATIzBLOE8v/EvQAye1UlBBWXwbi4ikqKwL07aLt+1NFgwf0Dm+hlF8GbX/h1ywOdPKs0x/U0gD0BNI/0//TB9MH0wfRKPgju5pfDQGDB/RbMG1/4FM6vY6hJNs8NDQ0AZxfCgGDB/RbMG1/2zHhbQdzqbQBEDhAF1Azkjk54lOjgBD0Dm+hMZRfDG1+4PgjyMsfQLQsLQHy7aLt+wHQ1ywPnPK/0h/0BNMAAZLT/5JtAeLRU0LwASBukjBwkvkA4iFus5O9wwCSW3DilF8DcG3gIYUJupF/lyGB+/+6wwDilF8DcG3gI3nwASBus5QhbsMAkXDijhFSIIAg9AxvoTGWXwNwbdsx4JEw4iN68AEgbi8A6CGB/Bm6nWwhIG6SMHCU0NcL/+LgIG6RW+AhgfwYuo4VbCHQ1CH7BO1DAtDtHu1TAfEGgvIA4AGB/Be6jjTQcfgzIG7yZdDXC//4I4Mdf8jPkTkNvZITyz8UzsnIz4WJEsoHEsv/WPoCcc8LaszJcPsAkTDiALCAC/gzIG7ybNDXLAyM8qzU1NEpAuME0NcsCbTyrNMHMdMHMdMHMdcLBwHC/5MBpAHeIbmcXwltbW1tbW1tbW1w4AKlIMEAnF8JbW1tbW1tbW1tcOACgQCFAfyAEPRDVCAJoVIJssL/jiXIz4c6FcsfE8zKABL0ABTKPxPL/xPLBxLLB8sHz1ACgwf0Fm1y4IAL+DMgbvJs0NcsDIzyrNTU0SQC4wTQ1ywJtPKs0wcx0wcx1wsHB6RSCL6OEltQVl8FUCODB/RbMAF3duMEEuDIz4c6FcsfE8wuADjKABL0ABTKPxPL/xPLBxLLB8sHz1ACgwf0Fm1yAGaSMDKOGVIggCD0DG+hMZQCs8MAkjJw4pVbcG3bMeDiIW6XUgOAIPRaMJdUYQSAIPQV4lk=",
+  "codeHashHex": "3108DFA1AA72AEF76EB89C28E1E7FAE3295CB067E79F32B04B22FCFCBEF5A505",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/Config.tolk",
+        "size_chars": 10054,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/exotic-cells.tolk",
+        "size_chars": 1625,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "@stdlib/lisp-lists.tolk",
+        "size_chars": 4190,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/config-helpers.tolk",
+        "size_chars": 18960,
+        "imports": [
+          9,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/errors.tolk",
+        "size_chars": 875,
+        "imports": []
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/messages.tolk",
+        "size_chars": 4287,
+        "imports": [
+          8
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/storage.tolk",
+        "size_chars": 1525,
+        "imports": []
+      },
+      {
+        "file_id": 9,
+        "file_name": "@stdlib/tvm-lowlevel.tolk",
+        "size_chars": 3981,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedInternalMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetNextValidatorSetRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetCustomParamRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NewVotingProposalRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigProposal"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VoteForProposalRequest"
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1314280276,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 1849906028,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1851150418,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 1450144869,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ConfigDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "VoteDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 18,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          32
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "callable"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorKeyAndWeight"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ValidatorDescr"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorDescrSimple"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorDescrWithAdnl"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 83,
+            "prefix_len": 8,
+            "stack_type_id": 138,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 115,
+            "prefix_len": 8,
+            "stack_type_id": 139,
+            "stack_width": 4
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProposalAcceptanceResult"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ElectorCodeChangeAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          44
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 46,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 51
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          50
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 141,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          55,
+          18
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 58,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 60,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 56,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          64
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigProposalStatus"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "VotersDict"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 68,
+        "value_ty_idx": 9
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 66,
+        "stack_type_id": 133,
+        "stack_width": 10
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigProposalRoundRules"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigVotingSetup"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigProposalSetup"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 74
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VoteRegistrationResult"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          2
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 66
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "dict"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProposalScanResult"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CurrentValidatorSetMeta"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorSetMeta"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          18,
+          2
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          86,
+          87
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorSetWindow"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnswerBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          90
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SignedVotePayload"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CurrentValidatorContext"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorSetExt"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 68,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExternalSignedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExternalVoteAction"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "tuple"
+      },
+      {
+        "kind": "unknown"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 99
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 98
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProposalView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProposalParameterView"
+      },
+      {
+        "kind": "lispListOf",
+        "inner_ty_idx": 1
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          68,
+          9
+        ]
+      },
+      {
+        "kind": "lispListOf",
+        "inner_ty_idx": 98
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 30,
+        "struct_name": "MapLookupResult<cell>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 45,
+        "struct_name": "CreateMessageOptions<ElectorCodeChangeAction>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          44
+        ]
+      },
+      {
+        "ty_idx": 78,
+        "struct_name": "MapLookupResult<slice>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 85,
+        "struct_name": "MapEntry<uint256, slice>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          18,
+          5
+        ]
+      },
+      {
+        "ty_idx": 91,
+        "struct_name": "CreateMessageOptions<AnswerBody>",
+        "monomorphic_fields_ty_idx": [
+          49,
+          54,
+          63,
+          90
+        ]
+      },
+      {
+        "ty_idx": 105,
+        "struct_name": "MapEntry<uint16, uint32>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          68,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "tuple",
+        "ty_idx": 98,
+        "ident_loc": [
+          0,
+          147,
+          6,
+          147,
+          11
+        ],
+        "target_ty_idx": 100
+      },
+      {
+        "kind": "alias",
+        "name": "dict",
+        "ty_idx": 81,
+        "ident_loc": [
+          0,
+          168,
+          6,
+          168,
+          10
+        ],
+        "target_ty_idx": 17
+      },
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 80,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1013,
+          8,
+          1013,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 31
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 88,
+        "ident_loc": [
+          0,
+          1041,
+          8,
+          1041,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 86
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 52
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 61
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 55
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 59
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 46,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 47,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 65,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 49
+          },
+          {
+            "name": "value",
+            "ty_idx": 54
+          },
+          {
+            "name": "dest",
+            "ty_idx": 63
+          },
+          {
+            "name": "body",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedInternalMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          17,
+          6,
+          17,
+          28
+        ],
+        "target_ty_idx": 24
+      },
+      {
+        "kind": "struct",
+        "name": "ProposalParameterView",
+        "ty_idx": 103,
+        "ident_loc": [
+          1,
+          212,
+          8,
+          212,
+          29
+        ],
+        "fields": [
+          {
+            "name": "paramId",
+            "ty_idx": 8
+          },
+          {
+            "name": "paramValue",
+            "ty_idx": 17
+          },
+          {
+            "name": "paramHash",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProposalView",
+        "ty_idx": 102,
+        "ident_loc": [
+          1,
+          218,
+          8,
+          218,
+          20
+        ],
+        "fields": [
+          {
+            "name": "expires",
+            "ty_idx": 9
+          },
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          },
+          {
+            "name": "proposal",
+            "ty_idx": 103
+          },
+          {
+            "name": "validatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "voters",
+            "ty_idx": 104
+          },
+          {
+            "name": "remainingWeight",
+            "ty_idx": 10
+          },
+          {
+            "name": "roundsRemaining",
+            "ty_idx": 70
+          },
+          {
+            "name": "wins",
+            "ty_idx": 70
+          },
+          {
+            "name": "losses",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorSetWindow",
+        "ty_idx": 89,
+        "ident_loc": [
+          5,
+          41,
+          8,
+          41,
+          26
+        ],
+        "fields": [
+          {
+            "name": "utimeSince",
+            "ty_idx": 1
+          },
+          {
+            "name": "utimeUntil",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CurrentValidatorSetMeta",
+        "ty_idx": 83,
+        "ident_loc": [
+          5,
+          121,
+          8,
+          121,
+          31
+        ],
+        "fields": [
+          {
+            "name": "validatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "totalWeight",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorKeyAndWeight",
+        "ty_idx": 36,
+        "ident_loc": [
+          5,
+          138,
+          8,
+          138,
+          29
+        ],
+        "fields": [
+          {
+            "name": "publicKey",
+            "ty_idx": 1
+          },
+          {
+            "name": "weight",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CurrentValidatorContext",
+        "ty_idx": 93,
+        "ident_loc": [
+          5,
+          143,
+          8,
+          143,
+          31
+        ],
+        "fields": [
+          {
+            "name": "validatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "totalWeight",
+            "ty_idx": 1
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 1
+          },
+          {
+            "name": "weight",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProposalAcceptanceResult",
+        "ty_idx": 41,
+        "ident_loc": [
+          5,
+          189,
+          8,
+          189,
+          32
+        ],
+        "fields": [
+          {
+            "name": "paramId",
+            "ty_idx": 1
+          },
+          {
+            "name": "paramVal",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VoteRegistrationResult",
+        "ty_idx": 76,
+        "ident_loc": [
+          5,
+          297,
+          8,
+          297,
+          30
+        ],
+        "fields": [
+          {
+            "name": "acceptedProposal",
+            "ty_idx": 77
+          },
+          {
+            "name": "status",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProposalScanResult",
+        "ty_idx": 82,
+        "ident_loc": [
+          5,
+          452,
+          8,
+          452,
+          26
+        ],
+        "fields": [
+          {
+            "name": "proposalStatusSlice",
+            "ty_idx": 31
+          },
+          {
+            "name": "changed",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigProposal",
+        "ty_idx": 16,
+        "ident_loc": [
+          7,
+          37,
+          15,
+          37,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 243,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "paramId",
+            "ty_idx": 8
+          },
+          {
+            "name": "paramValue",
+            "ty_idx": 17
+          },
+          {
+            "name": "ifHashEqual",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetNextValidatorSetRequest",
+        "ty_idx": 13,
+        "ident_loc": [
+          7,
+          43,
+          21,
+          43,
+          47
+        ],
+        "prefix": {
+          "prefix_num": 1314280276,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "vset",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetCustomParamRequest",
+        "ty_idx": 14,
+        "ident_loc": [
+          7,
+          48,
+          21,
+          48,
+          42
+        ],
+        "prefix": {
+          "prefix_num": 1849906028,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paramId",
+            "ty_idx": 8
+          },
+          {
+            "name": "receiverAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NewVotingProposalRequest",
+        "ty_idx": 15,
+        "ident_loc": [
+          7,
+          55,
+          21,
+          55,
+          45
+        ],
+        "prefix": {
+          "prefix_num": 1851150418,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "expireAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "critical",
+            "ty_idx": 5
+          },
+          {
+            "name": "proposal",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SignedVotePayload",
+        "ty_idx": 92,
+        "ident_loc": [
+          7,
+          62,
+          21,
+          62,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1450144837,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "validatorIndex",
+            "ty_idx": 68
+          },
+          {
+            "name": "proposalHash",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VoteForProposalRequest",
+        "ty_idx": 21,
+        "ident_loc": [
+          7,
+          67,
+          21,
+          67,
+          43
+        ],
+        "prefix": {
+          "prefix_num": 1450144869,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "signature",
+            "ty_idx": 22
+          },
+          {
+            "name": "signedVoteBody",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExternalSignedMessage",
+        "ty_idx": 96,
+        "ident_loc": [
+          7,
+          80,
+          8,
+          80,
+          29
+        ],
+        "fields": [
+          {
+            "name": "signature",
+            "ty_idx": 22
+          },
+          {
+            "name": "action",
+            "ty_idx": 97
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExternalVoteAction",
+        "ty_idx": 97,
+        "ident_loc": [
+          7,
+          85,
+          21,
+          85,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 1450144869,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "msgSeqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "validatorIndex",
+            "ty_idx": 68
+          },
+          {
+            "name": "proposalHash",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigProposalSetup",
+        "ty_idx": 74,
+        "ident_loc": [
+          7,
+          92,
+          15,
+          92,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 54,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "minTotalRounds",
+            "ty_idx": 70
+          },
+          {
+            "name": "maxTotalRounds",
+            "ty_idx": 70
+          },
+          {
+            "name": "minWins",
+            "ty_idx": 70
+          },
+          {
+            "name": "maxLosses",
+            "ty_idx": 70
+          },
+          {
+            "name": "minStoreSec",
+            "ty_idx": 9
+          },
+          {
+            "name": "maxStoreSec",
+            "ty_idx": 9
+          },
+          {
+            "name": "bitPrice",
+            "ty_idx": 9
+          },
+          {
+            "name": "cellPrice",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigProposalRoundRules",
+        "ty_idx": 72,
+        "ident_loc": [
+          7,
+          103,
+          15,
+          103,
+          39
+        ],
+        "prefix": {
+          "prefix_num": 54,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "minTotalRounds",
+            "ty_idx": 70
+          },
+          {
+            "name": "maxTotalRounds",
+            "ty_idx": 70
+          },
+          {
+            "name": "minWins",
+            "ty_idx": 70
+          },
+          {
+            "name": "maxLosses",
+            "ty_idx": 70
+          },
+          {
+            "name": "remaining",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigVotingSetup",
+        "ty_idx": 73,
+        "ident_loc": [
+          7,
+          117,
+          15,
+          117,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 145,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "normalParams",
+            "ty_idx": 75
+          },
+          {
+            "name": "criticalParams",
+            "ty_idx": 75
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigProposalStatus",
+        "ty_idx": 66,
+        "ident_loc": [
+          7,
+          126,
+          15,
+          126,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 206,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "expires",
+            "ty_idx": 9
+          },
+          {
+            "name": "proposal",
+            "ty_idx": 20
+          },
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          },
+          {
+            "name": "voters",
+            "ty_idx": 67
+          },
+          {
+            "name": "remainingWeight",
+            "ty_idx": 10
+          },
+          {
+            "name": "validatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "roundsRemaining",
+            "ty_idx": 70
+          },
+          {
+            "name": "wins",
+            "ty_idx": 70
+          },
+          {
+            "name": "losses",
+            "ty_idx": 70
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorSetExt",
+        "ty_idx": 94,
+        "ident_loc": [
+          7,
+          138,
+          15,
+          138,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 18,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "utimeSince",
+            "ty_idx": 9
+          },
+          {
+            "name": "utimeUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "total",
+            "ty_idx": 68
+          },
+          {
+            "name": "main",
+            "ty_idx": 68
+          },
+          {
+            "name": "totalWeight",
+            "ty_idx": 11
+          },
+          {
+            "name": "validators",
+            "ty_idx": 81
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorSetMeta",
+        "ty_idx": 84,
+        "ident_loc": [
+          7,
+          147,
+          15,
+          147,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 18,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "utimeSince",
+            "ty_idx": 9
+          },
+          {
+            "name": "utimeUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "total",
+            "ty_idx": 68
+          },
+          {
+            "name": "main",
+            "ty_idx": 68
+          },
+          {
+            "name": "totalWeight",
+            "ty_idx": 11
+          },
+          {
+            "name": "remaining",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorDescrSimple",
+        "ty_idx": 38,
+        "ident_loc": [
+          7,
+          156,
+          15,
+          156,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 83,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "pubkeyTag",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 18
+          },
+          {
+            "name": "weight",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorDescrWithAdnl",
+        "ty_idx": 39,
+        "ident_loc": [
+          7,
+          162,
+          15,
+          162,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 115,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "pubkeyTag",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 18
+          },
+          {
+            "name": "weight",
+            "ty_idx": 11
+          },
+          {
+            "name": "adnlAddress",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ValidatorDescr",
+        "ty_idx": 37,
+        "ident_loc": [
+          7,
+          169,
+          6,
+          169,
+          20
+        ],
+        "target_ty_idx": 40
+      },
+      {
+        "kind": "struct",
+        "name": "ElectorCodeChangeAction",
+        "ty_idx": 44,
+        "ident_loc": [
+          7,
+          171,
+          21,
+          171,
+          44
+        ],
+        "prefix": {
+          "prefix_num": 1313042276,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "payload",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnswerBody",
+        "ty_idx": 90,
+        "ident_loc": [
+          7,
+          176,
+          8,
+          176,
+          18
+        ],
+        "fields": [
+          {
+            "name": "ansTag",
+            "ty_idx": 9
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ConfigDict",
+        "ty_idx": 26,
+        "ident_loc": [
+          8,
+          6,
+          6,
+          6,
+          16
+        ],
+        "target_ty_idx": 27,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "VoteDict",
+        "ty_idx": 28,
+        "ident_loc": [
+          8,
+          8,
+          6,
+          8,
+          14
+        ],
+        "target_ty_idx": 29
+      },
+      {
+        "kind": "alias",
+        "name": "VotersDict",
+        "ty_idx": 67,
+        "ident_loc": [
+          8,
+          10,
+          6,
+          10,
+          16
+        ],
+        "target_ty_idx": 69
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 25,
+        "ident_loc": [
+          8,
+          49,
+          8,
+          49,
+          15
+        ],
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 26
+          },
+          {
+            "name": "storedSeqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 18
+          },
+          {
+            "name": "voteDict",
+            "ty_idx": 28
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "ConfigDict.getById",
+        "return_ty_idx": 17,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          12,
+          16,
+          12,
+          23
+        ],
+        "end_loc": [
+          8,
+          20,
+          1,
+          20,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "index",
+            "ty_idx": 8
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "map<int32, cell>.get",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 8
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "MapLookupResult<cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1019,
+          29,
+          1019,
+          38
+        ],
+        "end_loc": [
+          0,
+          1025,
+          1,
+          1025,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "cell.fromSlice",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "ConfigDict.setByIdAndGetPrevious",
+        "return_ty_idx": 17,
+        "num_params": 3,
+        "ident_loc": [
+          8,
+          26,
+          16,
+          26,
+          37
+        ],
+        "end_loc": [
+          8,
+          34,
+          1,
+          34,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "index",
+            "ty_idx": 8
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<int32, cell>.setAndGetPrevious",
+        "return_ty_idx": 30,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 8
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "afterCodeUpgrade",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          108,
+          5,
+          108,
+          21
+        ],
+        "end_loc": [
+          5,
+          108,
+          62,
+          108,
+          63
+        ],
+        "params": [
+          {
+            "name": "_param",
+            "ty_idx": 2
+          },
+          {
+            "name": "_oldCode",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "unpackValidatorDescr",
+        "return_ty_idx": 36,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          150,
+          5,
+          150,
+          25
+        ],
+        "end_loc": [
+          5,
+          165,
+          1,
+          165,
+          2
+        ],
+        "params": [
+          {
+            "name": "validatorDescription",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "acceptProposal",
+        "return_ty_idx": 41,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          195,
+          5,
+          195,
+          19
+        ],
+        "end_loc": [
+          5,
+          246,
+          1,
+          246,
+          2
+        ],
+        "params": [
+          {
+            "name": "configDict",
+            "ty_idx": 26
+          },
+          {
+            "name": "proposalCell",
+            "ty_idx": 20
+          },
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<ConfigProposal>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<int32, slice>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "key",
+            "ty_idx": 8
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<int32, cell>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 8
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<int32, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 8
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "performProposedAction",
+        "return_ty_idx": 18,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          249,
+          5,
+          249,
+          26
+        ],
+        "end_loc": [
+          5,
+          273,
+          1,
+          273,
+          2
+        ],
+        "params": [
+          {
+            "name": "publicKey",
+            "ty_idx": 1
+          },
+          {
+            "name": "paramId",
+            "ty_idx": 1
+          },
+          {
+            "name": "paramVal",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "applyCodeUpgrade",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          110,
+          5,
+          110,
+          21
+        ],
+        "end_loc": [
+          5,
+          119,
+          1,
+          119,
+          2
+        ],
+        "params": [
+          {
+            "name": "newCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "upgradeParams",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "changeElectorCode",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          86,
+          5,
+          86,
+          22
+        ],
+        "end_loc": [
+          5,
+          104,
+          1,
+          104,
+          2
+        ],
+        "params": [
+          {
+            "name": "codeBody",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "createMessage<ElectorCodeChangeAction>",
+        "return_ty_idx": 43,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "updateProposalStatus",
+        "return_ty_idx": 71,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          276,
+          5,
+          276,
+          25
+        ],
+        "end_loc": [
+          5,
+          295,
+          1,
+          295,
+          2
+        ],
+        "params": [
+          {
+            "name": "status",
+            "ty_idx": 66
+          },
+          {
+            "name": "previousWeightRemaining",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "getVoteRoundRules",
+        "return_ty_idx": 72,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          34,
+          5,
+          34,
+          22
+        ],
+        "end_loc": [
+          5,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "getVoteRoundRulesInternal",
+        "return_ty_idx": 72,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          22,
+          5,
+          22,
+          30
+        ],
+        "end_loc": [
+          5,
+          32,
+          1,
+          32,
+          2
+        ],
+        "params": [
+          {
+            "name": "critical",
+            "ty_idx": 5
+          },
+          {
+            "name": "configParam11",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "ConfigVotingSetup.fromCell",
+        "return_ty_idx": 73,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "ConfigProposalRoundRules.fromCell",
+        "return_ty_idx": 72,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "registerVote",
+        "return_ty_idx": 76,
+        "num_params": 6,
+        "ident_loc": [
+          5,
+          303,
+          5,
+          303,
+          17
+        ],
+        "end_loc": [
+          5,
+          387,
+          1,
+          387,
+          2
+        ],
+        "params": [
+          {
+            "name": "voteDict",
+            "ty_idx": 28
+          },
+          {
+            "name": "proposalHash",
+            "ty_idx": 18
+          },
+          {
+            "name": "idx",
+            "ty_idx": 68
+          },
+          {
+            "name": "weight",
+            "ty_idx": 1
+          },
+          {
+            "name": "currentValidatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "currentTotalWeight",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "map<uint256, slice>.get",
+        "return_ty_idx": 78,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "MapLookupResult<slice>.loadValue",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1028,
+          28,
+          1028,
+          37
+        ],
+        "end_loc": [
+          0,
+          1030,
+          1,
+          1030,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 78
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "ConfigProposalStatus.fromSlice",
+        "return_ty_idx": 66,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "map<uint256, slice>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "map<uint16, uint32>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 69
+          },
+          {
+            "name": "key",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "map<uint16, uint32>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 69
+          },
+          {
+            "name": "key",
+            "ty_idx": 68
+          },
+          {
+            "name": "value",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "ConfigProposalStatus.toCell",
+        "return_ty_idx": 79,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 66
+          },
+          {
+            "name": "options",
+            "ty_idx": 80
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "map<uint256, slice>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 18
+          },
+          {
+            "name": "value",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "proceedRegisterVote",
+        "return_ty_idx": 1,
+        "num_params": 5,
+        "ident_loc": [
+          5,
+          394,
+          5,
+          394,
+          24
+        ],
+        "end_loc": [
+          5,
+          450,
+          1,
+          450,
+          2
+        ],
+        "params": [
+          {
+            "name": "proposalHash",
+            "ty_idx": 18
+          },
+          {
+            "name": "idx",
+            "ty_idx": 68
+          },
+          {
+            "name": "weight",
+            "ty_idx": 1
+          },
+          {
+            "name": "currentValidatorSetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "currentTotalWeight",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "ConfigDict.unpackFromSlice",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          45,
+          16,
+          45,
+          31
+        ],
+        "end_loc": [
+          8,
+          47,
+          1,
+          47,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          60,
+          13,
+          60,
+          17
+        ],
+        "end_loc": [
+          8,
+          62,
+          1,
+          62,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "ConfigDict.packToBuilder",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          40,
+          16,
+          40,
+          29
+        ],
+        "end_loc": [
+          8,
+          43,
+          1,
+          43,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "b",
+            "ty_idx": 4
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "scanProposal",
+        "return_ty_idx": 82,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          458,
+          5,
+          458,
+          17
+        ],
+        "end_loc": [
+          5,
+          491,
+          1,
+          491,
+          2
+        ],
+        "params": [
+          {
+            "name": "statusSlice",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "getCurrentValidatorSetMeta",
+        "return_ty_idx": 83,
+        "num_params": 0,
+        "ident_loc": [
+          5,
+          126,
+          5,
+          126,
+          31
+        ],
+        "end_loc": [
+          5,
+          136,
+          1,
+          136,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 37,
+        "name": "ValidatorSetMeta.fromCell",
+        "return_ty_idx": 84,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "scanRandomProposal",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          493,
+          5,
+          493,
+          23
+        ],
+        "end_loc": [
+          5,
+          521,
+          1,
+          521,
+          2
+        ],
+        "params": [
+          {
+            "name": "voteDict",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "map<uint256, slice>.findKeyGreaterOrEqual",
+        "return_ty_idx": 85,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "pivotKey",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "MapEntry<uint256, slice>.getKey",
+        "return_ty_idx": 18,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1048,
+          20,
+          1048,
+          26
+        ],
+        "end_loc": [
+          0,
+          1052,
+          1,
+          1052,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "MapEntry<uint256, slice>.loadValue",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1064,
+          24,
+          1064,
+          33
+        ],
+        "end_loc": [
+          0,
+          1066,
+          1,
+          1066,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "registerVotingProposal",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          524,
+          5,
+          524,
+          27
+        ],
+        "end_loc": [
+          5,
+          670,
+          1,
+          670,
+          2
+        ],
+        "params": [
+          {
+            "name": "msg",
+            "ty_idx": 15
+          },
+          {
+            "name": "msgValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "getVoteConfig",
+        "return_ty_idx": 74,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          15,
+          5,
+          15,
+          18
+        ],
+        "end_loc": [
+          5,
+          20,
+          1,
+          20,
+          2
+        ],
+        "params": [
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "getVoteConfigInternal",
+        "return_ty_idx": 74,
+        "num_params": 2,
+        "ident_loc": [
+          5,
+          6,
+          5,
+          6,
+          26
+        ],
+        "end_loc": [
+          5,
+          13,
+          1,
+          13,
+          2
+        ],
+        "params": [
+          {
+            "name": "critical",
+            "ty_idx": 5
+          },
+          {
+            "name": "configParam11",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "ConfigVotingSetup.selectProposalSetup",
+        "return_ty_idx": 74,
+        "num_params": 2,
+        "ident_loc": [
+          7,
+          122,
+          23,
+          122,
+          42
+        ],
+        "end_loc": [
+          7,
+          124,
+          1,
+          124,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 73
+          },
+          {
+            "name": "isCritical",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 46,
+        "name": "Cell<ConfigProposalSetup>.load",
+        "return_ty_idx": 74,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 75
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "ConfigProposalSetup.calculateStoragePrice",
+        "return_ty_idx": 1,
+        "num_params": 4,
+        "ident_loc": [
+          7,
+          111,
+          25,
+          111,
+          46
+        ],
+        "end_loc": [
+          7,
+          115,
+          1,
+          115,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 74
+          },
+          {
+            "name": "seconds",
+            "ty_idx": 1
+          },
+          {
+            "name": "bits",
+            "ty_idx": 1
+          },
+          {
+            "name": "refs",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          23,
+          5,
+          23,
+          22
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "checkValidatorSet",
+        "return_ty_idx": 89,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          46,
+          5,
+          46,
+          22
+        ],
+        "end_loc": [
+          5,
+          56,
+          1,
+          56,
+          2
+        ],
+        "params": [
+          {
+            "name": "validatorSet",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 50,
+        "name": "Storage.setConfigParam",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          64,
+          13,
+          64,
+          27
+        ],
+        "end_loc": [
+          8,
+          69,
+          1,
+          69,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 51,
+        "name": "ConfigDict.setById",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          8,
+          22,
+          16,
+          22,
+          23
+        ],
+        "end_loc": [
+          8,
+          24,
+          1,
+          24,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "index",
+            "ty_idx": 8
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 52,
+        "name": "sendConfirmation",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          58,
+          5,
+          58,
+          21
+        ],
+        "end_loc": [
+          5,
+          70,
+          1,
+          70,
+          2
+        ],
+        "params": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ansTag",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "createMessage<AnswerBody>",
+        "return_ty_idx": 43,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 91
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "sendError",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          72,
+          5,
+          72,
+          14
+        ],
+        "end_loc": [
+          5,
+          84,
+          1,
+          84,
+          2
+        ],
+        "params": [
+          {
+            "name": "addr",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ansTag",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 55,
+        "name": "VoteForProposalRequest.loadSignedVotePayload",
+        "return_ty_idx": 92,
+        "num_params": 2,
+        "ident_loc": [
+          7,
+          73,
+          28,
+          73,
+          49
+        ],
+        "end_loc": [
+          7,
+          78,
+          1,
+          78,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "throwCode",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 56,
+        "name": "SignedVotePayload.fromSlice",
+        "return_ty_idx": 92,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 57,
+        "name": "getCurrentValidatorContext",
+        "return_ty_idx": 93,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          167,
+          5,
+          167,
+          31
+        ],
+        "end_loc": [
+          5,
+          187,
+          1,
+          187,
+          2
+        ],
+        "params": [
+          {
+            "name": "idx",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 58,
+        "name": "ValidatorSetExt.fromCell",
+        "return_ty_idx": 94,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 59,
+        "name": "map<uint16, slice>.get",
+        "return_ty_idx": 78,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 95
+          },
+          {
+            "name": "key",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "f_idx": 60,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          134,
+          5,
+          134,
+          22
+        ],
+        "end_loc": [
+          1,
+          167,
+          1,
+          167,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsgBody",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 61,
+        "name": "Storage.incrementSeqno",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          389,
+          13,
+          389,
+          27
+        ],
+        "end_loc": [
+          5,
+          391,
+          1,
+          391,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 62,
+        "name": "onRunTickTock",
+        "return_ty_idx": 0,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          169,
+          5,
+          169,
+          18
+        ],
+        "end_loc": [
+          1,
+          205,
+          1,
+          205,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 63,
+        "name": "ConfigDict.deleteById",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          36,
+          16,
+          36,
+          26
+        ],
+        "end_loc": [
+          8,
+          38,
+          1,
+          38,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "index",
+            "ty_idx": 8
+          }
+        ]
+      },
+      {
+        "f_idx": 64,
+        "name": "seqno",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          207,
+          9,
+          207,
+          14
+        ],
+        "end_loc": [
+          1,
+          210,
+          1,
+          210,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 65,
+        "name": "get_proposal",
+        "return_ty_idx": 101,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          286,
+          9,
+          286,
+          21
+        ],
+        "end_loc": [
+          1,
+          293,
+          1,
+          293,
+          2
+        ],
+        "params": [
+          {
+            "name": "proposalHash",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 66,
+        "name": "unpackProposal",
+        "return_ty_idx": 102,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          235,
+          5,
+          235,
+          19
+        ],
+        "end_loc": [
+          1,
+          266,
+          1,
+          266,
+          2
+        ],
+        "params": [
+          {
+            "name": "statusSlice",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 67,
+        "name": "map<uint16, uint32>.findLast",
+        "return_ty_idx": 105,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 69
+          }
+        ]
+      },
+      {
+        "f_idx": 68,
+        "name": "MapEntry<uint16, uint32>.getKey",
+        "return_ty_idx": 68,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1048,
+          20,
+          1048,
+          26
+        ],
+        "end_loc": [
+          0,
+          1052,
+          1,
+          1052,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 105
+          }
+        ]
+      },
+      {
+        "f_idx": 69,
+        "name": "lisp_list<int>.prependHead",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          33,
+          18,
+          33,
+          29
+        ],
+        "end_loc": [
+          4,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 104
+          },
+          {
+            "name": "value",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 70,
+        "name": "map<uint16, uint32>.iteratePrev",
+        "return_ty_idx": 105,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 69
+          },
+          {
+            "name": "current",
+            "ty_idx": 105
+          }
+        ]
+      },
+      {
+        "f_idx": 71,
+        "name": "proposalViewToTuple",
+        "return_ty_idx": 98,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          272,
+          5,
+          272,
+          24
+        ],
+        "end_loc": [
+          1,
+          284,
+          1,
+          284,
+          2
+        ],
+        "params": [
+          {
+            "name": "proposal",
+            "ty_idx": 102
+          }
+        ]
+      },
+      {
+        "f_idx": 72,
+        "name": "proposalParameterViewToTuple",
+        "return_ty_idx": 98,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          268,
+          5,
+          268,
+          33
+        ],
+        "end_loc": [
+          1,
+          270,
+          1,
+          270,
+          2
+        ],
+        "params": [
+          {
+            "name": "proposal",
+            "ty_idx": 103
+          }
+        ]
+      },
+      {
+        "f_idx": 73,
+        "name": "list_proposals",
+        "return_ty_idx": 106,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          295,
+          9,
+          295,
+          23
+        ],
+        "end_loc": [
+          1,
+          306,
+          1,
+          306,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 74,
+        "name": "map<uint256, slice>.findLast",
+        "return_ty_idx": 85,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 75,
+        "name": "lisp_list<tuple>.prependHead",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          33,
+          18,
+          33,
+          29
+        ],
+        "end_loc": [
+          4,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 106
+          },
+          {
+            "name": "value",
+            "ty_idx": 98
+          }
+        ]
+      },
+      {
+        "f_idx": 76,
+        "name": "map<uint256, slice>.iteratePrev",
+        "return_ty_idx": 85,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "current",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "f_idx": 77,
+        "name": "proposal_storage_price",
+        "return_ty_idx": 1,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          308,
+          9,
+          308,
+          31
+        ],
+        "end_loc": [
+          1,
+          322,
+          1,
+          322,
+          2
+        ],
+        "params": [
+          {
+            "name": "critical",
+            "ty_idx": 1
+          },
+          {
+            "name": "seconds",
+            "ty_idx": 1
+          },
+          {
+            "name": "bits",
+            "ty_idx": 1
+          },
+          {
+            "name": "refs",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Config",
+    "author": "The Tolk Team",
+    "version": "1.0.0",
+    "description": "TON Config contract. Manages network configuration parameters",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetNextValidatorSetRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetCustomParamRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NewVotingProposalRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfigProposal"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VoteForProposalRequest"
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ConfigDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "VoteDict"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 17,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AnswerBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ElectorCodeChangeAction"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "tuple"
+      },
+      {
+        "kind": "unknown"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 31
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "lispListOf",
+        "inner_ty_idx": 30
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "tuple",
+        "ty_idx": 30,
+        "target_ty_idx": 32,
+        "description": "`tuple` represents a TVM tuple. Essentially, it's \"an array of unknown elements\".\nReading an individual element results in `unknown`, cast it to perform some actions:\n```\n// wrong:\nvar elem = someTuple.get(0);    // unknown\nreturn elem + 123;              // error, can not apply `+`\n\n// correct:\nvar elem = someTuple.get(0) as int;\nreturn elem + 123;\n```"
+      },
+      {
+        "kind": "struct",
+        "name": "ConfigProposal",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 243,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "paramId",
+            "ty_idx": 8
+          },
+          {
+            "name": "paramValue",
+            "ty_idx": 16
+          },
+          {
+            "name": "ifHashEqual",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetNextValidatorSetRequest",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1314280276,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "vset",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetCustomParamRequest",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1849906028,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paramId",
+            "ty_idx": 8
+          },
+          {
+            "name": "receiverAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NewVotingProposalRequest",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1851150418,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "expireAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "critical",
+            "ty_idx": 5
+          },
+          {
+            "name": "proposal",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VoteForProposalRequest",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 1450144869,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "signature",
+            "ty_idx": 21
+          },
+          {
+            "name": "signedVoteBody",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ElectorCodeChangeAction",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1313042276,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "payload",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AnswerBody",
+        "ty_idx": 28,
+        "fields": [
+          {
+            "name": "ansTag",
+            "ty_idx": 9
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ConfigDict",
+        "ty_idx": 24,
+        "target_ty_idx": 25,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "VoteDict",
+        "ty_idx": 26,
+        "target_ty_idx": 27
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 23,
+        "fields": [
+          {
+            "name": "config",
+            "ty_idx": 24
+          },
+          {
+            "name": "storedSeqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 17
+          },
+          {
+            "name": "voteDict",
+            "ty_idx": 26
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 23
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 20
+      }
+    ],
+    "incoming_external": [
+      {
+        "body_ty_idx": 2
+      }
+    ],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 28
+      },
+      {
+        "body_ty_idx": 29
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 85143,
+        "name": "seqno",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 94347,
+        "name": "get_proposal",
+        "parameters": [
+          {
+            "name": "proposalHash",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 33
+      },
+      {
+        "tvm_method_id": 107394,
+        "name": "list_proposals",
+        "parameters": [],
+        "return_ty_idx": 34
+      },
+      {
+        "tvm_method_id": 75077,
+        "name": "proposal_storage_price",
+        "parameters": [
+          {
+            "name": "critical",
+            "ty_idx": 1
+          },
+          {
+            "name": "seconds",
+            "ty_idx": 1
+          },
+          {
+            "name": "bits",
+            "ty_idx": 1
+          },
+          {
+            "name": "refs",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "plain_int",
+        "err_code": 0
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_VALIDATOR_SET",
+        "err_code": 9
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_BAD_SEQNO",
+        "err_code": 33
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SIGNATURE",
+        "err_code": 34
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_VALID_UNTIL_EXPIRED",
+        "err_code": 35
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_MESSAGE",
+        "err_code": 37
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_EXTERNAL_BODY_TOO_DEEP",
+        "err_code": 39
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_WRONG_CURRENT_VSET",
+        "err_code": 40
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_WRONG_VALIDATOR_DESCRIPTION",
+        "err_code": 41
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_PROPOSAL_STATUS",
+        "err_code": 44
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/Config.tolk",
+      "contents": "import \"@stdlib/exotic-cells\"\nimport \"@stdlib/gas-payments\"\nimport \"@stdlib/lisp-lists\"\nimport \"config-helpers\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\n\ncontract Config {\n    author: \"The Tolk Team\"\n    version: \"1.0.0\"\n    description: \"TON Config contract. Manages network configuration parameters\"\n    incomingMessages: AllowedInternalMessage\n    storage: Storage\n}\n\ntype AllowedInternalMessage =\n    | SetNextValidatorSetRequest\n    | SetCustomParamRequest\n    | NewVotingProposalRequest\n    | VoteForProposalRequest\n\nfun onInternalMessage(in: InMessage) {\n    val isAdminOfCustomParam = in.senderAddress == ADMIN_ADDRESS_FOR_CUSTOM_PARAMS;\n    val isValidWorkchain = isAdminOfCustomParam || in.senderAddress.getWorkchain() == MASTERCHAIN;\n\n    if (!isValidWorkchain || in.body.isEmpty()) {\n        return;\n    }\n\n    val tag = in.body.preloadUint(32);\n    if (isAdminOfCustomParam && tag != OP_SET_CUSTOM_PARAM) {\n        throw ERROR_INVALID_MESSAGE;\n    }\n\n    if (tag == 0 || (tag & INTERNAL_QUERY_HIGH_BIT) != 0) {\n        return;\n    }\n\n    val msg = lazy AllowedInternalMessage.fromSlice(\n        in.body,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_MESSAGE },\n    );\n\n    match (msg) {\n        SetNextValidatorSetRequest => {\n            val electorParam = blockchain.configParam(CONFIG_PARAM_ELECTOR_ADDRESS);\n            var ok = false;\n\n            if (electorParam != null) {\n                val (_, srcHash) = in.senderAddress.getWorkchainAndHash();\n                val electorHash = electorParam!.beginParse().preloadUint(256);\n\n                if (srcHash == electorHash) {\n                    val validatorSetWindow = checkValidatorSet(msg.vset);\n                    val now = blockchain.now();\n                    ok = (validatorSetWindow.utimeSince > now) &&\n                    (validatorSetWindow.utimeUntil > validatorSetWindow.utimeSince);\n                }\n            }\n\n            if (ok) {\n                Storage.setConfigParam(CONFIG_PARAM_NEXT_VALIDATOR_SET, msg.vset);\n                sendConfirmation(in.senderAddress, msg.queryId, TAG_SET_NEXT_VALIDATORS_ACCEPTED);\n            } else {\n                sendError(in.senderAddress, msg.queryId, TAG_SET_NEXT_VALIDATORS_REJECTED);\n            }\n        }\n\n        SetCustomParamRequest => {\n            val (_, isExotic) = msg.value.beginParseSpecial();\n            val isCustomParam = msg.paramId == CUSTOM_PARAM_1 || msg.paramId == CUSTOM_PARAM_2;\n\n            if (!isExotic && msg.value.depth() == 0 && isCustomParam && isAdminOfCustomParam) {\n                Storage.setConfigParam(msg.paramId, msg.value);\n                sendConfirmation(msg.receiverAddress, msg.queryId, TAG_SET_CUSTOM_PARAM_ACCEPTED);\n            } else {\n                sendError(msg.receiverAddress, msg.queryId, TAG_SET_CUSTOM_PARAM_REJECTED);\n            }\n        }\n\n        NewVotingProposalRequest => {\n            val price = registerVotingProposal(msg, in.valueCoins);\n\n            var mode = SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE;\n            var ansTag = -price;\n\n            if (price >= 0) {\n                reserveToncoinsOnBalance(price, RESERVE_MODE_INCREASE_BY_ORIGINAL_BALANCE);\n\n                ansTag = TAG_NEW_VOTING_CREATED;\n                mode = SEND_MODE_CARRY_ALL_BALANCE;\n            }\n\n            val answerMsg = createMessage({\n                bounce: true,\n                dest: in.senderAddress,\n                value: 0,\n                body: AnswerBody {\n                    ansTag: (ansTag & 0xffffffff),\n                    queryId: msg.queryId,\n                },\n            });\n\n            answerMsg.send(mode);\n        }\n\n        VoteForProposalRequest => {\n            val signedVote = msg.loadSignedVotePayload(ERROR_INVALID_MESSAGE);\n            val validatorContext = getCurrentValidatorContext(signedVote.validatorIndex);\n\n            assert (\n                isSliceSignatureValid(\n                    msg.signedVoteBody,\n                    msg.signature as slice,\n                    validatorContext.publicKey,\n                )\n            ) throw ERROR_INVALID_SIGNATURE;\n\n            val result = proceedRegisterVote(\n                signedVote.proposalHash,\n                signedVote.validatorIndex,\n                validatorContext.weight,\n                validatorContext.validatorSetId,\n                validatorContext.totalWeight,\n            );\n            sendConfirmation(in.senderAddress, msg.queryId, TAG_VOTE_PROCESSED_BASE + result);\n        }\n\n        else => throw ERROR_INVALID_MESSAGE,\n    }\n}\n\nfun onExternalMessage(inMsgBody: slice) {\n    assert (inMsgBody.depth() <= 128) throw ERROR_EXTERNAL_BODY_TOO_DEEP;\n\n    val msg = lazy ExternalSignedMessage.fromSlice(inMsgBody, { throwIfOpcodeDoesNotMatch: 0 });\n\n    assert (msg.action.validUntil >= blockchain.now()) throw ERROR_VALID_UNTIL_EXPIRED;\n\n    var storage = lazy Storage.load();\n    assert (msg.action.msgSeqno == storage.storedSeqno) throw ERROR_BAD_SEQNO;\n\n    val validatorContext = getCurrentValidatorContext(msg.action.validatorIndex);\n\n    assert (\n        isSliceSignatureValid(\n            inMsgBody.skipBits(512),\n            msg.signature as slice,\n            validatorContext.publicKey,\n        )\n    ) throw ERROR_INVALID_SIGNATURE;\n\n    acceptExternalMessage();\n\n    storage.incrementSeqno();\n    storage.save();\n    commitContractDataAndActions();\n\n    proceedRegisterVote(\n        msg.action.proposalHash,\n        msg.action.validatorIndex,\n        validatorContext.weight,\n        validatorContext.validatorSetId,\n        validatorContext.totalWeight,\n    );\n}\n\nfun onRunTickTock() {\n    var storage = lazy Storage.load();\n    var configDict = storage.config;\n    var updated = false;\n\n    val nextVset = configDict.getById(CONFIG_PARAM_NEXT_VALIDATOR_SET);\n    if (nextVset != null) {\n        var ds = nextVset!.beginParse();\n        if (ds.remainingBitsCount() >= 40) {\n            val tag = ds.loadUint(8);\n            val since = ds.preloadUint(32);\n\n            if (since <= blockchain.now() && tag == OP_VALIDATOR_SET_EXT) {\n                val oldCurrentVset = configDict.setByIdAndGetPrevious(\n                    CONFIG_PARAM_CURRENT_VALIDATOR_SET,\n                    nextVset!,\n                );\n\n                if (oldCurrentVset != null) {\n                    configDict.setById(CONFIG_PARAM_PREVIOUS_VALIDATOR_SET, oldCurrentVset!);\n                } else {\n                    configDict.deleteById(CONFIG_PARAM_PREVIOUS_VALIDATOR_SET);\n                }\n\n                configDict.deleteById(CONFIG_PARAM_NEXT_VALIDATOR_SET);\n                updated = true;\n            }\n        }\n    }\n\n    if (!updated) {\n        scanRandomProposal(mutate storage.voteDict);\n    }\n\n    storage.config = configDict;\n    storage.save();\n}\n\nget fun seqno(): int {\n    val storage = lazy Storage.load();\n    return storage.storedSeqno;\n}\n\nstruct ProposalParameterView {\n    paramId: int32\n    paramValue: cell?\n    paramHash: int\n}\n\nstruct ProposalView {\n    expires: uint32\n    isCritical: bool\n    proposal: ProposalParameterView\n    validatorSetId: uint256\n    voters: lisp_list<int>\n    remainingWeight: int64\n    roundsRemaining: uint8\n    wins: uint8\n    losses: uint8\n}\n\nstruct ProposalListEntry {\n    proposalHash: uint256\n    proposal: ProposalView\n}\n\nfun unpackProposal(statusSlice: slice): ProposalView {\n    val status = ConfigProposalStatus.fromSlice(\n        statusSlice,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n    val proposal = status.proposal.load();\n\n    var votersList = [] as lisp_list<int>;\n    var voter = status.voters.findLast();\n    while (voter.isFound) {\n        votersList.prependHead(voter.getKey());\n        voter = status.voters.iteratePrev(voter);\n    }\n\n    val paramHash = proposal.ifHashEqual == null ? -1 : (proposal.ifHashEqual! as int);\n\n    return ProposalView {\n        expires: status.expires,\n        isCritical: status.isCritical,\n        proposal: ProposalParameterView {\n            paramId: proposal.paramId,\n            paramValue: proposal.paramValue,\n            paramHash,\n        },\n        validatorSetId: status.validatorSetId,\n        voters: votersList,\n        remainingWeight: status.remainingWeight,\n        roundsRemaining: status.roundsRemaining,\n        wins: status.wins,\n        losses: status.losses,\n    };\n}\n\nfun proposalParameterViewToTuple(proposal: ProposalParameterView): tuple {\n    return [proposal.paramId, proposal.paramValue, proposal.paramHash];\n}\n\nfun proposalViewToTuple(proposal: ProposalView): tuple {\n    return [\n        proposal.expires,\n        proposal.isCritical,\n        proposalParameterViewToTuple(proposal.proposal),\n        proposal.validatorSetId,\n        proposal.voters,\n        proposal.remainingWeight,\n        proposal.roundsRemaining,\n        proposal.wins,\n        proposal.losses,\n    ];\n}\n\nget fun get_proposal(proposalHash: int): tuple? {\n    val storage = lazy Storage.load();\n    val lookup = storage.voteDict.get(proposalHash);\n    if (!lookup.isFound) {\n        return null;\n    }\n    return proposalViewToTuple(unpackProposal(lookup.loadValue()));\n}\n\nget fun list_proposals(): lisp_list<tuple> {\n    val storage = lazy Storage.load();\n\n    var list = [] as lisp_list<tuple>;\n    var entry = storage.voteDict.findLast();\n    while (entry.isFound) {\n        list.prependHead([entry.getKey(), proposalViewToTuple(unpackProposal(entry.loadValue()))]);\n        entry = storage.voteDict.iteratePrev(entry);\n    }\n\n    return list;\n}\n\nget fun proposal_storage_price(critical: int, seconds: int, bits: int, refs: int): int {\n    val storage = lazy Storage.load();\n    val configDict = storage.config;\n\n    val cparam11 = configDict.getById(CONFIG_PARAM_VOTING_SETUP);\n    assert (cparam11 != null) throw ERROR_INVALID_PROPOSAL_STATUS;\n\n    val voteCfg = getVoteConfigInternal(critical != 0, cparam11!);\n    if (seconds < voteCfg.minStoreSec) {\n        return -1;\n    }\n\n    seconds = min(seconds, voteCfg.maxStoreSec);\n    return voteCfg.calculateStoragePrice(seconds, bits, refs);\n}\n"
+    },
+    {
+      "filename": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/config-helpers.tolk",
+      "contents": "import \"@stdlib/tvm-lowlevel\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\n\nfun getVoteConfigInternal(critical: bool, configParam11: cell): ConfigProposalSetup {\n    val setup = ConfigVotingSetup.fromCell(\n        configParam11,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n\n    return setup.selectProposalSetup(critical);\n}\n\nfun getVoteConfig(isCritical: bool): ConfigProposalSetup {\n    val configParam11 = blockchain.configParam(CONFIG_PARAM_VOTING_SETUP);\n    assert (configParam11 != null) throw ERROR_INVALID_PROPOSAL_STATUS;\n\n    return getVoteConfigInternal(isCritical, configParam11);\n}\n\nfun getVoteRoundRulesInternal(critical: bool, configParam11: cell): ConfigProposalRoundRules {\n    val setup = ConfigVotingSetup.fromCell(\n        configParam11,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n\n    return ConfigProposalRoundRules.fromCell(\n        critical ? setup.criticalParams : setup.normalParams,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n}\n\nfun getVoteRoundRules(isCritical: bool): ConfigProposalRoundRules {\n    val configParam11 = blockchain.configParam(CONFIG_PARAM_VOTING_SETUP);\n    assert (configParam11 != null) throw ERROR_INVALID_PROPOSAL_STATUS;\n\n    return getVoteRoundRulesInternal(isCritical, configParam11);\n}\n\nstruct ValidatorSetWindow {\n    utimeSince: int\n    utimeUntil: int\n}\n\nfun checkValidatorSet(validatorSet: cell): ValidatorSetWindow {\n    val parsed = ValidatorSetMeta.fromCell(\n        validatorSet,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_VALIDATOR_SET },\n    );\n\n    assert (parsed.main > 0) throw ERROR_INVALID_VALIDATOR_SET;\n    assert (parsed.total >= parsed.main) throw ERROR_INVALID_VALIDATOR_SET;\n\n    return { utimeSince: parsed.utimeSince, utimeUntil: parsed.utimeUntil };\n}\n\nfun sendConfirmation(addr: address, queryId: uint64, ansTag: int) {\n    val confirmMsg = createMessage({\n        bounce: true,\n        dest: addr,\n        value: 0,\n        body: AnswerBody {\n            ansTag: (ansTag & 0xffffffff),\n            queryId,\n        },\n    });\n\n    confirmMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nfun sendError(addr: address, queryId: uint64, ansTag: int) {\n    val rejectMsg = createMessage({\n        bounce: true,\n        dest: addr,\n        value: 0,\n        body: AnswerBody {\n            ansTag: (ansTag & 0xffffffff),\n            queryId,\n        },\n    });\n\n    rejectMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nfun changeElectorCode(codeBody: slice) {\n    val electorParam = blockchain.configParam(CONFIG_PARAM_ELECTOR_ADDRESS);\n    assert (electorParam != null) throw ERROR_INVALID_MESSAGE;\n\n    val electorAddrHash = electorParam.beginParse().preloadUint(256);\n    val queryId = blockchain.now();\n\n    val actionMsg = createMessage({\n        bounce: true,\n        dest: (MASTERCHAIN, electorAddrHash),\n        value: MIN_INTERNAL_MESSAGE_VALUE,\n        body: ElectorCodeChangeAction {\n            queryId,\n            payload: codeBody,\n        },\n    });\n\n    actionMsg.send(SEND_MODE_REGULAR);\n}\n\n// get method to keep the function\n@method_id(1666)\nfun afterCodeUpgrade(_param: slice, _oldCode: continuation) {}\n\nfun applyCodeUpgrade(newCode: cell, upgradeParams: slice): never {\n    contract.setCodePostponed(newCode);\n\n    val oldCode = getTvmRegisterC3();\n\n    // SAFETY: BLESS + execute\n    setTvmRegisterC3(transformSliceToContinuation(newCode.beginParse()));\n    afterCodeUpgrade(upgradeParams, oldCode);\n    throw 0;\n}\n\nstruct CurrentValidatorSetMeta {\n    validatorSetId: uint256\n    totalWeight: int\n}\n\nfun getCurrentValidatorSetMeta(): CurrentValidatorSetMeta {\n    val validatorSet = blockchain.configParam(CONFIG_PARAM_CURRENT_VALIDATOR_SET);\n    assert (validatorSet != null) throw ERROR_WRONG_CURRENT_VSET;\n\n    val parsed = ValidatorSetMeta.fromCell(\n        validatorSet,\n        { throwIfOpcodeDoesNotMatch: ERROR_WRONG_CURRENT_VSET },\n    );\n\n    return { validatorSetId: validatorSet.hash(), totalWeight: parsed.totalWeight };\n}\n\nstruct ValidatorKeyAndWeight {\n    publicKey: int\n    weight: int\n}\n\nstruct CurrentValidatorContext {\n    validatorSetId: uint256\n    totalWeight: int\n    publicKey: int\n    weight: int\n}\n\nfun unpackValidatorDescr(validatorDescription: slice): ValidatorKeyAndWeight {\n    val descr = lazy ValidatorDescr.fromSlice(validatorDescription);\n\n    match (descr) {\n        ValidatorDescrSimple => {\n            assert (descr.pubkeyTag == OP_ED25519_PUBKEY) throw ERROR_WRONG_VALIDATOR_DESCRIPTION;\n            return { publicKey: descr.publicKey, weight: descr.weight };\n        }\n        ValidatorDescrWithAdnl => {\n            assert (descr.pubkeyTag == OP_ED25519_PUBKEY) throw ERROR_WRONG_VALIDATOR_DESCRIPTION;\n            return { publicKey: descr.publicKey, weight: descr.weight };\n        }\n\n        else => throw ERROR_WRONG_VALIDATOR_DESCRIPTION,\n    }\n}\n\nfun getCurrentValidatorContext(idx: uint16): CurrentValidatorContext {\n    val validatorSet = blockchain.configParam(CONFIG_PARAM_CURRENT_VALIDATOR_SET);\n    assert (validatorSet != null) throw ERROR_WRONG_CURRENT_VSET;\n\n    val parsed = ValidatorSetExt.fromCell(\n        validatorSet,\n        { throwIfOpcodeDoesNotMatch: ERROR_WRONG_CURRENT_VSET },\n    );\n    val validators = createMapFromLowLevelDict<uint16, slice>(parsed.validators);\n    val lookup = validators.get(idx);\n\n    assert (lookup.isFound) throw ERROR_WRONG_VALIDATOR_DESCRIPTION;\n\n    val validatorInfo = unpackValidatorDescr(lookup.loadValue());\n    return {\n        validatorSetId: validatorSet.hash(),\n        totalWeight: parsed.totalWeight,\n        publicKey: validatorInfo.publicKey,\n        weight: validatorInfo.weight,\n    };\n}\n\nstruct ProposalAcceptanceResult {\n    paramId: int\n    paramVal: cell?\n}\n\n@inline_ref\nfun acceptProposal(\n    mutate configDict: ConfigDict,\n    proposalCell: Cell<ConfigProposal>,\n    isCritical: bool,\n): ProposalAcceptanceResult {\n    val proposal = proposalCell.load();\n    val paramId = proposal.paramId;\n\n    val currentValue = configDict.getById(paramId);\n    val currentHash: uint256 = currentValue == null ? 0 : currentValue.hash();\n\n    // current value has incorrect hash, do not apply changes\n    if (proposal.ifHashEqual != null && currentHash != proposal.ifHashEqual) {\n        return { paramId: 0, paramVal: null };\n    }\n\n    // custom parameters cannot be changed by validator voting, do not apply changes\n    if (paramId == CUSTOM_PARAM_1 || paramId == CUSTOM_PARAM_2) {\n        return { paramId: 0, paramVal: null };\n    }\n\n    val mandatoryParamsCell = configDict.getById(CONFIG_PARAM_MANDATORY_PARAMS);\n\n    if (mandatoryParamsCell != null && proposal.paramValue == null) {\n        val mandatoryParams = createMapFromLowLevelDict<int32, slice>(mandatoryParamsCell);\n\n        // cannot set a mandatory parameter to null\n        if (mandatoryParams.exists(paramId)) {\n            return { paramId: 0, paramVal: null };\n        }\n    }\n\n    val criticalParamsCell = configDict.getById(CONFIG_PARAM_CRITICAL_PARAMS);\n\n    if (criticalParamsCell != null) {\n        val criticalParams = createMapFromLowLevelDict<int32, slice>(criticalParamsCell);\n\n        // trying to set a critical parameter after a non-critical voting\n        if (criticalParams.exists(paramId) && !isCritical) {\n            return { paramId: 0, paramVal: null };\n        }\n    }\n\n    // CHANGE ONE CONFIGURATION PARAMETER\n    if (proposal.paramValue == null) {\n        configDict.delete(paramId);\n    } else {\n        configDict.set(paramId, proposal.paramValue!);\n    }\n\n    return { paramId, paramVal: proposal.paramValue };\n}\n\n@inline_ref\nfun performProposedAction(publicKey: int, paramId: int, paramVal: cell?): uint256 {\n    // appoint or depose dictator\n    if (paramId == -999) {\n        return paramVal == null ? 0 : paramVal.beginParse().preloadUint(256);\n    }\n\n    if (paramVal == null) {\n        return publicKey;\n    }\n\n    // upgrade code\n    if (paramId == -1000) {\n        var cs = paramVal.beginParse();\n\n        val newCode = cs.loadRef();\n        applyCodeUpgrade(newCode, cs);\n    }\n\n    // update elector code\n    if (paramId == -1001) {\n        changeElectorCode(paramVal.beginParse());\n    }\n\n    return publicKey;\n}\n\n@inline_ref\nfun updateProposalStatus(\n    status: ConfigProposalStatus,\n    previousWeightRemaining: int,\n): ConfigProposalStatus? {\n    val voteRules = getVoteRoundRules(status.isCritical);\n\n    if (previousWeightRemaining >= 0) {\n        status.losses += 1;\n    }\n    if (status.losses > voteRules.maxLosses) {\n        return null;\n    }\n\n    status.roundsRemaining -= 1;\n    if (status.roundsRemaining < 0) {\n        return null;\n    }\n\n    return status;\n}\n\nstruct VoteRegistrationResult {\n    acceptedProposal: Cell<ConfigProposal>?\n    status: int\n}\n\n@inline_ref\nfun registerVote(\n    mutate voteDict: VoteDict,\n    proposalHash: uint256,\n    idx: uint16,\n    weight: int,\n    currentValidatorSetId: uint256,\n    currentTotalWeight: int,\n): VoteRegistrationResult {\n    val statusLookup = voteDict.get(proposalHash);\n\n    // config proposal not found\n    if (!statusLookup.isFound) {\n        return { acceptedProposal: null, status: -1 };\n    }\n\n    var status = ConfigProposalStatus.fromSlice(\n        statusLookup.loadValue(),\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n\n    // config proposal expired, delete and report not found\n    if (status.expires <= blockchain.now()) {\n        voteDict.delete(proposalHash);\n\n        return { acceptedProposal: null, status: -1 };\n    }\n\n    // config proposal belongs to a previous validator set\n    if (status.validatorSetId != currentValidatorSetId) {\n        val updated = updateProposalStatus(status, status.remainingWeight);\n\n        // discard proposal (existed for too many rounds, or too many losses)\n        if (updated == null) {\n            voteDict.delete(proposalHash);\n            return { acceptedProposal: null, status: -1 };\n        }\n\n        status = updated;\n        status.validatorSetId = currentValidatorSetId;\n        status.voters = [];\n\n        status.remainingWeight = mulDivFloor(\n            currentTotalWeight,\n            VOTE_WEIGHT_THRESHOLD_NUMERATOR,\n            VOTE_WEIGHT_THRESHOLD_DENOMINATOR,\n        );\n    }\n\n    // already voted for this proposal, ignore vote\n    if (status.voters.exists(idx)) {\n        return { acceptedProposal: null, status: -2 };\n    }\n\n    // register vote\n    status.voters.set(idx, blockchain.now());\n\n    val oldWeightRemaining = status.remainingWeight;\n    status.remainingWeight -= weight;\n\n    // not enough votes, or proposal already accepted in this round\n    // simply update remainingWeight\n    if ((status.remainingWeight ^ oldWeightRemaining) >= 0) {\n        voteDict.set(proposalHash, status.toCell().beginParse());\n\n        return { acceptedProposal: null, status: 2 };\n    }\n\n    // proposal wins in this round\n    val voteRules = getVoteRoundRules(status.isCritical);\n    var wins = status.wins;\n\n    wins += 1;\n\n    // proposal is accepted, remove and process\n    if (wins >= voteRules.minWins) {\n        voteDict.delete(proposalHash);\n\n        return { acceptedProposal: status.proposal, status: status.isCritical ? 7 : 6 };\n    }\n\n    status.wins = wins;\n    voteDict.set(proposalHash, status.toCell().beginParse());\n\n    return { acceptedProposal: null, status: 2 };\n}\n\nfun Storage.incrementSeqno(mutate self) {\n    self.storedSeqno = ((self.storedSeqno + 1) % EXTERNAL_SEQNO_MODULO);\n}\n\n@inline_ref\nfun proceedRegisterVote(\n    proposalHash: uint256,\n    idx: uint16,\n    weight: int,\n    currentValidatorSetId: uint256,\n    currentTotalWeight: int,\n): int {\n    var storage = lazy Storage.load();\n\n    var voteDict = storage.voteDict;\n    var acceptedProposal: Cell<ConfigProposal>? = null;\n\n    var status = 0;\n\n    val voteRegistration = registerVote(\n        mutate voteDict,\n        proposalHash,\n        idx,\n        weight,\n        currentValidatorSetId,\n        currentTotalWeight,\n    );\n\n    acceptedProposal = voteRegistration.acceptedProposal;\n    status = voteRegistration.status;\n    storage.voteDict = voteDict;\n\n    storage.save();\n\n    if (acceptedProposal != null) {\n        val isCritical = status == 7;\n\n        var configDict = storage.config;\n        var paramId = 0;\n        var paramVal: cell? = null;\n\n        val proposalAcceptance = acceptProposal(mutate configDict, acceptedProposal!, isCritical);\n\n        paramId = proposalAcceptance.paramId;\n        paramVal = proposalAcceptance.paramVal;\n\n        storage.config = configDict;\n        storage.save();\n\n        // 0 == not accepted\n        if (paramId != 0) {\n            commitContractDataAndActions();\n\n            val publicKey = performProposedAction(storage.publicKey, paramId, paramVal);\n\n            storage.publicKey = publicKey;\n            storage.save();\n        }\n    }\n\n    return status;\n}\n\nstruct ProposalScanResult {\n    proposalStatusSlice: slice?\n    changed: bool\n}\n\n@inline_ref\nfun scanProposal(statusSlice: slice): ProposalScanResult {\n    val currentValidatorSet = getCurrentValidatorSetMeta();\n    val curVsetId = currentValidatorSet.validatorSetId;\n\n    var status = ConfigProposalStatus.fromSlice(\n        statusSlice,\n        { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n    );\n\n    if (status.expires <= blockchain.now()) {\n        return { proposalStatusSlice: null, changed: true };\n    }\n\n    if (status.validatorSetId == curVsetId) {\n        return { proposalStatusSlice: statusSlice, changed: false };\n    }\n\n    val updated = updateProposalStatus(status, status.remainingWeight);\n    if (updated == null) {\n        return { proposalStatusSlice: null, changed: true };\n    }\n\n    status = updated!;\n    status.validatorSetId = curVsetId;\n    status.voters = [];\n\n    status.remainingWeight = mulDivFloor(\n        currentValidatorSet.totalWeight,\n        VOTE_WEIGHT_THRESHOLD_NUMERATOR,\n        VOTE_WEIGHT_THRESHOLD_DENOMINATOR,\n    );\n\n    return { proposalStatusSlice: status.toCell().beginParse(), changed: true };\n}\n\nfun scanRandomProposal(mutate voteDict: VoteDict) {\n    if (voteDict.isEmpty()) {\n        return;\n    }\n\n    random.initialize();\n    val entry = voteDict.findKeyGreaterOrEqual(random.uint256());\n    if (!entry.isFound) {\n        return;\n    }\n\n    val proposalHash = entry.getKey();\n\n    var proposalStatusSlice: slice? = null;\n    var changed = false;\n\n    val scanResult = scanProposal(entry.loadValue());\n\n    proposalStatusSlice = scanResult.proposalStatusSlice;\n    changed = scanResult.changed;\n\n    if (changed) {\n        if (proposalStatusSlice == null) {\n            voteDict.delete(proposalHash);\n        } else {\n            voteDict.set(proposalHash, proposalStatusSlice!);\n        }\n    }\n}\n\n@inline_ref\nfun registerVotingProposal(msg: NewVotingProposalRequest, msgValue: coins): int {\n    var expireAt = msg.expireAt;\n\n    if ((expireAt >> 30) != 0) {\n        expireAt -= blockchain.now();\n    }\n\n    val proposal = msg.proposal.load();\n    val paramId = proposal.paramId;\n\n    if (paramId == CUSTOM_PARAM_1 || paramId == CUSTOM_PARAM_2) {\n        return ERROR_TAG_CUSTOM_SLOT_VOTING_REJECTED;\n    }\n\n    var expectedHash: int = proposal.ifHashEqual == null ? -1 : proposal.ifHashEqual;\n\n    if (expectedHash >= 0) {\n        val curVal = blockchain.configParam(paramId);\n\n        val curHash: uint256 = curVal == null ? 0 : curVal.hash();\n\n        if (curHash != expectedHash) {\n            expectedHash = ERROR_TAG_BAD_CURRENT_VALUE_HASH;\n        }\n    } else {\n        val mandatoryParams = blockchain.configParam(CONFIG_PARAM_MANDATORY_PARAMS);\n\n        if (mandatoryParams != null) {\n            val mandatoryMap = createMapFromLowLevelDict<int32, slice>(mandatoryParams);\n\n            if (mandatoryMap.exists(paramId)) {\n                expectedHash = ERROR_TAG_MANDATORY_PARAM_CANNOT_BE_NULL;\n            }\n        }\n    }\n\n    if (proposal.paramValue != null && proposal.paramValue.depth() >= 256) {\n        expectedHash = ERROR_TAG_BAD_VALUE;\n    }\n\n    if (expectedHash < -1) {\n        return expectedHash;\n    }\n\n    if (!msg.critical) {\n        val criticalParams = blockchain.configParam(CONFIG_PARAM_CRITICAL_PARAMS);\n\n        if (criticalParams != null) {\n            val criticalMap = createMapFromLowLevelDict<int32, slice>(criticalParams);\n\n            if (criticalMap.exists(paramId)) {\n                expectedHash = ERROR_TAG_CRITICAL_FLAG_REQUIRED;\n            }\n        }\n    }\n\n    if (expectedHash < -1) {\n        return expectedHash;\n    }\n\n    val voteCfg = getVoteConfig(msg.critical);\n\n    if (expireAt < voteCfg.minStoreSec) {\n        return ERROR_TAG_PROPOSAL_EXPIRED;\n    }\n    expireAt = min(expireAt, voteCfg.maxStoreSec);\n\n    var bits = 0;\n    var refs = 0;\n\n    if (proposal.paramValue != null) {\n        (_, bits, refs) = proposal.paramValue!.calculateSizeStrict(PROPOSAL_BITS_OVERHEAD);\n    }\n\n    val pricePerSecond = voteCfg.calculateStoragePrice(1, bits, refs);\n    var price = pricePerSecond * expireAt;\n\n    expireAt += blockchain.now();\n\n    var storage = lazy Storage.load();\n\n    var voteDict = storage.voteDict;\n    val proposalHash = msg.proposal.hash();\n\n    val existing = voteDict.get(proposalHash);\n\n    if (existing.isFound) {\n        var status = ConfigProposalStatus.fromSlice(\n            existing.loadValue(),\n            { throwIfOpcodeDoesNotMatch: ERROR_INVALID_PROPOSAL_STATUS },\n        );\n\n        if (status.isCritical != msg.critical) {\n            return ERROR_TAG_CANNOT_DOWNGRADE_CRITICALITY;\n        }\n        if (status.expires >= expireAt) {\n            return ERROR_TAG_PROPOSAL_ALREADY_EXISTS;\n        }\n\n        price = pricePerSecond * (expireAt - status.expires + PROPOSAL_EXTENSION_GRACE_PERIOD);\n\n        if (msgValue - price < MIN_INTERNAL_MESSAGE_VALUE) {\n            return ERROR_TAG_NOT_ENOUGH_FUNDS;\n        }\n\n        status.expires = expireAt;\n        voteDict.set(proposalHash, status.toCell().beginParse());\n\n        storage.voteDict = voteDict;\n        storage.save();\n\n        return price;\n    }\n\n    if (msgValue - price < MIN_INTERNAL_MESSAGE_VALUE) {\n        return ERROR_TAG_NOT_ENOUGH_FUNDS;\n    }\n\n    val currentValidatorSet = getCurrentValidatorSetMeta();\n\n    val weightRemaining = mulDivFloor(\n        currentValidatorSet.totalWeight,\n        VOTE_WEIGHT_THRESHOLD_NUMERATOR,\n        VOTE_WEIGHT_THRESHOLD_DENOMINATOR,\n    );\n\n    voteDict.set(\n        proposalHash,\n        ConfigProposalStatus {\n            expires: expireAt,\n            proposal: msg.proposal,\n            isCritical: msg.critical,\n            voters: [],\n            remainingWeight: weightRemaining,\n            validatorSetId: currentValidatorSet.validatorSetId,\n            roundsRemaining: voteCfg.maxTotalRounds,\n            wins: 0,\n            losses: 0,\n        }.toCell()\n            .beginParse(),\n    );\n\n    storage.voteDict = voteDict;\n    storage.save();\n\n    return price;\n}\n"
+    },
+    {
+      "filename": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/errors.tolk",
+      "contents": "const ERROR_INVALID_VALIDATOR_SET = 9\nconst ERROR_UNKNOWN_ACTION = 32\nconst ERROR_BAD_SEQNO = 33\nconst ERROR_INVALID_SIGNATURE = 34\nconst ERROR_VALID_UNTIL_EXPIRED = 35\nconst ERROR_INVALID_MESSAGE = 37\nconst ERROR_EXTERNAL_BODY_TOO_DEEP = 39\nconst ERROR_WRONG_CURRENT_VSET = 40\nconst ERROR_WRONG_VALIDATOR_DESCRIPTION = 41\nconst ERROR_INVALID_PROPOSAL_STATUS = 44\n\nconst ERROR_EMPTY_CONFIG_DICT = 1000\n\nconst ERROR_TAG_CUSTOM_SLOT_VOTING_REJECTED = -0xc3726956\nconst ERROR_TAG_BAD_CURRENT_VALUE_HASH = -0xe2646356\nconst ERROR_TAG_MANDATORY_PARAM_CANNOT_BE_NULL = -0xcd506e6c\nconst ERROR_TAG_BAD_VALUE = -0xc2616456\nconst ERROR_TAG_CRITICAL_FLAG_REQUIRED = -0xc3726954\nconst ERROR_TAG_CANNOT_DOWNGRADE_CRITICALITY = -0xc3726955\nconst ERROR_TAG_PROPOSAL_ALREADY_EXISTS = -0xc16c7245\nconst ERROR_TAG_PROPOSAL_EXPIRED = -0xc5787069\nconst ERROR_TAG_NOT_ENOUGH_FUNDS = -0xf0617924\n"
+    },
+    {
+      "filename": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/messages.tolk",
+      "contents": "import \"storage\"\n\nconst OP_SET_CUSTOM_PARAM = 0x6e43536c\nconst OP_SET_NEXT_VALIDATOR_SET = 0x4e565354\nconst OP_NEW_VOTING_PROPOSAL = 0x6e565052\nconst OP_VOTE_FOR_PROPOSAL = 0x566f7465\n\nconst OP_VALIDATOR_SET_EXT = 0x12\nconst OP_ED25519_PUBKEY = 0x8e81278a\n\nconst TAG_SET_NEXT_VALIDATORS_ACCEPTED = 0xee764f4b\nconst TAG_SET_NEXT_VALIDATORS_REJECTED = 0xee764f6f\nconst TAG_SET_CUSTOM_PARAM_ACCEPTED = 0xef764f4b\nconst TAG_SET_CUSTOM_PARAM_REJECTED = 0xef764f6f\nconst TAG_NEW_VOTING_CREATED = 0xee565052\nconst TAG_VOTE_PROCESSED_BASE = 0xd6745240\n\nconst CONFIG_PARAM_ELECTOR_ADDRESS = 1\nconst CONFIG_PARAM_MANDATORY_PARAMS = 9\nconst CONFIG_PARAM_CRITICAL_PARAMS = 10\nconst CONFIG_PARAM_VOTING_SETUP = 11\nconst CONFIG_PARAM_PREVIOUS_VALIDATOR_SET = 32\nconst CONFIG_PARAM_CURRENT_VALIDATOR_SET = 34\nconst CONFIG_PARAM_NEXT_VALIDATOR_SET = 36\n\nconst PROPOSAL_EXTENSION_GRACE_PERIOD = 16384\nconst PROPOSAL_BITS_OVERHEAD = 1024\nconst PROPOSAL_REFS_OVERHEAD = 2\n\nconst VOTE_WEIGHT_THRESHOLD_NUMERATOR = 3\nconst VOTE_WEIGHT_THRESHOLD_DENOMINATOR = 4\n\nconst MIN_INTERNAL_MESSAGE_VALUE = 1 << 30\nconst INTERNAL_QUERY_HIGH_BIT = 1 << 31\nconst EXTERNAL_SEQNO_MODULO = 1 << 32\n\nstruct (0xf3) ConfigProposal {\n    paramId: int32\n    paramValue: cell?\n    ifHashEqual: uint256?\n}\n\nstruct (0x4e565354) SetNextValidatorSetRequest {\n    queryId: uint64\n    vset: cell\n}\n\nstruct (0x6e43536c) SetCustomParamRequest {\n    queryId: uint64\n    paramId: int32\n    receiverAddress: address\n    value: cell\n}\n\nstruct (0x6e565052) NewVotingProposalRequest {\n    queryId: uint64\n    expireAt: uint32\n    critical: bool\n    proposal: Cell<ConfigProposal>\n}\n\nstruct (0x566f7445) SignedVotePayload {\n    validatorIndex: uint16\n    proposalHash: uint256\n}\n\nstruct (0x566f7465) VoteForProposalRequest {\n    queryId: uint64\n    signature: bits512\n    signedVoteBody: RemainingBitsAndRefs\n}\n\nfun VoteForProposalRequest.loadSignedVotePayload(self, throwCode: int): SignedVotePayload {\n    return SignedVotePayload.fromSlice(\n        self.signedVoteBody,\n        { throwIfOpcodeDoesNotMatch: throwCode },\n    );\n}\n\nstruct ExternalSignedMessage {\n    signature: bits512\n    action: ExternalVoteAction\n}\n\nstruct (0x566f7465) ExternalVoteAction {\n    msgSeqno: uint32\n    validUntil: uint32\n    validatorIndex: uint16\n    proposalHash: uint256\n}\n\nstruct (0x36) ConfigProposalSetup {\n    minTotalRounds: uint8\n    maxTotalRounds: uint8\n    minWins: uint8\n    maxLosses: uint8\n    minStoreSec: uint32\n    maxStoreSec: uint32\n    bitPrice: uint32\n    cellPrice: uint32\n}\n\nstruct (0x36) ConfigProposalRoundRules {\n    minTotalRounds: uint8\n    maxTotalRounds: uint8\n    minWins: uint8\n    maxLosses: uint8\n    remaining: RemainingBitsAndRefs\n}\n\nfun ConfigProposalSetup.calculateStoragePrice(self, seconds: int, bits: int, refs: int): int {\n    return (self.bitPrice * (bits + PROPOSAL_BITS_OVERHEAD) +\n    self.cellPrice * (refs + PROPOSAL_REFS_OVERHEAD)) *\n    seconds;\n}\n\nstruct (0x91) ConfigVotingSetup {\n    normalParams: Cell<ConfigProposalSetup>\n    criticalParams: Cell<ConfigProposalSetup>\n}\n\nfun ConfigVotingSetup.selectProposalSetup(self, isCritical: bool): ConfigProposalSetup {\n    return isCritical ? self.criticalParams.load() : self.normalParams.load();\n}\n\nstruct (0xce) ConfigProposalStatus {\n    expires: uint32\n    proposal: Cell<ConfigProposal>\n    isCritical: bool\n    voters: VotersDict\n    remainingWeight: int64\n    validatorSetId: uint256\n    roundsRemaining: uint8\n    wins: uint8\n    losses: uint8\n}\n\nstruct (0x12) ValidatorSetExt {\n    utimeSince: uint32\n    utimeUntil: uint32\n    total: uint16\n    main: uint16\n    totalWeight: uint64\n    validators: dict\n}\n\nstruct (0x12) ValidatorSetMeta {\n    utimeSince: uint32\n    utimeUntil: uint32\n    total: uint16\n    main: uint16\n    totalWeight: uint64\n    remaining: RemainingBitsAndRefs\n}\n\nstruct (0x53) ValidatorDescrSimple {\n    pubkeyTag: uint32\n    publicKey: uint256\n    weight: uint64\n}\n\nstruct (0x73) ValidatorDescrWithAdnl {\n    pubkeyTag: uint32\n    publicKey: uint256\n    weight: uint64\n    adnlAddress: uint256\n}\n\ntype ValidatorDescr = ValidatorDescrSimple | ValidatorDescrWithAdnl\n\nstruct (0x4e436f64) ElectorCodeChangeAction {\n    queryId: uint64\n    payload: RemainingBitsAndRefs\n}\n\nstruct AnswerBody {\n    ansTag: uint32\n    queryId: uint64\n}\n"
+    },
+    {
+      "filename": "tmp/7466471e-c8b9-4fba-a1e2-d37ba094bb1f/config/contracts/storage.tolk",
+      "contents": "const CUSTOM_PARAM_1 = -1024\nconst CUSTOM_PARAM_2 = -1025\n\nconst ADMIN_ADDRESS_FOR_CUSTOM_PARAMS = address(\"EQA_o6NFLu73wozeYNERTsW8lkU5OarbRbIkoNuWdy5SPDA_\")\n\ntype ConfigDict = map<int32, cell>\n\ntype VoteDict = map<uint256, slice>\n\ntype VotersDict = map<uint16, uint32>\n\nfun ConfigDict.getById(self, index: int32): cell? {\n    val lookup = self.get(index);\n\n    if (!lookup.isFound) {\n        return null;\n    }\n\n    return lookup.loadValue();\n}\n\nfun ConfigDict.setById(mutate self, index: int32, value: cell) {\n    self.set(index, value);\n}\n\nfun ConfigDict.setByIdAndGetPrevious(mutate self, index: int32, value: cell): cell? {\n    val previous = self.setAndGetPrevious(index, value);\n\n    if (!previous.isFound) {\n        return null;\n    }\n\n    return previous.loadValue();\n}\n\nfun ConfigDict.deleteById(mutate self, index: int32) {\n    self.delete(index);\n}\n\nfun ConfigDict.packToBuilder(self, mutate b: builder) {\n    val dictRoot = self.toLowLevelDict();\n    b.storeRef(dictRoot!);\n}\n\nfun ConfigDict.unpackFromSlice(mutate s: slice): ConfigDict {\n    return createMapFromLowLevelDict(s.loadRef());\n}\n\nstruct Storage {\n    config: ConfigDict\n    storedSeqno: uint32\n    publicKey: uint256\n    voteDict: VoteDict\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun Storage.setConfigParam(index: int, value: cell) {\n    var storage = lazy Storage.load();\n\n    storage.config.setById(index, value);\n    storage.save();\n}\n"
+    }
+  ]
+}

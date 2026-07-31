@@ -1,0 +1,2167 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Order.tolk, types.tolk\nPROGRAM{\n  DECLPROC sendReferralHalf()\n  0 DECLMETHOD onInternalMessage()\n  120887 DECLMETHOD orderData()\n  101642 DECLMETHOD status()\n  // 7 functions inlined in-place:\n  // - OrderStorage.load (3 calls)\n  // - OrderStorage.save (5 calls)\n  // - onBouncedMessage (0 calls)\n  // - emitEvent<OrderAccepted> (1 call)\n  // - emitEvent<OrderCompleted> (1 call)\n  // - emitEvent<OrderExpired> (1 call)\n  // - emitEvent<OrderCancelled> (1 call)\n  // - emitEvent<OrderReopened> (1 call)\n  sendReferralHalf() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    OVER\n    ISNULL\n    IFNOT:<{\n      1 RSHIFT#\n      DUP\n      0 GTINT\n      IFJMP:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        OVER\n        STGRAMS\n        0 PUSHINT\n        107 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        RETALT\n      }>\n      2DROP\n    }>ELSE<{\n      2DROP\n    }>\n    0 PUSHINT\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDOPTSTDADDR\n    LDREF\n    LDREF\n    LDREF\n    LDGRAMS\n    8 LDU\n    OVER\n    4 GTINT\n    5 THROWIF\n    96 LDSLICE\n    32 LDU\n    PLDREF\n    s0 s10 XCHG\n    x{a00a0001} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      s7 POP\n      s9 POP\n      100 THROWIF\n      INMSG_VALUE\n      100000000 PUSHINT\n      GEQ\n      103 THROWIFNOT\n      INMSG_SRC\n      NOW\n      s0 s8 XCHG\n      CTOS\n      LDSTDADDR\n      LDREF\n      LDREF\n      NIP\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      s0 s9 XCHG\n      PLDREF\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s1 s2 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      256 STU\n      s1 s6 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s6 XCHG\n      NEWC\n      STSTDADDR\n      s1 s5 XCHG\n      STOPTSTDADDR\n      s1 s3 XCHG\n      STREF\n      STREF\n      STREF\n      SWAP\n      STGRAMS\n      x{01} STSLICECONST\n      s1 s3 XCHG\n      STSLICE\n      32 STU\n      STREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      b{00} PUSHSLICE\n      NEWC\n      x{c} STSLICECONST\n      STSLICE\n      2685010177 PUSHINT\n      130 STUR\n      STSTDADDR\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n    }>\n    x{a00a0002} SDBEGINSQ\n    IFJMP:<{\n      s11 POP\n      s0 s2 XCHG\n      1 EQINT\n      100 THROWIFNOT\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      102 THROWIFNOT\n      s8 PUSH\n      CTOS\n      LDSTDADDR\n      LDREF\n      NIP\n      LDREF\n      NIP\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      s0 s12 XCHG\n      256 PLDU\n      NEWC\n      256 STU\n      HASHBU\n      EQUAL\n      108 THROWIFNOT\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s7 s(-1) PUXC\n      STOPTSTDADDR\n      s1 s6 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      OVER\n      STGRAMS\n      x{02} STSLICECONST\n      s1 s3 XCHG\n      STSLICE\n      32 STU\n      s1 s4 XCHG\n      STREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s(-1) PUXC\n      STSTDADDR\n      s3 PUSH\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n      BALANCE\n      FIRST\n      INMSG_VALUE\n      SUB\n      s3 PUSH\n      SUB\n      s1 s4 XCHG\n      sendReferralHalf() CALLDICT\n      b{00} PUSHSLICE\n      NEWC\n      x{a00a0102} STSLICECONST\n      s1 s5 XCHG\n      STSTDADDR\n      s0 s3 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      ENDC\n      NEWC\n      x{c} STSLICECONST\n      s1 s3 XCHG\n      STSLICE\n      1 PUSHINT\n      98 STUR\n      s1 s2 XCHG\n      STREF\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    x{a00a0004} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s10 POP\n      SWAP\n      1 EQINT\n      100 THROWIFNOT\n      NOW\n      s9 PUSH\n      1209600 PUSHINT\n      ADD\n      GREATER\n      104 THROWIFNOT\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      101 THROWIFNOT\n      s6 PUSH\n      NEWC\n      STSTDADDR\n      s6 s(-1) PUXC\n      STOPTSTDADDR\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      STREF\n      OVER\n      STGRAMS\n      x{04} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      s1 s5 XCHG\n      32 STU\n      s3 PUSH\n      STREFR\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      s3 PUSH\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n      SWAP\n      CTOS\n      LDSTDADDR\n      LDREF\n      NIP\n      LDREF\n      NIP\n      256 LDU\n      NIP\n      LDOPTSTDADDR\n      ENDS\n      BALANCE\n      FIRST\n      INMSG_VALUE\n      SUB\n      s4 PUSH\n      SUB\n      sendReferralHalf() CALLDICT\n      b{00} PUSHSLICE\n      NEWC\n      x{a00a0104} STSLICECONST\n      s1 s4 XCHG\n      STSTDADDR\n      s0 s4 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      ENDC\n      NEWC\n      x{c} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    x{a00a0003} SDBEGINSQ\n    IFJMP:<{\n      DROP\n      s10 POP\n      SWAP\n      100 THROWIF\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      101 THROWIFNOT\n      INMSG_VALUE\n      300000000 PUSHINT\n      GEQ\n      103 THROWIFNOT\n      s6 PUSH\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      OVER\n      STGRAMS\n      x{03} STSLICECONST\n      s1 s2 XCHG\n      STSLICE\n      s1 s4 XCHG\n      32 STU\n      s2 PUSH\n      STREFR\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      s2 PUSH\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      CTOS\n      LDSTDADDR\n      LDREF\n      NIP\n      LDREF\n      NIP\n      256 LDU\n      NIP\n      LDOPTSTDADDR\n      ENDS\n      BALANCE\n      FIRST\n      s3 PUSH\n      SUB\n      sendReferralHalf() CALLDICT\n      b{00} PUSHSLICE\n      NEWC\n      x{c} STSLICECONST\n      STSLICE\n      2685010179 PUSHINT\n      130 STUR\n      s0 s3 XCHG2\n      STGRAMS\n      ROT\n      STGRAMS\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      160 PUSHINT\n      SENDRAWMSG\n    }>\n    x{a00a0005} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      s10 POP\n      SWAP\n      1 EQINT\n      100 THROWIFNOT\n      INMSG_SRC\n      s1 s6 XCHG\n      SDEQ\n      102 THROWIFNOT\n      NOW\n      s0 s8 XCHG\n      1209600 PUSHINT\n      ADD\n      s1 s8 XCHG\n      LEQ\n      105 THROWIFNOT\n      INMSG_VALUE\n      200000000 PUSHINT\n      GEQ\n      103 THROWIFNOT\n      PUSHNULL\n      s0 s6 XCHG\n      CTOS\n      LDSTDADDR\n      LDREF\n      LDREF\n      NIP\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      <b b> PUSHREF\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      s1 s2 XCHG\n      256 STU\n      STOPTSTDADDR\n      ENDC\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      STOPTSTDADDR\n      s1 s2 XCHG\n      STREF\n      STREF\n      s1 s3 XCHG\n      STREF\n      s0 s3 XCHG2\n      STGRAMS\n      x{00} STSLICECONST\n      STSLICE\n      x{00000000} STSLICECONST\n      STREF\n      ENDC\n      c4 POP\n      INMSG_SRC\n      b{00} PUSHSLICE\n      NEWC\n      x{c} STSLICECONST\n      STSLICE\n      2685010181 PUSHINT\n      130 STUR\n      STSTDADDR\n      ENDC\n      2 PUSHINT\n      SENDRAWMSG\n    }>\n    10 BLKDROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  orderData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDOPTSTDADDR\n    LDREF\n    LDREF\n    LDREF\n    LDGRAMS\n    8 LDU\n    OVER\n    4 GTINT\n    5 THROWIF\n    64 LDU\n    32 LDU\n    32 LDU\n    PLDREF\n  }>\n  status() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDOPTSTDADDR\n    NIP\n    LDGRAMS\n    NIP\n    8 PLDU\n    DUP\n    4 GTINT\n    5 THROWIF\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEwEAA5kAART/APSkE/S88sgLAQIBYgIDAgLPBAUCAVgREgSFPiRkTDgIO1E0PpI+lDU1NT6ANMHIcIE8kXWX9Mf10wK1ywlAFAADOMC1ywlAFAAFOMC1ywlAFAAJOMC1ywlAFAAHIAYHCAkAUztou37IW6RW44dqwAgwgCOFMjPhQgS+lIh+gJwzwtqyXH7ANsx4FvicIADIMTc58tBk+JeCEAX14QC+8uBn+JL4IwjQ+kjU1DHT//pQ0QnXTAPI+lISzBLMy/8W+lTJBsj6UhX6VBPMzMwB+gLPhAYTzssfzMntVPiSiwLIz4cgzoIQoAoBAc8LgfpSyXL7AAH+OwLAAfLgZPiSJ8cF8uBmKND6SNQx1DHT//pQ0QzXC//Iy//5Frry4GwIyPpSUnD6VBbMFMwSzCH6As+EChPOyx8UzMntVMjPhQhSEPpSI/oCcM8LasmAQPsA+CdvEPiXoSOhFPABiwLIz5KAKAQKFfpSUAP6Alj6AsnIz4cgEwoC/DA6AcAB8uBk+CMpgggSdQCgvPLgaPiSJ8cF8uBlJsj6UlJg+lQVzBPMzCH6As+EEhLOFcsfI88Uye1UyM+FCBL6UiP6AnDPC2rJgED7AAHQ+kjUMdQx0/8x+lDR+CdvEPiXoSSh8AGLAsjPkoAoBBIU+lJQBPoCUAP6AsnIiQsMAirjAtcsJQBQACwx4wJfCoQPAccA8vQNDgA2znHPC2ESzMly+wDIz4UI+lJwzwtuyYEAoPsAAAHIADrPFhLOcc8LYczJcvsAyM+FCPpScM8LbsmBAKD7AAH+MDoB8tBk+JInxwXy4GX4l4IQEeGjAL7y4GcmyPpSFvpUFMwSzMwh+gLPhA4SzhTLHyLPFMntVMjPhQj6UiL6AnDPC2rJcfsA0PpI1DHUMdP/MfpQ0fgnbxAjofABiwLIz4cgzoIQoAoBA88LgVAD+gJY+gLJcvsAyM+FCPpScA8B9joBwAHy4GT4khbHBfLgZvgjCIIIEnUAoBi78uBp+JeCEAvrwgC+8uBnbQbQ+kjU1DHT//pQ0YgEyPpSE8wTzBLL//pUyQXI+lIW+lQSzMwTzFAD+gLPhALOz5AAAAACzMntVPiSiwLIz4cgzoIQoAoBBc8LgfpSyXL7ABAAEs8LbsmBAKD7AAAAAC240K7UTQ+kgx+lAx+gAx1wsHIMIE8kWAA7uYN+1E0PpI+lDU1NT6ANMHIcIE8kXTP9Mf0x/XTI",
+  "codeHashHex": "30B07B32AEC089A2079B2E9BE4897917563C8391B4FF7A02E5A94B2CCED2FB73",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/7f501659-fb80-46d6-aec3-b6fb067967e4/contracts/Order.tolk",
+        "size_chars": 18802,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/7f501659-fb80-46d6-aec3-b6fb067967e4/contracts/types.tolk",
+        "size_chars": 11443,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OrderMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptOrder"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmWithCode"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOrder"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimExpired"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CourierRelease"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 2685009921,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 2685009922,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 2685009923,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 2685009924,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 0
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 2685009925,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 0
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderStorage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "OrderStatus"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderExtra"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 33
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          32
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          37,
+          15
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 42,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          46
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderAccepted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          50
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 54,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 55,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 141,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 52,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 53,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 142,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          46
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderCompleted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          59
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderExpired"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          61
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderReopened"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          65
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 27,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          36,
+          45,
+          0
+        ]
+      },
+      {
+        "ty_idx": 51,
+        "struct_name": "CreateExternalLogMessageOptions<OrderAccepted>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          50
+        ]
+      },
+      {
+        "ty_idx": 60,
+        "struct_name": "CreateExternalLogMessageOptions<OrderCompleted>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          59
+        ]
+      },
+      {
+        "ty_idx": 62,
+        "struct_name": "CreateExternalLogMessageOptions<OrderExpired>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          61
+        ]
+      },
+      {
+        "ty_idx": 64,
+        "struct_name": "CreateExternalLogMessageOptions<OrderCancelled>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          63
+        ]
+      },
+      {
+        "ty_idx": 66,
+        "struct_name": "CreateExternalLogMessageOptions<OrderReopened>",
+        "monomorphic_fields_ty_idx": [
+          57,
+          65
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 49,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 34
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 43
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 37
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 41
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 29,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 47,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 31
+          },
+          {
+            "name": "value",
+            "ty_idx": 36
+          },
+          {
+            "name": "dest",
+            "ty_idx": 45
+          },
+          {
+            "name": "body",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 57
+          },
+          {
+            "name": "body",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "OrderStatus",
+        "ty_idx": 22,
+        "ident_loc": [
+          2,
+          4,
+          6,
+          4,
+          17
+        ],
+        "encoded_as_ty_idx": 23,
+        "members": [
+          {
+            "name": "Open",
+            "value": "0"
+          },
+          {
+            "name": "Accepted",
+            "value": "1"
+          },
+          {
+            "name": "Completed",
+            "value": "2"
+          },
+          {
+            "name": "Cancelled",
+            "value": "3"
+          },
+          {
+            "name": "Expired",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderExtra",
+        "ty_idx": 24,
+        "ident_loc": [
+          2,
+          32,
+          8,
+          32,
+          18
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "senderContact",
+            "ty_idx": 3
+          },
+          {
+            "name": "courierContact",
+            "ty_idx": 3
+          },
+          {
+            "name": "secretHash",
+            "ty_idx": 15
+          },
+          {
+            "name": "referral",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderStorage",
+        "ty_idx": 20,
+        "ident_loc": [
+          2,
+          75,
+          8,
+          75,
+          20
+        ],
+        "fields": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "courier",
+            "ty_idx": 21
+          },
+          {
+            "name": "description",
+            "ty_idx": 3
+          },
+          {
+            "name": "area",
+            "ty_idx": 3
+          },
+          {
+            "name": "origin",
+            "ty_idx": 3
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "status",
+            "ty_idx": 22
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "acceptedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "extra",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptOrder",
+        "ty_idx": 13,
+        "ident_loc": [
+          2,
+          101,
+          21,
+          101,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 2685009921,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courierContact",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmWithCode",
+        "ty_idx": 14,
+        "ident_loc": [
+          2,
+          108,
+          21,
+          108,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 2685009922,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "secret",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOrder",
+        "ty_idx": 16,
+        "ident_loc": [
+          2,
+          112,
+          21,
+          112,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 2685009923,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimExpired",
+        "ty_idx": 17,
+        "ident_loc": [
+          2,
+          114,
+          21,
+          114,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 2685009924,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "CourierRelease",
+        "ty_idx": 18,
+        "ident_loc": [
+          2,
+          123,
+          21,
+          123,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 2685009925,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "alias",
+        "name": "OrderMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          2,
+          125,
+          6,
+          125,
+          18
+        ],
+        "target_ty_idx": 19
+      },
+      {
+        "kind": "struct",
+        "name": "OrderAccepted",
+        "ty_idx": 50,
+        "ident_loc": [
+          2,
+          162,
+          21,
+          162,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 2685010177,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderCompleted",
+        "ty_idx": 59,
+        "ident_loc": [
+          2,
+          170,
+          21,
+          170,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 2685010178,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderCancelled",
+        "ty_idx": 63,
+        "ident_loc": [
+          2,
+          178,
+          21,
+          178,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 2685010179,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderExpired",
+        "ty_idx": 61,
+        "ident_loc": [
+          2,
+          185,
+          21,
+          185,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 2685010180,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderReopened",
+        "ty_idx": 65,
+        "ident_loc": [
+          2,
+          193,
+          21,
+          193,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 2685010181,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "sendReferralHalf",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          41,
+          5,
+          41,
+          21
+        ],
+        "end_loc": [
+          1,
+          55,
+          1,
+          55,
+          2
+        ],
+        "params": [
+          {
+            "name": "referral",
+            "ty_idx": 21
+          },
+          {
+            "name": "pool",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "createMessage<void>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          82,
+          5,
+          82,
+          22
+        ],
+        "end_loc": [
+          1,
+          312,
+          1,
+          312,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          314,
+          5,
+          314,
+          21
+        ],
+        "end_loc": [
+          1,
+          314,
+          46,
+          314,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Cell<OrderExtra>.load",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "options",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "OrderExtra.toCell",
+        "return_ty_idx": 25,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "options",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "OrderStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          97,
+          18,
+          97,
+          22
+        ],
+        "end_loc": [
+          2,
+          99,
+          1,
+          99,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "emitEvent<OrderAccepted>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          202,
+          5,
+          202,
+          14
+        ],
+        "end_loc": [
+          2,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": [
+          {
+            "name": "event",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "createExternalLogMessage<OrderAccepted>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "emitEvent<OrderCompleted>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          202,
+          5,
+          202,
+          14
+        ],
+        "end_loc": [
+          2,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": [
+          {
+            "name": "event",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "createExternalLogMessage<OrderCompleted>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 60
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "emitEvent<OrderExpired>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          202,
+          5,
+          202,
+          14
+        ],
+        "end_loc": [
+          2,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": [
+          {
+            "name": "event",
+            "ty_idx": 61
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createExternalLogMessage<OrderExpired>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "emitEvent<OrderCancelled>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          202,
+          5,
+          202,
+          14
+        ],
+        "end_loc": [
+          2,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": [
+          {
+            "name": "event",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "createExternalLogMessage<OrderCancelled>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "emitEvent<OrderReopened>",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          202,
+          5,
+          202,
+          14
+        ],
+        "end_loc": [
+          2,
+          208,
+          1,
+          208,
+          2
+        ],
+        "params": [
+          {
+            "name": "event",
+            "ty_idx": 65
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "createExternalLogMessage<OrderReopened>",
+        "return_ty_idx": 26,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 66
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "orderData",
+        "return_ty_idx": 20,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          316,
+          9,
+          316,
+          18
+        ],
+        "end_loc": [
+          1,
+          319,
+          1,
+          319,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "status",
+        "return_ty_idx": 22,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          321,
+          9,
+          321,
+          15
+        ],
+        "end_loc": [
+          1,
+          324,
+          1,
+          324,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Order",
+    "author": "SwiftDelivery",
+    "version": "1.20.0",
+    "description": "A single delivery order with escrow",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptOrder"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ConfirmWithCode"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOrder"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimExpired"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CourierRelease"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderStorage"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "OrderStatus"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderExtra"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderAccepted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderCompleted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderExpired"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderReopened"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "enum",
+        "name": "OrderStatus",
+        "ty_idx": 20,
+        "encoded_as_ty_idx": 21,
+        "members": [
+          {
+            "name": "Open",
+            "value": "0"
+          },
+          {
+            "name": "Accepted",
+            "value": "1"
+          },
+          {
+            "name": "Completed",
+            "value": "2"
+          },
+          {
+            "name": "Cancelled",
+            "value": "3"
+          },
+          {
+            "name": "Expired",
+            "value": "4"
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderExtra",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "senderContact",
+            "ty_idx": 3
+          },
+          {
+            "name": "courierContact",
+            "ty_idx": 3
+          },
+          {
+            "name": "secretHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "referral",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderStorage",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "courier",
+            "ty_idx": 19
+          },
+          {
+            "name": "description",
+            "ty_idx": 3
+          },
+          {
+            "name": "area",
+            "ty_idx": 3
+          },
+          {
+            "name": "origin",
+            "ty_idx": 3
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "status",
+            "ty_idx": 20
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "acceptedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "extra",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptOrder",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2685009921,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courierContact",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ConfirmWithCode",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 2685009922,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "secret",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOrder",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 2685009923,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimExpired",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 2685009924,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "CourierRelease",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 2685009925,
+          "prefix_len": 32
+        },
+        "fields": []
+      },
+      {
+        "kind": "struct",
+        "name": "OrderAccepted",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 2685010177,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderCompleted",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 2685010178,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderCancelled",
+        "ty_idx": 27,
+        "prefix": {
+          "prefix_num": 2685010179,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderExpired",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 2685010180,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          },
+          {
+            "name": "reward",
+            "ty_idx": 6
+          },
+          {
+            "name": "referralPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderReopened",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 2685010181,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "courier",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 18
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 17
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [
+      {
+        "body_ty_idx": 24
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 27
+      },
+      {
+        "body_ty_idx": 28
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 120887,
+        "name": "orderData",
+        "parameters": [],
+        "return_ty_idx": 18
+      },
+      {
+        "tvm_method_id": 101642,
+        "name": "status",
+        "parameters": [],
+        "return_ty_idx": 20
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.WrongStatus",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.NotSender",
+        "err_code": 101
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.NotCourier",
+        "err_code": 102
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.FeeTooLow",
+        "err_code": 103
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.NotExpired",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.DeadlinePassed",
+        "err_code": 105
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.BadCode",
+        "err_code": 108
+      },
+      {
+        "kind": "enum_member",
+        "name": "OrderErrors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/7f501659-fb80-46d6-aec3-b6fb067967e4/contracts/Order.tolk",
+      "contents": "import \"types\"\n\n// How long a courier has to deliver, counted from the moment they accept.\n// Production value for mainnet: 14 days.\nconst DEADLINE = 14 * 24 * 60 * 60 // 14 days, in seconds\n\n// Lowest value a courier must attach to accept: a flat 0.1 TON service fee\n// (from the UI) that stays on the contract and is NEVER refunded.\n// Together with the 0.1 TON the sender added\n// at create time it makes up the ~0.2 TON the platform keeps on a simple\n// completed order. All such fees accumulate on the contract balance and are paid\n// out to the owner only when the order reaches a terminal state. This floor also\n// rejects grossly under-funded direct callers that bypass the UI.\nconst MIN_ACCEPT_FEE = ton(\"0.1\")\n\n// Extra service fee the sender pays to CANCEL an order they created while it is\n// still Open. It is on top of the 0.1 TON create fee they already paid: the\n// create fee stays with the platform and this 0.3 is added, so a cancel earns the\n// platform ~0.4 TON in total. The reward is always returned to the sender in full.\nconst CANCEL_FEE = ton(\"0.3\")\n\n// Extra service fee the courier pays to RELEASE (give up) an order they already\n// accepted. It is on top of the 0.1 TON accept fee they already paid (which is\n// NOT refunded). Both stay on the contract balance — nothing is sent out on a\n// release — so the platform's eventual earnings grow by ~0.3 TON, collected when\n// the order finally settles. The reward and the sender's create fee also stay on\n// the contract for the next courier (the order reopens, it does not close).\nconst RELEASE_FEE = ton(\"0.2\")\n\n// Pay the referral chat HALF of the fee pool, if a referral is set. Called on\n// every terminal path right after the reward leaves and right before the owner\n// sweep (mode 128+32), so the owner naturally receives the other half minus the\n// network fees — the platform carries the gas, the chat gets a clean 50%.\n// `pool` is computed by the caller (the formula differs per send mode of the\n// reward, see each call site). The guard `half > 0` is defensive: the pool is\n// always >= ~0.2 (create fee + at least one accept/cancel fee) on every real\n// path. NoBounce because the chat's wallet may never have been deployed and the\n// order self-destructs in this same transaction, so a bounce could not return.\n// Returns the amount actually sent to the chat (0 when no referral is set) so\n// the terminal event can record the exact referral payout.\nfun sendReferralHalf(referral: address?, pool: coins): coins {\n    if (referral != null) {\n        val half = pool / 2;\n        if (half > 0) {\n            val pay = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: half,\n                dest: referral!,\n            });\n            pay.send(SEND_MODE_PAY_FEES_SEPARATELY);\n            return half;\n        }\n    }\n    return 0;\n}\n\n// One delivery order: an escrow plus a small state machine.\n//   Open --AcceptOrder(courier, +0.1 fee)--> Accepted\n//        --ConfirmWithCode(the courier only, +0.05 gas)--> Completed  (reward + courier's change in ONE transfer, ~0.2 buffer -> owner, self-destruct)\n//        --ClaimExpired(sender, after deadline)--> Expired  (reward + sender's change in ONE transfer, ~0.2 buffer -> owner, courier gets nothing, self-destruct)\n//        --CourierRelease(courier, +0.2 fee, BEFORE deadline only)--> Open  (order reopens; accept fee + release fee accumulate in contract; owner paid at terminal state only; courier gets nothing back. After the deadline this is rejected — the courier has no actions left.)\n//   Open --CancelOrder(sender, +0.3 fee)--> Cancelled       (reward -> sender; the create fee is kept and the 0.3 cancel fee is added, so ~0.4 -> owner, self-destruct)\n//\n// Delivery is confirmed by a CODE, not a button: the sender's app picks a 256-bit\n// secret at create time and puts only its hash on-chain (secretHash). The courier\n// learns the secret from the sender at hand-off (a QR code) and reveals it with\n// ConfirmWithCode; the reward is paid only when hash(secret) == secretHash AND the\n// caller is the courier who accepted the order. So the courier is paid ONLY with\n// the sender's code, and only the courier can trigger that payment — there is no\n// sender \"confirm\" button\n// to stall, and a courier with no code cannot be paid (the order expires to the\n// sender). The contract checks an objective math fact (the hash), so neither side's\n// word matters and no arbiter is needed.\ncontract Order {\n    author: \"SwiftDelivery\"\n    version: \"1.20.0\"\n    description: \"A single delivery order with escrow\"\n    storage: OrderStorage\n    incomingMessages: OrderMessage\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy OrderMessage.fromSlice(in.body);\n    var s = lazy OrderStorage.load();\n\n    match (msg) {\n        AcceptOrder => {\n            assert (s.status == OrderStatus.Open) throw OrderErrors.WrongStatus;\n            // The courier attaches a flat 0.1 TON service fee (from the UI),\n            // which stays on the contract and is NOT refunded — it becomes\n            // part of the platform's ~0.2 TON earnings.\n            assert (in.valueCoins >= MIN_ACCEPT_FEE) throw OrderErrors.FeeTooLow;\n            s.courier = in.senderAddress;\n            s.status = OrderStatus.Accepted;\n            s.acceptedAt = blockchain.now() as uint32; // start the delivery clock\n            // courierContact lives in the referenced extra cell: load it, set\n            // the courier's contact, and re-pack the ref.\n            var extra = s.extra.load();\n            extra.courierContact = msg.courierContact;\n            s.extra = extra.toCell();\n            s.save();\n            emitEvent(OrderAccepted { courier: in.senderAddress });\n        }\n        ConfirmWithCode => {\n            assert (s.status == OrderStatus.Accepted) throw OrderErrors.WrongStatus;\n            // Only the courier who accepted this order may confirm it. The secret\n            // is the delivery proof, but binding the call to s.courier matches the\n            // real hand-off (only the courier scans the sender's QR) and closes the\n            // gap where ANYONE who learned a leaked secret could force settlement\n            // before delivery. status Accepted guarantees courier is set, so `!` is\n            // safe. It also means the single payee is the courier, which lets the\n            // reward and the courier's gas change merge into ONE transfer below.\n            assert (s.courier! == in.senderAddress) throw OrderErrors.NotCourier;\n            // Delivery proof: the hash of the revealed secret must match the one\n            // fixed at create time. hash(secret) is the representation hash of a\n            // cell holding the 256-bit secret, which the frontend reproduces with\n            // @ton/core (round-trip covered by a test). The preimage becomes public\n            // here, but the order turns terminal in the same transaction, so a\n            // replay is impossible.\n            val extra = s.extra.load();\n            val h = beginCell().storeUint(msg.secret, 256).endCell().hash();\n            assert (h == extra.secretHash) throw OrderErrors.BadCode;\n            s.status = OrderStatus.Completed;\n            s.save();\n            // 1. The reward (the sender's escrow) goes to the courier in ONE\n            //    message. Because the caller is now guaranteed to BE the courier,\n            //    the reward and the courier's gas change go to the same wallet, so\n            //    they merge: value = the reward, and mode 64 carries the unused part\n            //    of THIS message's value (the ~0.05 gas change) on top. The courier\n            //    receives the full reward plus most of their gas back, paying only\n            //    the tx fee — the same merge ClaimExpired/CancelOrder use, no\n            //    two-messages-to-one-wallet. The ~0.2 buffer stays on the balance.\n            val pay = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: s.reward,\n                dest: s.courier!,\n            });\n            pay.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n            // 2. Referral: half of the fee pool goes to the chat whose link\n            //    brought this order. The pool is what remains after the reward\n            //    leaves: getOriginalBalance() already includes this message's\n            //    value, and mode 64 above carries both the reward and that value\n            //    away, so pool = balance - incoming - reward. NoBounce: the ref\n            //    wallet may not be deployed, and the contract self-destructs in\n            //    this same transaction — a bounce would be lost anyway. Fees come\n            //    from the balance (mode 1), i.e. out of the owner's half.\n            val referralPayout = sendReferralHalf(extra.referral,\n                contract.getOriginalBalance() - in.valueCoins - s.reward);\n            // 3. Log the completion (before the sweep below drains the balance\n            //    that pays the emit's forward fee).\n            emitEvent(OrderCompleted {\n                courier: s.courier!,\n                reward: s.reward,\n                referralPayout,\n            });\n            // 4. Everything left over (the owner's half of the fee pool, minus\n            //    gas) is the platform's earnings; send it to the owner and\n            //    self-destruct.\n            val fee = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: 0 as coins,\n                dest: extra.owner,\n            });\n            // SAFETY: terminal state. The reward already left for the courier above;\n            // only the fee buffer remains, which is the platform's earnings.\n            // Draining it and destroying the contract is the intended end of a\n            // completed order.\n            fee.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_DESTROY);\n        }\n        ClaimExpired => {\n            // After the deadline the order can be unwound — a TON contract cannot\n            // fire on a timer by itself, so the app shows the sender a \"Claim\"\n            // button. Only the SENDER may claim: the reward returns to them and no\n            // one else has any reason to trigger this. Restricting it to the sender\n            // also means there is a single payee, so the reward and the sender's\n            // gas change merge into ONE transfer (no double payment to one wallet).\n            assert (s.status == OrderStatus.Accepted) throw OrderErrors.WrongStatus;\n            assert (blockchain.now() > s.acceptedAt + DEADLINE) throw OrderErrors.NotExpired;\n            assert (s.sender == in.senderAddress) throw OrderErrors.NotSender;\n            s.status = OrderStatus.Expired;\n            s.save();\n            // The courier did not deliver in time, so they get nothing. The reward\n            // returns to the sender in ONE message: value = the reward, and mode 64\n            // carries the unused part of THIS message's value (the sender's change\n            // from the ~0.05 gas they attached) on top. So the sender receives\n            // reward + change as a single transfer and pays only the tx fee — the\n            // same merge CancelOrder uses, no two-messages-to-one-wallet problem.\n            val refund = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: s.reward,\n                dest: s.sender,\n            });\n            refund.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n            val extra = s.extra.load();\n            // Referral: half of the fee pool to the chat. Same formula as\n            // ConfirmWithCode — the refund above is mode 64, so it carries the\n            // reward plus this message's value away (see the comment there).\n            val referralPayout = sendReferralHalf(extra.referral,\n                contract.getOriginalBalance() - in.valueCoins - s.reward);\n            // Log the expiry (before the sweep below drains the balance that\n            // pays the emit's forward fee). status Accepted guaranteed courier\n            // was set, so `!` is safe: this names who failed to deliver.\n            emitEvent(OrderExpired {\n                courier: s.courier!,\n                reward: s.reward,\n                referralPayout,\n            });\n            // The rest of the buffer (the owner's half of the accumulated\n            // service fees) goes to the platform owner; contract self-destructs.\n            val fee = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: 0 as coins,\n                dest: extra.owner,\n            });\n            // SAFETY: terminal state. The reward already left for the sender and\n            // the caller's change was returned above; the rest (the fee buffer)\n            // belongs to the platform. Draining it and destroying the contract\n            // ends an expired order.\n            fee.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_DESTROY);\n        }\n        CancelOrder => {\n            assert (s.status == OrderStatus.Open) throw OrderErrors.WrongStatus;\n            assert (s.sender == in.senderAddress) throw OrderErrors.NotSender;\n            // Cancelling costs a flat 0.3 TON service fee, on top of the 0.1 TON\n            // the sender already paid at create time. Reject a caller who did not\n            // attach it so the platform always earns the cancel fee (and a direct\n            // caller cannot cancel for free, bypassing the UI).\n            assert (in.valueCoins >= CANCEL_FEE) throw OrderErrors.FeeTooLow;\n            s.status = OrderStatus.Cancelled;\n            s.save();\n            // 1. Return the reward to the sender — EXACTLY the reward, with the\n            //    forwarding fee taken from the contract balance (PAY_FEES_SEPARATELY).\n            //    We do NOT carry the message value back this time: the 0.3 TON the\n            //    sender attached is the cancel fee and must stay for the platform,\n            //    so it is not refunded as change.\n            val refund = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: s.reward,\n                dest: s.sender,\n            });\n            refund.send(SEND_MODE_PAY_FEES_SEPARATELY);\n            val extra = s.extra.load();\n            // 2. Referral: half of the fee pool to the chat. Unlike the mode-64\n            //    finals, the refund above sends EXACTLY the reward and the\n            //    incoming cancel fee stays on the balance (it is part of the\n            //    pool), so pool = balance - reward. getOriginalBalance() already\n            //    includes this message's value.\n            val referralPayout = sendReferralHalf(extra.referral,\n                contract.getOriginalBalance() - s.reward);\n            // 3. Log the cancellation (before the sweep below drains the\n            //    balance that pays the emit's forward fee).\n            emitEvent(OrderCancelled {\n                reward: s.reward,\n                referralPayout,\n            });\n            // 4. Everything left over goes to the platform owner and the contract\n            //    self-destructs. That leftover is the owner's half of the fee\n            //    pool: the 0.1 TON create fee the order already held plus the\n            //    0.3 TON cancel fee just attached (minus the referral's half\n            //    when a chat is set).\n            val fee = createMessage({\n                bounce: BounceMode.NoBounce,\n                value: 0 as coins,\n                dest: extra.owner,\n            });\n            // SAFETY: terminal state. The reward already left above; the rest is the\n            // platform's cancellation fee (create fee + cancel fee). Draining it and\n            // destroying the contract is the intended cancel path.\n            fee.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_DESTROY);\n        }\n        CourierRelease => {\n            // Only the courier who accepted this order may give it up, and only\n            // while it is still Accepted (not yet delivered or expired).\n            assert (s.status == OrderStatus.Accepted) throw OrderErrors.WrongStatus;\n            // status Accepted guarantees courier is set, so `!` is safe here.\n            assert (s.courier! == in.senderAddress) throw OrderErrors.NotCourier;\n            // A courier may give up ONLY before the deadline. Once the delivery\n            // window has passed there is no point reopening an order that is two\n            // weeks (or more) stale — a new courier has nothing left to deliver — so after\n            // the deadline the courier cannot release, and the order is settled by\n            // ClaimExpired (the sender) or ConfirmWithCode (the courier). This guard\n            // is the exact mirror of ClaimExpired's `now > acceptedAt + DEADLINE`:\n            // up to and including the deadline only release is possible; strictly\n            // after it only claim is, so the two can never race.\n            assert (blockchain.now() <= s.acceptedAt + DEADLINE) throw OrderErrors.DeadlinePassed;\n            // Giving up an accepted order costs a flat 0.2 TON service fee, on\n            // top of the 0.1 TON accept fee the courier already paid (which is\n            // NOT refunded). Reject a caller who did not attach it.\n            assert (in.valueCoins >= RELEASE_FEE) throw OrderErrors.FeeTooLow;\n            // The order does NOT close — it reopens so another courier can take\n            // it. Reset it to exactly the Open shape it had before this courier\n            // accepted: clear the courier, the accept time, and their contact.\n            s.status = OrderStatus.Open;\n            s.courier = null;\n            s.acceptedAt = 0;\n            var extra = s.extra.load();\n            extra.courierContact = createEmptyCell();\n            s.extra = extra.toCell();\n            s.save();\n            // All service fees accumulate in the contract balance. The 0.1 accept\n            // fee already held and the 0.2 release fee just received stay here and\n            // are paid to the owner as part of the final mode-128 transfer when the\n            // order reaches a terminal state (ConfirmWithCode, CancelOrder, or\n            // ClaimExpired). No internal message is sent here — only the event.\n            emitEvent(OrderReopened { courier: in.senderAddress });\n        }\n        else => {\n            // Empty body (e.g. the deploy message) is accepted as a no-op.\n            assert (in.body.isEmpty()) throw OrderErrors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun orderData(): OrderStorage {\n    val s = lazy OrderStorage.load();\n    return s;\n}\n\nget fun status(): OrderStatus {\n    val s = lazy OrderStorage.load();\n    return s.status;\n}\n"
+    },
+    {
+      "filename": "tmp/7f501659-fb80-46d6-aec3-b6fb067967e4/contracts/types.tolk",
+      "contents": "// Shared types for the SwiftDelivery contracts.\n// ===================== Order =====================\n\nenum OrderStatus: uint8 {\n    Open = 0\n    Accepted = 1\n    Completed = 2\n    Cancelled = 3\n    Expired = 4 // deadline passed; reward -> sender, courier gets nothing\n}\n\nenum OrderErrors {\n    WrongStatus = 100\n    NotSender = 101\n    NotCourier = 102     // courier-release attempted by someone other than the courier\n    FeeTooLow = 103      // courier attached less than the minimum accept fee\n    NotExpired = 104     // claim attempted before the deadline\n    DeadlinePassed = 105 // courier-release attempted after the deadline\n    BadCode = 108        // confirm attempted with a secret whose hash does not match\n    InvalidMessage = 0xFFFF\n}\n\n// Fields kept in a separate referenced cell (`Cell<OrderExtra>`, TL-B\n// `^OrderExtra`) so the root OrderStorage cell stays well under the 1023-bit\n// limit. The root already carries two full addresses (`sender` + `courier`,\n// 267 bits each) plus a `coins` field and the counters. Keeping a THIRD inline\n// address (`owner`) here once overflowed the root cell when a courier accepted:\n// `courier` grows from a 2-bit null to a 267-bit address, pushing the total\n// past 1023. On-chain that surfaced as AcceptOrder failing with exit_code 8\n// (cell overflow) for real $10+ orders. Moving `owner` (plus the two contact\n// cells) out keeps the root small, so no overflow policy is suppressed.\nstruct OrderExtra {\n    owner: address       // marketplace owner; receives the platform fee on completion\n    // Telegram contact of each party, packed as opaque text by the frontend\n    // (see src/contact.js). Public on-chain, so it carries only the @username,\n    // numeric id and first name — never a phone or the exact street address.\n    senderContact: cell  // set by the sender at create time\n    courierContact: cell // empty until a courier accepts, then their contact\n    // Delivery-code commitment. The sender's app picks a 256-bit random secret at\n    // create time and stores it locally; only this HASH of it goes on-chain. The\n    // courier learns the secret from the sender at hand-off (shown as a QR code)\n    // and sends it with ConfirmWithCode; the contract pays the reward only when\n    // hash(secret) == secretHash. So a courier can be paid ONLY with the sender's\n    // code — there is no \"confirm\" button the sender could sit on. It lives here\n    // in the referenced extra cell (not the root) to keep the root under 1023 bits\n    // (a 256-bit field in the root risks the same overflow `owner` once caused).\n    // It is part of the init data, so it changes the order's address like\n    // senderContact does — included in CreateOrder and the orderAddress getter.\n    secretHash: uint256\n    // Referral: the TON wallet address of the Telegram chat whose link opened\n    // the app (null = no chat). Set once at create time from CreateOrder and\n    // never changed. On every terminal path (ConfirmWithCode / CancelOrder /\n    // ClaimExpired) the order pays this address HALF of the accumulated fee\n    // pool; the owner gets the rest (see Order.tolk). Any address is accepted\n    // as-is — self-referral only returns part of the fees the caller paid, so\n    // it yields no profit. Fits here: owner(267) + secretHash(256) +\n    // referral(267) = 790 bits < 1023, still 2 refs.\n    referral: address?\n}\n\n// One delivery order. Holds the escrow and the state machine.\n// `description`, `area` and `origin` are cells (text packed by the caller).\n// Both are public; the exact street address is NEVER stored on-chain.\n//   `area`   — the \"to\" city (destination).\n//   `origin` — the \"from\" place (where the parcel starts). It is free text and\n//              need NOT be a city: it can be a shop, a landmark, an airport zone\n//              (\"Duty Free\", \"H&M\", \"McDonald's\"). The UI defaults this to\n//              \"All world\" when the sender does not care about the origin.\n//\n// All fields here are supplied by the creator (the frontend), NOT by block\n// time or a global counter. That is on purpose: a contract's address is the\n// hash of its initial state, so keeping the init data fully client-controlled\n// lets the frontend recompute the address of an order it just created.\n// `nonce` is a client random value that makes the address unique.\nstruct OrderStorage {\n    sender: address\n    courier: address?  // null until a courier accepts\n    description: cell\n    area: cell         // \"to\" city (destination)\n    origin: cell       // \"from\" place (source, any text); \"All world\" = any origin\n    reward: coins\n    status: OrderStatus\n    nonce: uint64      // client random, for a unique address\n    createdAt: uint32  // client unix time, for display only\n    // acceptedAt is 0 in the initial state (so it does not change the order's\n    // address) and is set by the contract itself when a courier accepts; it\n    // starts the delivery clock that ClaimExpired checks against the deadline.\n    acceptedAt: uint32 // contract block time at AcceptOrder; 0 until accepted\n    // owner + both Telegram contacts, in a referenced cell (see OrderExtra).\n    extra: Cell<OrderExtra>\n}\n\nfun OrderStorage.load(): OrderStorage {\n    return OrderStorage.fromCell(contract.getData());\n}\n\nfun OrderStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct (0xa00a0001) AcceptOrder {\n    courierContact: cell // courier's Telegram contact, revealed once accepted\n}\n\n// Confirm a delivery by revealing the secret behind the order's secretHash. The\n// courier scans the sender's QR at hand-off to obtain `secret` and sends it here;\n// the contract pays the courier only if hash(secret) == secretHash (see Order.tolk).\nstruct (0xa00a0002) ConfirmWithCode {\n    secret: uint256 // preimage; the contract checks hash(secret) == secretHash\n}\n\nstruct (0xa00a0003) CancelOrder {}\n\nstruct (0xa00a0004) ClaimExpired {}\n\n// Courier gives up an order they already accepted. Allowed ONLY before the\n// deadline: once the delivery window has passed the courier has no actions left\n// and the order can only be settled by the sender (claim or confirm). The order\n// does NOT close: it goes back to Open so another courier can take it. The courier\n// pays a 0.2 TON release fee on top of the 0.1 TON accept fee they already paid;\n// neither is refunded — both stay on the contract for the platform. The reward and\n// the sender's create fee also stay on the contract for the next courier.\nstruct (0xa00a0005) CourierRelease {}\n\ntype OrderMessage =\n    | AcceptOrder\n    | ConfirmWithCode\n    | CancelOrder\n    | ClaimExpired\n    | CourierRelease\n\n// ===================== Events =====================\n// TON has no Ethereum-style logs; the equivalent is an EXTERNAL-OUT message:\n// it goes nowhere, costs a tiny forward fee from the contract balance, and is\n// recorded forever in the block. Indexers (toncenter v3 etc.) filter these by\n// source address + opcode. Every state change emits one, so history survives\n// the order's self-destruct: a watcher needs no transaction reverse-engineering.\n//\n// Event opcodes live in their own 0xa00a01xx range so they can never collide\n// with the incoming-message opcodes (0xa00a00xx above). The source address of\n// an Order event IS the order, so the events carry no orderAddress field —\n// except OrderCreated, which the Marketplace emits (one address to watch) and\n// which therefore names the new order explicitly.\n//\n// Events are logs, not money: they are always sent with IGNORE_ERRORS so a\n// failed emit (e.g. a drained Marketplace balance) can never block an order.\n\n// Emitted by Marketplace on CreateOrder, right after the Order deploy message.\n// Gives a watcher everything to start tracking the order: its address (source\n// of all later events), who created it, the escrowed reward and the \"to\" city\n// (the Feed's filter key). Paid from the Marketplace's own balance (~0.0005 TON\n// per order) — top it up now and then with a plain empty-body transfer.\nstruct (0xa00a0100) OrderCreated {\n    orderAddress: address\n    sender: address\n    reward: coins\n    area: cell\n}\n\n// Emitted by Order on AcceptOrder: a courier took the order; the delivery\n// clock starts at this transaction's block time.\nstruct (0xa00a0101) OrderAccepted {\n    courier: address\n}\n\n// Emitted by Order on ConfirmWithCode: the courier revealed the sender's\n// delivery code and was paid the full reward. referralPayout is the exact\n// amount sent to the referral chat (0 when no referral); the owner's payout is\n// the rest of the fee pool minus network fees, so it is not repeated here.\nstruct (0xa00a0102) OrderCompleted {\n    courier: address\n    reward: coins\n    referralPayout: coins\n}\n\n// Emitted by Order on CancelOrder: the sender cancelled an Open order and got\n// the reward back in full. referralPayout as in OrderCompleted.\nstruct (0xa00a0103) OrderCancelled {\n    reward: coins\n    referralPayout: coins\n}\n\n// Emitted by Order on ClaimExpired: the courier missed the deadline, the\n// reward returned to the sender. `courier` names who failed to deliver.\nstruct (0xa00a0104) OrderExpired {\n    courier: address\n    reward: coins\n    referralPayout: coins\n}\n\n// Emitted by Order on CourierRelease: the courier gave the order up and it\n// went back to Open for anyone else to take. `courier` names who walked away.\nstruct (0xa00a0105) OrderReopened {\n    courier: address\n}\n\n// Emit one event as an external-out message. IGNORE_ERRORS is deliberate: an\n// event is a log, and a log must never make the money-moving action fail —\n// if the balance cannot cover the emit's forward fee, the emit is skipped and\n// the order proceeds. In terminal handlers the emit must run BEFORE the final\n// CARRY_ALL_BALANCE sweep, while the balance still covers its fee.\nfun emitEvent<TEvent>(event: TEvent) {\n    val msg = createExternalLogMessage({\n        dest: createAddressNone(),\n        body: event,\n    });\n    msg.send(SEND_MODE_REGULAR | SEND_MODE_IGNORE_ERRORS);\n}\n\n// =================== Marketplace ===================\n\nenum MarketplaceErrors {\n    InsufficientValue = 200 // attached coins do not cover reward + create buffer\n    RewardTooLow = 202      // stated reward is below MIN_REWARD (anti-spam, M-5)\n    InvalidMessage = 0xFFFF\n}\n\n// The single registry contract. It deploys Order contracts on demand.\n// `orderCode` is the compiled Order code cell, set at deploy time, so the\n// Marketplace can build new Order state-init on-chain.\nstruct MarketplaceStorage {\n    owner: address\n    orderCode: cell\n    orderCount: uint32\n}\n\nfun MarketplaceStorage.load(): MarketplaceStorage {\n    return MarketplaceStorage.fromCell(contract.getData());\n}\n\nfun MarketplaceStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct (0xa00a0000) CreateOrder {\n    reward: coins       // stated reward; sender must attach >= reward + gas\n    nonce: uint64       // client random, for a unique order address\n    createdAt: uint32   // client unix time, for display\n    description: cell\n    area: cell          // \"to\" city (destination)\n    origin: cell        // \"from\" place (source, any text); \"All world\" = any origin\n    senderContact: cell // sender's Telegram contact (opaque text)\n    secretHash: uint256 // hash of the sender's delivery code (see OrderExtra.secretHash)\n    referral: address?  // referral chat's wallet, or null (see OrderExtra.referral)\n}\n\ntype MarketplaceMessage =\n    | CreateOrder\n"
+    }
+  ]
+}

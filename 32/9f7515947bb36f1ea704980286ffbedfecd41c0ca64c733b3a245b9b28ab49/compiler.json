@@ -1,0 +1,2596 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Multisig.tolk, errors.tolk, messages.tolk, order-helpers.tolk, order-state.tolk, storage.tolk, types.tolk, Order.code.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  107307 DECLMETHOD get_multisig_data()\n  93855 DECLMETHOD get_order_estimate()\n  111399 DECLMETHOD get_order_address()\n  // 15 functions inlined in-place:\n  // - MultisigStorage.load (5 calls)\n  // - MultisigStorage.save (3 calls)\n  // - OrderStorageInitialized.save (1 call)\n  // - DirectIndexedAddressMap.packToBuilder (0 calls)\n  // - DirectIndexedAddressMap.unpackFromSlice (0 calls)\n  // - DirectOrderActionsMap.packToBuilder (0 calls)\n  // - DirectOrderActionsMap.unpackFromSlice (0 calls)\n  // - DirectIndexedAddressMap.hashCell (2 calls)\n  // - calculateOrderProcessingCost (2 calls)\n  // - OrderStorageInitialized.tryExecute (1 call)\n  // - sendApproveRejected (2 calls)\n  // - getOrderCodeAsLibraryReference (1 call)\n  // - calculateOrderStateInit (2 calls)\n  // - calculateOrderAddress (2 calls)\n  // - executeOrder (2 calls)\n  // - MapEntry<uint8, address>.loadValue (1 call)\n  // - MapEntry<uint8, address>.getKey (2 calls)\n  // - MapEntry<uint8, cell>.loadValue (1 call)\n  // - validateDictionarySequence<address> (4 calls)\n  // - MapLookupResult<address>.loadValue (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    x{f718510f} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      SWAP\n      64 LDU\n      256 LDU\n      1 LDI\n      8 LDU\n      48 LDU\n      PLDREF\n      s0 s6 XCHG\n      256 LDU\n      DUP\n      8 LDU\n      LDREF\n      8 LDU\n      NIP\n      LDOPTREF\n      1 PLDI\n      IFNOT:<{\n        s8 PUSH\n        256 PUSHPOW2DEC\n        EQUAL\n        IF:<{\n          s8 POP\n          s3 PUSH\n        }>ELSE<{\n          s8 s4 PUSH2\n          EQUAL\n          1008 THROWIFNOT\n          s0 s8 XCHG\n        }>\n        s0 s4 XCHG\n        INC\n        s0 s4 XCHG\n        s0 s8 XCHG\n      }>\n      s7 s1 s(-2) PU2XC\n      CONDSEL\n      s6 s(-1) PUXC\n      8 PUSHINT\n      DICTUGET\n      1007 THROWIFNOT\n      INMSG_SRC\n      SWAP\n      LDSTDADDR\n      ENDS\n      SDEQ\n      1007 THROWIFNOT\n      NOW\n      s5 s0 PUSH2\n      GEQ\n      111 THROWIFNOT\n      s5 PUSH\n      SUBR\n      s10 s1 PUSH2\n      GASCONSUMED\n      s0 s2 XCHG\n      13 PUSHPOW2\n      CDATASIZE\n      DROP\n      s0 s2 XCHG\n      9 PUSHPOW2\n      CDATASIZE\n      DROP\n      GASCONSUMED\n      s0 s5 XCHG2\n      SUB\n      10232 PUSHINT\n      ADD\n      0 PUSHINT\n      GETGASFEE\n      4614 PUSHINT\n      0 PUSHINT\n      GETGASFEE\n      ADD\n      11244 PUSHINT\n      0 PUSHINT\n      GETGASFEE\n      ADD\n      7576 PUSHINT\n      0 PUSHINT\n      GETGASFEE\n      ADD\n      s2 PUSH\n      6 ADDCONST\n      s2 PUSH\n      ADD\n      1337 PUSHINT\n      s5 PUSH\n      ADD\n      s6 PUSH\n      ADD\n      0 PUSHINT\n      GETFORWARDFEE\n      s3 PUSH\n      INC\n      664 PUSHINT\n      s6 PUSH\n      ADD\n      0 PUSHINT\n      GETFORWARDFEE\n      ADD\n      s0 s3 XCHG\n      6 ADDCONST\n      ROT\n      ADD\n      1760 PUSHINT\n      s0 s4 XCHG2\n      ADD\n      s0 s4 XCHG2\n      ADD\n      s0 s4 XCHG2\n      0 PUSHINT\n      GETSTORAGEFEE\n      s0 s2 XCHG\n      ADD\n      ADD\n      INMSG_VALUE\n      LEQ\n      100 THROWIFNOT\n      s6 s5 XCHG2\n      PUSHNULL\n      CONDSEL\n      MYADDR\n      \"te6ccgECCwEAAvwAART/APSkE/S88sgLAQIBYgIDA+bQ+JHyQO1E0AHXLCAAAAAE4wLXLCTjn90U4wLXLCU7ERh8jsoB+kjT/yDXScIA8uBq0wfSANTT/9MH0y/U0QnTP9cLB1MFePQO8uBq+JIB+kjRxwXy4Gr4khCrEJoQiRB4EGcQVhBFEDRY2zxfCeCED/LwBAUIAEuhx3HaiaH0kaf+Qa6ThAEwYNra2tra2tvDpg+kAamn/6YPpl+powH6yCHXSVIg1xnPFiHXZJ0B10zQINdJUhDXGVjO5DHPUIQPAYt2FwcHJvdmWMcF8vT6SNP/INdJwgDy4GrTB9IA1NP/0wfTL9TR+JJwcCd49IZvpZkglCOzwwCRcOKOGiL6SNEmxwWUMzMif5owMSh49HxvpVBD4lBD6F8DbBIGAuwB+kjT//iSI8cF8uBoA9M/0wfU0y/U0wABk9cLB5IwbeIo10nCAOMDCNMH0gDU0//TB9Mv1NFRprry4GkI+QAj+QC68uBpUWe68uBpBPkAJ/kAuvLgaSpu8tBpU6B49A7y4Gr6SNEQqxCaEDlIcBBGQwPbPF8JBwgBFvLgaviS+CXbPF8JCADmOHBwUwP4I77y4G8qbpI3OY5FMAmuCXEKsSXAAY40MSP5AFR4cyXIz5HUJf12G8s/Esv/yy/PhAYSy/8XzMnIz4UIF/pScc8LbhbMyYEAkPsAf5E24hBY4gfI+lIWy/8TywcVygAUzBTL/xPLB8svzMntVAL2KI4dMsjPhQj6UoIQr68oPs8Ljss/z5AAAAHCyYBQ+wDgAq5TYLCOHTDIz4UI+lKCEK+vKD7PC47LP8+QAAABrsmAUPsA4AWkUGWxyM+FCBb6UoIQgmCb9s8LjiHPCz/JgFD7AFM3upEw4w0oyPpSKM8L/yfPCwcmzwoACQoAajYk+QBUeYJTZMjPkdQl/XYcyz8Ty//LL8sHEsv/F8zJyM+FCBf6UnHPC24WzMmBAJD7AH8FAColzxQkzwv/I88LByLPCy8hzxTJ7VQ=\" base64>B B>boc hashu <b 2 8 u, swap 256 u, b>spec PUSHREF\n      SWAP\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      256 STU\n      ENDC\n      NEWC\n      x{9c73fba2} STSLICECONST\n      s1 s9 XCHG\n      64 STU\n      s1 s6 XCHG\n      8 STU\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      48 STU\n      s1 s6 XCHG\n      STREF\n      s2 PUSH\n      ISNULL\n      IF:<{\n        1 2 BLKDROP2\n        b{0} STSLICECONST\n      }>ELSE<{\n        b{1} STSLICECONST\n        s1 s2 XCHG\n        8 STU\n      }>\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s4 s3 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      141 PUSHINT\n      117 STUR\n      s1 s3 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      STREF\n      ENDC\n      80 PUSHINT\n      SENDRAWMSG\n      SWAP\n      NEWC\n      256 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{75097f5d} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      SWAP\n      64 LDU\n      NIP\n      256 LDU\n      48 LDU\n      8 LDU\n      256 LDU\n      PLDREF\n      MYADDR\n      \"te6ccgECCwEAAvwAART/APSkE/S88sgLAQIBYgIDA+bQ+JHyQO1E0AHXLCAAAAAE4wLXLCTjn90U4wLXLCU7ERh8jsoB+kjT/yDXScIA8uBq0wfSANTT/9MH0y/U0QnTP9cLB1MFePQO8uBq+JIB+kjRxwXy4Gr4khCrEJoQiRB4EGcQVhBFEDRY2zxfCeCED/LwBAUIAEuhx3HaiaH0kaf+Qa6ThAEwYNra2tra2tvDpg+kAamn/6YPpl+powH6yCHXSVIg1xnPFiHXZJ0B10zQINdJUhDXGVjO5DHPUIQPAYt2FwcHJvdmWMcF8vT6SNP/INdJwgDy4GrTB9IA1NP/0wfTL9TR+JJwcCd49IZvpZkglCOzwwCRcOKOGiL6SNEmxwWUMzMif5owMSh49HxvpVBD4lBD6F8DbBIGAuwB+kjT//iSI8cF8uBoA9M/0wfU0y/U0wABk9cLB5IwbeIo10nCAOMDCNMH0gDU0//TB9Mv1NFRprry4GkI+QAj+QC68uBpUWe68uBpBPkAJ/kAuvLgaSpu8tBpU6B49A7y4Gr6SNEQqxCaEDlIcBBGQwPbPF8JBwgBFvLgaviS+CXbPF8JCADmOHBwUwP4I77y4G8qbpI3OY5FMAmuCXEKsSXAAY40MSP5AFR4cyXIz5HUJf12G8s/Esv/yy/PhAYSy/8XzMnIz4UIF/pScc8LbhbMyYEAkPsAf5E24hBY4gfI+lIWy/8TywcVygAUzBTL/xPLB8svzMntVAL2KI4dMsjPhQj6UoIQr68oPs8Ljss/z5AAAAHCyYBQ+wDgAq5TYLCOHTDIz4UI+lKCEK+vKD7PC47LP8+QAAABrsmAUPsA4AWkUGWxyM+FCBb6UoIQgmCb9s8LjiHPCz/JgFD7AFM3upEw4w0oyPpSKM8L/yfPCwcmzwoACQoAajYk+QBUeYJTZMjPkdQl/XYcyz8Ty//LL8sHEsv/F8zJyM+FCBf6UnHPC24WzMmBAJD7AH8FAColzxQkzwv/I88LByLPCy8hzxTJ7VQ=\" base64>B B>boc hashu <b 2 8 u, swap 256 u, b>spec PUSHREF\n      SWAP\n      NEWC\n      STSTDADDR\n      s1 s6 XCHG\n      256 STU\n      ENDC\n      s0 s5 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      INMSG_SRC\n      SDEQ\n      101 THROWIFNOT\n      s0 s4 XCHG\n      256 LDU\n      8 LDU\n      LDREF\n      8 LDU\n      LDOPTREF\n      1 PLDI\n      s3 PUSH\n      HASHCU\n      s1 s10 XCHG\n      EQUAL\n      IF:<{\n        s5 s3 XCPU\n        GEQ\n        0 NEQINT\n      }>ELSE<{\n        s5 POP\n        0 PUSHINT\n      }>\n      102 THROWIFNOT\n      s0 s5 XCHG\n      NOW\n      GEQ\n      111 THROWIFNOT\n      ACCEPT\n      FALSE\n      s6 PUSH\n      8 PUSHINT\n      DICTUMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        SWAP\n        LDREF\n        ENDS\n        CTOS\n        x{f1381e5b} SDBEGINSQ\n        IF:<{\n          8 LDU\n          PLDREF\n          SWAP\n          SENDRAWMSG\n        }>ELSE<{\n          x{1d0cfbd3} SDBEGINSQ\n          IF:<{\n            s6 s7 XCHG2\n            5 BLKDROP\n            s0 s2 XCHG\n            8 LDU\n            LDREF\n            PLDOPTREF\n            0 PUSHINT\n            s2 PUSH\n            8 PUSHINT\n            DICTUMIN NULLSWAPIFNOT2\n            s2 POP\n            WHILE:<{\n              SWAP\n            }>DO<{\n              s0 s1 PUSH2\n              EQUAL\n              103 THROWIFNOT\n              SWAP\n              INC\n              s1 s3 XCPU\n              8 PUSHINT\n              DICTUGETNEXT NULLSWAPIFNOT2\n              s2 POP\n            }>\n            DROP\n            DUP\n            0 GTINT\n            110 THROWIFNOT\n            s3 PUSH\n            0 GTINT\n            109 THROWIFNOT\n            s3 s0 PUSH2\n            LEQ\n            109 THROWIFNOT\n            0 PUSHINT\n            s2 PUSH\n            8 PUSHINT\n            DICTUMIN NULLSWAPIFNOT2\n            s2 POP\n            WHILE:<{\n              SWAP\n            }>DO<{\n              s0 s1 PUSH2\n              EQUAL\n              103 THROWIFNOT\n              SWAP\n              INC\n              s1 s3 XCPU\n              8 PUSHINT\n              DICTUGETNEXT NULLSWAPIFNOT2\n              s2 POP\n            }>\n            2DROP\n            s0 s5 XCHG\n            3 -ROLL\n            s0 s4 XCHG\n            TRUE\n            SWAP\n          }>ELSE<{\n            DROP\n          }>\n        }>\n        s7 PUSH\n        8 PUSHINT\n        DICTUGETNEXT NULLSWAPIFNOT2\n      }>\n      2DROP\n      s6 POP\n      s0 s5 XCHG\n      IF:<{\n        SWAP\n        NEWC\n        256 STU\n        8 STU\n        s1 s3 XCHG\n        STREF\n        8 STU\n        STOPTREF\n        1 STI\n        ENDC\n        c4 POP\n      }>ELSE<{\n        6 BLKDROP\n      }>\n    }>\n    x{a32c59bf} SDBEGINSQ\n    IFJMP:<{\n      c4 PUSH\n      CTOS\n      INMSG_SRC\n      MYADDR\n      SDEQ\n      101 THROWIFNOT\n      SWAP\n      64 LDU\n      NIP\n      PLDREF\n      SWAP\n      256 LDU\n      8 LDU\n      LDREF\n      8 LDU\n      LDOPTREF\n      1 PLDI\n      ACCEPT\n      FALSE\n      s7 PUSH\n      8 PUSHINT\n      DICTUMIN NULLSWAPIFNOT2\n      WHILE:<{\n      }>DO<{\n        SWAP\n        LDREF\n        ENDS\n        CTOS\n        x{f1381e5b} SDBEGINSQ\n        IF:<{\n          8 LDU\n          PLDREF\n          SWAP\n          SENDRAWMSG\n        }>ELSE<{\n          x{1d0cfbd3} SDBEGINSQ\n          IF:<{\n            s2 POP\n            3 3 BLKDROP2\n            s3 POP\n            8 LDU\n            LDREF\n            PLDOPTREF\n            0 PUSHINT\n            s2 PUSH\n            8 PUSHINT\n            DICTUMIN NULLSWAPIFNOT2\n            s2 POP\n            WHILE:<{\n              SWAP\n            }>DO<{\n              s0 s1 PUSH2\n              EQUAL\n              103 THROWIFNOT\n              SWAP\n              INC\n              s1 s3 XCPU\n              8 PUSHINT\n              DICTUGETNEXT NULLSWAPIFNOT2\n              s2 POP\n            }>\n            DROP\n            DUP\n            0 GTINT\n            110 THROWIFNOT\n            s3 PUSH\n            0 GTINT\n            109 THROWIFNOT\n            s3 s0 PUSH2\n            LEQ\n            109 THROWIFNOT\n            0 PUSHINT\n            s2 PUSH\n            8 PUSHINT\n            DICTUMIN NULLSWAPIFNOT2\n            s2 POP\n            WHILE:<{\n              SWAP\n            }>DO<{\n              s0 s1 PUSH2\n              EQUAL\n              103 THROWIFNOT\n              SWAP\n              INC\n              s1 s3 XCPU\n              8 PUSHINT\n              DICTUGETNEXT NULLSWAPIFNOT2\n              s2 POP\n            }>\n            2DROP\n            s3 s5 XCHG\n            s1 s4 s3 XCHG3\n            TRUE\n            SWAP\n          }>ELSE<{\n            DROP\n          }>\n        }>\n        s8 PUSH\n        8 PUSHINT\n        DICTUGETNEXT NULLSWAPIFNOT2\n      }>\n      2DROP\n      s7 POP\n      s0 s6 XCHG\n      IF:<{\n        s0 s4 XCHG\n        NEWC\n        256 STU\n        s1 s3 XCHG\n        8 STU\n        STREF\n        8 STU\n        STOPTREF\n        1 STI\n        ENDC\n        c4 POP\n      }>ELSE<{\n        6 BLKDROP\n      }>\n    }>\n    x{00000000} SDBEGINSQ\n    NIP\n    IFJMP:<{\n    }>\n  }>\n  get_multisig_data() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    8 LDU\n    LDREF\n    8 LDU\n    LDOPTREF\n    1 PLDI\n    0 PUSHINT\n    s4 PUSH\n    8 PUSHINT\n    DICTUMIN NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      s0 s1 PUSH2\n      EQUAL\n      103 THROWIFNOT\n      SWAP\n      INC\n      s1 s5 XCPU\n      8 PUSHINT\n      DICTUGETNEXT NULLSWAPIFNOT2\n      s2 POP\n    }>\n    DROP\n    s0 s3 PUXC\n    EQUAL\n    108 THROWIFNOT\n    0 PUSHINT\n    s2 PUSH\n    8 PUSHINT\n    DICTUMIN NULLSWAPIFNOT2\n    s2 POP\n    WHILE:<{\n      SWAP\n    }>DO<{\n      s0 s1 PUSH2\n      EQUAL\n      103 THROWIFNOT\n      SWAP\n      INC\n      s1 s3 XCPU\n      8 PUSHINT\n      DICTUGETNEXT NULLSWAPIFNOT2\n      s2 POP\n    }>\n    2DROP\n    s2 PUSH\n    0 GTINT\n    110 THROWIFNOT\n    s4 PUSH\n    0 GTINT\n    109 THROWIFNOT\n    s4 s2 PUXC\n    LEQ\n    109 THROWIFNOT\n    -1 PUSHINT\n    s0 s5 XCHG2\n    CONDSEL\n    s0 s3 XCHG\n  }>\n  get_order_estimate() PROC:<{\n    c4 PUSH\n    CTOS\n    264 PUSHINT\n    SDSKIPFIRST\n    PLDREF\n    SWAP\n    NOW\n    SUB\n    -ROT\n    GASCONSUMED\n    s0 s2 XCHG\n    13 PUSHPOW2\n    CDATASIZE\n    DROP\n    s0 s2 XCHG\n    9 PUSHPOW2\n    CDATASIZE\n    DROP\n    GASCONSUMED\n    s0 s5 XCHG2\n    SUB\n    10232 PUSHINT\n    ADD\n    0 PUSHINT\n    GETGASFEE\n    4614 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    ADD\n    11244 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    ADD\n    7576 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    ADD\n    s2 PUSH\n    6 ADDCONST\n    s2 PUSH\n    ADD\n    1337 PUSHINT\n    s5 PUSH\n    ADD\n    s6 PUSH\n    ADD\n    0 PUSHINT\n    GETFORWARDFEE\n    s3 PUSH\n    INC\n    664 PUSHINT\n    s6 PUSH\n    ADD\n    0 PUSHINT\n    GETFORWARDFEE\n    ADD\n    s0 s3 XCHG\n    6 ADDCONST\n    ROT\n    ADD\n    1760 PUSHINT\n    s0 s4 XCHG2\n    ADD\n    s0 s4 XCHG2\n    ADD\n    s0 s4 XCHG2\n    0 PUSHINT\n    GETSTORAGEFEE\n    s0 s2 XCHG\n    ADD\n    ADD\n  }>\n  get_order_address() PROC:<{\n    MYADDR\n    \"te6ccgECCwEAAvwAART/APSkE/S88sgLAQIBYgIDA+bQ+JHyQO1E0AHXLCAAAAAE4wLXLCTjn90U4wLXLCU7ERh8jsoB+kjT/yDXScIA8uBq0wfSANTT/9MH0y/U0QnTP9cLB1MFePQO8uBq+JIB+kjRxwXy4Gr4khCrEJoQiRB4EGcQVhBFEDRY2zxfCeCED/LwBAUIAEuhx3HaiaH0kaf+Qa6ThAEwYNra2tra2tvDpg+kAamn/6YPpl+powH6yCHXSVIg1xnPFiHXZJ0B10zQINdJUhDXGVjO5DHPUIQPAYt2FwcHJvdmWMcF8vT6SNP/INdJwgDy4GrTB9IA1NP/0wfTL9TR+JJwcCd49IZvpZkglCOzwwCRcOKOGiL6SNEmxwWUMzMif5owMSh49HxvpVBD4lBD6F8DbBIGAuwB+kjT//iSI8cF8uBoA9M/0wfU0y/U0wABk9cLB5IwbeIo10nCAOMDCNMH0gDU0//TB9Mv1NFRprry4GkI+QAj+QC68uBpUWe68uBpBPkAJ/kAuvLgaSpu8tBpU6B49A7y4Gr6SNEQqxCaEDlIcBBGQwPbPF8JBwgBFvLgaviS+CXbPF8JCADmOHBwUwP4I77y4G8qbpI3OY5FMAmuCXEKsSXAAY40MSP5AFR4cyXIz5HUJf12G8s/Esv/yy/PhAYSy/8XzMnIz4UIF/pScc8LbhbMyYEAkPsAf5E24hBY4gfI+lIWy/8TywcVygAUzBTL/xPLB8svzMntVAL2KI4dMsjPhQj6UoIQr68oPs8Ljss/z5AAAAHCyYBQ+wDgAq5TYLCOHTDIz4UI+lKCEK+vKD7PC47LP8+QAAABrsmAUPsA4AWkUGWxyM+FCBb6UoIQgmCb9s8LjiHPCz/JgFD7AFM3upEw4w0oyPpSKM8L/yfPCwcmzwoACQoAajYk+QBUeYJTZMjPkdQl/XYcyz8Ty//LL8sHEsv/F8zJyM+FCBf6UnHPC24WzMmBAJD7AH8FAColzxQkzwv/I88LByLPCy8hzxTJ7VQ=\" base64>B B>boc hashu <b 2 8 u, swap 256 u, b>spec PUSHREF\n    SWAP\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    256 STU\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEgEABHkAART/APSkE/S88sgLAQIBYgIDA97Q+JHyQNcsJ7jCiHzjAtcsI6hL+uzjAtcsJRlizfyOxe1E0PiS+CjHBfLgZQHTPzHXTAHT/9MH1NMH9ATXCgD4AHAnePSGb6WQiuhbNwaOEQTIy/8TywfMywf0AMoAye1Ukl8G4uDXLCAAAAAEMdwEBQYCASANDgH+7UTQAdM/0//SANMH0y/XTAbT/yDTB9TTBzH0BNcKAI4UKIT/upI4I5dThLry4/AI4gSkBAjfVGcg4wRSYHj0DvLj7/iSAfpI0ccF8uPv+CNTUL7y4G8lolOh+AcCgwz5QTACgwj5QTD4B1AFoYEn+KBw+DaBEgZw+DaggSvscAcD4O1E0AHTPzHT/9Mv0wfT/9dM+CiIAcj6UhbL/8lQBcjPhNDMzPkWyM+KAEDL/89Q+JLHBfLgZQTT/9MH1NMH9ATXCgAj+QAaupVRU77DAJI1cOLy4GYF+CO+8uBv+ABwJnj0hm+lkIroWzYFkl8G4w0RCQoB/gHU0dDXLCeJwPLcl9MH10wB+wCOadcsIOhn3pyOXTJsMzPTB9T0BXAiePSGb6UykQGOEFMBuvLgZwGkURN49HxvpTLoMCDCAPLgbiPCAPLgbVMwu/LgbXAiePSGb6UykQGOEFMBuvLgZwGkURN49HxvpTLoWxA1QUN/AZEw4uIMAv74NqCBHZhw+DagIqYGIqCBBTkloCagcPg4I6SBApgmoHD4OKADpgZYoIEG4FAEoFAEoFAEcPg3AqCg+Je78uBkUGVt4wT4KIgByPpSGMv/ycjPknHP7ooZyz8WywcUzBLLLxbMIm6UbBLPgZXPgxLLB+LJyM+JiAFTQ8jPhNDMEQgAPMz5Fs8L/4EAjc8LdBPME8zMyYBQ+wAByMv/zsntVAH+AdTR0NcsJ4nA8tyOatcsIOhn3pyOXlBnXwUC0wfU9AVwInj0hm+lMpEBjhBTAbry4GcBpFETePR8b6Uy6DAgwgDy4G4jwgDy4G1TMLvy4G1wInj0hm+lMpEBjhBTAbry4GcBpFETePR8b6Uy6FsFVSAEfwGRMOLjDSd49HxvpQsAIgHIy//LBxPMywf0AMoAye1UAA7TB9dMAfsAAAwoePR8b6UA4b90/2omhAgIRrkOumAPwR0Kz8A4FBhnygmAFBhHygmHwDqALQwJP8UDh8G0CJAzh8G1BAlfY4fBtQQI7MOHwbUBFTAxFQQIKcktATUDh8HBHSQIFME1A4fBxQAdMDLFBAg3AoAlAoAlAoAjh8G4FQUEAgFmDxAA17DK+1E0NP/0wfU0wf0BNcKAHAkePSGb6UykQGOEFMBuvLgZwGkURV49HxvpTLoMFIEuvLgbHAiePSGb6UykQGOEFMBuvLgZwGkURN49HxvpTLoWyLCAPLgbiTCAPLgbVJDu/LgbX9QBeMEA4AE/sMn+CiIAcj6UhLL/8kByM+E0MzM+RbIz4oAQMv/z1CARCEICYY0plTCzl1WGh0H1dn/I9+D6p70xDzRAV14wgrNpjks=",
+  "codeHashHex": "329F7515947BB36F1EA704980286FFBEDFECD41C0CA64C733B3A245B9B28AB49",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/Multisig.tolk",
+        "size_chars": 6540,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/errors.tolk",
+        "size_chars": 576,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/messages.tolk",
+        "size_chars": 1532,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/order-helpers.tolk",
+        "size_chars": 5086,
+        "imports": [
+          2,
+          3,
+          4,
+          7,
+          8
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/order-state.tolk",
+        "size_chars": 691,
+        "imports": [
+          9
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/storage.tolk",
+        "size_chars": 2010,
+        "imports": [
+          4
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/types.tolk",
+        "size_chars": 1252,
+        "imports": [
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 9,
+        "file_name": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/gen/Order.code.tolk",
+        "size_chars": 1628,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToMultisig"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NewOrderRequest"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 48
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DirectOrderActionsMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExecuteOrderRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExecuteInternalRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TextComment"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 4145565967,
+            "prefix_len": 32,
+            "stack_type_id": 132,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 1963556701,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 2737592767,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 0,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 7
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MultisigStorage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DirectIndexedAddressMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 15,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "IndexedAddressMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          7
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          30
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SignerIndexOnInit"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 37,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 39,
+        "stack_type_id": 131,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OrderInitData"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 42
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InitOrderRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          46
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 53
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          52
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 55,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 137,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          36,
+          14
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 57,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          59
+        ]
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "dict"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          15,
+          3
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          64,
+          65
+        ]
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedOrderAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SendMessageAction"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateMultisigParamsAction"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 68,
+            "prefix_num": 4046986843,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 69,
+            "prefix_num": 487390163,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          15,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MultisigDataReply"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 28,
+        "struct_name": "MapLookupResult<address>",
+        "monomorphic_fields_ty_idx": [
+          29,
+          5
+        ]
+      },
+      {
+        "ty_idx": 47,
+        "struct_name": "CreateMessageOptions<InitOrderRequest>",
+        "monomorphic_fields_ty_idx": [
+          51,
+          56,
+          58,
+          46
+        ]
+      },
+      {
+        "ty_idx": 63,
+        "struct_name": "MapEntry<uint8, cell>",
+        "monomorphic_fields_ty_idx": [
+          29,
+          15,
+          5
+        ]
+      },
+      {
+        "ty_idx": 71,
+        "struct_name": "MapEntry<uint8, address>",
+        "monomorphic_fields_ty_idx": [
+          29,
+          15,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "dict",
+        "ty_idx": 61,
+        "ident_loc": [
+          0,
+          168,
+          6,
+          168,
+          10
+        ],
+        "target_ty_idx": 62
+      },
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1013,
+          8,
+          1013,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 29
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          1041,
+          8,
+          1041,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 64
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 52,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 54
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 40
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 36
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 38
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 49,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 51
+          },
+          {
+            "name": "value",
+            "ty_idx": 56
+          },
+          {
+            "name": "dest",
+            "ty_idx": 58
+          },
+          {
+            "name": "body",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedOrderAction",
+        "ty_idx": 67,
+        "ident_loc": [
+          1,
+          17,
+          6,
+          17,
+          24
+        ],
+        "target_ty_idx": 70
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToMultisig",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          64,
+          6,
+          64,
+          30
+        ],
+        "target_ty_idx": 23
+      },
+      {
+        "kind": "struct",
+        "name": "TextComment",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          3,
+          21,
+          3,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "comment",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "IndexedAddressMap",
+        "ty_idx": 27,
+        "ident_loc": [
+          4,
+          7,
+          6,
+          7,
+          23
+        ],
+        "target_ty_idx": 26
+      },
+      {
+        "kind": "alias",
+        "name": "DirectIndexedAddressMap",
+        "ty_idx": 25,
+        "ident_loc": [
+          4,
+          9,
+          6,
+          9,
+          29
+        ],
+        "target_ty_idx": 26,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "DirectOrderActionsMap",
+        "ty_idx": 17,
+        "ident_loc": [
+          4,
+          11,
+          6,
+          11,
+          27
+        ],
+        "target_ty_idx": 18,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "SignerIndexOnInit",
+        "ty_idx": 33,
+        "ident_loc": [
+          4,
+          15,
+          6,
+          15,
+          23
+        ],
+        "target_ty_idx": 34
+      },
+      {
+        "kind": "struct",
+        "name": "SendMessageAction",
+        "ty_idx": 68,
+        "ident_loc": [
+          4,
+          17,
+          21,
+          17,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 4046986843,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "mode",
+            "ty_idx": 15
+          },
+          {
+            "name": "message",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateMultisigParamsAction",
+        "ty_idx": 69,
+        "ident_loc": [
+          4,
+          22,
+          21,
+          22,
+          47
+        ],
+        "prefix": {
+          "prefix_num": 487390163,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "threshold",
+            "ty_idx": 15
+          },
+          {
+            "name": "signers",
+            "ty_idx": 25
+          },
+          {
+            "name": "proposers",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NewOrderRequest",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          28,
+          21,
+          28,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 4145565967,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 14
+          },
+          {
+            "name": "isAutoApprove",
+            "ty_idx": 5
+          },
+          {
+            "name": "index",
+            "ty_idx": 15
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 16
+          },
+          {
+            "name": "order",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExecuteOrderRequest",
+        "ty_idx": 19,
+        "ident_loc": [
+          4,
+          37,
+          21,
+          37,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1963556701,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 14
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 16
+          },
+          {
+            "name": "approvalsNum",
+            "ty_idx": 15
+          },
+          {
+            "name": "signersHash",
+            "ty_idx": 14
+          },
+          {
+            "name": "order",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExecuteInternalRequest",
+        "ty_idx": 20,
+        "ident_loc": [
+          4,
+          46,
+          21,
+          46,
+          43
+        ],
+        "prefix": {
+          "prefix_num": 2737592767,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "order",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InitOrderRequest",
+        "ty_idx": 46,
+        "ident_loc": [
+          4,
+          51,
+          21,
+          51,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 2624846754,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 15
+          },
+          {
+            "name": "signers",
+            "ty_idx": 25
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 16
+          },
+          {
+            "name": "order",
+            "ty_idx": 17
+          },
+          {
+            "name": "signerIndexOnInit",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OrderInitData",
+        "ty_idx": 42,
+        "ident_loc": [
+          6,
+          3,
+          8,
+          3,
+          21
+        ],
+        "fields": [
+          {
+            "name": "multisigAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MultisigStorage",
+        "ty_idx": 24,
+        "ident_loc": [
+          7,
+          3,
+          8,
+          3,
+          23
+        ],
+        "fields": [
+          {
+            "name": "nextOrderSeqno",
+            "ty_idx": 14
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 15
+          },
+          {
+            "name": "signers",
+            "ty_idx": 25
+          },
+          {
+            "name": "signersNum",
+            "ty_idx": 15
+          },
+          {
+            "name": "proposers",
+            "ty_idx": 27
+          },
+          {
+            "name": "allowArbitraryOrderSeqno",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MultisigDataReply",
+        "ty_idx": 72,
+        "ident_loc": [
+          7,
+          36,
+          8,
+          36,
+          25
+        ],
+        "fields": [
+          {
+            "name": "nextOrderSeqno",
+            "ty_idx": 1
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 1
+          },
+          {
+            "name": "signers",
+            "ty_idx": 61
+          },
+          {
+            "name": "proposers",
+            "ty_idx": 61
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          70,
+          5,
+          70,
+          22
+        ],
+        "end_loc": [
+          1,
+          158,
+          1,
+          158,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "DirectOrderActionsMap.unpackFromSlice",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          20,
+          27,
+          20,
+          42
+        ],
+        "end_loc": [
+          8,
+          22,
+          1,
+          22,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "DirectIndexedAddressMap.unpackFromSlice",
+        "return_ty_idx": 25,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          11,
+          29,
+          11,
+          44
+        ],
+        "end_loc": [
+          8,
+          13,
+          1,
+          13,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "map<uint8, address>.get",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "key",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "MapLookupResult<address>.loadValue",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1019,
+          29,
+          1019,
+          38
+        ],
+        "end_loc": [
+          0,
+          1025,
+          1,
+          1025,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "address.fromSlice",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "calculateOrderProcessingCost",
+        "return_ty_idx": 6,
+        "num_params": 3,
+        "ident_loc": [
+          5,
+          19,
+          5,
+          19,
+          33
+        ],
+        "end_loc": [
+          5,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "orderBody",
+            "ty_idx": 17
+          },
+          {
+            "name": "signers",
+            "ty_idx": 25
+          },
+          {
+            "name": "duration",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "calculateOrderStateInit",
+        "return_ty_idx": 35,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          12,
+          5,
+          12,
+          28
+        ],
+        "end_loc": [
+          6,
+          20,
+          1,
+          20,
+          2
+        ],
+        "params": [
+          {
+            "name": "multisigAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "getOrderCodeAsLibraryReference",
+        "return_ty_idx": 3,
+        "num_params": 0,
+        "ident_loc": [
+          6,
+          8,
+          5,
+          8,
+          35
+        ],
+        "end_loc": [
+          6,
+          10,
+          1,
+          10,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 9,
+        "name": "OrderInitData.toCell",
+        "return_ty_idx": 43,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "options",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "createMessage<InitOrderRequest>",
+        "return_ty_idx": 45,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 47
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "DirectIndexedAddressMap.packToBuilder",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          6,
+          29,
+          6,
+          42
+        ],
+        "end_loc": [
+          8,
+          9,
+          1,
+          9,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          },
+          {
+            "name": "b",
+            "ty_idx": 4
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "DirectOrderActionsMap.packToBuilder",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          8,
+          15,
+          27,
+          15,
+          40
+        ],
+        "end_loc": [
+          8,
+          18,
+          1,
+          18,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          },
+          {
+            "name": "b",
+            "ty_idx": 4
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "MultisigStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          16,
+          21,
+          16,
+          25
+        ],
+        "end_loc": [
+          7,
+          18,
+          1,
+          18,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "calculateOrderAddress",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          6,
+          22,
+          5,
+          22,
+          26
+        ],
+        "end_loc": [
+          6,
+          24,
+          1,
+          24,
+          2
+        ],
+        "params": [
+          {
+            "name": "multisigAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "DirectIndexedAddressMap.hashCell",
+        "return_ty_idx": 14,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          38,
+          29,
+          38,
+          37
+        ],
+        "end_loc": [
+          8,
+          40,
+          1,
+          40,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "executeOrder",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          20,
+          5,
+          20,
+          17
+        ],
+        "end_loc": [
+          1,
+          62,
+          1,
+          62,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 24
+          },
+          {
+            "name": "orderBody",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<uint8, cell>.findFirst",
+        "return_ty_idx": 63,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "MapEntry<uint8, cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1055,
+          20,
+          1055,
+          29
+        ],
+        "end_loc": [
+          0,
+          1061,
+          1,
+          1061,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "cell.fromSlice",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "validateDictionarySequence<address>",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          8,
+          25,
+          5,
+          25,
+          31
+        ],
+        "end_loc": [
+          8,
+          36,
+          1,
+          36,
+          2
+        ],
+        "params": [
+          {
+            "name": "m",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "map<uint8, address>.findFirst",
+        "return_ty_idx": 71,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "MapEntry<uint8, address>.getKey",
+        "return_ty_idx": 15,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1048,
+          20,
+          1048,
+          26
+        ],
+        "end_loc": [
+          0,
+          1052,
+          1,
+          1052,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "map<uint8, address>.iterateNext",
+        "return_ty_idx": 71,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "current",
+            "ty_idx": 71
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "map<uint8, cell>.iterateNext",
+        "return_ty_idx": 63,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "current",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "get_multisig_data",
+        "return_ty_idx": 72,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          160,
+          9,
+          160,
+          26
+        ],
+        "end_loc": [
+          1,
+          178,
+          1,
+          178,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "get_order_estimate",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          180,
+          9,
+          180,
+          27
+        ],
+        "end_loc": [
+          1,
+          189,
+          1,
+          189,
+          2
+        ],
+        "params": [
+          {
+            "name": "order",
+            "ty_idx": 3
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "get_order_address",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          191,
+          9,
+          191,
+          26
+        ],
+        "end_loc": [
+          1,
+          193,
+          1,
+          193,
+          2
+        ],
+        "params": [
+          {
+            "name": "orderSeqno",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Multisig",
+    "author": "The Tolk Team",
+    "version": "2.1",
+    "description": "Multisig V2.1. Multi-signature wallet with order-based approval",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NewOrderRequest"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 48
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DirectOrderActionsMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExecuteOrderRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExecuteInternalRequest"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TextComment"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MultisigStorage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DirectIndexedAddressMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "IndexedAddressMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InitOrderRequest"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "SignerIndexOnInit"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MultisigDataReply"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "dict"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "dict",
+        "ty_idx": 30,
+        "target_ty_idx": 31,
+        "description": "Think of it as \"a map with unknown keys and unknown values\".\nPrefer using `map<K, V>`, not `dict`."
+      },
+      {
+        "kind": "struct",
+        "name": "TextComment",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "comment",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "IndexedAddressMap",
+        "ty_idx": 25,
+        "target_ty_idx": 24
+      },
+      {
+        "kind": "alias",
+        "name": "DirectIndexedAddressMap",
+        "ty_idx": 23,
+        "target_ty_idx": 24,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "DirectOrderActionsMap",
+        "ty_idx": 16,
+        "target_ty_idx": 17,
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "alias",
+        "name": "SignerIndexOnInit",
+        "ty_idx": 27,
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "struct",
+        "name": "NewOrderRequest",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 4145565967,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 13
+          },
+          {
+            "name": "isAutoApprove",
+            "ty_idx": 5
+          },
+          {
+            "name": "index",
+            "ty_idx": 14
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 15
+          },
+          {
+            "name": "order",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExecuteOrderRequest",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1963556701,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "orderSeqno",
+            "ty_idx": 13
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 15
+          },
+          {
+            "name": "approvalsNum",
+            "ty_idx": 14
+          },
+          {
+            "name": "signersHash",
+            "ty_idx": 13
+          },
+          {
+            "name": "order",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExecuteInternalRequest",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 2737592767,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "order",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InitOrderRequest",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 2624846754,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 14
+          },
+          {
+            "name": "signers",
+            "ty_idx": 23
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 15
+          },
+          {
+            "name": "order",
+            "ty_idx": 16
+          },
+          {
+            "name": "signerIndexOnInit",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MultisigStorage",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "nextOrderSeqno",
+            "ty_idx": 13
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 14
+          },
+          {
+            "name": "signers",
+            "ty_idx": 23
+          },
+          {
+            "name": "signersNum",
+            "ty_idx": 14
+          },
+          {
+            "name": "proposers",
+            "ty_idx": 25
+          },
+          {
+            "name": "allowArbitraryOrderSeqno",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MultisigDataReply",
+        "ty_idx": 29,
+        "fields": [
+          {
+            "name": "nextOrderSeqno",
+            "ty_idx": 1
+          },
+          {
+            "name": "threshold",
+            "ty_idx": 1
+          },
+          {
+            "name": "signers",
+            "ty_idx": 30
+          },
+          {
+            "name": "proposers",
+            "ty_idx": 30
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 22
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 26
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 107307,
+        "name": "get_multisig_data",
+        "parameters": [],
+        "return_ty_idx": 29
+      },
+      {
+        "tvm_method_id": 93855,
+        "name": "get_order_estimate",
+        "parameters": [
+          {
+            "name": "order",
+            "ty_idx": 3
+          },
+          {
+            "name": "expirationDate",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 111399,
+        "name": "get_order_address",
+        "parameters": [
+          {
+            "name": "orderSeqno",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_ENOUGH_TON",
+        "err_code": 100
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNAUTHORIZED_EXECUTE",
+        "err_code": 101
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_SIGNERS_OUTDATED",
+        "err_code": 102
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_DICTIONARY_SEQUENCE",
+        "err_code": 103
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INCONSISTENT_DATA",
+        "err_code": 108
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_THRESHOLD",
+        "err_code": 109
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SIGNERS",
+        "err_code": 110
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_EXPIRED",
+        "err_code": 111
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNAUTHORIZED_NEW_ORDER",
+        "err_code": 1007
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_NEW_ORDER",
+        "err_code": 1008
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/Multisig.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"errors\"\nimport \"messages\"\nimport \"order-helpers\"\nimport \"order-state\"\nimport \"storage\"\nimport \"types\"\n\ncontract Multisig {\n    author: \"The Tolk Team\"\n    version: \"2.1\"\n    description: \"Multisig V2.1. Multi-signature wallet with order-based approval\"\n    incomingMessages: AllowedMessageToMultisig\n    storage: MultisigStorage\n}\n\ntype AllowedOrderAction = SendMessageAction | UpdateMultisigParamsAction\n\n@inline\nfun executeOrder(mutate storage: MultisigStorage, orderBody: DirectOrderActionsMap): bool {\n    // rare use of ACCEPT outside of external msg,\n    // goal is to assure we have exactly max gas amount to process actions\n    setGasLimitToMaximum();\n\n    var isStorageUpdated = false;\n\n    var actionLookup = orderBody.findFirst();\n    while (actionLookup.isFound) {\n        val actionCell = actionLookup.loadValue();\n        val action = lazy AllowedOrderAction.fromCell(actionCell);\n\n        match (action) {\n            SendMessageAction => {\n                sendRawMessage(action.message, action.mode);\n            }\n\n            UpdateMultisigParamsAction => {\n                val signersNum = validateDictionarySequence(action.signers);\n\n                assert (signersNum >= 1) throw ERROR_INVALID_SIGNERS;\n                assert (action.threshold > 0) throw ERROR_INVALID_THRESHOLD;\n                assert (action.threshold <= signersNum) throw ERROR_INVALID_THRESHOLD;\n\n                validateDictionarySequence(action.proposers);\n\n                storage.threshold = action.threshold;\n                storage.signers = action.signers;\n                storage.signersNum = signersNum;\n                storage.proposers = action.proposers;\n                isStorageUpdated = true;\n            }\n\n            else => {\n                // keep FunC behavior: ignore unknown action opcodes\n            }\n        }\n\n        actionLookup = orderBody.iterateNext(actionLookup);\n    }\n\n    return isStorageUpdated;\n}\n\ntype AllowedMessageToMultisig =\n    | NewOrderRequest\n    | ExecuteOrderRequest\n    | ExecuteInternalRequest\n    | TextComment\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToMultisig.fromSlice(in.body);\n\n    match (msg) {\n        NewOrderRequest => {\n            var storage = lazy MultisigStorage.load();\n            var orderSeqno = msg.orderSeqno;\n\n            if (!storage.allowArbitraryOrderSeqno) {\n                if (orderSeqno == MAX_ORDER_SEQNO) {\n                    orderSeqno = storage.nextOrderSeqno;\n                } else {\n                    assert (orderSeqno == storage.nextOrderSeqno) throw ERROR_INVALID_NEW_ORDER;\n                }\n                storage.nextOrderSeqno += 1;\n            }\n\n            val signerOrProposer: map<uint8, address> = msg.isAutoApprove\n                ? storage.signers\n                : storage.proposers;\n            val expectedSender = signerOrProposer.get(msg.index);\n\n            assert (expectedSender.isFound) throw ERROR_UNAUTHORIZED_NEW_ORDER;\n            assert (\n                in.senderAddress == expectedSender.loadValue()\n            ) throw ERROR_UNAUTHORIZED_NEW_ORDER;\n\n            val now = blockchain.now();\n\n            assert (msg.expirationDate >= now) throw ERROR_EXPIRED;\n\n            val minimalValue = calculateOrderProcessingCost(\n                msg.order,\n                storage.signers,\n                msg.expirationDate - now,\n            );\n            assert (in.valueCoins >= minimalValue) throw ERROR_NOT_ENOUGH_TON;\n\n            val signerIndexOnInit: SignerIndexOnInit = msg.isAutoApprove ? msg.index : null;\n\n            val deployOrderMsg = createMessage({\n                bounce: true,\n                dest: calculateOrderStateInit(contract.getAddress(), orderSeqno),\n                value: 0,\n                body: InitOrderRequest {\n                    queryId: msg.queryId,\n                    threshold: storage.threshold,\n                    signers: storage.signers,\n                    expirationDate: msg.expirationDate,\n                    order: msg.order,\n                    signerIndexOnInit,\n                },\n            });\n            deployOrderMsg.send(\n                SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_BOUNCE_ON_ACTION_FAIL,\n            );\n\n            storage.save();\n        }\n\n        ExecuteOrderRequest => {\n            var storage = lazy MultisigStorage.load();\n            val expectedOrderAddress = calculateOrderAddress(contract.getAddress(), msg.orderSeqno);\n\n            assert (in.senderAddress == expectedOrderAddress) throw ERROR_UNAUTHORIZED_EXECUTE;\n            assert (\n                msg.signersHash == storage.signers.hashCell() &&\n                msg.approvalsNum >= storage.threshold\n            ) throw ERROR_SIGNERS_OUTDATED;\n            assert (msg.expirationDate >= blockchain.now()) throw ERROR_EXPIRED;\n\n            if (executeOrder(mutate storage, msg.order)) {\n                storage.save();\n            }\n        }\n\n        ExecuteInternalRequest => {\n            var storage = lazy MultisigStorage.load();\n            assert (in.senderAddress == contract.getAddress()) throw ERROR_UNAUTHORIZED_EXECUTE;\n            if (executeOrder(mutate storage, msg.order)) {\n                storage.save();\n            }\n        }\n\n        TextComment => {}\n\n        else => {}\n    }\n}\n\nget fun get_multisig_data(): MultisigDataReply {\n    val storage = lazy MultisigStorage.load();\n\n    val signersNum = validateDictionarySequence(storage.signers);\n    assert (signersNum == storage.signersNum) throw ERROR_INCONSISTENT_DATA;\n\n    validateDictionarySequence(storage.proposers);\n\n    assert (signersNum >= 1) throw ERROR_INVALID_SIGNERS;\n    assert (storage.threshold > 0) throw ERROR_INVALID_THRESHOLD;\n    assert (storage.threshold <= signersNum) throw ERROR_INVALID_THRESHOLD;\n\n    return {\n        nextOrderSeqno: storage.allowArbitraryOrderSeqno ? -1 : storage.nextOrderSeqno,\n        threshold: storage.threshold,\n        signers: storage.signers.toLowLevelDict()!,\n        proposers: storage.proposers.toLowLevelDict(),\n    };\n}\n\nget fun get_order_estimate(order: cell, expirationDate: int): int {\n    val storage = lazy MultisigStorage.load();\n    val orderBody = createMapFromLowLevelDict<uint8, cell>(order);\n\n    return calculateOrderProcessingCost(\n        orderBody,\n        storage.signers,\n        expirationDate - blockchain.now(),\n    );\n}\n\nget fun get_order_address(orderSeqno: int): address {\n    return calculateOrderAddress(contract.getAddress(), orderSeqno);\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/errors.tolk",
+      "contents": "const ERROR_UNAUTHORIZED_NEW_ORDER = 1007\nconst ERROR_INVALID_NEW_ORDER = 1008\n\nconst ERROR_NOT_ENOUGH_TON = 100\nconst ERROR_UNAUTHORIZED_EXECUTE = 101\nconst ERROR_SIGNERS_OUTDATED = 102\nconst ERROR_INVALID_DICTIONARY_SEQUENCE = 103\n\nconst ERROR_UNAUTHORIZED_INIT = 104\nconst ERROR_ALREADY_INITED = 105\nconst ERROR_UNAUTHORIZED_SIGN = 106\nconst ERROR_ALREADY_APPROVED = 107\n\nconst ERROR_INCONSISTENT_DATA = 108\nconst ERROR_INVALID_THRESHOLD = 109\nconst ERROR_INVALID_SIGNERS = 110\n\nconst ERROR_EXPIRED = 111\nconst ERROR_ALREADY_EXECUTED = 112\n\nconst ERROR_UNKNOWN_OP = 0xffff\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/messages.tolk",
+      "contents": "const COMMENT_APPROVE = \"approve\".literalSlice()\n\nstruct (0x00000000) TextComment {\n    comment: RemainingBitsAndRefs\n}\n\ntype IndexedAddressMap = map<uint8, address>\n\ntype DirectIndexedAddressMap = map<uint8, address>\n\ntype DirectOrderActionsMap = map<uint8, cell>\n\n// if signer wants to approve, he will provide his index;\n// just false otherwise\ntype SignerIndexOnInit = uint8?\n\nstruct (0xf1381e5b) SendMessageAction {\n    mode: uint8\n    message: cell\n}\n\nstruct (0x1d0cfbd3) UpdateMultisigParamsAction {\n    threshold: uint8\n    signers: DirectIndexedAddressMap\n    proposers: IndexedAddressMap\n}\n\nstruct (0xf718510f) NewOrderRequest {\n    queryId: uint64\n    orderSeqno: uint256\n    isAutoApprove: bool\n    index: uint8\n    expirationDate: uint48\n    order: DirectOrderActionsMap\n}\n\nstruct (0x75097f5d) ExecuteOrderRequest {\n    queryId: uint64\n    orderSeqno: uint256\n    expirationDate: uint48\n    approvalsNum: uint8\n    signersHash: uint256\n    order: DirectOrderActionsMap\n}\n\nstruct (0xa32c59bf) ExecuteInternalRequest {\n    queryId: uint64\n    order: DirectOrderActionsMap\n}\n\nstruct (0x9c73fba2) InitOrderRequest {\n    queryId: uint64\n    threshold: uint8\n    signers: DirectIndexedAddressMap\n    expirationDate: uint48\n    order: DirectOrderActionsMap\n    signerIndexOnInit: SignerIndexOnInit\n}\n\nstruct (0xa762230f) ApproveRequest {\n    queryId: uint64\n    signerIndex: uint8\n}\n\nstruct (0x82609bf6) ApproveAccepted {\n    queryId: uint64\n}\n\nstruct (0xafaf283e) ApproveRejected {\n    queryId: uint64\n    exitCode: uint32\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/order-helpers.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\nimport \"types\"\n\nconst MULTISIG_INIT_ORDER_GAS = 10232\nconst ORDER_INIT_GAS = 4614\nconst ORDER_EXECUTE_GAS = 11244\nconst MULTISIG_EXECUTE_GAS = 7576\n\nconst INIT_ORDER_BIT_OVERHEAD = 1337\nconst INIT_ORDER_CELL_OVERHEAD = 6\nconst ORDER_STATE_BIT_OVERHEAD = 1760\nconst ORDER_STATE_CELL_OVERHEAD = 6\nconst EXECUTE_ORDER_BIT_OVERHEAD = 664\nconst EXECUTE_ORDER_CELL_OVERHEAD = 1\n\nfun calculateOrderProcessingCost(\n    orderBody: DirectOrderActionsMap,\n    signers: DirectIndexedAddressMap,\n    duration: int,\n): coins {\n    val orderDict = orderBody.toLowLevelDict()!;\n    val signersDict = signers.toLowLevelDict()!;\n\n    val gasBefore = getGasConsumedAtTheMoment();\n\n    val (orderCells, orderBits, _) = orderDict.calculateSizeStrict(8192);\n    val (signersCells, signersBits, _) = signersDict.calculateSizeStrict(512);\n\n    val sizeCountingGas = getGasConsumedAtTheMoment() - gasBefore;\n\n    val gasFees = calculateGasFee(BASECHAIN, MULTISIG_INIT_ORDER_GAS + sizeCountingGas) +\n    calculateGasFee(BASECHAIN, ORDER_INIT_GAS) +\n    calculateGasFee(BASECHAIN, ORDER_EXECUTE_GAS) +\n    calculateGasFee(BASECHAIN, MULTISIG_EXECUTE_GAS);\n\n    val forwardFees = calculateForwardFee(\n        BASECHAIN,\n        INIT_ORDER_BIT_OVERHEAD + orderBits + signersBits,\n        INIT_ORDER_CELL_OVERHEAD + orderCells + signersCells,\n    ) +\n    calculateForwardFee(\n        BASECHAIN,\n        EXECUTE_ORDER_BIT_OVERHEAD + orderBits,\n        EXECUTE_ORDER_CELL_OVERHEAD + orderCells,\n    );\n\n    val storageFees = calculateStorageFee(\n        BASECHAIN,\n        duration,\n        ORDER_STATE_BIT_OVERHEAD + orderBits + signersBits,\n        ORDER_STATE_CELL_OVERHEAD + orderCells + signersCells,\n    );\n\n    return gasFees + forwardFees + storageFees;\n}\n\nfun getTextComment(inMsgBody: RemainingBitsAndRefs): slice {\n    var result = beginCell();\n\n    result.storeSlice(inMsgBody.preloadBits(inMsgBody.remainingBitsCount()));\n\n    repeat (inMsgBody.depth()) {\n        inMsgBody = inMsgBody.preloadRef().beginParse();\n        result.storeSlice(inMsgBody.preloadBits(inMsgBody.remainingBitsCount()));\n    }\n\n    return result.toSlice();\n}\n\nfun DirectIndexedAddressMap.findSignerByAddress(self, signerAddress: address): (uint8, bool) {\n    var signerIndex: uint8 = 0;\n    var foundSigner = false;\n\n    var item = self.findFirst();\n    while (item.isFound && !foundSigner) {\n        val currentAddress = item.loadValue();\n        if (currentAddress == signerAddress) {\n            signerIndex = item.getKey();\n            foundSigner = true;\n        } else {\n            item = self.iterateNext(item);\n        }\n    }\n\n    return (signerIndex, foundSigner);\n}\n\nfun OrderStorageInitialized.addApproval(mutate self, signerIndex: uint8) {\n    val mask = (1 << signerIndex);\n\n    assert ((self.remaining.approvalsMask & mask) == 0) throw ERROR_ALREADY_APPROVED;\n\n    self.remaining.approvalsNum += 1;\n    self.remaining.approvalsMask |= mask;\n}\n\nfun OrderStorageInitialized.tryExecute(mutate self, queryId: uint64) {\n    if (self.remaining.approvalsNum == self.remaining.threshold) {\n        val executeMsg = createMessage({\n            bounce: false,\n            dest: self.multisigAddress,\n            value: 0,\n            body: ExecuteOrderRequest {\n                queryId,\n                orderSeqno: self.orderSeqno,\n                expirationDate: self.remaining.expirationDate,\n                approvalsNum: self.remaining.approvalsNum,\n                signersHash: self.remaining.signers.hashCell(),\n                order: self.remaining.order,\n            },\n        });\n        // SAFETY: if we execute, we want order to be drained empty\n        executeMsg.send(SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n\n        self.remaining.sentForExecution = true;\n    }\n}\n\n@inline\nfun sendApproveRejected(responseAddress: address, queryId: uint64, exitCode: uint32) {\n    val rejectedMsg = createMessage({\n        bounce: false,\n        dest: responseAddress,\n        value: 0,\n        body: ApproveRejected { queryId, exitCode },\n    });\n    rejectedMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\n@inline_ref\nfun OrderStorageInitialized.approve(\n    mutate self,\n    signerIndex: uint8,\n    responseAddress: address,\n    queryId: uint64,\n) {\n    if (self.remaining.sentForExecution) {\n        sendApproveRejected(responseAddress, queryId, ERROR_ALREADY_EXECUTED);\n        return;\n    }\n\n    val mask = (1 << signerIndex);\n    if ((self.remaining.approvalsMask & mask) != 0) {\n        sendApproveRejected(responseAddress, queryId, ERROR_ALREADY_APPROVED);\n        return;\n    }\n\n    self.remaining.approvalsNum += 1;\n    self.remaining.approvalsMask |= mask;\n\n    val acceptMsg = createMessage({\n        bounce: false,\n        dest: responseAddress,\n        value: 0,\n        body: ApproveAccepted { queryId },\n    });\n    acceptMsg.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n\n    self.tryExecute(queryId);\n    self.save();\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/order-state.tolk",
+      "contents": "import \"../../gen/Order.code\"\n\nstruct OrderInitData {\n    multisigAddress: address\n    orderSeqno: uint256\n}\n\nfun getOrderCodeAsLibraryReference(): cell {\n    return orderCompiledCodeLibraryRef();\n}\n\nfun calculateOrderStateInit(multisigAddress: address, orderSeqno: uint256): AutoDeployAddress {\n    return {\n        stateInit: ContractState {\n            code: getOrderCodeAsLibraryReference(),\n            data: OrderInitData { multisigAddress, orderSeqno }.toCell(),\n        },\n        workchain: BASECHAIN,\n    };\n}\n\nfun calculateOrderAddress(multisigAddress: address, orderSeqno: uint256): address {\n    return calculateOrderStateInit(multisigAddress, orderSeqno).calculateAddress();\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/storage.tolk",
+      "contents": "import \"messages\"\n\nstruct MultisigStorage {\n    nextOrderSeqno: uint256\n    threshold: uint8\n    signers: DirectIndexedAddressMap\n    signersNum: uint8\n    proposers: IndexedAddressMap\n    allowArbitraryOrderSeqno: bool\n}\n\nfun MultisigStorage.load(): MultisigStorage {\n    return MultisigStorage.fromCell(contract.getData());\n}\n\nfun MultisigStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct OrderStorageInitialized {\n    multisigAddress: address\n    orderSeqno: uint256\n    remaining: OrderStorageRemaining\n}\n\nstruct OrderStorageRemaining {\n    threshold: uint8\n    sentForExecution: bool\n    signers: DirectIndexedAddressMap\n    approvalsMask: uint256\n    approvalsNum: uint8\n    expirationDate: uint48\n    order: DirectOrderActionsMap\n}\n\nstruct MultisigDataReply {\n    nextOrderSeqno: int\n    threshold: int\n    signers: dict\n    proposers: dict\n}\n\nstruct OrderDataReply {\n    multisigAddress: address\n    orderSeqno: int\n    threshold: int?\n    sentForExecution: bool?\n    signers: dict\n    approvalsMask: int?\n    approvalsNum: int?\n    expirationDate: int?\n    order: dict\n}\n\nfun OrderStorageInitialized.save(self) {\n    contract.setData(self.toCell());\n}\n\nstruct OrderStorageMaybeNotInitialized {\n    contractData: slice\n}\n\nfun startLoadingOrderStorage(): OrderStorageMaybeNotInitialized {\n    return { contractData: contract.getData().beginParse() };\n}\n\nstruct OrderStorageHeader {\n    multisigAddress: address\n    orderSeqno: uint256\n    remaining: RemainingBitsAndRefs\n}\n\nfun OrderStorageMaybeNotInitialized.loadHeader(self): OrderStorageHeader {\n    return OrderStorageHeader.fromSlice(self.contractData);\n}\n\nfun OrderStorageHeader.isInitialized(self): bool {\n    return self.remaining.remainingBitsCount() > 0;\n}\n\nfun OrderStorageHeader.loadInitialized(self): OrderStorageInitialized {\n    val remaining = OrderStorageRemaining.fromSlice(self.remaining);\n\n    return {\n        multisigAddress: self.multisigAddress,\n        orderSeqno: self.orderSeqno,\n        remaining,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/multisig-v2.1/contracts/types.tolk",
+      "contents": "import \"errors\"\nimport \"messages\"\n\nconst MAX_ORDER_SEQNO = 0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\n\nfun DirectIndexedAddressMap.packToBuilder(self, mutate b: builder) {\n    val dictRoot = self.toLowLevelDict();\n    b.storeRef(dictRoot!);\n}\n\nfun DirectIndexedAddressMap.unpackFromSlice(mutate s: slice): DirectIndexedAddressMap {\n    return createMapFromLowLevelDict<uint8, address>(s.loadRef());\n}\n\nfun DirectOrderActionsMap.packToBuilder(self, mutate b: builder) {\n    val dictRoot = self.toLowLevelDict();\n    b.storeRef(dictRoot!);\n}\n\nfun DirectOrderActionsMap.unpackFromSlice(mutate s: slice): DirectOrderActionsMap {\n    return createMapFromLowLevelDict<uint8, cell>(s.loadRef());\n}\n\n@inline\nfun validateDictionarySequence<T>(m: map<uint8, T>): int {\n    var expectedIndex = 0;\n\n    var item = m.findFirst();\n    while (item.isFound) {\n        assert (item.getKey() == expectedIndex) throw ERROR_INVALID_DICTIONARY_SEQUENCE;\n        expectedIndex += 1;\n        item = m.iterateNext(item);\n    }\n\n    return expectedIndex;\n}\n\nfun DirectIndexedAddressMap.hashCell(self): uint256 {\n    return self.toLowLevelDict()!.hash();\n}\n\nfun DirectOrderActionsMap.hashCell(self): uint256 {\n    return self.toLowLevelDict()!.hash();\n}\n"
+    },
+    {
+      "filename": "tmp/8e00ef60-aca4-4138-b98a-ab7d8861afb1/gen/Order.code.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n// Auto-generated dependency code for contract 'Order'\n// Provides compiled BoC data for the 'Order' contract\n//\n// This file is automatically generated by 'acton build'\n// Do not edit manually — changes will be overwritten\n\n/// Returns `Order`'s code as a cell.\n///\n/// - Contract: `Order`\n/// - Path: `multisig-v2.1/contracts/Order.tolk`\n///\n/// # Safety\n///\n/// This function always returns the correct cell with the contract code.\n@pure\nfun orderCompiledCodeLibraryRef(): cell asm \"\"\"\n    \"te6ccgECCwEAAvwAART/APSkE/S88sgLAQIBYgIDA+bQ+JHyQO1E0AHXLCAAAAAE4wLXLCTjn90U4wLXLCU7ERh8jsoB+kjT/yDXScIA8uBq0wfSANTT/9MH0y/U0QnTP9cLB1MFePQO8uBq+JIB+kjRxwXy4Gr4khCrEJoQiRB4EGcQVhBFEDRY2zxfCeCED/LwBAUIAEuhx3HaiaH0kaf+Qa6ThAEwYNra2tra2tvDpg+kAamn/6YPpl+powH6yCHXSVIg1xnPFiHXZJ0B10zQINdJUhDXGVjO5DHPUIQPAYt2FwcHJvdmWMcF8vT6SNP/INdJwgDy4GrTB9IA1NP/0wfTL9TR+JJwcCd49IZvpZkglCOzwwCRcOKOGiL6SNEmxwWUMzMif5owMSh49HxvpVBD4lBD6F8DbBIGAuwB+kjT//iSI8cF8uBoA9M/0wfU0y/U0wABk9cLB5IwbeIo10nCAOMDCNMH0gDU0//TB9Mv1NFRprry4GkI+QAj+QC68uBpUWe68uBpBPkAJ/kAuvLgaSpu8tBpU6B49A7y4Gr6SNEQqxCaEDlIcBBGQwPbPF8JBwgBFvLgaviS+CXbPF8JCADmOHBwUwP4I77y4G8qbpI3OY5FMAmuCXEKsSXAAY40MSP5AFR4cyXIz5HUJf12G8s/Esv/yy/PhAYSy/8XzMnIz4UIF/pScc8LbhbMyYEAkPsAf5E24hBY4gfI+lIWy/8TywcVygAUzBTL/xPLB8svzMntVAL2KI4dMsjPhQj6UoIQr68oPs8Ljss/z5AAAAHCyYBQ+wDgAq5TYLCOHTDIz4UI+lKCEK+vKD7PC47LP8+QAAABrsmAUPsA4AWkUGWxyM+FCBb6UoIQgmCb9s8LjiHPCz/JgFD7AFM3upEw4w0oyPpSKM8L/yfPCwcmzwoACQoAajYk+QBUeYJTZMjPkdQl/XYcyz8Ty//LL8sHEsv/F8zJyM+FCBf6UnHPC24WzMmBAJD7AH8FAColzxQkzwv/I88LByLPCy8hzxTJ7VQ=\" base64>B B>boc hashu <b 2 8 u, swap 256 u, b>spec PUSHREF\n\"\"\"\n"
+    }
+  ]
+}

@@ -1,0 +1,1679 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from genesis_collection_testing.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  115952 DECLMETHOD getMintStatus()\n  70017 DECLMETHOD getSignerPubKey()\n  102491 DECLMETHOD get_collection_data()\n  92067 DECLMETHOD get_nft_address_by_index()\n  // 8 functions inlined in-place:\n  // - Storage.load (5 calls)\n  // - Storage.save (1 call)\n  // - buildItemInitData (2 calls)\n  // - calcItemAddress (1 call)\n  // - handleMint (1 call)\n  // - handlePause (1 call)\n  // - handleUnpause (1 call)\n  // - handleRotateSigner (1 call)\n  // - handleUpdateContent (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    c4 PUSH\n    CTOS\n    s1 s(-1) PUXC\n    256 LDU\n    LDSTDADDR\n    LDREF\n    16 LDU\n    LDOPTREF\n    LDOPTREF\n    1 LDI\n    PLDREF\n    s0 s8 XCHG\n    x{4d494e54} SDBEGINSQ\n    IF:<{\n      s9 POP\n      s0 s8 XCHG\n      64 LDU\n      LDREF\n      9 PUSHPOW2\n      PLDSLICEX\n      INMSG_SRC\n      INMSG_VALUE\n      s12 PUSH\n      402 THROWIF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      16 LDU\n      LDREF\n      64 LDU\n      NIP\n      LDGRAMS\n      32 LDU\n      64 LDU\n      ENDS\n      s7 s5 XCPU\n      SDEQ\n      410 THROWIFNOT\n      s0 s8 XCHG\n      HASHCU\n      s0 s7 s15 XC2PU\n      CHKSIGNU\n      404 THROWIFNOT\n      s0 s6 XCHG\n      NOW\n      GEQ\n      403 THROWIFNOT\n      NEWC\n      b{1} STSLICECONST\n      s0 s4 s8 XCHG3\n      64 PUSHINT\n      DICTUADDB\n      405 THROWIFNOT\n      s8 s2 PUSH2\n      ADD\n      10000 PUSHINT\n      LEQ\n      407 THROWIFNOT\n      s2 PUSH\n      30000000 PUSHINT\n      MUL\n      s1 s4 XCHG\n      ADD\n      GEQ\n      408 THROWIFNOT\n      s0 s2 XCHG\n      CTOS\n      s2 PUSH\n      REPEAT:<{\n        16 LDU\n        NEWC\n        b{1} STSLICECONST\n        s0 s2 s7 XCPUXC\n        16 PUSHINT\n        DICTUADDB\n        406 THROWIFNOT\n        MYADDR\n        s0 s2 XCHG\n        NEWC\n        16 STU\n        s1 s2 XCHG\n        STSTDADDR\n        ENDC\n        s8 PUSH\n        30000000 PUSHINT\n        <b b> PUSHREF\n        NEWC\n        b{01100010000000000} STSLICECONST\n        s4 s3 PUSH2\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        256 STUR\n        ROT\n        STGRAMS\n        140 PUSHINT\n        113 STUR\n        s1 s2 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        x{494e4954} STSLICECONST\n        s5 PUSH\n        64 STUR\n        s6 s(-1) PUXC\n        STSTDADDR\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        s0 s5 XCHG\n      }>\n      DROP\n      2 2 BLKDROP2\n      s0 s3 XCHG\n      ADD\n      50000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n      x{800836D32EF472B3030B78C8A3EC1F70A2EF24D17D95B2AF8230F5412CE4E953F53_} PUSHSLICE\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n    }>ELSE<{\n      x{50415553} SDBEGINSQ\n      IF:<{\n        2DROP\n        s7 POP\n        INMSG_SRC\n        s4 PUSH\n        SDEQ\n        401 THROWIFNOT\n        TRUE\n      }>ELSE<{\n        x{554e5053} SDBEGINSQ\n        IF:<{\n          2DROP\n          s7 POP\n          INMSG_SRC\n          s4 PUSH\n          SDEQ\n          401 THROWIFNOT\n          FALSE\n        }>ELSE<{\n          x{524f5453} SDBEGINSQ\n          IF:<{\n            s7 POP\n            s8 POP\n            INMSG_SRC\n            s5 PUSH\n            SDEQ\n            401 THROWIFNOT\n            s0 s5 XCHG\n            64 LDU\n            NIP\n            256 PLDU\n          }>ELSE<{\n            x{55504354} SDBEGINSQ\n            IF:<{\n              s8 POP\n              s8 POP\n              INMSG_SRC\n              s5 PUSH\n              SDEQ\n              401 THROWIFNOT\n              s0 s6 XCHG\n              64 LDU\n              NIP\n              PLDREF\n            }>ELSE<{\n              DROP\n              s0 s8 XCHG\n              SEMPTY\n              409 THROWIFNOT\n              s0 s6 XCHG\n            }>\n            s0 s6 XCHG\n            s0 s5 XCHG\n          }>\n          s0 s5 XCHG\n          s0 s7 XCHG\n        }>\n      }>\n      s7 s1 s7 XCHG3\n    }>\n    s0 s5 XCHG\n    NEWC\n    256 STU\n    s1 s4 XCHG\n    STSTDADDR\n    s1 s2 XCHG\n    STREF\n    s1 s3 XCHG\n    16 STU\n    STOPTREF\n    STOPTREF\n    s1 s2 XCHG\n    1 STI\n    STREF\n    ENDC\n    c4 POP\n  }>\n  getMintStatus() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    16 LDU\n    SKIPOPTREF\n    SKIPOPTREF\n    1 PLDI\n    SWAP\n    10000 PUSHINT\n  }>\n  getSignerPubKey() PROC:<{\n    c4 PUSH\n    CTOS\n    256 PLDU\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    LDSTDADDR\n    LDREF\n    NIP\n    16 LDU\n    SKIPOPTREF\n    SKIPOPTREF\n    PLDREF\n    ROT\n  }>\n  get_nft_address_by_index() PROC:<{\n    c4 PUSH\n    CTOS\n    PLDREF\n    MYADDR\n    s0 s2 XCHG\n    NEWC\n    16 STU\n    s1 s2 XCHG\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECEAEAAjwAART/APSkE/S88sgLAQIBYgIDAnTQ+JHyQO1E0FIQ0//6SNTTD/QE9ATSANdMCNcsImpKcqTjDwXIy/8U+lISzBPLD/QA9AASygDMye1UBAUCASAKCwP8OQjTP9SDCNcZ+JL4lyzy0ZIj0PpI0w/U0z8x+gDTH9M/0VF1xwXy4ZoI+QBUEH/5EPLhlAb4I77y4ZPIz4NASIBA9FPy4ZVTgqCBJxC78uGXIoIJycOAqBSgvvLhmALQIorkMGwiA6CCCvrwgHD7AonIz4UI+lJwzwtuyYMGBgcIAOTXLCKCCqqcm1s3+JIkxwXy4ZF/jlrXLCKqcoKcm1s3+JIkxwXy4ZFwjkTXLCKSeqKcjhE3OPiSJccF8uGRBdM/MdcL/44l1ywiqoIapI4QODj4kiXHBfLhkQbTPzHXTJgwCMcA8uGZBuIGBeIFB+LiRxcBptMPyM+DVCAogBD0U/LhlvgoAsjLDxL6UskoggnJw4CIyM+JiAFTQ8jPhNDMzPkWzwv/WPoCgQCMzwtwEswSzM+RJTklUiXPCz9SYPpSzMlx+wAFCQBDgAg20y70crMDC3jIo+wfcKLvJNF9lbKvgjD1QSzk6VP1MAAE+wAAAAIBIAwNAgEgDg8AEbkYHtRNDXC/+ABHuno+1E0NdM+CgCyMsPEvpSyQHIz4TQzMz5FsjPigBAy//PUIACu5Bb7UTQ0/8x+kjUMdMP9AH0AddMWIADW4Tw7UTQ0/8x+kgx1DHTD/QB9AHXCgABgScQg=",
+  "codeHashHex": "B47A20362F83D16925249FBEB3A30041CF993F67F8EA549FE3A87424BF8C9BF8",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/f6912d45-fc66-4073-b72e-9b07b6a2eb4d/genesis_collection_testing.tolk",
+        "size_chars": 16512,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintQuote"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PauseMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpauseMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RotateSignerMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UpdateContentMessage"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1296649812,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1346458963,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 1431195731,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 1380930643,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1431323476,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ItemStorageInit"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 35,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InitializeMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          39
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 41,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 43,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 46
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          45
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 138,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          32,
+          13
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          52
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          5,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          3,
+          7
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 40,
+        "struct_name": "CreateMessageOptions<InitializeMessage>",
+        "monomorphic_fields_ty_idx": [
+          44,
+          49,
+          51,
+          39
+        ]
+      },
+      {
+        "ty_idx": 54,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          44,
+          49,
+          51,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 45,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 47
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 36
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 32
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 34
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 42,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 44
+          },
+          {
+            "name": "value",
+            "ty_idx": 49
+          },
+          {
+            "name": "dest",
+            "ty_idx": 51
+          },
+          {
+            "name": "body",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          53,
+          8,
+          53,
+          15
+        ],
+        "fields": [
+          {
+            "name": "signerPubKey",
+            "ty_idx": 13
+          },
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "totalMinted",
+            "ty_idx": 14
+          },
+          {
+            "name": "mintedSerials",
+            "ty_idx": 15
+          },
+          {
+            "name": "usedNonces",
+            "ty_idx": 16
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "baseContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ItemStorageInit",
+        "ty_idx": 28,
+        "ident_loc": [
+          1,
+          84,
+          8,
+          84,
+          23
+        ],
+        "fields": [
+          {
+            "name": "index",
+            "ty_idx": 14
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintQuote",
+        "ty_idx": 19,
+        "ident_loc": [
+          1,
+          113,
+          8,
+          113,
+          17
+        ],
+        "fields": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 14
+          },
+          {
+            "name": "serials",
+            "ty_idx": 3
+          },
+          {
+            "name": "usdTotal",
+            "ty_idx": 11
+          },
+          {
+            "name": "gramAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiry",
+            "ty_idx": 9
+          },
+          {
+            "name": "nonce",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintMessage",
+        "ty_idx": 18,
+        "ident_loc": [
+          1,
+          123,
+          21,
+          123,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1296649812,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quote",
+            "ty_idx": 20
+          },
+          {
+            "name": "signature",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PauseMessage",
+        "ty_idx": 22,
+        "ident_loc": [
+          1,
+          129,
+          21,
+          129,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1346458963,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpauseMessage",
+        "ty_idx": 23,
+        "ident_loc": [
+          1,
+          133,
+          21,
+          133,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1431195731,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RotateSignerMessage",
+        "ty_idx": 24,
+        "ident_loc": [
+          1,
+          137,
+          21,
+          137,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1380930643,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newPubKey",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UpdateContentMessage",
+        "ty_idx": 25,
+        "ident_loc": [
+          1,
+          142,
+          21,
+          142,
+          41
+        ],
+        "prefix": {
+          "prefix_num": 1431323476,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "InitializeMessage",
+        "ty_idx": 39,
+        "ident_loc": [
+          1,
+          151,
+          21,
+          151,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1229867348,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 17,
+        "ident_loc": [
+          1,
+          157,
+          6,
+          157,
+          20
+        ],
+        "target_ty_idx": 26
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          298,
+          5,
+          298,
+          22
+        ],
+        "end_loc": [
+          1,
+          338,
+          1,
+          338,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "handleMint",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          171,
+          5,
+          171,
+          15
+        ],
+        "end_loc": [
+          1,
+          280,
+          1,
+          280,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 12
+          },
+          {
+            "name": "msg",
+            "ty_idx": 18
+          },
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "msgValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<MintQuote>.load",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "map<uint64, bool>.addIfNotExists",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "map<uint16, bool>.addIfNotExists",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "buildItemInitData",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          93,
+          5,
+          93,
+          22
+        ],
+        "end_loc": [
+          1,
+          99,
+          1,
+          99,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "ItemStorageInit.toCell",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          },
+          {
+            "name": "options",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "createMessage<InitializeMessage>",
+        "return_ty_idx": 38,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "createMessage<void>",
+        "return_ty_idx": 38,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "handlePause",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          282,
+          5,
+          282,
+          16
+        ],
+        "end_loc": [
+          1,
+          284,
+          1,
+          284,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 12
+          },
+          {
+            "name": "msg",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "handleUnpause",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          286,
+          5,
+          286,
+          18
+        ],
+        "end_loc": [
+          1,
+          288,
+          1,
+          288,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 12
+          },
+          {
+            "name": "msg",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "handleRotateSigner",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          290,
+          5,
+          290,
+          23
+        ],
+        "end_loc": [
+          1,
+          292,
+          1,
+          292,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 12
+          },
+          {
+            "name": "msg",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "handleUpdateContent",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          294,
+          5,
+          294,
+          24
+        ],
+        "end_loc": [
+          1,
+          296,
+          1,
+          296,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 12
+          },
+          {
+            "name": "msg",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          68,
+          13,
+          68,
+          17
+        ],
+        "end_loc": [
+          1,
+          70,
+          1,
+          70,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "getMintStatus",
+        "return_ty_idx": 55,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          342,
+          9,
+          342,
+          22
+        ],
+        "end_loc": [
+          1,
+          345,
+          1,
+          345,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "getSignerPubKey",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          347,
+          9,
+          347,
+          24
+        ],
+        "end_loc": [
+          1,
+          350,
+          1,
+          350,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "get_collection_data",
+        "return_ty_idx": 56,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          355,
+          9,
+          355,
+          28
+        ],
+        "end_loc": [
+          1,
+          358,
+          1,
+          358,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          362,
+          9,
+          362,
+          33
+        ],
+        "end_loc": [
+          1,
+          365,
+          1,
+          365,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "calcItemAddress",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          101,
+          5,
+          101,
+          20
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          },
+          {
+            "name": "itemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "InitializeMessage"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          5,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          3,
+          7
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "InitializeMessage",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1229867348,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 115952,
+        "name": "getMintStatus",
+        "parameters": [],
+        "return_ty_idx": 13
+      },
+      {
+        "tvm_method_id": 70017,
+        "name": "getSignerPubKey",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_NOT_ADMIN",
+        "err_code": 401
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_PAUSED",
+        "err_code": 402
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_QUOTE_EXPIRED",
+        "err_code": 403
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_BAD_SIGNATURE",
+        "err_code": 404
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_NONCE_USED",
+        "err_code": 405
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_SERIAL_MINTED",
+        "err_code": 406
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_SUPPLY_EXCEEDED",
+        "err_code": 407
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_INSUFFICIENT_PAYMENT",
+        "err_code": 408
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNKNOWN_OP",
+        "err_code": 409
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_SENDER_MISMATCH",
+        "err_code": 410
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/f6912d45-fc66-4073-b72e-9b07b6a2eb4d/genesis_collection_testing.tolk",
+      "contents": "// Genesis Collection (TEP-62 style) — storage schema, opcodes, message layouts,\n// and getter stubs only. Mint/admin business logic is NOT implemented yet: see\n// the handle*() stubs called from onInternalMessage below, filled in a later step.\n\nconst MAX_SUPPLY: int = 10000;\n\n// The treasury is where all mint proceeds must ultimately go. It is a compile-time\n// constant, NOT a Storage field, and no function in this contract ever writes to it.\n// This is deliberate: the payout destination must be permanently immutable and\n// impossible to redirect post-deployment — there is no admin function, upgrade path,\n// or proxy anywhere in this contract that could ever touch it.\n// PLACEHOLDER: replace with the real treasury multisig address before deployment.\nconst TREASURY_ADDRESS: address = address(\"0QBBtpl3o5WYGFvGRR9g-4UXeSaL7K2VfBGHqglnJ0qfqcXk\");\n\n// ---- Opcodes ----\n// Note: Tolk identifiers can't contain `::`, so these use OP_* naming instead of\n// the `op::name` convention from FunC. Values must stay in sync with the opcode\n// literal in each message struct's header below — confirmed by compiler test that\n// `struct (OP_MINT) MintMessage` is rejected (\"expected opcode `0x...` or `0b...`,\n// got `OP_MINT`\"): that header position is grammar-level restricted to a literal,\n// a named constant can never be used there, so the values must be kept in sync\n// by hand.\nconst OP_MINT: int = 0x4d494e54;             // sender: anyone — submit signed quote + payment\nconst OP_PAUSE: int = 0x50415553;            // sender: admin only — halt new mints\nconst OP_UNPAUSE: int = 0x554e5053;          // sender: admin only — resume minting\nconst OP_ROTATE_SIGNER: int = 0x524f5453;    // sender: admin only — update signerPubKey\nconst OP_UPDATE_CONTENT: int = 0x55504354;   // sender: admin only — swap baseContent (delayed reveal)\nconst OP_INITIALIZE: int = 0x494e4954;       // sender: this collection only — sent collection -> item, first message only\n\n// Placeholder — covers the item's StateInit rent + gas; we'll revisit the exact\n// figure once full payment/treasury logic exists in a later step.\nconst ITEM_DEPLOY_VALUE: coins = ton(\"0.03\");\n\n// Operating reserve this contract always keeps for its own storage rent and to\n// fund future item-deploy sends (which pay their forward fee out of this\n// contract's own balance, not out of the incoming message's value — see the\n// reserve comment in handleMint's treasury forward for why this exists).\nconst MIN_COLLECTION_BALANCE: coins = ton(\"0.05\");\n\n// ---- Error codes ----\nconst ERROR_NOT_ADMIN: int = 401;\nconst ERROR_PAUSED: int = 402;\nconst ERROR_QUOTE_EXPIRED: int = 403;\nconst ERROR_BAD_SIGNATURE: int = 404;\nconst ERROR_NONCE_USED: int = 405;\nconst ERROR_SERIAL_MINTED: int = 406;\nconst ERROR_SUPPLY_EXCEEDED: int = 407;\nconst ERROR_INSUFFICIENT_PAYMENT: int = 408;\nconst ERROR_UNKNOWN_OP: int = 409;\nconst ERROR_SENDER_MISMATCH: int = 410;\n\n// ---- Storage ----\nstruct Storage {\n    signerPubKey: uint256    // quote-signing key, rotatable by admin\n    adminAddress: address    // multisig wallet address; controls pause/rotate/reveal\n    itemCode: cell           // compiled GenesisItemTesting code, used for StateInit at mint time\n    totalMinted: uint16      // running counter, checked against MAX_SUPPLY\n    mintedSerials: map<uint16, bool>     // uint16 serial -> bool, double-mint guard\n    usedNonces: map<uint64, bool>        // uint64 nonce -> bool, replay guard\n    paused: bool\n    baseContent: cell        // TEP-64 base content; swappable by admin for delayed reveal\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ---- Item address computation (for get_nft_address_by_index) ----\n//\n// Must mirror genesis_item_testing.tolk's `StorageInit` shape EXACTLY (same\n// field order, same widths, no refs), so the StateInit hash computed here\n// matches what the item contract will actually be deployed with once mint logic\n// is implemented. Deliberately duplicated rather than imported: that file\n// defines its own onInternalMessage, and importing it here would collide with\n// this contract's onInternalMessage (Tolk has one global function namespace per\n// compiled binary — see also genesis_item_testing.tolk's comment on the same\n// address-before-storage constraint). Verified via a sandbox test that the\n// address this produces matches @ton/core's own contractAddress() computed from\n// the same (code, data) pair.\nstruct ItemStorageInit {\n    index: uint16\n    collectionAddress: address\n}\n\n// Single source of truth for an item's initial data cell. Both address\n// computation (calcItemAddress, below) and the actual deploy (handleMint's item\n// deployment loop) call this same function, so they can never construct\n// different data shapes and diverge.\nfun buildItemInitData(index: int): cell {\n    val initData: ItemStorageInit = {\n        index: index as uint16,\n        collectionAddress: contract.getAddress(),\n    };\n    return initData.toCell();\n}\n\nfun calcItemAddress(index: int, itemCode: cell): address {\n    val deployed: AutoDeployAddress = {\n        stateInit: {\n            code: itemCode,\n            data: buildItemInitData(index),\n        },\n    };\n    return deployed.calculateAddress();\n}\n\n// ---- Message layouts ----\n\nstruct MintQuote {\n    wallet: address\n    quantity: uint16\n    serials: cell        // packed list of uint16, length == quantity\n    usdTotal: uint64\n    gramAmount: coins\n    expiry: uint32\n    nonce: uint64\n}\n\nstruct (0x4d494e54) MintMessage {\n    queryId: uint64\n    quote: Cell<MintQuote>   // ^MintQuote, referenced cell, NOT inlined\n    signature: bits512\n}\n\nstruct (0x50415553) PauseMessage {\n    queryId: uint64\n}\n\nstruct (0x554e5053) UnpauseMessage {\n    queryId: uint64\n}\n\nstruct (0x524f5453) RotateSignerMessage {\n    queryId: uint64\n    newPubKey: uint256\n}\n\nstruct (0x55504354) UpdateContentMessage {\n    queryId: uint64\n    newContent: cell\n}\n\n// Sent collection -> item, first message only (deploy + init in one shot, sent\n// together with the item's StateInit). Necessarily duplicated in\n// genesis_item_testing.tolk rather than shared/imported — same single-namespace\n// reason as ItemStorageInit/StorageInit above.\nstruct (0x494e4954) InitializeMessage {\n    queryId: uint64\n    ownerAddress: address\n    individualContent: cell\n}\n\ntype AllowedMessage =\n    | MintMessage\n    | PauseMessage\n    | UnpauseMessage\n    | RotateSignerMessage\n    | UpdateContentMessage;\n\n// ---- Handler stubs (business logic added in a later step) ----\n\n// `senderAddress` is passed in explicitly rather than the whole `InMessage`:\n// `in` (InMessage) is a compiler-magic object whose fields map to specific TVM\n// instructions, and it's rejected outright if you try to pass it as an object\n// to another function (\"using `in` as an object is prohibited\") — confirmed by\n// compiler error when this was first attempted for the admin handlers.\nfun handleMint(mutate storage: Storage, msg: MintMessage, senderAddress: address, msgValue: coins): void {\n    assert (!storage.paused) throw ERROR_PAUSED;\n\n    // msg.quote is `Cell<MintQuote>` — a referenced cell, not inlined. `.load()`\n    // parses it into a typed MintQuote; `.hash()` (available on Cell<T> the same\n    // as on a plain cell) gives the 32-byte representation hash that was signed.\n    val quote = msg.quote.load();\n\n    // Sender must be the wallet the quote was issued for. Checked right after\n    // loading the quote and before the (relatively expensive) signature check,\n    // so a mismatched sender is rejected cheaply — checking after signature\n    // verification would be equally correct (the quote is only trustworthy once\n    // signed either way), this is just cheaper for the common-case reject.\n    assert (senderAddress == quote.wallet) throw ERROR_SENDER_MISMATCH;\n\n    // `signature` is `bits512` (a fixed-width slice); isSignatureValid wants a\n    // plain `slice`, so an explicit `as slice` cast is required here — bits512\n    // doesn't implicitly widen to slice the way uintN widens to int.\n    val quoteHash = msg.quote.hash();\n    assert (isSignatureValid(quoteHash, msg.signature as slice, storage.signerPubKey)) throw ERROR_BAD_SIGNATURE;\n\n    assert (quote.expiry >= blockchain.now()) throw ERROR_QUOTE_EXPIRED;\n\n    // addIfNotExists does the \"already used?\" check and the \"mark used\" write in\n    // one map operation; it returns false if the key was already present.\n    val nonceWasUnused = storage.usedNonces.addIfNotExists(quote.nonce, true);\n    assert (nonceWasUnused) throw ERROR_NONCE_USED;\n\n    // Supply check before touching mintedSerials at all. Strictly, any throw\n    // anywhere in this function is already atomic per-transaction — nothing is\n    // persisted until onInternalMessage's single storage.save() after this\n    // function returns, so a throw here vs. mid-loop would leave identical\n    // on-chain state either way. Checking supply first just avoids doing\n    // mintedSerials writes for a mint that's going to be rejected regardless.\n    assert (storage.totalMinted + quote.quantity <= MAX_SUPPLY) throw ERROR_SUPPLY_EXCEEDED;\n\n    // Attached value must cover both the quoted price (forwarded to the\n    // treasury below) and this mint's item-deploy costs. Still a pre-flight\n    // guard — checked before the serial-minting loop, same position as before —\n    // not something dependent on the loop's results.\n    assert (msgValue >= quote.gramAmount + (quote.quantity * ITEM_DEPLOY_VALUE)) throw ERROR_INSUFFICIENT_PAYMENT;\n\n    // quote.serials packs `quantity` uint16 serial numbers back-to-back in a\n    // single cell — no length prefix, msg's own `quantity` field is the count.\n    var serialsSlice = quote.serials.beginParse();\n    repeat (quote.quantity) {\n        val serial = serialsSlice.loadUint(16) as uint16;\n        val serialWasUnminted = storage.mintedSerials.addIfNotExists(serial, true);\n        assert (serialWasUnminted) throw ERROR_SERIAL_MINTED;\n\n        // individualContent is always empty at mint time — metadata resolves\n        // off-chain purely from baseContent + index, nothing per-item needed.\n        // `dest` is the item's not-yet-deployed StateInit (via buildItemInitData,\n        // the same function calcItemAddress uses), so the compiler derives the\n        // destination address automatically and attaches the StateInit to\n        // actually deploy it — the item doesn't need to exist beforehand.\n        val deployDest: AutoDeployAddress = {\n            stateInit: {\n                code: storage.itemCode,\n                data: buildItemInitData(serial),\n            },\n        };\n        val deployMsg = createMessage({\n            bounce: BounceMode.Only256BitsOfBody,\n            dest: deployDest,\n            value: ITEM_DEPLOY_VALUE,\n            body: InitializeMessage {\n                queryId: msg.queryId,\n                ownerAddress: quote.wallet,\n                individualContent: beginCell().endCell(),\n            },\n        });\n        deployMsg.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n\n    storage.totalMinted += quote.quantity;\n\n    // Forward whatever's left to the treasury. Rather than computing an exact\n    // leftover amount by hand (fragile: would need to account for this\n    // transaction's own gas, which isn't known precisely in advance), reserve\n    // this contract's own operating balance and sweep the rest — Tolk/TVM's\n    // idiom for \"carry remaining value\" without hand-computed arithmetic.\n    //\n    // Note this uses reserveGramsOnBalance(...) + SEND_MODE_CARRY_ALL_BALANCE\n    // (mode 128, \"remaining balance of the contract\"), NOT bare\n    // SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE (mode 64, \"remaining value of\n    // the inbound message\") on its own. Verified empirically (sandbox test,\n    // repeated mints against the same contract instance) that mode 64 alone\n    // sweeps the contract down to near-zero balance on every call — not just\n    // this message's incremental value — which then starves the very next\n    // mint's item-deploy send (that send's forward fee is paid from this\n    // contract's own balance, separately from the incoming message value, so a\n    // near-zero balance makes it fail with \"not enough Toncoin\"). Reserving\n    // MIN_COLLECTION_BALANCE first and sweeping with mode 128 is the standard,\n    // correctly-composing pattern for \"forward the remainder, keep a reserve\"\n    // and was verified stable across 5 consecutive mints in the same test.\n    //\n    // This is intentional, not a rounding bug: the treasury receives whatever\n    // is actually left after item-deploy costs, this transaction's own gas, and\n    // the reserve, which may be slightly more or less than quote.gramAmount\n    // exactly — the ERROR_INSUFFICIENT_PAYMENT check above only guarantees a\n    // *floor* on msgValue, not an exact accounting of it.\n    reserveGramsOnBalance(MIN_COLLECTION_BALANCE, RESERVE_MODE_EXACT_AMOUNT);\n    val treasuryMsg = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: TREASURY_ADDRESS,\n        value: 0,\n    });\n    treasuryMsg.send(SEND_MODE_CARRY_ALL_BALANCE);\n}\n\nfun handlePause(mutate storage: Storage, msg: PauseMessage): void {\n    storage.paused = true;\n}\n\nfun handleUnpause(mutate storage: Storage, msg: UnpauseMessage): void {\n    storage.paused = false;\n}\n\nfun handleRotateSigner(mutate storage: Storage, msg: RotateSignerMessage): void {\n    storage.signerPubKey = msg.newPubKey;\n}\n\nfun handleUpdateContent(mutate storage: Storage, msg: UpdateContentMessage): void {\n    storage.baseContent = msg.newContent;\n}\n\nfun onInternalMessage(in: InMessage) {\n    // No bounced-message guard needed here: Tolk's compiler-generated entrypoint\n    // routes bounced messages to a separate onBouncedMessage(in: InMessageBounced)\n    // handler (or silently drops them, since this contract defines none) before\n    // onInternalMessage is ever invoked. Verified empirically — sending an\n    // already-bounced message to a contract whose onInternalMessage\n    // unconditionally throws produced exitCode 0 with negligible gas, i.e. the\n    // body never ran. InMessage also exposes no bounced field/method to check.\n    var storage = lazy Storage.load();\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n\n    match (msg) {\n        MintMessage => {\n            handleMint(mutate storage, msg, in.senderAddress, in.valueCoins);\n        }\n        PauseMessage => {\n            assert (in.senderAddress == storage.adminAddress) throw ERROR_NOT_ADMIN;\n            handlePause(mutate storage, msg);\n        }\n        UnpauseMessage => {\n            assert (in.senderAddress == storage.adminAddress) throw ERROR_NOT_ADMIN;\n            handleUnpause(mutate storage, msg);\n        }\n        RotateSignerMessage => {\n            assert (in.senderAddress == storage.adminAddress) throw ERROR_NOT_ADMIN;\n            handleRotateSigner(mutate storage, msg);\n        }\n        UpdateContentMessage => {\n            assert (in.senderAddress == storage.adminAddress) throw ERROR_NOT_ADMIN;\n            handleUpdateContent(mutate storage, msg);\n        }\n        else => {\n            // ignore empty messages, \"wrong opcode\" for others\n            assert (in.body.isEmpty()) throw ERROR_UNKNOWN_OP;\n        }\n    }\n\n    // Single persistence point: every branch above (including the stub handlers)\n    // mutates `storage` in place if at all, and we save exactly once here.\n    storage.save();\n}\n\n// ---- Getters ----\n\nget fun getMintStatus(): (bool, int, int) {\n    val storage = lazy Storage.load();\n    return (storage.paused, storage.totalMinted, MAX_SUPPLY);\n}\n\nget fun getSignerPubKey(): int {\n    val storage = lazy Storage.load();\n    return storage.signerPubKey;\n}\n\n// TEP-62 standard get_collection_data: (nextItemIndex, collectionContent,\n// ownerAddress). Named exactly `get_collection_data` (snake_case, not\n// camelCase) since external tools resolve get-methods by literal name.\nget fun get_collection_data(): (int, cell, address) {\n    val storage = lazy Storage.load();\n    return (storage.totalMinted, storage.baseContent, storage.adminAddress);\n}\n\n// TEP-62 standard get_nft_address_by_index. Named exactly\n// `get_nft_address_by_index` for the same standards-compliance reason.\nget fun get_nft_address_by_index(index: int): address {\n    val storage = lazy Storage.load();\n    return calcItemAddress(index, storage.itemCode);\n}\n"
+    }
+  ]
+}
