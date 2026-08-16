@@ -1,0 +1,4702 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from nft-collection-contract.tolk, collection-storage.tolk, constants.tolk, errors.tolk, messages.tolk, metadata.tolk, nft-utils.tolk, payment-native.tolk, quote-types.tolk, signature-verification.tolk, item-storage.tolk\nPROGRAM{\n  DECLPROC string.hash()\n  DECLPROC StringBuilder.appendInt()\n  DECLPROC StringBuilder.build()\n  DECLPROC verifyWhitelistProof()\n  0 DECLMETHOD onInternalMessage()\n  102491 DECLMETHOD get_collection_data()\n  92067 DECLMETHOD get_nft_address_by_index()\n  68445 DECLMETHOD get_nft_content()\n  86787 DECLMETHOD get_treasury_address()\n  94255 DECLMETHOD get_admin_address()\n  100410 DECLMETHOD get_quote_config()\n  103484 DECLMETHOD is_quote_used()\n  68099 DECLMETHOD get_minted_count()\n  80111 DECLMETHOD get_giveaway_preminted_count()\n  65967 DECLMETHOD get_giveaway_supply()\n  103643 DECLMETHOD get_treasury_preminted_count()\n  115614 DECLMETHOD get_treasury_nft_supply()\n  130121 DECLMETHOD get_reserved_allocation_state()\n  73030 DECLMETHOD get_whitelist_config()\n  93419 DECLMETHOD get_whitelist_claimed()\n  79765 DECLMETHOD get_reveal_status()\n  69498 DECLMETHOD get_mint_config()\n  // 16 functions inlined in-place:\n  // - StringBuilder.create (2 calls)\n  // - StringBuilder.append (3 calls)\n  // - NftCollectionStorage.load (28 calls)\n  // - NftCollectionStorage.save (11 calls)\n  // - serialContent (4 calls)\n  // - joinMetadata (1 call)\n  // - calcDeployedNftItem (2 calls)\n  // - requiredAttachedValue (2 calls)\n  // - validateNativePayment (1 call)\n  // - verifyQuoteSignature (1 call)\n  // - requireAdmin (9 calls)\n  // - whitelistLeaf (1 call)\n  // - sortedMerklePair (1 call)\n  // - deployNft (4 calls)\n  // - validateQuote (1 call)\n  // - onBouncedMessage (0 calls)\n  string.hash() PROCREF:<{\n    309485009821345068724781371 PUSHINT\n    128 PUSHPOW2DEC\n    s0 s2 XCHG\n    CTOS\n    144066263297769815596495629667062367629 PUSHINT\n    OVER\n    SDEPTH\n    REPEAT:<{\n      OVER\n      SBITS\n      3 RSHIFT#\n      REPEAT:<{\n        SWAP\n        8 LDU\n        -ROT\n        XOR\n        s2 PUSH\n        MUL\n        s3 PUSH\n        AND\n      }>\n      SWAP\n      PLDREF\n      CTOS\n      SWAP\n    }>\n    OVER\n    SBITS\n    3 RSHIFT#\n    REPEAT:<{\n      SWAP\n      8 LDU\n      -ROT\n      XOR\n      s2 PUSH\n      MUL\n      s3 PUSH\n      AND\n    }>\n    3 1 BLKDROP2\n  }>\n  StringBuilder.appendInt() PROCREF:<{\n    NEWC\n    SWAP                      // b x\n    DUP                       // b x x\n    ISNEG\n    IF:<{                     // if x<0\n      SWAP                    // x b\n      x{2D} STSLICECONST      // store '-' = 45 = 0x2D\n      SWAP                    // b x\n      NEGATE                  // b |x|\n    }>\n    // now: b x (x is always >= 0)\n    0 PUSHINT                 // b x i=0\n    SWAP                      // b i=0 x\n    UNTIL:<{                  // loop: extract digits from x, push them under builder\n      10 PUSHINT DIVMOD       // b i x/10 x%10\n      48 ADDCONST             // b i x digit (digit = '0' + remainder)\n      s3 s1 s3 XCHG3          // digit b x i (digit goes under builder)\n      INC                     // digit b x i+1\n      s1 s0 XCPU              // digit b i x x (copy x to check if zero)\n      ISZERO                  // exit when x == 0\n    }>\n    DROP                      // remove x (now 0)\n    // stack: d1 d2 ... dN b i (digits in correct order, oldest at bottom)\n    REPEAT:<{ 8 STU }>        // store i digits (8 bits each) into builder\n    ENDC                      // finalize cell\n    TPUSH\n  }>\n  StringBuilder.build() PROCREF:<{\n    DUP\n    LAST\n    OVER\n    TLEN\n    DEC\n    DUP\n    REPEAT:<{\n      DEC\n      s2 s0 PUSH2\n      INDEXVAR\n      CTOS\n      DUP\n      SDEPTH\n      IF:<{\n        0 TUPLE\n        OVER\n        SDEPTH\n        REPEAT:<{\n          SWAP\n          LDREF\n          SWAP\n          CTOS\n          -ROT\n          TPUSH\n        }>\n        SWAP\n        TPUSH\n        DUP\n        TLEN\n        DEC\n        DUP\n        REPEAT:<{\n          2DUP\n          INDEXVAR\n          NEWC\n          STSLICE\n          s1 s4 XCHG\n          STREF\n          ENDC\n          s0 s3 XCHG\n          DEC\n        }>\n        DROP\n        FIRST\n      }>\n      NEWC\n      STSLICE\n      s1 s2 XCHG\n      STREF\n      ENDC\n      SWAP\n    }>\n    DROP\n    NIP\n  }>\n  verifyWhitelistProof() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s0 s3 XCHG\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    256 STU\n    HASHBU\n    SWAP\n    CTOS\n    0 PUSHINT\n    WHILE:<{\n      OVER\n      SEMPTY\n      NOT\n    }>DO<{\n      DUP\n      64 LESSINT\n      1037 THROWIFNOT\n      OVER\n      SBITS\n      8 PUSHPOW2\n      EQUAL\n      1036 THROWIFNOT\n      SWAP\n      256 LDU\n      s3 s1 PUSH2\n      LESS\n      IF:<{\n        s0 s3 XCHG\n        NEWC\n        256 STU\n        256 STU\n        HASHBU\n      }>ELSE<{\n        SWAP\n        NEWC\n        256 STU\n        s1 s3 XCHG\n        256 STU\n        HASHBU\n      }>\n      s2 PUSH\n      SREFS\n      DUP\n      2 LESSINT\n      1036 THROWIFNOT\n      IFNOTJMP:<{\n        NIP\n        SWAP\n        ENDS\n        EQUAL\n        RETALT\n      }>\n      s0 s2 XCHG\n      PLDREF\n      CTOS\n      SWAP\n      INC\n    }>\n    2DROP\n    EQUAL\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{484f5051} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      256 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      16 LDU\n      16 LDU\n      1 LDI\n      LDREF\n      LDREF\n      LDREF\n      PLDREF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDI\n      32 LDU\n      16 LDU\n      16 LDU\n      16 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      NIP\n      ENDS\n      s0 21 s() XCHG\n      64 LDU\n      NIP\n      LDREF\n      9 PUSHPOW2\n      PLDSLICEX\n      OVER\n      CTOS\n      16 LDU\n      32 LDI\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      ENDS\n      DUP\n      CTOS\n      64 LDU\n      NIP\n      8 LDU\n      NIP\n      256 LDU\n      NIP\n      LDGRAMS\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      NIP\n      ENDS\n      s10 PUSH\n      HASHCU\n      20 s() PUSH\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      SWAP\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 s2 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      1018 THROWIF\n      INMSG_SRC\n      INMSG_VALUE\n      s9 PUSH\n      CTOS\n      64 LDU\n      NIP\n      8 LDU\n      256 LDU\n      LDGRAMS\n      NIP\n      32 LDU\n      32 LDU\n      LDREF\n      ENDS\n      36 s() PUSH\n      1002 THROWIF\n      s0 21 s() XCHG\n      1 EQINT\n      1003 THROWIFNOT\n      s1 19 s() XCHG\n      s0 29 s() XCHG\n      EQUAL\n      1004 THROWIFNOT\n      MYADDR\n      s1 17 s() XCHG\n      SDEQ\n      1005 THROWIFNOT\n      s14 s2 PUXC\n      SDEQ\n      1006 THROWIFNOT\n      s0 16 s() XCHG\n      CTOS\n      256 LDU\n      NIP\n      32 LDU\n      256 LDU\n      NIP\n      ENDS\n      36 s() PUSH\n      EQUAL\n      1007 THROWIFNOT\n      IF:<{\n        s12 POP\n        0 PUSHINT\n      }>ELSE<{\n        s0 s12 XCHG\n        0 EQINT\n        0 NEQINT\n      }>\n      1008 THROWIFNOT\n      NOW\n      s13 PUSH\n      GEQ\n      1009 THROWIFNOT\n      NOW\n      23 s() PUSH\n      LEQ\n      1010 THROWIFNOT\n      22 s() PUSH\n      s13 PUSH\n      GEQ\n      IF:<{\n        s1 22 s() XCHG\n        s0 s12 XCHG\n        SUB\n        300 PUSHINT\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        s12 POP\n        21 s() POP\n        0 PUSHINT\n      }>\n      1011 THROWIFNOT\n      s7 PUSH\n      0 GTINT\n      1012 THROWIFNOT\n      s7 PUSH\n      20 s() PUSH\n      LEQ\n      1016 THROWIFNOT\n      s6 s7 PUSH2\n      ADD\n      DEC\n      s6 PUSH\n      EQUAL\n      1014 THROWIFNOT\n      s6 PUSH\n      0 GTINT\n      IF:<{\n        s6 PUSH\n        20 s() PUSH\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s0 s5 XCHG\n        19 s() PUSH\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        s5 POP\n        0 PUSHINT\n      }>\n      IF:<{\n        18 s() PUSH\n        s7 PUSH\n        SUB\n        29 s() PUSH\n        GEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      1016 THROWIFNOT\n      17 s() PUSH\n      INC\n      17 s() PUSH\n      ADD\n      16 s() PUSH\n      ADD\n      s6 PUSH\n      LEQ\n      1038 THROWIFNOT\n      s0 21 s() XCHG\n      CTOS\n      LDREF\n      NIP\n      LDREF\n      NIP\n      LDREF\n      ENDS\n      CTOS\n      256 LDU\n      NIP\n      16 LDU\n      1 LDI\n      NIP\n      ENDS\n      28 s() PUSH\n      28 s() PUSH\n      SUB\n      27 s() PUSH\n      SUB\n      SUBR\n      18 s() PUSH\n      SWAP\n      s0 18 s() XCHG\n      SUB\n      SWAP\n      s0 16 s() XCHG\n      SUB\n      s0 s14 XCHG2\n      SUB\n      s4 PUSH\n      SUB\n      s1 s15 XCHG\n      LEQ\n      1038 THROWIFNOT\n      s13 PUSH\n      CTOS\n      64 LDU\n      NIP\n      8 LDU\n      NIP\n      256 LDU\n      NIP\n      LDGRAMS\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      NIP\n      ENDS\n      s3 s11 PUSH2\n      MUL\n      ADD\n      s10 PUSH\n      ADD\n      30 s() PUSH\n      ADD\n      s7 PUSH\n      LEQ\n      1019 THROWIFNOT\n      s0 s13 XCHG\n      CTOS\n      64 LDU\n      NIP\n      8 LDU\n      NIP\n      256 LDU\n      NIP\n      LDGRAMS\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      LDREF\n      NIP\n      ENDS\n      s2 s10 PUSH2\n      MUL\n      ADD\n      s0 s9 XCHG2\n      ADD\n      SWAP\n      s0 28 s() XCHG\n      ADD\n      s1 s4 XCHG\n      LEQ\n      1026 THROWIFNOT\n      23 s() PUSH\n      1021 THROWIFNOT\n      s0 s4 XCHG\n      HASHCU\n      s0 s3 XCHG2\n      23 s() PUSH\n      CHKSIGNU\n      1020 THROWIFNOT\n      0 PUSHINT\n      WHILE:<{\n        DUP\n        25 s() PUSH\n        LESS\n      }>DO<{\n        s4 s0 PUSH2\n        ADD\n        s3 PUSH\n        32 PUSHINT\n        DICTUGET NULLSWAPIFNOT\n        NIP\n        1017 THROWIF\n        INC\n      }>\n      DROP\n      NEWC\n      b{1} STSLICECONST\n      s0 s7 s10 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      0 PUSHINT\n      WHILE:<{\n        DUP\n        24 s() PUSH\n        LESS\n      }>DO<{\n        s3 s0 PUSH2\n        ADD\n        NEWC\n        b{1} STSLICECONST\n        s0 s0 s11 XCPUXC\n        32 PUSHINT\n        DICTUSETB\n        0 TUPLE\n        s11 PUSH\n        StringBuilder.appendInt() INLINECALLDICT\n        <b x{2e6a736f6e} s, b> PUSHREF\n        TPUSH\n        StringBuilder.build() INLINECALLDICT\n        MYADDR\n        s0 s12 XCHG\n        NEWC\n        32 STU\n        s1 s12 XCHG\n        STSTDADDR\n        ENDC\n        s13 s6 s8 PUSH3\n        NEWC\n        b{01100010000000000} STSLICECONST\n        s4 s3 PUSH2\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        256 STUR\n        ROT\n        STGRAMS\n        140 PUSHINT\n        113 STUR\n        s1 s2 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        STSTDADDR\n        s1 s11 XCHG\n        STREF\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n        INC\n      }>\n      DROP\n      2 2 BLKDROP2\n      s3 POP\n      s0 19 s() XCHG\n      s1 s14 XCHG\n      ADD\n      WHILE:<{\n        s14 s3 PUSH2\n        LEQ\n        IF:<{\n          s14 s4 PUSH2\n          32 PUSHINT\n          DICTUGET NULLSWAPIFNOT\n          NIP\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n      }>DO<{\n        s0 s14 XCHG\n        INC\n        s0 s14 XCHG\n      }>\n      s3 POP\n      NEWC\n      STOPTREF\n      s1 s3 XCHG\n      STOPTREF\n      s1 16 s() XCHG\n      STOPTREF\n      ENDC\n      s0 s3 XCHG\n      NEWC\n      STREF\n      s1 s3 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      s0 s12 XCHG\n      NEWC\n      STSTDADDR\n      s1 s11 XCHG\n      256 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s10 XCHG\n      32 STU\n      s1 s3 XCHG\n      16 STU\n      16 STU\n      1 STI\n      s1 s6 XCHG\n      STREF\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n    }>\n    x{484f5006} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      288 PUSHINT\n      LDSLICEX\n      32 LDU\n      32 LDU\n      16 LDU\n      16 LDSLICE\n      1 LDI\n      LDREF\n      LDREF\n      LDREF\n      PLDREF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      32 LDI\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      16 LDU\n      16 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      NIP\n      ENDS\n      INMSG_SRC\n      17 s() PUSH\n      SDEQ\n      1001 THROWIFNOT\n      s12 s5 PUSH2\n      LESS\n      IF:<{\n        s13 s12 PUSH2\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s13 PUSH\n        INC\n        s15 PUSH\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      1027 THROWIFNOT\n      s0 17 s() XCHG\n      64 LDU\n      NIP\n      16 PLDU\n      DUP\n      0 GTINT\n      1012 THROWIFNOT\n      s5 s12 PUSH2\n      SUB\n      OVER\n      GEQ\n      1016 THROWIFNOT\n      s0 s2 PUSH2\n      MUL\n      ROT\n      ADD\n      SWAP\n      s0 17 s() XCHG\n      ADD\n      INMSG_VALUE\n      LEQ\n      1019 THROWIFNOT\n      s0 s4 XCHG\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      SWAP\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      16 s() PUSH\n      DUP\n      21 s() PUSH\n      ADD\n      WHILE:<{\n        2DUP\n        LESS\n      }>DO<{\n        NEWC\n        b{1} STSLICECONST\n        s0 s2 s4 XCPUXC\n        32 PUSHINT\n        DICTUSETB\n        0 TUPLE\n        s2 PUSH\n        StringBuilder.appendInt() INLINECALLDICT\n        <b x{2e6a736f6e} s, b> PUSHREF\n        TPUSH\n        StringBuilder.build() INLINECALLDICT\n        MYADDR\n        s3 PUSH\n        NEWC\n        32 STU\n        STSTDADDR\n        ENDC\n        s8 s12 PUSH2\n        24 s() PUSH\n        NEWC\n        b{01100010000000000} STSLICECONST\n        s4 s3 PUSH2\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        256 STUR\n        ROT\n        STGRAMS\n        140 PUSHINT\n        113 STUR\n        s1 s2 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        STSTDADDR\n        STREF\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n        SWAP\n        INC\n        s0 s3 XCHG2\n      }>\n      2DROP\n      s8 POP\n      s0 s14 XCHG\n      18 s() PUSH\n      ADD\n      s0 s13 XCHG\n      18 s() PUSH\n      ADD\n      s0 18 s() XCHG\n      s1 s15 XCHG\n      ADD\n      17 s() PUSH\n      s0 s6 XCHG2\n      EQUAL\n      IF:<{\n        s0 s3 XCHG\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        s3 POP\n        0 PUSHINT\n      }>\n      IF:<{\n        SWAP\n        IF:<{\n          OVER\n          CTOS\n          256 LDU\n          16 LDU\n          NIP\n          1 LDI\n          NIP\n          ENDS\n          0 NEQINT\n          0 NEQINT\n        }>ELSE<{\n          -1 PUSHINT\n        }>\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      IF:<{\n        FALSE\n        s8 POP\n      }>\n      s0 s11 XCHG\n      NEWC\n      STOPTREF\n      s1 s10 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      ENDC\n      s0 s9 XCHG\n      NEWC\n      STREF\n      s1 s9 XCHG\n      STREF\n      s1 s7 XCHG\n      STREF\n      ENDC\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSLICE\n      s1 s6 XCHG\n      32 STU\n      s1 s3 XCHG\n      32 STU\n      s1 s7 XCHG\n      16 STU\n      s1 s6 XCHG\n      STSLICE\n      s1 s5 XCHG\n      1 STI\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{484f5008} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      288 PUSHINT\n      LDSLICEX\n      32 LDU\n      32 LDU\n      16 LDU\n      16 LDU\n      1 LDI\n      LDREF\n      LDREF\n      LDREF\n      PLDREF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      32 LDI\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      16 LDU\n      16 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      NIP\n      ENDS\n      INMSG_SRC\n      18 s() PUSH\n      SDEQ\n      1001 THROWIFNOT\n      s13 s5 PUXC\n      EQUAL\n      1029 THROWIFNOT\n      s11 s3 PUSH2\n      LESS\n      IF:<{\n        s12 s11 PUSH2\n        ADD\n        s14 PUSH\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s13 PUSH\n        INC\n        s15 PUSH\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      1030 THROWIFNOT\n      s0 17 s() XCHG\n      64 LDU\n      NIP\n      16 PLDU\n      DUP\n      0 GTINT\n      1012 THROWIFNOT\n      s3 s11 PUSH2\n      SUB\n      OVER\n      GEQ\n      1016 THROWIFNOT\n      s0 s1 PUSH2\n      MUL\n      SWAP\n      s0 18 s() XCHG\n      ADD\n      s0 s4 XCHG2\n      ADD\n      INMSG_VALUE\n      LEQ\n      1019 THROWIFNOT\n      s0 s4 XCHG\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      SWAP\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      16 s() PUSH\n      DUP\n      21 s() PUSH\n      ADD\n      WHILE:<{\n        2DUP\n        LESS\n      }>DO<{\n        NEWC\n        b{1} STSLICECONST\n        s0 s2 s4 XCPUXC\n        32 PUSHINT\n        DICTUSETB\n        0 TUPLE\n        s2 PUSH\n        StringBuilder.appendInt() INLINECALLDICT\n        <b x{2e6a736f6e} s, b> PUSHREF\n        TPUSH\n        StringBuilder.build() INLINECALLDICT\n        MYADDR\n        s3 PUSH\n        NEWC\n        32 STU\n        STSTDADDR\n        ENDC\n        s8 s10 s11 PUSH3\n        NEWC\n        b{01100010000000000} STSLICECONST\n        s4 s3 PUSH2\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        256 STUR\n        ROT\n        STGRAMS\n        140 PUSHINT\n        113 STUR\n        s1 s2 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        STSTDADDR\n        STREF\n        ENDC\n        17 PUSHINT\n        SENDRAWMSG\n        SWAP\n        INC\n        s0 s3 XCHG2\n      }>\n      2DROP\n      s6 POP\n      s6 POP\n      s0 s13 XCHG\n      17 s() PUSH\n      ADD\n      s0 s11 XCHG\n      17 s() PUSH\n      ADD\n      s0 17 s() XCHG\n      s1 s14 XCHG\n      ADD\n      16 s() PUSH\n      s0 s3 XCHG2\n      EQUAL\n      IF:<{\n        s0 s4 XCHG\n        IF:<{\n          s11 PUSH\n          CTOS\n          256 LDU\n          16 LDU\n          NIP\n          1 LDI\n          NIP\n          ENDS\n          0 NEQINT\n          0 NEQINT\n        }>ELSE<{\n          -1 PUSHINT\n        }>\n        0 NEQINT\n      }>ELSE<{\n        s4 POP\n        0 PUSHINT\n      }>\n      IF:<{\n        FALSE\n        s8 POP\n      }>\n      s0 s10 XCHG\n      NEWC\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      SWAP\n      NEWC\n      STREF\n      STREF\n      s1 s8 XCHG\n      STREF\n      ENDC\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSLICE\n      s1 s5 XCHG\n      32 STU\n      s1 s2 XCHG\n      32 STU\n      s1 s2 XCHG\n      16 STU\n      s1 s6 XCHG\n      16 STU\n      s1 s5 XCHG\n      1 STI\n      s1 s4 XCHG\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{484f5009} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      385 PUSHINT\n      LDSLICEX\n      LDREF\n      LDREF\n      LDREF\n      PLDREF\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      CTOS\n      256 LDU\n      NIP\n      16 LDU\n      1 LDI\n      ENDS\n      DUP\n      1033 THROWIF\n      s0 s9 XCHG\n      64 LDU\n      NIP\n      256 PLDU\n      DUP\n      1032 THROWIFNOT\n      NEWC\n      256 STU\n      16 STU\n      s1 s8 XCHG\n      1 STI\n      ENDC\n      SWAP\n      NEWC\n      STREF\n      s1 s7 XCHG\n      STREF\n      s1 s6 XCHG\n      STREF\n      ENDC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSLICE\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{484f500a} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      288 PUSHINT\n      LDSLICEX\n      32 LDU\n      32 LDU\n      32 LDSLICE\n      1 LDI\n      LDREF\n      LDREF\n      LDREF\n      PLDREF\n      s3 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      32 LDI\n      NIP\n      32 LDU\n      16 LDU\n      16 LDU\n      16 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      NIP\n      ENDS\n      s11 PUSH\n      1002 THROWIF\n      s0 s7 XCHG\n      CTOS\n      LDREF\n      LDREF\n      LDREF\n      ENDS\n      CTOS\n      256 LDU\n      16 LDU\n      1 LDI\n      NIP\n      ENDS\n      OVER\n      1032 THROWIFNOT\n      s0 s6 PUXC\n      LESS\n      1035 THROWIFNOT\n      INMSG_SRC\n      NEWC\n      STSTDADDR\n      HASHBU\n      s0 s2 XCHG\n      CTOS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s4 s0 PUSH2\n      8 PUSHPOW2\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      1034 THROWIF\n      s0 22 s() XCHG\n      64 LDU\n      NIP\n      256 LDU\n      PLDREF\n      INMSG_SRC\n      s2 s2 s5 XC2PU\n      verifyWhitelistProof() CALLDICT\n      1036 THROWIFNOT\n      17 s() PUSH\n      s11 PUSH\n      LESS\n      1016 THROWIFNOT\n      s6 s5 PUXC\n      ADD\n      s0 s11 XCHG2\n      ADD\n      INMSG_VALUE\n      LEQ\n      1019 THROWIFNOT\n      s0 s7 XCHG\n      INC\n      s0 s6 XCHG2\n      ADD\n      s4 PUSH\n      ADD\n      s0 s2 PUSH2\n      32 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      1017 THROWIF\n      NEWC\n      b{1} STSLICECONST\n      s0 s0 s3 XCPUXC\n      32 PUSHINT\n      DICTUSETB\n      NEWC\n      b{1} STSLICECONST\n      s0 s2 XCHG\n      s0 19 s() XCHG\n      s1 s6 XCHG\n      8 PUSHPOW2\n      DICTUSETB\n      INMSG_SRC\n      0 TUPLE\n      s3 PUSH\n      StringBuilder.appendInt() INLINECALLDICT\n      <b x{2e6a736f6e} s, b> PUSHREF\n      TPUSH\n      StringBuilder.build() INLINECALLDICT\n      MYADDR\n      s0 s4 XCHG\n      NEWC\n      32 STU\n      s1 s4 XCHG\n      STSTDADDR\n      ENDC\n      19 s() PUSH\n      NEWC\n      b{01100010000000000} STSLICECONST\n      s2 s1 PUSH2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      s0 s6 XCHG2\n      STGRAMS\n      140 PUSHINT\n      113 STUR\n      s1 s5 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      s1 s3 XCHG\n      STSTDADDR\n      STREF\n      ENDC\n      17 PUSHINT\n      SENDRAWMSG\n      s0 s11 XCHG\n      INC\n      SWAP\n      INC\n      WHILE:<{\n        s12 s4 PUSH2\n        LEQ\n        IF:<{\n          s12 s2 PUSH2\n          32 PUSHINT\n          DICTUGET NULLSWAPIFNOT\n          NIP\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n      }>DO<{\n        s0 s12 XCHG\n        INC\n        s0 s12 XCHG\n      }>\n      s4 POP\n      s0 s4 XCHG\n      NEWC\n      STOPTREF\n      STOPTREF\n      s1 s9 XCHG\n      STOPTREF\n      ENDC\n      s0 s8 XCHG\n      NEWC\n      256 STU\n      16 STU\n      b{1} STSLICECONST\n      ENDC\n      s0 s11 XCHG\n      NEWC\n      STREF\n      s1 s7 XCHG\n      STREF\n      s1 s10 XCHG\n      STREF\n      ENDC\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSLICE\n      s1 s5 XCHG\n      32 STU\n      s1 s3 XCHG\n      32 STU\n      STSLICE\n      1 STI\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      STREF\n      ENDC\n      c4 POP\n    }>\n    x{484f5001} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      384 PUSHINT\n      LDSLICEX\n      1 LDI\n      NIP\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      STSLICE\n      b{1} STSLICECONST\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{484f5002} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      352 PUSHINT\n      LDSLICEX\n      16 LDU\n      16 LDU\n      1 LDI\n      NIP\n      DUP\n      LDREF\n      LDREF\n      NIP\n      LDREF\n      NIP\n      PLDREF\n      INMSG_SRC\n      s7 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      OVER\n      CTOS\n      LDSTDADDR\n      NIP\n      32 LDI\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      16 LDU\n      NIP\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      ENDS\n      s5 PUSH\n      EQUAL\n      1029 THROWIFNOT\n      OVER\n      CTOS\n      LDSTDADDR\n      NIP\n      32 LDI\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      16 LDU\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      ENDS\n      s4 PUSH\n      EQUAL\n      1031 THROWIFNOT\n      SWAP\n      CTOS\n      LDSTDADDR\n      NIP\n      32 LDI\n      NIP\n      32 LDU\n      NIP\n      16 LDU\n      NIP\n      16 LDU\n      NIP\n      16 LDU\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      ENDS\n      IF:<{\n        CTOS\n        LDREF\n        NIP\n        LDREF\n        NIP\n        LDREF\n        ENDS\n        CTOS\n        256 LDU\n        16 LDU\n        NIP\n        1 LDI\n        NIP\n        ENDS\n        0 NEQINT\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        -1 PUSHINT\n      }>\n      1032 THROWIFNOT\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSLICE\n      16 STU\n      16 STU\n      b{0} STSLICECONST\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{484f5003} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      256 LDU\n      NIP\n      32 LDU\n      INMSG_SRC\n      s3 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      s0 s3 XCHG\n      64 LDU\n      NIP\n      256 PLDU\n      DUP\n      1021 THROWIFNOT\n      SWAP\n      INC\n      s0 s2 XCHG\n      NEWC\n      STSTDADDR\n      256 STU\n      32 STU\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{484f5004} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      385 PUSHINT\n      LDSLICEX\n      LDREF\n      LDREF\n      LDREF\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      SWAP\n      CTOS\n      1 LDI\n      256 LDU\n      1 LDI\n      1 LDI\n      ENDS\n      s3 PUSH\n      1022 THROWIFNOT\n      1023 THROWIF\n      1025 THROWIF\n      s0 s7 XCHG\n      PLDREF\n      DUP\n      string.hash() INLINECALLDICT\n      s8 PUSH\n      EQUAL\n      1024 THROWIFNOT\n      s0 s3 XCHG\n      CTOS\n      LDREF\n      LDREF\n      NIP\n      ENDS\n      NEWC\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      s0 s2 XCHG\n      NEWC\n      1 STI\n      s1 s6 XCHG\n      256 STU\n      b{11} STSLICECONST\n      ENDC\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s3 XCHG\n      STSLICE\n      STREF\n      STREF\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{484f5005} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      385 PUSHINT\n      LDSLICEX\n      LDREF\n      LDREF\n      LDREF\n      INMSG_SRC\n      s6 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      SWAP\n      CTOS\n      1 LDI\n      256 LDU\n      1 LDI\n      1 LDI\n      NIP\n      ENDS\n      s0 s2 XCHG\n      NEWC\n      1 STI\n      256 STU\n      1 STI\n      b{1} STSLICECONST\n      ENDC\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      s1 s4 XCHG\n      STSLICE\n      s1 s2 XCHG\n      STREF\n      STREF\n      s1 s2 XCHG\n      STREF\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    x{484f5007} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      1001 THROWIFNOT\n      s0 s2 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      DUP\n      REWRITESTDADDR\n      DROP\n      IF:<{\n        NIP\n        0 PUSHINT\n      }>ELSE<{\n        s0 s1 PUXC\n        SDEQ\n        NOT\n        0 NEQINT\n      }>\n      1028 THROWIFNOT\n      NEWC\n      STSTDADDR\n      STSLICE\n      ENDC\n      c4 POP\n    }>\n    DROP\n    SEMPTY\n    1099 THROWIFNOT\n  }>\n  get_collection_data() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    288 PUSHINT\n    SDSKIPFIRST\n    32 LDU\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    ROT\n  }>\n  get_nft_address_by_index() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    MYADDR\n    SWAP\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s0 s2 XCHG\n    NEWC\n    32 STU\n    STSTDADDR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n  get_nft_content() PROC:<{\n    NIP\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    0 TUPLE\n    SWAP\n    TPUSH\n    SWAP\n    TPUSH\n    StringBuilder.build() INLINECALLDICT\n    NEWC\n    x{01} STSLICECONST\n    STREF\n    ENDC\n  }>\n  get_treasury_address() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDSTDADDR\n    32 LDI\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  get_admin_address() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  get_quote_config() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    32 LDU\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  is_quote_used() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    NIP\n  }>\n  get_minted_count() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  get_giveaway_preminted_count() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  get_giveaway_supply() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  get_treasury_preminted_count() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n  }>\n  get_treasury_nft_supply() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n  }>\n  get_reserved_allocation_state() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    352 PUSHINT\n    SDSKIPFIRST\n    16 LDU\n    16 LDU\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    16 LDU\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n    s3 s0 s3 XCHG3\n  }>\n  get_whitelist_config() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    LDREF\n    NIP\n    LDREF\n    NIP\n    PLDREF\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    256 LDU\n    16 LDU\n    1 LDI\n    ENDS\n    s0 s3 XCHG\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n    s0 s1 s3 XCHG3\n  }>\n  get_whitelist_claimed() PROC:<{\n    NEWC\n    STSTDADDR\n    HASHBU\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    LDREF\n    NIP\n    ENDS\n    CTOS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    ENDS\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    NIP\n  }>\n  get_reveal_status() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    PLDREF\n    CTOS\n    1 LDI\n    256 LDU\n    1 LDI\n    1 LDI\n    ENDS\n    s0 s4 XCHG\n    CTOS\n    LDREF\n    NIP\n    LDREF\n    ENDS\n    s3 s4 XCHG\n    s1 s3 s0 XCHG3\n  }>\n  get_mint_config() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    384 PUSHINT\n    SDSKIPFIRST\n    1 LDI\n    PLDREF\n    CTOS\n    LDSTDADDR\n    NIP\n    32 LDI\n    NIP\n    32 LDU\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s4 PUSH\n    s0 s6 XCHG\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECQgEADpEAART/APSkE/S88sgLAQIBYgIDAgLNBAUCASAhIgRR18SMiYcBBrlhEhPUFGcYFrlhEhPUAacYFrlhEhPUAicYFrlhEhPUAmQGBwgJALXXbRdv2B5H0pCWX//IsA6DhKEOOAWccgEGCgeXIGkOukwYPdeXIGAOn/qZjczAHkZf/l//yLTIDkZf+J5f/8i3ERa6UQYIF5cgZLGIDo3W2Y8IFrpmgA0nQt3UAf4x7UTQ+kjT/9Mf0x/TH9MP0w/SANTU1NdMI9D6SNIf0x/TD9MP0w/6APoA+gD6ADHRERXTPzHUgwjXGSHQ0w/SH/pI+kjTD9Mf0x/U0SDQ0z8x0wcx0/8x+gDTHzHTHzHUMdEq+QBWFNDU1NTRAdD0BPQE9ATRU1KDB/QOb6ExCgH+Me1E0PpIgQEg1xjTH9Mf0w/WD9IA1NTU10wj0PpIMdIfMdMfMdMP0w/TD/oA+gD6APoAMdH4klYRxwXy4+lTxbmVU9y6wwCRcOKWLaQvusMAkXDi8uQDERHTPzHXCw8gwgDy4/RTXKEhvvLj+FMCqFigARERoPiXu/Lj+wTQ1BAB/DHtRND6SIEBINcY0x/TH9MP0w/SANTU1NdMI9D6SNIfMdMfMdMP0w/TD/oA+gD6APoAMdH4klYSxwXy4+lS1rry5AVTs7mXU8ugLrrDAJFw4pYtpC+6wwCRcOLy5AYREdM/MdcLDyDCAPLj9FM7oSG+8uP4UwGoARESoFAEoBIE8o5UMe1E0PpIgQGB1xjU1NTXTPiSJscF8uPp0NTU1NHQ0/8x0w/SANEg8tQJCdM/MdcL/yDy5AjIy//LDxjKAMkByMwXzBbMyQTI+lITzszMEszMye1U4NcsIkJ6gFTjAtcsIkJ6gAzjAtcsIkJ6gBTjAtcsIkJ6gBwUFRYXAvzy0/r4kviXKdDTPzHTB9P/+gAx0x/TH9TRViTy0+oRFcAB8uPrARETAREduvLj7PgoARERAccF8uPtUuPHBfLj7hEQ0NP/MdMf0/8x0VYkuvLj75I8cJUMwADDAOLy4/D4Iy2+8uPx+CNWF7vy4/JWFi2+lDxXFXDjDfLj8ycLDAAYAREWAQyhgQEsu8MAAf7CAPLj9CdWFLvy4/hTZ6ClJrry4/YmwgCWJlYUu8MAkXDilgVWE7vDAJI1cOKZVhInoVYdvsMAkXDi8uP4VhGkVhGgVhCgJrvy5A4RFdDUMdQx1NHQ0/8x0w/SADHRVhxWHKFWG6GiVhIBERKhAREQoVAOoSShH7vy5A4t0NM/DQL+MdMHMdP/MfoA0x8x0x8x1DHRUzuooCqgVh6gJ7vy4/sN0NM/MdMHMdP/MfoA0x8x0x8x1DHRUyqooFAJoAERHKAUu/LkAlYX8uP9BPkAUANWF/kQ8uP8cJQgVhm5n1NAoCOAIPQOb6Ex8tP5pOgwyM+DQHqDB/RDcJQgVhi5ig4PA5pTMKDIz4NUIAyAIPRDbwAr2zyIb4zbPPgoDMjLHxz6UslUfWjIz4mIAVNDyM+E0MzM+RbPC/9Y+gKBAIzPC3ASzBLM+lIbzMmAEfsApBkaLwDU6DBsIjMREx6gjhJT47ubU+SAIPQOb6ExwwCRcOKTDqQO6DPI9AAT9AABERAB9ADJA8jME8wSzMkMyPpSG8v/GcsfF8sfGssfE8sPyw/KABbMzMwSzMntVMjPhQj6UgH6AnDPC2rJgBH7AATu1NTRAdD0BPQE9ATRVhAgVhWgkly5j8zIz4NUICWAIPRDbwAi2zyIb4zbPPgoI8jLH/pSyVOMVhjIz4mIAVNDyM+E0MzM+RbPC/9Y+gKBAIzPC3ASzBLM+lLMyYAR+wABpFAD6Fs4DlYSoA1WEqAREh+gVhFQBroZGi8RALKVA8AAwwCSM3DijhYBnyHQ0//TDzHSADHRwwDDAJF/4sMAkjFw4pJwON4LyPQAGvQAEvQAyQnIzBnMF8zJCcj6UhjOFssfE8sfF8sPFs4VygDMzBLMzMntVAT++Je78uP7BNDU1NTRAdD0BPQE9ATRVhAgVhWgkly5j8vIz4NUICWAIPRDbwAi2zyIb4zbPPgoI8jLH/pSyVR4q8jPiYgBU0PIz4TQzMz5Fs8L/1j6AoEAjM8LcBLMEsz6UszJgBH7AAGkUAPoWzY2DVYRoAtWEaARER6gVhBQAxkaLxMAoLqOFgSfK9DT/9MPMdIAMdHDAMMAkX/iwwCSNHDiknA43grI9AAS9AD0AMkByMzMGMzJCcj6UhjOFcsfEssfEssPFssPFcoAFMzMEszMye1UAfwx7UTQ+kiBASDXGNMf0x/WH9IA1NTU10wj0PpIMdIfMdMf0w/TD9MP+gD6APoA+gAx0Svy0+oH0NTU1NHQ0//TD9IAMdEh8uQIUge58uQL+JLI+lL5FgLQ9AT0BPQE0VNAgwf0Dm+hMfLUChEW0z8x0//XTPiSVBIl8ATy5AwYAEJb7UTQ+kiBAYDXGNIAMfiSI8cF8uPpAsj6Us7Pg87J7VQB/lvtRND6SIEBYNcY0w/TD9IAMSDU1DHUMddM+JInxwXy4+kh0PpIMdIfMdMfMdMP0w8x0w8x+gAx+gAx+gAx+gAx0SW68uQFIdD6SDHSHzHTHzHTDzHTD9MPMfoAMfoAMfoAMfoAMdEkuvLkBwHQ+kgx0h8x0x8x0w8x0w8x0w8cA/6OLDHtRND6SNP/MdMf+JIjxwXy4+kD0z8x1wv/IPLj/QGkAsj6Usv/yx/Oye1U4NcsIkJ6gCTjAtcsIkJ6gCyOPFvtRND6SIEBgdcY1NTU+JImxwXy4+kB0NIA0//SANIAMdECyMoAy//KAM+DyQXI+lIUzhLMzBLMzsntVOCJHR4fBP5WESu58uP4UmagUAug+Je78uP7B6RQBqAkoFMCgCD0Dm+hMfLT+cjPg1QgBIAg9EPIz4MCERMWgwf0Q/iSbwAj2zyIb4zbPPgoBMjLHxT6UslWE8jPiYgBUyHIz4TQzMz5Fs8L/1AG+gKBAIzPC3AVzBTME/pSzMmAEfsAC6QBGRovGwBKyAEgwQCWAc+EtgGj3nABnHqpDKYwQxOkURDAAOYwkssH5MlvjAAKLmpzb24AmqSOElPEu5tTwoAg9A5voTHDAJFw4pMMpAzoNATI9AD0ABn0AMkIyMv/yw/Pg8kLyMwXzBrMyQjI+lIXzhXLHxPLH87KAMzMEszMye1UAHb6ADH6ADH6ADH6ADHRjhXQ1DHUMdTR0NP/0w8x0gAx0cMAwwCSMH/i8uQIBMj6UhPOyw/LD8+BzsntVAGyMe1E0PpIgQGB1xjU1NT4kibHBfLj6QHQ0gDT/9IA0gDRI/Lj/vLT//LUAQfXTCDbPCi68uQAA9DU1DHRyMwTzMkCyMoAFsv/z4eAyQTI+lITzszMzM7J7VQgAAhIT1AHAHTXJ44vMe1E0PpI+JIixwXy4+kC0z8x+kgwIPpEMJIxcJdSAscFs8MA4vLkBMj6Us7J7VTgMMcA8uRLAKCCSQAAAAAAAAAAAAE7hH8C0IJwbGInLge7AUJiuCF1YpXFjSHXZI4VIddJqwKZAdMHWbIiqCOw5AHXTNAB5CHXSasCmQHTB1myIqgjsORsMQIBICMkAgEgODkCASAlJgIBIDIzAgEgJygCAVgwMQIBICkqAHuzUbtRNDU1DHUMddM0NQx1DHU0dDT/9MP0gDRA9D6SDHSHzHTHzHTDzHTDzHTD/oAMfoAMfoAMfoAMdFAE4ACJrNf2omh9JBjp/5jpj5jpj5jpj5jph5jph5jpABjqahjqGOoY6Oh9JBjpD5jpj5jph+mHmOmHmP0AGP0AGP0AGP0AGOjAAgEgKywCAVgtLgBcq3rtRND6SDGBAYDXIdIA10zQ+kgx0h8x0x/TDzHTDzHTDzH6APoA+gD6ANEkBgBJoA+1E0PpIMdP/MdMfMdMfMdMf0w8x0w8x0gAx1DHUMdQx1DHRgF1oXTHtRND6SDHT/zHTHzHTHzHTHzHTDzHTDzHSADHUMdTUMdQx0dDUMdTRbwABb4wBb4zbPMjPhAbMyYvAIggb4shb4ilII43pVMgb4HQINdkjiVvACHXZJcB1AHQWW+M5AFvjCBviKUgmlxvgcjOFMzJA6XkMG8Q3sjOEszJAeQwMQA9r8r2omhqGOprpmhpAGn/6QBpAGiCaGoY6miIGiCYQABLrHf2omh9JBjp/5jpj5jpj5jpj5jph+mHmOkAGOoY6hjqGOoY6MAAibZgfaiaH0kGOn/mOmPmOmPmOmPmOmHmOmHmOkAGOpqGOoY6hjo6H0kaQ+Y6Y+Y6YeY6YeY6YeY/QAY/QAY/QAY/QAY6MAIBIDQ1AgEgNjcAS7AL+1E0PpI0/8x0x8x0x8x0x8x0w8x0w8x0gAx1DHUMdQx1DHRgAGGv0faiaGoY6hjqGOumfBQA6GpqGOoY6IFkZY/9KWSA5GfCaGZmfItkZ8UAIGX/56hAAIWudeR9KXyLdqJofSQY6f+Y6Y+Y6Y+Y6Y+Y6YeY6YeY6QAY6hjqGOoY6mjoahjqahjo6HoCGPoCGPoCaMGD+gc30JjAAgFIOjsCASBAQQBbsg67UTQ+kgx0//TH9dM0PpIMdIf0x8x0w8x0w8x0w8x+gAx+gAx+gAx+gAx0YAIBSDw9ADCoW+1E0PpIgQEg1yHTH9Qx10zQ1NQx0VgCAWI+PwB5u87UTQ+kgx0/8x0x8x0x8x0x8x0w8x0w8x0gAx1DHUMdQx1NHQ1DHU1DHR0PQE9AQx9AQx0YMH9A5voTGABJvb7UTQ+kgx0/8x0x8x0x8x0x8x0w8x0w/SADHUMdQx1DHUMdGACJtHPdqJofSQY6f+Y6Y+Y6Y+Y6Y+Y6YeY6YeY6QAY6moY6hjqGOjofSQY6Q+Y6Y+Y6YeY6Yfph5j9ABj9ABj9ABj9ABjowAGe3iT2omh9JBjAgLBrkOmH6Yfrpmh9JBjpD5jpj5jph+mH6YeY/QAY/QAY/QAY/QAY6KGBw",
+  "codeHashHex": "60CE1440D84B5BEF11A8EF3CB5DFFEC167AC89F26CF98DAFAC984BEFE121AD12",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/nft-collection-contract.tolk",
+        "size_chars": 22137,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/strings.tolk",
+        "size_chars": 7844,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/collection-storage.tolk",
+        "size_chars": 1511,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/constants.tolk",
+        "size_chars": 364,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/errors.tolk",
+        "size_chars": 1313,
+        "imports": []
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/messages.tolk",
+        "size_chars": 2075,
+        "imports": [
+          10
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/metadata.tolk",
+        "size_chars": 463,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 8,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/nft-utils.tolk",
+        "size_chars": 306,
+        "imports": [
+          12
+        ]
+      },
+      {
+        "file_id": 9,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/payment-native.tolk",
+        "size_chars": 650,
+        "imports": [
+          3,
+          5,
+          10
+        ]
+      },
+      {
+        "file_id": 10,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/quote-types.tolk",
+        "size_chars": 735,
+        "imports": []
+      },
+      {
+        "file_id": 11,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/signature-verification.tolk",
+        "size_chars": 321,
+        "imports": [
+          5,
+          10
+        ]
+      },
+      {
+        "file_id": 12,
+        "file_name": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/item-storage.tolk",
+        "size_chars": 887,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessageToCollection"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintWithQuote"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuote"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuoteTail"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuoteCrypto"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 19
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PauseMinting"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpauseMinting"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RotateSigner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RevealMetadata"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FreezeMetadata"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PremintGiveaways"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PremintTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetMerkleRoot"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimWhitelist"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1213157457,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 1213157377,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1213157378,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 1213157379,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 1213157380,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 1213157381,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1213157382,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 1213157383,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 1213157384,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1213157385,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 1213157386,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 3
+          }
+        ],
+        "stack_width": 4
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftCollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionContent"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RevealState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionAssets"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMaps"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 18,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 44
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WhitelistState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 48
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 43
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StringBuilder"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          2,
+          3
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 54
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          5
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          60
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 64,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 66,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemStorageNotInitialized"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 69
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          72
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 74,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 76,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 79
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          78
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 81,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 144,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          63,
+          18
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 83,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 145,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 62,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          85
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 89
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          18,
+          1,
+          8
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          18,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          5,
+          18,
+          5,
+          5,
+          28
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          5
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 58,
+        "struct_name": "MapLookupResult<bool>",
+        "monomorphic_fields_ty_idx": [
+          59,
+          5
+        ]
+      },
+      {
+        "ty_idx": 73,
+        "struct_name": "CreateMessageOptions<NftItemInitAtDeployment>",
+        "monomorphic_fields_ty_idx": [
+          77,
+          82,
+          84,
+          72
+        ]
+      },
+      {
+        "ty_idx": 87,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          77,
+          82,
+          84,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 61,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 59
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 78,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 80
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 64,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 66,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 67
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 62,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 63
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 65
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 68
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 74,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 75,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 76,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 86,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 77
+          },
+          {
+            "name": "value",
+            "ty_idx": 82
+          },
+          {
+            "name": "dest",
+            "ty_idx": 84
+          },
+          {
+            "name": "body",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 71,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessageToCollection",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          20,
+          6,
+          20,
+          32
+        ],
+        "target_ty_idx": 35
+      },
+      {
+        "kind": "struct",
+        "name": "StringBuilder",
+        "ty_idx": 51,
+        "ident_loc": [
+          2,
+          107,
+          8,
+          107,
+          21
+        ],
+        "fields": [
+          {
+            "name": "chunks",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionContent",
+        "ty_idx": 39,
+        "ident_loc": [
+          3,
+          1,
+          8,
+          1,
+          25
+        ],
+        "fields": [
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "commonContent",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RevealState",
+        "ty_idx": 41,
+        "ident_loc": [
+          3,
+          6,
+          8,
+          6,
+          19
+        ],
+        "fields": [
+          {
+            "name": "delayedRevealEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "metadataCommitment",
+            "ty_idx": 18
+          },
+          {
+            "name": "metadataRevealed",
+            "ty_idx": 5
+          },
+          {
+            "name": "metadataFrozen",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionConfig",
+        "ty_idx": 37,
+        "ident_loc": [
+          3,
+          13,
+          8,
+          13,
+          24
+        ],
+        "fields": [
+          {
+            "name": "immutableTreasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "maximumSupply",
+            "ty_idx": 9
+          },
+          {
+            "name": "giveawaySupply",
+            "ty_idx": 15
+          },
+          {
+            "name": "treasuryNftSupply",
+            "ty_idx": 15
+          },
+          {
+            "name": "whitelistMaxClaims",
+            "ty_idx": 15
+          },
+          {
+            "name": "itemDeploymentValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "collectionExecutionReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "outboundMessageReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "minimumStorageReserve",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMaps",
+        "ty_idx": 44,
+        "ident_loc": [
+          3,
+          26,
+          8,
+          26,
+          22
+        ],
+        "fields": [
+          {
+            "name": "usedQuoteHashes",
+            "ty_idx": 45
+          },
+          {
+            "name": "mintedSerialGuards",
+            "ty_idx": 46
+          },
+          {
+            "name": "whitelistClaimedWallets",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WhitelistState",
+        "ty_idx": 48,
+        "ident_loc": [
+          3,
+          32,
+          8,
+          32,
+          22
+        ],
+        "fields": [
+          {
+            "name": "merkleRoot",
+            "ty_idx": 18
+          },
+          {
+            "name": "claimsUsed",
+            "ty_idx": 15
+          },
+          {
+            "name": "locked",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionAssets",
+        "ty_idx": 43,
+        "ident_loc": [
+          3,
+          38,
+          8,
+          38,
+          24
+        ],
+        "fields": [
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "maps",
+            "ty_idx": 47
+          },
+          {
+            "name": "whitelist",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftCollectionStorage",
+        "ty_idx": 36,
+        "ident_loc": [
+          3,
+          44,
+          8,
+          44,
+          28
+        ],
+        "fields": [
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "quotePublicKey",
+            "ty_idx": 18
+          },
+          {
+            "name": "signerEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "mintedCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "giveawayPremintedCount",
+            "ty_idx": 15
+          },
+          {
+            "name": "treasuryPremintedCount",
+            "ty_idx": 15
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "config",
+            "ty_idx": 38
+          },
+          {
+            "name": "content",
+            "ty_idx": 40
+          },
+          {
+            "name": "reveal",
+            "ty_idx": 42
+          },
+          {
+            "name": "assets",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 72,
+        "ident_loc": [
+          6,
+          3,
+          8,
+          3,
+          31
+        ],
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintWithQuote",
+        "ty_idx": 13,
+        "ident_loc": [
+          6,
+          8,
+          21,
+          8,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1213157457,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quote",
+            "ty_idx": 22
+          },
+          {
+            "name": "signature",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PauseMinting",
+        "ty_idx": 24,
+        "ident_loc": [
+          6,
+          14,
+          21,
+          14,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1213157377,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpauseMinting",
+        "ty_idx": 25,
+        "ident_loc": [
+          6,
+          18,
+          21,
+          18,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1213157378,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RotateSigner",
+        "ty_idx": 26,
+        "ident_loc": [
+          6,
+          22,
+          21,
+          22,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1213157379,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newPublicKey",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RevealMetadata",
+        "ty_idx": 27,
+        "ident_loc": [
+          6,
+          27,
+          21,
+          27,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1213157380,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "finalBaseUri",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FreezeMetadata",
+        "ty_idx": 29,
+        "ident_loc": [
+          6,
+          32,
+          21,
+          32,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1213157381,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PremintGiveaways",
+        "ty_idx": 30,
+        "ident_loc": [
+          6,
+          36,
+          21,
+          36,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 1213157382,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAdmin",
+        "ty_idx": 31,
+        "ident_loc": [
+          6,
+          41,
+          21,
+          41,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1213157383,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PremintTreasury",
+        "ty_idx": 32,
+        "ident_loc": [
+          6,
+          46,
+          21,
+          46,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1213157384,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetMerkleRoot",
+        "ty_idx": 33,
+        "ident_loc": [
+          6,
+          51,
+          21,
+          51,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1213157385,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimWhitelist",
+        "ty_idx": 34,
+        "ident_loc": [
+          6,
+          58,
+          21,
+          58,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1213157386,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "snapshotBalance",
+            "ty_idx": 18
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 89,
+        "ident_loc": [
+          7,
+          3,
+          15,
+          3,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuote",
+        "ty_idx": 14,
+        "ident_loc": [
+          10,
+          3,
+          8,
+          3,
+          18
+        ],
+        "fields": [
+          {
+            "name": "version",
+            "ty_idx": 15
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "mintContractAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "buyerWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 15
+          },
+          {
+            "name": "firstSerial",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastSerial",
+            "ty_idx": 9
+          },
+          {
+            "name": "tail",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuoteTail",
+        "ty_idx": 16,
+        "ident_loc": [
+          10,
+          14,
+          8,
+          14,
+          22
+        ],
+        "fields": [
+          {
+            "name": "usdTotalNanoDollars",
+            "ty_idx": 11
+          },
+          {
+            "name": "paymentAssetKind",
+            "ty_idx": 17
+          },
+          {
+            "name": "paymentAssetId",
+            "ty_idx": 18
+          },
+          {
+            "name": "paymentAmountBaseUnits",
+            "ty_idx": 6
+          },
+          {
+            "name": "validFrom",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "crypto",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuoteCrypto",
+        "ty_idx": 19,
+        "ident_loc": [
+          10,
+          24,
+          8,
+          24,
+          24
+        ],
+        "fields": [
+          {
+            "name": "nonce",
+            "ty_idx": 18
+          },
+          {
+            "name": "signerEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "metadataAssignmentCommitment",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemStorageNotInitialized",
+        "ty_idx": 69,
+        "ident_loc": [
+          12,
+          8,
+          8,
+          8,
+          36
+        ],
+        "fields": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "string.hash",
+        "return_ty_idx": 18,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          43,
+          12,
+          43,
+          16
+        ],
+        "end_loc": [
+          2,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "StringBuilder.appendInt",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          128,
+          19,
+          128,
+          28
+        ],
+        "end_loc": [
+          2,
+          131,
+          1,
+          131,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "n",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "StringBuilder.build",
+        "return_ty_idx": 28,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          137,
+          19,
+          137,
+          24
+        ],
+        "end_loc": [
+          2,
+          172,
+          1,
+          172,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "(slice, cell).toCell",
+        "return_ty_idx": 55,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 54
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "verifyWhitelistProof",
+        "return_ty_idx": 5,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          47,
+          5,
+          47,
+          25
+        ],
+        "end_loc": [
+          1,
+          71,
+          1,
+          71,
+          2
+        ],
+        "params": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "snapshotBalance",
+            "ty_idx": 18
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          },
+          {
+            "name": "expectedRoot",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "whitelistLeaf",
+        "return_ty_idx": 18,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          37,
+          5,
+          37,
+          18
+        ],
+        "end_loc": [
+          1,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "snapshotBalance",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "sortedMerklePair",
+        "return_ty_idx": 18,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          41,
+          5,
+          41,
+          21
+        ],
+        "end_loc": [
+          1,
+          45,
+          1,
+          45,
+          2
+        ],
+        "params": [
+          {
+            "name": "left",
+            "ty_idx": 18
+          },
+          {
+            "name": "right",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          135,
+          5,
+          135,
+          22
+        ],
+        "end_loc": [
+          1,
+          435,
+          1,
+          435,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          437,
+          5,
+          437,
+          21
+        ],
+        "end_loc": [
+          1,
+          437,
+          46,
+          437,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "Cell<CollectionConfig>.load",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 38
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "Cell<HopprQuote>.load",
+        "return_ty_idx": 14,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "Cell<HopprQuoteTail>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "Cell<CollectionAssets>.load",
+        "return_ty_idx": 43,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 50
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "Cell<CollectionMaps>.load",
+        "return_ty_idx": 44,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 47
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<uint256, bool>.get",
+        "return_ty_idx": 58,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "validateQuote",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          86,
+          5,
+          86,
+          18
+        ],
+        "end_loc": [
+          1,
+          133,
+          1,
+          133,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "incomingValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "quote",
+            "ty_idx": 14
+          },
+          {
+            "name": "storage",
+            "ty_idx": 36
+          },
+          {
+            "name": "config",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "Cell<HopprQuoteCrypto>.load",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "Cell<WhitelistState>.load",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "validateNativePayment",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          9,
+          15,
+          5,
+          15,
+          26
+        ],
+        "end_loc": [
+          9,
+          18,
+          1,
+          18,
+          2
+        ],
+        "params": [
+          {
+            "name": "incomingValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "quote",
+            "ty_idx": 14
+          },
+          {
+            "name": "config",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "requiredAttachedValue",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          9,
+          5,
+          5,
+          5,
+          26
+        ],
+        "end_loc": [
+          9,
+          13,
+          1,
+          13,
+          2
+        ],
+        "params": [
+          {
+            "name": "quote",
+            "ty_idx": 14
+          },
+          {
+            "name": "config",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "verifyQuoteSignature",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          11,
+          4,
+          5,
+          4,
+          25
+        ],
+        "end_loc": [
+          11,
+          9,
+          1,
+          9,
+          2
+        ],
+        "params": [
+          {
+            "name": "quote",
+            "ty_idx": 22
+          },
+          {
+            "name": "signature",
+            "ty_idx": 23
+          },
+          {
+            "name": "publicKey",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "map<uint32, bool>.get",
+        "return_ty_idx": 58,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 46
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "map<uint256, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 18
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "map<uint32, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 46
+          },
+          {
+            "name": "key",
+            "ty_idx": 9
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "serialContent",
+        "return_ty_idx": 28,
+        "num_params": 1,
+        "ident_loc": [
+          7,
+          7,
+          5,
+          7,
+          18
+        ],
+        "end_loc": [
+          7,
+          12,
+          1,
+          12,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "StringBuilder.create",
+        "return_ty_idx": 51,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          115,
+          19,
+          115,
+          25
+        ],
+        "end_loc": [
+          2,
+          117,
+          1,
+          117,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 26,
+        "name": "StringBuilder.append",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          120,
+          19,
+          120,
+          25
+        ],
+        "end_loc": [
+          2,
+          123,
+          1,
+          123,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "s",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "deployNft",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          73,
+          5,
+          73,
+          14
+        ],
+        "end_loc": [
+          1,
+          84,
+          1,
+          84,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 28
+          },
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "calcDeployedNftItem",
+        "return_ty_idx": 62,
+        "num_params": 3,
+        "ident_loc": [
+          8,
+          3,
+          5,
+          3,
+          24
+        ],
+        "end_loc": [
+          8,
+          10,
+          1,
+          10,
+          2
+        ],
+        "params": [
+          {
+            "name": "itemIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "collectionAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "NftItemStorageNotInitialized.toCell",
+        "return_ty_idx": 70,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 69
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "createMessage<NftItemInitAtDeployment>",
+        "return_ty_idx": 71,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 73
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "CollectionMaps.toCell",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "CollectionAssets.toCell",
+        "return_ty_idx": 50,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "NftCollectionStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          3,
+          63,
+          26,
+          63,
+          30
+        ],
+        "end_loc": [
+          3,
+          65,
+          1,
+          65,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "createMessage<void>",
+        "return_ty_idx": 71,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 87
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "requireAdmin",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          33,
+          5,
+          33,
+          17
+        ],
+        "end_loc": [
+          1,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "admin",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "WhitelistState.toCell",
+        "return_ty_idx": 49,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 48
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "Cell<RevealState>.load",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 42
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "Cell<CollectionContent>.load",
+        "return_ty_idx": 39,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 40
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "CollectionContent.toCell",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "RevealState.toCell",
+        "return_ty_idx": 42,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 41
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "get_collection_data",
+        "return_ty_idx": 88,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          439,
+          9,
+          439,
+          28
+        ],
+        "end_loc": [
+          1,
+          442,
+          1,
+          442,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 42,
+        "name": "get_nft_address_by_index",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          444,
+          9,
+          444,
+          33
+        ],
+        "end_loc": [
+          1,
+          451,
+          1,
+          451,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "get_nft_content",
+        "return_ty_idx": 90,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          453,
+          9,
+          453,
+          24
+        ],
+        "end_loc": [
+          1,
+          458,
+          1,
+          458,
+          2
+        ],
+        "params": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "NftCollectionStorage.load",
+        "return_ty_idx": 36,
+        "num_params": 0,
+        "ident_loc": [
+          3,
+          59,
+          26,
+          59,
+          30
+        ],
+        "end_loc": [
+          3,
+          61,
+          1,
+          61,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 46,
+        "name": "NftCollectionStorage.fromCell",
+        "return_ty_idx": 36,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "joinMetadata",
+        "return_ty_idx": 90,
+        "num_params": 2,
+        "ident_loc": [
+          7,
+          14,
+          5,
+          14,
+          17
+        ],
+        "end_loc": [
+          7,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": [
+          {
+            "name": "baseUri",
+            "ty_idx": 28
+          },
+          {
+            "name": "suffix",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "OffchainMetadataReply.toCell",
+        "return_ty_idx": 90,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 89
+          },
+          {
+            "name": "options",
+            "ty_idx": 56
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "get_treasury_address",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          460,
+          9,
+          460,
+          29
+        ],
+        "end_loc": [
+          1,
+          462,
+          1,
+          462,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 50,
+        "name": "get_admin_address",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          464,
+          9,
+          464,
+          26
+        ],
+        "end_loc": [
+          1,
+          466,
+          1,
+          466,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 51,
+        "name": "get_quote_config",
+        "return_ty_idx": 91,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          468,
+          9,
+          468,
+          25
+        ],
+        "end_loc": [
+          1,
+          471,
+          1,
+          471,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 52,
+        "name": "is_quote_used",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          473,
+          9,
+          473,
+          22
+        ],
+        "end_loc": [
+          1,
+          476,
+          1,
+          476,
+          2
+        ],
+        "params": [
+          {
+            "name": "quoteHash",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "get_minted_count",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          478,
+          9,
+          478,
+          25
+        ],
+        "end_loc": [
+          1,
+          480,
+          1,
+          480,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 54,
+        "name": "get_giveaway_preminted_count",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          482,
+          9,
+          482,
+          37
+        ],
+        "end_loc": [
+          1,
+          484,
+          1,
+          484,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 55,
+        "name": "get_giveaway_supply",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          486,
+          9,
+          486,
+          28
+        ],
+        "end_loc": [
+          1,
+          488,
+          1,
+          488,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 56,
+        "name": "get_treasury_preminted_count",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          490,
+          9,
+          490,
+          37
+        ],
+        "end_loc": [
+          1,
+          492,
+          1,
+          492,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 57,
+        "name": "get_treasury_nft_supply",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          494,
+          9,
+          494,
+          32
+        ],
+        "end_loc": [
+          1,
+          496,
+          1,
+          496,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 58,
+        "name": "get_reserved_allocation_state",
+        "return_ty_idx": 92,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          498,
+          9,
+          498,
+          38
+        ],
+        "end_loc": [
+          1,
+          507,
+          1,
+          507,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 59,
+        "name": "get_whitelist_config",
+        "return_ty_idx": 93,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          509,
+          9,
+          509,
+          29
+        ],
+        "end_loc": [
+          1,
+          518,
+          1,
+          518,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 60,
+        "name": "get_whitelist_claimed",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          520,
+          9,
+          520,
+          30
+        ],
+        "end_loc": [
+          1,
+          531,
+          1,
+          531,
+          2
+        ],
+        "params": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 61,
+        "name": "get_reveal_status",
+        "return_ty_idx": 94,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          533,
+          9,
+          533,
+          26
+        ],
+        "end_loc": [
+          1,
+          543,
+          1,
+          543,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 62,
+        "name": "get_mint_config",
+        "return_ty_idx": 95,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          545,
+          9,
+          545,
+          24
+        ],
+        "end_loc": [
+          1,
+          565,
+          1,
+          565,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "NftCollection",
+    "author": "Hoppr",
+    "version": "1.0.0",
+    "description": "Hoppr Genesis fixed-supply signed-quote NFT collection",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MintWithQuote"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuote"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuoteTail"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HopprQuoteCrypto"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PauseMinting"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpauseMinting"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RotateSigner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RevealMetadata"
+      },
+      {
+        "kind": "string"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FreezeMetadata"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PremintGiveaways"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TransferAdmin"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PremintTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetMerkleRoot"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ClaimWhitelist"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftCollectionStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionConfig"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 35
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionContent"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RevealState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionAssets"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CollectionMaps"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 17,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 9,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 42
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WhitelistState"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 46
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "NftItemInitAtDeployment"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          3,
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OffchainMetadataReply"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 51
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          17,
+          1,
+          8
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          17,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          5,
+          17,
+          5,
+          5,
+          27
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          6,
+          6,
+          6,
+          6,
+          5
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "CollectionContent",
+        "ty_idx": 37,
+        "fields": [
+          {
+            "name": "collectionMetadata",
+            "ty_idx": 3
+          },
+          {
+            "name": "commonContent",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RevealState",
+        "ty_idx": 39,
+        "fields": [
+          {
+            "name": "delayedRevealEnabled",
+            "ty_idx": 5
+          },
+          {
+            "name": "metadataCommitment",
+            "ty_idx": 17
+          },
+          {
+            "name": "metadataRevealed",
+            "ty_idx": 5
+          },
+          {
+            "name": "metadataFrozen",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionConfig",
+        "ty_idx": 35,
+        "fields": [
+          {
+            "name": "immutableTreasuryAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "maximumSupply",
+            "ty_idx": 9
+          },
+          {
+            "name": "giveawaySupply",
+            "ty_idx": 14
+          },
+          {
+            "name": "treasuryNftSupply",
+            "ty_idx": 14
+          },
+          {
+            "name": "whitelistMaxClaims",
+            "ty_idx": 14
+          },
+          {
+            "name": "itemDeploymentValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "collectionExecutionReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "outboundMessageReserve",
+            "ty_idx": 6
+          },
+          {
+            "name": "minimumStorageReserve",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionMaps",
+        "ty_idx": 42,
+        "fields": [
+          {
+            "name": "usedQuoteHashes",
+            "ty_idx": 43
+          },
+          {
+            "name": "mintedSerialGuards",
+            "ty_idx": 44
+          },
+          {
+            "name": "whitelistClaimedWallets",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WhitelistState",
+        "ty_idx": 46,
+        "fields": [
+          {
+            "name": "merkleRoot",
+            "ty_idx": 17
+          },
+          {
+            "name": "claimsUsed",
+            "ty_idx": 14
+          },
+          {
+            "name": "locked",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CollectionAssets",
+        "ty_idx": 41,
+        "fields": [
+          {
+            "name": "nftItemCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "maps",
+            "ty_idx": 45
+          },
+          {
+            "name": "whitelist",
+            "ty_idx": 47
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftCollectionStorage",
+        "ty_idx": 34,
+        "fields": [
+          {
+            "name": "adminAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "quotePublicKey",
+            "ty_idx": 17
+          },
+          {
+            "name": "signerEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "nextItemIndex",
+            "ty_idx": 9
+          },
+          {
+            "name": "mintedCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "giveawayPremintedCount",
+            "ty_idx": 14
+          },
+          {
+            "name": "treasuryPremintedCount",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "config",
+            "ty_idx": 36
+          },
+          {
+            "name": "content",
+            "ty_idx": 38
+          },
+          {
+            "name": "reveal",
+            "ty_idx": 40
+          },
+          {
+            "name": "assets",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "NftItemInitAtDeployment",
+        "ty_idx": 49,
+        "fields": [
+          {
+            "name": "ownerAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "content",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MintWithQuote",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1213157457,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quote",
+            "ty_idx": 21
+          },
+          {
+            "name": "signature",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PauseMinting",
+        "ty_idx": 23,
+        "prefix": {
+          "prefix_num": 1213157377,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpauseMinting",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 1213157378,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RotateSigner",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 1213157379,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newPublicKey",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RevealMetadata",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 1213157380,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "finalBaseUri",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FreezeMetadata",
+        "ty_idx": 28,
+        "prefix": {
+          "prefix_num": 1213157381,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PremintGiveaways",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1213157382,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TransferAdmin",
+        "ty_idx": 30,
+        "prefix": {
+          "prefix_num": 1213157383,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newAdminAddress",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PremintTreasury",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 1213157384,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetMerkleRoot",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 1213157385,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "newRoot",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ClaimWhitelist",
+        "ty_idx": 33,
+        "prefix": {
+          "prefix_num": 1213157386,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "snapshotBalance",
+            "ty_idx": 17
+          },
+          {
+            "name": "proof",
+            "ty_idx": 3
+          }
+        ],
+        "description": "`proof` is a forward snake. Every cell stores one 256-bit sibling hash and\noptionally references the next proof cell. Pair hashes are sorted."
+      },
+      {
+        "kind": "struct",
+        "name": "OffchainMetadataReply",
+        "ty_idx": 51,
+        "prefix": {
+          "prefix_num": 1,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "string",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuote",
+        "ty_idx": 13,
+        "fields": [
+          {
+            "name": "version",
+            "ty_idx": 14
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "mintContractAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "buyerWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "quantity",
+            "ty_idx": 14
+          },
+          {
+            "name": "firstSerial",
+            "ty_idx": 9
+          },
+          {
+            "name": "lastSerial",
+            "ty_idx": 9
+          },
+          {
+            "name": "tail",
+            "ty_idx": 20
+          }
+        ],
+        "description": "Canonical quote payload. The signature is intentionally outside this cell.\nAutomatic Tolk serialization is the normative encoding and is mirrored by QuoteCodec.ts."
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuoteTail",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "usdTotalNanoDollars",
+            "ty_idx": 11
+          },
+          {
+            "name": "paymentAssetKind",
+            "ty_idx": 16
+          },
+          {
+            "name": "paymentAssetId",
+            "ty_idx": 17
+          },
+          {
+            "name": "paymentAmountBaseUnits",
+            "ty_idx": 6
+          },
+          {
+            "name": "validFrom",
+            "ty_idx": 9
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "crypto",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "HopprQuoteCrypto",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "nonce",
+            "ty_idx": 17
+          },
+          {
+            "name": "signerEpoch",
+            "ty_idx": 9
+          },
+          {
+            "name": "metadataAssignmentCommitment",
+            "ty_idx": 17
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 34
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 23
+      },
+      {
+        "body_ty_idx": 24
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 28
+      },
+      {
+        "body_ty_idx": 29
+      },
+      {
+        "body_ty_idx": 30
+      },
+      {
+        "body_ty_idx": 31
+      },
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 33
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 49
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102491,
+        "name": "get_collection_data",
+        "parameters": [],
+        "return_ty_idx": 50
+      },
+      {
+        "tvm_method_id": 92067,
+        "name": "get_nft_address_by_index",
+        "parameters": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 68445,
+        "name": "get_nft_content",
+        "parameters": [
+          {
+            "name": "_index",
+            "ty_idx": 1
+          },
+          {
+            "name": "individualContent",
+            "ty_idx": 3
+          }
+        ],
+        "return_ty_idx": 52
+      },
+      {
+        "tvm_method_id": 86787,
+        "name": "get_treasury_address",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 94255,
+        "name": "get_admin_address",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 100410,
+        "name": "get_quote_config",
+        "parameters": [],
+        "return_ty_idx": 53
+      },
+      {
+        "tvm_method_id": 103484,
+        "name": "is_quote_used",
+        "parameters": [
+          {
+            "name": "quoteHash",
+            "ty_idx": 17
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 68099,
+        "name": "get_minted_count",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 80111,
+        "name": "get_giveaway_preminted_count",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 65967,
+        "name": "get_giveaway_supply",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 103643,
+        "name": "get_treasury_preminted_count",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 115614,
+        "name": "get_treasury_nft_supply",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 130121,
+        "name": "get_reserved_allocation_state",
+        "parameters": [],
+        "return_ty_idx": 54
+      },
+      {
+        "tvm_method_id": 73030,
+        "name": "get_whitelist_config",
+        "parameters": [],
+        "return_ty_idx": 55
+      },
+      {
+        "tvm_method_id": 93419,
+        "name": "get_whitelist_claimed",
+        "parameters": [
+          {
+            "name": "wallet",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 79765,
+        "name": "get_reveal_status",
+        "parameters": [],
+        "return_ty_idx": 56
+      },
+      {
+        "tvm_method_id": 69498,
+        "name": "get_mint_config",
+        "parameters": [],
+        "return_ty_idx": 57
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.NotAdmin",
+        "err_code": 1001
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.MintPaused",
+        "err_code": 1002
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.UnsupportedQuoteVersion",
+        "err_code": 1003
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WrongNetwork",
+        "err_code": 1004
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WrongCollection",
+        "err_code": 1005
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WrongBuyer",
+        "err_code": 1006
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WrongSignerEpoch",
+        "err_code": 1007
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WrongPaymentAsset",
+        "err_code": 1008
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.QuoteNotYetValid",
+        "err_code": 1009
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.QuoteExpired",
+        "err_code": 1010
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.QuoteLifetimeInvalid",
+        "err_code": 1011
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.QuantityZero",
+        "err_code": 1012
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidSerialRange",
+        "err_code": 1014
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.SupplyExceeded",
+        "err_code": 1016
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.SerialAlreadyMinted",
+        "err_code": 1017
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.QuoteAlreadyUsed",
+        "err_code": 1018
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.Underpayment",
+        "err_code": 1019
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidSignature",
+        "err_code": 1020
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidPublicKey",
+        "err_code": 1021
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.RevealDisabled",
+        "err_code": 1022
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.MetadataFrozen",
+        "err_code": 1023
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidReveal",
+        "err_code": 1024
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.AlreadyRevealed",
+        "err_code": 1025
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.Overpayment",
+        "err_code": 1026
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.GiveawayPremintAlreadyCompleted",
+        "err_code": 1027
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidAdminAddress",
+        "err_code": 1028
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.GiveawayPremintIncomplete",
+        "err_code": 1029
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.TreasuryPremintAlreadyCompleted",
+        "err_code": 1030
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.TreasuryPremintIncomplete",
+        "err_code": 1031
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WhitelistRootUnset",
+        "err_code": 1032
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WhitelistRootLocked",
+        "err_code": 1033
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WhitelistAlreadyClaimed",
+        "err_code": 1034
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.WhitelistAllocationExhausted",
+        "err_code": 1035
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidMerkleProof",
+        "err_code": 1036
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.MerkleProofTooDeep",
+        "err_code": 1037
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.PublicAllocationExceeded",
+        "err_code": 1038
+      },
+      {
+        "kind": "enum_member",
+        "name": "HopprErrors.InvalidMessage",
+        "err_code": 1099
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/nft-collection-contract.tolk",
+      "contents": "import \"@stdlib/strings\"\nimport \"collection-storage\"\nimport \"constants\"\nimport \"errors\"\nimport \"messages\"\nimport \"metadata\"\nimport \"nft-utils\"\nimport \"payment-native\"\nimport \"quote-types\"\nimport \"signature-verification\"\n\ncontract NftCollection {\n    author: \"Hoppr\"\n    version: \"1.0.0\"\n    description: \"Hoppr Genesis fixed-supply signed-quote NFT collection\"\n    incomingMessages: AllowedMessageToCollection\n    storage: NftCollectionStorage\n}\n\ntype AllowedMessageToCollection =\n    | MintWithQuote\n    | PauseMinting\n    | UnpauseMinting\n    | RotateSigner\n    | RevealMetadata\n    | FreezeMetadata\n    | PremintGiveaways\n    | TransferAdmin\n    | PremintTreasury\n    | SetMerkleRoot\n    | ClaimWhitelist\n\nfun requireAdmin(sender: address, admin: address) {\n    assert (sender == admin) throw HopprErrors.NotAdmin;\n}\n\nfun whitelistLeaf(wallet: address, snapshotBalance: uint256): uint256 {\n    return beginCell().storeAddress(wallet).storeUint(snapshotBalance, 256).endCell().hash();\n}\n\nfun sortedMerklePair(left: uint256, right: uint256): uint256 {\n    return left < right\n        ? beginCell().storeUint(left, 256).storeUint(right, 256).endCell().hash()\n        : beginCell().storeUint(right, 256).storeUint(left, 256).endCell().hash();\n}\n\nfun verifyWhitelistProof(\n    wallet: address,\n    snapshotBalance: uint256,\n    proof: cell,\n    expectedRoot: uint256,\n): bool {\n    var current = whitelistLeaf(wallet, snapshotBalance);\n    var cursor = proof.beginParse();\n    var depth = 0;\n    while (!cursor.isEmpty()) {\n        assert (depth < MAX_MERKLE_PROOF_DEPTH) throw HopprErrors.MerkleProofTooDeep;\n        assert (cursor.remainingBitsCount() == 256) throw HopprErrors.InvalidMerkleProof;\n        val sibling = cursor.loadUint(256) as uint256;\n        current = sortedMerklePair(current, sibling);\n        val refs = cursor.remainingRefsCount();\n        assert (refs <= 1) throw HopprErrors.InvalidMerkleProof;\n        if (refs == 0) {\n            cursor.assertEnd();\n            return current == expectedRoot;\n        }\n        cursor = cursor.loadRef().beginParse();\n        depth += 1;\n    }\n    return current == expectedRoot;\n}\n\nfun deployNft(index: uint32, owner: address, content: string, code: cell, value: coins) {\n    val deploymentMessage = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: calcDeployedNftItem(index, contract.getAddress(), code),\n        value,\n        body: NftItemInitAtDeployment {\n            ownerAddress: owner,\n            content,\n        },\n    });\n    deploymentMessage.send(SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL);\n}\n\nfun validateQuote(\n    sender: address,\n    incomingValue: coins,\n    quote: HopprQuote,\n    storage: NftCollectionStorage,\n    config: CollectionConfig,\n) {\n    val tail: HopprQuoteTail = quote.tail.load();\n    assert (!storage.paused) throw HopprErrors.MintPaused;\n    assert (quote.version == QUOTE_VERSION) throw HopprErrors.UnsupportedQuoteVersion;\n    assert (quote.networkId == config.networkId) throw HopprErrors.WrongNetwork;\n    assert (quote.mintContractAddress == contract.getAddress()) throw HopprErrors.WrongCollection;\n    assert (quote.buyerWallet == sender) throw HopprErrors.WrongBuyer;\n    assert (\n        tail.crypto.load().signerEpoch == storage.signerEpoch\n    ) throw HopprErrors.WrongSignerEpoch;\n    assert (\n        tail.paymentAssetKind == PAYMENT_ASSET_NATIVE && tail.paymentAssetId == NATIVE_ASSET_ID\n    ) throw HopprErrors.WrongPaymentAsset;\n    assert (blockchain.now() >= tail.validFrom) throw HopprErrors.QuoteNotYetValid;\n    assert (blockchain.now() <= tail.validUntil) throw HopprErrors.QuoteExpired;\n    assert (\n        tail.validUntil >= tail.validFrom && tail.validUntil - tail.validFrom <= MAX_QUOTE_LIFETIME\n    ) throw HopprErrors.QuoteLifetimeInvalid;\n    assert (quote.quantity > 0) throw HopprErrors.QuantityZero;\n    assert (quote.quantity <= config.maximumSupply) throw HopprErrors.SupplyExceeded;\n    assert (\n        quote.lastSerial == quote.firstSerial + quote.quantity - 1\n    ) throw HopprErrors.InvalidSerialRange;\n    assert (\n        quote.firstSerial >= FIRST_NFT_INDEX && quote.firstSerial <= config.maximumSupply &&\n        quote.lastSerial <= config.maximumSupply &&\n        storage.mintedCount <= config.maximumSupply - quote.quantity\n    ) throw HopprErrors.SupplyExceeded;\n    val publicFirstSerial = FIRST_NFT_INDEX + config.giveawaySupply + config.treasuryNftSupply +\n    config.whitelistMaxClaims;\n    assert (quote.firstSerial >= publicFirstSerial) throw HopprErrors.PublicAllocationExceeded;\n    val whitelist = storage.assets.load().whitelist.load();\n    val publicMintsUsed = storage.mintedCount - storage.giveawayPremintedCount -\n    storage.treasuryPremintedCount -\n    whitelist.claimsUsed;\n    val publicMax = config.maximumSupply - config.giveawaySupply - config.treasuryNftSupply -\n    config.whitelistMaxClaims;\n    assert (\n        publicMintsUsed <= publicMax - quote.quantity\n    ) throw HopprErrors.PublicAllocationExceeded;\n    validateNativePayment(incomingValue, quote, config);\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessageToCollection.fromSlice(in.body);\n    match (msg) {\n        MintWithQuote => {\n            var storage = lazy NftCollectionStorage.load();\n            val config = storage.config.load();\n            val quote = msg.quote.load();\n            val quoteTail = quote.tail.load();\n            val quoteHash: uint256 = msg.quote.hash();\n            var assets = storage.assets.load();\n            var maps = assets.maps.load();\n            assert (\n                !maps.usedQuoteHashes.get(quoteHash).isFound\n            ) throw HopprErrors.QuoteAlreadyUsed;\n            validateQuote(in.senderAddress, in.valueCoins, quote, storage, config);\n            verifyQuoteSignature(msg.quote, msg.signature, storage.quotePublicKey);\n\n            var i = 0;\n            while (i < quote.quantity) {\n                val serial = quote.firstSerial + i;\n                assert (\n                    !maps.mintedSerialGuards.get(serial).isFound\n                ) throw HopprErrors.SerialAlreadyMinted;\n                i += 1;\n            }\n\n            maps.usedQuoteHashes.set(quoteHash, true);\n            i = 0;\n            while (i < quote.quantity) {\n                val serial = quote.firstSerial + i;\n                maps.mintedSerialGuards.set(serial, true);\n                deployNft(\n                    serial,\n                    quote.buyerWallet,\n                    serialContent(serial),\n                    assets.nftItemCode,\n                    config.itemDeploymentValue,\n                );\n                i += 1;\n            }\n            storage.mintedCount += quote.quantity;\n            while (\n                storage.nextItemIndex <= config.maximumSupply &&\n                maps.mintedSerialGuards.get(storage.nextItemIndex).isFound\n            ) {\n                storage.nextItemIndex += 1;\n            }\n            assets.maps = maps.toCell();\n            storage.assets = assets.toCell();\n            storage.save();\n\n            val treasuryPayment = createMessage({\n                // A treasury may be an uninitialized wallet address. Send a\n                // plain non-bounce transfer so dust test prices are credited\n                // without attempting to execute an event body with no gas.\n                bounce: BounceMode.NoBounce,\n                dest: config.immutableTreasuryAddress,\n                value: quoteTail.paymentAmountBaseUnits,\n            });\n            treasuryPayment.send(\n                SEND_MODE_PAY_FEES_SEPARATELY | SEND_MODE_BOUNCE_ON_ACTION_FAIL,\n            );\n        }\n        PremintGiveaways => {\n            var storage = lazy NftCollectionStorage.load();\n            val config = storage.config.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            assert (\n                storage.giveawayPremintedCount < config.giveawaySupply &&\n                storage.mintedCount == storage.giveawayPremintedCount &&\n                storage.nextItemIndex == storage.mintedCount + FIRST_NFT_INDEX\n            ) throw HopprErrors.GiveawayPremintAlreadyCompleted;\n            assert (msg.quantity > 0) throw HopprErrors.QuantityZero;\n            assert (\n                msg.quantity <= config.giveawaySupply - storage.giveawayPremintedCount\n            ) throw HopprErrors.SupplyExceeded;\n\n            val requiredValue = msg.quantity * config.itemDeploymentValue +\n            config.collectionExecutionReserve +\n            config.outboundMessageReserve;\n            assert (in.valueCoins >= requiredValue) throw HopprErrors.Underpayment;\n\n            var assets = storage.assets.load();\n            var maps = assets.maps.load();\n            var serial = storage.nextItemIndex;\n            val endSerial = serial + msg.quantity;\n            while (serial < endSerial) {\n                maps.mintedSerialGuards.set(serial, true);\n                deployNft(\n                    serial,\n                    storage.adminAddress,\n                    serialContent(serial),\n                    assets.nftItemCode,\n                    config.itemDeploymentValue,\n                );\n                serial += 1;\n            }\n            storage.mintedCount += msg.quantity;\n            storage.giveawayPremintedCount += msg.quantity;\n            storage.nextItemIndex += msg.quantity;\n            if (\n                storage.giveawayPremintedCount == config.giveawaySupply &&\n                config.treasuryNftSupply == 0 &&\n                (config.whitelistMaxClaims == 0 || assets.whitelist.load().merkleRoot != 0)\n            ) {\n                storage.paused = false;\n            }\n            assets.maps = maps.toCell();\n            storage.assets = assets.toCell();\n            storage.save();\n        }\n        PremintTreasury => {\n            var storage = lazy NftCollectionStorage.load();\n            val config = storage.config.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            assert (\n                storage.giveawayPremintedCount == config.giveawaySupply\n            ) throw HopprErrors.GiveawayPremintIncomplete;\n            assert (\n                storage.treasuryPremintedCount < config.treasuryNftSupply &&\n                storage.mintedCount ==\n                storage.giveawayPremintedCount + storage.treasuryPremintedCount &&\n                storage.nextItemIndex == storage.mintedCount + FIRST_NFT_INDEX\n            ) throw HopprErrors.TreasuryPremintAlreadyCompleted;\n            assert (msg.quantity > 0) throw HopprErrors.QuantityZero;\n            assert (\n                msg.quantity <= config.treasuryNftSupply - storage.treasuryPremintedCount\n            ) throw HopprErrors.SupplyExceeded;\n\n            val requiredValue = msg.quantity * config.itemDeploymentValue +\n            config.collectionExecutionReserve +\n            config.outboundMessageReserve;\n            assert (in.valueCoins >= requiredValue) throw HopprErrors.Underpayment;\n\n            var assets = storage.assets.load();\n            var maps = assets.maps.load();\n            var serial = storage.nextItemIndex;\n            val endSerial = serial + msg.quantity;\n            while (serial < endSerial) {\n                maps.mintedSerialGuards.set(serial, true);\n                deployNft(\n                    serial,\n                    config.immutableTreasuryAddress,\n                    serialContent(serial),\n                    assets.nftItemCode,\n                    config.itemDeploymentValue,\n                );\n                serial += 1;\n            }\n            storage.mintedCount += msg.quantity;\n            storage.treasuryPremintedCount += msg.quantity;\n            storage.nextItemIndex += msg.quantity;\n            if (\n                storage.treasuryPremintedCount == config.treasuryNftSupply &&\n                (config.whitelistMaxClaims == 0 || assets.whitelist.load().merkleRoot != 0)\n            ) {\n                storage.paused = false;\n            }\n            assets.maps = maps.toCell();\n            storage.assets = assets.toCell();\n            storage.save();\n        }\n        SetMerkleRoot => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            var assets = storage.assets.load();\n            var whitelist = assets.whitelist.load();\n            assert (!whitelist.locked) throw HopprErrors.WhitelistRootLocked;\n            assert (msg.newRoot != 0) throw HopprErrors.WhitelistRootUnset;\n            whitelist.merkleRoot = msg.newRoot;\n            assets.whitelist = whitelist.toCell();\n            storage.assets = assets.toCell();\n            storage.save();\n        }\n        ClaimWhitelist => {\n            var storage = lazy NftCollectionStorage.load();\n            val config = storage.config.load();\n            assert (!storage.paused) throw HopprErrors.MintPaused;\n            var assets = storage.assets.load();\n            var whitelist = assets.whitelist.load();\n            assert (whitelist.merkleRoot != 0) throw HopprErrors.WhitelistRootUnset;\n            assert (\n                whitelist.claimsUsed < config.whitelistMaxClaims\n            ) throw HopprErrors.WhitelistAllocationExhausted;\n            val walletKey = beginCell().storeAddress(in.senderAddress).endCell().hash();\n            var maps = assets.maps.load();\n            assert (\n                !maps.whitelistClaimedWallets.get(walletKey).isFound\n            ) throw HopprErrors.WhitelistAlreadyClaimed;\n            assert (\n                verifyWhitelistProof(\n                    in.senderAddress,\n                    msg.snapshotBalance,\n                    msg.proof,\n                    whitelist.merkleRoot,\n                )\n            ) throw HopprErrors.InvalidMerkleProof;\n            assert (storage.mintedCount < config.maximumSupply) throw HopprErrors.SupplyExceeded;\n            val requiredValue = config.itemDeploymentValue + config.collectionExecutionReserve +\n            config.outboundMessageReserve;\n            assert (in.valueCoins >= requiredValue) throw HopprErrors.Underpayment;\n\n            val serial = FIRST_NFT_INDEX + config.giveawaySupply + config.treasuryNftSupply +\n            whitelist.claimsUsed;\n            assert (\n                !maps.mintedSerialGuards.get(serial).isFound\n            ) throw HopprErrors.SerialAlreadyMinted;\n            maps.mintedSerialGuards.set(serial, true);\n            maps.whitelistClaimedWallets.set(walletKey, true);\n            deployNft(\n                serial,\n                in.senderAddress,\n                serialContent(serial),\n                assets.nftItemCode,\n                config.itemDeploymentValue,\n            );\n            storage.mintedCount += 1;\n            whitelist.claimsUsed += 1;\n            whitelist.locked = true;\n            while (\n                storage.nextItemIndex <= config.maximumSupply &&\n                maps.mintedSerialGuards.get(storage.nextItemIndex).isFound\n            ) {\n                storage.nextItemIndex += 1;\n            }\n            assets.maps = maps.toCell();\n            assets.whitelist = whitelist.toCell();\n            storage.assets = assets.toCell();\n            storage.save();\n        }\n        PauseMinting => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            storage.paused = true;\n            storage.save();\n        }\n        UnpauseMinting => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            assert (\n                storage.giveawayPremintedCount == storage.config.load().giveawaySupply\n            ) throw HopprErrors.GiveawayPremintIncomplete;\n            assert (\n                storage.treasuryPremintedCount == storage.config.load().treasuryNftSupply\n            ) throw HopprErrors.TreasuryPremintIncomplete;\n            assert (\n                storage.config.load().whitelistMaxClaims == 0 ||\n                storage.assets.load().whitelist.load().merkleRoot != 0\n            ) throw HopprErrors.WhitelistRootUnset;\n            storage.paused = false;\n            storage.save();\n        }\n        RotateSigner => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            assert (msg.newPublicKey != 0) throw HopprErrors.InvalidPublicKey;\n            storage.quotePublicKey = msg.newPublicKey;\n            storage.signerEpoch += 1;\n            storage.save();\n        }\n        RevealMetadata => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            var reveal = storage.reveal.load();\n            assert (reveal.delayedRevealEnabled) throw HopprErrors.RevealDisabled;\n            assert (!reveal.metadataFrozen) throw HopprErrors.MetadataFrozen;\n            assert (!reveal.metadataRevealed) throw HopprErrors.AlreadyRevealed;\n            assert (\n                msg.finalBaseUri.hash() == reveal.metadataCommitment\n            ) throw HopprErrors.InvalidReveal;\n            var content = storage.content.load();\n            content.commonContent = msg.finalBaseUri;\n            reveal.metadataRevealed = true;\n            reveal.metadataFrozen = true;\n            storage.content = content.toCell();\n            storage.reveal = reveal.toCell();\n            storage.save();\n        }\n        FreezeMetadata => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            var reveal = storage.reveal.load();\n            reveal.metadataFrozen = true;\n            storage.reveal = reveal.toCell();\n            storage.save();\n        }\n        TransferAdmin => {\n            var storage = lazy NftCollectionStorage.load();\n            requireAdmin(in.senderAddress, storage.adminAddress);\n            assert (\n                msg.newAdminAddress.getWorkchain() == BASECHAIN &&\n                msg.newAdminAddress != storage.adminAddress\n            ) throw HopprErrors.InvalidAdminAddress;\n            storage.adminAddress = msg.newAdminAddress;\n            storage.save();\n        }\n        else => {\n            assert (in.body.isEmpty()) throw HopprErrors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun get_collection_data(): (int, cell, address) {\n    val storage = lazy NftCollectionStorage.load();\n    return (storage.nextItemIndex, storage.content.load().collectionMetadata, storage.adminAddress);\n}\n\nget fun get_nft_address_by_index(index: int): address {\n    val storage = lazy NftCollectionStorage.load();\n    return calcDeployedNftItem(\n        index,\n        contract.getAddress(),\n        storage.assets.load().nftItemCode,\n    ).calculateAddress();\n}\n\nget fun get_nft_content(_index: int, individualContent: cell): Cell<OffchainMetadataReply> {\n    return joinMetadata(\n        NftCollectionStorage.load().content.load().commonContent,\n        individualContent as unknown as string,\n    );\n}\n\nget fun get_treasury_address(): address {\n    return NftCollectionStorage.load().config.load().immutableTreasuryAddress;\n}\n\nget fun get_admin_address(): address {\n    return NftCollectionStorage.load().adminAddress;\n}\n\nget fun get_quote_config(): (uint256, int, int32) {\n    val storage = lazy NftCollectionStorage.load();\n    return (storage.quotePublicKey, storage.signerEpoch, storage.config.load().networkId);\n}\n\nget fun is_quote_used(quoteHash: uint256): bool {\n    val maps = NftCollectionStorage.load().assets.load().maps.load();\n    return maps.usedQuoteHashes.get(quoteHash).isFound;\n}\n\nget fun get_minted_count(): int {\n    return NftCollectionStorage.load().mintedCount;\n}\n\nget fun get_giveaway_preminted_count(): int {\n    return NftCollectionStorage.load().giveawayPremintedCount;\n}\n\nget fun get_giveaway_supply(): int {\n    return NftCollectionStorage.load().config.load().giveawaySupply;\n}\n\nget fun get_treasury_preminted_count(): int {\n    return NftCollectionStorage.load().treasuryPremintedCount;\n}\n\nget fun get_treasury_nft_supply(): int {\n    return NftCollectionStorage.load().config.load().treasuryNftSupply;\n}\n\nget fun get_reserved_allocation_state(): (int, int, int, int) {\n    val storage = lazy NftCollectionStorage.load();\n    val config = storage.config.load();\n    return (\n        config.giveawaySupply,\n        storage.giveawayPremintedCount,\n        config.treasuryNftSupply,\n        storage.treasuryPremintedCount,\n    );\n}\n\nget fun get_whitelist_config(): (uint256, int, int, bool) {\n    val storage = lazy NftCollectionStorage.load();\n    val whitelist = storage.assets.load().whitelist.load();\n    return (\n        whitelist.merkleRoot,\n        storage.config.load().whitelistMaxClaims,\n        whitelist.claimsUsed,\n        whitelist.locked,\n    );\n}\n\nget fun get_whitelist_claimed(wallet: address): bool {\n    val key = beginCell().storeAddress(wallet).endCell().hash();\n    return NftCollectionStorage\n        .load()\n        .assets\n        .load()\n        .maps\n        .load()\n        .whitelistClaimedWallets\n        .get(key)\n        .isFound;\n}\n\nget fun get_reveal_status(): (bool, uint256, bool, bool, string) {\n    val storage = lazy NftCollectionStorage.load();\n    val reveal = storage.reveal.load();\n    return (\n        reveal.delayedRevealEnabled,\n        reveal.metadataCommitment,\n        reveal.metadataRevealed,\n        reveal.metadataFrozen,\n        storage.content.load().commonContent,\n    );\n}\n\nget fun get_mint_config(): (\n    int,\n    int,\n    coins,\n    coins,\n    coins,\n    coins,\n    bool,\n) {\n    val storage = lazy NftCollectionStorage.load();\n    val config = storage.config.load();\n    return (\n        config.maximumSupply,\n        config.maximumSupply,\n        config.itemDeploymentValue,\n        config.collectionExecutionReserve,\n        config.outboundMessageReserve,\n        config.minimumStorageReserve,\n        storage.paused,\n    );\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/collection-storage.tolk",
+      "contents": "struct CollectionContent {\n    collectionMetadata: cell\n    commonContent: string\n}\n\nstruct RevealState {\n    delayedRevealEnabled: bool\n    metadataCommitment: uint256\n    metadataRevealed: bool\n    metadataFrozen: bool\n}\n\nstruct CollectionConfig {\n    immutableTreasuryAddress: address\n    networkId: int32\n    maximumSupply: uint32\n    giveawaySupply: uint16\n    treasuryNftSupply: uint16\n    whitelistMaxClaims: uint16\n    itemDeploymentValue: coins\n    collectionExecutionReserve: coins\n    outboundMessageReserve: coins\n    minimumStorageReserve: coins\n}\n\nstruct CollectionMaps {\n    usedQuoteHashes: map<uint256, bool>\n    mintedSerialGuards: map<uint32, bool>\n    whitelistClaimedWallets: map<uint256, bool>\n}\n\nstruct WhitelistState {\n    merkleRoot: uint256\n    claimsUsed: uint16\n    locked: bool\n}\n\nstruct CollectionAssets {\n    nftItemCode: cell\n    maps: Cell<CollectionMaps>\n    whitelist: Cell<WhitelistState>\n}\n\nstruct NftCollectionStorage {\n    adminAddress: address\n    quotePublicKey: uint256\n    signerEpoch: uint32\n    nextItemIndex: uint32\n    mintedCount: uint32\n    giveawayPremintedCount: uint16\n    treasuryPremintedCount: uint16\n    paused: bool\n    config: Cell<CollectionConfig>\n    content: Cell<CollectionContent>\n    reveal: Cell<RevealState>\n    assets: Cell<CollectionAssets>\n}\n\nfun NftCollectionStorage.load(): NftCollectionStorage {\n    return NftCollectionStorage.fromCell(contract.getData());\n}\n\nfun NftCollectionStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/constants.tolk",
+      "contents": "const FIRST_NFT_INDEX = 1\nconst MAX_COLLECTION_SUPPLY = 10_000\nconst DEFAULT_MAX_SUPPLY = 10_000\nconst DEFAULT_GIVEAWAY_SUPPLY = 1_000\nconst DEFAULT_TREASURY_NFT_SUPPLY = 500\nconst DEFAULT_WHITELIST_MAX_CLAIMS = 1_000\nconst MAX_MERKLE_PROOF_DEPTH = 64\nconst MAX_QUOTE_LIFETIME = 300\nconst QUOTE_VERSION = 1\nconst PAYMENT_ASSET_NATIVE = 0\nconst NATIVE_ASSET_ID = 0\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/errors.tolk",
+      "contents": "enum HopprErrors {\n    NotAdmin = 1001\n    MintPaused = 1002\n    UnsupportedQuoteVersion = 1003\n    WrongNetwork = 1004\n    WrongCollection = 1005\n    WrongBuyer = 1006\n    WrongSignerEpoch = 1007\n    WrongPaymentAsset = 1008\n    QuoteNotYetValid = 1009\n    QuoteExpired = 1010\n    QuoteLifetimeInvalid = 1011\n    QuantityZero = 1012\n    BatchLimitExceeded = 1013\n    InvalidSerialRange = 1014\n    StaleSerial = 1015\n    SupplyExceeded = 1016\n    SerialAlreadyMinted = 1017\n    QuoteAlreadyUsed = 1018\n    Underpayment = 1019\n    InvalidSignature = 1020\n    InvalidPublicKey = 1021\n    RevealDisabled = 1022\n    MetadataFrozen = 1023\n    InvalidReveal = 1024\n    AlreadyRevealed = 1025\n    Overpayment = 1026\n    GiveawayPremintAlreadyCompleted = 1027\n    InvalidAdminAddress = 1028\n    GiveawayPremintIncomplete = 1029\n    TreasuryPremintAlreadyCompleted = 1030\n    TreasuryPremintIncomplete = 1031\n    WhitelistRootUnset = 1032\n    WhitelistRootLocked = 1033\n    WhitelistAlreadyClaimed = 1034\n    WhitelistAllocationExhausted = 1035\n    InvalidMerkleProof = 1036\n    MerkleProofTooDeep = 1037\n    PublicAllocationExceeded = 1038\n    InvalidMessage = 1099\n\n    ItemNotFromCollection = 2001\n    ItemNotOwner = 2002\n    ItemInsufficientValue = 2003\n    ItemInvalidPayload = 2004\n    ItemInvalidWorkchain = 2005\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/messages.tolk",
+      "contents": "import \"quote-types\"\n\nstruct NftItemInitAtDeployment {\n    ownerAddress: address\n    content: string\n}\n\nstruct (0x484f5051) MintWithQuote {\n    queryId: uint64\n    quote: Cell<HopprQuote>\n    signature: bits512\n}\n\nstruct (0x484f5001) PauseMinting {\n    queryId: uint64\n}\n\nstruct (0x484f5002) UnpauseMinting {\n    queryId: uint64\n}\n\nstruct (0x484f5003) RotateSigner {\n    queryId: uint64\n    newPublicKey: uint256\n}\n\nstruct (0x484f5004) RevealMetadata {\n    queryId: uint64\n    finalBaseUri: string\n}\n\nstruct (0x484f5005) FreezeMetadata {\n    queryId: uint64\n}\n\nstruct (0x484f5006) PremintGiveaways {\n    queryId: uint64\n    quantity: uint16\n}\n\nstruct (0x484f5007) TransferAdmin {\n    queryId: uint64\n    newAdminAddress: address\n}\n\nstruct (0x484f5008) PremintTreasury {\n    queryId: uint64\n    quantity: uint16\n}\n\nstruct (0x484f5009) SetMerkleRoot {\n    queryId: uint64\n    newRoot: uint256\n}\n\n/// `proof` is a forward snake. Every cell stores one 256-bit sibling hash and\n/// optionally references the next proof cell. Pair hashes are sorted.\nstruct (0x484f500a) ClaimWhitelist {\n    queryId: uint64\n    snapshotBalance: uint256\n    proof: cell\n}\n\nstruct (0x2fcb26a2) RequestStaticData {\n    queryId: uint64\n}\n\nstruct (0x8b771735) ResponseStaticData {\n    queryId: uint64\n    itemIndex: uint256\n    collectionAddress: address\n}\n\nstruct (0b0) PayloadInline {\n    value: RemainingBitsAndRefs\n}\n\nstruct (0b1) PayloadInRef {\n    value: Cell<RemainingBitsAndRefs>\n}\n\nstruct (0x05138d91) NotificationForNewOwner {\n    queryId: uint64\n    oldOwnerAddress: address\n    @abi.clientType(PayloadInline | PayloadInRef)\n    payload: RemainingBitsAndRefs\n}\n\nstruct (0xd53276db) ReturnExcessesBack {\n    queryId: uint64\n}\n\nstruct (0x5fcc3d14) AskToChangeOwnership {\n    queryId: uint64\n    newOwnerAddress: address\n    sendExcessesTo: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    @abi.clientType(PayloadInline | PayloadInRef)\n    forwardPayload: RemainingBitsAndRefs\n}\n\nstruct QuoteConsumedEvent {\n    quoteHash: uint256\n    firstSerial: uint32\n    quantity: uint16\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/metadata.tolk",
+      "contents": "import \"@stdlib/strings\"\n\nstruct (0x01) OffchainMetadataReply {\n    string: string\n}\n\nfun serialContent(index: int): string {\n    var b = StringBuilder.create();\n    b.appendInt(index);\n    b.append(\".json\");\n    return b.build();\n}\n\nfun joinMetadata(baseUri: string, suffix: string): Cell<OffchainMetadataReply> {\n    var b = StringBuilder.create();\n    b.append(baseUri);\n    b.append(suffix);\n    return OffchainMetadataReply { string: b.build() }.toCell();\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/nft-utils.tolk",
+      "contents": "import \"item-storage\"\n\nfun calcDeployedNftItem(\n    itemIndex: uint32,\n    collectionAddress: address,\n    nftItemCode: cell,\n): AutoDeployAddress {\n    val initial: NftItemStorageNotInitialized = { itemIndex, collectionAddress };\n    return { stateInit: { code: nftItemCode, data: initial.toCell() } };\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/payment-native.tolk",
+      "contents": "import \"collection-storage\"\nimport \"errors\"\nimport \"quote-types\"\n\nfun requiredAttachedValue(\n    quote: HopprQuote,\n    config: CollectionConfig,\n): coins {\n    val tail = quote.tail.load();\n    return tail.paymentAmountBaseUnits + quote.quantity * config.itemDeploymentValue +\n    config.collectionExecutionReserve +\n    config.outboundMessageReserve;\n}\n\nfun validateNativePayment(incomingValue: coins, quote: HopprQuote, config: CollectionConfig) {\n    assert (incomingValue >= requiredAttachedValue(quote, config)) throw HopprErrors.Underpayment;\n    assert (incomingValue <= requiredAttachedValue(quote, config)) throw HopprErrors.Overpayment;\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/quote-types.tolk",
+      "contents": "/// Canonical quote payload. The signature is intentionally outside this cell.\n/// Automatic Tolk serialization is the normative encoding and is mirrored by QuoteCodec.ts.\nstruct HopprQuote {\n    version: uint16\n    networkId: int32\n    mintContractAddress: address\n    buyerWallet: address\n    quantity: uint16\n    firstSerial: uint32\n    lastSerial: uint32\n    tail: Cell<HopprQuoteTail>\n}\n\nstruct HopprQuoteTail {\n    usdTotalNanoDollars: uint64\n    paymentAssetKind: uint8\n    paymentAssetId: uint256\n    paymentAmountBaseUnits: coins\n    validFrom: uint32\n    validUntil: uint32\n    crypto: Cell<HopprQuoteCrypto>\n}\n\nstruct HopprQuoteCrypto {\n    nonce: uint256\n    signerEpoch: uint32\n    metadataAssignmentCommitment: uint256\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/signature-verification.tolk",
+      "contents": "import \"errors\"\nimport \"quote-types\"\n\nfun verifyQuoteSignature(quote: Cell<HopprQuote>, signature: bits512, publicKey: uint256) {\n    assert (publicKey != 0) throw HopprErrors.InvalidPublicKey;\n    assert (\n        isSignatureValid(quote.hash(), signature as slice, publicKey)\n    ) throw HopprErrors.InvalidSignature;\n}\n"
+    },
+    {
+      "filename": "tmp/fa3f206e-5c4a-4020-8d30-145ec020ac73/contracts/src/item-storage.tolk",
+      "contents": "struct NftItemStorage {\n    itemIndex: uint32\n    collectionAddress: address\n    ownerAddress: address\n    content: string\n}\n\nstruct NftItemStorageNotInitialized {\n    itemIndex: uint32\n    collectionAddress: address\n}\n\nstruct NftItemStorageLoader {\n    itemIndex: uint32\n    collectionAddress: address\n    private rest: RemainingBitsAndRefs\n}\n\nfun NftItemStorage.startLoading(): NftItemStorageLoader {\n    return NftItemStorageLoader.fromCell(contract.getData());\n}\n\nfun NftItemStorageLoader.isNotInitialized(self): bool {\n    return self.rest.isEmpty();\n}\n\nfun NftItemStorageLoader.endLoading(mutate self): NftItemStorage {\n    return {\n        itemIndex: self.itemIndex,\n        collectionAddress: self.collectionAddress,\n        ownerAddress: self.rest.loadAny(),\n        content: self.rest.loadAny(),\n    };\n}\n\nfun NftItemStorage.save(self) {\n    contract.setData(self.toCell());\n}\n"
+    }
+  ]
+}

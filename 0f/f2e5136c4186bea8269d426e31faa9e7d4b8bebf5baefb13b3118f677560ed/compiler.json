@@ -1,0 +1,3203 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from BankQueue.tolk, errors.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  DECLPROC BankStorage.principalLimit()\n  0 DECLMETHOD onInternalMessage()\n  94616 DECLMETHOD contractConfig()\n  130765 DECLMETHOD queueData()\n  93807 DECLMETHOD positionData()\n  104606 DECLMETHOD activePosition()\n  129928 DECLMETHOD adminState()\n  // 12 functions inlined in-place:\n  // - BankStorage.load (12 calls)\n  // - BankStorage.save (5 calls)\n  // - BankStorage.loadPosition (2 calls)\n  // - validMultiplier (1 call)\n  // - completedExpansionStages (1 call)\n  // - sendBankPayout (1 call)\n  // - sendBankFee (1 call)\n  // - BankStorage.withdrawableBalance (1 call)\n  // - BankStorage.requireOwner (6 calls)\n  // - sendBankAdminWithdrawal (1 call)\n  // - BankStorage.allocateDeposit (1 call)\n  // - onBouncedMessage (0 calls)\n  BankStorage.principalLimit() PROC:<{\n    s5 s11 XCHG\n    11 BLKDROP\n    DUP\n    25 LESSINT\n    IFJMP:<{\n      DROP\n      5000000000 PUSHINT\n    }>\n    DUP\n    100 LESSINT\n    IFJMP:<{\n      DROP\n      10000000000 PUSHINT\n    }>\n    -100 ADDCONST\n    250 PUSHINT\n    DIV\n    15000000000 PUSHINT\n    SWAP\n    5000000000 PUSHINT\n    MUL\n    ADD\n    DUP\n    100000000000 PUSHINT\n    LESS\n    SWAP\n    100000000000 PUSHINT\n    CONDSEL\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{4c424e01} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      1 LDI\n      64 LDU\n      64 LDU\n      64 LDU\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s8 PUSH\n      201 THROWIF\n      s9 PUSH\n      1000 PUSHINT\n      LEQ\n      207 THROWIFNOT\n      s0 s12 XCHG\n      64 LDU\n      64 LDU\n      LDGRAMS\n      16 PLDU\n      s2 PUSH\n      202 THROWIFNOT\n      s2 s15 PUSH2\n      64 PUSHINT\n      DICTUGET NULLSWAPIFNOT\n      NIP\n      202 THROWIF\n      INMSG_SRC\n      s5 PUSH\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      NIP\n      203 THROWIF\n      OVER\n      1000000000 PUSHINT\n      GEQ\n      IF:<{\n        s14 s13 s12 PUSH3\n        s14 s13 s12 PUSH3\n        s14 s13 s12 PUSH3\n        s14 s13 PUSH2\n        26 s() PUSH\n        BankStorage.principalLimit() CALLDICT\n        s2 PUSH\n        GEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      205 THROWIFNOT\n      DUP\n      12500 PUSHINT\n      EQUAL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        DUP\n        15000 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        DUP\n        20000 PUSHINT\n        EQUAL\n        0 NEQINT\n      }>\n      206 THROWIFNOT\n      INMSG_VALUE\n      s2 PUSH\n      80000000 PUSHINT\n      ADD\n      GEQ\n      208 THROWIFNOT\n      s1 s12 PUSH2\n      10000 PUSHINT\n      MULDIV\n      s2 s0 PUSH2\n      SUB\n      0 PUSHINT\n      WHILE:<{\n        OVER\n        0 GTINT\n        IF:<{\n          s13 s12 PUSH2\n          LESS\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          DUP\n          81 LESSINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n      }>DO<{\n        s13 s8 PUSH2\n        64 PUSHINT\n        DICTUGET\n        204 THROWIFNOT\n        64 LDU\n        ENDS\n        s0 s10 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        204 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        LDGRAMS\n        16 LDU\n        LDGRAMS\n        LDGRAMS\n        64 LDU\n        32 LDU\n        32 LDU\n        8 LDU\n        NIP\n        ENDS\n        s4 s3 PUSH2\n        SUB\n        s11 s0 PUSH2\n        LESS\n        s12 s1 PUXC\n        CONDSEL\n        s4 s4 XCPU\n        ADD\n        s0 20 s() XCHG\n        s4 PUSH\n        ADD\n        s11 s4 XCHG2\n        SUB\n        19 s() PUSH\n        s5 PUSH\n        EQUAL\n        IF:<{\n          s5 POP\n          2DROP\n          s7 POP\n          s15 POP\n          s5 s14 XCPU\n          SUB\n          s2 s11 PUXC\n          267 PUSHINT\n          DICTDEL\n          DROP\n          s3 s13 PUXC\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          17 s() PUSH\n          s0 s13 XCHG2\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s0 17 s() XCHG\n          INC\n          s0 s15 XCHG\n          INC\n          NEWC\n          b{010000} STSLICECONST\n          s1 s3 XCHG\n          STSTDADDR\n          s14 PUSH\n          STGRAMS\n          1279413777 PUSHINT\n          139 STUR\n          s10 PUSH\n          64 STUR\n          s1 s3 XCHG\n          64 STU\n          ROT\n          STGRAMS\n          s0 s12 XCHG2\n          STGRAMS\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          s0 s7 XCHG\n          NEWC\n          STSTDADDR\n          s0 s6 XCHG2\n          STGRAMS\n          s1 s4 XCHG\n          16 STU\n          ROT\n          STGRAMS\n          SWAP\n          s0 16 s() XCHG\n          STGRAMS\n          64 STU\n          32 STU\n          s1 s4 XCHG\n          32 STU\n          x{02} STSLICECONST\n          ENDC\n          s0 s1 s11 XCHG3\n          64 PUSHINT\n          DICTUSETREF\n          s8 s13 XCHG\n          s8 s11 XCHG\n          s8 s10 XCHG\n          s7 s9 XCHG\n          s0 s8 XCHG\n          s0 s7 XCHG\n        }>\n        INC\n        s11 s13 XCHG\n        s10 s11 XCHG\n        4 7 REVERSE\n        s7 s8 XCHG\n      }>\n      DROP\n      DUP\n      IF:<{\n        s12 s11 PUSH2\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        -1 PUSHINT\n      }>\n      209 THROWIFNOT\n      s11 s3 s2 PUSH3\n      10000 PUSHINT\n      MULDIV\n      s11 s2 XCPU\n      ADD\n      INMSG_SRC\n      NOW\n      s4 PUSH\n      0 GTINT\n      2 PUSHINT\n      1 PUSHINT\n      CONDSEL\n      s4 PUSH\n      s0 s3 XCHG\n      NEWC\n      STSTDADDR\n      s0 s9 XCHG2\n      STGRAMS\n      s1 s7 XCHG\n      16 STU\n      s0 s13 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      s1 s11 XCHG\n      64 STU\n      s1 s3 XCHG\n      32 STU\n      x{00000000} STSLICECONST\n      s1 s3 XCHG\n      8 STU\n      ENDC\n      s0 s3 s7 XCPUXC\n      64 PUSHINT\n      DICTUSETREF\n      s2 PUSH\n      NEWC\n      64 STU\n      s0 s8 s6 XCHG3\n      64 PUSHINT\n      DICTUSETB\n      INMSG_SRC\n      s2 PUSH\n      NEWC\n      64 STU\n      s0 s1 s5 XCHG3\n      267 PUSHINT\n      DICTSETB\n      NEWC\n      b{1} STSLICECONST\n      s2 s1 PUXC\n      s0 16 s() XCHG\n      64 PUSHINT\n      DICTUSETB\n      s0 s8 XCHG\n      INC\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s12 s(-1) PUXC\n      STSTDADDR\n      s1 s11 XCHG\n      16 STU\n      s1 s9 XCHG\n      1 STI\n      s1 s7 XCHG\n      64 STU\n      s1 s10 XCHG\n      64 STU\n      s1 s3 XCHG\n      64 STU\n      ROT\n      STGRAMS\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      s1 s6 XCHG\n      STOPTREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      c4 POP\n      s2 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        1279413778 PUSHINT\n        139 STUR\n        s1 s2 XCHG\n        64 STU\n        64 STU\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        4 BLKDROP\n      }>\n    }>\n    x{4c424e02} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      208 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      1 LDI\n      NIP\n      64 LDU\n      64 LDU\n      64 LDU\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s11 PUSH\n      SDEQ\n      200 THROWIFNOT\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      1 PLDI\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s8 XCHG\n      1 STI\n      s1 s4 XCHG\n      64 STU\n      s1 s2 XCHG\n      64 STU\n      64 STU\n      SWAP\n      STGRAMS\n      s1 s3 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c424e03} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      1 LDI\n      NIP\n      64 LDU\n      NIP\n      64 LDU\n      NIP\n      64 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      INMSG_SRC\n      SDEQ\n      200 THROWIFNOT\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      DUP\n      0 GTINT\n      210 THROWIFNOT\n      INMSG_VALUE\n      SWAP\n      20000000 PUSHINT\n      ADD\n      GEQ\n      208 THROWIFNOT\n    }>\n    x{4c424e04} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      50000000 PUSHINT\n      GEQ\n      208 THROWIFNOT\n      BALANCE\n      FIRST\n      INMSG_VALUE\n      OVER\n      LEQ\n      208 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      NIP\n      1 LDI\n      64 LDU\n      NIP\n      64 LDU\n      NIP\n      64 LDU\n      NIP\n      LDGRAMS\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      INMSG_SRC\n      s1 s4 XCHG\n      SDEQ\n      200 THROWIFNOT\n      212 THROWIFNOT\n      s0 s3 XCHG\n      64 LDU\n      LDGRAMS\n      DROP\n      DUP\n      0 GTINT\n      210 THROWIFNOT\n      INMSG_VALUE\n      s1 s4 XCHG\n      SUB\n      s2 PUSH\n      200000000 PUSHINT\n      ADD\n      2DUP\n      GREATER\n      IF:<{\n        SUB\n      }>ELSE<{\n        2DROP\n        0 PUSHINT\n      }>\n      s3 PUSH\n      GEQ\n      211 THROWIFNOT\n      SWAP\n      200000000 PUSHINT\n      ADD\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      b{010000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      OVER\n      STGRAMS\n      1279413779 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      64 STU\n      SWAP\n      STGRAMS\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4c424e05} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      208 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      NIP\n      1 LDI\n      64 LDU\n      64 LDU\n      64 LDU\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s11 PUSH\n      SDEQ\n      200 THROWIFNOT\n      s8 PUSH\n      212 THROWIFNOT\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      16 PLDU\n      DUP\n      1000 PUSHINT\n      LEQ\n      207 THROWIFNOT\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s9 XCHG\n      16 STU\n      s1 s6 XCHG\n      1 STI\n      s1 s4 XCHG\n      64 STU\n      s1 s2 XCHG\n      64 STU\n      64 STU\n      SWAP\n      STGRAMS\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c424e06} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      208 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      16 LDU\n      1 LDI\n      64 LDU\n      64 LDU\n      64 LDU\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s11 PUSH\n      SDEQ\n      200 THROWIFNOT\n      s8 PUSH\n      212 THROWIFNOT\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      MYADDR\n      OVER\n      SDEQ\n      213 THROWIF\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s10 XCHG\n      STSTDADDR\n      s1 s8 XCHG\n      16 STU\n      s1 s6 XCHG\n      1 STI\n      s1 s4 XCHG\n      64 STU\n      s1 s2 XCHG\n      64 STU\n      64 STU\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c424e07} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      208 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      1 LDI\n      64 LDU\n      64 LDU\n      64 LDU\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s12 PUSH\n      SDEQ\n      200 THROWIFNOT\n      s8 PUSH\n      212 THROWIFNOT\n      s0 s12 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      s0 s11 PUXC\n      SDEQ\n      NOT\n      IF:<{\n        MYADDR\n        s11 PUSH\n        SDEQ\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      214 THROWIFNOT\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      1 STI\n      s1 s3 XCHG\n      64 STU\n      64 STU\n      64 STU\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  contractConfig() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    16 LDU\n    1 LDI\n    64 LDU\n    64 LDU\n    64 LDU\n    LDGRAMS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s11 PUSH\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s4 s11 XCPU\n    s0 s4 XCHG\n    BankStorage.principalLimit() CALLDICT\n    SWAP\n  }>\n  queueData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    16 LDU\n    1 LDI\n    64 LDU\n    64 LDU\n    64 LDU\n    LDGRAMS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s6 s7 PUSH2\n    SUB\n    s8 PUSH\n    s9 s13 XCHG\n    s8 s12 XCHG\n    s7 s11 XCHG\n    s6 s10 XCHG\n    s5 s12 XCPU\n    s5 s12 XCPU\n    s0 s5 XCHG\n    s4 s12 XCHG\n    3 ROLL\n    s0 s12 XCHG\n    BankStorage.principalLimit() CALLDICT\n    s1 s2 XCHG\n  }>\n  positionData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    64 LDU\n    NIP\n    64 LDU\n    NIP\n    64 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    64 PUSHINT\n    DICTUGETREF\n    204 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    LDGRAMS\n    16 LDU\n    LDGRAMS\n    LDGRAMS\n    64 LDU\n    32 LDU\n    32 LDU\n    8 LDU\n    ENDS\n  }>\n  activePosition() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    1 LDI\n    NIP\n    64 LDU\n    NIP\n    64 LDU\n    NIP\n    64 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    267 PUSHINT\n    DICTGET\n    204 THROWIFNOT\n    64 LDU\n    ENDS\n  }>\n  adminState() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    16 LDU\n    1 LDI\n    64 LDU\n    64 LDU\n    64 LDU\n    LDGRAMS\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s11 PUSH\n    s6 s11 XCPU\n    s6 s11 XCPU\n    s6 s11 XCPU\n    s6 s3 s2 XCPU2\n    s7 s13 XCHG\n    s0 s12 XCHG\n    s13 s6 XCHG2\n    BankStorage.principalLimit() CALLDICT\n    SWAP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHQEABtMAART/APSkE/S88sgLAQIBYgIDAgLPBAUCASAVFgT3PiRkTDgINcsImIScAzjAtcsImIScBSOXTH4l4IJMS0AvvLg0O1E0PpI+kjTD9IAMdM/0z/TP/oA9AT0BPQE9ATR+JIrxwXy4MgL0z8x1woACsj6Uhn6UhfLDxjKABTLPxLLP8s/AfoCE/QAEvQA9AD0AMntVOCJ1yfjAoAYHCAkAiwQW18LIMEZlzCCESoF8gDgIMFklzCCElQL5ADgppyBAPqpBIITfhHWAAGCESoF8gCooCCCGBdIdugAuQGCGBdIdugA4wSAC+jHtRND6SPpI0w/SANM/0z/TP/oA9AT0BPQE9ATRKPLQySmBA+i78uDPDNM/0z/6ANcLDyLy4MpTL4BA9A5voTHy0Mr4kiWBAQv0Cm+hMfLQyyGCEDuaygC+jhNUftxUftxUftxT7VYa8AEivsMAkXDi8uDNIIEw1LqRf+MOCgsACExCTgMAkDHtRND6SPpIMdMPMdIAMdM/MdM/MdM/MfoAMfQEMfQEMfQEMfQEMdH4kscF8uDI0z8x+gAwIMIA8uDS+JcBggkxLQCgvvLg0AP8idcn4wLXLCJiEnAsjmgx+JeCCTEtAL7y4NDtRND6SPpI0w8x0gDTP9M/0z/6APQE9AT0BPQE0fiSK8cF8uDIKPLg1AvTPzHXCw8ggQPou/LgzwrI+lIZ+lIZyw8WygAUyz8Syz/LPwH6AvQAEvQA9AD0AMntVODXLCJiEnA0EBESAA4ggTqYusMAA/6Rf5cggU4gusMA4vLgzviXIoIQBMS0AKC+8uDQUxyBJxCphFMgoXCOFSHCAJVT3LnDAJFw4pUgwVHDAJFw4oroMCCVU8u6wwCRf+Ly4NFUezKBJxCphFGyoPiS+CMkwgByceMEJAPI+lJQCfoCF8sPUA36AlAD+gIbyz8Tyx+JDA0OAfpT2IBA9A7y4MzTP9FTCoBA9A/y4MzQ+kj6ANMP+gD6ANM/0x/TH9MHMdFTQ6FTsLlSwuMEUUSgERQkoFC0oVYTJbqOLgfI+lJQBvoCFMsPWPoCAREQ+gLLP8sfFMsfz4QKyUAbgED0FxCNEIsQihB5CAfjDaQQvRCrXicQeA8ACAAAAAAA/M8WE8sHyVQgOIBA9BciyMs/QIaAQPRD+JIiyMs/QBWBAQv0QcjPg1IiERCAQPRDCKQNyPpSUsD6UhvLDxnKABfLPxrLPxPLP1j6AvQAEvQAFvQAFfQAye1UIsIAjhzIz4UIEvpSWPoCghBMQk4SzwuKEss/yz/JcfsAkl8E4gCSNVs3P1FeoVIsgQEL9FkwUj6AQPRbMFYRUA2AQPRbMBERpA+kyM+FCBP6Ui76AoIQTEJOEc8LiirPCz8Tyz9Y+gJQDPoCyXH7AAAITEJOBAH8MfiXggr68IC+8uDQ+CdvEPiXIbvy4NDtRND6SPpI0w8x0gDTPzHTPzHTPzH6APQEMfQEMfQEMfQEMdH4khTHBfLgyPLg1APTP/oAMCDCAPLg0viXFKEighAL68IAoFy8kaGSW3DiI77y4NMBghAL68IAoHD7AsjPhQgT+lIhEwH2jmcx+JeCCTEtAL7y4NDtRND6SPpIMdMP0gDTP9M/0z/6APQE9AT0BPQE0fiSK8cF8uDIKPLg1AvTPzH6SDD4KCHHBfLQ1QrI+lIa+lIYyw8WygAUyz8Syz/LPwH6AvQA9AD0APQAye1U4NcsImIScDzjAjCEDwHHAPL0FAAq+gKCEExCThPPC4oSyz8B+gLJcfsAAOIx+JeCCTEtAL7y4NDtRND6SPpI0w/SANM/0z/TP/oA9AT0BPQE9ATR+JIsxwXy4Mgo8uDUDNM/MfpIMFIMxwWzmPgoK8cFs8MAkXDi8uDWCsj6Uhn6UhfLDxXKABPLP8s/yz8B+gL0APQA9AD0AMntVAIBbhcYAgEgGRoAibOb+1E0PpIMfpIMdMPMdIAMdM/MdM/MdM/MfoAMfQE9AQx9AQx9AQx0YBA9A/y4MzQ+kj6ANMP+gD6ANM/0x/TH9MH0YABjsGY7UTQ+kj6SNMP0gDTP9M/0z/6APQE9AT0BPQE0StRS1FLUUtRS1FLUUtRSwTwAQGAAabmJ7tRND6SDH6SDHTDzHSADHTPzHTPzHTPzH6ADH0BDH0BDH0BPQEMdGBAQv0CvLgzNM/0YAgHnGxwAYKuI7UTQ+kj6SNMP0gDTP9M/0z/6APQE9AT0BPQE0StRa1FrUWtUNjIQfQxQ1vABAQBuqs3tRND6SPpI0w/SANM/0z/TP/oA9AT0BPQE9ATRU2ehKBCdEIwQexBqUVxRXAUQTFUCDPABEg==",
+  "codeHashHex": "0FF2E5136C4186BEA8269D426E31FAA9E7D4B8BEBF5BAEFB13B3118F677560ED",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/BankQueue.tolk",
+        "size_chars": 13090,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/errors.tolk",
+        "size_chars": 430,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/messages.tolk",
+        "size_chars": 893,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/storage.tolk",
+        "size_chars": 1799,
+        "imports": [
+          2
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "BankAllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreatePosition"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetBankPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankFundReserve"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankWithdrawSurplus"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetOwner"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1279413761,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1279413762,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 16,
+            "prefix_num": 1279413763,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 1279413764,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 1279413765,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 1279413766,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1279413767,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankStorage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "PositionMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankPositionData"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 24
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 26
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "QueueMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ActivePositionMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "UsedPositionMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankPayout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          36
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 43
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          42
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 45,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 140,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          47,
+          48
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 51,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 53,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 141,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 50,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          57
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankProtocolFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          61
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankAdminWithdrawal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          63
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankContractConfigView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankQueueView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankAdminStateView"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 37,
+        "struct_name": "CreateMessageOptions<BankPayout>",
+        "monomorphic_fields_ty_idx": [
+          41,
+          46,
+          56,
+          36
+        ]
+      },
+      {
+        "ty_idx": 62,
+        "struct_name": "CreateMessageOptions<BankProtocolFee>",
+        "monomorphic_fields_ty_idx": [
+          41,
+          46,
+          56,
+          61
+        ]
+      },
+      {
+        "ty_idx": 64,
+        "struct_name": "CreateMessageOptions<BankAdminWithdrawal>",
+        "monomorphic_fields_ty_idx": [
+          41,
+          46,
+          56,
+          63
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 59,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 44
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 53,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 54
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 47
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 52
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 39,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 58,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 41
+          },
+          {
+            "name": "value",
+            "ty_idx": 46
+          },
+          {
+            "name": "dest",
+            "ty_idx": 56
+          },
+          {
+            "name": "body",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "BankAllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          31,
+          6,
+          31,
+          24
+        ],
+        "target_ty_idx": 21
+      },
+      {
+        "kind": "struct",
+        "name": "CreatePosition",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          1,
+          21,
+          1,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1279413761,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "multiplierBps",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetBankPaused",
+        "ty_idx": 15,
+        "ident_loc": [
+          3,
+          8,
+          21,
+          8,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1279413762,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankFundReserve",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          13,
+          21,
+          13,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1279413763,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankWithdrawSurplus",
+        "ty_idx": 17,
+        "ident_loc": [
+          3,
+          18,
+          21,
+          18,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1279413764,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetFee",
+        "ty_idx": 18,
+        "ident_loc": [
+          3,
+          23,
+          21,
+          23,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1279413765,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetTreasury",
+        "ty_idx": 19,
+        "ident_loc": [
+          3,
+          28,
+          21,
+          28,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1279413766,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetOwner",
+        "ty_idx": 20,
+        "ident_loc": [
+          3,
+          33,
+          21,
+          33,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1279413767,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankPayout",
+        "ty_idx": 36,
+        "ident_loc": [
+          3,
+          38,
+          21,
+          38,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1279413777,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "targetPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankProtocolFee",
+        "ty_idx": 61,
+        "ident_loc": [
+          3,
+          45,
+          21,
+          45,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1279413778,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankAdminWithdrawal",
+        "ty_idx": 63,
+        "ident_loc": [
+          3,
+          50,
+          21,
+          50,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1279413779,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "PositionMap",
+        "ty_idx": 23,
+        "ident_loc": [
+          4,
+          7,
+          6,
+          7,
+          17
+        ],
+        "target_ty_idx": 27
+      },
+      {
+        "kind": "alias",
+        "name": "QueueMap",
+        "ty_idx": 28,
+        "ident_loc": [
+          4,
+          9,
+          6,
+          9,
+          14
+        ],
+        "target_ty_idx": 29
+      },
+      {
+        "kind": "alias",
+        "name": "ActivePositionMap",
+        "ty_idx": 30,
+        "ident_loc": [
+          4,
+          11,
+          6,
+          11,
+          23
+        ],
+        "target_ty_idx": 31
+      },
+      {
+        "kind": "alias",
+        "name": "UsedPositionMap",
+        "ty_idx": 32,
+        "ident_loc": [
+          4,
+          13,
+          6,
+          13,
+          21
+        ],
+        "target_ty_idx": 33
+      },
+      {
+        "kind": "struct",
+        "name": "BankPositionData",
+        "ty_idx": 24,
+        "ident_loc": [
+          4,
+          15,
+          8,
+          15,
+          24
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "multiplierBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "targetPayout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fundedAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "queueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "completedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "status",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankStorage",
+        "ty_idx": 22,
+        "ident_loc": [
+          4,
+          27,
+          8,
+          27,
+          19
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          },
+          {
+            "name": "positions",
+            "ty_idx": 23
+          },
+          {
+            "name": "queue",
+            "ty_idx": 28
+          },
+          {
+            "name": "activePositions",
+            "ty_idx": 30
+          },
+          {
+            "name": "usedPositionIds",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankContractConfigView",
+        "ty_idx": 65,
+        "ident_loc": [
+          4,
+          42,
+          8,
+          42,
+          30
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankQueueView",
+        "ty_idx": 66,
+        "ident_loc": [
+          4,
+          54,
+          8,
+          54,
+          21
+        ],
+        "fields": [
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "openPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankAdminStateView",
+        "ty_idx": 67,
+        "ident_loc": [
+          4,
+          62,
+          8,
+          62,
+          26
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "BankStorage.principalLimit",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          48,
+          17,
+          48,
+          31
+        ],
+        "end_loc": [
+          1,
+          58,
+          1,
+          58,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "completedExpansionStages",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          44,
+          5,
+          44,
+          29
+        ],
+        "end_loc": [
+          1,
+          46,
+          1,
+          46,
+          2
+        ],
+        "params": [
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          163,
+          5,
+          163,
+          22
+        ],
+        "end_loc": [
+          1,
+          285,
+          1,
+          285,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          287,
+          5,
+          287,
+          21
+        ],
+        "end_loc": [
+          1,
+          287,
+          46,
+          287,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "BankStorage.load",
+        "return_ty_idx": 22,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          72,
+          17,
+          72,
+          21
+        ],
+        "end_loc": [
+          4,
+          74,
+          1,
+          74,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "BankStorage.fromCell",
+        "return_ty_idx": 22,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<uint64, bool>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<address, uint64>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "validMultiplier",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          40,
+          5,
+          40,
+          20
+        ],
+        "end_loc": [
+          1,
+          42,
+          1,
+          42,
+          2
+        ],
+        "params": [
+          {
+            "name": "multiplierBps",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "BankStorage.allocateDeposit",
+        "return_ty_idx": 6,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          114,
+          17,
+          114,
+          32
+        ],
+        "end_loc": [
+          1,
+          161,
+          1,
+          161,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "available",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint64, uint64>.mustGet",
+        "return_ty_idx": 11,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "BankStorage.loadPosition",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          80,
+          17,
+          80,
+          29
+        ],
+        "end_loc": [
+          4,
+          82,
+          1,
+          82,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint64, Cell<BankPositionData>>.mustGet",
+        "return_ty_idx": 26,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "Cell<BankPositionData>.load",
+        "return_ty_idx": 24,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 26
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "map<address, uint64>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<uint64, Cell<BankPositionData>>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "map<uint64, uint64>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "sendBankPayout",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          60,
+          5,
+          60,
+          19
+        ],
+        "end_loc": [
+          1,
+          77,
+          1,
+          77,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "position",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "createMessage<BankPayout>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "BankPositionData.toCell",
+        "return_ty_idx": 26,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 24
+          },
+          {
+            "name": "options",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "map<uint64, Cell<BankPositionData>>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "map<uint64, uint64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "map<address, uint64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "map<uint64, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "BankStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          4,
+          76,
+          17,
+          76,
+          21
+        ],
+        "end_loc": [
+          4,
+          78,
+          1,
+          78,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "BankStorage.toCell",
+        "return_ty_idx": 60,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "options",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "sendBankFee",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          79,
+          5,
+          79,
+          16
+        ],
+        "end_loc": [
+          1,
+          89,
+          1,
+          89,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "fee",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "createMessage<BankProtocolFee>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 62
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "BankStorage.requireOwner",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          96,
+          17,
+          96,
+          29
+        ],
+        "end_loc": [
+          1,
+          98,
+          1,
+          98,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "BankStorage.withdrawableBalance",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          91,
+          17,
+          91,
+          36
+        ],
+        "end_loc": [
+          1,
+          94,
+          1,
+          94,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "balance",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "sendBankAdminWithdrawal",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          100,
+          5,
+          100,
+          28
+        ],
+        "end_loc": [
+          1,
+          112,
+          1,
+          112,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "createMessage<BankAdminWithdrawal>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 64
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "contractConfig",
+        "return_ty_idx": 65,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          289,
+          9,
+          289,
+          23
+        ],
+        "end_loc": [
+          1,
+          302,
+          1,
+          302,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 33,
+        "name": "queueData",
+        "return_ty_idx": 66,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          304,
+          9,
+          304,
+          18
+        ],
+        "end_loc": [
+          1,
+          313,
+          1,
+          313,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 34,
+        "name": "positionData",
+        "return_ty_idx": 24,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          315,
+          9,
+          315,
+          21
+        ],
+        "end_loc": [
+          1,
+          318,
+          1,
+          318,
+          2
+        ],
+        "params": [
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "activePosition",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          320,
+          9,
+          320,
+          23
+        ],
+        "end_loc": [
+          1,
+          323,
+          1,
+          323,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "map<address, uint64>.mustGet",
+        "return_ty_idx": 11,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "adminState",
+        "return_ty_idx": 67,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          325,
+          9,
+          325,
+          19
+        ],
+        "end_loc": [
+          1,
+          336,
+          1,
+          336,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "BankQueue",
+    "author": "LOOP",
+    "version": "1.4.0",
+    "description": "FIFO payout cycle for LOOP BANK with maturity-based principal limits and pruned settled positions",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreatePosition"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetBankPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankFundReserve"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankWithdrawSurplus"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankSetOwner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankStorage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "PositionMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankPositionData"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 22
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 24
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "QueueMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ActivePositionMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "UsedPositionMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankPayout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankProtocolFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankAdminWithdrawal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankContractConfigView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankQueueView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BankAdminStateView"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "CreatePosition",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1279413761,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "multiplierBps",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetBankPaused",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1279413762,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankFundReserve",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 1279413763,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankWithdrawSurplus",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 1279413764,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetFee",
+        "ty_idx": 17,
+        "prefix": {
+          "prefix_num": 1279413765,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetTreasury",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 1279413766,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankSetOwner",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1279413767,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankPayout",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 1279413777,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "targetPayout",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankProtocolFee",
+        "ty_idx": 33,
+        "prefix": {
+          "prefix_num": 1279413778,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankAdminWithdrawal",
+        "ty_idx": 34,
+        "prefix": {
+          "prefix_num": 1279413779,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "PositionMap",
+        "ty_idx": 21,
+        "target_ty_idx": 25
+      },
+      {
+        "kind": "alias",
+        "name": "QueueMap",
+        "ty_idx": 26,
+        "target_ty_idx": 27
+      },
+      {
+        "kind": "alias",
+        "name": "ActivePositionMap",
+        "ty_idx": 28,
+        "target_ty_idx": 29
+      },
+      {
+        "kind": "alias",
+        "name": "UsedPositionMap",
+        "ty_idx": 30,
+        "target_ty_idx": 31
+      },
+      {
+        "kind": "struct",
+        "name": "BankPositionData",
+        "ty_idx": 22,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "multiplierBps",
+            "ty_idx": 13
+          },
+          {
+            "name": "targetPayout",
+            "ty_idx": 6
+          },
+          {
+            "name": "fundedAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "queueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "completedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "status",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankStorage",
+        "ty_idx": 20,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 13
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11,
+            "default_value": {
+              "kind": "int",
+              "v": "0"
+            }
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          },
+          {
+            "name": "positions",
+            "ty_idx": 21
+          },
+          {
+            "name": "queue",
+            "ty_idx": 26
+          },
+          {
+            "name": "activePositions",
+            "ty_idx": 28
+          },
+          {
+            "name": "usedPositionIds",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankContractConfigView",
+        "ty_idx": 35,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 13
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankQueueView",
+        "ty_idx": 36,
+        "fields": [
+          {
+            "name": "headQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextQueueIndex",
+            "ty_idx": 11
+          },
+          {
+            "name": "openPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BankAdminStateView",
+        "ty_idx": 37,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 13
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "completedPositions",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalLimit",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockedFunding",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 20
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 15
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 17
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 33
+      },
+      {
+        "body_ty_idx": 34
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 94616,
+        "name": "contractConfig",
+        "parameters": [],
+        "return_ty_idx": 35
+      },
+      {
+        "tvm_method_id": 130765,
+        "name": "queueData",
+        "parameters": [],
+        "return_ty_idx": 36
+      },
+      {
+        "tvm_method_id": 93807,
+        "name": "positionData",
+        "parameters": [
+          {
+            "name": "positionId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 22
+      },
+      {
+        "tvm_method_id": 104606,
+        "name": "activePosition",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 129928,
+        "name": "adminState",
+        "parameters": [],
+        "return_ty_idx": 37
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.NotOwner",
+        "err_code": 200
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.Paused",
+        "err_code": 201
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.PositionAlreadyUsed",
+        "err_code": 202
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.OwnerAlreadyActive",
+        "err_code": 203
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.PositionMissing",
+        "err_code": 204
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidPrincipal",
+        "err_code": 205
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidMultiplier",
+        "err_code": 206
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidFee",
+        "err_code": 207
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InsufficientValue",
+        "err_code": 208
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.AllocationLimit",
+        "err_code": 209
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidAdminAmount",
+        "err_code": 210
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InsufficientSurplus",
+        "err_code": 211
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.MustBePaused",
+        "err_code": 212
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidTreasury",
+        "err_code": 213
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidOwner",
+        "err_code": 214
+      },
+      {
+        "kind": "enum_member",
+        "name": "BankErrors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/BankQueue.tolk",
+      "contents": "import \"errors\"\nimport \"messages\"\nimport \"storage\"\n\nconst BANK_BASIS_POINTS = 10_000\nconst BANK_MIN_PRINCIPAL = 1_000_000_000\nconst BANK_MAX_PRINCIPAL = 100_000_000_000\nconst BANK_INITIAL_PRINCIPAL_LIMIT = 5_000_000_000\nconst BANK_SECOND_PRINCIPAL_LIMIT = 10_000_000_000\nconst BANK_THIRD_PRINCIPAL_LIMIT = 15_000_000_000\nconst BANK_LIMIT_STEP = 5_000_000_000\nconst BANK_SECOND_STAGE_COMPLETIONS = 25\nconst BANK_THIRD_STAGE_COMPLETIONS = 100\nconst BANK_EXPANSION_COMPLETIONS = 250\nconst BANK_OPEN_GAS_BUFFER = 80_000_000\nconst BANK_MIN_ADMIN_GAS = 20_000_000\nconst BANK_WITHDRAW_GAS_BUFFER = 50_000_000\nconst BANK_MIN_RESERVE = 200_000_000\n// At most 80 minimum-size targets can be closed by one maximum-size deposit,\n// plus one partially funded position. Keep the loop explicitly bounded for gas safety.\nconst BANK_MAX_ALLOCATION_STEPS = 81\n\ncontract BankQueue {\n    author: \"LOOP\"\n    version: \"1.4.0\"\n    description: \"FIFO payout cycle for LOOP BANK with maturity-based principal limits and pruned settled positions\"\n    storage: BankStorage\n    incomingMessages: BankAllowedMessage\n}\n\ntype BankAllowedMessage =\n    | CreatePosition\n    | SetBankPaused\n    | BankFundReserve\n    | BankWithdrawSurplus\n    | BankSetFee\n    | BankSetTreasury\n    | BankSetOwner\n\nfun validMultiplier(multiplierBps: uint16): bool {\n    return multiplierBps == 12_500 || multiplierBps == 15_000 || multiplierBps == 20_000;\n}\n\nfun completedExpansionStages(completedPositions: uint64): int {\n    return (completedPositions - BANK_THIRD_STAGE_COMPLETIONS) / BANK_EXPANSION_COMPLETIONS;\n}\n\nfun BankStorage.principalLimit(self): coins {\n    if (self.completedPositions < BANK_SECOND_STAGE_COMPLETIONS) {\n        return BANK_INITIAL_PRINCIPAL_LIMIT;\n    }\n    if (self.completedPositions < BANK_THIRD_STAGE_COMPLETIONS) {\n        return BANK_SECOND_PRINCIPAL_LIMIT;\n    }\n    val extraStages = completedExpansionStages(self.completedPositions);\n    val expanded = BANK_THIRD_PRINCIPAL_LIMIT + extraStages * BANK_LIMIT_STEP;\n    return expanded < BANK_MAX_PRINCIPAL ? expanded : BANK_MAX_PRINCIPAL;\n}\n\nfun sendBankPayout(\n    queryId: uint64,\n    positionId: uint64,\n    position: BankPositionData,\n) {\n    val payout = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: position.owner,\n        value: position.targetPayout,\n        body: BankPayout {\n            queryId,\n            positionId,\n            principal: position.principal,\n            targetPayout: position.targetPayout,\n        },\n    });\n    payout.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sendBankFee(queryId: uint64, positionId: uint64, treasury: address, fee: coins) {\n    if (fee > 0) {\n        val feeMessage = createMessage({\n            bounce: BounceMode.NoBounce,\n            dest: treasury,\n            value: fee,\n            body: BankProtocolFee { queryId, positionId },\n        });\n        feeMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n}\n\nfun BankStorage.withdrawableBalance(self, balance: coins): coins {\n    val protectedBalance = self.lockedFunding + BANK_MIN_RESERVE;\n    return balance > protectedBalance ? balance - protectedBalance : 0;\n}\n\nfun BankStorage.requireOwner(self, sender: address) {\n    assert (self.owner == sender) throw BankErrors.NotOwner;\n}\n\nfun sendBankAdminWithdrawal(\n    queryId: uint64,\n    treasury: address,\n    amount: coins,\n) {\n    val withdrawal = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: treasury,\n        value: amount,\n        body: BankAdminWithdrawal { queryId, amount },\n    });\n    withdrawal.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun BankStorage.allocateDeposit(mutate self, queryId: uint64, available: coins): coins {\n    var remaining = available;\n    var steps = 0;\n    while (\n        remaining > 0 && self.headQueueIndex < self.nextQueueIndex && steps <\n        BANK_MAX_ALLOCATION_STEPS\n    ) {\n        val positionId = self\n            .queue\n            .mustGet(\n                self.headQueueIndex,\n                BankErrors.PositionMissing,\n            );\n        var position = self.loadPosition(positionId);\n        val needed = position.targetPayout - position.fundedAmount;\n        val allocation = remaining < needed ? remaining : needed;\n\n        position.fundedAmount += allocation;\n        self.lockedFunding += allocation;\n        remaining -= allocation;\n\n        if (position.fundedAmount == position.targetPayout) {\n            position.status = BANK_POSITION_PAYOUT_SENT;\n            position.completedAt = blockchain.now();\n            self.lockedFunding -= position.targetPayout;\n            self.activePositions.delete(position.owner);\n            // A settled position is dropped instead of retained. Keeping every\n            // completed record made the hot dictionary grow with lifetime\n            // history, so each allocation step in a cascade paid more gas the\n            // older the contract got. Replay protection stays with\n            // usedPositionIds, which is touched once per deposit rather than\n            // once per step, and the payout message remains the public proof.\n            self.positions.delete(positionId);\n            self.queue.delete(self.headQueueIndex);\n            self.headQueueIndex += 1;\n            self.completedPositions += 1;\n            sendBankPayout(queryId, positionId, position);\n        } else {\n            position.status = BANK_POSITION_PARTIALLY_FUNDED;\n            self.positions.set(positionId, position.toCell());\n        }\n        steps += 1;\n    }\n    assert (\n        remaining == 0 || self.headQueueIndex == self.nextQueueIndex\n    ) throw BankErrors.AllocationLimit;\n    return remaining;\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy BankAllowedMessage.fromSlice(in.body);\n\n    match (msg) {\n        CreatePosition => {\n            var storage = BankStorage.load();\n            assert (!storage.paused) throw BankErrors.Paused;\n            assert (storage.feeBps <= 1_000) throw BankErrors.InvalidFee;\n            assert (msg.positionId != 0) throw BankErrors.PositionAlreadyUsed;\n            assert (\n                !storage.usedPositionIds.exists(msg.positionId)\n            ) throw BankErrors.PositionAlreadyUsed;\n            assert (\n                !storage.activePositions.exists(in.senderAddress)\n            ) throw BankErrors.OwnerAlreadyActive;\n            assert (\n                msg.principal >= BANK_MIN_PRINCIPAL && msg.principal <= storage.principalLimit()\n            ) throw BankErrors.InvalidPrincipal;\n            assert (validMultiplier(msg.multiplierBps)) throw BankErrors.InvalidMultiplier;\n            assert (\n                in.valueCoins >= msg.principal + BANK_OPEN_GAS_BUFFER\n            ) throw BankErrors.InsufficientValue;\n\n            val fee = mulDivFloor(msg.principal, storage.feeBps, BANK_BASIS_POINTS);\n            val distributable = msg.principal - fee;\n            val unallocated = storage.allocateDeposit(msg.queryId, distributable);\n\n            val queueIndex = storage.nextQueueIndex;\n            val targetPayout = mulDivFloor(\n                msg.principal,\n                msg.multiplierBps,\n                BANK_BASIS_POINTS,\n            );\n            // Older positions always have priority. If they do not consume the\n            // whole deposit, the remainder becomes the new position's initial\n            // funding instead of leaving the user cycle as protocol reserve.\n            storage.lockedFunding += unallocated;\n            val position = BankPositionData {\n                owner: in.senderAddress,\n                principal: msg.principal,\n                multiplierBps: msg.multiplierBps,\n                targetPayout,\n                fundedAmount: unallocated,\n                queueIndex,\n                createdAt: blockchain.now(),\n                completedAt: 0,\n                status: unallocated > 0 ? BANK_POSITION_PARTIALLY_FUNDED : BANK_POSITION_QUEUED,\n            };\n            storage.positions.set(msg.positionId, position.toCell());\n            storage.queue.set(queueIndex, msg.positionId);\n            storage.activePositions.set(in.senderAddress, msg.positionId);\n            storage.usedPositionIds.set(msg.positionId, true);\n            storage.nextQueueIndex += 1;\n            storage.save();\n            sendBankFee(msg.queryId, msg.positionId, storage.treasury, fee);\n        }\n        SetBankPaused => {\n            assert (in.valueCoins >= BANK_MIN_ADMIN_GAS) throw BankErrors.InsufficientValue;\n            var storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            storage.paused = msg.paused;\n            storage.save();\n        }\n        BankFundReserve => {\n            val storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (msg.amount > 0) throw BankErrors.InvalidAdminAmount;\n            assert (\n                in.valueCoins >= msg.amount + BANK_MIN_ADMIN_GAS\n            ) throw BankErrors.InsufficientValue;\n        }\n        BankWithdrawSurplus => {\n            assert (in.valueCoins >= BANK_WITHDRAW_GAS_BUFFER) throw BankErrors.InsufficientValue;\n            val originalBalance = contract.getOriginalBalance();\n            assert (originalBalance >= in.valueCoins) throw BankErrors.InsufficientValue;\n            val storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw BankErrors.MustBePaused;\n            assert (msg.amount > 0) throw BankErrors.InvalidAdminAmount;\n            val balanceBeforeCall = originalBalance - in.valueCoins;\n            assert (\n                msg.amount <= storage.withdrawableBalance(balanceBeforeCall)\n            ) throw BankErrors.InsufficientSurplus;\n            reserveToncoinsOnBalance(\n                storage.lockedFunding + BANK_MIN_RESERVE,\n                RESERVE_MODE_EXACT_AMOUNT,\n            );\n            sendBankAdminWithdrawal(msg.queryId, storage.treasury, msg.amount);\n        }\n        BankSetFee => {\n            assert (in.valueCoins >= BANK_MIN_ADMIN_GAS) throw BankErrors.InsufficientValue;\n            var storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw BankErrors.MustBePaused;\n            assert (msg.feeBps <= 1_000) throw BankErrors.InvalidFee;\n            storage.feeBps = msg.feeBps;\n            storage.save();\n        }\n        BankSetTreasury => {\n            assert (in.valueCoins >= BANK_MIN_ADMIN_GAS) throw BankErrors.InsufficientValue;\n            var storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw BankErrors.MustBePaused;\n            assert (msg.treasury != contract.getAddress()) throw BankErrors.InvalidTreasury;\n            storage.treasury = msg.treasury;\n            storage.save();\n        }\n        BankSetOwner => {\n            assert (in.valueCoins >= BANK_MIN_ADMIN_GAS) throw BankErrors.InsufficientValue;\n            var storage = BankStorage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw BankErrors.MustBePaused;\n            assert (\n                msg.owner != storage.owner && msg.owner != contract.getAddress()\n            ) throw BankErrors.InvalidOwner;\n            storage.owner = msg.owner;\n            storage.save();\n        }\n        else => {\n            assert (in.body.isEmpty()) throw BankErrors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun contractConfig(): BankContractConfigView {\n    val storage = BankStorage.load();\n    return {\n        owner: storage.owner,\n        treasury: storage.treasury,\n        feeBps: storage.feeBps,\n        paused: storage.paused,\n        headQueueIndex: storage.headQueueIndex,\n        nextQueueIndex: storage.nextQueueIndex,\n        completedPositions: storage.completedPositions,\n        principalLimit: storage.principalLimit(),\n        lockedFunding: storage.lockedFunding,\n    };\n}\n\nget fun queueData(): BankQueueView {\n    val storage = BankStorage.load();\n    return {\n        headQueueIndex: storage.headQueueIndex,\n        nextQueueIndex: storage.nextQueueIndex,\n        openPositions: storage.nextQueueIndex - storage.headQueueIndex,\n        completedPositions: storage.completedPositions,\n        principalLimit: storage.principalLimit(),\n    };\n}\n\nget fun positionData(positionId: uint64): BankPositionData {\n    val storage = BankStorage.load();\n    return storage.loadPosition(positionId);\n}\n\nget fun activePosition(owner: address): uint64 {\n    val storage = BankStorage.load();\n    return storage.activePositions.mustGet(owner, BankErrors.PositionMissing);\n}\n\nget fun adminState(): BankAdminStateView {\n    val storage = BankStorage.load();\n    return {\n        owner: storage.owner,\n        treasury: storage.treasury,\n        feeBps: storage.feeBps,\n        paused: storage.paused,\n        completedPositions: storage.completedPositions,\n        principalLimit: storage.principalLimit(),\n        lockedFunding: storage.lockedFunding,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/errors.tolk",
+      "contents": "enum BankErrors {\n    NotOwner = 200\n    Paused = 201\n    PositionAlreadyUsed = 202\n    OwnerAlreadyActive = 203\n    PositionMissing = 204\n    InvalidPrincipal = 205\n    InvalidMultiplier = 206\n    InvalidFee = 207\n    InsufficientValue = 208\n    AllocationLimit = 209\n    InvalidAdminAmount = 210\n    InsufficientSurplus = 211\n    MustBePaused = 212\n    InvalidTreasury = 213\n    InvalidOwner = 214\n    InvalidMessage = 0xFFFF\n}\n"
+    },
+    {
+      "filename": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/messages.tolk",
+      "contents": "struct (0x4C424E01) CreatePosition {\n    queryId: uint64\n    positionId: uint64\n    principal: coins\n    multiplierBps: uint16\n}\n\nstruct (0x4C424E02) SetBankPaused {\n    queryId: uint64\n    paused: bool\n}\n\nstruct (0x4C424E03) BankFundReserve {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x4C424E04) BankWithdrawSurplus {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x4C424E05) BankSetFee {\n    queryId: uint64\n    feeBps: uint16\n}\n\nstruct (0x4C424E06) BankSetTreasury {\n    queryId: uint64\n    treasury: address\n}\n\nstruct (0x4C424E07) BankSetOwner {\n    queryId: uint64\n    owner: address\n}\n\nstruct (0x4C424E11) BankPayout {\n    queryId: uint64\n    positionId: uint64\n    principal: coins\n    targetPayout: coins\n}\n\nstruct (0x4C424E12) BankProtocolFee {\n    queryId: uint64\n    positionId: uint64\n}\n\nstruct (0x4C424E13) BankAdminWithdrawal {\n    queryId: uint64\n    amount: coins\n}\n"
+    },
+    {
+      "filename": "tmp/5e004eb0-17f8-48f3-acf8-f56e848c96c6/contracts/bank/storage.tolk",
+      "contents": "import \"errors\"\n\nconst BANK_POSITION_QUEUED = 1\nconst BANK_POSITION_PARTIALLY_FUNDED = 2\nconst BANK_POSITION_PAYOUT_SENT = 3\n\ntype PositionMap = map<uint64, Cell<BankPositionData>>\n\ntype QueueMap = map<uint64, uint64>\n\ntype ActivePositionMap = map<address, uint64>\n\ntype UsedPositionMap = map<uint64, bool>\n\nstruct BankPositionData {\n    owner: address\n    principal: coins\n    multiplierBps: uint16\n    targetPayout: coins\n    fundedAmount: coins\n    queueIndex: uint64\n    createdAt: uint32\n    completedAt: uint32\n    status: uint8\n}\n\nstruct BankStorage {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    paused: bool\n    headQueueIndex: uint64\n    nextQueueIndex: uint64\n    completedPositions: uint64 = 0\n    lockedFunding: coins\n    positions: PositionMap\n    queue: QueueMap\n    activePositions: ActivePositionMap\n    usedPositionIds: UsedPositionMap\n}\n\nstruct BankContractConfigView {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    paused: bool\n    headQueueIndex: uint64\n    nextQueueIndex: uint64\n    completedPositions: uint64\n    principalLimit: coins\n    lockedFunding: coins\n}\n\nstruct BankQueueView {\n    headQueueIndex: uint64\n    nextQueueIndex: uint64\n    openPositions: uint64\n    completedPositions: uint64\n    principalLimit: coins\n}\n\nstruct BankAdminStateView {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    paused: bool\n    completedPositions: uint64\n    principalLimit: coins\n    lockedFunding: coins\n}\n\nfun BankStorage.load(): BankStorage {\n    return BankStorage.fromCell(contract.getData());\n}\n\nfun BankStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun BankStorage.loadPosition(self, positionId: uint64): BankPositionData {\n    return self.positions.mustGet(positionId, BankErrors.PositionMissing).load();\n}\n"
+    }
+  ]
+}

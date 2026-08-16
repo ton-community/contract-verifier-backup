@@ -1,0 +1,5135 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from DuelEscrow.tolk, errors.tolk, messages.tolk, storage.tolk\nPROGRAM{\n  DECLPROC Storage.verifyHolderPermit()\n  DECLPROC Storage.addOpenOffer()\n  DECLPROC Storage.matchOpenOffers()\n  0 DECLMETHOD onInternalMessage()\n  94616 DECLMETHOD contractConfig()\n  100877 DECLMETHOD offerData()\n  82385 DECLMETHOD duelData()\n  92203 DECLMETHOD duelBoostData()\n  103758 DECLMETHOD directOfferData()\n  106493 DECLMETHOD activeOffer()\n  129928 DECLMETHOD adminState()\n  // 20 functions inlined in-place:\n  // - Storage.load (22 calls)\n  // - Storage.save (14 calls)\n  // - Storage.loadOffer (20 calls)\n  // - Storage.loadDuel (5 calls)\n  // - validChance (1 call)\n  // - stakeFor (1 call)\n  // - commitmentHash (1 call)\n  // - holderFeeHash (1 call)\n  // - directAcceptHash (1 call)\n  // - Storage.removeMatchedDuel (2 calls)\n  // - sendRefund (4 calls)\n  // - sendWinner (1 call)\n  // - sendFee (1 call)\n  // - Storage.withdrawableBalance (1 call)\n  // - Storage.requireOwner (6 calls)\n  // - sendDuelAdminWithdrawal (1 call)\n  // - Storage.settleWinner (3 calls)\n  // - Storage.settleRevealed (1 call)\n  // - Storage.boostDuel (1 call)\n  // - onBouncedMessage (0 calls)\n  Storage.verifyHolderPermit() PROC:<{\n    6 3 BLKDROP2\n    s5 POP\n    s5 POP\n    s5 POP\n    s2 PUSH\n    ISNULL\n    IFJMP:<{\n      5 BLKDROP\n      FALSE\n    }>\n    s0 s2 XCHG\n    CTOS\n    32 LDU\n    9 PUSHPOW2\n    LDSLICEX\n    ENDS\n    OVER\n    NOW\n    GEQ\n    135 THROWIFNOT\n    NOW\n    3600 PUSHINT\n    ADD\n    s2 PUSH\n    GEQ\n    135 THROWIFNOT\n    NEWC\n    x{4c4f4f63} STSLICECONST\n    s1 s3 XCHG\n    32 STI\n    MYADDR\n    SWAP\n    STSTDADDR\n    s1 s4 XCHG\n    64 STU\n    s1 s4 XCHG\n    STSTDADDR\n    s1 s2 XCHG\n    32 STU\n    HASHBU\n    -ROT\n    CHKSIGNU\n    134 THROWIFNOT\n    TRUE\n  }>\n  Storage.addOpenOffer() PROC:<{\n    18 s() PUSH\n    1000 PUSHINT\n    LEQ\n    118 THROWIFNOT\n    s7 PUSH\n    119 THROWIFNOT\n    s5 PUSH\n    2500 PUSHINT\n    EQUAL\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s5 PUSH\n      5000 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s5 PUSH\n      7500 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    107 THROWIFNOT\n    s4 PUSH\n    1000000000 PUSHINT\n    GEQ\n    IF:<{\n      s4 PUSH\n      100000000000 PUSHINT\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s4 PUSH\n      2 MODPOW2#\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    108 THROWIFNOT\n    NOW\n    30 ADDCONST\n    s4 PUSH\n    LEQ\n    IF:<{\n      NOW\n      3600 PUSHINT\n      ADD\n      s4 PUSH\n      GEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    109 THROWIFNOT\n    s7 s10 PUSH2\n    64 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    NIP\n    102 THROWIF\n    s9 s11 PUSH2\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    NIP\n    103 THROWIF\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    20 s() PUSH\n    SWAP\n    19 s() PUSH\n    SWAP\n    Storage.verifyHolderPermit() CALLDICT\n    s4 s5 PUSH2\n    10000 PUSHINT\n    MULDIV\n    DUP\n    50000000 PUSHINT\n    ADD\n    s1 s10 XCHG\n    GEQ\n    110 THROWIFNOT\n    s0 s2 XCHG\n    NEWC\n    256 STU\n    STOPTSTDADDR\n    ENDC\n    s8 PUSH\n    NEWC\n    STSTDADDR\n    s1 s6 XCHG\n    256 STU\n    s1 s4 XCHG\n    16 STU\n    ROT\n    STGRAMS\n    s5 PUSH\n    STGRAMS\n    32 STU\n    x{01} STSLICECONST\n    1 STI\n    STREF\n    ENDC\n    s0 s0 s7 XCPUXC\n    64 PUSHINT\n    DICTUSETREF\n    s6 PUSH\n    NEWC\n    64 STU\n    s0 s3 s5 XCHG3\n    267 PUSHINT\n    DICTSETB\n    NEWC\n    b{1} STSLICECONST\n    s0 s6 s3 XCHG3\n    64 PUSHINT\n    DICTUSETB\n    s5 s2 XCHG2\n    ADD\n    s0 s4 XCHG\n    s3 s3 XCHG2\n  }>\n  Storage.matchOpenOffers() PROC:<{\n    s2 s1 PUSH2\n    NEQ\n    111 THROWIFNOT\n    s2 s6 PUSH2\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    256 LDU\n    16 LDU\n    LDGRAMS\n    LDGRAMS\n    32 LDU\n    8 LDU\n    1 LDI\n    LDREF\n    ENDS\n    s10 s15 PUSH2\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    256 LDU\n    16 LDU\n    LDGRAMS\n    LDGRAMS\n    32 LDU\n    8 LDU\n    1 LDI\n    LDREF\n    ENDS\n    s0 s11 XCHG\n    1 EQINT\n    IF:<{\n      SWAP\n      1 EQINT\n      0 NEQINT\n    }>ELSE<{\n      NIP\n      0 PUSHINT\n    }>\n    105 THROWIFNOT\n    s15 s6 PUSH2\n    SDEQ\n    112 THROWIF\n    s12 s3 PUSH2\n    EQUAL\n    111 THROWIFNOT\n    s13 s4 PUSH2\n    ADD\n    10000 PUSHINT\n    EQUAL\n    111 THROWIFNOT\n    s10 PUSH\n    NOW\n    GREATER\n    IF:<{\n      OVER\n      NOW\n      GREATER\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    109 THROWIFNOT\n    s7 PUSH\n    CTOS\n    256 LDU\n    LDOPTSTDADDR\n    ENDS\n    s11 PUSH\n    CTOS\n    256 LDU\n    LDOPTSTDADDR\n    ENDS\n    s0 s3 XCHG\n    IF:<{\n      0 PUSHINT\n    }>ELSE<{\n      OVER\n      ISNULL\n      0 NEQINT\n    }>\n    IF:<{\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IF:<{\n      OVER\n      ISNULL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    OVER\n    ISNULL\n    NOT\n    IF:<{\n      s2 PUSH\n      ISNULL\n      NOT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s1 s9 XCPU\n      SDEQ\n      0 NEQINT\n    }>ELSE<{\n      NIP\n      0 PUSHINT\n    }>\n    IF:<{\n      SWAP\n      17 s() PUSH\n      SDEQ\n      0 NEQINT\n    }>ELSE<{\n      NIP\n      0 PUSHINT\n    }>\n    SWAP\n    IF:<{\n      DROP\n      16 s() POP\n      -1 PUSHINT\n    }>ELSE<{\n      s0 17 s() XCHG\n      IF:<{\n        s0 16 s() XCHG\n        0 NEQINT\n      }>ELSE<{\n        16 s() POP\n        0 PUSHINT\n      }>\n      0 NEQINT\n    }>\n    111 THROWIFNOT\n    s0 s14 XCHG\n    NEWC\n    STSTDADDR\n    s1 s13 XCHG\n    256 STU\n    s1 s11 XCHG\n    16 STU\n    s0 s9 XCHG2\n    STGRAMS\n    s0 s7 XCHG2\n    STGRAMS\n    s1 s5 XCHG\n    32 STU\n    x{02} STSLICECONST\n    s1 s2 XCHG\n    1 STI\n    STREF\n    ENDC\n    s0 s10 s14 XCPUXC\n    64 PUSHINT\n    DICTUSETREF\n    SWAP\n    NEWC\n    STSTDADDR\n    s1 s2 XCHG\n    256 STU\n    s1 s2 XCHG\n    16 STU\n    ROT\n    STGRAMS\n    ROT\n    STGRAMS\n    s1 s2 XCHG\n    32 STU\n    x{02} STSLICECONST\n    s1 s2 XCHG\n    1 STI\n    s1 s7 XCHG\n    STREF\n    ENDC\n    s0 s0 s6 XCPUXC\n    64 PUSHINT\n    DICTUSETREF\n    s1 s5 s1 PUSH3\n    s8 PUSH\n    GREATER\n    IF:<{\n      2DROP\n    }>ELSE<{\n      s3 POP\n      s6 POP\n    }>\n    OVER\n    NOW\n    60 ADDCONST\n    NOW\n    180 PUSHINT\n    ADD\n    NOW\n    60 ADDCONST\n    300 PUSHINT\n    ADD\n    s0 s9 XCHG\n    NEWC\n    64 STU\n    s1 s5 XCHG\n    64 STU\n    32 STU\n    s1 s3 XCHG\n    32 STU\n    s1 s6 XCHG\n    32 STU\n    x{0000} STSLICECONST\n    0 PUSHINT\n    256 STUR\n    0 PUSHINT\n    256 STUR\n    x{00} STSLICECONST\n    ENDC\n    s0 s0 s4 XCPUXC\n    64 PUSHINT\n    DICTUSETREF\n    s0 s3 XCHG\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    x{4c4f4f01} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      101 THROWIF\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      256 LDU\n      16 LDU\n      LDGRAMS\n      32 LDU\n      64 LDU\n      PLDOPTREF\n      INMSG_SRC\n      INMSG_VALUE\n      17 s() 18 s() XCHG\n      16 s() 18 s() XCHG\n      s15 18 s() XCHG\n      s14 18 s() XCHG\n      s13 18 s() XCHG\n      s12 18 s() XCHG\n      s11 18 s() XCHG\n      s10 18 s() XCHG\n      s9 18 s() XCHG\n      s8 18 s() XCHG\n      s7 19 s() XCHG\n      s6 s5 XCHG2\n      0 PUSHINT\n      PUSHNULL\n      20 s() PUSH\n      s0 s7 XCHG\n      s6 22 s() XCHG\n      s4 s5 XCHG\n      s0 s3 XCHG\n      s0 s4 XCHG\n      Storage.addOpenOffer() CALLDICT\n      s12 PUSH\n      IF:<{\n        2 11 BLKSWAP\n        FALSE\n        Storage.matchOpenOffers() CALLDICT\n        DROP\n        9 2 BLKSWAP\n      }>ELSE<{\n        s11 POP\n        s11 POP\n      }>\n      s0 s8 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s5 XCHG\n      16 STU\n      s1 s3 XCHG\n      32 STI\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f08} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      101 THROWIF\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      256 LDU\n      16 LDU\n      LDGRAMS\n      32 LDU\n      256 LDU\n      PLDOPTREF\n      OVER\n      120 THROWIFNOT\n      INMSG_SRC\n      INMSG_VALUE\n      18 s() 19 s() XCHG\n      17 s() 18 s() XCHG\n      16 s() 17 s() XCHG\n      s15 16 s() XCHG\n      s14 s15 XCHG\n      s13 s14 XCHG\n      s12 s13 XCHG\n      s11 s12 XCHG\n      s10 s11 XCHG\n      s9 s10 XCHG\n      7 2 BLKSWAP\n      PUSHNULL\n      SWAP\n      Storage.addOpenOffer() CALLDICT\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STI\n      s1 s3 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f09} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      101 THROWIF\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      256 LDU\n      16 LDU\n      LDGRAMS\n      32 LDU\n      LDREF\n      PLDOPTREF\n      SWAP\n      CTOS\n      64 LDU\n      32 LDU\n      9 PUSHPOW2\n      LDSLICEX\n      ENDS\n      OVER\n      NOW\n      GEQ\n      IF:<{\n        s1 s4 PUSH2\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      122 THROWIFNOT\n      s2 s11 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      16 LDU\n      LDGRAMS\n      LDGRAMS\n      32 LDU\n      8 LDU\n      1 LDI\n      LDREF\n      ENDS\n      INMSG_SRC\n      s9 PUSH\n      SDEQ\n      112 THROWIF\n      CTOS\n      256 LDU\n      LDOPTSTDADDR\n      ENDS\n      OVER\n      IF:<{\n        ISNULL\n        0 NEQINT\n      }>ELSE<{\n        DROP\n        0 PUSHINT\n      }>\n      120 THROWIFNOT\n      INMSG_SRC\n      NEWC\n      x{4c4f4f62} STSLICECONST\n      26 s() PUSH\n      32 STIR\n      MYADDR\n      SWAP\n      STSTDADDR\n      s2 PUSH\n      256 STUR\n      s13 PUSH\n      64 STUR\n      STSTDADDR\n      s1 s11 XCHG\n      32 STU\n      HASHBU\n      s0 s9 XCHG2\n      23 s() PUSH\n      CHKSIGNU\n      121 THROWIFNOT\n      INMSG_SRC\n      INMSG_VALUE\n      17 s() 27 s() XCHG\n      16 s() 26 s() XCHG\n      s15 25 s() XCHG\n      s14 24 s() XCHG\n      s13 23 s() XCHG\n      s12 22 s() XCHG\n      s11 21 s() XCHG\n      s10 20 s() XCHG\n      s9 19 s() XCHG\n      s8 18 s() XCHG\n      s7 28 s() XCHG\n      s6 s5 XCHG2\n      0 PUSHINT\n      28 s() PUSH\n      s0 s6 XCHG\n      s5 28 s() XCHG\n      s4 27 s() XCHG\n      s3 26 s() XCHG\n      s2 25 s() XCHG\n      20 s() PUSH\n      SWAP\n      s0 25 s() XCHG\n      Storage.addOpenOffer() CALLDICT\n      INMSG_SRC\n      s0 s14 XCHG\n      NEWC\n      256 STU\n      s1 s14 XCHG\n      STOPTSTDADDR\n      ENDC\n      s0 s11 XCHG\n      NEWC\n      STSTDADDR\n      s1 21 s() XCHG\n      256 STU\n      s1 16 s() XCHG\n      16 STU\n      s0 s14 XCHG2\n      STGRAMS\n      s0 s12 XCHG2\n      STGRAMS\n      s1 s15 XCHG\n      32 STU\n      s1 s13 XCHG\n      8 STU\n      s1 s6 XCHG\n      1 STI\n      s1 s4 XCHG\n      STREF\n      ENDC\n      s0 s6 s8 XCPUXC\n      64 PUSHINT\n      DICTUSETREF\n      s1 s12 XCHG\n      s7 s11 XCHG\n      s2 s10 XCHG\n      s3 s9 XCHG\n      s3 s8 XCHG\n      s7 s5 s5 XCHG3\n      s0 s3 XCHG\n      s4 s1 s4 XCHG3\n      TRUE\n      Storage.matchOpenOffers() CALLDICT\n      DROP\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STI\n      s1 s3 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f02} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      64 PLDU\n      s0 s4 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      NIP\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      32 LDU\n      NIP\n      8 LDU\n      1 LDI\n      NIP\n      LDREF\n      NIP\n      ENDS\n      1 EQINT\n      105 THROWIFNOT\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s7 s0 PUSH2\n      GEQ\n      110 THROWIFNOT\n      s7 s7 XCPU\n      SUB\n      s1 s4 PUXC\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s2 s6 PUXC\n      64 PUSHINT\n      DICTUDEL\n      DROP\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s1 s12 XCHG\n      STSTDADDR\n      s1 s10 XCHG\n      16 STU\n      s1 s8 XCHG\n      32 STI\n      s1 s6 XCHG\n      256 STU\n      s1 s4 XCHG\n      1 STI\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s7 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1280266002 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      64 STU\n      64 STU\n      x{03} STSLICECONST\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4c4f4f03} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s5 PUSH\n      101 THROWIF\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      64 PLDU\n      s11 s12 XCHG\n      s10 s11 XCHG\n      s9 s10 XCHG\n      s8 s9 XCHG\n      s7 s8 XCHG\n      s6 s7 XCHG\n      s5 s6 XCHG\n      s4 s5 XCHG\n      s3 s4 XCHG\n      s2 s3 XCHG\n      FALSE\n      Storage.matchOpenOffers() CALLDICT\n      DROP\n      s0 s10 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STI\n      s1 s3 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f04} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      64 LDU\n      64 LDU\n      256 PLDU\n      s2 s5 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      106 THROWIFNOT\n      CTOS\n      64 LDU\n      64 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      16 LDU\n      256 LDU\n      256 LDU\n      8 LDU\n      ENDS\n      NOW\n      s7 PUSH\n      GREATER\n      133 THROWIFNOT\n      NOW\n      s5 PUSH\n      LEQ\n      113 THROWIFNOT\n      s10 s8 PUSH2\n      EQUAL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s10 s7 PUSH2\n        EQUAL\n        0 NEQINT\n      }>\n      114 THROWIFNOT\n      s10 s15 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      NIP\n      32 LDU\n      NIP\n      8 LDU\n      NIP\n      1 LDI\n      NIP\n      LDREF\n      NIP\n      ENDS\n      INMSG_SRC\n      s2 PUSH\n      SDEQ\n      114 THROWIFNOT\n      NEWC\n      x{4c4f4f60} STSLICECONST\n      22 s() PUSH\n      32 STIR\n      MYADDR\n      SWAP\n      STSTDADDR\n      s13 PUSH\n      64 STUR\n      s1 s2 XCHG\n      STSTDADDR\n      s11 PUSH\n      256 STUR\n      HASHBU\n      EQUAL\n      116 THROWIFNOT\n      s10 s8 XCPU\n      EQUAL\n      IF:<{\n        NIP\n        s8 PUSH\n        1 PUSHINT\n        AND\n        115 THROWIF\n        s0 s8 XCHG\n        1 PUSHINT\n        OR\n      }>ELSE<{\n        DROP\n        s8 PUSH\n        2 PUSHINT\n        AND\n        115 THROWIF\n        s0 s8 XCHG\n        2 PUSHINT\n        OR\n        s7 s8 XCHG\n      }>\n      DUP\n      3 EQINT\n      IF:<{\n        5 BLKDROP\n        s1 s8 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        NIP\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s1 s9 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        NIP\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        OVER\n        ADD\n        NEWC\n        x{4c4f4f61} STSLICECONST\n        s15 PUSH\n        32 STIR\n        MYADDR\n        SWAP\n        STSTDADDR\n        s7 PUSH\n        64 STUR\n        s4 PUSH\n        NEWC\n        64 STU\n        s1 s6 XCHG\n        256 STU\n        s3 PUSH\n        64 STUR\n        s1 s6 XCHG\n        256 STU\n        ENDC\n        s0 s4 XCHG2\n        STREF\n        HASHBU\n        s0 s4 XCHG2\n        MOD\n        ROT\n        LESS\n        s1 s2 PUSH2\n        CONDSEL\n        s1 s7 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        LDREF\n        NIP\n        ENDS\n        s5 s10 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        LDREF\n        NIP\n        ENDS\n        s6 s7 PUSH2\n        EQUAL\n        IF:<{\n          DROP\n          NIP\n        }>ELSE<{\n          s3 POP\n          s4 POP\n          s0 s3 XCHG\n        }>\n        s1 s2 XCHG\n        ADD\n        SWAP\n        IF:<{\n          0 PUSHINT\n        }>ELSE<{\n          s0 s14 PUSH2\n          10000 PUSHINT\n          MULDIV\n        }>\n        TUCK\n        SUB\n        s4 s10 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s7 s12 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s1 s2 XCHG\n        ADD\n        s14 s0 PUSH2\n        GEQ\n        110 THROWIFNOT\n        s1 s14 XCHG\n        SUB\n        s0 s10 XCHG\n        267 PUSHINT\n        DICTDEL\n        DROP\n        s1 s12 XCHG\n        267 PUSHINT\n        DICTDEL\n        DROP\n        s4 s10 XCHG2\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s1 s4 XCHG\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s4 s7 PUXC\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s15 PUSH\n        NEWC\n        STSTDADDR\n        16 s() POP\n        s14 s(-1) PUXC\n        s0 16 s() XCHG\n        STSTDADDR\n        s13 PUSH\n        16 STUR\n        s13 POP\n        s11 s12 PUXC\n        32 STI\n        s11 POP\n        s9 s10 PUXC\n        256 STU\n        s9 POP\n        s7 s8 PUXC\n        1 STI\n        s7 POP\n        s6 s2 XCPU\n        STGRAMS\n        s2 POP\n        s2 s1 PUXC\n        STOPTREF\n        s2 POP\n        s9 s1 PUXC\n        STOPTREF\n        s9 POP\n        s1 s8 PUXC\n        STOPTREF\n        NIP\n        s8 s(-1) PUXC\n        STOPTREF\n        s8 POP\n        s0 s7 XCHG\n        ENDC\n        c4 POP\n        NEWC\n        b{010000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        s0 s6 XCHG2\n        STGRAMS\n        1280266001 PUSHINT\n        139 STUR\n        s4 PUSH\n        64 STUR\n        s5 PUSH\n        64 STUR\n        s1 s2 XCHG\n        64 STU\n        x{01} STSLICECONST\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        DUP\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s2 s(-1) PUXC\n          STSTDADDR\n          s2 POP\n          STGRAMS\n          1280266003 PUSHINT\n          139 STUR\n          64 STU\n          64 STU\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          4 BLKDROP\n        }>\n      }>ELSE<{\n        s10 POP\n        s0 s5 XCHG\n        NEWC\n        64 STU\n        s1 s4 XCHG\n        64 STU\n        s1 s2 XCHG\n        32 STU\n        32 STU\n        32 STU\n        16 STU\n        256 STU\n        256 STU\n        s1 s2 XCHG\n        8 STU\n        ENDC\n        s0 s1 s3 XCHG3\n        64 PUSHINT\n        DICTUSETREF\n        s0 s9 XCHG\n        NEWC\n        STSTDADDR\n        s1 s8 XCHG\n        STSTDADDR\n        s1 s6 XCHG\n        16 STU\n        s1 s4 XCHG\n        32 STI\n        s1 s2 XCHG\n        256 STU\n        1 STI\n        SWAP\n        STGRAMS\n        STOPTREF\n        s1 s2 XCHG\n        STOPTREF\n        STOPTREF\n        STOPTREF\n        ENDC\n        c4 POP\n      }>\n    }>\n    x{4c4f4f0f} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      64 LDU\n      64 LDU\n      LDGRAMS\n      16 LDU\n      16 LDU\n      32 PLDU\n      INMSG_SRC\n      INMSG_VALUE\n      s12 PUSH\n      101 THROWIF\n      s7 s9 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      106 THROWIFNOT\n      CTOS\n      64 LDU\n      64 LDU\n      32 LDU\n      32 LDU\n      32 LDU\n      16 LDU\n      256 LDU\n      256 LDU\n      8 LDU\n      ENDS\n      NOW\n      s7 PUSH\n      LEQ\n      IF:<{\n        NOW\n        20 ADDCONST\n        s6 PUSH\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      130 THROWIFNOT\n      NOW\n      s12 PUSH\n      LEQ\n      IF:<{\n        s11 s5 XCPU\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        s11 POP\n        0 PUSHINT\n      }>\n      109 THROWIFNOT\n      s2 s12 PUXC\n      EQUAL\n      132 THROWIFNOT\n      s12 PUSH\n      100000000 PUSHINT\n      GEQ\n      131 THROWIFNOT\n      s12 PUSH\n      50000000 PUSHINT\n      ADD\n      s1 s8 XCHG\n      GEQ\n      110 THROWIFNOT\n      s12 s5 PUSH2\n      EQUAL\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        s12 s4 PUSH2\n        EQUAL\n        0 NEQINT\n      }>\n      111 THROWIFNOT\n      s5 PUSH\n      17 s() PUSH\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      32 LDU\n      8 LDU\n      1 LDI\n      LDREF\n      ENDS\n      s11 PUSH\n      24 s() PUSH\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      32 LDU\n      8 LDU\n      1 LDI\n      LDREF\n      ENDS\n      s9 PUSH\n      2 EQINT\n      IF:<{\n        s2 PUSH\n        2 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      105 THROWIFNOT\n      26 s() PUSH\n      20 s() PUSH\n      EQUAL\n      IF:<{\n        s13 PUSH\n      }>ELSE<{\n        s6 PUSH\n      }>\n      SWAP\n      s0 22 s() XCHG\n      SDEQ\n      100 THROWIFNOT\n      25 s() PUSH\n      19 s() PUSH\n      EQUAL\n      IF:<{\n        s0 s10 XCHG\n        24 s() PUSH\n        ADD\n      }>ELSE<{\n        s0 s3 XCHG\n        24 s() PUSH\n        ADD\n        s0 s3 XCHG\n        s0 s10 XCHG\n      }>\n      s0 s3 PUSH2\n      ADD\n      DUP\n      100000000000 PUSHINT\n      LEQ\n      108 THROWIFNOT\n      OVER\n      10000 PUSHINT\n      s2 PUSH\n      MULDIV\n      10000 PUSHINT\n      OVER\n      SUB\n      OVER\n      1000 PUSHINT\n      GEQ\n      IF:<{\n        OVER\n        9000 PUSHINT\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        DUP\n        1000 PUSHINT\n        GEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        DUP\n        9000 PUSHINT\n        LEQ\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      131 THROWIFNOT\n      s0 28 s() XCHG\n      21 s() PUSH\n      EQUAL\n      OVER\n      29 s() PUSH\n      CONDSEL\n      SWAP\n      s0 25 s() XCHG\n      GEQ\n      131 THROWIFNOT\n      s0 s13 PUXC\n      NEWC\n      STSTDADDR\n      s1 s13 XCHG\n      256 STU\n      s1 23 s() XCHG\n      16 STU\n      s0 s12 XCHG2\n      STGRAMS\n      SWAP\n      s0 21 s() XCHG\n      STGRAMS\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      8 STU\n      s1 s3 XCHG\n      1 STI\n      STREF\n      ENDC\n      s12 s1 PUXC\n      s0 24 s() XCHG\n      64 PUSHINT\n      DICTUSETREF\n      s0 22 s() XCHG\n      NEWC\n      STSTDADDR\n      256 STU\n      s1 17 s() XCHG\n      16 STU\n      ROT\n      STGRAMS\n      s0 s15 XCHG2\n      STGRAMS\n      s1 s11 XCHG\n      32 STU\n      s1 s10 XCHG\n      8 STU\n      s1 s12 XCHG\n      1 STI\n      s1 s6 XCHG\n      STREF\n      ENDC\n      s0 s2 s14 XCPUXC\n      64 PUSHINT\n      DICTUSETREF\n      s14 s8 XCHG2\n      ADD\n      NOW\n      20 ADDCONST\n      s0 s13 PUSH2\n      GREATER\n      IF:<{\n        s9 POP\n        s12 POP\n        s7 s2 PUSH2\n        LESS\n        s0 s8 s3 XC2PU\n        CONDSEL\n        DUP\n        300 PUSHINT\n        ADD\n        s8 s8 XCHG2\n        s0 s12 XCHG\n      }>ELSE<{\n        DROP\n      }>\n      s0 s5 XCHG\n      INC\n      SWAP\n      NEWC\n      64 STU\n      s1 s13 XCHG\n      64 STU\n      s1 s11 XCHG\n      32 STU\n      32 STU\n      s1 s5 XCHG\n      32 STU\n      s1 s9 XCHG\n      16 STU\n      s1 s7 XCHG\n      256 STU\n      s1 s6 XCHG\n      256 STU\n      8 STU\n      ENDC\n      s0 s1 s3 XCHG3\n      64 PUSHINT\n      DICTUSETREF\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      s1 s6 XCHG\n      16 STU\n      s1 s4 XCHG\n      32 STI\n      s1 s2 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f05} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      64 PLDU\n      s0 s4 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      104 THROWIFNOT\n      CTOS\n      LDSTDADDR\n      256 LDU\n      NIP\n      16 LDU\n      NIP\n      LDGRAMS\n      NIP\n      LDGRAMS\n      32 LDU\n      8 LDU\n      1 LDI\n      NIP\n      LDREF\n      NIP\n      ENDS\n      1 EQINT\n      105 THROWIFNOT\n      NOW\n      LESS\n      117 THROWIFNOT\n      s7 s0 PUSH2\n      GEQ\n      110 THROWIFNOT\n      s7 s7 XCPU\n      SUB\n      s1 s4 PUXC\n      267 PUSHINT\n      DICTDEL\n      DROP\n      s2 s6 PUXC\n      64 PUSHINT\n      DICTUDEL\n      DROP\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s1 s12 XCHG\n      STSTDADDR\n      s1 s10 XCHG\n      16 STU\n      s1 s8 XCHG\n      32 STI\n      s1 s6 XCHG\n      256 STU\n      s1 s4 XCHG\n      1 STI\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s7 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      s1 s5 XCHG\n      STOPTREF\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      1280266002 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      64 STU\n      64 STU\n      x{04} STSLICECONST\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4c4f4f06} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      64 PLDU\n      s0 s3 PUSH2\n      64 PUSHINT\n      DICTUGETREF\n      106 THROWIFNOT\n      CTOS\n      64 LDU\n      64 LDU\n      32 LDU\n      NIP\n      32 LDU\n      NIP\n      32 LDU\n      16 LDU\n      NIP\n      256 LDU\n      NIP\n      256 LDU\n      NIP\n      8 LDU\n      ENDS\n      NOW\n      ROT\n      GREATER\n      117 THROWIFNOT\n      DUP\n      1 EQINT\n      IF:<{\n        DROP\n        s1 s6 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        LDREF\n        NIP\n        ENDS\n        s3 s9 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        LDREF\n        NIP\n        ENDS\n        s7 s7 PUSH2\n        EQUAL\n        IF:<{\n          DROP\n          NIP\n        }>ELSE<{\n          s3 POP\n          s4 POP\n          s0 s3 XCHG\n        }>\n        s1 s2 XCHG\n        ADD\n        SWAP\n        IF:<{\n          0 PUSHINT\n        }>ELSE<{\n          s0 s13 PUSH2\n          10000 PUSHINT\n          MULDIV\n        }>\n        TUCK\n        SUB\n        s4 s9 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s5 s11 PUSH2\n        64 PUSHINT\n        DICTUGETREF\n        104 THROWIFNOT\n        CTOS\n        LDSTDADDR\n        256 LDU\n        NIP\n        16 LDU\n        NIP\n        LDGRAMS\n        NIP\n        LDGRAMS\n        32 LDU\n        NIP\n        8 LDU\n        NIP\n        1 LDI\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s1 s2 XCHG\n        ADD\n        s13 s0 PUSH2\n        GEQ\n        110 THROWIFNOT\n        s1 s13 XCHG\n        SUB\n        s0 s9 XCHG\n        267 PUSHINT\n        DICTDEL\n        DROP\n        s1 s11 XCHG\n        267 PUSHINT\n        DICTDEL\n        DROP\n        s4 s9 PUXC\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s1 s3 XCHG\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s4 s7 PUXC\n        64 PUSHINT\n        DICTUDEL\n        DROP\n        s15 PUSH\n        NEWC\n        STSTDADDR\n        16 s() POP\n        s14 s(-1) PUXC\n        s0 16 s() XCHG\n        STSTDADDR\n        s13 PUSH\n        16 STUR\n        s13 POP\n        s11 s12 PUXC\n        32 STI\n        s11 POP\n        s9 s10 PUXC\n        256 STU\n        s9 POP\n        s7 s8 PUXC\n        1 STI\n        s7 POP\n        s6 s2 XCPU\n        STGRAMS\n        s2 POP\n        s2 s1 PUXC\n        STOPTREF\n        s2 POP\n        s9 s1 PUXC\n        STOPTREF\n        s9 POP\n        s1 s8 PUXC\n        STOPTREF\n        NIP\n        s8 s(-1) PUXC\n        STOPTREF\n        s8 POP\n        s0 s7 XCHG\n        ENDC\n        c4 POP\n        NEWC\n        b{010000} STSLICECONST\n        s1 s4 XCHG\n        STSTDADDR\n        s0 s6 XCHG2\n        STGRAMS\n        1280266001 PUSHINT\n        139 STUR\n        s4 PUSH\n        64 STUR\n        s2 PUSH\n        64 STUR\n        s1 s5 XCHG\n        64 STU\n        x{02} STSLICECONST\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        s3 PUSH\n        0 GTINT\n        IF:<{\n          NEWC\n          b{010000} STSLICECONST\n          s2 s(-1) PUXC\n          STSTDADDR\n          s2 POP\n          s0 s3 XCHG\n          STGRAMS\n          1280266003 PUSHINT\n          139 STUR\n          64 STU\n          64 STU\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          4 BLKDROP\n        }>\n      }>ELSE<{\n        2 EQINT\n        IF:<{\n          s1 s6 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          LDREF\n          NIP\n          ENDS\n          s3 s9 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          LDREF\n          NIP\n          ENDS\n          s6 s7 PUSH2\n          EQUAL\n          IF:<{\n            DROP\n            NIP\n          }>ELSE<{\n            s3 POP\n            s4 POP\n            s0 s3 XCHG\n          }>\n          s1 s2 XCHG\n          ADD\n          SWAP\n          IF:<{\n            0 PUSHINT\n          }>ELSE<{\n            s0 s13 PUSH2\n            10000 PUSHINT\n            MULDIV\n          }>\n          TUCK\n          SUB\n          s4 s9 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s5 s11 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s1 s2 XCHG\n          ADD\n          s13 s0 PUSH2\n          GEQ\n          110 THROWIFNOT\n          s1 s13 XCHG\n          SUB\n          s0 s9 XCHG\n          267 PUSHINT\n          DICTDEL\n          DROP\n          s1 s11 XCHG\n          267 PUSHINT\n          DICTDEL\n          DROP\n          s4 s9 XCHG2\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s2 s(-1) PUXC\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s4 s7 PUXC\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s15 PUSH\n          NEWC\n          STSTDADDR\n          16 s() POP\n          s14 s(-1) PUXC\n          s0 16 s() XCHG\n          STSTDADDR\n          s13 PUSH\n          16 STUR\n          s13 POP\n          s11 s12 PUXC\n          32 STI\n          s11 POP\n          s9 s10 PUXC\n          256 STU\n          s9 POP\n          s7 s8 PUXC\n          1 STI\n          s7 POP\n          s6 s2 XCPU\n          STGRAMS\n          s2 POP\n          s2 s1 PUXC\n          STOPTREF\n          s2 POP\n          s9 s1 PUXC\n          STOPTREF\n          s9 POP\n          s1 s8 PUXC\n          STOPTREF\n          NIP\n          s8 s(-1) PUXC\n          STOPTREF\n          s8 POP\n          s0 s7 XCHG\n          ENDC\n          c4 POP\n          NEWC\n          b{010000} STSLICECONST\n          s1 s4 XCHG\n          STSTDADDR\n          s0 s6 XCHG2\n          STGRAMS\n          1280266001 PUSHINT\n          139 STUR\n          s4 PUSH\n          64 STUR\n          s2 PUSH\n          64 STUR\n          64 STU\n          x{02} STSLICECONST\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n          s3 PUSH\n          0 GTINT\n          IF:<{\n            NEWC\n            b{010000} STSLICECONST\n            s2 s(-1) PUXC\n            STSTDADDR\n            s2 POP\n            s0 s3 XCHG\n            STGRAMS\n            1280266003 PUSHINT\n            139 STUR\n            64 STU\n            64 STU\n            ENDC\n            1 PUSHINT\n            SENDRAWMSG\n          }>ELSE<{\n            4 BLKDROP\n          }>\n        }>ELSE<{\n          s1 s6 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s2 s8 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s5 s10 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s6 s12 PUSH2\n          64 PUSHINT\n          DICTUGETREF\n          104 THROWIFNOT\n          CTOS\n          LDSTDADDR\n          256 LDU\n          NIP\n          16 LDU\n          NIP\n          LDGRAMS\n          NIP\n          LDGRAMS\n          32 LDU\n          NIP\n          8 LDU\n          NIP\n          1 LDI\n          NIP\n          LDREF\n          NIP\n          ENDS\n          s1 s2 XCHG\n          ADD\n          s14 s0 PUSH2\n          GEQ\n          110 THROWIFNOT\n          s1 s14 XCHG\n          SUB\n          s0 s10 XCHG\n          267 PUSHINT\n          DICTDEL\n          DROP\n          s1 s12 XCHG\n          267 PUSHINT\n          DICTDEL\n          DROP\n          s5 s10 PUXC\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s4 s(-1) PUXC\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s6 s9 XCHG2\n          64 PUSHINT\n          DICTUDEL\n          DROP\n          s0 16 s() XCHG\n          NEWC\n          STSTDADDR\n          s1 s15 XCHG\n          STSTDADDR\n          s1 s13 XCHG\n          16 STU\n          s1 s11 XCHG\n          32 STI\n          s1 s9 XCHG\n          256 STU\n          s1 s7 XCHG\n          1 STI\n          ROT\n          STGRAMS\n          s1 s2 XCHG\n          STOPTREF\n          s1 s9 XCHG\n          STOPTREF\n          STOPTREF\n          s1 s8 XCHG\n          STOPTREF\n          ENDC\n          c4 POP\n          NEWC\n          b{010000} STSLICECONST\n          s1 s4 XCHG\n          STSTDADDR\n          s0 s4 XCHG2\n          STGRAMS\n          1280266002 PUSHINT\n          139 STUR\n          s4 PUSH\n          64 STUR\n          s1 s3 XCHG\n          64 STU\n          x{05} STSLICECONST\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n          NEWC\n          b{010000} STSLICECONST\n          STSTDADDR\n          s0 s3 XCHG2\n          STGRAMS\n          1280266002 PUSHINT\n          139 STUR\n          64 STU\n          64 STU\n          x{05} STSLICECONST\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>\n      }>\n    }>\n    x{4c4f4f07} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      NIP\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s10 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s0 s10 XCHG\n      64 LDU\n      NIP\n      1 PLDI\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      s1 s6 XCHG\n      16 STU\n      s1 s4 XCHG\n      32 STI\n      s1 s2 XCHG\n      256 STU\n      s1 s5 XCHG\n      1 STI\n      s0 s4 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f0a} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      16 LDU\n      NIP\n      32 LDI\n      NIP\n      256 LDU\n      NIP\n      1 LDI\n      NIP\n      LDGRAMS\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      INMSG_SRC\n      SDEQ\n      100 THROWIFNOT\n      64 LDU\n      NIP\n      LDGRAMS\n      DROP\n      DUP\n      0 GTINT\n      123 THROWIFNOT\n      INMSG_VALUE\n      SWAP\n      20000000 PUSHINT\n      ADD\n      GEQ\n      110 THROWIFNOT\n    }>\n    x{4c4f4f0b} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      50000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      BALANCE\n      FIRST\n      INMSG_VALUE\n      OVER\n      LEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      NIP\n      32 LDI\n      NIP\n      256 LDU\n      NIP\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      LDOPTREF\n      NIP\n      ENDS\n      INMSG_SRC\n      s1 s4 XCHG\n      SDEQ\n      100 THROWIFNOT\n      125 THROWIFNOT\n      s0 s3 XCHG\n      64 LDU\n      LDGRAMS\n      DROP\n      DUP\n      0 GTINT\n      123 THROWIFNOT\n      INMSG_VALUE\n      s1 s4 XCHG\n      SUB\n      s2 PUSH\n      200000000 PUSHINT\n      ADD\n      2DUP\n      GREATER\n      IF:<{\n        SUB\n      }>ELSE<{\n        2DROP\n        0 PUSHINT\n      }>\n      s3 PUSH\n      GEQ\n      124 THROWIFNOT\n      SWAP\n      200000000 PUSHINT\n      ADD\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      b{010000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      OVER\n      STGRAMS\n      1280266004 PUSHINT\n      139 STUR\n      s1 s2 XCHG\n      64 STU\n      SWAP\n      STGRAMS\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    x{4c4f4f0c} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      NIP\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s10 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s5 PUSH\n      125 THROWIFNOT\n      s4 PUSH\n      129 THROWIF\n      s0 s10 XCHG\n      64 LDU\n      NIP\n      16 PLDU\n      DUP\n      1000 PUSHINT\n      LEQ\n      118 THROWIFNOT\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      s1 s8 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STI\n      s1 s3 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      s1 s2 XCHG\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f0d} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      NIP\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s10 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s5 PUSH\n      125 THROWIFNOT\n      s0 s10 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      MYADDR\n      OVER\n      SDEQ\n      126 THROWIF\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s9 XCHG\n      STSTDADDR\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      32 STI\n      s1 s3 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    x{4c4f4f0e} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_VALUE\n      20000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      c4 PUSH\n      CTOS\n      LDSTDADDR\n      LDSTDADDR\n      16 LDU\n      32 LDI\n      256 LDU\n      1 LDI\n      LDGRAMS\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      LDOPTREF\n      ENDS\n      INMSG_SRC\n      s11 PUSH\n      SDEQ\n      100 THROWIFNOT\n      s5 PUSH\n      125 THROWIFNOT\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      s0 s10 PUXC\n      SDEQ\n      NOT\n      IF:<{\n        MYADDR\n        s10 PUSH\n        SDEQ\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      127 THROWIFNOT\n      s0 s9 XCHG\n      NEWC\n      STSTDADDR\n      s1 s8 XCHG\n      STSTDADDR\n      s1 s6 XCHG\n      16 STU\n      s1 s4 XCHG\n      32 STI\n      s1 s2 XCHG\n      256 STU\n      1 STI\n      SWAP\n      STGRAMS\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      STOPTREF\n      ENDC\n      c4 POP\n    }>\n    DROP\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  contractConfig() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    16 LDU\n    32 LDI\n    256 LDU\n    1 LDI\n    LDGRAMS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    MYADDR\n    -ROT\n    TRUE\n  }>\n  offerData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    256 LDU\n    16 LDU\n    LDGRAMS\n    LDGRAMS\n    32 LDU\n    8 LDU\n    1 LDI\n    LDREF\n    ENDS\n  }>\n  duelData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    64 PUSHINT\n    DICTUGETREF\n    106 THROWIFNOT\n    CTOS\n    64 LDU\n    64 LDU\n    32 LDU\n    32 LDU\n    32 LDU\n    16 LDU\n    256 LDU\n    256 LDU\n    8 LDU\n    ENDS\n  }>\n  duelBoostData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    s1 s2 XCHG\n    64 PUSHINT\n    DICTUGETREF\n    106 THROWIFNOT\n    CTOS\n    64 LDU\n    64 LDU\n    32 LDU\n    32 LDU\n    32 LDU\n    16 LDU\n    256 LDU\n    NIP\n    256 LDU\n    NIP\n    8 LDU\n    NIP\n    ENDS\n    s5 s6 XCPU\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    16 LDU\n    LDGRAMS\n    NIP\n    LDGRAMS\n    32 LDU\n    NIP\n    8 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s5 s7 XCHG2\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    16 LDU\n    LDGRAMS\n    NIP\n    LDGRAMS\n    32 LDU\n    NIP\n    8 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    NIP\n    ENDS\n    s4 s6 XCHG2\n    s3 s3 s0 XCHG3\n  }>\n  directOfferData() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    64 PUSHINT\n    DICTUGETREF\n    104 THROWIFNOT\n    CTOS\n    LDSTDADDR\n    NIP\n    256 LDU\n    NIP\n    16 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    32 LDU\n    NIP\n    8 LDU\n    NIP\n    1 LDI\n    NIP\n    LDREF\n    ENDS\n    CTOS\n    256 LDU\n    LDOPTSTDADDR\n    ENDS\n  }>\n  activeOffer() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    NIP\n    16 LDU\n    NIP\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    NIP\n    LDGRAMS\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    LDOPTREF\n    NIP\n    ENDS\n    267 PUSHINT\n    DICTGET\n    104 THROWIFNOT\n    64 LDU\n    ENDS\n  }>\n  adminState() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    16 LDU\n    32 LDI\n    NIP\n    256 LDU\n    NIP\n    1 LDI\n    LDGRAMS\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECRgEAFgoAART/APSkE/S88sgLAQIBYgIDAgLOERICASAEBQIBWAYHAgEgCwwAg7Q6PaiaH0kGP0kGOmHmOkPmOn/mOkAGP0AGPoCGPoCegIY+gIY6MAgegf5cDVoaZ/pn+mP6Y/pj+mH6f/p/+mD6MAIBIAgJAfmyCvtRND6SDH6SDHTDzHSHzHT/zHSADH6ADH0BPQE9AQx9AQx0RKAQPQP8uBq0NM/0z/TH9Mf0x/TD9P/MdP/MdMHMdFRVoBA9A/y4GjQ+kgx0/8x0w/6ADH6ANMfMdMHMdIAMdQx0VBXgED0D/LgaND6SDHT/zHTD/oAMYAoASbBmO1E0PpI+kjTD9If0//SAPoA9AQx9AQx9AQx9AQx0fgoWX+AAJPoA0x8x0wcx0gAx1DHRUEZDMAIBSA0OAEW7uI7UTQ+kj6SNMP0h8x0/8x0gD6APQEMfQEMfQEMfQEMdGACBsoN7UTQ+kgx+kgx0w8x0h8x0/8x0gAx+gAx9AT0BDH0BDH0BDHRgED0D/LgaND6SNP/0w/6APoA0x/TB9IA1NGACASAPEACdrqd2omh9JBj9JBjph5jpD5jp/5jpABj9ABj6AnoCGPoCGPoCGOjAIHoH+XA0aH0kGOn/mOmHmP0AGP0AGOmPmOmDmOkAGOpo6Gn//ShowABjr/72omh9JBj9JBjph5jpD5jp/5jpABj9ABj6Ahj6Ahj6AnoCGOjAgIX6BXlwNGmf6MACASATFAIBIEBBBFE+JGRMOAg1ywiYnp4DOMC1ywiYnp4ROMC1ywiYnp4TOMC1ywiYnp4FIBUWFxgAkRsYzU1NSJuk18FcOAC0NMfgwjXGNEh+CO+8uCH+COBDhCgIr7y4IfIz5ExPT2OE8of+CgB+lIUyz8U+lISyx/5Fln5EPLghn+AC/DHtRND6SPpI0w/SH9P/0gD6APQE9AT0BPQE0SXy0GUL0z8x0z/T/9MP+gDTH9M/9AX4kviXEREREhERERAREhEQDxESDw4REg4NERINDBESDAsREgsKERIKCRESCQgREggHERMHUGVwbVYUBwYRFgYQRQME8AIskjs74w0IyBkaAf4x7UTQ+kj6SNMP0h/T/9IA+gD0BPQE9AT0BNEl8tBlC9M/MdM/0//TD/oA0x/T//QFIfLgePiS+JcREhETERIRERESEREREBERERAPERAPEO8Q3hDNELwQqxCaVWFtAfACCsj6Uhn6UhfLDxXKHxPL/8oAAfoC9AD0APQA9ADJGwH8Me1E0PpI+kjTD9If0//SAPoA9AT0BPQE9ATRJfLQZQvTPzHTP9P/0w/6ANMf1PQFAdDTP9MfgwjXGNEh+CO+lVMUu8MAkXDi8uB6UyuAQPQP8uBo0PpI0//TD/oA+gDTH9MH0gDU0fiSKccF8tBw0NP/+lDRIZNuwwCSMHDiHAL84wLXLCJiengcjmsx+JeCCTEtAL7y4G7tRND6SPpI0w/SH9P/0gD6APQE9AT0BPQE0SXy0GUL0z8x0z/XCz8QvBCrEJoQiRB4EGcQVhBFEDQQI3DwAzAKyPpSGfpSF8sPFcofE8v/ygAB+gL0APQA9AD0AMntVODXLCJiengkHh8AEFUacPADMFWBADz6Uhf6UhXLDxPKH8v/ygAB+gL0APQAEvQA9ADJ7VQABO1UAf7y4Hj4ksjPkTE9PYpWGs8KH/goAfpSIs8L/y3PCz/6UhvLH/kWUAlWF/kQ8uB5+JL4lxERERsREREQERoREA8RGQ8OERgODREXDQwRFgwLERULChEUCgkREwkIERIIBxEcB1BlcFYcBgURHAUEERsEAxEaAwIRGQJWFAERGfACHQDO+JIOyMv/HvpUyQvI+lIBERUBy/8BERAByw9QDvoCUAz6Ah/LHx3LBxbKABTMyVQgaYBA9BccEHsQKhA5EDhHVQNEFH/wAzAKyPpSGfpSF8sPFcofE8v/ygAB+gL0APQA9AD0AMntVAH8MfiXggkxLQC+8uBu7UTQ+kj6SNMP0h/T/9IA+gD0BPQE9AT0BNEL0z/XCz9TBIBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMH0gAx1DHRwAHy4Gn4kiLHBfLgZFNwvvLgblF3oVIVgQEL9FkwUieAQPRbMA3I+lIc+lIayw8YIAQ24wLXLCJienh84wLXLCJiengs4wLXLCJieng0ISIjJABwyh8Wy/8UygBQBPoCF/QA9AD0ABX0AMntVMjPhQgS+lJY+gKCEExPTxLPC4oSyz/LP8+EDslx+wAB/DH4l4IJMS0AvvLgbu1E0PpI+kjTD9If0//SAPoA9AT0BPQE9ATRC9M/0z/TP9cL/1MlgED0D/LgatDTP9M/0x/TH9Mf0w/T/9P/0wfR+CMnvPLghfgjJbvy4HFTqLqRf5VTp7rDAOLy4HJTr4BA9A/y4GjQ+kjT/9MPMfoAMSUB+DHtRND6SPpI0w/SH9P/0gD6APQE9AT0BPQE0QvTPzHTP9M/+gDTD9MP1wsf+JL4lyzy0GVTeYBA9A/y4GrQ0z/TP9Mf0x/TH9MP0//T/9MH0fgjJ7uY+COmFCa7wwCRcOLy4IL4Iyy7lVG1u8MAkjtw4vLgbVItuvLghCwrAfwx+JeCCTEtAL7y4G7tRND6SPpI0w/SH9P/0gD6APQE9AT0BPQE0QvTP9cLP1MEgED0D/LgaND6SNP/MdMPMfoAMfoA0x/TB9IAMdQx0cAB8uBp+CO58uB1U3C+8uBuUXehUhWBAQv0WTBSJ4BA9FswDcj6Uhz6UhrLDxjKHxYvBNSP4DH4l4IJMS0AvvLgbu1E0PpI+kjTD9If0//SAPoA9AT0BPQE9ATRC9M/1ws/UwOAQPQP8uBq0NM/0z/THzHTHzHTH9MPMdP/MdP/MdMH0fgjWLzy4HUgwAGPBMAC4w/jDeDXLCJieng8MDEyMwK0+gAx0x8x0wcx0gAx1DHR+JIixwXy4HLIz5ExPT2CVhbPCh/4KAH6Ui3PCz8S+lIrzwv/+Ra68uB0Uai6mjEocbDy0HMIcbGcMChysPLQcwhysRB44iDAA+MPJicB/F8FUxiAQPQP8uBo0PpIMdP/MdMPMfoAMfoA0x8x0wcx0gAx1DHRUxmAQPQP8uBo0PpIMdP/MdMPMfoAMfoA0x8x0wcx0gAx1DHRIaDIz5ExPT2GL88KH/goAfpSJ88LPyTIyz8Wy/8jzws/Fsv/yVAEzPkWUASpCFi5UxLjBCgAgDoFyMs/FMs/Essfyx/LH8sPy//L/xLLB8lAE4BA9BcJyPpSGPpSFssPFMofEsv/ygAB+gL0ABL0APQA9ADJ7VQB/lMXgED0D/LgaND6SNP/MdMPMfoAMfoA0x8x0wcx0gDUMdFTWoBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMHMdIA1DHRU2e6kjAxkzM0A+ISoAGRcJdTDoEnEKmE4mahU0qAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSADEpAfzUMdFTfIBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMHMdIAMdQx0RKgU+C+8uBuHqEKgQEL9FkwHIEBC/RZMFBKgED0WzAUgED0WzBSSIBA9FswL8j6UlcQUuAREPpSLc8LDz1SvcofO1Kby/85UnnKADdRYvoCMlIi9AAyUpIqALj0ADlSGfQAMVKA9AA4B8ntVMjPhQgS+lJQBvoCghBMT08RzwuKJM8LPyXPCz8Syz/PhAbJcfsAIMIAjhzIz4UIUiD6UjL6AoIQTE9PE88Liss/yz/JcfsAkl8E4gH+ghAF9eEAvvLggyyCCvrwgKAYvvLgblPFupF/lVPEusMA4vLgbyVWEYBA9A/y4GjQ+kjT/9MPMfoAMfoA0x/TB9IA1NErVhiAQPQP8uBo0PpI0//TDzH6ADH6ANMf0wfSANTRKcAClSLAAsMAkXDi8uBpVhpWFLqRLZEm4gERFiwB/scF8uBkVhlWE7qUClYYoJYDVhigAwriUwOgIIIYF0h26AC78uBsIYEnECKphIEnECGhIYED6L6XIYEjKLvDAJFw4pcggQPovsMAkXDilyCBIyi7wwCRcOLy4IMRHFYVuiFWHeMEAREZvvLgg1IOyPpSHcv/AREXAcsPUAz6AgEtAfwRFfoCF8sfFcsHE8oAzMlSwhEYgED0FxEWyPpSy/8BEREByw9Y+gJQD/oCG8sfGssHHMoAFszJVCAvgED0F1DooPgjphRTDbyOEjk8U3K5VBCD4wQggQEsoFCIDJEw4gWkAcjLPx3LPxvLH8sfFcsfGcsPF8v/Fsv/ywfJQBMuAEqAQPQXCcj6Uhj6UhbLDxTKHxLL/8oAAfoC9AAS9AD0APQAye1UAGrL/xTKAFAE+gIX9AD0APQAFfQAye1UyM+FCBL6Ulj6AoIQTE9PEs8LihLLP8s/z4QSyXH7AAH+UxaAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSANQx0VM5gED0D/LgaND6SNP/MdMPMfoAMfoA0x8x0wcx0gDUMdFTZ7qSMDGTMzQD4hKgAZFwl1MNgScQqYTiZqFTSYBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMHMdIAMTQB/FMWgED0D/LgaND6SNP/MdMPMfoAMfoA0x8x0wcx0gAx1DHRUyiAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSADHUMdFTWoBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMHMdIAMdQx0VNsgED0D/LgaND6SNP/MdMPMfoAMTYB/jBTFoBA9A/y4GjQ+kjT/zHTDzH6ADH6ANMfMdMHMdIA1DHRUzmAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSANQx0VN3upIwMZMzNAPiEqABkXCXUw2BJxCphOJmoVNJgED0D/LgaND6SNP/MdMPMfoAMfoA0x8x0wcx0gA4BP6OWjH4l4IJMS0AvvLgbu1E0PpI+kjTD9If0//SADH6APQE9AT0BPQE0fiSKscF8uBkCtM/MdcKAAnI+lIY+lIWyw8Uyh8Sy/8VygBQBPoCE/QAEvQA9AD0AMntVODXLCJienhU4wLXLCJienhc4wLXLCJienhk4wLXLCJienhsOjs8PQH+1DHRU1uAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSADHUMdESoFPQvvLgbh2hCYEBC/RZMBuBAQv0WTBQSYBA9FswUiCAQPRbMFJIgED0WzAvyPpSVxBS4BEQ+lItzwsPPVK9yh87UpvL/zlSecoAN1Fi+gIyUiL0ADJSkjUAuPQAOVIZ9AAxUoD0ADgHye1UyM+FCBT6UlAG+gKCEExPTxHPC4okzws/Is8LP8s/z4QKyXH7ACPCAI4dyM+FCFIg+lIyA/oCghBMT08TzwuKyz/LP8lx+wCSXwTiAf76ANMfMdMHMdIAMdQx0RKgU+C+8uBuHqEKgQEL9FkwHIEBC/RZMFJbgED0WzBSQIBA9FswUGmAQPRbMBEQyPpSH/pSHcsPG8ofGcv/F8oAWPoCEvQAGfQA9AAY9ADJ7VTIz4UIFPpSUAT6AoIQTE9PEs8LiiTPCz8Tyz/PhBbJNwBCcfsAyM+FCPpSUAP6AoIQTE9PEs8Liss/yz/PhBbJcfsAAf4x1DHRU1uAQPQP8uBo0PpI0/8x0w8x+gAx+gDTHzHTBzHSADHUMdESoFPQvvLgbh2hCYEBC/RZMBuBAQv0WTBSSoBA9FswE4BA9FswUkiAQPRbMC/I+lJXEFLgERD6Ui3PCw89Ur3KHztSm8v/OVJ5ygA3UWL6AjJSIvQAMlKSOQC69AA5Uhn0ADFSgPQAOAfJ7VTIz4UIFPpSUAb6AoIQTE9PEc8LiiTPCz8izws/Fcs/z4QKyXH7ACPCAI4dyM+FCFIg+lIyA/oCghBMT08TzwuKyz/LP8lx+wCSXwTiAIox7UTQ+kj6SDHTDzHSHzHT/zHSADH6ADH0BDH0BDH0BDH0BDHR+JLHBfLgZNM/MfoAMCDCAPLge/iXAYIJMS0AoL7y4G4B+jH4l4IK+vCAvvLgbvgnbxD4lyG78uBu7UTQ+kj6SNMPMdIfMdP/MdIA+gD0BDH0BDH0BDH0BDHR+JIUxwXy4GTy4H0D0z/6ADAgwgDy4Hv4lxShIoIQC+vCAKBcvJGhkltw4iO+8uB8AYIQC+vCAKBw+wLIz4UIE/pSIfoCPgDOMfiXggkxLQC+8uBu7UTQ+kj6SNMPMdIf0//SAPoA9AT0BPQE9ATR+JIqxwXy4GQl8uB9JPLQgQrTPzHXCw8ggQPou/LgdgnI+lIY+lIYyw8Vyh8Ty//KAAH6AvQAEvQA9AD0AMntVAHsjmIx+JeCCTEtAL7y4G7tRND6SPpIMdMP0h/T/9IA+gD0BPQE9AT0BNH4kirHBfLgZCXy4H0K0z8x+kgw+CghxwXy0H4JyPpSGfpSF8sPFcofE8v/ygAB+gL0APQA9AD0AMntVODXLCJienh04wIwhA8BxwDy9D8AJoIQTE9PFM8LihLLPwH6Aslx+wAA2jH4l4IJMS0AvvLgbu1E0PpI+kjTD9If0//SAPoA9AT0BPQE9ATR+JIrxwXy4GQl8uB9C9M/MfpIMFILxwWzmPgoKscFs8MAkXDi8uB/Ccj6Uhj6UhbLDxTKHxLL/8oAAfoC9AD0APQA9ADJ7VQB9xWEoED6Lvy4HYn8uB3JYEJxLqRf5clgROIusMA4pF/lyWBHUy6wwDi8uBrJIIQO5rKAL6bJIIYF0h26AC7wwCRcOKYJKk4AcAAwwCRcOLy4Gz4I6YeJLua+COBDhCgJL7DAJFw4vLgbVN6gED0Dm+hMfLQZlObgQEL9AqBCAfUUyG98uBvUyaAQPQP8uBo0PpI0//TD/oA+gDTH9MH0gDU0VOvgED0D/LgaND6SNP/0w/6APoA0x/TB9IA1NELwAGVAcABwwCSMXDi8uBpU/bHBfLQcFPDuvLgb1PUoIEnELry4G8q+CO8liH4I7zDAJFw4vLgbSfQ0/+BEAf5voTHy0GdWFAFWFAFWFAFWFAFWFAFWFAFWFAFWFAFWFAFWFAFWFAFWFAFWEwHwAVNFgScQqYQgggr68ICgGr7y4G4CyMv/+lTJKMj6UhbL/xTLD1j6AiX6Assfz4QGygDMyVQgCIBA9BcmyMs/QDWBAQv0QcjPg0BjgED0Q1BSQwAIoARQMwH6+lDRK9DT//pQ0QORcJQhbsMA4pTAAMMAkjBw4pQhbsMAkXDiIW6zlSJus8MAkXDillEZxwXDAJIxcOKXAVYRxwXDAJIxcOIBlDBXEH+eERGUERDDAJNXEHDiwwDi8uBvDsj6Uh3L/xvLD1AJ+gJQB/oCFcsfz4QKEsoAzMlFAN5UIK+AQPQXAcj6UhLL/xLLD1j6Alj6AhLLH8+EChLKABfMyVQgB4BA9BdUcVEovJFbkjM24iH4I6Y8+COBALSg+COmPIEBLKAJyMs/Fcs/yx8Tyx8Wyx/PiAACcM8L/3DPC//PhALJVCAFgED0FwM=",
+  "codeHashHex": "E934E407353B47FE20F1874A4A8DEB6A0E5CAE7D08407CF927DC34ABDB2F4B3A",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75175,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/DuelEscrow.tolk",
+        "size_chars": 28140,
+        "imports": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/errors.tolk",
+        "size_chars": 917,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/messages.tolk",
+        "size_chars": 3354,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/storage.tolk",
+        "size_chars": 2056,
+        "imports": [
+          2
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OpenOffer"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HolderFeePermit"
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 16
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 18
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MatchOffers"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Reveal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExpireOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExpireDuel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OpenDirectOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptDirectOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DirectAcceptance"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelFundReserve"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelWithdrawSurplus"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetOwner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BoostDuel"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 1280265985,
+            "prefix_len": 32,
+            "stack_type_id": 133,
+            "stack_width": 8
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1280265986,
+            "prefix_len": 32,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 1280265987,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1280265988,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 1280265989,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 1280265990,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1280265991,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 1280265992,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 8
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 1280265993,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 8
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 1280265994,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 1280265995,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 1280265996,
+            "prefix_len": 32,
+            "stack_type_id": 144,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1280265997,
+            "prefix_len": 32,
+            "stack_type_id": 145,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 1280265998,
+            "prefix_len": 32,
+            "stack_type_id": 146,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 35,
+            "prefix_num": 1280265999,
+            "prefix_len": 32,
+            "stack_type_id": 147,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 9
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OfferMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OfferData"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DirectOfferData"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 44
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DuelMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelData"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 47
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 48
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ActiveOfferMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "UsedOfferMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OfferRefund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          58
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 60,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 62,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 65
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          64
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 67,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 148,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          69,
+          14
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 72,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 74,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 70,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 149,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 71,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          78
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelPayout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          80
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProtocolFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          82
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelAdminWithdrawal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          84
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractConfigView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelBoostView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelAdminStateView"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 59,
+        "struct_name": "CreateMessageOptions<OfferRefund>",
+        "monomorphic_fields_ty_idx": [
+          63,
+          68,
+          77,
+          58
+        ]
+      },
+      {
+        "ty_idx": 81,
+        "struct_name": "CreateMessageOptions<DuelPayout>",
+        "monomorphic_fields_ty_idx": [
+          63,
+          68,
+          77,
+          80
+        ]
+      },
+      {
+        "ty_idx": 83,
+        "struct_name": "CreateMessageOptions<ProtocolFee>",
+        "monomorphic_fields_ty_idx": [
+          63,
+          68,
+          77,
+          82
+        ]
+      },
+      {
+        "ty_idx": 85,
+        "struct_name": "CreateMessageOptions<DuelAdminWithdrawal>",
+        "monomorphic_fields_ty_idx": [
+          63,
+          68,
+          77,
+          84
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 55,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 54,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 64,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 66
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 72,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 74,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 75
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 71,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 69
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 73
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 76
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 61,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 62,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 79,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 63
+          },
+          {
+            "name": "value",
+            "ty_idx": 68
+          },
+          {
+            "name": "dest",
+            "ty_idx": 77
+          },
+          {
+            "name": "body",
+            "ty_idx": 78
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 57,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          40,
+          6,
+          40,
+          20
+        ],
+        "target_ty_idx": 36
+      },
+      {
+        "kind": "struct",
+        "name": "HolderFeePermit",
+        "ty_idx": 16,
+        "ident_loc": [
+          3,
+          6,
+          8,
+          6,
+          23
+        ],
+        "fields": [
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "signature",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OpenOffer",
+        "ty_idx": 13,
+        "ident_loc": [
+          3,
+          11,
+          21,
+          11,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1280265985,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "counterOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "holder",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOffer",
+        "ty_idx": 20,
+        "ident_loc": [
+          3,
+          22,
+          21,
+          22,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1280265986,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MatchOffers",
+        "ty_idx": 21,
+        "ident_loc": [
+          3,
+          27,
+          21,
+          27,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1280265987,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "firstOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "secondOfferId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Reveal",
+        "ty_idx": 22,
+        "ident_loc": [
+          3,
+          33,
+          21,
+          33,
+          27
+        ],
+        "prefix": {
+          "prefix_num": 1280265988,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "secret",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExpireOffer",
+        "ty_idx": 23,
+        "ident_loc": [
+          3,
+          40,
+          21,
+          40,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1280265989,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExpireDuel",
+        "ty_idx": 24,
+        "ident_loc": [
+          3,
+          45,
+          21,
+          45,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1280265990,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPaused",
+        "ty_idx": 25,
+        "ident_loc": [
+          3,
+          50,
+          21,
+          50,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1280265991,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OpenDirectOffer",
+        "ty_idx": 26,
+        "ident_loc": [
+          3,
+          58,
+          21,
+          58,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1280265992,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "inviteId",
+            "ty_idx": 14
+          },
+          {
+            "name": "holder",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DirectAcceptance",
+        "ty_idx": 28,
+        "ident_loc": [
+          3,
+          69,
+          8,
+          69,
+          24
+        ],
+        "fields": [
+          {
+            "name": "counterOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "signature",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptDirectOffer",
+        "ty_idx": 27,
+        "ident_loc": [
+          3,
+          77,
+          21,
+          77,
+          38
+        ],
+        "prefix": {
+          "prefix_num": 1280265993,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "acceptance",
+            "ty_idx": 29
+          },
+          {
+            "name": "holder",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelFundReserve",
+        "ty_idx": 30,
+        "ident_loc": [
+          3,
+          88,
+          21,
+          88,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1280265994,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelWithdrawSurplus",
+        "ty_idx": 31,
+        "ident_loc": [
+          3,
+          93,
+          21,
+          93,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1280265995,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetFee",
+        "ty_idx": 32,
+        "ident_loc": [
+          3,
+          98,
+          21,
+          98,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1280265996,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetTreasury",
+        "ty_idx": 33,
+        "ident_loc": [
+          3,
+          103,
+          21,
+          103,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 1280265997,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetOwner",
+        "ty_idx": 34,
+        "ident_loc": [
+          3,
+          108,
+          21,
+          108,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 1280265998,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BoostDuel",
+        "ty_idx": 35,
+        "ident_loc": [
+          3,
+          115,
+          21,
+          115,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1280265999,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "expectedRevision",
+            "ty_idx": 15
+          },
+          {
+            "name": "minChanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelPayout",
+        "ty_idx": 80,
+        "ident_loc": [
+          3,
+          126,
+          21,
+          126,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1280266001,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "reason",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OfferRefund",
+        "ty_idx": 58,
+        "ident_loc": [
+          3,
+          134,
+          21,
+          134,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1280266002,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "reason",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ProtocolFee",
+        "ty_idx": 82,
+        "ident_loc": [
+          3,
+          141,
+          21,
+          141,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1280266003,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelAdminWithdrawal",
+        "ty_idx": 84,
+        "ident_loc": [
+          3,
+          146,
+          21,
+          146,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 1280266004,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OfferMap",
+        "ty_idx": 38,
+        "ident_loc": [
+          4,
+          9,
+          6,
+          9,
+          14
+        ],
+        "target_ty_idx": 45
+      },
+      {
+        "kind": "alias",
+        "name": "DuelMap",
+        "ty_idx": 46,
+        "ident_loc": [
+          4,
+          11,
+          6,
+          11,
+          13
+        ],
+        "target_ty_idx": 49
+      },
+      {
+        "kind": "alias",
+        "name": "ActiveOfferMap",
+        "ty_idx": 50,
+        "ident_loc": [
+          4,
+          13,
+          6,
+          13,
+          20
+        ],
+        "target_ty_idx": 51
+      },
+      {
+        "kind": "alias",
+        "name": "UsedOfferMap",
+        "ty_idx": 52,
+        "ident_loc": [
+          4,
+          15,
+          6,
+          15,
+          18
+        ],
+        "target_ty_idx": 53
+      },
+      {
+        "kind": "struct",
+        "name": "DirectOfferData",
+        "ty_idx": 41,
+        "ident_loc": [
+          4,
+          17,
+          8,
+          17,
+          23
+        ],
+        "fields": [
+          {
+            "name": "inviteId",
+            "ty_idx": 14
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 42
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OfferData",
+        "ty_idx": 39,
+        "ident_loc": [
+          4,
+          22,
+          8,
+          22,
+          17
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "state",
+            "ty_idx": 40
+          },
+          {
+            "name": "feeExempt",
+            "ty_idx": 5
+          },
+          {
+            "name": "direct",
+            "ty_idx": 43
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelData",
+        "ty_idx": 47,
+        "ident_loc": [
+          4,
+          34,
+          8,
+          34,
+          16
+        ],
+        "fields": [
+          {
+            "name": "offerAId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerBId",
+            "ty_idx": 11
+          },
+          {
+            "name": "boostDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "hardDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "boostRevision",
+            "ty_idx": 15
+          },
+          {
+            "name": "secretA",
+            "ty_idx": 14
+          },
+          {
+            "name": "secretB",
+            "ty_idx": 14
+          },
+          {
+            "name": "revealedMask",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 37,
+        "ident_loc": [
+          4,
+          46,
+          8,
+          46,
+          15
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "inviteSignerPublicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          },
+          {
+            "name": "offers",
+            "ty_idx": 38
+          },
+          {
+            "name": "duels",
+            "ty_idx": 46
+          },
+          {
+            "name": "activeOffers",
+            "ty_idx": 50
+          },
+          {
+            "name": "usedOfferIds",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ContractConfigView",
+        "ty_idx": 86,
+        "ident_loc": [
+          4,
+          60,
+          8,
+          60,
+          26
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "inviteSignerPublicKey",
+            "ty_idx": 14
+          },
+          {
+            "name": "contractAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          },
+          {
+            "name": "holderFeeSupported",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelAdminStateView",
+        "ty_idx": 88,
+        "ident_loc": [
+          4,
+          72,
+          8,
+          72,
+          26
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelBoostView",
+        "ty_idx": 87,
+        "ident_loc": [
+          4,
+          80,
+          8,
+          80,
+          21
+        ],
+        "fields": [
+          {
+            "name": "stakeA",
+            "ty_idx": 6
+          },
+          {
+            "name": "stakeB",
+            "ty_idx": 6
+          },
+          {
+            "name": "chanceABps",
+            "ty_idx": 15
+          },
+          {
+            "name": "chanceBBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "boostDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "hardDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "boostRevision",
+            "ty_idx": 15
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "Storage.verifyHolderPermit",
+        "return_ty_idx": 5,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          115,
+          13,
+          115,
+          31
+        ],
+        "end_loc": [
+          1,
+          137,
+          1,
+          137,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "holder",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "Cell<HolderFeePermit>.load",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "holderFeeHash",
+        "return_ty_idx": 14,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          81,
+          5,
+          81,
+          18
+        ],
+        "end_loc": [
+          1,
+          95,
+          1,
+          95,
+          2
+        ],
+        "params": [
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "Storage.addOpenOffer",
+        "return_ty_idx": 0,
+        "num_params": 10,
+        "ident_loc": [
+          1,
+          139,
+          13,
+          139,
+          25
+        ],
+        "end_loc": [
+          1,
+          186,
+          1,
+          186,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "direct",
+            "ty_idx": 41
+          },
+          {
+            "name": "holder",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "validChance",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          57,
+          5,
+          57,
+          16
+        ],
+        "end_loc": [
+          1,
+          59,
+          1,
+          59,
+          2
+        ],
+        "params": [
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<uint64, bool>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 53
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "map<address, uint64>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "stakeFor",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          61,
+          5,
+          61,
+          13
+        ],
+        "end_loc": [
+          1,
+          63,
+          1,
+          63,
+          2
+        ],
+        "params": [
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "DirectOfferData.toCell",
+        "return_ty_idx": 43,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 41
+          },
+          {
+            "name": "options",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "OfferData.toCell",
+        "return_ty_idx": 44,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 39
+          },
+          {
+            "name": "options",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "map<uint64, Cell<OfferData>>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<address, uint64>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint64, bool>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 53
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "Storage.matchOpenOffers",
+        "return_ty_idx": 11,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          188,
+          13,
+          188,
+          28
+        ],
+        "end_loc": [
+          1,
+          245,
+          1,
+          245,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "firstOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "secondOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "allowDirect",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "Storage.loadOffer",
+        "return_ty_idx": 39,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          99,
+          13,
+          99,
+          22
+        ],
+        "end_loc": [
+          4,
+          101,
+          1,
+          101,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<uint64, Cell<OfferData>>.mustGet",
+        "return_ty_idx": 44,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "Cell<OfferData>.load",
+        "return_ty_idx": 39,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "Cell<DirectOfferData>.load",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 43
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "DuelData.toCell",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 47
+          },
+          {
+            "name": "options",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "map<uint64, Cell<DuelData>>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          456,
+          5,
+          456,
+          22
+        ],
+        "end_loc": [
+          1,
+          741,
+          1,
+          741,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          743,
+          5,
+          743,
+          21
+        ],
+        "end_loc": [
+          1,
+          743,
+          46,
+          743,
+          47
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "Storage.load",
+        "return_ty_idx": 37,
+        "num_params": 0,
+        "ident_loc": [
+          4,
+          91,
+          13,
+          91,
+          17
+        ],
+        "end_loc": [
+          4,
+          93,
+          1,
+          93,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 23,
+        "name": "Storage.fromCell",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          4,
+          95,
+          13,
+          95,
+          17
+        ],
+        "end_loc": [
+          4,
+          97,
+          1,
+          97,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "Storage.toCell",
+        "return_ty_idx": 56,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "options",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "Cell<DirectAcceptance>.load",
+        "return_ty_idx": 28,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "directAcceptHash",
+        "return_ty_idx": 14,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          97,
+          5,
+          97,
+          21
+        ],
+        "end_loc": [
+          1,
+          113,
+          1,
+          113,
+          2
+        ],
+        "params": [
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "inviteId",
+            "ty_idx": 14
+          },
+          {
+            "name": "counterOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "invitedAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "map<address, uint64>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "map<uint64, Cell<OfferData>>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 45
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "sendRefund",
+        "return_ty_idx": 0,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          261,
+          5,
+          261,
+          15
+        ],
+        "end_loc": [
+          1,
+          269,
+          1,
+          269,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "reason",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "createMessage<OfferRefund>",
+        "return_ty_idx": 57,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 59
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "Storage.loadDuel",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          103,
+          13,
+          103,
+          21
+        ],
+        "end_loc": [
+          4,
+          105,
+          1,
+          105,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "map<uint64, Cell<DuelData>>.mustGet",
+        "return_ty_idx": 48,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "Cell<DuelData>.load",
+        "return_ty_idx": 47,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 48
+          },
+          {
+            "name": "options",
+            "ty_idx": 54
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "commitmentHash",
+        "return_ty_idx": 14,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          65,
+          5,
+          65,
+          19
+        ],
+        "end_loc": [
+          1,
+          79,
+          1,
+          79,
+          2
+        ],
+        "params": [
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "secret",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "Storage.settleRevealed",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          354,
+          13,
+          354,
+          27
+        ],
+        "end_loc": [
+          1,
+          380,
+          1,
+          380,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duel",
+            "ty_idx": 47
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "Storage.settleWinner",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          323,
+          13,
+          323,
+          25
+        ],
+        "end_loc": [
+          1,
+          352,
+          1,
+          352,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duel",
+            "ty_idx": 47
+          },
+          {
+            "name": "winnerOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "reason",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "Storage.removeMatchedDuel",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          247,
+          13,
+          247,
+          30
+        ],
+        "end_loc": [
+          1,
+          259,
+          1,
+          259,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duel",
+            "ty_idx": 47
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "map<uint64, Cell<DuelData>>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 49
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "sendWinner",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          271,
+          5,
+          271,
+          15
+        ],
+        "end_loc": [
+          1,
+          286,
+          1,
+          286,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "reason",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "createMessage<DuelPayout>",
+        "return_ty_idx": 57,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 81
+          }
+        ]
+      },
+      {
+        "f_idx": 42,
+        "name": "sendFee",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          288,
+          5,
+          288,
+          12
+        ],
+        "end_loc": [
+          1,
+          298,
+          1,
+          298,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 43,
+        "name": "createMessage<ProtocolFee>",
+        "return_ty_idx": 57,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 83
+          }
+        ]
+      },
+      {
+        "f_idx": 44,
+        "name": "Storage.boostDuel",
+        "return_ty_idx": 0,
+        "num_params": 9,
+        "ident_loc": [
+          1,
+          382,
+          13,
+          382,
+          22
+        ],
+        "end_loc": [
+          1,
+          454,
+          1,
+          454,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "expectedRevision",
+            "ty_idx": 15
+          },
+          {
+            "name": "minChanceBps",
+            "ty_idx": 15
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "Storage.requireOwner",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          305,
+          13,
+          305,
+          25
+        ],
+        "end_loc": [
+          1,
+          307,
+          1,
+          307,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 46,
+        "name": "Storage.withdrawableBalance",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          300,
+          13,
+          300,
+          32
+        ],
+        "end_loc": [
+          1,
+          303,
+          1,
+          303,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          },
+          {
+            "name": "balance",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 47,
+        "name": "sendDuelAdminWithdrawal",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          309,
+          5,
+          309,
+          28
+        ],
+        "end_loc": [
+          1,
+          321,
+          1,
+          321,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 48,
+        "name": "createMessage<DuelAdminWithdrawal>",
+        "return_ty_idx": 57,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 85
+          }
+        ]
+      },
+      {
+        "f_idx": 49,
+        "name": "contractConfig",
+        "return_ty_idx": 86,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          745,
+          9,
+          745,
+          23
+        ],
+        "end_loc": [
+          1,
+          758,
+          1,
+          758,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 50,
+        "name": "offerData",
+        "return_ty_idx": 39,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          760,
+          9,
+          760,
+          18
+        ],
+        "end_loc": [
+          1,
+          763,
+          1,
+          763,
+          2
+        ],
+        "params": [
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 51,
+        "name": "duelData",
+        "return_ty_idx": 47,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          765,
+          9,
+          765,
+          17
+        ],
+        "end_loc": [
+          1,
+          768,
+          1,
+          768,
+          2
+        ],
+        "params": [
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 52,
+        "name": "duelBoostData",
+        "return_ty_idx": 87,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          770,
+          9,
+          770,
+          22
+        ],
+        "end_loc": [
+          1,
+          785,
+          1,
+          785,
+          2
+        ],
+        "params": [
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 53,
+        "name": "directOfferData",
+        "return_ty_idx": 41,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          787,
+          9,
+          787,
+          24
+        ],
+        "end_loc": [
+          1,
+          790,
+          1,
+          790,
+          2
+        ],
+        "params": [
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 54,
+        "name": "activeOffer",
+        "return_ty_idx": 11,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          792,
+          9,
+          792,
+          20
+        ],
+        "end_loc": [
+          1,
+          795,
+          1,
+          795,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 55,
+        "name": "map<address, uint64>.mustGet",
+        "return_ty_idx": 11,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 56,
+        "name": "adminState",
+        "return_ty_idx": 88,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          797,
+          9,
+          797,
+          19
+        ],
+        "end_loc": [
+          1,
+          806,
+          1,
+          806,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "DuelEscrow",
+    "author": "LOOP",
+    "version": "1.5.0",
+    "description": "Address-bound TON escrow with a guaranteed boost response window, commit-reveal and holder fee permits",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OpenOffer"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "HolderFeePermit"
+      },
+      {
+        "kind": "bitsN",
+        "n": 512
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 17
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CancelOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MatchOffers"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Reveal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExpireOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExpireDuel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "SetPaused"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OpenDirectOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AcceptDirectOffer"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DirectAcceptance"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 27
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelFundReserve"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelWithdrawSurplus"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetTreasury"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelSetOwner"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BoostDuel"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OfferMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OfferData"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DirectOfferData"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 39
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 37
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 42
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "DuelMap"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelData"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 45
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 46
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ActiveOfferMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "UsedOfferMap"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 5
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OfferRefund"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelPayout"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ProtocolFee"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelAdminWithdrawal"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractConfigView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelBoostView"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DuelAdminStateView"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "HolderFeePermit",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "signature",
+            "ty_idx": 16
+          }
+        ],
+        "description": "Backend Ed25519 proof that the offer owner holds PLUSH BRICK. The permit is\ndomain-separated and bound to the network, contract, offer id, owner wallet\nand expiry, so it cannot be replayed for another player or deployment. A\nvalid permit marks the offer fee-exempt: if it wins, no protocol fee is\nwithheld from the payout."
+      },
+      {
+        "kind": "struct",
+        "name": "OpenOffer",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 1280265985,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "counterOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "holder",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CancelOffer",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 1280265986,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MatchOffers",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 1280265987,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "firstOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "secondOfferId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Reveal",
+        "ty_idx": 21,
+        "prefix": {
+          "prefix_num": 1280265988,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "secret",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExpireOffer",
+        "ty_idx": 22,
+        "prefix": {
+          "prefix_num": 1280265989,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExpireDuel",
+        "ty_idx": 23,
+        "prefix": {
+          "prefix_num": 1280265990,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "SetPaused",
+        "ty_idx": 24,
+        "prefix": {
+          "prefix_num": 1280265991,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OpenDirectOffer",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 1280265992,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "inviteId",
+            "ty_idx": 13
+          },
+          {
+            "name": "holder",
+            "ty_idx": 18
+          }
+        ],
+        "description": "Opens a Telegram direct invite. `inviteId` is public and only identifies\nthe invite; acceptance still requires a backend Ed25519 permit bound to the\naccepting wallet address."
+      },
+      {
+        "kind": "struct",
+        "name": "DirectAcceptance",
+        "ty_idx": 27,
+        "fields": [
+          {
+            "name": "counterOfferId",
+            "ty_idx": 11
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "signature",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AcceptDirectOffer",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 1280265993,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "acceptance",
+            "ty_idx": 28
+          },
+          {
+            "name": "holder",
+            "ty_idx": 18
+          }
+        ],
+        "description": "Atomically opens the invited wallet's complementary offer, verifies its\naddress-bound permit and matches the pair."
+      },
+      {
+        "kind": "struct",
+        "name": "DuelFundReserve",
+        "ty_idx": 29,
+        "prefix": {
+          "prefix_num": 1280265994,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelWithdrawSurplus",
+        "ty_idx": 30,
+        "prefix": {
+          "prefix_num": 1280265995,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetFee",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 1280265996,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetTreasury",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 1280265997,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelSetOwner",
+        "ty_idx": 33,
+        "prefix": {
+          "prefix_num": 1280265998,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BoostDuel",
+        "ty_idx": 34,
+        "prefix": {
+          "prefix_num": 1280265999,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "expectedRevision",
+            "ty_idx": 14
+          },
+          {
+            "name": "minChanceBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          }
+        ],
+        "description": "Adds a verified amount to one side of a matched duel while its boost window is open.\n`expectedRevision` and `minChanceBps` protect wallet transactions from stale ordering."
+      },
+      {
+        "kind": "struct",
+        "name": "DuelPayout",
+        "ty_idx": 53,
+        "prefix": {
+          "prefix_num": 1280266001,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "reason",
+            "ty_idx": 38
+          }
+        ],
+        "description": "Attached to every terminal winner transfer so indexers can project the result."
+      },
+      {
+        "kind": "struct",
+        "name": "OfferRefund",
+        "ty_idx": 52,
+        "prefix": {
+          "prefix_num": 1280266002,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          },
+          {
+            "name": "reason",
+            "ty_idx": 38
+          }
+        ],
+        "description": "Attached to unmatched or no-reveal refunds."
+      },
+      {
+        "kind": "struct",
+        "name": "ProtocolFee",
+        "ty_idx": 54,
+        "prefix": {
+          "prefix_num": 1280266003,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "Attached to the protocol fee transfer."
+      },
+      {
+        "kind": "struct",
+        "name": "DuelAdminWithdrawal",
+        "ty_idx": 55,
+        "prefix": {
+          "prefix_num": 1280266004,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OfferMap",
+        "ty_idx": 36,
+        "target_ty_idx": 43
+      },
+      {
+        "kind": "alias",
+        "name": "DuelMap",
+        "ty_idx": 44,
+        "target_ty_idx": 47
+      },
+      {
+        "kind": "alias",
+        "name": "ActiveOfferMap",
+        "ty_idx": 48,
+        "target_ty_idx": 49
+      },
+      {
+        "kind": "alias",
+        "name": "UsedOfferMap",
+        "ty_idx": 50,
+        "target_ty_idx": 51
+      },
+      {
+        "kind": "struct",
+        "name": "DirectOfferData",
+        "ty_idx": 39,
+        "fields": [
+          {
+            "name": "inviteId",
+            "ty_idx": 13
+          },
+          {
+            "name": "opponent",
+            "ty_idx": 40
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OfferData",
+        "ty_idx": 37,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "commitment",
+            "ty_idx": 13
+          },
+          {
+            "name": "chanceBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "totalPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "stake",
+            "ty_idx": 6
+          },
+          {
+            "name": "expiresAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "state",
+            "ty_idx": 38
+          },
+          {
+            "name": "feeExempt",
+            "ty_idx": 5
+          },
+          {
+            "name": "direct",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelData",
+        "ty_idx": 45,
+        "fields": [
+          {
+            "name": "offerAId",
+            "ty_idx": 11
+          },
+          {
+            "name": "offerBId",
+            "ty_idx": 11
+          },
+          {
+            "name": "boostDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "hardDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "boostRevision",
+            "ty_idx": 14
+          },
+          {
+            "name": "secretA",
+            "ty_idx": 13
+          },
+          {
+            "name": "secretB",
+            "ty_idx": 13
+          },
+          {
+            "name": "revealedMask",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 35,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "inviteSignerPublicKey",
+            "ty_idx": 13
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          },
+          {
+            "name": "offers",
+            "ty_idx": 36
+          },
+          {
+            "name": "duels",
+            "ty_idx": 44
+          },
+          {
+            "name": "activeOffers",
+            "ty_idx": 48
+          },
+          {
+            "name": "usedOfferIds",
+            "ty_idx": 50
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ContractConfigView",
+        "ty_idx": 56,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "networkId",
+            "ty_idx": 8
+          },
+          {
+            "name": "inviteSignerPublicKey",
+            "ty_idx": 13
+          },
+          {
+            "name": "contractAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          },
+          {
+            "name": "holderFeeSupported",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelAdminStateView",
+        "ty_idx": 58,
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "treasury",
+            "ty_idx": 7
+          },
+          {
+            "name": "feeBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "paused",
+            "ty_idx": 5
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DuelBoostView",
+        "ty_idx": 57,
+        "fields": [
+          {
+            "name": "stakeA",
+            "ty_idx": 6
+          },
+          {
+            "name": "stakeB",
+            "ty_idx": 6
+          },
+          {
+            "name": "chanceABps",
+            "ty_idx": 14
+          },
+          {
+            "name": "chanceBBps",
+            "ty_idx": 14
+          },
+          {
+            "name": "boostDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "hardDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "revealDeadline",
+            "ty_idx": 9
+          },
+          {
+            "name": "boostRevision",
+            "ty_idx": 14
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 35
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      },
+      {
+        "body_ty_idx": 21
+      },
+      {
+        "body_ty_idx": 22
+      },
+      {
+        "body_ty_idx": 23
+      },
+      {
+        "body_ty_idx": 24
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      },
+      {
+        "body_ty_idx": 29
+      },
+      {
+        "body_ty_idx": 30
+      },
+      {
+        "body_ty_idx": 31
+      },
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 33
+      },
+      {
+        "body_ty_idx": 34
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 52
+      },
+      {
+        "body_ty_idx": 53
+      },
+      {
+        "body_ty_idx": 54
+      },
+      {
+        "body_ty_idx": 55
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 94616,
+        "name": "contractConfig",
+        "parameters": [],
+        "return_ty_idx": 56
+      },
+      {
+        "tvm_method_id": 100877,
+        "name": "offerData",
+        "parameters": [
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 37
+      },
+      {
+        "tvm_method_id": 82385,
+        "name": "duelData",
+        "parameters": [
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 45
+      },
+      {
+        "tvm_method_id": 92203,
+        "name": "duelBoostData",
+        "parameters": [
+          {
+            "name": "duelId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 57
+      },
+      {
+        "tvm_method_id": 103758,
+        "name": "directOfferData",
+        "parameters": [
+          {
+            "name": "offerId",
+            "ty_idx": 11
+          }
+        ],
+        "return_ty_idx": 39
+      },
+      {
+        "tvm_method_id": 106493,
+        "name": "activeOffer",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 11
+      },
+      {
+        "tvm_method_id": 129928,
+        "name": "adminState",
+        "parameters": [],
+        "return_ty_idx": 58
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotOwner",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.Paused",
+        "err_code": 101
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.OfferAlreadyUsed",
+        "err_code": 102
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.OwnerAlreadyActive",
+        "err_code": 103
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.OfferMissing",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.OfferNotOpen",
+        "err_code": 105
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DuelMissing",
+        "err_code": 106
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidChance",
+        "err_code": 107
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidPool",
+        "err_code": 108
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidExpiry",
+        "err_code": 109
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientValue",
+        "err_code": 110
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.IncompatibleOffers",
+        "err_code": 111
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.SameOwner",
+        "err_code": 112
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RevealClosed",
+        "err_code": 113
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongRevealer",
+        "err_code": 114
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.AlreadyRevealed",
+        "err_code": 115
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidCommitment",
+        "err_code": 116
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.TooEarly",
+        "err_code": 117
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidFee",
+        "err_code": 118
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidOfferId",
+        "err_code": 119
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DirectInviteRequired",
+        "err_code": 120
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidDirectPermit",
+        "err_code": 121
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DirectPermitExpired",
+        "err_code": 122
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidAdminAmount",
+        "err_code": 123
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InsufficientSurplus",
+        "err_code": 124
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.MustBePaused",
+        "err_code": 125
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidTreasury",
+        "err_code": 126
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidOwner",
+        "err_code": 127
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.ActiveValueLocked",
+        "err_code": 129
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BoostClosed",
+        "err_code": 130
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidBoost",
+        "err_code": 131
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.StaleBoost",
+        "err_code": 132
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.RevealNotOpen",
+        "err_code": 133
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidHolderPermit",
+        "err_code": 134
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.HolderPermitExpired",
+        "err_code": 135
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.0"
+  },
+  "tolkVersion": "1.4.0",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/DuelEscrow.tolk",
+      "contents": "import \"errors\"\nimport \"messages\"\nimport \"storage\"\n\nconst BASIS_POINTS = 10_000\nconst MIN_POOL = 1_000_000_000\nconst MAX_POOL = 100_000_000_000\nconst OPEN_GAS_BUFFER = 50_000_000\nconst MIN_CALL_GAS = 20_000_000\nconst WITHDRAW_GAS_BUFFER = 50_000_000\nconst MIN_CONTRACT_RESERVE = 200_000_000\nconst MIN_EXPIRY_DELAY = 30\nconst MAX_EXPIRY_DELAY = 3_600\nconst REVEAL_WINDOW = 300\nconst BOOST_WINDOW = 60\nconst BOOST_EXTENSION = 20\nconst BOOST_HARD_WINDOW = 180\nconst MIN_BOOST = 100_000_000\nconst MAX_CHANCE_BPS = 9_000\nconst MIN_CHANCE_BPS = 1_000\nconst COMMITMENT_DOMAIN = 0x4C4F4F60\nconst OUTCOME_DOMAIN = 0x4C4F4F61\nconst DIRECT_ACCEPT_DOMAIN = 0x4C4F4F62\nconst HOLDER_FEE_DOMAIN = 0x4C4F4F63\n\nconst REASON_BOTH_REVEALED = 1\nconst REASON_ONLY_REVEALER = 2\nconst REASON_CANCELLED = 3\nconst REASON_OFFER_EXPIRED = 4\nconst REASON_NO_REVEALS = 5\n\ncontract DuelEscrow {\n    author: \"LOOP\"\n    version: \"1.5.0\"\n    description: \"Address-bound TON escrow with a guaranteed boost response window, commit-reveal and holder fee permits\"\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\ntype AllowedMessage =\n    | OpenOffer\n    | CancelOffer\n    | MatchOffers\n    | Reveal\n    | ExpireOffer\n    | ExpireDuel\n    | SetPaused\n    | OpenDirectOffer\n    | AcceptDirectOffer\n    | DuelFundReserve\n    | DuelWithdrawSurplus\n    | DuelSetFee\n    | DuelSetTreasury\n    | DuelSetOwner\n    | BoostDuel\n\nfun validChance(chanceBps: uint16): bool {\n    return chanceBps == 2_500 || chanceBps == 5_000 || chanceBps == 7_500;\n}\n\nfun stakeFor(totalPool: coins, chanceBps: uint16): coins {\n    return mulDivFloor(totalPool, chanceBps, BASIS_POINTS);\n}\n\nfun commitmentHash(\n    networkId: int32,\n    offerId: uint64,\n    owner: address,\n    secret: uint256,\n): uint256 {\n    return beginCell()\n        .storeUint(COMMITMENT_DOMAIN, 32)\n        .storeInt(networkId, 32)\n        .storeAddress(contract.getAddress())\n        .storeUint(offerId, 64)\n        .storeAddress(owner)\n        .storeUint(secret, 256)\n        .hash();\n}\n\nfun holderFeeHash(\n    networkId: int32,\n    offerId: uint64,\n    owner: address,\n    validUntil: uint32,\n): uint256 {\n    return beginCell()\n        .storeUint(HOLDER_FEE_DOMAIN, 32)\n        .storeInt(networkId, 32)\n        .storeAddress(contract.getAddress())\n        .storeUint(offerId, 64)\n        .storeAddress(owner)\n        .storeUint(validUntil, 32)\n        .hash();\n}\n\nfun directAcceptHash(\n    networkId: int32,\n    inviteId: uint256,\n    counterOfferId: uint64,\n    invitedAddress: address,\n    validUntil: uint32,\n): uint256 {\n    return beginCell()\n        .storeUint(DIRECT_ACCEPT_DOMAIN, 32)\n        .storeInt(networkId, 32)\n        .storeAddress(contract.getAddress())\n        .storeUint(inviteId, 256)\n        .storeUint(counterOfferId, 64)\n        .storeAddress(invitedAddress)\n        .storeUint(validUntil, 32)\n        .hash();\n}\n\nfun Storage.verifyHolderPermit(\n    self,\n    owner: address,\n    offerId: uint64,\n    holder: Cell<HolderFeePermit>?,\n): bool {\n    if (holder == null) {\n        return false;\n    }\n    val permit = holder.load();\n    assert (permit.validUntil >= blockchain.now()) throw Errors.HolderPermitExpired;\n    assert (\n        permit.validUntil <= blockchain.now() + MAX_EXPIRY_DELAY\n    ) throw Errors.HolderPermitExpired;\n    assert (\n        isSignatureValid(\n            holderFeeHash(self.networkId, offerId, owner, permit.validUntil),\n            permit.signature as slice,\n            self.inviteSignerPublicKey,\n        )\n    ) throw Errors.InvalidHolderPermit;\n    return true;\n}\n\nfun Storage.addOpenOffer(\n    mutate self,\n    owner: address,\n    valueCoins: coins,\n    offerId: uint64,\n    commitment: uint256,\n    chanceBps: uint16,\n    totalPool: coins,\n    expiresAt: uint32,\n    direct: DirectOfferData,\n    holder: Cell<HolderFeePermit>?,\n): void {\n    assert (self.feeBps <= 1_000) throw Errors.InvalidFee;\n    assert (offerId != 0) throw Errors.InvalidOfferId;\n    assert (validChance(chanceBps)) throw Errors.InvalidChance;\n    assert (\n        totalPool >= MIN_POOL && totalPool <= MAX_POOL && totalPool % 4 == 0\n    ) throw Errors.InvalidPool;\n    assert (\n        expiresAt >= blockchain.now() + MIN_EXPIRY_DELAY &&\n        expiresAt <= blockchain.now() + MAX_EXPIRY_DELAY\n    ) throw Errors.InvalidExpiry;\n    assert (!self.usedOfferIds.exists(offerId)) throw Errors.OfferAlreadyUsed;\n    assert (!self.activeOffers.exists(owner)) throw Errors.OwnerAlreadyActive;\n\n    val feeExempt = self.verifyHolderPermit(owner, offerId, holder);\n    val stake = stakeFor(totalPool, chanceBps);\n    assert (valueCoins >= stake + OPEN_GAS_BUFFER) throw Errors.InsufficientValue;\n    self\n        .offers\n        .set(\n            offerId,\n            OfferData {\n                owner,\n                commitment,\n                chanceBps,\n                totalPool,\n                stake,\n                expiresAt,\n                state: OFFER_OPEN,\n                feeExempt,\n                direct: direct.toCell(),\n            }.toCell(),\n        );\n    self.activeOffers.set(owner, offerId);\n    self.usedOfferIds.set(offerId, true);\n    self.locked += stake;\n}\n\nfun Storage.matchOpenOffers(\n    mutate self,\n    firstOfferId: uint64,\n    secondOfferId: uint64,\n    allowDirect: bool,\n): uint64 {\n    assert (firstOfferId != secondOfferId) throw Errors.IncompatibleOffers;\n\n    var first = self.loadOffer(firstOfferId);\n    var second = self.loadOffer(secondOfferId);\n    assert (first.state == OFFER_OPEN && second.state == OFFER_OPEN) throw Errors.OfferNotOpen;\n    assert (first.owner != second.owner) throw Errors.SameOwner;\n    assert (first.totalPool == second.totalPool) throw Errors.IncompatibleOffers;\n    assert (first.chanceBps + second.chanceBps == BASIS_POINTS) throw Errors.IncompatibleOffers;\n    assert (\n        first.expiresAt > blockchain.now() && second.expiresAt > blockchain.now()\n    ) throw Errors.InvalidExpiry;\n\n    val firstDirect = first.direct.load();\n    val secondDirect = second.direct.load();\n    val bothAfk = firstDirect.inviteId == 0 && firstDirect.opponent == null &&\n    secondDirect.inviteId == 0 &&\n    secondDirect.opponent == null;\n    val addressBound = firstDirect.opponent != null && secondDirect.opponent != null &&\n    firstDirect.opponent! == second.owner &&\n    secondDirect.opponent! == first.owner;\n    assert (bothAfk || (allowDirect && addressBound)) throw Errors.IncompatibleOffers;\n\n    first.state = OFFER_MATCHED;\n    second.state = OFFER_MATCHED;\n    self.offers.set(firstOfferId, first.toCell());\n    self.offers.set(secondOfferId, second.toCell());\n\n    var offerAId = firstOfferId;\n    var offerBId = secondOfferId;\n    if (firstOfferId > secondOfferId) {\n        offerAId = secondOfferId;\n        offerBId = firstOfferId;\n    }\n    val duelId = offerBId;\n    self\n        .duels\n        .set(\n            duelId,\n            DuelData {\n                offerAId,\n                offerBId,\n                boostDeadline: blockchain.now() + BOOST_WINDOW,\n                hardDeadline: blockchain.now() + BOOST_HARD_WINDOW,\n                revealDeadline: blockchain.now() + BOOST_WINDOW + REVEAL_WINDOW,\n                boostRevision: 0,\n                secretA: 0,\n                secretB: 0,\n                revealedMask: 0,\n            }.toCell(),\n        );\n    return duelId;\n}\n\nfun Storage.removeMatchedDuel(mutate self, duelId: uint64, duel: DuelData): void {\n    val offerA = self.loadOffer(duel.offerAId);\n    val offerB = self.loadOffer(duel.offerBId);\n    val totalLocked = offerA.stake + offerB.stake;\n    assert (self.locked >= totalLocked) throw Errors.InsufficientValue;\n\n    self.locked -= totalLocked;\n    self.activeOffers.delete(offerA.owner);\n    self.activeOffers.delete(offerB.owner);\n    self.offers.delete(duel.offerAId);\n    self.offers.delete(duel.offerBId);\n    self.duels.delete(duelId);\n}\n\nfun sendRefund(queryId: uint64, offerId: uint64, to: address, amount: coins, reason: uint8) {\n    val refundMessage = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: amount,\n        body: OfferRefund { queryId, offerId, reason },\n    });\n    refundMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sendWinner(\n    queryId: uint64,\n    duelId: uint64,\n    offerId: uint64,\n    to: address,\n    amount: coins,\n    reason: uint8,\n) {\n    val payoutMessage = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value: amount,\n        body: DuelPayout { queryId, duelId, offerId, reason },\n    });\n    payoutMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sendFee(queryId: uint64, duelId: uint64, to: address, amount: coins) {\n    if (amount > 0) {\n        val feeMessage = createMessage({\n            bounce: BounceMode.NoBounce,\n            dest: to,\n            value: amount,\n            body: ProtocolFee { queryId, duelId },\n        });\n        feeMessage.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    }\n}\n\nfun Storage.withdrawableBalance(self, balance: coins): coins {\n    val protectedBalance = self.locked + MIN_CONTRACT_RESERVE;\n    return balance > protectedBalance ? balance - protectedBalance : 0;\n}\n\nfun Storage.requireOwner(self, sender: address) {\n    assert (self.owner == sender) throw Errors.NotOwner;\n}\n\nfun sendDuelAdminWithdrawal(\n    queryId: uint64,\n    treasury: address,\n    amount: coins,\n) {\n    val withdrawal = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: treasury,\n        value: amount,\n        body: DuelAdminWithdrawal { queryId, amount },\n    });\n    withdrawal.send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun Storage.settleWinner(\n    mutate self,\n    queryId: uint64,\n    duelId: uint64,\n    duel: DuelData,\n    winnerOfferId: uint64,\n    reason: uint8,\n) {\n    val offerA = self.loadOffer(duel.offerAId);\n    val offerB = self.loadOffer(duel.offerBId);\n    val winner = winnerOfferId == duel.offerAId ? offerA : offerB;\n    val totalPool = offerA.stake + offerB.stake;\n    // A verified PLUSH BRICK holder pays no protocol fee on a won duel. The\n    // exemption was proven by a signed permit when the offer was opened; it\n    // never changes the chance math, only the fee withheld from the winner.\n    val fee = winner.feeExempt ? 0 : mulDivFloor(totalPool, self.feeBps, BASIS_POINTS);\n    val payout = totalPool - fee;\n\n    self.removeMatchedDuel(duelId, duel);\n    self.save();\n    sendWinner(\n        queryId,\n        duelId,\n        winnerOfferId,\n        winner.owner,\n        payout,\n        reason,\n    );\n    sendFee(queryId, duelId, self.treasury, fee);\n}\n\nfun Storage.settleRevealed(mutate self, queryId: uint64, duelId: uint64, duel: DuelData) {\n    val offerA = self.loadOffer(duel.offerAId);\n    val offerB = self.loadOffer(duel.offerBId);\n    val totalPool = offerA.stake + offerB.stake;\n    val outcome = beginCell()\n        .storeUint(OUTCOME_DOMAIN, 32)\n        .storeInt(self.networkId, 32)\n        .storeAddress(contract.getAddress())\n        .storeUint(duelId, 64)\n        .storeRef(\n            beginCell()\n                .storeUint(duel.offerAId, 64)\n                .storeUint(duel.secretA, 256)\n                .storeUint(duel.offerBId, 64)\n                .storeUint(duel.secretB, 256)\n                .endCell(),\n        )\n        .hash();\n    val winnerOfferId = outcome % totalPool < offerA.stake ? duel.offerAId : duel.offerBId;\n    self.settleWinner(\n        queryId,\n        duelId,\n        duel,\n        winnerOfferId,\n        REASON_BOTH_REVEALED,\n    );\n}\n\nfun Storage.boostDuel(\n    mutate self,\n    sender: address,\n    valueCoins: coins,\n    duelId: uint64,\n    offerId: uint64,\n    amount: coins,\n    expectedRevision: uint16,\n    minChanceBps: uint16,\n    validUntil: uint32,\n): void {\n    assert (!self.paused) throw Errors.Paused;\n    var duel = self.loadDuel(duelId);\n    // A boost must leave the opponent a full extension to answer in. Without\n    // this, alternating boosts could walk the soft deadline up to the hard cap\n    // and the last one would land in the same second the window shuts,\n    // provably unanswerable. That is value-neutral under proportional stakes,\n    // but the product promises a response window, so the contract enforces one\n    // instead of the interface explaining its absence.\n    assert (\n        blockchain.now() <= duel.boostDeadline &&\n        blockchain.now() + BOOST_EXTENSION <= duel.hardDeadline\n    ) throw Errors.BoostClosed;\n    assert (\n        blockchain.now() <= validUntil && validUntil <= duel.hardDeadline\n    ) throw Errors.InvalidExpiry;\n    assert (duel.boostRevision == expectedRevision) throw Errors.StaleBoost;\n    assert (amount >= MIN_BOOST) throw Errors.InvalidBoost;\n    assert (valueCoins >= amount + OPEN_GAS_BUFFER) throw Errors.InsufficientValue;\n    assert (offerId == duel.offerAId || offerId == duel.offerBId) throw Errors.IncompatibleOffers;\n\n    var offerA = self.loadOffer(duel.offerAId);\n    var offerB = self.loadOffer(duel.offerBId);\n    assert (\n        offerA.state == OFFER_MATCHED && offerB.state == OFFER_MATCHED\n    ) throw Errors.OfferNotOpen;\n    val boostedOffer = offerId == duel.offerAId ? offerA : offerB;\n    assert (boostedOffer.owner == sender) throw Errors.NotOwner;\n\n    if (offerId == duel.offerAId) {\n        offerA.stake += amount;\n    } else {\n        offerB.stake += amount;\n    }\n    val totalPool = offerA.stake + offerB.stake;\n    assert (totalPool <= MAX_POOL) throw Errors.InvalidPool;\n    val chanceA = mulDivFloor(offerA.stake, BASIS_POINTS, totalPool);\n    val chanceB = BASIS_POINTS - chanceA;\n    assert (\n        chanceA >= MIN_CHANCE_BPS && chanceA <= MAX_CHANCE_BPS && chanceB >= MIN_CHANCE_BPS &&\n        chanceB <= MAX_CHANCE_BPS\n    ) throw Errors.InvalidBoost;\n    val boostedChance = offerId == duel.offerAId ? chanceA : chanceB;\n    assert (boostedChance >= minChanceBps) throw Errors.InvalidBoost;\n\n    offerA.chanceBps = chanceA;\n    offerB.chanceBps = chanceB;\n    offerA.totalPool = totalPool;\n    offerB.totalPool = totalPool;\n    self.offers.set(duel.offerAId, offerA.toCell());\n    self.offers.set(duel.offerBId, offerB.toCell());\n    self.locked += amount;\n\n    val extendedDeadline = blockchain.now() + BOOST_EXTENSION;\n    if (extendedDeadline > duel.boostDeadline) {\n        duel.boostDeadline = extendedDeadline < duel.hardDeadline\n            ? extendedDeadline\n            : duel.hardDeadline;\n        duel.revealDeadline = duel.boostDeadline + REVEAL_WINDOW;\n    }\n    duel.boostRevision += 1;\n    self.duels.set(duelId, duel.toCell());\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n\n    match (msg) {\n        OpenOffer => {\n            var storage = Storage.load();\n            assert (!storage.paused) throw Errors.Paused;\n            storage.addOpenOffer(\n                in.senderAddress,\n                in.valueCoins,\n                msg.offerId,\n                msg.commitment,\n                msg.chanceBps,\n                msg.totalPool,\n                msg.expiresAt,\n                DirectOfferData {\n                    inviteId: 0,\n                    opponent: null,\n                },\n                msg.holder,\n            );\n\n            if (msg.counterOfferId != 0) {\n                storage.matchOpenOffers(msg.counterOfferId, msg.offerId, false);\n            }\n            storage.save();\n        }\n        OpenDirectOffer => {\n            var storage = Storage.load();\n            assert (!storage.paused) throw Errors.Paused;\n            assert (msg.inviteId != 0) throw Errors.DirectInviteRequired;\n            storage.addOpenOffer(\n                in.senderAddress,\n                in.valueCoins,\n                msg.offerId,\n                msg.commitment,\n                msg.chanceBps,\n                msg.totalPool,\n                msg.expiresAt,\n                DirectOfferData {\n                    inviteId: msg.inviteId,\n                    opponent: null,\n                },\n                msg.holder,\n            );\n            storage.save();\n        }\n        AcceptDirectOffer => {\n            var storage = Storage.load();\n            assert (!storage.paused) throw Errors.Paused;\n            val acceptance = msg.acceptance.load();\n            assert (\n                acceptance.validUntil >= blockchain.now() && acceptance.validUntil <= msg.expiresAt\n            ) throw Errors.DirectPermitExpired;\n            var counter = storage.loadOffer(acceptance.counterOfferId);\n            assert (counter.owner != in.senderAddress) throw Errors.SameOwner;\n            var counterDirect = counter.direct.load();\n            assert (\n                counterDirect.inviteId != 0 && counterDirect.opponent == null\n            ) throw Errors.DirectInviteRequired;\n            val permitHash = directAcceptHash(\n                storage.networkId,\n                counterDirect.inviteId,\n                acceptance.counterOfferId,\n                in.senderAddress,\n                acceptance.validUntil,\n            );\n            assert (\n                isSignatureValid(\n                    permitHash,\n                    acceptance.signature as slice,\n                    storage.inviteSignerPublicKey,\n                )\n            ) throw Errors.InvalidDirectPermit;\n\n            storage.addOpenOffer(\n                in.senderAddress,\n                in.valueCoins,\n                msg.offerId,\n                msg.commitment,\n                msg.chanceBps,\n                msg.totalPool,\n                msg.expiresAt,\n                DirectOfferData {\n                    inviteId: 0,\n                    opponent: counter.owner,\n                },\n                msg.holder,\n            );\n            counterDirect.opponent = in.senderAddress;\n            counter.direct = counterDirect.toCell();\n            storage.offers.set(acceptance.counterOfferId, counter.toCell());\n            storage.matchOpenOffers(acceptance.counterOfferId, msg.offerId, true);\n            storage.save();\n        }\n        CancelOffer => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            val offer = storage.loadOffer(msg.offerId);\n            assert (offer.state == OFFER_OPEN) throw Errors.OfferNotOpen;\n            assert (offer.owner == in.senderAddress) throw Errors.NotOwner;\n            assert (storage.locked >= offer.stake) throw Errors.InsufficientValue;\n\n            storage.locked -= offer.stake;\n            storage.activeOffers.delete(offer.owner);\n            storage.offers.delete(msg.offerId);\n            storage.save();\n            sendRefund(msg.queryId, msg.offerId, offer.owner, offer.stake, REASON_CANCELLED);\n        }\n        MatchOffers => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            assert (!storage.paused) throw Errors.Paused;\n            storage.matchOpenOffers(msg.firstOfferId, msg.secondOfferId, false);\n            storage.save();\n        }\n        Reveal => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            var duel = storage.loadDuel(msg.duelId);\n            assert (blockchain.now() > duel.boostDeadline) throw Errors.RevealNotOpen;\n            assert (blockchain.now() <= duel.revealDeadline) throw Errors.RevealClosed;\n            assert (\n                msg.offerId == duel.offerAId || msg.offerId == duel.offerBId\n            ) throw Errors.WrongRevealer;\n            val offer = storage.loadOffer(msg.offerId);\n            assert (offer.owner == in.senderAddress) throw Errors.WrongRevealer;\n            assert (\n                commitmentHash(storage.networkId, msg.offerId, offer.owner, msg.secret) ==\n                offer.commitment\n            ) throw Errors.InvalidCommitment;\n\n            if (msg.offerId == duel.offerAId) {\n                assert ((duel.revealedMask & REVEALED_A) == 0) throw Errors.AlreadyRevealed;\n                duel.secretA = msg.secret;\n                duel.revealedMask |= REVEALED_A;\n            } else {\n                assert ((duel.revealedMask & REVEALED_B) == 0) throw Errors.AlreadyRevealed;\n                duel.secretB = msg.secret;\n                duel.revealedMask |= REVEALED_B;\n            }\n\n            if (duel.revealedMask == (REVEALED_A | REVEALED_B)) {\n                storage.settleRevealed(msg.queryId, msg.duelId, duel);\n            } else {\n                storage.duels.set(msg.duelId, duel.toCell());\n                storage.save();\n            }\n        }\n        BoostDuel => {\n            var storage = Storage.load();\n            storage.boostDuel(\n                in.senderAddress,\n                in.valueCoins,\n                msg.duelId,\n                msg.offerId,\n                msg.amount,\n                msg.expectedRevision,\n                msg.minChanceBps,\n                msg.validUntil,\n            );\n            storage.save();\n        }\n        ExpireOffer => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            val offer = storage.loadOffer(msg.offerId);\n            assert (offer.state == OFFER_OPEN) throw Errors.OfferNotOpen;\n            assert (blockchain.now() > offer.expiresAt) throw Errors.TooEarly;\n            assert (storage.locked >= offer.stake) throw Errors.InsufficientValue;\n\n            storage.locked -= offer.stake;\n            storage.activeOffers.delete(offer.owner);\n            storage.offers.delete(msg.offerId);\n            storage.save();\n            sendRefund(msg.queryId, msg.offerId, offer.owner, offer.stake, REASON_OFFER_EXPIRED);\n        }\n        ExpireDuel => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            val duel = storage.loadDuel(msg.duelId);\n            assert (blockchain.now() > duel.revealDeadline) throw Errors.TooEarly;\n\n            if (duel.revealedMask == REVEALED_A) {\n                storage.settleWinner(\n                    msg.queryId,\n                    msg.duelId,\n                    duel,\n                    duel.offerAId,\n                    REASON_ONLY_REVEALER,\n                );\n            } else if (duel.revealedMask == REVEALED_B) {\n                storage.settleWinner(\n                    msg.queryId,\n                    msg.duelId,\n                    duel,\n                    duel.offerBId,\n                    REASON_ONLY_REVEALER,\n                );\n            } else {\n                val offerA = storage.loadOffer(duel.offerAId);\n                val offerB = storage.loadOffer(duel.offerBId);\n                storage.removeMatchedDuel(msg.duelId, duel);\n                storage.save();\n                sendRefund(\n                    msg.queryId,\n                    duel.offerAId,\n                    offerA.owner,\n                    offerA.stake,\n                    REASON_NO_REVEALS,\n                );\n                sendRefund(\n                    msg.queryId,\n                    duel.offerBId,\n                    offerB.owner,\n                    offerB.stake,\n                    REASON_NO_REVEALS,\n                );\n            }\n        }\n        SetPaused => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            storage.paused = msg.paused;\n            storage.save();\n        }\n        DuelFundReserve => {\n            val storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (msg.amount > 0) throw Errors.InvalidAdminAmount;\n            assert (in.valueCoins >= msg.amount + MIN_CALL_GAS) throw Errors.InsufficientValue;\n        }\n        DuelWithdrawSurplus => {\n            assert (in.valueCoins >= WITHDRAW_GAS_BUFFER) throw Errors.InsufficientValue;\n            val originalBalance = contract.getOriginalBalance();\n            assert (originalBalance >= in.valueCoins) throw Errors.InsufficientValue;\n            val storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw Errors.MustBePaused;\n            assert (msg.amount > 0) throw Errors.InvalidAdminAmount;\n            val balanceBeforeCall = originalBalance - in.valueCoins;\n            assert (\n                msg.amount <= storage.withdrawableBalance(balanceBeforeCall)\n            ) throw Errors.InsufficientSurplus;\n            reserveToncoinsOnBalance(\n                storage.locked + MIN_CONTRACT_RESERVE,\n                RESERVE_MODE_EXACT_AMOUNT,\n            );\n            sendDuelAdminWithdrawal(msg.queryId, storage.treasury, msg.amount);\n        }\n        DuelSetFee => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw Errors.MustBePaused;\n            assert (storage.locked == 0) throw Errors.ActiveValueLocked;\n            assert (msg.feeBps <= 1_000) throw Errors.InvalidFee;\n            storage.feeBps = msg.feeBps;\n            storage.save();\n        }\n        DuelSetTreasury => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw Errors.MustBePaused;\n            assert (msg.treasury != contract.getAddress()) throw Errors.InvalidTreasury;\n            storage.treasury = msg.treasury;\n            storage.save();\n        }\n        DuelSetOwner => {\n            assert (in.valueCoins >= MIN_CALL_GAS) throw Errors.InsufficientValue;\n            var storage = Storage.load();\n            storage.requireOwner(in.senderAddress);\n            assert (storage.paused) throw Errors.MustBePaused;\n            assert (\n                msg.owner != storage.owner && msg.owner != contract.getAddress()\n            ) throw Errors.InvalidOwner;\n            storage.owner = msg.owner;\n            storage.save();\n        }\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\nfun onBouncedMessage(_in: InMessageBounced) {}\n\nget fun contractConfig(): ContractConfigView {\n    val storage = Storage.load();\n    return {\n        owner: storage.owner,\n        treasury: storage.treasury,\n        feeBps: storage.feeBps,\n        networkId: storage.networkId,\n        inviteSignerPublicKey: storage.inviteSignerPublicKey,\n        contractAddress: contract.getAddress(),\n        paused: storage.paused,\n        locked: storage.locked,\n        holderFeeSupported: true,\n    };\n}\n\nget fun offerData(offerId: uint64): OfferData {\n    val storage = Storage.load();\n    return storage.loadOffer(offerId);\n}\n\nget fun duelData(duelId: uint64): DuelData {\n    val storage = Storage.load();\n    return storage.loadDuel(duelId);\n}\n\nget fun duelBoostData(duelId: uint64): DuelBoostView {\n    val storage = Storage.load();\n    val duel = storage.loadDuel(duelId);\n    val offerA = storage.loadOffer(duel.offerAId);\n    val offerB = storage.loadOffer(duel.offerBId);\n    return {\n        stakeA: offerA.stake,\n        stakeB: offerB.stake,\n        chanceABps: offerA.chanceBps,\n        chanceBBps: offerB.chanceBps,\n        boostDeadline: duel.boostDeadline,\n        hardDeadline: duel.hardDeadline,\n        revealDeadline: duel.revealDeadline,\n        boostRevision: duel.boostRevision,\n    };\n}\n\nget fun directOfferData(offerId: uint64): DirectOfferData {\n    val storage = Storage.load();\n    return storage.loadOffer(offerId).direct.load();\n}\n\nget fun activeOffer(owner: address): uint64 {\n    val storage = Storage.load();\n    return storage.activeOffers.mustGet(owner, Errors.OfferMissing);\n}\n\nget fun adminState(): DuelAdminStateView {\n    val storage = Storage.load();\n    return {\n        owner: storage.owner,\n        treasury: storage.treasury,\n        feeBps: storage.feeBps,\n        paused: storage.paused,\n        locked: storage.locked,\n    };\n}\n"
+    },
+    {
+      "filename": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/errors.tolk",
+      "contents": "enum Errors {\n    NotOwner = 100\n    Paused = 101\n    OfferAlreadyUsed = 102\n    OwnerAlreadyActive = 103\n    OfferMissing = 104\n    OfferNotOpen = 105\n    DuelMissing = 106\n    InvalidChance = 107\n    InvalidPool = 108\n    InvalidExpiry = 109\n    InsufficientValue = 110\n    IncompatibleOffers = 111\n    SameOwner = 112\n    RevealClosed = 113\n    WrongRevealer = 114\n    AlreadyRevealed = 115\n    InvalidCommitment = 116\n    TooEarly = 117\n    InvalidFee = 118\n    InvalidOfferId = 119\n    DirectInviteRequired = 120\n    InvalidDirectPermit = 121\n    DirectPermitExpired = 122\n    InvalidAdminAmount = 123\n    InsufficientSurplus = 124\n    MustBePaused = 125\n    InvalidTreasury = 126\n    InvalidOwner = 127\n    ActiveValueLocked = 129\n    BoostClosed = 130\n    InvalidBoost = 131\n    StaleBoost = 132\n    RevealNotOpen = 133\n    InvalidHolderPermit = 134\n    HolderPermitExpired = 135\n    InvalidMessage = 0xFFFF\n}\n"
+    },
+    {
+      "filename": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/messages.tolk",
+      "contents": "/// Backend Ed25519 proof that the offer owner holds PLUSH BRICK. The permit is\n/// domain-separated and bound to the network, contract, offer id, owner wallet\n/// and expiry, so it cannot be replayed for another player or deployment. A\n/// valid permit marks the offer fee-exempt: if it wins, no protocol fee is\n/// withheld from the payout.\nstruct HolderFeePermit {\n    validUntil: uint32\n    signature: bits512\n}\n\nstruct (0x4C4F4F01) OpenOffer {\n    queryId: uint64\n    offerId: uint64\n    commitment: uint256\n    chanceBps: uint16\n    totalPool: coins\n    expiresAt: uint32\n    counterOfferId: uint64\n    holder: Cell<HolderFeePermit>?\n}\n\nstruct (0x4C4F4F02) CancelOffer {\n    queryId: uint64\n    offerId: uint64\n}\n\nstruct (0x4C4F4F03) MatchOffers {\n    queryId: uint64\n    firstOfferId: uint64\n    secondOfferId: uint64\n}\n\nstruct (0x4C4F4F04) Reveal {\n    queryId: uint64\n    duelId: uint64\n    offerId: uint64\n    secret: uint256\n}\n\nstruct (0x4C4F4F05) ExpireOffer {\n    queryId: uint64\n    offerId: uint64\n}\n\nstruct (0x4C4F4F06) ExpireDuel {\n    queryId: uint64\n    duelId: uint64\n}\n\nstruct (0x4C4F4F07) SetPaused {\n    queryId: uint64\n    paused: bool\n}\n\n/// Opens a Telegram direct invite. `inviteId` is public and only identifies\n/// the invite; acceptance still requires a backend Ed25519 permit bound to the\n/// accepting wallet address.\nstruct (0x4C4F4F08) OpenDirectOffer {\n    queryId: uint64\n    offerId: uint64\n    commitment: uint256\n    chanceBps: uint16\n    totalPool: coins\n    expiresAt: uint32\n    inviteId: uint256\n    holder: Cell<HolderFeePermit>?\n}\n\nstruct DirectAcceptance {\n    counterOfferId: uint64\n    validUntil: uint32\n    signature: bits512\n}\n\n/// Atomically opens the invited wallet's complementary offer, verifies its\n/// address-bound permit and matches the pair.\nstruct (0x4C4F4F09) AcceptDirectOffer {\n    queryId: uint64\n    offerId: uint64\n    commitment: uint256\n    chanceBps: uint16\n    totalPool: coins\n    expiresAt: uint32\n    acceptance: Cell<DirectAcceptance>\n    holder: Cell<HolderFeePermit>?\n}\n\nstruct (0x4C4F4F0A) DuelFundReserve {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x4C4F4F0B) DuelWithdrawSurplus {\n    queryId: uint64\n    amount: coins\n}\n\nstruct (0x4C4F4F0C) DuelSetFee {\n    queryId: uint64\n    feeBps: uint16\n}\n\nstruct (0x4C4F4F0D) DuelSetTreasury {\n    queryId: uint64\n    treasury: address\n}\n\nstruct (0x4C4F4F0E) DuelSetOwner {\n    queryId: uint64\n    owner: address\n}\n\n/// Adds a verified amount to one side of a matched duel while its boost window is open.\n/// `expectedRevision` and `minChanceBps` protect wallet transactions from stale ordering.\nstruct (0x4C4F4F0F) BoostDuel {\n    queryId: uint64\n    duelId: uint64\n    offerId: uint64\n    amount: coins\n    expectedRevision: uint16\n    minChanceBps: uint16\n    validUntil: uint32\n}\n\n/// Attached to every terminal winner transfer so indexers can project the result.\nstruct (0x4C4F4F11) DuelPayout {\n    queryId: uint64\n    duelId: uint64\n    offerId: uint64\n    reason: uint8\n}\n\n/// Attached to unmatched or no-reveal refunds.\nstruct (0x4C4F4F12) OfferRefund {\n    queryId: uint64\n    offerId: uint64\n    reason: uint8\n}\n\n/// Attached to the protocol fee transfer.\nstruct (0x4C4F4F13) ProtocolFee {\n    queryId: uint64\n    duelId: uint64\n}\n\nstruct (0x4C4F4F14) DuelAdminWithdrawal {\n    queryId: uint64\n    amount: coins\n}\n"
+    },
+    {
+      "filename": "tmp/1ec9366b-8301-427f-9d28-e65cb818e994/contracts/duel/storage.tolk",
+      "contents": "import \"errors\"\n\nconst OFFER_OPEN = 1\nconst OFFER_MATCHED = 2\n\nconst REVEALED_A = 1\nconst REVEALED_B = 2\n\ntype OfferMap = map<uint64, Cell<OfferData>>\n\ntype DuelMap = map<uint64, Cell<DuelData>>\n\ntype ActiveOfferMap = map<address, uint64>\n\ntype UsedOfferMap = map<uint64, bool>\n\nstruct DirectOfferData {\n    inviteId: uint256\n    opponent: address?\n}\n\nstruct OfferData {\n    owner: address\n    commitment: uint256\n    chanceBps: uint16\n    totalPool: coins\n    stake: coins\n    expiresAt: uint32\n    state: uint8\n    feeExempt: bool\n    direct: Cell<DirectOfferData>\n}\n\nstruct DuelData {\n    offerAId: uint64\n    offerBId: uint64\n    boostDeadline: uint32\n    hardDeadline: uint32\n    revealDeadline: uint32\n    boostRevision: uint16\n    secretA: uint256\n    secretB: uint256\n    revealedMask: uint8\n}\n\nstruct Storage {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    networkId: int32\n    inviteSignerPublicKey: uint256\n    paused: bool\n    locked: coins\n    offers: OfferMap\n    duels: DuelMap\n    activeOffers: ActiveOfferMap\n    usedOfferIds: UsedOfferMap\n}\n\nstruct ContractConfigView {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    networkId: int32\n    inviteSignerPublicKey: uint256\n    contractAddress: address\n    paused: bool\n    locked: coins\n    holderFeeSupported: bool\n}\n\nstruct DuelAdminStateView {\n    owner: address\n    treasury: address\n    feeBps: uint16\n    paused: bool\n    locked: coins\n}\n\nstruct DuelBoostView {\n    stakeA: coins\n    stakeB: coins\n    chanceABps: uint16\n    chanceBBps: uint16\n    boostDeadline: uint32\n    hardDeadline: uint32\n    revealDeadline: uint32\n    boostRevision: uint16\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\nfun Storage.loadOffer(self, offerId: uint64): OfferData {\n    return self.offers.mustGet(offerId, Errors.OfferMissing).load();\n}\n\nfun Storage.loadDuel(self, duelId: uint64): DuelData {\n    return self.duels.mustGet(duelId, Errors.DuelMissing).load();\n}\n"
+    }
+  ]
+}
