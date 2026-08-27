@@ -1,0 +1,1548 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Vault.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  DECLPROC handleWithdraw()\n  70202 DECLMETHOD contractVersion()\n  75713 DECLMETHOD vaultInfo()\n  71145 DECLMETHOD feeInfo()\n  111688 DECLMETHOD entitlementOf()\n  120141 DECLMETHOD withdrawnOf()\n  // 8 functions inlined in-place:\n  // - depositGasAllowance (2 calls)\n  // - payoutForwardFee (3 calls)\n  // - minWithdrawValue (2 calls)\n  // - Storage.load (6 calls)\n  // - Storage.save (2 calls)\n  // - handleDeposit (1 call)\n  // - refundChange (2 calls)\n  // - MapLookupResult<Participant>.loadValue (3 calls)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    x{57535744} SDBEGINSQ\n    IFJMP:<{\n      LDGRAMS\n      LDOPTSTDADDR\n      DROP\n      INMSG_SRC\n      INMSG_VALUE\n      2SWAP\n      handleWithdraw() CALLDICT\n    }>\n    DROP\n    INMSG_VALUE\n    c4 PUSH\n    CTOS\n    32 LDU\n    LDGRAMS\n    LDGRAMS\n    LDOPTREF\n    ENDS\n    BALANCE\n    FIRST\n    s5 PUSH\n    SUB\n    s3 PUSH\n    0 PUSHINT\n    s0 s2 XCHG\n    SUB\n    MAX\n    s5 PUSH\n    MIN\n    s0 s5 XCHG\n    0 PUSHINT\n    s0 s6 XCHG\n    SUB\n    3000 PUSHINT\n    s6 PUSH\n    GETGASFEE\n    SUB\n    s1 s5 XCHG\n    MAX\n    ADD\n    s0 s2 XCHG\n    NEWC\n    32 STU\n    SWAP\n    STGRAMS\n    SWAP\n    STGRAMS\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  handleWithdraw() PROC:<{\n    50000000 PUSHINT\n    9500 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    0 PUSHINT\n    s0 s0 PUSH2\n    GETFORWARDFEE\n    ADD\n    MAX\n    s3 PUSH\n    GREATER\n    IFJMP:<{\n      4 BLKDROP\n    }>\n    c4 PUSH\n    CTOS\n    32 LDU\n    LDGRAMS\n    LDGRAMS\n    LDOPTREF\n    ENDS\n    s7 s0 PUSH2\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      8 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    32 LDU\n    LDGRAMS\n    ENDS\n    s3 s1 s5 PUSH3\n    MULDIV\n    OVER\n    SUB\n    s8 PUSH\n    IF:<{\n      s1 s8 XCHG\n      MIN\n    }>ELSE<{\n      s8 POP\n      s0 s7 XCHG\n    }>\n    DUP\n    10000000 PUSHINT\n    LESS\n    IFJMP:<{\n      9 BLKDROP\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      64 PUSHINT\n      SENDRAWMSG\n    }>\n    s7 s7 XCPU\n    ADD\n    SWAP\n    NEWC\n    32 STU\n    SWAP\n    STGRAMS\n    s8 s1 PUXC\n    267 PUSHINT\n    DICTSETB\n    s0 s3 XCHG\n    NEWC\n    32 STU\n    s2 PUSH\n    STGRAMS\n    SWAP\n    STGRAMS\n    s1 s2 XCHG\n    STOPTREF\n    ENDC\n    c4 POP\n    2 PUSHINT\n    RAWRESERVE\n    DUP\n    ISNULL\n    IF:<{\n      DROP\n      s2 PUSH\n    }>ELSE<{\n    }>\n    NEWC\n    b{010000} STSLICECONST\n    STSTDADDR\n    SWAP\n    STGRAMS\n    0 PUSHINT\n    107 STUR\n    ENDC\n    1 PUSHINT\n    SENDRAWMSG\n    9500 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    SUB\n    0 PUSHINT\n    s0 s0 PUSH2\n    GETFORWARDFEE\n    SUB\n    DUP\n    0 GTINT\n    IFJMP:<{\n      NEWC\n      b{010000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      0 PUSHINT\n      107 STUR\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    2DROP\n  }>\n  contractVersion() PROC:<{\n    2 PUSHINT\n  }>\n  vaultInfo() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    LDGRAMS\n    LDGRAMS\n    DROP\n  }>\n  feeInfo() PROC:<{\n    c4 PUSH\n    CTOS\n    3000 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    SWAP\n    32 LDU\n    NIP\n    LDGRAMS\n    DROP\n    0 PUSHINT\n    s0 s0 PUSH2\n    GETFORWARDFEE\n    s1 s2 XCPU\n    ADD\n    50000000 PUSHINT\n    9500 PUSHINT\n    0 PUSHINT\n    GETGASFEE\n    0 PUSHINT\n    s0 s0 PUSH2\n    GETFORWARDFEE\n    ADD\n    MAX\n  }>\n  entitlementOf() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    LDGRAMS\n    NIP\n    LDGRAMS\n    PLDOPTREF\n    s1 s3 XCHG\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      3 BLKDROP\n      0 PUSHINT\n    }>\n    32 LDU\n    LDGRAMS\n    ENDS\n    s3 s1 s3 XCHG3\n    MULDIV\n    SUBR\n  }>\n  withdrawnOf() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    PLDOPTREF\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n    }>\n    32 LDU\n    NIP\n    LDGRAMS\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDwEAAesAART/APSkE/S88sgLAQIBYgIDAgLPBAUCASAHCACrPiR8kDXLCK6mroknPoA+lAw+JL4l1rwAeAw+JftRNDTH/oA+gD0BNH4J28QJaEjcAKhtgkltggFcAahgQu4Jvg2oRW2CaACyMsfAfoCAfoC9ADJ7VSAB9SCCvrwgIElHHD4NnBTAPg4oLYJI7ySXwTg7UTQ0x/6APoA9ATRU3CBAQv0Cm+hjhFfCMjPhQj6UnDPC27JgED7AOHTH/oA0VRzFamEIaEokxi2CJI4B+IgggiYloC5jhFfCcjPhQj6UnDPC27JgED7AOBRd6AByMsfAYAYAsvoCUoKBAQv0QQPIyx8i+gIB+gIS9ADJ7VRy+wIgbpIwIt7Iz4UI+lIB+gJwzwtqyXH7AIElHHD4NqFwUwD4OKEgwgCOEsjPhQgS+lIB+gJwzwtqyXD7AOBbAgFICQoCASANDgIBagsMABm0+D2omhpj/0AfQAYQAAaqOnIAWqnp7UTQgQu4cPg2AdMfMfoAMHBTAPg4URKgggr68ICBJRxw+DZwUwD4OKC2CQBLu0SO1E0NMf+gAx+gD0BROBAQv0Cm+hk18DcOHTH/oA0UMTqYSigAQ7lU3tRNDTHzH6ADH6ADH0BYEBC/QKb6GSMHDh0x8x+gDRg=",
+  "codeHashHex": "7FE8DC5559828383D4E7C068F507EC596F101A23C4233ABD088913653B347416",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/00e32ef8-69db-41b3-8440-047d63a5b320/contracts/src/Vault.tolk",
+        "size_chars": 4581,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3674,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Withdraw"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Participant"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          16
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          23
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 32
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          31
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 34,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          36,
+          37
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 40,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 42,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          46
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultInfo"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FeeInfo"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 21,
+        "struct_name": "MapLookupResult<Participant>",
+        "monomorphic_fields_ty_idx": [
+          22,
+          5
+        ]
+      },
+      {
+        "ty_idx": 26,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          30,
+          35,
+          45,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 18,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 24,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 22
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 33
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 42,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 43
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 36
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 41
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 27,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 28,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 29,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 47,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 30
+          },
+          {
+            "name": "value",
+            "ty_idx": 35
+          },
+          {
+            "name": "dest",
+            "ty_idx": 45
+          },
+          {
+            "name": "body",
+            "ty_idx": 46
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 25,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Participant",
+        "ty_idx": 16,
+        "ident_loc": [
+          1,
+          26,
+          8,
+          26,
+          19
+        ],
+        "fields": [
+          {
+            "name": "shares",
+            "ty_idx": 9
+          },
+          {
+            "name": "withdrawn",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 15,
+        "ident_loc": [
+          1,
+          31,
+          8,
+          31,
+          15
+        ],
+        "fields": [
+          {
+            "name": "totalShares",
+            "ty_idx": 9
+          },
+          {
+            "name": "reserveFloor",
+            "ty_idx": 6
+          },
+          {
+            "name": "distributedCumulative",
+            "ty_idx": 6
+          },
+          {
+            "name": "participants",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Withdraw",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          46,
+          21,
+          46,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 1465079620,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "toAddress",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          51,
+          6,
+          51,
+          20
+        ],
+        "target_ty_idx": 13
+      },
+      {
+        "kind": "struct",
+        "name": "VaultInfo",
+        "ty_idx": 48,
+        "ident_loc": [
+          1,
+          152,
+          8,
+          152,
+          17
+        ],
+        "fields": [
+          {
+            "name": "totalShares",
+            "ty_idx": 9
+          },
+          {
+            "name": "reserveFloor",
+            "ty_idx": 6
+          },
+          {
+            "name": "distributedCumulative",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FeeInfo",
+        "ty_idx": 49,
+        "ident_loc": [
+          1,
+          167,
+          8,
+          167,
+          15
+        ],
+        "fields": [
+          {
+            "name": "depositGasAllowance",
+            "ty_idx": 6
+          },
+          {
+            "name": "payoutForwardFee",
+            "ty_idx": 6
+          },
+          {
+            "name": "minDeployValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minWithdrawValue",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          58,
+          5,
+          58,
+          22
+        ],
+        "end_loc": [
+          1,
+          70,
+          1,
+          70,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "handleDeposit",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          72,
+          5,
+          72,
+          18
+        ],
+        "end_loc": [
+          1,
+          84,
+          1,
+          84,
+          2
+        ],
+        "params": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.load",
+        "return_ty_idx": 15,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          38,
+          13,
+          38,
+          17
+        ],
+        "end_loc": [
+          1,
+          40,
+          1,
+          40,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 3,
+        "name": "Storage.fromCell",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "depositGasAllowance",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          12,
+          5,
+          12,
+          24
+        ],
+        "end_loc": [
+          1,
+          14,
+          1,
+          14,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          42,
+          13,
+          42,
+          17
+        ],
+        "end_loc": [
+          1,
+          44,
+          1,
+          44,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Storage.toCell",
+        "return_ty_idx": 19,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "options",
+            "ty_idx": 20
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "handleWithdraw",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          86,
+          5,
+          86,
+          19
+        ],
+        "end_loc": [
+          1,
+          134,
+          1,
+          134,
+          2
+        ],
+        "params": [
+          {
+            "name": "senderAddress",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "msg",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "minWithdrawValue",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          22,
+          5,
+          22,
+          21
+        ],
+        "end_loc": [
+          1,
+          24,
+          1,
+          24,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 9,
+        "name": "payoutForwardFee",
+        "return_ty_idx": 6,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          17,
+          5,
+          17,
+          21
+        ],
+        "end_loc": [
+          1,
+          19,
+          1,
+          19,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 10,
+        "name": "map<address, Participant>.get",
+        "return_ty_idx": 21,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "refundChange",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          136,
+          5,
+          136,
+          17
+        ],
+        "end_loc": [
+          1,
+          144,
+          1,
+          144,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<void>",
+        "return_ty_idx": 25,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 26
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "MapLookupResult<Participant>.loadValue",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "Participant.fromSlice",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "map<address, Participant>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "contractVersion",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          148,
+          9,
+          148,
+          24
+        ],
+        "end_loc": [
+          1,
+          150,
+          1,
+          150,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 17,
+        "name": "vaultInfo",
+        "return_ty_idx": 48,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          158,
+          9,
+          158,
+          18
+        ],
+        "end_loc": [
+          1,
+          165,
+          1,
+          165,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 18,
+        "name": "feeInfo",
+        "return_ty_idx": 49,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          174,
+          9,
+          174,
+          16
+        ],
+        "end_loc": [
+          1,
+          183,
+          1,
+          183,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 19,
+        "name": "entitlementOf",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          185,
+          9,
+          185,
+          22
+        ],
+        "end_loc": [
+          1,
+          193,
+          1,
+          193,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "withdrawnOf",
+        "return_ty_idx": 6,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          195,
+          9,
+          195,
+          20
+        ],
+        "end_loc": [
+          1,
+          202,
+          1,
+          202,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "WorkSplitVault",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "AllowedMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Withdraw"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Participant"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 16
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultInfo"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "FeeInfo"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Participant",
+        "ty_idx": 16,
+        "fields": [
+          {
+            "name": "shares",
+            "ty_idx": 9
+          },
+          {
+            "name": "withdrawn",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 15,
+        "fields": [
+          {
+            "name": "totalShares",
+            "ty_idx": 9
+          },
+          {
+            "name": "reserveFloor",
+            "ty_idx": 6
+          },
+          {
+            "name": "distributedCumulative",
+            "ty_idx": 6,
+            "default_value": {
+              "kind": "int",
+              "v": "0"
+            }
+          },
+          {
+            "name": "participants",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Withdraw",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 1465079620,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "amount",
+            "ty_idx": 6
+          },
+          {
+            "name": "toAddress",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "AllowedMessage",
+        "ty_idx": 12,
+        "target_ty_idx": 13
+      },
+      {
+        "kind": "struct",
+        "name": "VaultInfo",
+        "ty_idx": 18,
+        "fields": [
+          {
+            "name": "totalShares",
+            "ty_idx": 9
+          },
+          {
+            "name": "reserveFloor",
+            "ty_idx": 6
+          },
+          {
+            "name": "distributedCumulative",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "FeeInfo",
+        "ty_idx": 19,
+        "fields": [
+          {
+            "name": "depositGasAllowance",
+            "ty_idx": 6
+          },
+          {
+            "name": "payoutForwardFee",
+            "ty_idx": 6
+          },
+          {
+            "name": "minDeployValue",
+            "ty_idx": 6
+          },
+          {
+            "name": "minWithdrawValue",
+            "ty_idx": 6
+          }
+        ]
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 15
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 70202,
+        "name": "contractVersion",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 75713,
+        "name": "vaultInfo",
+        "parameters": [],
+        "return_ty_idx": 18
+      },
+      {
+        "tvm_method_id": 71145,
+        "name": "feeInfo",
+        "parameters": [],
+        "return_ty_idx": 19
+      },
+      {
+        "tvm_method_id": 111688,
+        "name": "entitlementOf",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 6
+      },
+      {
+        "tvm_method_id": 120141,
+        "name": "withdrawnOf",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 6
+      }
+    ],
+    "thrown_errors": [],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/00e32ef8-69db-41b3-8440-047d63a5b320/contracts/src/Vault.tolk",
+      "contents": "import \"@stdlib/gas-payments\"\n\nconst DEPOSIT_GAS_UNITS: int = 3000\n\nconst WITHDRAW_GAS_UNITS: int = 9500\n\nconst WITHDRAW_GAS: coins = ton(\"0.05\")\n\nconst MIN_WITHDRAW: coins = ton(\"0.01\")\n\n@inline\nfun depositGasAllowance(): coins {\n    return calculateGasFee(BASECHAIN, DEPOSIT_GAS_UNITS);\n}\n\n@inline\nfun payoutForwardFee(): coins {\n    return calculateForwardFee(BASECHAIN, 0, 0);\n}\n\n@inline\nfun minWithdrawValue(): coins {\n    return max(WITHDRAW_GAS, calculateGasFee(BASECHAIN, WITHDRAW_GAS_UNITS) + payoutForwardFee());\n}\n\nstruct Participant {\n    shares: uint32\n    withdrawn: coins\n}\n\nstruct Storage {\n    totalShares: uint32\n    reserveFloor: coins\n    distributedCumulative: coins = 0\n    participants: map<address, Participant>\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData())\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell())\n}\n\nstruct (0x57535744) Withdraw {\n    amount: coins\n    toAddress: address?\n}\n\ntype AllowedMessage = Withdraw\n\ncontract WorkSplitVault {\n    storage: Storage\n    incomingMessages: AllowedMessage\n}\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy AllowedMessage.fromSlice(in.body);\n    match (msg) {\n        Withdraw => {\n\n            handleWithdraw(in.senderAddress, in.valueCoins, msg);\n        }\n        else => {\n\n            handleDeposit(in.valueCoins);\n        }\n    }\n}\n\nfun handleDeposit(valueCoins: coins) {\n    var s = Storage.load();\n\n    val balanceBefore = contract.getOriginalBalance() - valueCoins;\n\n    val topup = min(valueCoins, max(0, s.reserveFloor - balanceBefore));\n\n    val credit = max(0, valueCoins - topup - depositGasAllowance());\n\n    s.distributedCumulative += credit;\n    s.save();\n\n}\n\nfun handleWithdraw(senderAddress: address, valueCoins: coins, msg: Withdraw) {\n\n    if (valueCoins < minWithdrawValue()) {\n        return;\n    }\n\n    var s = Storage.load();\n\n    val found = s.participants.get(senderAddress);\n    if (!found.isFound) {\n\n        refundChange(senderAddress);\n        return;\n    }\n\n    var p = found.loadValue();\n\n    val entitlement = mulDivFloor(s.distributedCumulative, p.shares, s.totalShares) - p.withdrawn;\n    val requested = msg.amount == 0 ? entitlement : min(msg.amount, entitlement);\n\n    if (requested < MIN_WITHDRAW) {\n        refundChange(senderAddress);\n        return;\n    }\n\n    p.withdrawn += requested;\n    s.participants.set(senderAddress, p);\n    s.save();\n\n    reserveToncoinsOnBalance(s.reserveFloor, RESERVE_MODE_AT_MOST);\n\n    val dest = msg.toAddress ?? senderAddress;\n    val payout = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: requested,\n        dest,\n    });\n    payout.send(SEND_MODE_PAY_FEES_SEPARATELY);\n\n    val change = valueCoins - calculateGasFee(BASECHAIN, WITHDRAW_GAS_UNITS) - payoutForwardFee();\n    if (change > 0) {\n        val back = createMessage({\n            bounce: BounceMode.NoBounce,\n            value: change,\n            dest: senderAddress,\n        });\n        back.send(SEND_MODE_REGULAR);\n    }\n}\n\nfun refundChange(to: address) {\n    val change = createMessage({\n        bounce: BounceMode.NoBounce,\n        value: 0,\n        dest: to,\n    });\n\n    change.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nconst VERSION: int = 2\n\nget fun contractVersion(): int {\n    return VERSION;\n}\n\nstruct VaultInfo {\n    totalShares: uint32\n    reserveFloor: coins\n    distributedCumulative: coins\n}\n\nget fun vaultInfo(): VaultInfo {\n    val s = lazy Storage.load();\n    return {\n        totalShares: s.totalShares,\n        reserveFloor: s.reserveFloor,\n        distributedCumulative: s.distributedCumulative,\n    }\n}\n\nstruct FeeInfo {\n    depositGasAllowance: coins\n    payoutForwardFee: coins\n    minDeployValue: coins\n    minWithdrawValue: coins\n}\n\nget fun feeInfo(): FeeInfo {\n    val s = lazy Storage.load();\n    val allowance = depositGasAllowance();\n    return {\n        depositGasAllowance: allowance,\n        payoutForwardFee: payoutForwardFee(),\n        minDeployValue: s.reserveFloor + allowance,\n        minWithdrawValue: minWithdrawValue(),\n    }\n}\n\nget fun entitlementOf(owner: address): coins {\n    val s = lazy Storage.load();\n    val found = s.participants.get(owner);\n    if (!found.isFound) {\n        return 0;\n    }\n    val p = found.loadValue();\n    return mulDivFloor(s.distributedCumulative, p.shares, s.totalShares) - p.withdrawn;\n}\n\nget fun withdrawnOf(owner: address): coins {\n    val s = lazy Storage.load();\n    val found = s.participants.get(owner);\n    if (!found.isFound) {\n        return 0;\n    }\n    return found.loadValue().withdrawn;\n}\n"
+    }
+  ]
+}

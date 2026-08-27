@@ -1,0 +1,2312 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from dosgram_draw_core.tolk, drand_quicknet_verifier.tolk\nPROGRAM{\n  DECLPROC pLimb()\n  DECLPROC qLimb()\n  DECLPROC rLimb()\n  DECLPROC xLimb()\n  DECLPROC remainderIsCanonical()\n  DECLPROC verifyReduction()\n  DECLPROC loadState()\n  DECLPROC sealRound()\n  0 DECLMETHOD onInternalMessage()\n  90581 DECLMETHOD pending_randomness()\n  127701 DECLMETHOD proof_receipt()\n  104952 DECLMETHOD configured_round()\n  128055 DECLMETHOD protocol_constants()\n  125683 DECLMETHOD accrued_pools()\n  107624 DECLMETHOD round_receipt()\n  // 25 functions inlined in-place:\n  // - parseWitness (2 calls)\n  // - fieldElement (2 calls)\n  // - dstPrime (1 call)\n  // - expandMessage (1 call)\n  // - quicknetPublicKey (1 call)\n  // - g2Generator (1 call)\n  // - verifyQuicknet (1 call)\n  // - roundForSealTime (1 call)\n  // - saveState (1 call)\n  // - initialRoundData (1 call)\n  // - expectedRound (8 calls)\n  // - roundReceipt (2 calls)\n  // - ownAddressHash (1 call)\n  // - drawCandidate (2 calls)\n  // - winnerFor (2 calls)\n  // - sendSealAck (3 calls)\n  // - sendResult (2 calls)\n  // - sendRefundable (2 calls)\n  // - submitDrand (1 call)\n  // - markRefundable (1 call)\n  // - applyRefundAck (1 call)\n  // - configureNext (1 call)\n  // - applyDrawAck (1 call)\n  // - withdrawPlatform (1 call)\n  // - onBouncedMessage (0 calls)\n  pLimb() PROCINLINE:<{\n    DUP\n    IFNOT:<{\n      DROP\n      13402431016077863595 PUSHINT\n    }>ELSE<{\n      DUP\n      1 EQINT\n      IFJMP:<{\n        DROP\n        2210141511517208575 PUSHINT\n      }>\n      DUP\n      2 EQINT\n      IFJMP:<{\n        DROP\n        7435674573564081700 PUSHINT\n      }>\n      DUP\n      3 EQINT\n      IFJMP:<{\n        DROP\n        7239337960414712511 PUSHINT\n      }>\n      DUP\n      4 EQINT\n      IFJMP:<{\n        DROP\n        5412103778470702295 PUSHINT\n      }>\n      5 EQINT\n      IFJMP:<{\n        1873798617647539866 PUSHINT\n      }>\n      0 PUSHINT\n    }>\n  }>\n  qLimb() PROCINLINE:<{\n    6 1 BLKDROP2\n    DUP\n    IFNOT:<{\n      3 BLKDROP\n    }>ELSE<{\n      s3 POP\n      s2 PUSH\n      1 EQINT\n      IFJMP:<{\n        DROP\n        NIP\n      }>\n      NIP\n      SWAP\n      2 EQINT\n      IFJMP:<{\n      }>\n      DROP\n      0 PUSHINT\n    }>\n  }>\n  rLimb() PROCINLINE:<{\n    s7 POP\n    s7 POP\n    s7 POP\n    s4 PUSH\n    IFNOT:<{\n      s3 s6 XCHG\n      6 BLKDROP\n    }>ELSE<{\n      s3 POP\n      s3 PUSH\n      1 EQINT\n      IFJMP:<{\n        s1 s5 XCHG\n        5 BLKDROP\n      }>\n      NIP\n      s2 PUSH\n      2 EQINT\n      IFJMP:<{\n        4 1 BLKDROP2\n      }>\n      DROP\n      OVER\n      3 EQINT\n      IFJMP:<{\n        3 1 BLKDROP2\n      }>\n      DROP\n      DUP\n      4 EQINT\n      IFJMP:<{\n        2DROP\n      }>\n      1 2 BLKDROP2\n      5 EQINT\n      IFJMP:<{\n      }>\n      DROP\n      0 PUSHINT\n    }>\n  }>\n  xLimb() PROCINLINE:<{\n    DUP\n    4 LESSINT\n    IF:<{\n      1 2 BLKDROP2\n      6 LSHIFT#\n      RSHIFT\n      64 PUSHPOW2DEC\n      AND\n    }>ELSE<{\n      NIP\n      -4 ADDCONST\n      6 LSHIFT#\n      RSHIFT\n      64 PUSHPOW2DEC\n      AND\n    }>\n  }>\n  remainderIsCanonical() PROC:<{\n    s6 POP\n    s6 POP\n    s6 POP\n    s3 PUSH\n    1873798617647539866 PUSHINT\n    NEQ\n    IFJMP:<{\n      s3 s5 XCHG\n      5 BLKDROP\n      1873798617647539866 PUSHINT\n      LESS\n    }>\n    s3 POP\n    s3 PUSH\n    5412103778470702295 PUSHINT\n    NEQ\n    IFJMP:<{\n      s3 s4 XCHG\n      4 BLKDROP\n      5412103778470702295 PUSHINT\n      LESS\n    }>\n    s3 POP\n    s3 PUSH\n    7239337960414712511 PUSHINT\n    NEQ\n    IFJMP:<{\n      3 BLKDROP\n      7239337960414712511 PUSHINT\n      LESS\n    }>\n    s3 POP\n    DUP\n    7435674573564081700 PUSHINT\n    NEQ\n    IFJMP:<{\n      2 1 BLKDROP2\n      7435674573564081700 PUSHINT\n      LESS\n    }>\n    DROP\n    DUP\n    2210141511517208575 PUSHINT\n    NEQ\n    IFJMP:<{\n      NIP\n      2210141511517208575 PUSHINT\n      LESS\n    }>\n    DROP\n    13402431016077863595 PUSHINT\n    LESS\n  }>\n  verifyReduction() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s8 s7 s6 PUSH3\n    s8 s7 s6 PUSH3\n    s8 s7 s6 PUSH3\n    remainderIsCanonical() CALLDICT\n    IFNOTJMP:<{\n      11 BLKDROP\n      FALSE\n    }>\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      DUP\n      8 LESSINT\n    }>DO<{\n      s10 s9 s8 PUSH3\n      s10 s9 s8 PUSH3\n      s10 s9 s8 PUSH3\n      s9 PUSH\n      rLimb() INLINECALLDICT\n      s1 s2 XCHG\n      ADD\n      0 PUSHINT\n      WHILE:<{\n        DUP\n        3 LESSINT\n      }>DO<{\n        s2 s0 PUSH2\n        SUB\n        DUP\n        -1 GTINT\n        IF:<{\n          DUP\n          6 LESSINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          s12 s11 s10 PUSH3\n          s12 s11 s10 PUSH3\n          s12 s11 s10 PUSH3\n          s10 PUSH\n          qLimb() INLINECALLDICT\n          SWAP\n          pLimb() INLINECALLDICT\n          MUL\n          s1 s2 XCHG\n          ADD\n          SWAP\n        }>ELSE<{\n          DROP\n        }>\n        INC\n      }>\n      DROP\n      DUP\n      64 PUSHPOW2DEC\n      AND\n      s13 s12 s2 PUSH3\n      xLimb() INLINECALLDICT\n      NEQ\n      IFJMP:<{\n        13 BLKDROP\n        FALSE\n        RETALT\n      }>\n      64 RSHIFT#\n      SWAP\n      INC\n    }>\n    s1 s12 XCHG\n    12 BLKDROP\n    0 EQINT\n  }>\n  loadState() PROC:<{\n    c4 PUSH\n    CTOS\n    LDREF\n    SWAP\n    CTOS\n    SWAP\n    LDREF\n    SWAP\n    CTOS\n    SWAP\n    LDREF\n    SWAP\n    CTOS\n    SWAP\n    64 LDU\n    64 LDU\n    3 LDU\n    16 LDU\n    14 LDU\n    14 LDU\n    1 LDI\n    1 LDI\n    LDGRAMS\n    64 LDU\n    64 LDU\n    256 LDU\n    256 LDU\n    32 LDU\n    32 LDU\n    s0 17 s() XCHG\n    LDGRAMS\n    LDGRAMS\n    s0 20 s() XCHG\n    LDSTDADDR\n    LDSTDADDR\n    LDREF\n    LDREF\n    LDREF\n    s0 23 s() XCHG\n    LDDICT\n    SWAP\n    s0 24 s() XCHG\n    ENDS\n    s0 25 s() XCHG\n    ENDS\n    s0 24 s() XCHG\n    ENDS\n    s0 22 s() XCHG\n    ENDS\n    s15 s14 PUSH2\n    ADD\n    1000 PUSHINT\n    EQUAL\n    600 THROWIFNOT\n    16 s() PUSH\n    0 GTINT\n    IF:<{\n      16 s() PUSH\n      1000 PUSHINT\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    601 THROWIFNOT\n    18 s() PUSH\n    0 GTINT\n    IF:<{\n      18 s() PUSH\n      16 s() PUSH\n      MUL\n      10000 PUSHINT\n      MOD\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      18 s() PUSH\n      s15 PUSH\n      MUL\n      10000 PUSHINT\n      MOD\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    617 THROWIFNOT\n    19 s() 22 s() XCHG\n    18 s() 21 s() XCHG\n    17 s() 20 s() XCHG\n    16 s() 19 s() XCHG\n    s15 18 s() XCHG\n    s14 17 s() XCHG\n    s13 16 s() XCHG\n    s12 s15 XCHG\n    s11 s14 XCHG\n    s10 s13 XCHG\n    s9 s12 XCHG\n    s8 s11 XCHG\n    s7 s10 XCHG\n    s6 s9 XCHG\n    s5 s8 XCHG\n    s4 s7 XCHG\n    s3 s6 XCHG\n    s5 s1 s3 XCHG3\n    s4 s2 XCHG2\n  }>\n  sealRound() PROC:<{\n    64 LDU\n    16 LDU\n    256 LDU\n    ENDS\n    MYADDR\n    REWRITESTDADDR\n    DROP\n    NEWDICT\n    NEWDICT\n    29 s() PUSH\n    NEWC\n    64 STU\n    29 s() PUSH\n    64 STUR\n    0 PUSHINT\n    99 STUR\n    26 s() PUSH\n    14 STUR\n    25 s() PUSH\n    14 STUR\n    27 s() PUSH\n    16 STUR\n    x{00000000} STSLICECONST\n    MYADDR\n    SWAP\n    STSTDADDR\n    0 PUSHINT\n    NEWC\n    256 STU\n    0 PUSHINT\n    128 STUR\n    0 PUSHINT\n    256 STUR\n    0 PUSHINT\n    64 STUR\n    ENDC\n    STREFR\n    NEWC\n    x{0000} STSLICECONST\n    23 s() PUSH\n    STGRAMS\n    ENDC\n    STREFR\n    s10 PUSH\n    NEWC\n    STREF\n    s10 PUSH\n    STREFR\n    ENDC\n    STREFR\n    s0 s2 XCHG\n    NEWC\n    STDICT\n    STDICT\n    ENDC\n    STREFR\n    ENDC\n    s9 PUSH\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{100} STSLICECONST\n    s1 s2 XCHG\n    8 STI\n    256 STU\n    BTOS\n    s1 s4 XCHG\n    SDEQ\n    602 THROWIFNOT\n    SWAP\n    25 s() PUSH\n    EQUAL\n    IF:<{\n      21 s() PUSH\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IF:<{\n      DUP\n      0 NEQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    603 THROWIFNOT\n    21 s() PUSH\n    1 EQINT\n    IFJMP:<{\n      s12 PUSH\n      EQUAL\n      604 THROWIFNOT\n      25000000 PUSHINT\n      MYADDR\n      REWRITESTDADDR\n      DROP\n      NEWDICT\n      NEWDICT\n      26 s() PUSH\n      NEWC\n      64 STU\n      26 s() PUSH\n      64 STUR\n      0 PUSHINT\n      99 STUR\n      23 s() PUSH\n      14 STUR\n      22 s() PUSH\n      14 STUR\n      24 s() PUSH\n      16 STUR\n      x{00000000} STSLICECONST\n      MYADDR\n      SWAP\n      STSTDADDR\n      0 PUSHINT\n      NEWC\n      256 STU\n      0 PUSHINT\n      128 STUR\n      0 PUSHINT\n      256 STUR\n      0 PUSHINT\n      64 STUR\n      ENDC\n      STREFR\n      NEWC\n      x{0000} STSLICECONST\n      20 s() PUSH\n      STGRAMS\n      ENDC\n      STREFR\n      s7 PUSH\n      NEWC\n      STREF\n      s7 PUSH\n      STREFR\n      ENDC\n      STREFR\n      s0 s2 XCHG\n      NEWC\n      STDICT\n      STDICT\n      ENDC\n      STREFR\n      ENDC\n      s6 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{100} STSLICECONST\n      s1 s2 XCHG\n      8 STI\n      256 STU\n      BTOS\n      NEWC\n      x{44534143} STSLICECONST\n      25 s() PUSH\n      64 STUR\n      s14 PUSH\n      256 STUR\n      16 s() PUSH\n      64 STUR\n      s15 PUSH\n      64 STUR\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    s12 POP\n    s12 POP\n    s12 POP\n    s0 18 s() XCHG\n    604 THROWIF\n    NOW\n    DUP\n    30 ADDCONST\n    DUP\n    1692803367 PUSHINT\n    GEQ\n    205 THROWIFNOT\n    1692803367 PUSHINT\n    SUB\n    3 ADDCONST\n    DEC\n    3 PUSHINT\n    DIV\n    INC\n    1 PUSHINT\n    25000000 PUSHINT\n    MYADDR\n    REWRITESTDADDR\n    DROP\n    NEWDICT\n    NEWDICT\n    26 s() PUSH\n    NEWC\n    64 STU\n    26 s() PUSH\n    64 STUR\n    0 PUSHINT\n    99 STUR\n    23 s() PUSH\n    14 STUR\n    22 s() PUSH\n    14 STUR\n    24 s() PUSH\n    16 STUR\n    x{00000000} STSLICECONST\n    MYADDR\n    SWAP\n    STSTDADDR\n    0 PUSHINT\n    NEWC\n    256 STU\n    0 PUSHINT\n    128 STUR\n    0 PUSHINT\n    256 STUR\n    0 PUSHINT\n    64 STUR\n    ENDC\n    STREFR\n    NEWC\n    x{0000} STSLICECONST\n    20 s() PUSH\n    STGRAMS\n    ENDC\n    STREFR\n    25 s() PUSH\n    NEWC\n    STREF\n    19 s() PUSH\n    STREFR\n    ENDC\n    STREFR\n    s0 s2 XCHG\n    NEWC\n    STDICT\n    STDICT\n    ENDC\n    STREFR\n    ENDC\n    s6 PUSH\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{100} STSLICECONST\n    s1 s2 XCHG\n    8 STI\n    256 STU\n    BTOS\n    NEWC\n    x{44534143} STSLICECONST\n    25 s() PUSH\n    64 STUR\n    s14 PUSH\n    256 STUR\n    s5 PUSH\n    64 STUR\n    s4 PUSH\n    64 STUR\n    ENDC\n    NEWC\n    b{011000} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    ROT\n    STGRAMS\n    b{0} STSLICECONST\n    3 PUSHINT\n    STGRAMS\n    1 PUSHINT\n    102 STUR\n    STREF\n    ENDC\n    OVER\n    SENDRAWMSG\n    s0 20 s() XCHG\n    s0 s13 s13 XCHG3\n    s0 s12 XCHG\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      DROP\n    }>\n    DUP\n    SEMPTY\n    IFJMP:<{\n      DROP\n    }>\n    BALANCE\n    FIRST\n    INMSG_VALUE\n    SUB\n    loadState() CALLDICT\n    s0 24 s() XCHG\n    32 LDU\n    OVER\n    1146115908 PUSHINT\n    NEQ\n    IF:<{\n      OVER\n      1145127755 PUSHINT\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      OVER\n      1146241358 PUSHINT\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      OVER\n      1146246226 PUSHINT\n      NEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      24 s() PUSH\n      0 PUSHINT\n      RAWRESERVE\n    }>\n    OVER\n    1146307905 PUSHINT\n    EQUAL\n    IF:<{\n      NIP\n      23 s() POP\n      INMSG_SRC\n      22 s() 24 s() XCHG\n      21 s() 23 s() XCHG\n      20 s() 22 s() XCHG\n      19 s() 21 s() XCHG\n      18 s() 20 s() XCHG\n      17 s() 19 s() XCHG\n      16 s() 18 s() XCHG\n      s15 17 s() XCHG\n      s14 16 s() XCHG\n      s13 s15 XCHG\n      s12 s14 XCHG\n      s11 s13 XCHG\n      s10 s12 XCHG\n      s9 s11 XCHG\n      s8 s10 XCHG\n      s7 s9 XCHG\n      s6 s8 XCHG\n      s5 s7 XCHG\n      s4 s6 XCHG\n      s3 s5 XCHG\n      s4 s0 s3 XCHG3\n      sealRound() CALLDICT\n    }>ELSE<{\n      OVER\n      1146241358 PUSHINT\n      EQUAL\n      IF:<{\n        NIP\n        s8 POP\n        s8 POP\n        s8 POP\n        20 s() POP\n        INMSG_VALUE\n        s0 s5 XCHG\n        64 LDU\n        LDREF\n        LDREF\n        ENDS\n        s0 19 s() XCHG\n        1 EQINT\n        605 THROWIFNOT\n        s1 s10 PUSH2\n        EQUAL\n        606 THROWIFNOT\n        NOW\n        s12 PUSH\n        30 ADDCONST\n        GEQ\n        607 THROWIFNOT\n        OVER\n        0 GTINT\n        200 THROWIFNOT\n        s0 18 s() XCHG\n        CTOS\n        576 PUSHINT\n        LDSLICEX\n        LDREF\n        SWAP\n        CTOS\n        SWAP\n        ENDS\n        576 PUSHINT\n        LDSLICEX\n        ENDS\n        SWAP\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 PLDU\n        s0 s9 XCHG\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 PLDU\n        s0 18 s() XCHG\n        NEWC\n        64 STU\n        1 PUSHINT HASHEXT_SHA256\n        0 PUSHINT\n        NEWC\n        256 STU\n        0 PUSHINT\n        256 STUR\n        256 STU\n        x{008000} STSLICECONST\n        NEWC\n        x{424c535f5349475f424c53313233383147315f584d443a5348412d3235365f53} STSLICECONST\n        x{5357555f524f5f4e554c5f2b} STSLICECONST\n        2 PUSHINT HASHEXT_SHA256\n        DUP\n        NEWC\n        256 STU\n        x{01} STSLICECONST\n        x{424c535f5349475f424c53313233383147315f584d443a5348412d3235365f53} STSLICECONST\n        x{5357555f524f5f4e554c5f2b} STSLICECONST\n        1 PUSHINT HASHEXT_SHA256\n        2DUP\n        XOR\n        NEWC\n        256 STU\n        x{02} STSLICECONST\n        x{424c535f5349475f424c53313233383147315f584d443a5348412d3235365f53} STSLICECONST\n        x{5357555f524f5f4e554c5f2b} STSLICECONST\n        1 PUSHINT HASHEXT_SHA256\n        s2 s0 PUSH2\n        XOR\n        NEWC\n        256 STU\n        x{03} STSLICECONST\n        x{424c535f5349475f424c53313233383147315f584d443a5348412d3235365f53} STSLICECONST\n        x{5357555f524f5f4e554c5f2b} STSLICECONST\n        1 PUSHINT HASHEXT_SHA256\n        s3 s3 XCPU\n        XOR\n        NEWC\n        256 STU\n        x{04} STSLICECONST\n        x{424c535f5349475f424c53313233383147315f584d443a5348412d3235365f53} STSLICECONST\n        x{5357555f524f5f4e554c5f2b} STSLICECONST\n        1 PUSHINT HASHEXT_SHA256\n        s4 s3 s0 XCHG3\n        s2 19 s() XCHG\n        s1 18 s() XCHG\n        s0 17 s() XCHG\n        16 s() PUSH\n        16 s() PUSH\n        16 s() PUSH\n        16 s() PUSH\n        16 s() PUSH\n        25 s() PUSH\n        verifyReduction() CALLDICT\n        201 THROWIFNOT\n        s4 s13 XCHG\n        s3 s12 XCHG\n        s6 s5 s13 XCHG3\n        s12 s6 s5 PUSH3\n        16 s() PUSH\n        18 s() PUSH\n        21 s() PUSH\n        verifyReduction() CALLDICT\n        201 THROWIFNOT\n        s0 s10 XCHG\n        NEWC\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        BTOS\n        BLS_MAP_TO_G1\n        s0 s6 XCHG\n        NEWC\n        64 STU\n        s1 s4 XCHG\n        64 STU\n        s1 s2 XCHG\n        64 STU\n        s1 s3 XCHG\n        64 STU\n        64 STU\n        64 STU\n        BTOS\n        BLS_MAP_TO_G1\n        BLS_G1_ADD\n        17 s() PUSH\n        CTOS\n        384 PUSHINT\n        LDSLICEX\n        NIP\n        ENDS\n        s0 17 s() XCHG\n        CTOS\n        NEWC\n        x{83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c} STSLICECONST\n        x{8c4b450b6a0a6c3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb} STSLICECONST\n        x{5ed66304de9cf809bd274ca73bab4af5a6e9c76a4bc09e76eae8991ef5ece45a} STSLICECONST\n        BTOS\n        NEWC\n        x{93e02b6052719f607dacd3a088274f65596bd0d09920b61ab5da61bbdc7f5049} STSLICECONST\n        x{334cf11213945d57e5ac7d055d042b7e024aa2b2f08f0a91260805272dc51051} STSLICECONST\n        x{c6e47ad4fa403b02b4510b647ae3d1770bac0326a805bbefd48056c8c121bdb8} STSLICECONST\n        BTOS\n        s2 PUSH\n        BLS_G1_INGROUP\n        IF:<{\n          s2 PUSH\n          BLS_G1_ISZERO\n          NOT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        202 THROWIFNOT\n        OVER\n        BLS_G2_INGROUP\n        IF:<{\n          OVER\n          BLS_G2_ISZERO\n          NOT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        203 THROWIFNOT\n        s0 19 s() XCHG\n        BLS_G1_NEG\n        s2 PUSH\n        s0 20 s() XCHG\n        s0 s2 XCHG\n        2 PUSHINT BLS_PAIRING\n        204 THROWIFNOT\n        s0 16 s() XCHG\n        1 PUSHINT HASHEXT_SHA256\n        BALANCE\n        FIRST\n        s0 s5 XCHG2\n        SUB\n        s0 s10 PUSH2\n        GEQ\n        618 THROWIFNOT\n        s10 PUSH\n        SUB\n        0 PUSHINT\n        RAWRESERVE\n        s3 PUSH\n        256 PUSHPOW2DEC\n        16 s() PUSH\n        MOD\n        INC\n        16 s() PUSH\n        MOD\n        256 PUSHPOW2DEC\n        SUBR\n        0 PUSHINT\n        NEWC\n        x{444f534752414d5f4d41494e5f5631} STSLICECONST\n        s7 PUSH\n        NEWC\n        256 STU\n        22 s() PUSH\n        64 STUR\n        NEWC\n        NEWC\n        MYADDR\n        STSLICER\n        HASHBU\n        256 STUR\n        s12 PUSH\n        NEWC\n        256 STU\n        x{00000000} STSLICECONST\n        4 PUSHINT HASHEXT_SHA256\n        WHILE:<{\n          s0 s2 PUSH2\n          GREATER\n        }>DO<{\n          DROP\n          INC\n          NEWC\n          x{444f534752414d5f4d41494e5f5631} STSLICECONST\n          s7 PUSH\n          NEWC\n          256 STU\n          22 s() PUSH\n          64 STUR\n          NEWC\n          NEWC\n          MYADDR\n          STSLICER\n          HASHBU\n          256 STUR\n          s12 PUSH\n          NEWC\n          256 STU\n          s4 PUSH\n          32 STUR\n          4 PUSHINT HASHEXT_SHA256\n        }>\n        2 1 BLKDROP2\n        16 s() PUSH\n        MOD\n        s13 PUSH\n        IF:<{\n          256 PUSHPOW2DEC\n          17 s() PUSH\n          MOD\n          INC\n          17 s() PUSH\n          MOD\n          256 PUSHPOW2DEC\n          SUBR\n          0 PUSHINT\n          NEWC\n          x{444f534752414d5f424f4e55535f5631} STSLICECONST\n          s8 PUSH\n          NEWC\n          256 STU\n          23 s() PUSH\n          64 STUR\n          NEWC\n          NEWC\n          MYADDR\n          STSLICER\n          HASHBU\n          256 STUR\n          s13 PUSH\n          NEWC\n          256 STU\n          x{00000000} STSLICECONST\n          4 PUSHINT HASHEXT_SHA256\n          WHILE:<{\n            s0 s2 PUSH2\n            GREATER\n          }>DO<{\n            DROP\n            INC\n            NEWC\n            x{444f534752414d5f424f4e55535f5631} STSLICECONST\n            s8 PUSH\n            NEWC\n            256 STU\n            23 s() PUSH\n            64 STUR\n            NEWC\n            NEWC\n            MYADDR\n            STSLICER\n            HASHBU\n            256 STUR\n            s13 PUSH\n            NEWC\n            256 STU\n            s4 PUSH\n            32 STUR\n            4 PUSHINT HASHEXT_SHA256\n          }>\n          s8 POP\n          2DROP\n          s0 s5 XCHG\n          16 s() PUSH\n          MOD\n        }>ELSE<{\n          s5 POP\n          0 PUSHINT\n        }>\n        2 PUSHINT\n        s12 PUSH\n        25000000 PUSHINT\n        ADD\n        MYADDR\n        REWRITESTDADDR\n        DROP\n        NEWDICT\n        NEWDICT\n        24 s() PUSH\n        NEWC\n        64 STU\n        24 s() PUSH\n        64 STUR\n        0 PUSHINT\n        99 STUR\n        21 s() PUSH\n        14 STUR\n        20 s() PUSH\n        14 STUR\n        22 s() PUSH\n        16 STUR\n        x{00000000} STSLICECONST\n        MYADDR\n        SWAP\n        STSTDADDR\n        0 PUSHINT\n        NEWC\n        256 STU\n        0 PUSHINT\n        128 STUR\n        0 PUSHINT\n        256 STUR\n        0 PUSHINT\n        64 STUR\n        ENDC\n        STREFR\n        NEWC\n        x{0000} STSLICECONST\n        18 s() PUSH\n        STGRAMS\n        ENDC\n        STREFR\n        s13 PUSH\n        NEWC\n        STREF\n        s13 PUSH\n        STREFR\n        ENDC\n        STREFR\n        s0 s2 XCHG\n        NEWC\n        STDICT\n        STDICT\n        ENDC\n        STREFR\n        ENDC\n        24 s() PUSH\n        NEWC\n        b{00110} STSLICECONST\n        STREF\n        STREF\n        HASHBU\n        NEWC\n        b{100} STSLICECONST\n        s1 s2 XCHG\n        8 STI\n        256 STU\n        BTOS\n        NEWC\n        x{44524557} STSLICECONST\n        23 s() PUSH\n        64 STUR\n        s12 PUSH\n        256 STUR\n        s13 PUSH\n        64 STUR\n        s5 PUSH\n        256 STUR\n        s9 PUSH\n        32 STUR\n        17 s() PUSH\n        1 STIR\n        s4 PUSH\n        32 STUR\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        b{0} STSLICECONST\n        3 PUSHINT\n        STGRAMS\n        1 PUSHINT\n        102 STUR\n        STREF\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        OVER\n        1146246226 PUSHINT\n        EQUAL\n        IF:<{\n          NIP\n          ENDS\n          INMSG_VALUE\n          35000000 PUSHINT\n          GEQ\n          611 THROWIFNOT\n          19 s() PUSH\n          1 EQINT\n          IF:<{\n            s0 22 s() XCHG\n            0 PUSHINT\n            RAWRESERVE\n            25000000 PUSHINT\n            MYADDR\n            REWRITESTDADDR\n            DROP\n            NEWDICT\n            NEWDICT\n            24 s() PUSH\n            NEWC\n            64 STU\n            24 s() PUSH\n            64 STUR\n            0 PUSHINT\n            99 STUR\n            21 s() PUSH\n            14 STUR\n            20 s() PUSH\n            14 STUR\n            22 s() PUSH\n            16 STUR\n            x{00000000} STSLICECONST\n            MYADDR\n            SWAP\n            STSTDADDR\n            0 PUSHINT\n            NEWC\n            256 STU\n            0 PUSHINT\n            128 STUR\n            0 PUSHINT\n            256 STUR\n            0 PUSHINT\n            64 STUR\n            ENDC\n            STREFR\n            NEWC\n            x{0000} STSLICECONST\n            18 s() PUSH\n            STGRAMS\n            ENDC\n            STREFR\n            s5 PUSH\n            NEWC\n            STREF\n            27 s() PUSH\n            STREFR\n            ENDC\n            STREFR\n            s0 s2 XCHG\n            NEWC\n            STDICT\n            STDICT\n            ENDC\n            STREFR\n            ENDC\n            s4 PUSH\n            NEWC\n            b{00110} STSLICECONST\n            STREF\n            STREF\n            HASHBU\n            NEWC\n            b{100} STSLICECONST\n            s1 s2 XCHG\n            8 STI\n            256 STU\n            BTOS\n            NEWC\n            x{44534143} STSLICECONST\n            23 s() PUSH\n            64 STUR\n            s12 PUSH\n            256 STUR\n            s14 PUSH\n            64 STUR\n            s13 PUSH\n            64 STUR\n            ENDC\n            NEWC\n            b{011000} STSLICECONST\n            s1 s2 XCHG\n            STSTDADDR\n            ROT\n            STGRAMS\n            b{0} STSLICECONST\n            3 PUSHINT\n            STGRAMS\n            1 PUSHINT\n            102 STUR\n            STREF\n            ENDC\n            1 PUSHINT\n            SENDRAWMSG\n          }>ELSE<{\n            19 s() PUSH\n            2 EQINT\n            IF:<{\n              22 s() PUSH\n              s14 PUSH\n              GEQ\n              618 THROWIFNOT\n              s0 22 s() XCHG\n              s13 PUSH\n              SUB\n              0 PUSHINT\n              RAWRESERVE\n              s12 PUSH\n              25000000 PUSHINT\n              ADD\n              MYADDR\n              REWRITESTDADDR\n              DROP\n              NEWDICT\n              NEWDICT\n              24 s() PUSH\n              NEWC\n              64 STU\n              24 s() PUSH\n              64 STUR\n              0 PUSHINT\n              99 STUR\n              21 s() PUSH\n              14 STUR\n              20 s() PUSH\n              14 STUR\n              22 s() PUSH\n              16 STUR\n              x{00000000} STSLICECONST\n              MYADDR\n              SWAP\n              STSTDADDR\n              0 PUSHINT\n              NEWC\n              256 STU\n              0 PUSHINT\n              128 STUR\n              0 PUSHINT\n              256 STUR\n              0 PUSHINT\n              64 STUR\n              ENDC\n              STREFR\n              NEWC\n              x{0000} STSLICECONST\n              18 s() PUSH\n              STGRAMS\n              ENDC\n              STREFR\n              s5 PUSH\n              NEWC\n              STREF\n              27 s() PUSH\n              STREFR\n              ENDC\n              STREFR\n              s0 s2 XCHG\n              NEWC\n              STDICT\n              STDICT\n              ENDC\n              STREFR\n              ENDC\n              s4 PUSH\n              NEWC\n              b{00110} STSLICECONST\n              STREF\n              STREF\n              HASHBU\n              NEWC\n              b{100} STSLICECONST\n              s1 s2 XCHG\n              8 STI\n              256 STU\n              BTOS\n              NEWC\n              x{44524557} STSLICECONST\n              23 s() PUSH\n              64 STUR\n              s12 PUSH\n              256 STUR\n              s13 PUSH\n              64 STUR\n              s11 PUSH\n              256 STUR\n              s10 PUSH\n              32 STUR\n              17 s() PUSH\n              1 STIR\n              s9 PUSH\n              32 STUR\n              ENDC\n              NEWC\n              b{011000} STSLICECONST\n              s1 s2 XCHG\n              STSTDADDR\n              ROT\n              STGRAMS\n              b{0} STSLICECONST\n              3 PUSHINT\n              STGRAMS\n              1 PUSHINT\n              102 STUR\n              STREF\n              ENDC\n              1 PUSHINT\n              SENDRAWMSG\n            }>ELSE<{\n              19 s() PUSH\n              3 EQINT\n              IFNOTJMP:<{\n                609 THROW\n              }>\n              s0 22 s() XCHG\n              0 PUSHINT\n              RAWRESERVE\n              25000000 PUSHINT\n              MYADDR\n              REWRITESTDADDR\n              DROP\n              NEWDICT\n              NEWDICT\n              24 s() PUSH\n              NEWC\n              64 STU\n              24 s() PUSH\n              64 STUR\n              0 PUSHINT\n              99 STUR\n              21 s() PUSH\n              14 STUR\n              20 s() PUSH\n              14 STUR\n              22 s() PUSH\n              16 STUR\n              x{00000000} STSLICECONST\n              MYADDR\n              SWAP\n              STSTDADDR\n              0 PUSHINT\n              NEWC\n              256 STU\n              0 PUSHINT\n              128 STUR\n              0 PUSHINT\n              256 STUR\n              0 PUSHINT\n              64 STUR\n              ENDC\n              STREFR\n              NEWC\n              x{0000} STSLICECONST\n              18 s() PUSH\n              STGRAMS\n              ENDC\n              STREFR\n              s5 PUSH\n              NEWC\n              STREF\n              27 s() PUSH\n              STREFR\n              ENDC\n              STREFR\n              s0 s2 XCHG\n              NEWC\n              STDICT\n              STDICT\n              ENDC\n              STREFR\n              ENDC\n              s4 PUSH\n              NEWC\n              b{00110} STSLICECONST\n              STREF\n              STREF\n              HASHBU\n              NEWC\n              b{100} STSLICECONST\n              s1 s2 XCHG\n              8 STI\n              256 STU\n              BTOS\n              NEWC\n              x{44524644} STSLICECONST\n              23 s() PUSH\n              64 STUR\n              s12 PUSH\n              256 STUR\n              ENDC\n              NEWC\n              b{011000} STSLICECONST\n              s1 s2 XCHG\n              STSTDADDR\n              ROT\n              STGRAMS\n              b{0} STSLICECONST\n              3 PUSHINT\n              STGRAMS\n              1 PUSHINT\n              102 STUR\n              STREF\n              ENDC\n              1 PUSHINT\n              SENDRAWMSG\n            }>\n          }>\n        }>ELSE<{\n          24 s() POP\n          DUP\n          1145127755 PUSHINT\n          EQUAL\n          IF:<{\n            DROP\n            INMSG_SRC\n            INMSG_VALUE\n            s0 24 s() XCHG\n            64 LDU\n            LDGRAMS\n            LDGRAMS\n            ENDS\n            MYADDR\n            REWRITESTDADDR\n            DROP\n            NEWDICT\n            NEWDICT\n            28 s() PUSH\n            NEWC\n            64 STU\n            28 s() PUSH\n            64 STUR\n            0 PUSHINT\n            99 STUR\n            25 s() PUSH\n            14 STUR\n            24 s() PUSH\n            14 STUR\n            26 s() PUSH\n            16 STUR\n            x{00000000} STSLICECONST\n            MYADDR\n            SWAP\n            STSTDADDR\n            0 PUSHINT\n            NEWC\n            256 STU\n            0 PUSHINT\n            128 STUR\n            0 PUSHINT\n            256 STUR\n            0 PUSHINT\n            64 STUR\n            ENDC\n            STREFR\n            NEWC\n            x{0000} STSLICECONST\n            22 s() PUSH\n            STGRAMS\n            ENDC\n            STREFR\n            s9 PUSH\n            NEWC\n            STREF\n            s9 PUSH\n            STREFR\n            ENDC\n            STREFR\n            s0 s2 XCHG\n            NEWC\n            STDICT\n            STDICT\n            ENDC\n            STREFR\n            ENDC\n            s8 PUSH\n            NEWC\n            b{00110} STSLICECONST\n            STREF\n            STREF\n            HASHBU\n            NEWC\n            b{100} STSLICECONST\n            s1 s2 XCHG\n            8 STI\n            256 STU\n            BTOS\n            s4 PUSH\n            SDEQ\n            612 THROWIFNOT\n            s2 PUSH\n            26 s() PUSH\n            EQUAL\n            613 THROWIFNOT\n            BALANCE\n            FIRST\n            27 s() PUSH\n            SUB\n            24 s() PUSH\n            2 EQINT\n            IF:<{\n              24 s() POP\n              2DUP\n              ADD\n              s1 27 s() XCHG\n              GEQ\n              613 THROWIFNOT\n              s9 s9 XCPU\n              ADD\n              s0 s8 XCHG\n              25 s() PUSH\n              ADD\n              4 PUSHINT\n              s0 23 s() XCHG\n              s10 PUSH\n              ADD\n              26 s() PUSH\n              ADD\n              0 PUSHINT\n              RAWRESERVE\n            }>ELSE<{\n              27 s() POP\n              23 s() PUSH\n              4 EQINT\n              610 THROWIFNOT\n              s0 26 s() XCHG\n              0 PUSHINT\n              RAWRESERVE\n              s0 s9 XCHG\n              s0 s8 XCHG\n            }>\n            5000000 PUSHINT\n            NEWC\n            x{44414353} STSLICECONST\n            s1 s3 XCHG\n            64 STU\n            s0 s10 XCHG2\n            STGRAMS\n            SWAP\n            s0 25 s() XCHG\n            STGRAMS\n            ENDC\n            NEWC\n            b{011000} STSLICECONST\n            s1 s2 XCHG\n            STSTDADDR\n            SWAP\n            s0 24 s() XCHG\n            STGRAMS\n            b{0} STSLICECONST\n            3 PUSHINT\n            STGRAMS\n            1 PUSHINT\n            102 STUR\n            s1 23 s() XCHG\n            STREF\n            ENDC\n            1 PUSHINT\n            SENDRAWMSG\n          }>ELSE<{\n            DUP\n            1380271684 PUSHINT\n            EQUAL\n            IF:<{\n              DROP\n              s14 POP\n              s0 21 s() XCHG\n              ENDS\n              s0 17 s() XCHG\n              1 EQINT\n              605 THROWIFNOT\n              NOW\n              s10 PUSH\n              259200 PUSHINT\n              ADD\n              GEQ\n              608 THROWIFNOT\n              3 PUSHINT\n              FALSE\n              25000000 PUSHINT\n              MYADDR\n              REWRITESTDADDR\n              DROP\n              NEWDICT\n              NEWDICT\n              24 s() PUSH\n              NEWC\n              64 STU\n              24 s() PUSH\n              64 STUR\n              0 PUSHINT\n              99 STUR\n              21 s() PUSH\n              14 STUR\n              20 s() PUSH\n              14 STUR\n              22 s() PUSH\n              16 STUR\n              x{00000000} STSLICECONST\n              MYADDR\n              SWAP\n              STSTDADDR\n              0 PUSHINT\n              NEWC\n              256 STU\n              0 PUSHINT\n              128 STUR\n              0 PUSHINT\n              256 STUR\n              0 PUSHINT\n              64 STUR\n              ENDC\n              STREFR\n              NEWC\n              x{0000} STSLICECONST\n              18 s() PUSH\n              STGRAMS\n              ENDC\n              STREFR\n              26 s() PUSH\n              NEWC\n              STREF\n              19 s() PUSH\n              STREFR\n              ENDC\n              STREFR\n              s0 s2 XCHG\n              NEWC\n              STDICT\n              STDICT\n              ENDC\n              STREFR\n              ENDC\n              21 s() PUSH\n              NEWC\n              b{00110} STSLICECONST\n              STREF\n              STREF\n              HASHBU\n              NEWC\n              b{100} STSLICECONST\n              s1 s2 XCHG\n              8 STI\n              256 STU\n              BTOS\n              NEWC\n              x{44524644} STSLICECONST\n              23 s() PUSH\n              64 STUR\n              s12 PUSH\n              256 STUR\n              ENDC\n              NEWC\n              b{011000} STSLICECONST\n              s1 s2 XCHG\n              STSTDADDR\n              ROT\n              STGRAMS\n              b{0} STSLICECONST\n              s3 PUSH\n              STGRAMS\n              1 PUSHINT\n              102 STUR\n              STREF\n              ENDC\n              1 PUSHINT\n              SENDRAWMSG\n            }>ELSE<{\n              DUP\n              1146241347 PUSHINT\n              EQUAL\n              IF:<{\n                DROP\n                s14 POP\n                INMSG_SRC\n                s0 22 s() XCHG\n                64 LDU\n                256 LDU\n                ENDS\n                MYADDR\n                REWRITESTDADDR\n                DROP\n                NEWDICT\n                NEWDICT\n                25 s() PUSH\n                NEWC\n                64 STU\n                25 s() PUSH\n                64 STUR\n                0 PUSHINT\n                99 STUR\n                22 s() PUSH\n                14 STUR\n                21 s() PUSH\n                14 STUR\n                23 s() PUSH\n                16 STUR\n                x{00000000} STSLICECONST\n                MYADDR\n                SWAP\n                STSTDADDR\n                0 PUSHINT\n                NEWC\n                256 STU\n                0 PUSHINT\n                128 STUR\n                0 PUSHINT\n                256 STUR\n                0 PUSHINT\n                64 STUR\n                ENDC\n                STREFR\n                NEWC\n                x{0000} STSLICECONST\n                19 s() PUSH\n                STGRAMS\n                ENDC\n                STREFR\n                s6 PUSH\n                NEWC\n                STREF\n                20 s() PUSH\n                STREFR\n                ENDC\n                STREFR\n                s0 s2 XCHG\n                NEWC\n                STDICT\n                STDICT\n                ENDC\n                STREFR\n                ENDC\n                s5 PUSH\n                NEWC\n                b{00110} STSLICECONST\n                STREF\n                STREF\n                HASHBU\n                NEWC\n                b{100} STSLICECONST\n                s1 s2 XCHG\n                8 STI\n                256 STU\n                BTOS\n                s1 24 s() XCHG\n                SDEQ\n                IF:<{\n                  19 s() PUSH\n                  3 EQINT\n                  0 NEQINT\n                }>ELSE<{\n                  0 PUSHINT\n                }>\n                619 THROWIFNOT\n                21 s() PUSH\n                EQUAL\n                IF:<{\n                  s0 21 s() XCHG\n                  s9 PUSH\n                  EQUAL\n                  0 NEQINT\n                }>ELSE<{\n                  21 s() POP\n                  0 PUSHINT\n                }>\n                620 THROWIFNOT\n                TRUE\n              }>ELSE<{\n                DUP\n                1146115908 PUSHINT\n                EQUAL\n                IF:<{\n                  DROP\n                  INMSG_SRC\n                  INMSG_VALUE\n                  s0 24 s() XCHG\n                  ENDS\n                  s0 s5 PUSH2\n                  SDEQ\n                  IF:<{\n                    -1 PUSHINT\n                  }>ELSE<{\n                    s0 s4 PUSH2\n                    SDEQ\n                    0 NEQINT\n                  }>\n                  614 THROWIFNOT\n                  s6 PUSH\n                  0 GTINT\n                  IF:<{\n                    23 s() PUSH\n                    10000000 PUSHINT\n                    GEQ\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  615 THROWIFNOT\n                  BALANCE\n                  FIRST\n                  SWAP\n                  s0 24 s() XCHG\n                  SUB\n                  s0 s6 PUSH2\n                  GEQ\n                  616 THROWIFNOT\n                  s0 s6 XCHG2\n                  SUB\n                  0 PUSHINT\n                  RAWRESERVE\n                  0 PUSHINT\n                  NEWC\n                  b{010000} STSLICECONST\n                  s1 23 s() XCHG\n                  STSTDADDR\n                  0 PUSHINT\n                  111 STUR\n                  ENDC\n                  7 PUSHPOW2\n                  SENDRAWMSG\n                }>ELSE<{\n                  1145985108 PUSHINT\n                  EQUAL\n                  IFNOTJMP:<{\n                    16 PUSHPOW2DEC\n                    THROWANY\n                  }>\n                  INMSG_SRC\n                  s0 23 s() XCHG\n                  64 LDU\n                  16 LDU\n                  14 LDU\n                  14 LDU\n                  1 LDI\n                  ENDS\n                  27 s() PUSH\n                  s10 PUSH\n                  SDEQ\n                  IF:<{\n                    27 s() POP\n                    -1 PUSHINT\n                  }>ELSE<{\n                    s0 27 s() XCHG\n                    s8 PUSH\n                    SDEQ\n                    0 NEQINT\n                  }>\n                  614 THROWIFNOT\n                  23 s() PUSH\n                  4 EQINT\n                  IF:<{\n                    18 s() POP\n                    -1 PUSHINT\n                  }>ELSE<{\n                    23 s() PUSH\n                    3 EQINT\n                    IF:<{\n                      s0 18 s() XCHG\n                      0 NEQINT\n                    }>ELSE<{\n                      18 s() POP\n                      0 PUSHINT\n                    }>\n                    0 NEQINT\n                  }>\n                  621 THROWIFNOT\n                  24 s() PUSH\n                  INC\n                  s3 PUSH\n                  EQUAL\n                  IF:<{\n                    OVER\n                    0 GTINT\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  IF:<{\n                    OVER\n                    1000 PUSHINT\n                    LEQ\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  IF:<{\n                    DUP\n                    18 s() PUSH\n                    ADD\n                    1000 PUSHINT\n                    EQUAL\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  IF:<{\n                    23 s() PUSH\n                    OVER\n                    MUL\n                    10000 PUSHINT\n                    MOD\n                    0 EQINT\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  IF:<{\n                    23 s() PUSH\n                    18 s() PUSH\n                    MUL\n                    10000 PUSHINT\n                    MOD\n                    0 EQINT\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  622 THROWIFNOT\n                  24 s() PUSH\n                  27 s() PUSH\n                  64 PUSHINT\n                  DICTUGET NULLSWAPIFNOT\n                  NIP\n                  623 THROWIF\n                  NEWC\n                  MYADDR\n                  REWRITESTDADDR\n                  DROP\n                  NEWDICT\n                  NEWDICT\n                  28 s() PUSH\n                  NEWC\n                  64 STU\n                  28 s() PUSH\n                  64 STUR\n                  0 PUSHINT\n                  99 STUR\n                  25 s() PUSH\n                  14 STUR\n                  24 s() PUSH\n                  14 STUR\n                  26 s() PUSH\n                  16 STUR\n                  x{00000000} STSLICECONST\n                  MYADDR\n                  SWAP\n                  STSTDADDR\n                  0 PUSHINT\n                  NEWC\n                  256 STU\n                  0 PUSHINT\n                  128 STUR\n                  0 PUSHINT\n                  256 STUR\n                  0 PUSHINT\n                  64 STUR\n                  ENDC\n                  STREFR\n                  NEWC\n                  x{0000} STSLICECONST\n                  22 s() PUSH\n                  STGRAMS\n                  ENDC\n                  STREFR\n                  s9 PUSH\n                  NEWC\n                  STREF\n                  s9 PUSH\n                  STREFR\n                  ENDC\n                  STREFR\n                  s0 s2 XCHG\n                  NEWC\n                  STDICT\n                  STDICT\n                  ENDC\n                  STREFR\n                  ENDC\n                  s8 PUSH\n                  NEWC\n                  b{00110} STSLICECONST\n                  STREF\n                  STREF\n                  HASHBU\n                  NEWC\n                  b{100} STSLICECONST\n                  s1 s2 XCHG\n                  8 STI\n                  256 STU\n                  BTOS\n                  SWAP\n                  STSTDADDR\n                  23 s() PUSH\n                  3 STUR\n                  s1 22 s() XCHG\n                  16 STU\n                  s1 20 s() XCHG\n                  14 STU\n                  s1 18 s() XCHG\n                  14 STU\n                  s1 16 s() XCHG\n                  1 STI\n                  s13 PUSH\n                  STGRAMS\n                  s0 s10 XCHG\n                  NEWC\n                  256 STU\n                  s1 s12 XCHG\n                  64 STU\n                  s1 s10 XCHG\n                  64 STU\n                  s1 s7 XCHG\n                  256 STU\n                  s1 s5 XCHG\n                  32 STU\n                  s1 s3 XCHG\n                  32 STU\n                  ENDC\n                  s0 s5 XCHG2\n                  STREF\n                  ENDC\n                  s0 s2 XCHG\n                  s0 17 s() XCHG\n                  s1 s15 XCHG\n                  64 PUSHINT\n                  DICTUSETREF\n                  s0 s11 XCHG\n                  3 EQINT\n                  IF:<{\n                    s4 PUSH\n                    0 GTINT\n                    0 NEQINT\n                  }>ELSE<{\n                    0 PUSHINT\n                  }>\n                  IF:<{\n                    s0 s4 XCHG\n                    ADD\n                  }>ELSE<{\n                    s4 POP\n                  }>\n                  0 PUSHINT\n                  s0 s13 XCHG\n                  IF:<{\n                    s12 POP\n                    s11 PUSH\n                    0 GTINT\n                    624 THROWIFNOT\n                    0 PUSHINT\n                  }>\n                  0 PUSHINT\n                  s13 PUSH\n                  0 GTINT\n                  FALSE\n                  s2 s2 s2 PUSH3\n                  s0 s0 s0 PUSH3\n                  18 s() 22 s() XCHG\n                  20 s() 21 s() XCHG\n                  s15 20 s() XCHG\n                  s8 18 s() XCHG\n                  16 s() 17 s() XCHG\n                  s13 s15 XCHG\n                  s7 s14 XCHG\n                  s6 s13 XCHG\n                  s6 s12 XCHG\n                  6 6 BLKSWAP\n                  s3 s5 XCHG\n                  s0 s4 s3 XCHG3\n                }>\n                s0 21 s() XCHG\n                s0 s4 XCHG\n                s0 s13 XCHG\n              }>\n              s1 18 s() XCHG\n            }>\n            s13 21 s() XCHG\n            s1 18 s() XCHG\n            s0 s13 XCHG\n            s4 s5 XCHG\n          }>\n          s4 s5 XCHG\n        }>\n        s1 21 s() XCHG\n        s2 18 s() XCHG\n        s8 s7 s8 XCHG3\n        s1 s6 XCHG\n      }>\n      20 s() 22 s() XCHG\n      19 s() 21 s() XCHG\n      s0 20 s() XCHG\n      17 s() 19 s() XCHG\n      16 s() 18 s() XCHG\n      s15 17 s() XCHG\n      s14 16 s() XCHG\n      s13 s15 XCHG\n      s12 s14 XCHG\n      s11 s13 XCHG\n      s10 s12 XCHG\n      s9 s11 XCHG\n      s2 s10 XCHG\n      s6 s9 XCHG\n      s1 s8 XCHG\n      s5 s7 XCHG\n      s4 s6 XCHG\n      s3 s5 XCHG\n      s1 s4 s0 XCHG3\n      s1 s3 XCHG\n    }>\n    s0 22 s() XCHG\n    NEWC\n    64 STU\n    s1 21 s() XCHG\n    64 STU\n    s1 19 s() XCHG\n    3 STU\n    s1 17 s() XCHG\n    16 STU\n    s1 s15 XCHG\n    14 STU\n    s1 s13 XCHG\n    14 STU\n    s1 s11 XCHG\n    1 STI\n    s1 s9 XCHG\n    1 STI\n    s0 s7 XCHG2\n    STGRAMS\n    s1 s5 XCHG\n    64 STU\n    s1 s3 XCHG\n    64 STU\n    256 STU\n    256 STU\n    32 STU\n    32 STU\n    s0 s3 XCHG\n    NEWC\n    STSTDADDR\n    s1 s4 XCHG\n    STSTDADDR\n    s1 s4 XCHG\n    STREF\n    s1 s4 XCHG\n    STREF\n    s1 s4 XCHG\n    STREF\n    ENDC\n    ROT\n    STREF\n    NEWC\n    s0 s3 XCHG2\n    STGRAMS\n    SWAP\n    STGRAMS\n    ENDC\n    STREFR\n    SWAP\n    NEWC\n    STDICT\n    ENDC\n    STREFR\n    ENDC\n    c4 POP\n  }>\n  pending_randomness() PROC:<{\n    loadState() CALLDICT\n    11 BLKDROP\n    s3 POP\n    s4 POP\n    s4 POP\n    s4 POP\n    s6 POP\n    OVER\n    0 GTINT\n    IF:<{\n      OVER\n      259200 PUSHINT\n      ADD\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    s1 s5 XCHG\n    s4 s6 s3 XCHG3\n    -ROT\n  }>\n  proof_receipt() PROC:<{\n    loadState() CALLDICT\n    8 BLKDROP\n    s6 POP\n    s6 POP\n    s7 POP\n    s7 POP\n    s7 POP\n    s8 POP\n    s6 s7 XCHG\n    s5 s6 XCHG\n    s0 s3 XCHG\n    s5 s5 XCHG2\n    s4 s1 s4 XCHG3\n  }>\n  configured_round() PROC:<{\n    loadState() CALLDICT\n    DROP\n    9 3 BLKDROP2\n    s3 POP\n    s4 POP\n    s8 POP\n    MYADDR\n    REWRITESTDADDR\n    DROP\n    NEWDICT\n    NEWDICT\n    s12 PUSH\n    NEWC\n    64 STU\n    s1 s12 XCHG\n    64 STU\n    0 PUSHINT\n    99 STUR\n    s8 PUSH\n    14 STUR\n    s7 PUSH\n    14 STUR\n    s9 PUSH\n    16 STUR\n    x{00000000} STSLICECONST\n    MYADDR\n    SWAP\n    STSTDADDR\n    0 PUSHINT\n    NEWC\n    256 STU\n    0 PUSHINT\n    128 STUR\n    0 PUSHINT\n    256 STUR\n    0 PUSHINT\n    64 STUR\n    ENDC\n    STREFR\n    NEWC\n    x{0000} STSLICECONST\n    s5 PUSH\n    STGRAMS\n    ENDC\n    STREFR\n    s0 s5 XCHG\n    NEWC\n    STREF\n    s1 s3 XCHG\n    STREF\n    ENDC\n    s0 s4 XCHG2\n    STREF\n    SWAP\n    NEWC\n    STDICT\n    s1 s9 XCHG\n    STDICT\n    ENDC\n    s0 s8 XCHG2\n    STREF\n    ENDC\n    s0 s6 XCHG2\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{100} STSLICECONST\n    s1 s6 XCHG\n    8 STI\n    s1 s5 XCHG\n    256 STU\n    BTOS\n    s0 s6 XCHG\n    s0 s5 XCHG\n    s3 s4 XCHG\n    s1 s3 s0 XCHG3\n  }>\n  protocol_constants() PROC:<{\n    1692803367 PUSHINT\n    3 PUSHINT\n    30 PUSHINT\n    259200 PUSHINT\n    1000 PUSHINT\n  }>\n  accrued_pools() PROC:<{\n    loadState() CALLDICT\n    6 BLKDROP\n    15 2 BLKDROP2\n  }>\n  round_receipt() PROC:<{\n    loadState() CALLDICT\n    4 4 BLKDROP2\n    s11 POP\n    18 s() PUSH\n    18 s() PUSH\n    EQUAL\n    IFJMP:<{\n      s10 POP\n      17 s() POP\n      NEWC\n      MYADDR\n      REWRITESTDADDR\n      DROP\n      NEWDICT\n      NEWDICT\n      s0 19 s() XCHG\n      NEWC\n      64 STU\n      s1 18 s() XCHG\n      64 STU\n      0 PUSHINT\n      99 STUR\n      s14 PUSH\n      14 STUR\n      s13 PUSH\n      14 STUR\n      s15 PUSH\n      16 STUR\n      x{00000000} STSLICECONST\n      MYADDR\n      SWAP\n      STSTDADDR\n      0 PUSHINT\n      NEWC\n      256 STU\n      0 PUSHINT\n      128 STUR\n      0 PUSHINT\n      256 STUR\n      0 PUSHINT\n      64 STUR\n      ENDC\n      STREFR\n      NEWC\n      x{0000} STSLICECONST\n      s11 PUSH\n      STGRAMS\n      ENDC\n      STREFR\n      s0 19 s() XCHG\n      NEWC\n      STREF\n      s1 s11 XCHG\n      STREF\n      ENDC\n      SWAP\n      s0 18 s() XCHG\n      STREF\n      s0 s15 XCHG\n      NEWC\n      STDICT\n      s0 16 s() XCHG\n      SWAP\n      s0 16 s() XCHG\n      STDICT\n      ENDC\n      s0 s14 XCHG2\n      STREF\n      ENDC\n      s0 s14 XCHG2\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{100} STSLICECONST\n      s1 s7 XCHG\n      8 STI\n      s1 s6 XCHG\n      256 STU\n      BTOS\n      s0 s13 XCHG2\n      STSTDADDR\n      s1 s9 XCHG\n      3 STU\n      s1 s7 XCHG\n      16 STU\n      s1 s5 XCHG\n      14 STU\n      s1 s3 XCHG\n      14 STU\n      1 STI\n      ROT\n      STGRAMS\n      s0 s6 XCHG\n      NEWC\n      256 STU\n      s1 s2 XCHG\n      64 STU\n      s1 s2 XCHG\n      64 STU\n      256 STU\n      s1 s2 XCHG\n      32 STU\n      32 STU\n      ENDC\n      STREFR\n      ENDC\n    }>\n    s10 s15 XCHG\n    15 BLKDROP\n    2 1 BLKDROP2\n    64 PUSHINT\n    DICTUGETREF\n    625 THROWIFNOT\n  }>\n}END>c\n",
+  "codeBoc64": "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",
+  "codeHashHex": "34EB60C9A3B58D16A2947357E67DB4AFFF93F872AC58169731771521EFC6E19D",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/43be8582-ef1d-4151-8ad9-744da7b0d660/contracts/dosgram_draw_core.tolk",
+        "size_chars": 21983,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/43be8582-ef1d-4151-8ad9-744da7b0d660/contracts/drand_quicknet_verifier.tolk",
+        "size_chars": 8910,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ReductionWitness"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "DrawState"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 11,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 11
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 9
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 21,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 28,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 31
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          30
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 33,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          18,
+          35
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 36,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          38
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          1,
+          1,
+          1,
+          1,
+          5,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          6
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 25,
+        "struct_name": "CreateMessageOptions<cell>",
+        "monomorphic_fields_ty_idx": [
+          29,
+          34,
+          37,
+          3
+        ]
+      },
+      {
+        "ty_idx": 41,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          29,
+          34,
+          37,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 32
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 19,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 21,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 22
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 17,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 18
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 20
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 27,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 28,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 29
+          },
+          {
+            "name": "value",
+            "ty_idx": 34
+          },
+          {
+            "name": "dest",
+            "ty_idx": 37
+          },
+          {
+            "name": "body",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 24,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "DrawState",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          38,
+          8,
+          38,
+          17
+        ],
+        "fields": [
+          {
+            "name": "roundId",
+            "ty_idx": 1
+          },
+          {
+            "name": "nanoPerGram",
+            "ty_idx": 1
+          },
+          {
+            "name": "status",
+            "ty_idx": 1
+          },
+          {
+            "name": "capacity",
+            "ty_idx": 1
+          },
+          {
+            "name": "rewardBps",
+            "ty_idx": 1
+          },
+          {
+            "name": "platformBps",
+            "ty_idx": 1
+          },
+          {
+            "name": "bonusActive",
+            "ty_idx": 5
+          },
+          {
+            "name": "refundAcknowledged",
+            "ty_idx": 5
+          },
+          {
+            "name": "bonusPrize",
+            "ty_idx": 6
+          },
+          {
+            "name": "sealedAt",
+            "ty_idx": 1
+          },
+          {
+            "name": "targetRound",
+            "ty_idx": 1
+          },
+          {
+            "name": "roundRoot",
+            "ty_idx": 1
+          },
+          {
+            "name": "randomness",
+            "ty_idx": 1
+          },
+          {
+            "name": "winnerIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "bonusWinnerIndex",
+            "ty_idx": 1
+          },
+          {
+            "name": "bonusPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "platformPool",
+            "ty_idx": 6
+          },
+          {
+            "name": "adminHot",
+            "ty_idx": 7
+          },
+          {
+            "name": "adminRecovery",
+            "ty_idx": 7
+          },
+          {
+            "name": "roundCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "vaultCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "boardCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "history",
+            "ty_idx": 14
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ReductionWitness",
+        "ty_idx": 12,
+        "ident_loc": [
+          2,
+          36,
+          8,
+          36,
+          24
+        ],
+        "fields": [
+          {
+            "name": "q0",
+            "ty_idx": 1
+          },
+          {
+            "name": "q1",
+            "ty_idx": 1
+          },
+          {
+            "name": "q2",
+            "ty_idx": 1
+          },
+          {
+            "name": "r0",
+            "ty_idx": 1
+          },
+          {
+            "name": "r1",
+            "ty_idx": 1
+          },
+          {
+            "name": "r2",
+            "ty_idx": 1
+          },
+          {
+            "name": "r3",
+            "ty_idx": 1
+          },
+          {
+            "name": "r4",
+            "ty_idx": 1
+          },
+          {
+            "name": "r5",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "pLimb",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          93,
+          5,
+          93,
+          10
+        ],
+        "end_loc": [
+          2,
+          101,
+          1,
+          101,
+          2
+        ],
+        "params": [
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "qLimb",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          104,
+          5,
+          104,
+          10
+        ],
+        "end_loc": [
+          2,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "w",
+            "ty_idx": 12
+          },
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "rLimb",
+        "return_ty_idx": 1,
+        "num_params": 2,
+        "ident_loc": [
+          2,
+          112,
+          5,
+          112,
+          10
+        ],
+        "end_loc": [
+          2,
+          120,
+          1,
+          120,
+          2
+        ],
+        "params": [
+          {
+            "name": "w",
+            "ty_idx": 12
+          },
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "xLimb",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          2,
+          123,
+          5,
+          123,
+          10
+        ],
+        "end_loc": [
+          2,
+          128,
+          1,
+          128,
+          2
+        ],
+        "params": [
+          {
+            "name": "high",
+            "ty_idx": 1
+          },
+          {
+            "name": "low",
+            "ty_idx": 1
+          },
+          {
+            "name": "index",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "remainderIsCanonical",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          130,
+          5,
+          130,
+          25
+        ],
+        "end_loc": [
+          2,
+          137,
+          1,
+          137,
+          2
+        ],
+        "params": [
+          {
+            "name": "w",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "verifyReduction",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          2,
+          141,
+          5,
+          141,
+          20
+        ],
+        "end_loc": [
+          2,
+          165,
+          1,
+          165,
+          2
+        ],
+        "params": [
+          {
+            "name": "high",
+            "ty_idx": 1
+          },
+          {
+            "name": "low",
+            "ty_idx": 1
+          },
+          {
+            "name": "w",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "loadState",
+        "return_ty_idx": 13,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          80,
+          5,
+          80,
+          14
+        ],
+        "end_loc": [
+          1,
+          122,
+          1,
+          122,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 7,
+        "name": "sealRound",
+        "return_ty_idx": 13,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          348,
+          5,
+          348,
+          14
+        ],
+        "end_loc": [
+          1,
+          367,
+          1,
+          367,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "expectedRound",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          239,
+          5,
+          239,
+          18
+        ],
+        "end_loc": [
+          1,
+          247,
+          1,
+          247,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "initialRoundData",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          195,
+          5,
+          195,
+          21
+        ],
+        "end_loc": [
+          1,
+          237,
+          1,
+          237,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "sendSealAck",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          302,
+          5,
+          302,
+          16
+        ],
+        "end_loc": [
+          1,
+          315,
+          1,
+          315,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<cell>",
+        "return_ty_idx": 24,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "roundForSealTime",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          288,
+          5,
+          288,
+          21
+        ],
+        "end_loc": [
+          2,
+          293,
+          1,
+          293,
+          2
+        ],
+        "params": [
+          {
+            "name": "sealedAt",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          523,
+          5,
+          523,
+          22
+        ],
+        "end_loc": [
+          1,
+          579,
+          1,
+          579,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          581,
+          5,
+          581,
+          21
+        ],
+        "end_loc": [
+          1,
+          585,
+          1,
+          585,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "submitDrand",
+        "return_ty_idx": 13,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          369,
+          5,
+          369,
+          16
+        ],
+        "end_loc": [
+          1,
+          392,
+          1,
+          392,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "verifyQuicknet",
+        "return_ty_idx": 1,
+        "num_params": 3,
+        "ident_loc": [
+          2,
+          251,
+          5,
+          251,
+          19
+        ],
+        "end_loc": [
+          2,
+          286,
+          1,
+          286,
+          2
+        ],
+        "params": [
+          {
+            "name": "round",
+            "ty_idx": 1
+          },
+          {
+            "name": "signatureCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "witnessCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "parseWitness",
+        "return_ty_idx": 12,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          167,
+          5,
+          167,
+          17
+        ],
+        "end_loc": [
+          2,
+          179,
+          1,
+          179,
+          2
+        ],
+        "params": [
+          {
+            "name": "source",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "expandMessage",
+        "return_ty_idx": 40,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          200,
+          5,
+          200,
+          18
+        ],
+        "end_loc": [
+          2,
+          231,
+          1,
+          231,
+          2
+        ],
+        "params": [
+          {
+            "name": "round",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "dstPrime",
+        "return_ty_idx": 4,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          193,
+          5,
+          193,
+          13
+        ],
+        "end_loc": [
+          2,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 21,
+        "name": "fieldElement",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          2,
+          181,
+          5,
+          181,
+          17
+        ],
+        "end_loc": [
+          2,
+          191,
+          1,
+          191,
+          2
+        ],
+        "params": [
+          {
+            "name": "w",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "quicknetPublicKey",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          233,
+          5,
+          233,
+          22
+        ],
+        "end_loc": [
+          2,
+          240,
+          1,
+          240,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 23,
+        "name": "g2Generator",
+        "return_ty_idx": 2,
+        "num_params": 0,
+        "ident_loc": [
+          2,
+          242,
+          5,
+          242,
+          16
+        ],
+        "end_loc": [
+          2,
+          249,
+          1,
+          249,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 24,
+        "name": "winnerFor",
+        "return_ty_idx": 1,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          290,
+          5,
+          290,
+          14
+        ],
+        "end_loc": [
+          1,
+          300,
+          1,
+          300,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "domain",
+            "ty_idx": 1
+          },
+          {
+            "name": "domainBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "randomness",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "drawCandidate",
+        "return_ty_idx": 1,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          275,
+          5,
+          275,
+          18
+        ],
+        "end_loc": [
+          1,
+          288,
+          1,
+          288,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "domain",
+            "ty_idx": 1
+          },
+          {
+            "name": "domainBits",
+            "ty_idx": 1
+          },
+          {
+            "name": "randomness",
+            "ty_idx": 1
+          },
+          {
+            "name": "counter",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "ownAddressHash",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          271,
+          5,
+          271,
+          19
+        ],
+        "end_loc": [
+          1,
+          273,
+          1,
+          273,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 27,
+        "name": "sendResult",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          317,
+          5,
+          317,
+          15
+        ],
+        "end_loc": [
+          1,
+          333,
+          1,
+          333,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "sendRefundable",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          335,
+          5,
+          335,
+          19
+        ],
+        "end_loc": [
+          1,
+          346,
+          1,
+          346,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "applyDrawAck",
+        "return_ty_idx": 13,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          462,
+          5,
+          462,
+          17
+        ],
+        "end_loc": [
+          1,
+          500,
+          1,
+          500,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "markRefundable",
+        "return_ty_idx": 13,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          394,
+          5,
+          394,
+          19
+        ],
+        "end_loc": [
+          1,
+          401,
+          1,
+          401,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "applyRefundAck",
+        "return_ty_idx": 13,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          403,
+          5,
+          403,
+          19
+        ],
+        "end_loc": [
+          1,
+          411,
+          1,
+          411,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "withdrawPlatform",
+        "return_ty_idx": 13,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          502,
+          5,
+          502,
+          21
+        ],
+        "end_loc": [
+          1,
+          521,
+          1,
+          521,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "createMessage<void>",
+        "return_ty_idx": 24,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "configureNext",
+        "return_ty_idx": 13,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          413,
+          5,
+          413,
+          18
+        ],
+        "end_loc": [
+          1,
+          460,
+          1,
+          460,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "map<uint64, cell>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "roundReceipt",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          249,
+          5,
+          249,
+          17
+        ],
+        "end_loc": [
+          1,
+          269,
+          1,
+          269,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "map<uint64, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "saveState",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          124,
+          5,
+          124,
+          14
+        ],
+        "end_loc": [
+          1,
+          160,
+          1,
+          160,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "pending_randomness",
+        "return_ty_idx": 42,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          587,
+          9,
+          587,
+          27
+        ],
+        "end_loc": [
+          1,
+          600,
+          1,
+          600,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 40,
+        "name": "proof_receipt",
+        "return_ty_idx": 43,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          602,
+          9,
+          602,
+          22
+        ],
+        "end_loc": [
+          1,
+          615,
+          1,
+          615,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 41,
+        "name": "configured_round",
+        "return_ty_idx": 44,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          617,
+          9,
+          617,
+          25
+        ],
+        "end_loc": [
+          1,
+          628,
+          1,
+          628,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 42,
+        "name": "protocol_constants",
+        "return_ty_idx": 45,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          630,
+          9,
+          630,
+          27
+        ],
+        "end_loc": [
+          1,
+          632,
+          1,
+          632,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 43,
+        "name": "accrued_pools",
+        "return_ty_idx": 46,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          634,
+          9,
+          634,
+          22
+        ],
+        "end_loc": [
+          1,
+          637,
+          1,
+          637,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 44,
+        "name": "round_receipt",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          639,
+          9,
+          639,
+          22
+        ],
+        "end_loc": [
+          1,
+          645,
+          1,
+          645,
+          2
+        ],
+        "params": [
+          {
+            "name": "roundId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 45,
+        "name": "map<uint64, cell>.mustGet",
+        "return_ty_idx": 3,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 11
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          1,
+          1,
+          1,
+          1,
+          5,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          6
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 3
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 90581,
+        "name": "pending_randomness",
+        "parameters": [],
+        "return_ty_idx": 12
+      },
+      {
+        "tvm_method_id": 127701,
+        "name": "proof_receipt",
+        "parameters": [],
+        "return_ty_idx": 13
+      },
+      {
+        "tvm_method_id": 104952,
+        "name": "configured_round",
+        "parameters": [],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 128055,
+        "name": "protocol_constants",
+        "parameters": [],
+        "return_ty_idx": 15
+      },
+      {
+        "tvm_method_id": 125683,
+        "name": "accrued_pools",
+        "parameters": [],
+        "return_ty_idx": 16
+      },
+      {
+        "tvm_method_id": 107624,
+        "name": "round_receipt",
+        "parameters": [
+          {
+            "name": "roundId",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 3
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "plain_int",
+        "err_code": 200
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 201
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 202
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 203
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 204
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 205
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 600
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 601
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 602
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 603
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 604
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 605
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 606
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 607
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 608
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 609
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 610
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 611
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 612
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 613
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 614
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 615
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 616
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 617
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 618
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 619
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 620
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 621
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 622
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 623
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 624
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 625
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/43be8582-ef1d-4151-8ad9-744da7b0d660/contracts/dosgram_draw_core.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n\n// Permanent immutable DOSGRAM draw Core. Round contracts are deterministic\n// children derived from code cells pinned in this contract's state. No sender\n// can replace the Quicknet verifier, collective key, selected beacon, root, or\n// winner after the round has been sealed.\n\nimport \"drand_quicknet_verifier.tolk\";\n\nconst OP_SEAL_ROUND = 0x44534541;       // \"DSEA\" Round -> Draw Core\nconst OP_SEAL_ACK = 0x44534143;         // \"DSAC\" Draw Core -> Round\nconst OP_SUBMIT_DRAND = 0x4452414E;     // \"DRAN\" permissionless\nconst OP_DRAW_RESULT = 0x44524557;      // \"DREW\" Draw Core -> Round\nconst OP_RETRY_RESULT = 0x44525452;     // \"DRTR\" permissionless\nconst OP_DRAW_ACK = 0x4441434B;         // \"DACK\" Round -> Draw Core\nconst OP_ACCRUAL_ACK = 0x44414353;      // \"DACS\" Draw Core -> Round\nconst OP_MARK_REFUNDABLE = 0x52454644;  // \"REFD\" permissionless\nconst OP_REFUNDABLE = 0x44524644;       // \"DRFD\" Draw Core -> Round\nconst OP_REFUND_ACK = 0x44524143;       // \"DRAC\" Round -> Draw Core\nconst OP_WITHDRAW_PLATFORM = 0x44505744; // \"DPWD\" either pinned admin\nconst OP_CONFIGURE_NEXT = 0x444E5854;   // \"DNXT\" either pinned admin\n\nconst STATUS_CONFIGURED = 0;\nconst STATUS_RANDOMNESS_PENDING = 1;\nconst STATUS_PROOF_VERIFIED = 2;\nconst STATUS_REFUNDABLE = 3;\nconst STATUS_PAID = 4;\n\nconst PROOF_TIMEOUT = 259200; // 72 hours\nconst TOTAL_COMMISSION_BPS = 1000;\nconst MAX_UINT256 = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF;\nconst MAIN_DOMAIN = 0x444F534752414D5F4D41494E5F5631;   // \"DOSGRAM_MAIN_V1\"\nconst BONUS_DOMAIN = 0x444F534752414D5F424F4E55535F5631; // \"DOSGRAM_BONUS_V1\"\nconst CALLBACK_GAS = 25000000;\nconst ACCRUAL_ACK_GAS = 5000000;\nconst RETRY_MIN_VALUE = 35000000;\n\nstruct DrawState {\n    roundId: int;\n    nanoPerGram: int;\n    status: int;\n    capacity: int;\n    rewardBps: int;\n    platformBps: int;\n    bonusActive: bool;\n    refundAcknowledged: bool;\n    bonusPrize: coins;\n    sealedAt: int;\n    targetRound: int;\n    roundRoot: int;\n    randomness: int;\n    winnerIndex: int;\n    bonusWinnerIndex: int;\n    bonusPool: coins;\n    platformPool: coins;\n    adminHot: address;\n    adminRecovery: address;\n    roundCode: cell;\n    vaultCode: cell;\n    boardCode: cell;\n    history: map<uint64, cell>;\n}\n\n@inline\nfun unixTime(): int\n    asm \"NOW\";\n\n@inline\nfun ownAddress(): slice\n    asm \"MYADDR\";\n\n@inline\nfun cellHash(value: cell): int\n    asm \"HASHCU\";\n\n@inline\nfun sha256Draw(a: builder, b: builder, c: builder, d: builder): int\n    asm \"4 PUSHINT HASHEXT_SHA256\";\n\nfun loadState(): DrawState {\n    var data = contract.getData().beginParse();\n    var codes = data.loadRef().beginParse();\n    var financials = data.loadRef().beginParse();\n    var historyData = data.loadRef().beginParse();\n    val state = DrawState {\n        roundId: data.loadUint(64),\n        nanoPerGram: data.loadUint(64),\n        status: data.loadUint(3),\n        capacity: data.loadUint(16),\n        rewardBps: data.loadUint(14),\n        platformBps: data.loadUint(14),\n        bonusActive: data.loadBool(),\n        refundAcknowledged: data.loadBool(),\n        bonusPrize: data.loadCoins(),\n        sealedAt: data.loadUint(64),\n        targetRound: data.loadUint(64),\n        roundRoot: data.loadUint(256),\n        randomness: data.loadUint(256),\n        winnerIndex: data.loadUint(32),\n        bonusWinnerIndex: data.loadUint(32),\n        bonusPool: financials.loadCoins(),\n        platformPool: financials.loadCoins(),\n        adminHot: codes.loadAddress(),\n        adminRecovery: codes.loadAddress(),\n        roundCode: codes.loadRef(),\n        vaultCode: codes.loadRef(),\n        boardCode: codes.loadRef(),\n        history: createMapFromLowLevelDict<uint64, cell>(historyData.loadDict()),\n    };\n    codes.assertEnd();\n    financials.assertEnd();\n    historyData.assertEnd();\n    data.assertEnd();\n    assert (state.rewardBps + state.platformBps == TOTAL_COMMISSION_BPS) throw 600;\n    assert (state.capacity > 0 && state.capacity <= 1000) throw 601;\n    assert (\n        state.nanoPerGram > 0\n        && (state.nanoPerGram * state.rewardBps) % 10000 == 0\n        && (state.nanoPerGram * state.platformBps) % 10000 == 0\n    ) throw 617;\n    return state;\n}\n\nfun saveState(state: DrawState) {\n    contract.setData(\n        beginCell()\n            .storeUint(state.roundId, 64)\n            .storeUint(state.nanoPerGram, 64)\n            .storeUint(state.status, 3)\n            .storeUint(state.capacity, 16)\n            .storeUint(state.rewardBps, 14)\n            .storeUint(state.platformBps, 14)\n            .storeBool(state.bonusActive)\n            .storeBool(state.refundAcknowledged)\n            .storeCoins(state.bonusPrize)\n            .storeUint(state.sealedAt, 64)\n            .storeUint(state.targetRound, 64)\n            .storeUint(state.roundRoot, 256)\n            .storeUint(state.randomness, 256)\n            .storeUint(state.winnerIndex, 32)\n            .storeUint(state.bonusWinnerIndex, 32)\n            .storeRef(\n                beginCell()\n                    .storeAddress(state.adminHot)\n                    .storeAddress(state.adminRecovery)\n                    .storeRef(state.roundCode)\n                    .storeRef(state.vaultCode)\n                    .storeRef(state.boardCode)\n                    .endCell()\n            )\n            .storeRef(\n                beginCell()\n                    .storeCoins(state.bonusPool)\n                    .storeCoins(state.platformPool)\n                    .endCell()\n            )\n            .storeRef(beginCell().storeDict(state.history.toLowLevelDict()).endCell())\n            .endCell(),\n    );\n}\n\nfun emptyVaultPlan(): cell {\n    val emptyPlan: map<uint16, cell> = [];\n    return beginCell().storeDict(emptyPlan.toLowLevelDict()).endCell();\n}\n\nfun initialBoardData(state: DrawState, round: address): cell {\n    val owners: map<uint16, address> = [];\n    val receipts: map<address, cell> = [];\n    val referralUnits: map<address, uint32> = [];\n    return beginCell()\n        .storeAddress(round)\n        .storeUint(state.roundId, 64)\n        .storeUint(state.nanoPerGram, 64)\n        .storeUint(state.capacity, 16)\n        .storeUint(0, 16)\n        .storeUint(0, 32)\n        .storeBool(false)\n        .storeUint(0, 32)\n        .storeRef(state.vaultCode)\n        .storeRef(\n            beginCell()\n                .storeDict(owners.toLowLevelDict())\n                .storeDict(receipts.toLowLevelDict())\n                .endCell()\n        )\n        .storeRef(\n            beginCell()\n                .storeDict(referralUnits.toLowLevelDict())\n                .endCell()\n        )\n        .endCell();\n}\n\nfun initialRoundData(state: DrawState): cell {\n    val refunds: map<address, uint64> = [];\n    val rewardUnits: map<address, uint32> = [];\n    return beginCell()\n        .storeUint(state.roundId, 64)\n        .storeUint(state.nanoPerGram, 64)\n        .storeUint(0, 3)\n        .storeUint(0, 32)\n        .storeUint(0, 32)\n        .storeUint(0, 32)\n        .storeUint(state.rewardBps, 14)\n        .storeUint(state.platformBps, 14)\n        .storeUint(state.capacity, 16)\n        .storeUint(0, 32)\n        .storeAddress(contract.getAddress())\n        .storeRef(\n            beginCell()\n                .storeUint(0, 256)\n                .storeUint(0, 64)\n                .storeUint(0, 64)\n                .storeUint(0, 256)\n                .storeUint(0, 32)\n                .storeUint(0, 32)\n                .endCell()\n        )\n        .storeRef(\n            beginCell()\n                .storeCoins(0)\n                .storeCoins(0)\n                .storeCoins(0)\n                .storeCoins(0)\n                .storeCoins(state.bonusPrize)\n                .endCell()\n        )\n        .storeRef(beginCell().storeRef(state.vaultCode).storeRef(state.boardCode).endCell())\n        .storeRef(\n            beginCell()\n                .storeDict(refunds.toLowLevelDict())\n                .storeDict(rewardUnits.toLowLevelDict())\n                .endCell()\n        )\n        .endCell();\n}\n\nfun expectedRound(state: DrawState): address {\n    return AutoDeployAddress {\n        workchain: contract.getAddress().getWorkchain(),\n        stateInit: ContractState {\n            code: state.roundCode,\n            data: initialRoundData(state),\n        },\n    }.calculateAddress();\n}\n\nfun roundReceipt(state: DrawState): cell {\n    return beginCell()\n        .storeAddress(expectedRound(state))\n        .storeUint(state.status, 3)\n        .storeUint(state.capacity, 16)\n        .storeUint(state.rewardBps, 14)\n        .storeUint(state.platformBps, 14)\n        .storeBool(state.bonusActive)\n        .storeCoins(state.bonusPrize)\n        .storeRef(\n            beginCell()\n                .storeUint(state.roundRoot, 256)\n                .storeUint(state.sealedAt, 64)\n                .storeUint(state.targetRound, 64)\n                .storeUint(state.randomness, 256)\n                .storeUint(state.winnerIndex, 32)\n                .storeUint(state.bonusWinnerIndex, 32)\n                .endCell()\n        )\n        .endCell();\n}\n\nfun ownAddressHash(): int {\n    return cellHash(beginCell().storeSlice(ownAddress()).endCell());\n}\n\nfun drawCandidate(\n    state: DrawState,\n    domain: int,\n    domainBits: int,\n    randomness: int,\n    counter: int,\n): int {\n    return sha256Draw(\n        beginCell().storeUint(domain, domainBits),\n        beginCell().storeUint(randomness, 256).storeUint(state.roundId, 64),\n        beginCell().storeUint(ownAddressHash(), 256),\n        beginCell().storeUint(state.roundRoot, 256).storeUint(counter, 32),\n    );\n}\n\nfun winnerFor(state: DrawState, domain: int, domainBits: int, randomness: int): int {\n    val rejectedTail = ((MAX_UINT256 % state.capacity) + 1) % state.capacity;\n    val largestAccepted = MAX_UINT256 - rejectedTail;\n    var counter = 0;\n    var candidate = drawCandidate(state, domain, domainBits, randomness, counter);\n    while (candidate > largestAccepted) {\n        counter += 1;\n        candidate = drawCandidate(state, domain, domainBits, randomness, counter);\n    }\n    return candidate % state.capacity;\n}\n\nfun sendSealAck(state: DrawState) {\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: CALLBACK_GAS,\n        dest: expectedRound(state),\n        body: beginCell()\n            .storeUint(OP_SEAL_ACK, 32)\n            .storeUint(state.roundId, 64)\n            .storeUint(state.roundRoot, 256)\n            .storeUint(state.sealedAt, 64)\n            .storeUint(state.targetRound, 64)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sendResult(state: DrawState) {\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: state.bonusPrize + CALLBACK_GAS,\n        dest: expectedRound(state),\n        body: beginCell()\n            .storeUint(OP_DRAW_RESULT, 32)\n            .storeUint(state.roundId, 64)\n            .storeUint(state.roundRoot, 256)\n            .storeUint(state.targetRound, 64)\n            .storeUint(state.randomness, 256)\n            .storeUint(state.winnerIndex, 32)\n            .storeBool(state.bonusActive)\n            .storeUint(state.bonusWinnerIndex, 32)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sendRefundable(state: DrawState) {\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: CALLBACK_GAS,\n        dest: expectedRound(state),\n        body: beginCell()\n            .storeUint(OP_REFUNDABLE, 32)\n            .storeUint(state.roundId, 64)\n            .storeUint(state.roundRoot, 256)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun sealRound(state: DrawState, sender: address, body: slice): DrawState {\n    val roundId = body.loadUint(64);\n    val capacity = body.loadUint(16);\n    val roundRoot = body.loadUint(256);\n    body.assertEnd();\n    assert (sender == expectedRound(state)) throw 602;\n    assert (roundId == state.roundId && capacity == state.capacity && roundRoot != 0) throw 603;\n    if (state.status == STATUS_RANDOMNESS_PENDING) {\n        assert (roundRoot == state.roundRoot) throw 604;\n        sendSealAck(state);\n        return state;\n    }\n    assert (state.status == STATUS_CONFIGURED) throw 604;\n    state.roundRoot = roundRoot;\n    state.sealedAt = unixTime();\n    state.targetRound = roundForSealTime(state.sealedAt);\n    state.status = STATUS_RANDOMNESS_PENDING;\n    sendSealAck(state);\n    return state;\n}\n\nfun submitDrand(state: DrawState, valueCoins: coins, body: slice): DrawState {\n    val round = body.loadUint(64);\n    val signature = body.loadRef();\n    val witness = body.loadRef();\n    body.assertEnd();\n    assert (state.status == STATUS_RANDOMNESS_PENDING) throw 605;\n    assert (round == state.targetRound) throw 606;\n    assert (unixTime() >= state.sealedAt + CEREMONY_DELAY) throw 607;\n    val randomness = verifyQuicknet(round, signature, witness);\n    val balanceBeforeMessage = contract.getOriginalBalance() - valueCoins;\n    assert (balanceBeforeMessage >= state.bonusPrize) throw 618;\n    reserveToncoinsOnBalance(\n        balanceBeforeMessage - state.bonusPrize,\n        RESERVE_MODE_EXACT_AMOUNT,\n    );\n    state.randomness = randomness;\n    state.winnerIndex = winnerFor(state, MAIN_DOMAIN, 120, randomness);\n    state.bonusWinnerIndex = state.bonusActive\n        ? winnerFor(state, BONUS_DOMAIN, 128, randomness)\n        : 0;\n    state.status = STATUS_PROOF_VERIFIED;\n    sendResult(state);\n    return state;\n}\n\nfun markRefundable(state: DrawState): DrawState {\n    assert (state.status == STATUS_RANDOMNESS_PENDING) throw 605;\n    assert (unixTime() >= state.sealedAt + PROOF_TIMEOUT) throw 608;\n    state.status = STATUS_REFUNDABLE;\n    state.refundAcknowledged = false;\n    sendRefundable(state);\n    return state;\n}\n\nfun applyRefundAck(state: DrawState, sender: address, body: slice): DrawState {\n    val roundId = body.loadUint(64);\n    val root = body.loadUint(256);\n    body.assertEnd();\n    assert (sender == expectedRound(state) && state.status == STATUS_REFUNDABLE) throw 619;\n    assert (roundId == state.roundId && root == state.roundRoot) throw 620;\n    state.refundAcknowledged = true;\n    return state;\n}\n\nfun configureNext(state: DrawState, sender: address, body: slice): DrawState {\n    val nextRoundId = body.loadUint(64);\n    val capacity = body.loadUint(16);\n    val rewardBps = body.loadUint(14);\n    val platformBps = body.loadUint(14);\n    val useBonusPool = body.loadBool();\n    body.assertEnd();\n    assert (sender == state.adminHot || sender == state.adminRecovery) throw 614;\n    assert (\n        state.status == STATUS_PAID\n        || (state.status == STATUS_REFUNDABLE && state.refundAcknowledged)\n    ) throw 621;\n    assert (\n        nextRoundId == state.roundId + 1\n        && capacity > 0\n        && capacity <= 1000\n        && rewardBps + platformBps == TOTAL_COMMISSION_BPS\n        && (state.nanoPerGram * rewardBps) % 10000 == 0\n        && (state.nanoPerGram * platformBps) % 10000 == 0\n    ) throw 622;\n    assert (!state.history.exists(state.roundId)) throw 623;\n    state.history.set(state.roundId, roundReceipt(state));\n\n    if (state.status == STATUS_REFUNDABLE && state.bonusPrize > 0) {\n        state.bonusPool += state.bonusPrize;\n    }\n    var nextBonusPrize = 0 as coins;\n    if (useBonusPool) {\n        assert (state.bonusPool > 0) throw 624;\n        nextBonusPrize = state.bonusPool;\n        state.bonusPool = 0;\n    }\n    state.roundId = nextRoundId;\n    state.status = STATUS_CONFIGURED;\n    state.capacity = capacity;\n    state.rewardBps = rewardBps;\n    state.platformBps = platformBps;\n    state.bonusActive = nextBonusPrize > 0;\n    state.refundAcknowledged = false;\n    state.bonusPrize = nextBonusPrize;\n    state.sealedAt = 0;\n    state.targetRound = 0;\n    state.roundRoot = 0;\n    state.randomness = 0;\n    state.winnerIndex = 0;\n    state.bonusWinnerIndex = 0;\n    return state;\n}\n\nfun applyDrawAck(\n    state: DrawState,\n    sender: address,\n    valueCoins: coins,\n    body: slice,\n): DrawState {\n    val roundId = body.loadUint(64);\n    val bonusAmount = body.loadCoins();\n    val platformAmount = body.loadCoins();\n    body.assertEnd();\n    assert (sender == expectedRound(state)) throw 612;\n    assert (roundId == state.roundId) throw 613;\n    val balanceBeforeMessage = contract.getOriginalBalance() - valueCoins;\n    if (state.status == STATUS_PROOF_VERIFIED) {\n        assert (valueCoins >= bonusAmount + platformAmount) throw 613;\n        state.bonusPool += bonusAmount;\n        state.platformPool += platformAmount;\n        state.status = STATUS_PAID;\n        reserveToncoinsOnBalance(\n            balanceBeforeMessage + bonusAmount + platformAmount,\n            RESERVE_MODE_EXACT_AMOUNT,\n        );\n    } else {\n        assert (state.status == STATUS_PAID) throw 610;\n        reserveToncoinsOnBalance(balanceBeforeMessage, RESERVE_MODE_EXACT_AMOUNT);\n    }\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: ACCRUAL_ACK_GAS,\n        dest: sender,\n        body: beginCell()\n            .storeUint(OP_ACCRUAL_ACK, 32)\n            .storeUint(roundId, 64)\n            .storeCoins(bonusAmount)\n            .storeCoins(platformAmount)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n    return state;\n}\n\nfun withdrawPlatform(\n    state: DrawState,\n    sender: address,\n    valueCoins: coins,\n    body: slice,\n): DrawState {\n    body.assertEnd();\n    assert (sender == state.adminHot || sender == state.adminRecovery) throw 614;\n    assert (state.platformPool > 0 && valueCoins >= 10000000) throw 615;\n    val balanceBeforeMessage = contract.getOriginalBalance() - valueCoins;\n    assert (balanceBeforeMessage >= state.platformPool) throw 616;\n    reserveToncoinsOnBalance(\n        balanceBeforeMessage - state.platformPool,\n        RESERVE_MODE_EXACT_AMOUNT,\n    );\n    state.platformPool = 0;\n    createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: sender })\n        .send(SEND_MODE_CARRY_ALL_BALANCE);\n    return state;\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.isEmpty()) {\n        return;\n    }\n    val balanceBeforeMessage = contract.getOriginalBalance() - in.valueCoins;\n    var state = loadState();\n    var body = in.body;\n    val op = body.loadUint(32);\n    // Every public/authenticated operation except an admin withdrawal may\n    // spend only its inbound value. Existing protocol balances are reserved.\n    if (\n        op != OP_WITHDRAW_PLATFORM\n        && op != OP_DRAW_ACK\n        && op != OP_SUBMIT_DRAND\n        && op != OP_RETRY_RESULT\n    ) {\n        reserveToncoinsOnBalance(balanceBeforeMessage, RESERVE_MODE_EXACT_AMOUNT);\n    }\n    if (op == OP_SEAL_ROUND) {\n        state = sealRound(state, in.senderAddress, body);\n    } else if (op == OP_SUBMIT_DRAND) {\n        state = submitDrand(state, in.valueCoins, body);\n    } else if (op == OP_RETRY_RESULT) {\n        body.assertEnd();\n        assert (in.valueCoins >= RETRY_MIN_VALUE) throw 611;\n        if (state.status == STATUS_RANDOMNESS_PENDING) {\n            reserveToncoinsOnBalance(balanceBeforeMessage, RESERVE_MODE_EXACT_AMOUNT);\n            sendSealAck(state);\n        } else if (state.status == STATUS_PROOF_VERIFIED) {\n            assert (balanceBeforeMessage >= state.bonusPrize) throw 618;\n            reserveToncoinsOnBalance(\n                balanceBeforeMessage - state.bonusPrize,\n                RESERVE_MODE_EXACT_AMOUNT,\n            );\n            sendResult(state);\n        } else if (state.status == STATUS_REFUNDABLE) {\n            reserveToncoinsOnBalance(balanceBeforeMessage, RESERVE_MODE_EXACT_AMOUNT);\n            sendRefundable(state);\n        } else {\n            throw 609;\n        }\n    } else if (op == OP_DRAW_ACK) {\n        state = applyDrawAck(state, in.senderAddress, in.valueCoins, body);\n    } else if (op == OP_MARK_REFUNDABLE) {\n        body.assertEnd();\n        state = markRefundable(state);\n    } else if (op == OP_REFUND_ACK) {\n        state = applyRefundAck(state, in.senderAddress, body);\n    } else if (op == OP_WITHDRAW_PLATFORM) {\n        state = withdrawPlatform(state, in.senderAddress, in.valueCoins, body);\n    } else if (op == OP_CONFIGURE_NEXT) {\n        state = configureNext(state, in.senderAddress, body);\n    } else {\n        throw 0xFFFF;\n    }\n    saveState(state);\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    // State remains authoritative and retryable. Any account may call DRTR\n    // with fresh gas; no result or target can be changed by the retry.\n    return;\n}\n\nget fun pending_randomness(): (int, int, int, int, int, int, int, bool) {\n    val state = loadState();\n    val refundableAt = state.sealedAt > 0 ? state.sealedAt + PROOF_TIMEOUT : 0;\n    return (\n        state.roundId,\n        state.status,\n        state.targetRound,\n        state.sealedAt,\n        refundableAt,\n        state.roundRoot,\n        state.capacity,\n        state.refundAcknowledged,\n    );\n}\n\nget fun proof_receipt(): (int, int, int, int, int, int, int, int, bool) {\n    val state = loadState();\n    return (\n        state.roundId,\n        state.status,\n        state.targetRound,\n        state.randomness,\n        state.winnerIndex,\n        state.bonusWinnerIndex,\n        state.roundRoot,\n        state.sealedAt,\n        state.bonusActive,\n    );\n}\n\nget fun configured_round(): (address, int, int, int, int, bool, coins) {\n    val state = loadState();\n    return (\n        expectedRound(state),\n        state.roundId,\n        state.capacity,\n        state.rewardBps,\n        state.platformBps,\n        state.bonusActive,\n        state.bonusPrize,\n    );\n}\n\nget fun protocol_constants(): (int, int, int, int, int) {\n    return (QUICKNET_GENESIS, QUICKNET_PERIOD, CEREMONY_DELAY, PROOF_TIMEOUT, 1000);\n}\n\nget fun accrued_pools(): (coins, coins) {\n    val state = loadState();\n    return (state.bonusPool, state.platformPool);\n}\n\nget fun round_receipt(roundId: int): cell {\n    val state = loadState();\n    if (roundId == state.roundId) {\n        return roundReceipt(state);\n    }\n    return state.history.mustGet(roundId, 625);\n}\n"
+    },
+    {
+      "filename": "tmp/43be8582-ef1d-4151-8ad9-744da7b0d660/contracts/drand_quicknet_verifier.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n\n// Reusable DOSGRAM drand Quicknet verification library for TVM.\n//\n// Quicknet uses the RFC 9380 BLS suite with signatures in G1 and the public\n// key in G2. TVM's high-level BLS_VERIFY opcode uses the opposite orientation,\n// so this verifier performs hash-to-G1 and the pairing equation explicitly.\n\nconst QUICKNET_GENESIS = 1692803367;\nconst QUICKNET_PERIOD = 3;\nconst CEREMONY_DELAY = 30;\n\n// BLS12-381 base field, little-endian 64-bit limbs.\nconst P0 = 0xB9FEFFFFFFFFAAAB;\nconst P1 = 0x1EABFFFEB153FFFF;\nconst P2 = 0x6730D2A0F6B0F624;\nconst P3 = 0x64774B84F38512BF;\nconst P4 = 0x4B1BA7B6434BACD7;\nconst P5 = 0x1A0111EA397FE69A;\nconst LIMB_MASK = 0xFFFFFFFFFFFFFFFF;\n\n// \"BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_\" (43 bytes).\nconst DST_FIRST = 0x424C535F5349475F424C53313233383147315F584D443A5348412D3235365F53;\nconst DST_LAST = 0x5357555F524F5F4E554C5F;\n\n// Quicknet collective public key, scheme bls-unchained-g1-rfc9380.\nconst QUICKNET_PK_0 = 0x83CF0F2896ADEE7EB8B5F01FCAD3912212C437E0073E911FB90022D3E760183C;\nconst QUICKNET_PK_1 = 0x8C4B450B6A0A6C3AC6A5776A2D1064510D1FEC758C921CC22B0E17E63AAF4BCB;\nconst QUICKNET_PK_2 = 0x5ED66304DE9CF809BD274CA73BAB4AF5A6E9C76A4BC09E76EAE8991EF5ECE45A;\n\n// Standard compressed BLS12-381 G2 generator.\nconst G2_GENERATOR_0 = 0x93E02B6052719F607DACD3A088274F65596BD0D09920B61AB5DA61BBDC7F5049;\nconst G2_GENERATOR_1 = 0x334CF11213945D57E5AC7D055D042B7E024AA2B2F08F0A91260805272DC51051;\nconst G2_GENERATOR_2 = 0xC6E47AD4FA403B02B4510B647AE3D1770BAC0326A805BBEFD48056C8C121BDB8;\n\nstruct ReductionWitness {\n    q0: int;\n    q1: int;\n    q2: int;\n    r0: int;\n    r1: int;\n    r2: int;\n    r3: int;\n    r4: int;\n    r5: int;\n}\n\n@inline\nfun sha256Builder(a: builder): int\n    asm \"1 PUSHINT HASHEXT_SHA256\";\n\n@inline\nfun sha256TwoBuilders(a: builder, b: builder): int\n    asm \"2 PUSHINT HASHEXT_SHA256\";\n\n@inline\nfun sha256Slice(a: slice): int\n    asm \"1 PUSHINT HASHEXT_SHA256\";\n\n@inline\nfun blsMapToG1(a: slice): slice\n    asm \"BLS_MAP_TO_G1\";\n\n@inline\nfun blsG1Add(a: slice, b: slice): slice\n    asm \"BLS_G1_ADD\";\n\n@inline\nfun blsG1Neg(a: slice): slice\n    asm \"BLS_G1_NEG\";\n\n@inline\nfun blsG1InGroup(a: slice): bool\n    asm \"BLS_G1_INGROUP\";\n\n@inline\nfun blsG1IsZero(a: slice): bool\n    asm \"BLS_G1_ISZERO\";\n\n@inline\nfun blsG2InGroup(a: slice): bool\n    asm \"BLS_G2_INGROUP\";\n\n@inline\nfun blsG2IsZero(a: slice): bool\n    asm \"BLS_G2_ISZERO\";\n\n@inline\nfun blsPairing2(p1a: slice, p2a: slice, p1b: slice, p2b: slice): bool\n    asm \"2 PUSHINT BLS_PAIRING\";\n\n@inline\nfun pLimb(index: int): int {\n    if (index == 0) { return P0; }\n    if (index == 1) { return P1; }\n    if (index == 2) { return P2; }\n    if (index == 3) { return P3; }\n    if (index == 4) { return P4; }\n    if (index == 5) { return P5; }\n    return 0;\n}\n\n@inline\nfun qLimb(w: ReductionWitness, index: int): int {\n    if (index == 0) { return w.q0; }\n    if (index == 1) { return w.q1; }\n    if (index == 2) { return w.q2; }\n    return 0;\n}\n\n@inline\nfun rLimb(w: ReductionWitness, index: int): int {\n    if (index == 0) { return w.r0; }\n    if (index == 1) { return w.r1; }\n    if (index == 2) { return w.r2; }\n    if (index == 3) { return w.r3; }\n    if (index == 4) { return w.r4; }\n    if (index == 5) { return w.r5; }\n    return 0;\n}\n\n@inline\nfun xLimb(high: int, low: int, index: int): int {\n    if (index < 4) {\n        return (low >> (index * 64)) & LIMB_MASK;\n    }\n    return (high >> ((index - 4) * 64)) & LIMB_MASK;\n}\n\nfun remainderIsCanonical(w: ReductionWitness): bool {\n    if (w.r5 != P5) { return w.r5 < P5; }\n    if (w.r4 != P4) { return w.r4 < P4; }\n    if (w.r3 != P3) { return w.r3 < P3; }\n    if (w.r2 != P2) { return w.r2 < P2; }\n    if (w.r1 != P1) { return w.r1 < P1; }\n    return w.r0 < P0;\n}\n\n// Verifies x = q * p + r using 64-bit limbs. This lets TVM authenticate the\n// 512-to-381-bit hash_to_field reduction without ever storing a 381-bit int.\nfun verifyReduction(high: int, low: int, w: ReductionWitness): bool {\n    if (!remainderIsCanonical(w)) {\n        return false;\n    }\n\n    var carry = 0;\n    var k = 0;\n    while (k < 8) {\n        var total = carry + rLimb(w, k);\n        var i = 0;\n        while (i < 3) {\n            val pIndex = k - i;\n            if (pIndex >= 0 && pIndex < 6) {\n                total += qLimb(w, i) * pLimb(pIndex);\n            }\n            i += 1;\n        }\n        if ((total & LIMB_MASK) != xLimb(high, low, k)) {\n            return false;\n        }\n        carry = total >> 64;\n        k += 1;\n    }\n    return carry == 0;\n}\n\nfun parseWitness(source: slice): ReductionWitness {\n    return ReductionWitness {\n        q0: source.loadUint(64),\n        q1: source.loadUint(64),\n        q2: source.loadUint(64),\n        r0: source.loadUint(64),\n        r1: source.loadUint(64),\n        r2: source.loadUint(64),\n        r3: source.loadUint(64),\n        r4: source.loadUint(64),\n        r5: source.loadUint(64),\n    };\n}\n\nfun fieldElement(w: ReductionWitness): slice {\n    return beginCell()\n        .storeUint(w.r5, 64)\n        .storeUint(w.r4, 64)\n        .storeUint(w.r3, 64)\n        .storeUint(w.r2, 64)\n        .storeUint(w.r1, 64)\n        .storeUint(w.r0, 64)\n        .endCell()\n        .beginParse();\n}\n\nfun dstPrime(): builder {\n    return beginCell()\n        .storeUint(DST_FIRST, 256)\n        .storeUint(DST_LAST, 88)\n        .storeUint(43, 8);\n}\n\nfun expandMessage(round: int): (int, int, int, int) {\n    // drand signs SHA256(I2OSP(round, 8)).\n    val message = sha256Builder(beginCell().storeUint(round, 64));\n\n    // RFC 9380 expand_message_xmd for SHA-256, len_in_bytes = 128.\n    val b0 = sha256TwoBuilders(\n        beginCell()\n            .storeUint(0, 256)\n            .storeUint(0, 256)\n            .storeUint(message, 256)\n            .storeUint(128, 16)\n            .storeUint(0, 8),\n        dstPrime(),\n    );\n    val b1 = sha256Builder(\n        beginCell().storeUint(b0, 256).storeUint(1, 8)\n            .storeUint(DST_FIRST, 256).storeUint(DST_LAST, 88).storeUint(43, 8),\n    );\n    val b2 = sha256Builder(\n        beginCell().storeUint(b0 ^ b1, 256).storeUint(2, 8)\n            .storeUint(DST_FIRST, 256).storeUint(DST_LAST, 88).storeUint(43, 8),\n    );\n    val b3 = sha256Builder(\n        beginCell().storeUint(b0 ^ b2, 256).storeUint(3, 8)\n            .storeUint(DST_FIRST, 256).storeUint(DST_LAST, 88).storeUint(43, 8),\n    );\n    val b4 = sha256Builder(\n        beginCell().storeUint(b0 ^ b3, 256).storeUint(4, 8)\n            .storeUint(DST_FIRST, 256).storeUint(DST_LAST, 88).storeUint(43, 8),\n    );\n    return (b1, b2, b3, b4);\n}\n\nfun quicknetPublicKey(): slice {\n    return beginCell()\n        .storeUint(QUICKNET_PK_0, 256)\n        .storeUint(QUICKNET_PK_1, 256)\n        .storeUint(QUICKNET_PK_2, 256)\n        .endCell()\n        .beginParse();\n}\n\nfun g2Generator(): slice {\n    return beginCell()\n        .storeUint(G2_GENERATOR_0, 256)\n        .storeUint(G2_GENERATOR_1, 256)\n        .storeUint(G2_GENERATOR_2, 256)\n        .endCell()\n        .beginParse();\n}\n\nfun verifyQuicknet(round: int, signatureCell: cell, witnessCell: cell): int {\n    assert (round > 0) throw 200;\n\n    var first = witnessCell.beginParse();\n    val firstBits = first.loadBits(576);\n    var second = first.loadRef().beginParse();\n    first.assertEnd();\n    val secondBits = second.loadBits(576);\n    second.assertEnd();\n    val firstWitness = parseWitness(firstBits);\n    val secondWitness = parseWitness(secondBits);\n    val (b1, b2, b3, b4) = expandMessage(round);\n    assert (verifyReduction(b1, b2, firstWitness)) throw 201;\n    assert (verifyReduction(b3, b4, secondWitness)) throw 201;\n\n    val mapped0 = blsMapToG1(fieldElement(firstWitness));\n    val mapped1 = blsMapToG1(fieldElement(secondWitness));\n    val messagePoint = blsG1Add(mapped0, mapped1);\n\n    // The pairing op consumes a compressed G1 point, while drand defines\n    // randomness as SHA256 of that exact 48-byte encoding. Reject trailing\n    // bits or refs so a valid point cannot acquire multiple randomness values\n    // by appending unauthenticated data to its cell.\n    var canonicalSignature = signatureCell.beginParse();\n    canonicalSignature.loadBits(384);\n    canonicalSignature.assertEnd();\n    val signature = signatureCell.beginParse();\n    val publicKey = quicknetPublicKey();\n    val generator = g2Generator();\n    assert (blsG1InGroup(signature) && !blsG1IsZero(signature)) throw 202;\n    assert (blsG2InGroup(publicKey) && !blsG2IsZero(publicKey)) throw 203;\n    assert (blsPairing2(signature, generator, blsG1Neg(messagePoint), publicKey)) throw 204;\n\n    // drand's published randomness is SHA256(compressed signature).\n    return sha256Slice(signature);\n}\n\nfun roundForSealTime(sealedAt: int): int {\n    val target = sealedAt + CEREMONY_DELAY;\n    assert (target >= QUICKNET_GENESIS) throw 205;\n    val delta = target - QUICKNET_GENESIS;\n    return ((delta + QUICKNET_PERIOD - 1) / QUICKNET_PERIOD) + 1;\n}\n"
+    }
+  ]
+}

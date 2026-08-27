@@ -1,0 +1,1894 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from dosgram_direct_vault.tolk\nPROGRAM{\n  DECLPROC loadState()\n  DECLPROC assertAccounting()\n  DECLPROC validatePlan()\n  DECLPROC resetOperation()\n  DECLPROC startRemoval()\n  DECLPROC requestPermissionlessRefund()\n  DECLPROC applyBatchResult()\n  DECLPROC handleBoardRequestBounce()\n  0 DECLMETHOD onInternalMessage()\n  127241 DECLMETHOD vault_state()\n  72869 DECLMETHOD operation_state()\n  // 19 functions inlined in-place:\n  // - emptyPlan (2 calls)\n  // - saveState (2 calls)\n  // - amountForUnits (2 calls)\n  // - availableUnits (5 calls)\n  // - loadBatch (3 calls)\n  // - reserveVault (9 calls)\n  // - boardRequestBody (2 calls)\n  // - sendCurrentBatch (3 calls)\n  // - sendRefundRequest (3 calls)\n  // - sendReceiptAck (1 call)\n  // - sendRefundReceiptAck (1 call)\n  // - startPlace (1 call)\n  // - startRefundWithoutBoard (1 call)\n  // - applyRefund (1 call)\n  // - handleRouteFailure (1 call)\n  // - continueOperation (1 call)\n  // - handlePurchaseBounce (1 call)\n  // - handleRefundRequestBounce (1 call)\n  // - onBouncedMessage (0 calls)\n  loadState() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    LDSTDADDR\n    LDREF\n    SWAP\n    CTOS\n    64 LDU\n    64 LDU\n    2 LDU\n    32 LDU\n    32 LDU\n    2 LDU\n    64 LDU\n    64 LDU\n    16 LDU\n    16 LDU\n    32 LDU\n    32 LDU\n    32 LDU\n    1 LDI\n    LDREF\n    SWAP\n    CTOS\n    LDOPTSTDADDR\n    DROP\n    SWAP\n    LDREF\n    ENDS\n    s0 16 s() XCHG\n    ENDS\n    15 ROLL\n  }>\n  assertAccounting() PROC:<{\n    3 BLKDROP\n    s6 POP\n    s11 POP\n    s11 POP\n    s11 POP\n    s11 POP\n    s0 s5 XCHG\n    IF:<{\n      s5 POP\n      0 PUSHINT\n    }>ELSE<{\n      s0 s5 XCHG\n      0 GTINT\n      0 NEQINT\n    }>\n    520 THROWIFNOT\n    s2 PUSH\n    -1 GTINT\n    IF:<{\n      s2 PUSH\n      1000000 PUSHINT\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    520 THROWIFNOT\n    OVER\n    -1 GTINT\n    IF:<{\n      s1 s2 PUSH2\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    520 THROWIFNOT\n    DUP\n    1 EQINT\n    s7 PUSH\n    0 PUSHINT\n    CONDSEL\n    2SWAP\n    SUB\n    SUBR\n    -1 GTINT\n    520 THROWIFNOT\n    DUP\n    -1 GTINT\n    IF:<{\n      DUP\n      4 LESSINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    520 THROWIFNOT\n    0 EQINT\n    IFJMP:<{\n      IF:<{\n        s4 POP\n        0 PUSHINT\n      }>ELSE<{\n        s0 s4 XCHG\n        0 EQINT\n        0 NEQINT\n      }>\n      IF:<{\n        s0 s2 XCHG\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        s2 POP\n        0 PUSHINT\n      }>\n      520 THROWIFNOT\n      IF:<{\n        DROP\n        0 PUSHINT\n      }>ELSE<{\n        0 EQINT\n        0 NEQINT\n      }>\n      520 THROWIFNOT\n      520 THROWIF\n    }>\n    6 BLKDROP\n  }>\n  validatePlan() PROC:<{\n    OVER\n    0 GTINT\n    IF:<{\n      OVER\n      33 LESSINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    522 THROWIFNOT\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      s0 s3 PUSH2\n      LESS\n    }>DO<{\n      s4 PUSH\n      CTOS\n      LDDICT\n      ENDS\n      s1 s(-1) PUXC\n      16 PUSHINT\n      DICTUGETREF\n      521 THROWIFNOT\n      CTOS\n      8 LDU\n      OVER\n      0 GTINT\n      IF:<{\n        OVER\n        33 LESSINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      523 THROWIFNOT\n      OVER\n      4 LSHIFT#\n      LDSLICEX\n      NIP\n      ENDS\n      s1 s2 XCHG\n      ADD\n      SWAP\n      INC\n    }>\n    DROP\n    s3 POP\n    NIP\n    EQUAL\n    524 THROWIFNOT\n  }>\n  resetOperation() PROC:<{\n    DROP\n    s7 s9 XCHG2\n    7 BLKDROP\n    0 PUSHINT\n    s0 s0 s0 PUSH3\n    s0 s0 s0 PUSH3\n    s7 PUSH\n    IFNOT:<{\n      PUSHNULL\n      s10 POP\n    }>\n    NEWDICT\n    NEWC\n    STDICT\n    ENDC\n    s7 s10 XCHG\n    s6 s8 XCHG\n    s5 s7 XCHG\n    s4 s6 XCHG\n    s3 s5 XCHG\n    s4 s3 s0 XCHG3\n  }>\n  startRemoval() PROC:<{\n    s4 POP\n    s7 POP\n    s7 POP\n    s7 POP\n    s7 POP\n    s7 POP\n    s4 s14 XCPU\n    SDEQ\n    IF:<{\n      s0 s7 XCHG\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      s7 POP\n      0 PUSHINT\n    }>\n    526 THROWIFNOT\n    64 LDU\n    32 LDU\n    16 LDU\n    LDREF\n    ENDS\n    s3 s8 PUXC\n    GREATER\n    IF:<{\n      OVER\n      0 GTINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s1 s9 PUSH2\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    527 THROWIFNOT\n    s5 PUSH\n    IF:<{\n      s1 s9 PUSH2\n      EQUAL\n      531 THROWIFNOT\n    }>\n    s7 s0 s1 PUSH3\n    validatePlan() CALLDICT\n    s0 s3 XCHG\n    10000000 PUSHINT\n    GEQ\n    529 THROWIFNOT\n    s0 s4 XCHG\n    3 PUSHINT\n    2 PUSHINT\n    CONDSEL\n    OVER\n    0 PUSHINT\n    DUP\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    s11 s10 s12 PUSH3\n    s12 PUSH\n    17 s() PUSH\n    20 s() PUSH\n    s14 PUSH\n    25 s() PUSH\n    22 s() PUSH\n    25 s() PUSH\n    27 s() PUSH\n    assertAccounting() CALLDICT\n    s3 PUSH\n    1 EQINT\n    1146113091 PUSHINT\n    1146244438 PUSHINT\n    CONDSEL\n    BALANCE\n    FIRST\n    30000000 PUSHINT\n    GEQ\n    525 THROWIFNOT\n    30000000 PUSHINT\n    s2 PUSH\n    RAWRESERVE\n    NEWC\n    32 STU\n    17 s() PUSH\n    SWAP\n    STSTDADDR\n    s9 s(-1) PUXC\n    STOPTSTDADDR\n    s5 PUSH\n    64 STUR\n    x{0000} STSLICECONST\n    s6 PUSH\n    16 STUR\n    s10 PUSH\n    CTOS\n    LDDICT\n    ENDS\n    s3 s(-1) PUXC\n    16 PUSHINT\n    DICTUGETREF\n    521 THROWIFNOT\n    STREFR\n    ENDC\n    NEWC\n    b{011000} STSLICECONST\n    19 s() PUSH\n    SWAP\n    STSTDADDR\n    b{00000} STSLICECONST\n    3 PUSHINT\n    STGRAMS\n    1 PUSHINT\n    102 STUR\n    STREF\n    ENDC\n    7 PUSHPOW2\n    SENDRAWMSG\n    s3 s10 XCHG\n    s9 s1 s4 XCHG3\n    s8 s8 XCHG2\n    s0 s7 XCHG\n    s0 s5 XCHG\n    s6 s1 s6 XCHG3\n  }>\n  requestPermissionlessRefund() PROC:<{\n    SWAP\n    64 LDU\n    ENDS\n    s13 PUSH\n    IF:<{\n      0 PUSHINT\n    }>ELSE<{\n      s15 PUSH\n      0 GTINT\n      0 NEQINT\n    }>\n    526 THROWIFNOT\n    s12 PUSH\n    INC\n    OVER\n    EQUAL\n    IF:<{\n      s0 s2 XCHG\n      10000000 PUSHINT\n      GEQ\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      0 PUSHINT\n    }>\n    527 THROWIFNOT\n    DUP\n    1146373714 PUSHINT\n    EQUAL\n    IF:<{\n      s14 PUSH\n    }>ELSE<{\n      s12 PUSH\n      1 EQINT\n      s8 PUSH\n      0 PUSHINT\n      CONDSEL\n      s15 s14 PUSH2\n      SUB\n      SUBR\n    }>\n    OVER\n    1146373714 PUSHINT\n    EQUAL\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      1145132626 PUSHINT\n      EQUAL\n      0 NEQINT\n    }>\n    IF:<{\n      DUP\n      0 GTINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    527 THROWIFNOT\n    BALANCE\n    FIRST\n    30000000 PUSHINT\n    GEQ\n    525 THROWIFNOT\n    30000000 PUSHINT\n    0 PUSHINT\n    RAWRESERVE\n    SWAP\n    NEWC\n    32 STU\n    19 s() PUSH\n    SWAP\n    STSTDADDR\n    s1 s2 XCHG\n    64 STU\n    32 STU\n    ENDC\n    NEWC\n    b{011000} STSLICECONST\n    20 s() PUSH\n    SWAP\n    STSTDADDR\n    b{00000} STSLICECONST\n    3 PUSHINT\n    STGRAMS\n    1 PUSHINT\n    102 STUR\n    STREF\n    ENDC\n    7 PUSHPOW2\n    SENDRAWMSG\n  }>\n  applyBatchResult() PROC:<{\n    SWAP\n    19 s() PUSH\n    SDEQ\n    IF:<{\n      s11 PUSH\n      0 NEQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    533 THROWIFNOT\n    64 LDU\n    16 LDU\n    16 LDU\n    8 LDU\n    8 LDU\n    2 LDU\n    256 LDU\n    NIP\n    ENDS\n    s5 s14 XCPU\n    EQUAL\n    IF:<{\n      s3 s12 PUSH2\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s2 s11 XCPU\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      s2 POP\n      0 PUSHINT\n    }>\n    534 THROWIFNOT\n    s14 PUSH\n    1 EQINT\n    1 PUSHINT\n    2 PUSHINT\n    CONDSEL\n    s4 PUSH\n    EQUAL\n    IF:<{\n      OVER\n      GEQ\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    534 THROWIFNOT\n    s1 s7 XCHG\n    ADD\n    s0 s7 PUSH2\n    LEQ\n    535 THROWIFNOT\n    s9 PUSH\n    INC\n    s9 PUSH\n    EQUAL\n    IF:<{\n      1000000 PUSHINT\n      NEWC\n      x{44414352} STSLICECONST\n      20 s() PUSH\n      SWAP\n      STSTDADDR\n      s12 PUSH\n      64 STUR\n      s1 s8 XCHG\n      16 STU\n      s1 s2 XCHG\n      2 STU\n      ENDC\n      NEWC\n      b{010000} STSLICECONST\n      20 s() PUSH\n      SWAP\n      STSTDADDR\n      s0 s7 XCHG2\n      STGRAMS\n      1 PUSHINT\n      107 STUR\n      s1 s6 XCHG\n      STREF\n      ENDC\n      3 PUSHINT\n      SENDRAWMSG\n    }>ELSE<{\n      s6 POP\n      DROP\n    }>\n    s0 s7 XCHG\n    INC\n    s0 s6 PUSH2\n    LESS\n    IFJMP:<{\n      s10 PUSH\n      1 EQINT\n      1146113091 PUSHINT\n      1146244438 PUSHINT\n      CONDSEL\n      BALANCE\n      FIRST\n      30000000 PUSHINT\n      GEQ\n      525 THROWIFNOT\n      30000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      32 STU\n      17 s() PUSH\n      SWAP\n      STSTDADDR\n      s2 s(-1) PUXC\n      STOPTSTDADDR\n      s9 PUSH\n      64 STUR\n      OVER\n      16 STUR\n      s7 PUSH\n      16 STUR\n      s8 PUSH\n      CTOS\n      LDDICT\n      ENDS\n      s2 s(-1) PUXC\n      16 PUSHINT\n      DICTUGETREF\n      521 THROWIFNOT\n      STREFR\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      19 s() PUSH\n      SWAP\n      STSTDADDR\n      b{00000} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n      s0 s7 XCHG\n    }>\n    s10 PUSH\n    1 EQINT\n    IFJMP:<{\n      s11 s4 XCPU\n      ADD\n      s4 PUSH\n      0 GTINT\n      IF:<{\n        s2 PUSH\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        TRUE\n        s3 POP\n      }>\n      s0 s11 XCHG\n      s0 s7 XCHG\n      resetOperation() CALLDICT\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      assertAccounting() CALLDICT\n      BALANCE\n      FIRST\n      30000000 PUSHINT\n      GEQ\n      525 THROWIFNOT\n      30000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      b{010000} STSLICECONST\n      17 s() PUSH\n      SWAP\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n    }>\n    s10 PUSH\n    3 EQINT\n    s12 s5 XCPU\n    SUB\n    s0 s12 XCHG\n    IF:<{\n      s11 PUSH\n      0 EQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IFJMP:<{\n      s3 POP\n      s11 PUSH\n      BALANCE\n      FIRST\n      30000000 PUSHINT\n      GEQ\n      525 THROWIFNOT\n      30000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      x{44465246} STSLICECONST\n      17 s() PUSH\n      SWAP\n      STSTDADDR\n      s9 PUSH\n      64 STUR\n      OVER\n      32 STUR\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      20 s() PUSH\n      SWAP\n      STSTDADDR\n      b{00000} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n      s0 s3 XCHG\n      s0 s7 XCHG\n    }>\n    s0 s7 XCHG\n    resetOperation() CALLDICT\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    assertAccounting() CALLDICT\n    BALANCE\n    FIRST\n    30000000 PUSHINT\n    GEQ\n    525 THROWIFNOT\n    30000000 PUSHINT\n    0 PUSHINT\n    RAWRESERVE\n    NEWC\n    b{010000} STSLICECONST\n    17 s() PUSH\n    SWAP\n    STSTDADDR\n    0 PUSHINT\n    111 STUR\n    ENDC\n    7 PUSHPOW2\n    SENDRAWMSG\n  }>\n  handleBoardRequestBounce() PROC:<{\n    SWAP\n    LDSTDADDR\n    LDOPTSTDADDR\n    NIP\n    64 LDU\n    16 LDU\n    16 LDU\n    LDREF\n    NIP\n    ENDS\n    s0 s3 XCHG\n    21 s() PUSH\n    SDEQ\n    IF:<{\n      s14 PUSH\n      0 NEQINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s1 s12 XCPU\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      NIP\n      0 PUSHINT\n    }>\n    IF:<{\n      s10 PUSH\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    IF:<{\n      s8 PUSH\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    539 THROWIFNOT\n    s11 PUSH\n    1 EQINT\n    1 PUSHINT\n    2 PUSHINT\n    CONDSEL\n    OVER\n    EQUAL\n    539 THROWIFNOT\n    1 EQINT\n    IF:<{\n      s11 s4 XCPU\n      ADD\n      s4 PUSH\n      0 GTINT\n      IF:<{\n        s2 PUSH\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        TRUE\n        s3 POP\n      }>\n    }>ELSE<{\n      s11 s4 XCPU\n      SUB\n    }>\n    s0 s11 XCHG\n    resetOperation() CALLDICT\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      loadState() CALLDICT\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      assertAccounting() CALLDICT\n      s0 19 s() XCHG\n      x{fffffffe} SDBEGINSQ\n      63 THROWIFNOT\n      PLDREF\n      CTOS\n      32 LDU\n      OVER\n      1145197913 PUSHINT\n      EQUAL\n      IF:<{\n        NIP\n        LDSTDADDR\n        LDOPTSTDADDR\n        NIP\n        64 LDU\n        32 LDU\n        16 LDU\n        NIP\n        LDREF\n        NIP\n        ENDS\n        s0 s2 XCHG\n        18 s() PUSH\n        SDEQ\n        IF:<{\n          s11 PUSH\n          1 EQINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          s9 PUSH\n          EQUAL\n          0 NEQINT\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        IF:<{\n          s7 PUSH\n          0 EQINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          DUP\n          0 GTINT\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        IF:<{\n          s12 s11 PUSH2\n          SUB\n          OVER\n          GEQ\n          0 NEQINT\n        }>ELSE<{\n          0 PUSHINT\n        }>\n        539 THROWIFNOT\n        s1 s12 XCHG\n        SUB\n        17 s() 18 s() XCHG\n        16 s() 17 s() XCHG\n        s15 16 s() XCHG\n        s14 s15 XCHG\n        s13 s14 XCHG\n        s0 s12 XCHG\n        s0 s13 XCHG\n        s10 s11 XCHG\n        s9 s10 XCHG\n        s8 s9 XCHG\n        s7 s8 XCHG\n        s6 s7 XCHG\n        s5 s6 XCHG\n        s4 s5 XCHG\n        s3 s4 XCHG\n        s1 s3 s0 XCHG3\n        resetOperation() CALLDICT\n      }>ELSE<{\n        OVER\n        1146113091 PUSHINT\n        EQUAL\n        IF:<{\n          NIP\n          18 s() 19 s() XCHG\n          17 s() 18 s() XCHG\n          16 s() 17 s() XCHG\n          s15 16 s() XCHG\n          s14 s15 XCHG\n          s13 s14 XCHG\n          s12 s13 XCHG\n          s11 s12 XCHG\n          s10 s11 XCHG\n          s9 s10 XCHG\n          s8 s9 XCHG\n          s7 s8 XCHG\n          s6 s7 XCHG\n          s5 s6 XCHG\n          s4 s5 XCHG\n          s3 s4 XCHG\n          s1 s3 s0 XCHG3\n          1 PUSHINT\n          handleBoardRequestBounce() CALLDICT\n        }>ELSE<{\n          OVER\n          1146244438 PUSHINT\n          EQUAL\n          IF:<{\n            NIP\n            18 s() 19 s() XCHG\n            17 s() 18 s() XCHG\n            16 s() 17 s() XCHG\n            s15 16 s() XCHG\n            s14 s15 XCHG\n            s13 s14 XCHG\n            s12 s13 XCHG\n            s11 s12 XCHG\n            s10 s11 XCHG\n            s9 s10 XCHG\n            s8 s9 XCHG\n            s7 s8 XCHG\n            s6 s7 XCHG\n            s5 s6 XCHG\n            s4 s5 XCHG\n            s3 s4 XCHG\n            s1 s3 s0 XCHG3\n            2 PUSHINT\n            handleBoardRequestBounce() CALLDICT\n          }>ELSE<{\n            OVER\n            1145459270 PUSHINT\n            EQUAL\n            IF:<{\n              NIP\n              LDSTDADDR\n              64 LDU\n              32 LDU\n              ENDS\n              s0 s2 XCHG\n              18 s() PUSH\n              SDEQ\n              IF:<{\n                s11 PUSH\n                3 EQINT\n                0 NEQINT\n              }>ELSE<{\n                0 PUSHINT\n              }>\n              IF:<{\n                s9 PUSH\n                EQUAL\n                0 NEQINT\n              }>ELSE<{\n                DROP\n                0 PUSHINT\n              }>\n              IF:<{\n                s3 PUSH\n                EQUAL\n                0 NEQINT\n              }>ELSE<{\n                DROP\n                0 PUSHINT\n              }>\n              539 THROWIFNOT\n              17 s() 18 s() XCHG\n              16 s() 17 s() XCHG\n              s15 16 s() XCHG\n              15 ROLL\n              resetOperation() CALLDICT\n            }>ELSE<{\n              DROP\n              DUP\n              1146373714 PUSHINT\n              EQUAL\n              IF:<{\n                DROP\n                -1 PUSHINT\n              }>ELSE<{\n                1145132626 PUSHINT\n                EQUAL\n                0 NEQINT\n              }>\n              IFNOTJMP:<{\n                539 THROW\n              }>\n              17 s() 18 s() XCHG\n              16 s() 17 s() XCHG\n              s15 16 s() XCHG\n              15 ROLL\n            }>\n          }>\n        }>\n      }>\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      18 s() PUSH\n      assertAccounting() CALLDICT\n      s0 18 s() XCHG\n      NEWC\n      STSTDADDR\n      s1 17 s() XCHG\n      STSTDADDR\n      s15 s(-1) PUXC\n      STSTDADDR\n      s0 s14 XCHG\n      NEWC\n      64 STU\n      s1 s13 XCHG\n      64 STU\n      s1 s11 XCHG\n      2 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      2 STU\n      s1 s3 XCHG\n      64 STU\n      64 STU\n      16 STU\n      16 STU\n      32 STU\n      32 STU\n      32 STU\n      1 STI\n      s0 s3 XCHG\n      NEWC\n      STOPTSTDADDR\n      ENDC\n      s0 s3 XCHG2\n      STREF\n      s1 s3 XCHG\n      STREF\n      ENDC\n      STREFR\n      ENDC\n      c4 POP\n      BALANCE\n      FIRST\n      30000000 PUSHINT\n      GEQ\n      525 THROWIFNOT\n      30000000 PUSHINT\n      0 PUSHINT\n      RAWRESERVE\n      NEWC\n      b{010000} STSLICECONST\n      STSTDADDR\n      0 PUSHINT\n      111 STUR\n      ENDC\n      7 PUSHPOW2\n      SENDRAWMSG\n    }>\n    DUP\n    SEMPTY\n    IFJMP:<{\n      DROP\n    }>\n    loadState() CALLDICT\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    18 s() PUSH\n    assertAccounting() CALLDICT\n    s0 19 s() XCHG\n    32 LDU\n    OVER\n    1146311760 PUSHINT\n    EQUAL\n    IF:<{\n      NIP\n      s4 POP\n      s5 POP\n      s5 POP\n      s5 POP\n      s15 POP\n      INMSG_SRC\n      INMSG_VALUE\n      s1 s13 XCPU\n      SDEQ\n      IF:<{\n        s6 PUSH\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      526 THROWIFNOT\n      s0 s15 XCHG\n      64 LDU\n      32 LDU\n      32 LDU\n      16 LDU\n      LDOPTSTDADDR\n      LDREF\n      ENDS\n      s5 s10 PUXC\n      GREATER\n      IF:<{\n        s2 PUSH\n        0 GTINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      527 THROWIFNOT\n      DUP\n      ISNULL\n      IFNOT:<{\n        DUP\n        17 s() PUSH\n        SDEQ\n        528 THROWIF\n      }>\n      s7 PUSH\n      IF:<{\n        DUP\n        ISNULL\n        IFNOT:<{\n          s6 PUSH\n          ISNULL\n          NOT\n          IF:<{\n            s6 PUSH\n            SDEQ\n            0 NEQINT\n          }>ELSE<{\n            DROP\n            0 PUSHINT\n          }>\n          528 THROWIFNOT\n        }>ELSE<{\n          DROP\n        }>\n      }>ELSE<{\n        s6 POP\n      }>\n      s8 s0 s1 PUSH3\n      validatePlan() CALLDICT\n      s2 s13 PUSH2\n      MUL\n      11000 PUSHINT\n      MUL\n      10000 PUSHINT\n      DIV\n      10000000 PUSHINT\n      ADD\n      s1 19 s() XCHG\n      GEQ\n      529 THROWIFNOT\n      s10 s1 XCPU\n      ADD\n      s0 s8 XCHG\n      1 EQINT\n      s0 s3 XCHG2\n      0 PUSHINT\n      CONDSEL\n      s7 s8 PUSH2\n      SUB\n      SUBR\n      s9 PUSH\n      GEQ\n      530 THROWIFNOT\n      1 PUSHINT\n      s1 s1 PUSH2\n      0 PUSHINT\n      19 s() PUSH\n      s1 s10 PUSH2\n      21 s() PUSH\n      21 s() PUSH\n      21 s() PUSH\n      21 s() PUSH\n      21 s() PUSH\n      21 s() PUSH\n      19 s() PUSH\n      21 s() PUSH\n      s14 s13 s12 PUSH3\n      s14 s13 PUSH2\n      28 s() PUSH\n      s15 PUSH\n      26 s() PUSH\n      26 s() PUSH\n      26 s() PUSH\n      18 s() PUSH\n      assertAccounting() CALLDICT\n      BALANCE\n      FIRST\n      30000000 PUSHINT\n      GEQ\n      525 THROWIFNOT\n      30000000 PUSHINT\n      s2 PUSH\n      RAWRESERVE\n      s8 PUSH\n      0 GTINT\n      IF:<{\n        NEWC\n        x{44425559} STSLICECONST\n        20 s() PUSH\n        SWAP\n        STSTDADDR\n        s10 s(-1) PUXC\n        STOPTSTDADDR\n        s1 s8 XCHG\n        64 STU\n        s1 s8 XCHG\n        32 STU\n        s1 21 s() XCHG\n        16 STU\n        s1 s0 s10 PUXC2\n        CTOS\n        LDDICT\n        ENDS\n        s1 s11 XCHG\n        16 PUSHINT\n        DICTUGETREF\n        521 THROWIFNOT\n        s0 s10 XCHG2\n        STREF\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        19 s() PUSH\n        SWAP\n        STSTDADDR\n        b{00000} STSLICECONST\n        3 PUSHINT\n        STGRAMS\n        1 PUSHINT\n        102 STUR\n        STREF\n        ENDC\n        7 PUSHPOW2\n        SENDRAWMSG\n      }>ELSE<{\n        s7 POP\n        s7 POP\n        s10 POP\n        19 s() POP\n        NEWC\n        x{44504c43} STSLICECONST\n        16 s() PUSH\n        SWAP\n        STSTDADDR\n        s6 s(-1) PUXC\n        STOPTSTDADDR\n        OVER\n        64 STUR\n        x{0000} STSLICECONST\n        s9 PUSH\n        16 STUR\n        s4 PUSH\n        CTOS\n        LDDICT\n        ENDS\n        20 s() PUSH\n        SWAP\n        16 PUSHINT\n        DICTUGETREF\n        521 THROWIFNOT\n        STREFR\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        18 s() PUSH\n        SWAP\n        STSTDADDR\n        b{00000} STSLICECONST\n        3 PUSHINT\n        STGRAMS\n        1 PUSHINT\n        102 STUR\n        STREF\n        ENDC\n        7 PUSHPOW2\n        SENDRAWMSG\n        s8 18 s() XCHG\n      }>\n    }>ELSE<{\n      OVER\n      1146311762 PUSHINT\n      EQUAL\n      IF:<{\n        NIP\n        INMSG_SRC\n        INMSG_VALUE\n        20 s() 21 s() XCHG\n        19 s() 20 s() XCHG\n        18 s() 19 s() XCHG\n        17 s() 18 s() XCHG\n        16 s() 17 s() XCHG\n        s15 16 s() XCHG\n        s14 s15 XCHG\n        s13 s14 XCHG\n        s12 s13 XCHG\n        s11 s12 XCHG\n        s10 s11 XCHG\n        s9 s10 XCHG\n        s8 s9 XCHG\n        s7 s8 XCHG\n        s6 s7 XCHG\n        s5 s6 XCHG\n        s4 s5 XCHG\n        s3 s4 XCHG\n        ROT\n        FALSE\n        startRemoval() CALLDICT\n      }>ELSE<{\n        OVER\n        1146242628 PUSHINT\n        EQUAL\n        IF:<{\n          NIP\n          s11 PUSH\n          0 GTINT\n          IF:<{\n            INMSG_SRC\n            INMSG_VALUE\n            20 s() 21 s() XCHG\n            19 s() 20 s() XCHG\n            18 s() 19 s() XCHG\n            17 s() 18 s() XCHG\n            16 s() 17 s() XCHG\n            s15 16 s() XCHG\n            s14 s15 XCHG\n            s13 s14 XCHG\n            s12 s13 XCHG\n            s11 s12 XCHG\n            s10 s11 XCHG\n            s9 s10 XCHG\n            s8 s9 XCHG\n            s7 s8 XCHG\n            s6 s7 XCHG\n            s5 s6 XCHG\n            s4 s5 XCHG\n            s3 s4 XCHG\n            ROT\n            TRUE\n            startRemoval() CALLDICT\n          }>ELSE<{\n            s3 POP\n            s7 POP\n            INMSG_SRC\n            INMSG_VALUE\n            SWAP\n            16 s() PUSH\n            SDEQ\n            IF:<{\n              s0 s9 XCHG\n              0 EQINT\n              0 NEQINT\n            }>ELSE<{\n              s9 POP\n              0 PUSHINT\n            }>\n            526 THROWIFNOT\n            SWAP\n            64 LDU\n            32 LDU\n            16 LDU\n            LDREF\n            ENDS\n            s3 s10 PUXC\n            GREATER\n            IF:<{\n              SWAP\n              0 EQINT\n              0 NEQINT\n            }>ELSE<{\n              NIP\n              0 PUSHINT\n            }>\n            IF:<{\n              0 EQINT\n              0 NEQINT\n            }>ELSE<{\n              DROP\n              0 PUSHINT\n            }>\n            527 THROWIFNOT\n            s0 s7 XCHG\n            HASHCU\n            NEWDICT\n            NEWC\n            STDICT\n            HASHBU\n            EQUAL\n            532 THROWIFNOT\n            s8 PUSH\n            IF:<{\n              0 PUSHINT\n            }>ELSE<{\n              s9 PUSH\n              0 GTINT\n              0 NEQINT\n            }>\n            IF:<{\n              s0 s7 XCHG\n              10000000 PUSHINT\n              GEQ\n              0 NEQINT\n            }>ELSE<{\n              s7 POP\n              0 PUSHINT\n            }>\n            531 THROWIFNOT\n            3 PUSHINT\n            s6 s9 s15 PUSH3\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            s10 s9 PUSH2\n            18 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            17 s() PUSH\n            s15 PUSH\n            25 s() PUSH\n            24 s() PUSH\n            36 s() PUSH\n            assertAccounting() CALLDICT\n            BALANCE\n            FIRST\n            30000000 PUSHINT\n            GEQ\n            525 THROWIFNOT\n            30000000 PUSHINT\n            0 PUSHINT\n            RAWRESERVE\n            NEWC\n            x{44465246} STSLICECONST\n            16 s() PUSH\n            SWAP\n            STSTDADDR\n            s9 PUSH\n            64 STUR\n            OVER\n            32 STUR\n            ENDC\n            NEWC\n            b{011000} STSLICECONST\n            19 s() PUSH\n            SWAP\n            STSTDADDR\n            b{00000} STSLICECONST\n            s4 PUSH\n            STGRAMS\n            1 PUSHINT\n            102 STUR\n            STREF\n            ENDC\n            7 PUSHPOW2\n            SENDRAWMSG\n            17 s() 18 s() XCHG\n            16 s() 17 s() XCHG\n            s15 16 s() XCHG\n            s14 s15 XCHG\n            s13 s14 XCHG\n            s12 s13 XCHG\n            s11 s12 XCHG\n            s10 s11 XCHG\n            s10 s9 s0 XCHG3\n            s6 s7 XCHG\n            s5 s6 XCHG\n            s4 s5 XCHG\n            s0 s3 XCHG\n            s1 s4 s4 XCHG3\n          }>\n        }>ELSE<{\n          OVER\n          1145261902 PUSHINT\n          EQUAL\n          IF:<{\n            NIP\n            INMSG_VALUE\n            SWAP\n            ENDS\n            s10 PUSH\n            IF:<{\n              10000000 PUSHINT\n              GEQ\n              0 NEQINT\n            }>ELSE<{\n              DROP\n              0 PUSHINT\n            }>\n            538 THROWIFNOT\n            s9 PUSH\n            3 EQINT\n            IF:<{\n              s10 PUSH\n              0 EQINT\n              0 NEQINT\n            }>ELSE<{\n              0 PUSHINT\n            }>\n            IF:<{\n              BALANCE\n              FIRST\n              30000000 PUSHINT\n              GEQ\n              525 THROWIFNOT\n              30000000 PUSHINT\n              0 PUSHINT\n              RAWRESERVE\n              NEWC\n              x{44465246} STSLICECONST\n              16 s() PUSH\n              SWAP\n              STSTDADDR\n              s8 PUSH\n              64 STUR\n              s3 PUSH\n              32 STUR\n              ENDC\n              NEWC\n              b{011000} STSLICECONST\n              19 s() PUSH\n              SWAP\n              STSTDADDR\n              b{00000} STSLICECONST\n              3 PUSHINT\n              STGRAMS\n              1 PUSHINT\n              102 STUR\n              STREF\n              ENDC\n              7 PUSHPOW2\n              SENDRAWMSG\n            }>ELSE<{\n              s9 PUSH\n              1 EQINT\n              1146113091 PUSHINT\n              1146244438 PUSHINT\n              CONDSEL\n              BALANCE\n              FIRST\n              30000000 PUSHINT\n              GEQ\n              525 THROWIFNOT\n              30000000 PUSHINT\n              0 PUSHINT\n              RAWRESERVE\n              NEWC\n              32 STU\n              16 s() PUSH\n              SWAP\n              STSTDADDR\n              s1 s(-1) PUXC\n              STOPTSTDADDR\n              s8 PUSH\n              64 STUR\n              s7 PUSH\n              16 STUR\n              s6 PUSH\n              16 STUR\n              19 s() PUSH\n              CTOS\n              LDDICT\n              ENDS\n              s8 s(-1) PUXC\n              16 PUSHINT\n              DICTUGETREF\n              521 THROWIFNOT\n              STREFR\n              ENDC\n              NEWC\n              b{011000} STSLICECONST\n              18 s() PUSH\n              SWAP\n              STSTDADDR\n              b{00000} STSLICECONST\n              3 PUSHINT\n              STGRAMS\n              1 PUSHINT\n              102 STUR\n              STREF\n              ENDC\n              7 PUSHPOW2\n              SENDRAWMSG\n            }>\n          }>ELSE<{\n            OVER\n            1146373700 PUSHINT\n            EQUAL\n            IF:<{\n              NIP\n              INMSG_VALUE\n              19 s() 20 s() XCHG\n              18 s() 19 s() XCHG\n              17 s() 18 s() XCHG\n              16 s() 17 s() XCHG\n              s15 16 s() XCHG\n              s14 s15 XCHG\n              s13 s14 XCHG\n              s12 s13 XCHG\n              s11 s12 XCHG\n              s10 s11 XCHG\n              s9 s10 XCHG\n              s8 s9 XCHG\n              s7 s8 XCHG\n              s6 s7 XCHG\n              s5 s6 XCHG\n              s4 s5 XCHG\n              s3 s4 XCHG\n              s3 s0 s0 XCHG3\n              1146373714 PUSHINT\n              requestPermissionlessRefund() CALLDICT\n            }>ELSE<{\n              OVER\n              1145132609 PUSHINT\n              EQUAL\n              IF:<{\n                NIP\n                INMSG_VALUE\n                19 s() 20 s() XCHG\n                18 s() 19 s() XCHG\n                17 s() 18 s() XCHG\n                16 s() 17 s() XCHG\n                s15 16 s() XCHG\n                s14 s15 XCHG\n                s13 s14 XCHG\n                s12 s13 XCHG\n                s11 s12 XCHG\n                s10 s11 XCHG\n                s9 s10 XCHG\n                s8 s9 XCHG\n                s7 s8 XCHG\n                s6 s7 XCHG\n                s5 s6 XCHG\n                s4 s5 XCHG\n                s3 s4 XCHG\n                s3 s0 s0 XCHG3\n                1145132626 PUSHINT\n                requestPermissionlessRefund() CALLDICT\n              }>ELSE<{\n                OVER\n                1146242387 PUSHINT\n                EQUAL\n                IF:<{\n                  NIP\n                  INMSG_SRC\n                  19 s() 20 s() XCHG\n                  18 s() 19 s() XCHG\n                  17 s() 18 s() XCHG\n                  16 s() 17 s() XCHG\n                  s15 16 s() XCHG\n                  s14 s15 XCHG\n                  s13 s14 XCHG\n                  s12 s13 XCHG\n                  s11 s12 XCHG\n                  s10 s11 XCHG\n                  s9 s10 XCHG\n                  s8 s9 XCHG\n                  s7 s8 XCHG\n                  s6 s7 XCHG\n                  s5 s6 XCHG\n                  s4 s5 XCHG\n                  s3 s4 XCHG\n                  s3 s0 s0 XCHG3\n                  applyBatchResult() CALLDICT\n                }>ELSE<{\n                  OVER\n                  1145459283 PUSHINT\n                  EQUAL\n                  IF:<{\n                    -1 PUSHINT\n                  }>ELSE<{\n                    OVER\n                    1146373715 PUSHINT\n                    EQUAL\n                    0 NEQINT\n                  }>\n                  IF:<{\n                    -1 PUSHINT\n                  }>ELSE<{\n                    OVER\n                    1145132627 PUSHINT\n                    EQUAL\n                    0 NEQINT\n                  }>\n                  IF:<{\n                    INMSG_SRC\n                    20 s() PUSH\n                    SDEQ\n                    536 THROWIFNOT\n                    LDSTDADDR\n                    64 LDU\n                    32 LDU\n                    ENDS\n                    s0 s2 XCHG\n                    19 s() PUSH\n                    SDEQ\n                    537 THROWIFNOT\n                    s2 PUSH\n                    1145459283 PUSHINT\n                    EQUAL\n                    IF:<{\n                      s12 PUSH\n                      3 EQINT\n                      IF:<{\n                        s0 s10 PUSH2\n                        EQUAL\n                        0 NEQINT\n                      }>ELSE<{\n                        0 PUSHINT\n                      }>\n                      IF:<{\n                        s1 s5 PUSH2\n                        EQUAL\n                        0 NEQINT\n                      }>ELSE<{\n                        0 PUSHINT\n                      }>\n                      537 THROWIFNOT\n                    }>ELSE<{\n                      s12 PUSH\n                      IF:<{\n                        s11 POP\n                        0 PUSHINT\n                      }>ELSE<{\n                        s0 s11 XCHG\n                        INC\n                        s11 PUSH\n                        EQUAL\n                        0 NEQINT\n                      }>\n                      537 THROWIFNOT\n                      OVER\n                      1146373715 PUSHINT\n                      EQUAL\n                      IF:<{\n                        s0 s13 PUSH2\n                        EQUAL\n                        537 THROWIFNOT\n                      }>ELSE<{\n                        OVER\n                        1145132627 PUSHINT\n                        EQUAL\n                        IF:<{\n                          s11 PUSH\n                          1 EQINT\n                          s7 PUSH\n                          0 PUSHINT\n                          CONDSEL\n                          s14 s13 PUSH2\n                          SUB\n                          SUBR\n                          OVER\n                          EQUAL\n                          0 NEQINT\n                        }>ELSE<{\n                          0 PUSHINT\n                        }>\n                        537 THROWIFNOT\n                      }>\n                      s10 PUSH\n                    }>\n                    OVER\n                    0 GTINT\n                    IF:<{\n                      s1 s14 PUSH2\n                      LEQ\n                      0 NEQINT\n                    }>ELSE<{\n                      0 PUSHINT\n                    }>\n                    IF:<{\n                      s1 s14 PUSH2\n                      EQUAL\n                      IF:<{\n                        -1 PUSHINT\n                      }>ELSE<{\n                        s14 s1 PUSH2\n                        SUB\n                        s14 PUSH\n                        GEQ\n                        0 NEQINT\n                      }>\n                      0 NEQINT\n                    }>ELSE<{\n                      0 PUSHINT\n                    }>\n                    537 THROWIFNOT\n                    s1 s14 PUSH2\n                    EQUAL\n                    s15 s2 XCHG2\n                    SUB\n                    OVER\n                    IF:<{\n                      0 PUSHINT\n                      s14 POP\n                    }>\n                    s0 s2 XCHG\n                    1145459283 PUSHINT\n                    EQUAL\n                    IF:<{\n                      18 s() 19 s() XCHG\n                      17 s() 19 s() XCHG\n                      16 s() 19 s() XCHG\n                      s15 19 s() XCHG\n                      s14 19 s() XCHG\n                      s13 19 s() XCHG\n                      s0 20 s() XCHG\n                      s1 s12 XCHG\n                      s1 s11 XCHG\n                      s1 s10 XCHG\n                      s1 s9 XCHG\n                      s1 s8 XCHG\n                      s1 s7 XCHG\n                      s1 s6 XCHG\n                      s1 s5 XCHG\n                      s1 s4 XCHG\n                      s3 s3 s0 XCHG3\n                      resetOperation() CALLDICT\n                      s0 20 s() XCHG\n                      18 s() 19 s() XCHG\n                      17 s() 18 s() XCHG\n                      16 s() 17 s() XCHG\n                      s15 16 s() XCHG\n                      s14 s15 XCHG\n                      s13 s14 XCHG\n                      s11 s12 XCHG\n                      s10 s11 XCHG\n                      s9 s10 XCHG\n                      s8 s9 XCHG\n                      s7 s8 XCHG\n                      s6 s7 XCHG\n                      s5 s6 XCHG\n                      s4 s5 XCHG\n                      s3 s4 XCHG\n                      s1 s3 s0 XCHG3\n                    }>\n                    2000000 PUSHINT\n                    NEWC\n                    x{4452414b} STSLICECONST\n                    19 s() PUSH\n                    SWAP\n                    STSTDADDR\n                    s1 s15 XCHG\n                    64 STU\n                    ENDC\n                    NEWC\n                    b{010000} STSLICECONST\n                    21 s() PUSH\n                    SWAP\n                    STSTDADDR\n                    s0 s15 XCHG2\n                    STGRAMS\n                    1 PUSHINT\n                    107 STUR\n                    s1 s14 XCHG\n                    STREF\n                    ENDC\n                    3 PUSHINT\n                    SENDRAWMSG\n                    s0 s12 XCHG\n                    IF:<{\n                      0 PUSHINT\n                      DUP\n                      RAWRESERVE\n                      NEWC\n                      b{010000} STSLICECONST\n                      16 s() PUSH\n                      SWAP\n                      STSTDADDR\n                      0 PUSHINT\n                      111 STUR\n                      ENDC\n                      160 PUSHINT\n                      SENDRAWMSG\n                    }>ELSE<{\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      17 s() PUSH\n                      36 s() PUSH\n                      assertAccounting() CALLDICT\n                      BALANCE\n                      FIRST\n                      30000000 PUSHINT\n                      GEQ\n                      525 THROWIFNOT\n                      30000000 PUSHINT\n                      0 PUSHINT\n                      RAWRESERVE\n                      NEWC\n                      b{010000} STSLICECONST\n                      16 s() PUSH\n                      SWAP\n                      STSTDADDR\n                      0 PUSHINT\n                      111 STUR\n                      ENDC\n                      7 PUSHPOW2\n                      SENDRAWMSG\n                    }>\n                  }>ELSE<{\n                    SWAP\n                    1145454921 PUSHINT\n                    EQUAL\n                    IFNOTJMP:<{\n                      16 PUSHPOW2DEC\n                      THROWANY\n                    }>\n                    INMSG_SRC\n                    19 s() PUSH\n                    SDEQ\n                    IF:<{\n                      s10 PUSH\n                      1 EQINT\n                      0 NEQINT\n                    }>ELSE<{\n                      0 PUSHINT\n                    }>\n                    533 THROWIFNOT\n                    64 LDU\n                    ENDS\n                    s8 PUSH\n                    EQUAL\n                    IF:<{\n                      s6 PUSH\n                      0 EQINT\n                      0 NEQINT\n                    }>ELSE<{\n                      0 PUSHINT\n                    }>\n                    534 THROWIFNOT\n                    17 s() 18 s() XCHG\n                    16 s() 17 s() XCHG\n                    s15 16 s() XCHG\n                    15 ROLL\n                    resetOperation() CALLDICT\n                    BALANCE\n                    FIRST\n                    30000000 PUSHINT\n                    GEQ\n                    525 THROWIFNOT\n                    30000000 PUSHINT\n                    0 PUSHINT\n                    RAWRESERVE\n                    NEWC\n                    b{010000} STSLICECONST\n                    17 s() PUSH\n                    SWAP\n                    STSTDADDR\n                    0 PUSHINT\n                    111 STUR\n                    ENDC\n                    7 PUSHPOW2\n                    SENDRAWMSG\n                    s0 18 s() XCHG\n                    s0 17 s() XCHG\n                    s0 16 s() XCHG\n                    15 -ROLL\n                  }>\n                  17 s() 18 s() XCHG\n                  16 s() 17 s() XCHG\n                  s15 16 s() XCHG\n                  15 ROLL\n                }>\n              }>\n            }>\n            s0 18 s() XCHG\n            s0 17 s() XCHG\n            s0 16 s() XCHG\n            15 -ROLL\n          }>\n          17 s() 18 s() XCHG\n          16 s() 17 s() XCHG\n          s15 16 s() XCHG\n          15 ROLL\n        }>\n      }>\n      s6 18 s() XCHG\n      s6 17 s() XCHG\n      s6 16 s() XCHG\n      s6 s15 XCHG\n      s6 s14 XCHG\n      s6 s13 XCHG\n      s6 s12 XCHG\n      s5 s11 XCHG\n      6 5 REVERSE\n      s3 s7 XCHG\n      s6 s5 s3 XCHG3\n      s1 s2 XCHG\n    }>\n    17 s() PUSH\n    17 s() PUSH\n    17 s() PUSH\n    17 s() PUSH\n    17 s() PUSH\n    17 s() PUSH\n    s15 PUSH\n    17 s() PUSH\n    s10 s9 s8 PUSH3\n    19 s() PUSH\n    30 s() PUSH\n    24 s() PUSH\n    18 s() PUSH\n    22 s() PUSH\n    22 s() PUSH\n    22 s() PUSH\n    21 s() PUSH\n    assertAccounting() CALLDICT\n    s0 17 s() XCHG\n    NEWC\n    STSTDADDR\n    s1 16 s() XCHG\n    STSTDADDR\n    s1 s14 XCHG\n    STSTDADDR\n    s0 s12 XCHG\n    NEWC\n    64 STU\n    s1 s11 XCHG\n    64 STU\n    s1 s9 XCHG\n    2 STU\n    s1 s5 XCHG\n    32 STU\n    s1 s5 XCHG\n    32 STU\n    s1 s9 XCHG\n    2 STU\n    s1 s9 XCHG\n    64 STU\n    s1 s9 XCHG\n    64 STU\n    s1 s7 XCHG\n    16 STU\n    s1 s8 XCHG\n    16 STU\n    s1 s7 XCHG\n    32 STU\n    s1 s6 XCHG\n    32 STU\n    s1 s2 XCHG\n    32 STU\n    s1 s2 XCHG\n    1 STI\n    s0 s2 XCHG\n    NEWC\n    STOPTSTDADDR\n    ENDC\n    ROT\n    STREF\n    s1 s2 XCHG\n    STREF\n    ENDC\n    STREFR\n    ENDC\n    c4 POP\n  }>\n  vault_state() PROC:<{\n    loadState() CALLDICT\n    DROP\n    s8 POP\n    s12 POP\n    2DROP\n    s11 POP\n    s11 POP\n    s11 POP\n    0 PUSHINT\n    s0 s2 PUSH2\n    ISNULL\n    IFNOT:<{\n      2DROP\n      SWAP\n      REWRITESTDADDR\n      -ROT\n    }>ELSE<{\n      s3 POP\n    }>\n    s3 PUSH\n    1 EQINT\n    s0 s10 XCHG2\n    0 PUSHINT\n    CONDSEL\n    s5 s4 PUSH2\n    SUB\n    SUBR\n    s8 s11 XCHG\n    s6 s10 XCHG\n    s5 s9 XCHG\n    s4 s8 XCHG\n    s0 s7 XCHG\n    s3 s6 XCHG\n    s5 s2 XCHG2\n  }>\n  operation_state() PROC:<{\n    loadState() CALLDICT\n    s6 POP\n    3 BLKDROP\n    s3 POP\n    s3 POP\n    s4 POP\n    s4 POP\n    s5 POP\n    s6 POP\n    s6 POP\n    s6 POP\n    s6 POP\n    s0 s3 XCHG\n    HASHCU\n    s0 s5 XCHG\n    MUL\n    11000 PUSHINT\n    MUL\n    10000 PUSHINT\n    DIV\n    4 1 REVERSE\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECOQEAEIEAART/APSkE/S88sgLAQIBYgIDAgLMBAUCASA3OAIBIAYHAM3YD9JH0oGOmf6Yfph+oY6IGrCuOCypdhgGGASLhxSqiOXWGASRi4cUoVXWGASRg4cUoUXWGASRg4cXlxDZXgALi5cYIQ3XlxDeAAxwko2lASYQBKEVnhgEi4cUk/me9JqNpQ8QX4AkAgEgCAkCASAqKwIBIAoLAgEgJygE9z4keMCIMcAkTDg8AFWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWEvACERPTHyGCEERTVFC64w9WEVYRVhFWEVYRVhEvVhFUephWE1YeVhhWElYWVhZWFlYV8AIREcj6UgEREAH6Uh76UgzIyz8byz+AMDQ4PAG07UTQ+kj6SPpI1AHQ0z/TP9MB0x/TH9MB0z/TP9MP0w/TH9Mf0x/SANQB0PpQMAHU0REQ0VUOgA/7wAVYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYS8AIRE9csJ/////Tyv9dM0NMfIYIQREJVWbrjD1YSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYS8AIREsj6UgEREQH6UlLw+lIOyMs/EBESAfwxNDU1NT/4kviXUR3HBZUmwADDAJFw4vLiDg/TP9Mf0x/TD/pQ1NFSW7yVIsIAwwCRcOLy4g8gbpggVhHHBfLSEN8njhcgbpEwjhAmbrOVJscFwwCSMHDi8uIQ4pE24lR4AfADUy2ogSr4qIEnEKkEggiYloCgARETAb7y4hEVA/4hghBEU1RSuo9WIYIQRFJGRLqOyjErwgCOQviS+JcRFBEVERQRExEUERMREhETERIRERESEREREBERERAPERAPEO8Q3hDNELwQqxCaEIkQeBBnEFYQRRA0WH/wBeMO4w7jDQYREgYGEREGBhEQBhBvEG4QbRBsEFteRRA3RlMSGBkaAGYZywEVyx8Vyx8ZywEZyz8Zyz8Xyw8Yyw8Xyx8Wyx8Syx8SygACyPpUyVjMEszJzxTJ7VQA5jH6SPpQMdM/0x/TDzHUMdECVhLHBZUrwAHDAJFw4pQpusMAkjBw4pUnwADDAJFw4pUgwgDDAJFw4pdTy6EhvsMAkXDi8uIbHKERERESEREREBERERAPERAPEO8Q3gwNEKsQmhCJEHgQZxBWEEUQNEEw8AQCmCGCEERQTEO6jsAhghBEUk1Wuo40MRESERMREhERERIREREQEREREA8REA8Q7xDeEM0QvBCrEJoQiRB4EGcQVhBFEDRBMHLwCOMO4w0TFACoHcs/G8sBGcsfF8sfFcsBE8s/yz/LD8sPyx/LH8sfygADyPpUyVADzBPMyc8Uye1U+CdvEIIJycOAvvLiDYIJycOAcPsCyM+FCPpScM8LbsmDBvsAAPQhghBERlJGuo4/MfpI0z/TH9ECVhLHBZUrwAPDAJFw4pQpusMAkjBw4pQjusMAkjBw4vLiGxERERIREREQEREREA8REA9VDvAEji4wIIIQRFRGUrqSMH+ZghBEQVZSusMA4pPywhvhEREREhERERAREREQDxEQD1UO4gBoMRESERMREhERERIREREQEREREA8REA8Q7xDeEM0QvBCrEJoQiRB4EGcQVhBFEDRBMHHwCAKwUaGgCMABUANw4wRTeKGiKb7y4hJxUxFwVhNTGlYVVhVWFVYVVhVWFVYTVhVUftxT7VYcL1YaVhpWGlYS8AL4J28QggnJw4C+8uINggnJw4Ai+wIowgDjDxYXAJDIz5ERCVVmVhQB+lJSoPpUGMs/GMsfAREVAcsPVEEb0PQE0RuAEPQP8uIJUArMycjPhYhWEwH6Us+EEHP6AnHPC2XMyYMG+wAAoDc3OlcTyM+REUExDlYQAfpSUmD6VCHPCz/PiAACKc8LDyTQ9ATRVhQBgBD0D/LiCc8UycjPhYhWEgH6Us+EEHP6AnHPC2XMyYMG+wAIERIIAfwzN/iS+JcBVhDHBZUJwADDAJI5cOLy4g4B0z/TH9MP1NFSO7yVAcAAwwCSMXDilMAAwwCSMHDi8uIPB/kAbcj0APkWuvLiFCiRcJUpwgDDAOKZB4IImJaAvsMAkjdw4vLiE3NUdp9WEVYRVhFWEVYRVhFWEVOpVhJWEVYRVhEbA/4hghBEQ09Ouo9hIYIQRFRGRLqOzSGCEERBVkG6jkEx+JcRExEUERMREhETERIRERESEREREBERERAPERAPEO8Q3hDNELwQqxCaEIkQeBBnEFYQRRA0QwCCEERBVlLwBuMO4w0REhERERBV4OMNEREREhERERAREREQDxEQD1UOHB0eAIYx+JL4lxEUERURFBETERQRExESERMREhERERIREREQEREREA8REA8Q7xDeEM0QvBCrEJoQiRB4EGcQVhBFEDRYcPAFAOZWES9WGVYYViTwAvgnbxCCCcnDgL7y4g2CCcnDgHD7AsjPkREZSRpWEAH6UinPCz8hzwsfycjPhYhWEwH6Us+EECT6AnHPC2XMyYMG+wARERESEREREBERERAPERAPEO8Q3hDNELwQq0qQEGcQVhBFA0FEA/4hghBEUkVTuo47MfiSERMRFBETERIRExESEREREhERERAREREQDxEQDxDvEN4QzRC8EKsQmhCJEHgQZxBWEEUQNEMA8AePOCGCEERGUlO6kX+aIYIQRFRGU7rDAOKRf5ohghBEQVZTusMA4uMPEREREhERERAREREQDxEQD1UOHyAhAIIx+JcRExEUERMREhETERIRERESEREREBERERAPERAPEO8Q3hDNELwQqxCaEIkQeBBnEFYQRRA0QwCCEERURlLwBgHSMfiXAdEqmIIImJaAvsMAkjBw4vLiGinAA5UqwADDAJFw4o5D+CdvEIIJycOAvvLiDYIJycOAcPsCyM+RERlJGlYQAfpSKM8LPyPPCx/JyM+FiFYTAfpSz4QQc/oCcc8LZczJgwb7AOMOJgH8+JJWFMcF8uIY+kjTP9Mf0QJWE8cF8uIZIoIQREZSU7qOGCzAA5VTCrrDAJFw4pVTFbrDAJFw4vLiGY5ALJI7cJYLpCu6wwDi8uIZIYIQRFRGU7qWUw268uIZjh4hghBEQVZTup8rwAEncOMEU+2hoiG6wwCRcOLy4hniKuIhIgDoAYIQREZBSbqUhA/y8OH4klYTxwWVKsABwwCRcOLy4hXTP9EoupUmwADDAJFw4vLiFhERERIREREQEREREA8REA9VDvAE+CdvEIIJycOAvvLiDYIJycOAcPsCyM+FCFYRAfpScM8LbsmDBvsAERIREREQVeAAAuIDzsIAlVMeu8MAkXDijhBTHrqRf5dT4aEuvsMA4sMAkXDi8uIZUx66UPKhIZJwPt4CghBERlJTuuMAgggehIDIz5ERSQUuVhMB+lIfyz/JyM+FCFYVAfpSUA/6AnHPC2oezMlz+wAM4w8jJCUAuhESERMREhERERMREREQERMREA8REw8OERMODRETDREUHBsaGRgXFhUUQzDwBBEUERIRExESEREREhERERAREREQDxEQDxDvEN4QvBCrEJoQiRB4EGcQVhBFEDRBMAAucCD7AsjPhQhWEAH6UnDPC27JgQCg+wAAnlYRVhFWEVYRVhFWEVYRVhFWEVYRVhFWEVYRVhFWEVYRVhFWEVYk8AL4J28QggnJw4C+8uINggnJw4Bw+wLIz4UIVhAB+lJwzwtuyYMG+wAA0inAAYIQRFBMQ4IQRFJNVuME+CdvEIIJycOAvvLiDYIJycOAcPsCyMsfVhAB+lJSEPpUKM8LPyfPCw8mzwsPVhPQ9ATRUoCAEPQP8uIJzxTJyM+FiFYSAfpSz4QQc/oCcc8LZczJgwb7AAG3F8DNjs7OzsFkjVwlQXCAMMA4vLiCCLC/5kigggPQkC7wwCRcOLy4gghwv+VUxK7wwCRcOLy4gggwAEncOMEWqGiwv/y4gggwv+VIMEEwwCRcOLy4gjAAOMCXwaApAJUIcIAlSHBIcMAkXDi8uIKcCCTUwO5jisk0PQE0VIQgBD0D/LiCdDTByHCAJUhwSHDAJFw4vLiCyGqA9cYMdESoAGk6DAzMbry4gyAATJI0cJUEwADDAOKVAsAAwwCSMnDi8uIIkjBwlMAAwwDi8uII8tIIAgEgLC0CASAvMABFDBQeV8HcFRwAFRwACeSbTrfbcj0AMkQehBoEFcQRhA1RDCAB9w0Nzc3NzdRTscFlQfAAMMAkjdw4vLiDtM/0x/TD9TRUjm8lSHCAMMAkXDilVMZu8MAkXDi8uIPJZZTGbry4hPeVHcB8AMDggiYloC+8uIRBHNy4wQhcCBWElYSVhJWElYSVhJWElYSVHusLFYRVhQuVhlWFlYZVhvwAiOAuAOLAAYIQRFBMQ4IQRFJNVuME+CdvEIIJycOAvvLiDYIJycOAIvsCyMsfVhEB+lJSkPpUJc8LP8+IAAImzwsPKtD0BNFSMIAQ9A/y4gnPFMnIz4WIVhMB+lLPhBBz+gJxzwtlzMmDBvsAEDpJFFCIBwVGFgH3AHTP9EtkXCVL8IAwwDi8uIOLKQhupkCggiYloC+wwCSMnDi8uIPIIIQRFRGUrqRLpsswAEocOMEU/6houIhghBEVEZSupF/miGCEERBVlK6wwDilSDCAMMAkXDi8uIP+CdvEIIJycOAvvLiDYIJycOAcPsCAcjLH1YTAYDEE5wBVhPHBZUrwwDDAJFw4vLiFdM/0w/TD9MH0wfTAdP/MdFRXrqVUzy6wwCRcOKVUSu6wwCSMnDi8uIWLsABcXLjBCS6lCG+wwCSMHDi8uIWF6BTB7vy4hcppCm6kjYw4w0HpFMGueMCKsAB4wIqwANRxaEMgMjM0NQBC+lISyz/LH8nIz4WIVhQB+lLPhBBz+gJxzwtlzMmDBvsAAGaCCA9CQMjPkREFDUpWFAH6UizPCz8Yyw8SywHJyM+FCFYUAfpSUAf6AnHPC2oWzMlz+wAA0irAAYIQRFBMQ4IQRFJNVuME+CdvEIIJycOAvvLiDYIJycOAcPsCyMsfVhEB+lJSIPpUKc8LPyHPCw8nzwsPKND0BNFSIIAQ9A/y4gnPFMnIz4WIVhMB+lLPhBBz+gJxzwtlzMmDBvsABwDKUbSgJMIAlCKzwwCRcOKSfzPeCwfwBFYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYS8AL4J28QggnJw4C+8uINggnJw4Bw+wLIz4UIVhEB+lJwzwtuyYMG+wAB/JUrwADDAJFw4o5HMyv4J28QggnJw4C+8uINggnJw4Bw+wLIz5ERGUkaVhEB+lIpzws/Ic8LH8nIz4WIVhQB+lLPhBBz+gJxzwtlzMmDBvsAAwfgB/AEVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhJWElYSVhLwAjYATvgnbxCCCcnDgL7y4g2CCcnDgHD7AsjPhQhWEQH6UnDPC27Jgwb7AABBvOUvgAmy+BmZmaGhqbGxsbAfyAAtRAlXxUQJOIVIIvEMAGO/iE+ACYHB4tnZ2duCmBN0iZyq2A/SIs8RHgAKgFOHGCKapQ0QhFiDUILIgkA4gbKClA==",
+  "codeHashHex": "6CA48984F5429B6F8226DA74CF7D638B35964A7027446377434E25CB4EA41189",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/7413c4da-13e9-4134-b11d-980f807bb589/contracts/dosgram_direct_vault.tolk",
+        "size_chars": 25260,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultState"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 14,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 18,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 23
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          22
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 25,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          27,
+          28
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 33,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 29,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          37
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceOriginalMsgInfo"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 41
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceComputePhaseInfo"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 44,
+        "stack_type_id": 135,
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 17,
+        "struct_name": "CreateMessageOptions<cell>",
+        "monomorphic_fields_ty_idx": [
+          21,
+          26,
+          36,
+          3
+        ]
+      },
+      {
+        "ty_idx": 39,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          21,
+          26,
+          36,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 22,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 24
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 34
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 30,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 27
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 32
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 18,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 19,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 21
+          },
+          {
+            "name": "value",
+            "ty_idx": 26
+          },
+          {
+            "name": "dest",
+            "ty_idx": 36
+          },
+          {
+            "name": "body",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 16,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceBody",
+        "ty_idx": 40,
+        "ident_loc": [
+          0,
+          1955,
+          21,
+          1955,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 4294967294,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "originalBody",
+            "ty_idx": 3
+          },
+          {
+            "name": "originalInfo",
+            "ty_idx": 42
+          },
+          {
+            "name": "bouncedByPhase",
+            "ty_idx": 43
+          },
+          {
+            "name": "exitCode",
+            "ty_idx": 8
+          },
+          {
+            "name": "computePhase",
+            "ty_idx": 45
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceComputePhaseInfo",
+        "ty_idx": 44,
+        "ident_loc": [
+          0,
+          1964,
+          8,
+          1964,
+          34
+        ],
+        "fields": [
+          {
+            "name": "gasUsed",
+            "ty_idx": 9
+          },
+          {
+            "name": "vmSteps",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceOriginalMsgInfo",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1975,
+          8,
+          1975,
+          33
+        ],
+        "fields": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "valueExtra",
+            "ty_idx": 22
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultState",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          45,
+          8,
+          45,
+          18
+        ],
+        "fields": [
+          {
+            "name": "core",
+            "ty_idx": 7
+          },
+          {
+            "name": "board",
+            "ty_idx": 7
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "roundId",
+            "ty_idx": 1
+          },
+          {
+            "name": "nanoPerGram",
+            "ty_idx": 1
+          },
+          {
+            "name": "status",
+            "ty_idx": 1
+          },
+          {
+            "name": "totalUnits",
+            "ty_idx": 1
+          },
+          {
+            "name": "onBoard",
+            "ty_idx": 1
+          },
+          {
+            "name": "pendingMode",
+            "ty_idx": 1
+          },
+          {
+            "name": "lastQueryId",
+            "ty_idx": 1
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          },
+          {
+            "name": "cursor",
+            "ty_idx": 1
+          },
+          {
+            "name": "batchCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "requestedUnits",
+            "ty_idx": 1
+          },
+          {
+            "name": "changedUnits",
+            "ty_idx": 1
+          },
+          {
+            "name": "refundUnits",
+            "ty_idx": 1
+          },
+          {
+            "name": "referrerFixed",
+            "ty_idx": 5
+          },
+          {
+            "name": "requestedReferrer",
+            "ty_idx": 13
+          },
+          {
+            "name": "plan",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "loadState",
+        "return_ty_idx": 12,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          72,
+          5,
+          72,
+          14
+        ],
+        "end_loc": [
+          1,
+          102,
+          1,
+          102,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 1,
+        "name": "assertAccounting",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          144,
+          5,
+          144,
+          21
+        ],
+        "end_loc": [
+          1,
+          155,
+          1,
+          155,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "availableUnits",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          139,
+          5,
+          139,
+          19
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "validatePlan",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          164,
+          5,
+          164,
+          17
+        ],
+        "end_loc": [
+          1,
+          178,
+          1,
+          178,
+          2
+        ],
+        "params": [
+          {
+            "name": "plan",
+            "ty_idx": 3
+          },
+          {
+            "name": "batchCount",
+            "ty_idx": 1
+          },
+          {
+            "name": "requestedUnits",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "loadBatch",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          157,
+          5,
+          157,
+          14
+        ],
+        "end_loc": [
+          1,
+          162,
+          1,
+          162,
+          2
+        ],
+        "params": [
+          {
+            "name": "plan",
+            "ty_idx": 3
+          },
+          {
+            "name": "cursor",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "map<uint16, cell>.mustGet",
+        "return_ty_idx": 3,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "key",
+            "ty_idx": 14
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "resetOperation",
+        "return_ty_idx": 12,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          185,
+          5,
+          185,
+          19
+        ],
+        "end_loc": [
+          1,
+          198,
+          1,
+          198,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "emptyPlan",
+        "return_ty_idx": 3,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          67,
+          5,
+          67,
+          14
+        ],
+        "end_loc": [
+          1,
+          70,
+          1,
+          70,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 8,
+        "name": "startRemoval",
+        "return_ty_idx": 12,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          337,
+          5,
+          337,
+          17
+        ],
+        "end_loc": [
+          1,
+          367,
+          1,
+          367,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          },
+          {
+            "name": "refundAfter",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "sendCurrentBatch",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          212,
+          5,
+          212,
+          21
+        ],
+        "end_loc": [
+          1,
+          221,
+          1,
+          221,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "reserveVault",
+        "return_ty_idx": 0,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          180,
+          5,
+          180,
+          17
+        ],
+        "end_loc": [
+          1,
+          183,
+          1,
+          183,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 11,
+        "name": "boardRequestBody",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          200,
+          5,
+          200,
+          21
+        ],
+        "end_loc": [
+          1,
+          210,
+          1,
+          210,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "op",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "createMessage<cell>",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "requestPermissionlessRefund",
+        "return_ty_idx": 12,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          393,
+          5,
+          393,
+          32
+        ],
+        "end_loc": [
+          1,
+          421,
+          1,
+          421,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          },
+          {
+            "name": "requestOp",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "applyBatchResult",
+        "return_ty_idx": 12,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          423,
+          5,
+          423,
+          21
+        ],
+        "end_loc": [
+          1,
+          475,
+          1,
+          475,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "sendReceiptAck",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          238,
+          5,
+          238,
+          19
+        ],
+        "end_loc": [
+          1,
+          251,
+          1,
+          251,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "cursor",
+            "ty_idx": 1
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "createMessage<void>",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "sendRefundRequest",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          223,
+          5,
+          223,
+          22
+        ],
+        "end_loc": [
+          1,
+          236,
+          1,
+          236,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "handleBoardRequestBounce",
+        "return_ty_idx": 12,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          572,
+          5,
+          572,
+          29
+        ],
+        "end_loc": [
+          1,
+          598,
+          1,
+          598,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          614,
+          5,
+          614,
+          22
+        ],
+        "end_loc": [
+          1,
+          663,
+          1,
+          663,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          665,
+          5,
+          665,
+          21
+        ],
+        "end_loc": [
+          1,
+          689,
+          1,
+          689,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "handlePurchaseBounce",
+        "return_ty_idx": 12,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          552,
+          5,
+          552,
+          25
+        ],
+        "end_loc": [
+          1,
+          570,
+          1,
+          570,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "handleRefundRequestBounce",
+        "return_ty_idx": 12,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          600,
+          5,
+          600,
+          30
+        ],
+        "end_loc": [
+          1,
+          612,
+          1,
+          612,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "saveState",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          104,
+          5,
+          104,
+          14
+        ],
+        "end_loc": [
+          1,
+          132,
+          1,
+          132,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "startPlace",
+        "return_ty_idx": 12,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          266,
+          5,
+          266,
+          15
+        ],
+        "end_loc": [
+          1,
+          335,
+          1,
+          335,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "amountForUnits",
+        "return_ty_idx": 6,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          134,
+          5,
+          134,
+          19
+        ],
+        "end_loc": [
+          1,
+          137,
+          1,
+          137,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "units",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "startRefundWithoutBoard",
+        "return_ty_idx": 12,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          369,
+          5,
+          369,
+          28
+        ],
+        "end_loc": [
+          1,
+          391,
+          1,
+          391,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "continueOperation",
+        "return_ty_idx": 12,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          541,
+          5,
+          541,
+          22
+        ],
+        "end_loc": [
+          1,
+          550,
+          1,
+          550,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "applyRefund",
+        "return_ty_idx": 12,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          477,
+          5,
+          477,
+          16
+        ],
+        "end_loc": [
+          1,
+          527,
+          1,
+          527,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          },
+          {
+            "name": "resultOp",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "sendRefundReceiptAck",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          253,
+          5,
+          253,
+          25
+        ],
+        "end_loc": [
+          1,
+          264,
+          1,
+          264,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "handleRouteFailure",
+        "return_ty_idx": 12,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          529,
+          5,
+          529,
+          23
+        ],
+        "end_loc": [
+          1,
+          539,
+          1,
+          539,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "vault_state",
+        "return_ty_idx": 46,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          691,
+          9,
+          691,
+          20
+        ],
+        "end_loc": [
+          1,
+          712,
+          1,
+          712,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 32,
+        "name": "operation_state",
+        "return_ty_idx": 47,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          714,
+          9,
+          714,
+          24
+        ],
+        "end_loc": [
+          1,
+          717,
+          1,
+          717,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          5,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 3
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 127241,
+        "name": "vault_state",
+        "parameters": [],
+        "return_ty_idx": 12
+      },
+      {
+        "tvm_method_id": 72869,
+        "name": "operation_state",
+        "parameters": [],
+        "return_ty_idx": 13
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "plain_int",
+        "err_code": 520
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 521
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 522
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 523
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 524
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 525
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 526
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 527
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 528
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 529
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 530
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 531
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 532
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 533
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 534
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 535
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 536
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 537
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 538
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 539
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/7413c4da-13e9-4134-b11d-980f807bb589/contracts/dosgram_direct_vault.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n\n// DOSGRAM v2 deterministic per-player Vault. The owner signs once. The Vault\n// stores the immutable batch plan and advances it automatically from Board\n// receipts. Anyone may add gas to resume the exact same committed operation.\n\nconst OP_START_PLACE = 0x44535450;         // \"DSTP\" owner -> Vault\nconst OP_START_REMOVE = 0x44535452;        // \"DSTR\" owner -> Vault\nconst OP_REFUND_ALL = 0x44524644;           // \"DRFD\" owner -> Vault\nconst OP_CONTINUE = 0x44434F4E;             // \"DCON\" permissionless\nconst OP_CORE_PURCHASE_AND_PLACE = 0x44425559; // \"DBUY\" Vault -> Core\nconst OP_BOARD_PURCHASE_AND_PLACE = 0x44505552; // \"DPUR\" Core -> Board\nconst OP_BOARD_PLACE = 0x44504C43;          // \"DPLC\" Vault -> Board\nconst OP_BOARD_REMOVE = 0x44524D56;         // \"DRMV\" Vault -> Board\nconst OP_BATCH_RESULT = 0x44524553;          // \"DRES\" Board -> Vault\nconst OP_RECEIPT_ACK = 0x44414352;            // \"DACR\" Vault -> Board\nconst OP_CORE_REFUND = 0x44465246;           // \"DFRF\" Vault -> Core\nconst OP_CORE_TIMEOUT_REFUND = 0x44544652;   // \"DTFR\" Vault -> Core\nconst OP_CORE_AVAILABLE_REFUND = 0x44415652; // \"DAVR\" Vault -> Core\nconst OP_REFUND_RESULT = 0x44465253;         // \"DFRS\" Core -> Vault\nconst OP_TIMEOUT_REFUND_RESULT = 0x44544653;   // \"DTFS\" Core -> Vault\nconst OP_AVAILABLE_REFUND_RESULT = 0x44415653; // \"DAVS\" Core -> Vault\nconst OP_REFUND_RECEIPT_ACK = 0x4452414B;     // \"DRAK\" Vault -> Core\nconst OP_ROUTE_FAILED = 0x44464149;          // \"DFAI\" Core -> Vault\nconst OP_CLAIM_TIMEOUT_REFUND = 0x44544644;  // \"DTFD\" permissionless -> Vault\nconst OP_CLAIM_AVAILABLE = 0x44415641;       // \"DAVA\" permissionless -> Vault\n\nconst STATUS_OPEN = 0;\nconst MODE_NONE = 0;\nconst MODE_PLACE = 1;\nconst MODE_REMOVE = 2;\nconst MODE_REFUND = 3;\nconst MAX_BATCHES = 32;\nconst MAX_BATCH_CELLS = 32;\nconst MAX_ROUND_UNITS = 1000000;\nconst TOTAL_COMMISSION_BPS = 1000;\nconst BPS_DENOMINATOR = 10000;\nconst VAULT_RESERVE = 30000000;\nconst MIN_OPERATION_GAS = 10000000;\nconst RECEIPT_ACK_GAS = 1000000;\nconst REFUND_RECEIPT_ACK_GAS = 2000000;\nconst SEND_MODE_DESTROY_AND_CARRY_ALL = 160;\nconst SEND_MODE_PAY_FEES_AND_IGNORE_ERRORS = 3;\n\nstruct VaultState {\n    core: address;\n    board: address;\n    owner: address;\n    roundId: int;\n    nanoPerGram: int;\n    status: int;\n    totalUnits: int;\n    onBoard: int;\n    pendingMode: int;\n    lastQueryId: int;\n    queryId: int;\n    cursor: int;\n    batchCount: int;\n    requestedUnits: int;\n    changedUnits: int;\n    refundUnits: int;\n    referrerFixed: bool;\n    requestedReferrer: address?;\n    plan: cell;\n}\n\nfun emptyPlan(): cell {\n    val empty: map<uint16, cell> = [];\n    return beginCell().storeDict(empty.toLowLevelDict()).endCell();\n}\n\nfun loadState(): VaultState {\n    var data = contract.getData().beginParse();\n    val core = data.loadAddress();\n    val board = data.loadAddress();\n    val owner = data.loadAddress();\n    var metadata = data.loadRef().beginParse();\n    val state = VaultState {\n        core,\n        board,\n        owner,\n        roundId: metadata.loadUint(64),\n        nanoPerGram: metadata.loadUint(64),\n        status: metadata.loadUint(2),\n        totalUnits: metadata.loadUint(32),\n        onBoard: metadata.loadUint(32),\n        pendingMode: metadata.loadUint(2),\n        lastQueryId: metadata.loadUint(64),\n        queryId: metadata.loadUint(64),\n        cursor: metadata.loadUint(16),\n        batchCount: metadata.loadUint(16),\n        requestedUnits: metadata.loadUint(32),\n        changedUnits: metadata.loadUint(32),\n        refundUnits: metadata.loadUint(32),\n        referrerFixed: metadata.loadBool(),\n        requestedReferrer: metadata.loadRef().beginParse().loadAddressOpt(),\n        plan: metadata.loadRef(),\n    };\n    metadata.assertEnd();\n    data.assertEnd();\n    return state;\n}\n\nfun saveState(state: VaultState) {\n    contract.setData(\n        beginCell()\n            .storeAddress(state.core)\n            .storeAddress(state.board)\n            .storeAddress(state.owner)\n            .storeRef(\n                beginCell()\n                    .storeUint(state.roundId, 64)\n                    .storeUint(state.nanoPerGram, 64)\n                    .storeUint(state.status, 2)\n                    .storeUint(state.totalUnits, 32)\n                    .storeUint(state.onBoard, 32)\n                    .storeUint(state.pendingMode, 2)\n                    .storeUint(state.lastQueryId, 64)\n                    .storeUint(state.queryId, 64)\n                    .storeUint(state.cursor, 16)\n                    .storeUint(state.batchCount, 16)\n                    .storeUint(state.requestedUnits, 32)\n                    .storeUint(state.changedUnits, 32)\n                    .storeUint(state.refundUnits, 32)\n                    .storeBool(state.referrerFixed)\n                    .storeRef(beginCell().storeAddressOpt(state.requestedReferrer).endCell())\n                    .storeRef(state.plan)\n                    .endCell()\n            )\n            .endCell(),\n    );\n}\n\nfun amountForUnits(state: VaultState, units: int): coins {\n    return units * state.nanoPerGram * (BPS_DENOMINATOR + TOTAL_COMMISSION_BPS)\n        / BPS_DENOMINATOR;\n}\n\nfun availableUnits(state: VaultState): int {\n    val pendingPlace = state.pendingMode == MODE_PLACE ? state.requestedUnits : 0;\n    return state.totalUnits - state.onBoard - pendingPlace;\n}\n\nfun assertAccounting(state: VaultState) {\n    assert (state.status == STATUS_OPEN && state.nanoPerGram > 0) throw 520;\n    assert (state.totalUnits >= 0 && state.totalUnits <= MAX_ROUND_UNITS) throw 520;\n    assert (state.onBoard >= 0 && state.onBoard <= state.totalUnits) throw 520;\n    assert (availableUnits(state) >= 0) throw 520;\n    assert (state.pendingMode >= MODE_NONE && state.pendingMode <= MODE_REFUND) throw 520;\n    if (state.pendingMode == MODE_NONE) {\n        assert (state.queryId == 0 && state.cursor == 0 && state.batchCount == 0) throw 520;\n        assert (state.requestedUnits == 0 && state.changedUnits == 0) throw 520;\n        assert (state.refundUnits == 0) throw 520;\n    }\n}\n\nfun loadBatch(plan: cell, cursor: int): cell {\n    var data = plan.beginParse();\n    val batches = createMapFromLowLevelDict<uint16, cell>(data.loadDict());\n    data.assertEnd();\n    return batches.mustGet(cursor, 521);\n}\n\nfun validatePlan(plan: cell, batchCount: int, requestedUnits: int) {\n    assert (batchCount > 0 && batchCount <= MAX_BATCHES) throw 522;\n    var total = 0;\n    var cursor = 0;\n    while (cursor < batchCount) {\n        var batch = loadBatch(plan, cursor).beginParse();\n        val count = batch.loadUint(8);\n        assert (count > 0 && count <= MAX_BATCH_CELLS) throw 523;\n        batch.loadBits(count * 16);\n        batch.assertEnd();\n        total += count;\n        cursor += 1;\n    }\n    assert (total == requestedUnits) throw 524;\n}\n\nfun reserveVault() {\n    assert (contract.getOriginalBalance() >= VAULT_RESERVE) throw 525;\n    reserveToncoinsOnBalance(VAULT_RESERVE, RESERVE_MODE_EXACT_AMOUNT);\n}\n\nfun resetOperation(state: VaultState): VaultState {\n    state.pendingMode = MODE_NONE;\n    state.queryId = 0;\n    state.cursor = 0;\n    state.batchCount = 0;\n    state.requestedUnits = 0;\n    state.changedUnits = 0;\n    state.refundUnits = 0;\n    if (!state.referrerFixed) {\n        state.requestedReferrer = null;\n    }\n    state.plan = emptyPlan();\n    return state;\n}\n\nfun boardRequestBody(state: VaultState, op: int): cell {\n    return beginCell()\n        .storeUint(op, 32)\n        .storeAddress(state.owner)\n        .storeAddressOpt(state.requestedReferrer)\n        .storeUint(state.queryId, 64)\n        .storeUint(state.cursor, 16)\n        .storeUint(state.batchCount, 16)\n        .storeRef(loadBatch(state.plan, state.cursor))\n        .endCell();\n}\n\nfun sendCurrentBatch(state: VaultState) {\n    val op = state.pendingMode == MODE_PLACE ? OP_BOARD_PLACE : OP_BOARD_REMOVE;\n    reserveVault();\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: 0,\n        dest: state.board,\n        body: boardRequestBody(state, op),\n    }).send(SEND_MODE_CARRY_ALL_BALANCE);\n}\n\nfun sendRefundRequest(state: VaultState) {\n    reserveVault();\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: 0,\n        dest: state.core,\n        body: beginCell()\n            .storeUint(OP_CORE_REFUND, 32)\n            .storeAddress(state.owner)\n            .storeUint(state.queryId, 64)\n            .storeUint(state.refundUnits, 32)\n            .endCell(),\n    }).send(SEND_MODE_CARRY_ALL_BALANCE);\n}\n\nfun sendReceiptAck(state: VaultState, cursor: int, mode: int) {\n    createMessage({\n        bounce: BounceMode.NoBounce,\n        value: RECEIPT_ACK_GAS,\n        dest: state.board,\n        body: beginCell()\n            .storeUint(OP_RECEIPT_ACK, 32)\n            .storeAddress(state.owner)\n            .storeUint(state.queryId, 64)\n            .storeUint(cursor, 16)\n            .storeUint(mode, 2)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_AND_IGNORE_ERRORS);\n}\n\nfun sendRefundReceiptAck(state: VaultState, queryId: int) {\n    createMessage({\n        bounce: BounceMode.NoBounce,\n        value: REFUND_RECEIPT_ACK_GAS,\n        dest: state.core,\n        body: beginCell()\n            .storeUint(OP_REFUND_RECEIPT_ACK, 32)\n            .storeAddress(state.owner)\n            .storeUint(queryId, 64)\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_AND_IGNORE_ERRORS);\n}\n\nfun startPlace(\n    state: VaultState,\n    sender: address,\n    valueCoins: coins,\n    body: slice,\n): VaultState {\n    assert (sender == state.owner && state.pendingMode == MODE_NONE) throw 526;\n    val queryId = body.loadUint(64);\n    val purchaseUnits = body.loadUint(32);\n    val requestedUnits = body.loadUint(32);\n    val batchCount = body.loadUint(16);\n    val requestedReferrer = body.loadAddressOpt();\n    val plan = body.loadRef();\n    body.assertEnd();\n    assert (queryId > state.lastQueryId && requestedUnits > 0) throw 527;\n    if (requestedReferrer != null) {\n        assert (requestedReferrer! != state.owner) throw 528;\n    }\n    if (state.referrerFixed) {\n        if (requestedReferrer != null) {\n            assert (\n                state.requestedReferrer != null\n                && requestedReferrer! == state.requestedReferrer!\n            ) throw 528;\n        }\n    } else {\n        state.requestedReferrer = requestedReferrer;\n    }\n    validatePlan(plan, batchCount, requestedUnits);\n    val purchaseAmount = amountForUnits(state, purchaseUnits);\n    assert (valueCoins >= purchaseAmount + MIN_OPERATION_GAS) throw 529;\n\n    state.totalUnits += purchaseUnits;\n    assert (requestedUnits <= availableUnits(state)) throw 530;\n    state.pendingMode = MODE_PLACE;\n    state.lastQueryId = queryId;\n    state.queryId = queryId;\n    state.cursor = 0;\n    state.batchCount = batchCount;\n    state.requestedUnits = requestedUnits;\n    state.changedUnits = 0;\n    state.plan = plan;\n    assertAccounting(state);\n\n    reserveVault();\n    if (purchaseUnits > 0) {\n        createMessage({\n            bounce: BounceMode.RichBounce,\n            value: 0,\n            dest: state.core,\n            body: beginCell()\n                .storeUint(OP_CORE_PURCHASE_AND_PLACE, 32)\n                .storeAddress(state.owner)\n                .storeAddressOpt(state.requestedReferrer)\n                .storeUint(queryId, 64)\n                .storeUint(purchaseUnits, 32)\n                .storeUint(batchCount, 16)\n                .storeRef(loadBatch(plan, 0))\n                .endCell(),\n        }).send(SEND_MODE_CARRY_ALL_BALANCE);\n    } else {\n        createMessage({\n            bounce: BounceMode.RichBounce,\n            value: 0,\n            dest: state.board,\n            body: boardRequestBody(state, OP_BOARD_PLACE),\n        }).send(SEND_MODE_CARRY_ALL_BALANCE);\n    }\n    return state;\n}\n\nfun startRemoval(\n    state: VaultState,\n    sender: address,\n    valueCoins: coins,\n    body: slice,\n    refundAfter: bool,\n): VaultState {\n    assert (sender == state.owner && state.pendingMode == MODE_NONE) throw 526;\n    val queryId = body.loadUint(64);\n    val requestedUnits = body.loadUint(32);\n    val batchCount = body.loadUint(16);\n    val plan = body.loadRef();\n    body.assertEnd();\n    assert (queryId > state.lastQueryId && requestedUnits > 0 && requestedUnits <= state.onBoard) throw 527;\n    if (refundAfter) {\n        assert (requestedUnits == state.onBoard) throw 531;\n    }\n    validatePlan(plan, batchCount, requestedUnits);\n    assert (valueCoins >= MIN_OPERATION_GAS) throw 529;\n    state.pendingMode = refundAfter ? MODE_REFUND : MODE_REMOVE;\n    state.lastQueryId = queryId;\n    state.queryId = queryId;\n    state.cursor = 0;\n    state.batchCount = batchCount;\n    state.requestedUnits = requestedUnits;\n    state.changedUnits = 0;\n    state.plan = plan;\n    assertAccounting(state);\n    sendCurrentBatch(state);\n    return state;\n}\n\nfun startRefundWithoutBoard(\n    state: VaultState,\n    sender: address,\n    valueCoins: coins,\n    body: slice,\n): VaultState {\n    assert (sender == state.owner && state.pendingMode == MODE_NONE) throw 526;\n    val queryId = body.loadUint(64);\n    val requestedUnits = body.loadUint(32);\n    val batchCount = body.loadUint(16);\n    val plan = body.loadRef();\n    body.assertEnd();\n    assert (queryId > state.lastQueryId && requestedUnits == 0 && batchCount == 0) throw 527;\n    assert (plan.hash() == emptyPlan().hash()) throw 532;\n    assert (state.onBoard == 0 && state.totalUnits > 0 && valueCoins >= MIN_OPERATION_GAS) throw 531;\n    state.pendingMode = MODE_REFUND;\n    state.lastQueryId = queryId;\n    state.queryId = queryId;\n    state.refundUnits = state.totalUnits;\n    assertAccounting(state);\n    sendRefundRequest(state);\n    return state;\n}\n\nfun requestPermissionlessRefund(\n    state: VaultState,\n    valueCoins: coins,\n    body: slice,\n    requestOp: int,\n): VaultState {\n    val queryId = body.loadUint(64);\n    body.assertEnd();\n    assert (state.pendingMode == MODE_NONE && state.totalUnits > 0) throw 526;\n    assert (queryId == state.lastQueryId + 1 && valueCoins >= MIN_OPERATION_GAS) throw 527;\n    val units = requestOp == OP_CORE_TIMEOUT_REFUND ? state.totalUnits : availableUnits(state);\n    assert (\n        (requestOp == OP_CORE_TIMEOUT_REFUND || requestOp == OP_CORE_AVAILABLE_REFUND)\n        && units > 0\n    ) throw 527;\n    reserveVault();\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: 0,\n        dest: state.core,\n        body: beginCell()\n            .storeUint(requestOp, 32)\n            .storeAddress(state.owner)\n            .storeUint(queryId, 64)\n            .storeUint(units, 32)\n            .endCell(),\n    }).send(SEND_MODE_CARRY_ALL_BALANCE);\n    return state;\n}\n\nfun applyBatchResult(state: VaultState, sender: address, body: slice): VaultState {\n    assert (sender == state.board && state.pendingMode != MODE_NONE) throw 533;\n    val queryId = body.loadUint(64);\n    val cursor = body.loadUint(16);\n    val batchCount = body.loadUint(16);\n    val attempted = body.loadUint(8);\n    val changed = body.loadUint(8);\n    val mode = body.loadUint(2);\n    body.loadUint(256); // authenticated batch hash retained by Board\n    body.assertEnd();\n    assert (queryId == state.queryId && cursor == state.cursor && batchCount == state.batchCount) throw 534;\n    val expectedMode = state.pendingMode == MODE_PLACE ? MODE_PLACE : MODE_REMOVE;\n    assert (mode == expectedMode && changed <= attempted) throw 534;\n    state.changedUnits += changed;\n    assert (state.changedUnits <= state.requestedUnits) throw 535;\n    val finalBatch = state.cursor + 1 == state.batchCount;\n    if (finalBatch) {\n        sendReceiptAck(state, cursor, mode);\n    }\n    state.cursor += 1;\n\n    if (state.cursor < state.batchCount) {\n        sendCurrentBatch(state);\n        return state;\n    }\n\n    if (state.pendingMode == MODE_PLACE) {\n        state.onBoard += state.changedUnits;\n        if (state.changedUnits > 0 && !state.referrerFixed) {\n            state.referrerFixed = true;\n        }\n        state = resetOperation(state);\n        assertAccounting(state);\n        reserveVault();\n        createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n            .send(SEND_MODE_CARRY_ALL_BALANCE);\n        return state;\n    }\n\n    val refundAfter = state.pendingMode == MODE_REFUND;\n    state.onBoard -= state.changedUnits;\n    if (refundAfter && state.onBoard == 0) {\n        state.refundUnits = state.totalUnits;\n        sendRefundRequest(state);\n        return state;\n    }\n    state = resetOperation(state);\n    assertAccounting(state);\n    reserveVault();\n    createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n        .send(SEND_MODE_CARRY_ALL_BALANCE);\n    return state;\n}\n\nfun applyRefund(state: VaultState, sender: address, body: slice, resultOp: int): VaultState {\n    assert (sender == state.core) throw 536;\n    val owner = body.loadAddress();\n    val queryId = body.loadUint(64);\n    val units = body.loadUint(32);\n    body.assertEnd();\n    assert (owner == state.owner) throw 537;\n    if (resultOp == OP_REFUND_RESULT) {\n        assert (\n            state.pendingMode == MODE_REFUND\n            && queryId == state.queryId\n            && units == state.refundUnits\n        ) throw 537;\n    } else {\n        assert (state.pendingMode == MODE_NONE && queryId == state.lastQueryId + 1) throw 537;\n        if (resultOp == OP_TIMEOUT_REFUND_RESULT) {\n            assert (units == state.totalUnits) throw 537;\n        } else {\n            assert (resultOp == OP_AVAILABLE_REFUND_RESULT && units == availableUnits(state)) throw 537;\n        }\n        state.lastQueryId = queryId;\n    }\n    assert (\n        units > 0\n        && units <= state.totalUnits\n        && (units == state.totalUnits || state.totalUnits - units >= state.onBoard)\n    ) throw 537;\n    val destroysVault = units == state.totalUnits;\n    state.totalUnits -= units;\n    if (destroysVault) {\n        state.onBoard = 0;\n    }\n    if (resultOp == OP_REFUND_RESULT) {\n        state = resetOperation(state);\n    }\n    // The Core keeps the refund query only until the authenticated Vault has\n    // accepted the result. A best-effort ACK prevents one permanent Core map\n    // entry per fully-refunded wallet while preserving bounce rollback.\n    sendRefundReceiptAck(state, queryId);\n    if (destroysVault) {\n        reserveToncoinsOnBalance(0, RESERVE_MODE_EXACT_AMOUNT);\n        createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n            .send(SEND_MODE_DESTROY_AND_CARRY_ALL);\n    } else {\n        assertAccounting(state);\n        reserveVault();\n        createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n            .send(SEND_MODE_CARRY_ALL_BALANCE);\n    }\n    return state;\n}\n\nfun handleRouteFailure(state: VaultState, sender: address, body: slice): VaultState {\n    assert (sender == state.core && state.pendingMode == MODE_PLACE) throw 533;\n    val queryId = body.loadUint(64);\n    body.assertEnd();\n    assert (queryId == state.queryId && state.cursor == 0) throw 534;\n    state = resetOperation(state);\n    reserveVault();\n    createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n        .send(SEND_MODE_CARRY_ALL_BALANCE);\n    return state;\n}\n\nfun continueOperation(state: VaultState, valueCoins: coins, body: slice): VaultState {\n    body.assertEnd();\n    assert (state.pendingMode != MODE_NONE && valueCoins >= MIN_OPERATION_GAS) throw 538;\n    if (state.pendingMode == MODE_REFUND && state.onBoard == 0) {\n        sendRefundRequest(state);\n    } else {\n        sendCurrentBatch(state);\n    }\n    return state;\n}\n\nfun handlePurchaseBounce(state: VaultState, body: slice): VaultState {\n    val owner = body.loadAddress();\n    body.loadAddressOpt(); // requested referrer\n    val queryId = body.loadUint(64);\n    val purchaseUnits = body.loadUint(32);\n    body.loadUint(16); // batch count\n    body.loadRef();\n    body.assertEnd();\n    assert (\n        owner == state.owner\n        && state.pendingMode == MODE_PLACE\n        && queryId == state.queryId\n        && state.cursor == 0\n        && purchaseUnits > 0\n        && purchaseUnits <= state.totalUnits - state.onBoard\n    ) throw 539;\n    state.totalUnits -= purchaseUnits;\n    return resetOperation(state);\n}\n\nfun handleBoardRequestBounce(state: VaultState, body: slice, mode: int): VaultState {\n    val owner = body.loadAddress();\n    body.loadAddressOpt(); // requested referrer\n    val queryId = body.loadUint(64);\n    val cursor = body.loadUint(16);\n    val batchCount = body.loadUint(16);\n    body.loadRef();\n    body.assertEnd();\n    assert (\n        owner == state.owner\n        && state.pendingMode != MODE_NONE\n        && queryId == state.queryId\n        && cursor == state.cursor\n        && batchCount == state.batchCount\n    ) throw 539;\n    val expectedMode = state.pendingMode == MODE_PLACE ? MODE_PLACE : MODE_REMOVE;\n    assert (mode == expectedMode) throw 539;\n    if (mode == MODE_PLACE) {\n        state.onBoard += state.changedUnits;\n        if (state.changedUnits > 0 && !state.referrerFixed) {\n            state.referrerFixed = true;\n        }\n    } else {\n        state.onBoard -= state.changedUnits;\n    }\n    return resetOperation(state);\n}\n\nfun handleRefundRequestBounce(state: VaultState, body: slice): VaultState {\n    val owner = body.loadAddress();\n    val queryId = body.loadUint(64);\n    val units = body.loadUint(32);\n    body.assertEnd();\n    assert (\n        owner == state.owner\n        && state.pendingMode == MODE_REFUND\n        && queryId == state.queryId\n        && units == state.refundUnits\n    ) throw 539;\n    return resetOperation(state);\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.isEmpty()) {\n        return;\n    }\n    var state = loadState();\n    assertAccounting(state);\n    var body = in.body;\n    val op = body.loadUint(32);\n    if (op == OP_START_PLACE) {\n        state = startPlace(state, in.senderAddress, in.valueCoins, body);\n    } else if (op == OP_START_REMOVE) {\n        state = startRemoval(state, in.senderAddress, in.valueCoins, body, false);\n    } else if (op == OP_REFUND_ALL) {\n        if (state.onBoard > 0) {\n            state = startRemoval(state, in.senderAddress, in.valueCoins, body, true);\n        } else {\n            state = startRefundWithoutBoard(state, in.senderAddress, in.valueCoins, body);\n        }\n    } else if (op == OP_CONTINUE) {\n        state = continueOperation(state, in.valueCoins, body);\n    } else if (op == OP_CLAIM_TIMEOUT_REFUND) {\n        state = requestPermissionlessRefund(\n            state,\n            in.valueCoins,\n            body,\n            OP_CORE_TIMEOUT_REFUND,\n        );\n    } else if (op == OP_CLAIM_AVAILABLE) {\n        state = requestPermissionlessRefund(\n            state,\n            in.valueCoins,\n            body,\n            OP_CORE_AVAILABLE_REFUND,\n        );\n    } else if (op == OP_BATCH_RESULT) {\n        state = applyBatchResult(state, in.senderAddress, body);\n    } else if (\n        op == OP_REFUND_RESULT\n        || op == OP_TIMEOUT_REFUND_RESULT\n        || op == OP_AVAILABLE_REFUND_RESULT\n    ) {\n        state = applyRefund(state, in.senderAddress, body, op);\n    } else if (op == OP_ROUTE_FAILED) {\n        state = handleRouteFailure(state, in.senderAddress, body);\n    } else {\n        throw 0xFFFF;\n    }\n    assertAccounting(state);\n    saveState(state);\n}\n\nfun onBouncedMessage(in: InMessageBounced) {\n    var state = loadState();\n    assertAccounting(state);\n    val rich = lazy RichBounceBody.fromSlice(in.bouncedBody);\n    var body = rich.originalBody.beginParse();\n    val op = body.loadUint(32);\n    if (op == OP_CORE_PURCHASE_AND_PLACE) {\n        state = handlePurchaseBounce(state, body);\n    } else if (op == OP_BOARD_PLACE) {\n        state = handleBoardRequestBounce(state, body, MODE_PLACE);\n    } else if (op == OP_BOARD_REMOVE) {\n        state = handleBoardRequestBounce(state, body, MODE_REMOVE);\n    } else if (op == OP_CORE_REFUND) {\n        state = handleRefundRequestBounce(state, body);\n    } else if (op == OP_CORE_TIMEOUT_REFUND || op == OP_CORE_AVAILABLE_REFUND) {\n        // Permissionless claims do not mutate Vault state before Core accepts.\n    } else {\n        throw 539;\n    }\n    assertAccounting(state);\n    saveState(state);\n    reserveVault();\n    createMessage({ bounce: BounceMode.NoBounce, value: 0, dest: state.owner })\n        .send(SEND_MODE_CARRY_ALL_BALANCE);\n}\n\nget fun vault_state(): (int, int, int, int, int, int, int, int, int, bool, int, int) {\n    val state = loadState();\n    var refWorkchain = 0;\n    var refHash = 0;\n    if (state.requestedReferrer != null) {\n        (refWorkchain, refHash) = state.requestedReferrer!.getWorkchainAndHash();\n    }\n    return (\n        state.roundId,\n        state.status,\n        state.totalUnits,\n        state.onBoard,\n        availableUnits(state),\n        state.pendingMode,\n        state.queryId,\n        state.cursor,\n        state.batchCount,\n        state.referrerFixed,\n        refWorkchain,\n        refHash,\n    );\n}\n\nget fun operation_state(): (int, int, int, int, int) {\n    val state = loadState();\n    return (state.lastQueryId, state.requestedUnits, state.changedUnits, state.plan.hash(), amountForUnits(state, state.totalUnits));\n}\n"
+    }
+  ]
+}

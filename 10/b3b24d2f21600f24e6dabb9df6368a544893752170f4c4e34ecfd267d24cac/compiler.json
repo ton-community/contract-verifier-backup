@@ -1,0 +1,1755 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from validator-registry.tolk\nPROGRAM{\n  DECLPROC validateEntry()\n  DECLPROC getValidatorKeys()\n  0 DECLMETHOD onInternalMessage()\n  -1 DECLMETHOD onExternalMessage()\n  // 10 functions inlined in-place:\n  // - MapLookupResult<slice>.loadValue (1 call)\n  // - ShardSet.packToBuilder (0 calls)\n  // - ShardSet.unpackFromSlice (0 calls)\n  // - getRegistryConfigCell (2 calls)\n  // - cleanupRegistry (1 call)\n  // - updateCode (1 call)\n  // - getValidatorPublicKey (1 call)\n  // - MapEntry<uint256, Collator>.loadValue (1 call)\n  // - MapEntry<uint16, slice>.loadValue (1 call)\n  // - MapEntry<uint256, ValidatorInfo>.getKey (1 call)\n  // - MapLookupResult<ValidatorInfo>.loadValue (1 call)\n  validateEntry() PROC:<{\n    DUP\n    ISNULL\n    IFJMP:<{\n      DROP\n    }>\n    CTOS\n    x{eae0b274} SDBEGINSQ\n    63 THROWIFNOT\n    LDOPTREF\n    4 LDU\n    OVER\n    9 LESSINT\n    910 THROWIFNOT\n    OVER\n    POW2\n    1 2 BLKDROP2\n    LDUX\n    NIP\n    ENDS\n    46 PUSHINT\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    911 THROWIF\n    CTOS\n    x{3601163e} SDBEGINSQ\n    63 THROWIFNOT\n    256 LDU\n    NIP\n    32 PLDU\n    0 PUSHINT\n    s2 PUSH\n    8 PUSHPOW2\n    DICTUMIN NULLSWAPIFNOT2\n    WHILE:<{\n    }>DO<{\n      s0 s2 XCHG\n      INC\n      s0 s3 PUSH2\n      LEQ\n      901 THROWIFNOT\n      SWAP\n      x{10364494} SDBEGINSQ\n      63 THROWIFNOT\n      4 LDU\n      OVER\n      9 LESSINT\n      910 THROWIFNOT\n      OVER\n      POW2\n      1 2 BLKDROP2\n      LDUX\n      NIP\n      ENDS\n      s1 s3 XCPU\n      8 PUSHPOW2\n      DICTUGETNEXT NULLSWAPIFNOT2\n    }>\n    5 BLKDROP\n  }>\n  getValidatorKeys() PROC:<{\n    SWAP\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    IFJMP:<{\n      DROP\n    }>\n    CTOS\n    DUP\n    SREFS\n    IFNOTJMP:<{\n      DROP\n    }>\n    PLDREF\n    DUP\n    16 PUSHINT\n    DICTUMIN NULLSWAPIFNOT2\n    WHILE:<{\n    }>DO<{\n      SWAP\n      40 LDU\n      NIP\n      256 PLDU\n      NEWC\n      s0 s1 s4 XCHG3\n      8 PUSHPOW2\n      DICTUSETB\n      s2 s1 XCPU\n      16 PUSHINT\n      DICTUGETNEXT NULLSWAPIFNOT2\n    }>\n    3 BLKDROP\n  }>\n  onInternalMessage() PROC:<{\n  }>\n  onExternalMessage() PROC:<{\n    32 LDU\n    OVER\n    850942619 PUSHINT\n    EQUAL\n    IFJMP:<{\n      NIP\n      ENDS\n      c4 PUSH\n      CTOS\n      x{9bc722a8} SDBEGINSQ\n      63 THROWIFNOT\n      LDOPTREF\n      32 LDU\n      ENDS\n      PREVKEYBLOCK 2 INDEX\n      2DUP\n      LESS\n      902 THROWIFNOT\n      ACCEPT\n      NEWDICT\n      32 PUSHINT\n      SWAP\n      getValidatorKeys() CALLDICT\n      34 PUSHINT\n      SWAP\n      getValidatorKeys() CALLDICT\n      36 PUSHINT\n      SWAP\n      getValidatorKeys() CALLDICT\n      s3 PUSH\n      8 PUSHPOW2\n      DICTUMIN NULLSWAPIFNOT2\n      s2 POP\n      0 PUSHINT\n      WHILE:<{\n        s0 s2 XCHG\n      }>DO<{\n        s0 s5 PUSH2\n        8 PUSHPOW2\n        DICTUGETNEXT NULLSWAPIFNOT2\n        s2 POP\n        s2 s4 PUSH2\n        8 PUSHPOW2\n        DICTUGET NULLSWAPIFNOT\n        NIP\n        IFNOT:<{\n          s2 s7 XCHG2\n          8 PUSHPOW2\n          DICTUDEL\n          DROP\n          s6 s6 XCHG2\n        }>ELSE<{\n          s2 POP\n        }>\n        s0 s2 XCHG\n        INC\n        DUP\n        20 PUSHINT\n        MOD\n        IFNOT:<{\n          NEWC\n          x{9bc722a8} STSLICECONST\n          s7 s(-1) PUXC\n          STOPTREF\n          s6 PUSH\n          32 STUR\n          ENDC\n          c4 POP\n          COMMIT\n        }>\n      }>\n      s3 s4 XCHG\n      4 BLKDROP\n      NEWC\n      x{9bc722a8} STSLICECONST\n      s1 s2 XCHG\n      STOPTREF\n      32 STU\n      ENDC\n      c4 POP\n    }>\n    OVER\n    884845164 PUSHINT\n    EQUAL\n    IFJMP:<{\n      NIP\n      LDREF\n      ENDS\n      46 PUSHINT\n      CONFIGOPTPARAM\n      DUP\n      ISNULL\n      911 THROWIF\n      CTOS\n      x{3601163e} SDBEGINSQ\n      63 THROWIFNOT\n      288 PUSHINT\n      SDSKIPFIRST\n      1 LDU\n      SWAP\n      IF:<{\n        256 PLDU\n      }>ELSE<{\n        DROP\n        PUSHNULL\n      }>\n      DUP\n      ISNULL\n      NOT\n      IF:<{\n        OVER\n        HASHCU\n        OVER\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      912 THROWIFNOT\n      MYCODE\n      HASHCU\n      NEQ\n      913 THROWIFNOT\n      SETCODE\n      ACCEPT\n    }>\n    SWAP\n    3451507334 PUSHINT\n    EQUAL\n    900 THROWIFNOT\n    9 PUSHPOW2\n    LDSLICEX\n    DUP\n    NEWC\n    STSLICE\n    HASHBU\n    SWAP\n    x{fbd82b02} SDBEGINSQ\n    63 THROWIFNOT\n    32 LDU\n    8 LDU\n    16 LDU\n    32 LDU\n    LDOPTREF\n    ENDS\n    PREVKEYBLOCK 2 INDEX\n    s1 s5 XCHG\n    EQUAL\n    903 THROWIFNOT\n    s2 PUSH\n    32 EQINT\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s2 PUSH\n      34 EQINT\n      0 NEQINT\n    }>\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      s2 PUSH\n      36 EQINT\n      0 NEQINT\n    }>\n    904 THROWIFNOT\n    NOW\n    120 ADDCONST\n    OVER\n    GREATER\n    905 THROWIFNOT\n    NOW\n    GREATER\n    906 THROWIFNOT\n    SWAP\n    CONFIGOPTPARAM\n    DUP\n    ISNULL\n    907 THROWIF\n    CTOS\n    DUP\n    SREFS\n    0 GTINT\n    907 THROWIFNOT\n    PLDREF\n    16 PUSHINT\n    DICTUGET\n    907 THROWIFNOT\n    40 LDU\n    NIP\n    256 PLDU\n    c4 PUSH\n    CTOS\n    x{9bc722a8} SDBEGINSQ\n    63 THROWIFNOT\n    LDOPTREF\n    32 LDU\n    ENDS\n    s2 s1 PUSH2\n    8 PUSHPOW2\n    DICTUGET NULLSWAPIFNOT\n    IF:<{\n      x{57766eec} SDBEGINSQ\n      63 THROWIFNOT\n      32 LDU\n      LDOPTREF\n      ENDS\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n      PUSHNULL\n    }>\n    NOW\n    ROT\n    GEQ\n    908 THROWIFNOT\n    s5 s6 s3 XC2PU\n    CHKSIGNU\n    909 THROWIFNOT\n    ACCEPT\n    NOW\n    120 ADDCONST\n    NEWC\n    x{57766eec} STSLICECONST\n    OVER\n    32 STUR\n    s1 s6 XCHG\n    STOPTREF\n    s2 s1 PUXC\n    8 PUSHPOW2\n    DICTUSETB\n    NEWC\n    x{9bc722a8} STSLICECONST\n    s1 s(-1) PUXC\n    STOPTREF\n    s4 PUSH\n    32 STUR\n    ENDC\n    c4 POP\n    COMMIT\n    s2 PUSH\n    validateEntry() CALLDICT\n    NEWC\n    x{57766eec} STSLICECONST\n    s1 s5 XCHG\n    32 STU\n    s1 s2 XCHG\n    STOPTREF\n    s0 s1 s3 XCHG3\n    8 PUSHPOW2\n    DICTUSETB\n    NEWC\n    x{9bc722a8} STSLICECONST\n    STOPTREF\n    32 STU\n    ENDC\n    c4 POP\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECDgEAAtAAART/APSkE/S88sgLAQIBIAIDAgLQBAUC9vLTHyGCEDK4Wpu64wIhghA0vapsuo5DMdTRgC74MyBu8tOP0NcsIbAIsfTyv4EBINch0wABk9cL/5IwbeIgbrOXIfkAIbrDAJFw4vLjkPgq+QC98uOR+wT4AOABghDNudKGuvLjhIMI1xggyM75FgHXLCfewVgU8r/THwgJAgEgBgcAaUAfgzIG6RMODQINdKkTDh10wggBD0hm+lkI4WAdMnMdcL/8hAFIMH9ENRIYAQ9HxvpehfA4AAEgAOUIG6RMODQ1ywnVwWTpPK/9ATTAyHBCfLjjiGubBLXATHRgC74MyBu8tOP0NcsIbAIsfTyv9P/MdcLH3Aigwf0hm+lkI4qAqRTA7vy44UB1ywggbIkpPK/0wMhwQny444hrmwS1wEx0VETgwf0fG+l6F8FgAf4x0e1E0NcsJN45FUTyv/QE0x/R+DQBbxJcufLjhvgAbYAgAfACgCIB8AKAJAHwAiODB/SGb6UycJECjj1TBYMH9HxvpTJTJIMH9A5voTGRMplQJ4MH9FswUGbiAqQggBSpCI4UyM+SbxyKolJw9AAmzwsfye1U+A/f6BA0XwTICgL60wfTD9Mf9ATR+DQBbxIVuvLjhyLAIJF/lSLAIsMA4pF/lSLAJMMA4vLjiPgjpnghvPLjifgjvPLjigH4MyBu8tOL0CDXSsIA8uOL10yAEPQO8uOL0ycx1wv/7UTQ1ywk3jkVRPK/9ATTH9FTIYMH9A5voZMwcG3jDfgjWL4MDQEWic8WEvQAyx/J7VQLAAibxyKoABzXLCK7s3dk8r/TH/QE0QC68uOMVBVj+RDy4434APgjpnjIz5Fd2buyIc8LHxb0AFIigwf0Q8jPkm8ciqJSEPQAJM8LH8ntVPgPIvAByM+RXdm7shXLHxL0AEATgwf0Q8jPkm8ciqL0AMsfye1U",
+  "codeHashHex": "10B3B24D2F21600F24E6DABB9DF6368A544893752170F4C4E34ECFD267D24CAC",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/551a643b-ca2e-4153-8a99-4830f39b07e5/contracts/validator-registry.tolk",
+        "size_chars": 7754,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorInfo"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Entry"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Collator"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ShardSet"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RegistryConfig"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          13,
+          16
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "K"
+      },
+      {
+        "kind": "genericT",
+        "name_t": "V"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          29,
+          30
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": []
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 34,
+        "value_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          34,
+          2
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapEntry",
+        "type_args_ty_idx": [
+          13,
+          14
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 12
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RequestUpdate"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          2
+        ]
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          42
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          14
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 27,
+        "struct_name": "MapEntry<uint256, Collator>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          13,
+          5
+        ]
+      },
+      {
+        "ty_idx": 36,
+        "struct_name": "MapEntry<uint16, slice>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          34,
+          5
+        ]
+      },
+      {
+        "ty_idx": 37,
+        "struct_name": "MapEntry<uint256, ValidatorInfo>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          13,
+          5
+        ]
+      },
+      {
+        "ty_idx": 41,
+        "struct_name": "MapLookupResult<slice>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          5
+        ]
+      },
+      {
+        "ty_idx": 44,
+        "struct_name": "MapLookupResult<ValidatorInfo>",
+        "monomorphic_fields_ty_idx": [
+          28,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 23,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 43,
+        "ident_loc": [
+          0,
+          1013,
+          8,
+          1013,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 28
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapEntry",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1041,
+          8,
+          1041,
+          16
+        ],
+        "type_params": [
+          "K",
+          "V"
+        ],
+        "fields": [
+          {
+            "name": "rawValue",
+            "ty_idx": 28
+          },
+          {
+            "name": "key",
+            "ty_idx": 29
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          33,
+          21,
+          33,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 2613519016,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "registry",
+            "ty_idx": 22
+          },
+          {
+            "name": "lastCleanupKeyBlockSeqno",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorInfo",
+        "ty_idx": 14,
+        "ident_loc": [
+          1,
+          38,
+          21,
+          38,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1467379436,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "allowUpdateAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "entry",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Entry",
+        "ty_idx": 15,
+        "ident_loc": [
+          1,
+          43,
+          21,
+          43,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 3940594292,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collators",
+            "ty_idx": 19
+          },
+          {
+            "name": "monitoringShards",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Collator",
+        "ty_idx": 16,
+        "ident_loc": [
+          1,
+          48,
+          21,
+          48,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 271991956,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "monitoringShards",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RequestUpdate",
+        "ty_idx": 40,
+        "ident_loc": [
+          1,
+          52,
+          21,
+          52,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 4225248002,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "lastKeyBlockSeqno",
+            "ty_idx": 9
+          },
+          {
+            "name": "valSetIdx",
+            "ty_idx": 18
+          },
+          {
+            "name": "valIdx",
+            "ty_idx": 34
+          },
+          {
+            "name": "validUntil",
+            "ty_idx": 9
+          },
+          {
+            "name": "newEntry",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ShardSet",
+        "ty_idx": 17,
+        "ident_loc": [
+          1,
+          60,
+          8,
+          60,
+          16
+        ],
+        "fields": [
+          {
+            "name": "n",
+            "ty_idx": 18
+          },
+          {
+            "name": "mask",
+            "ty_idx": 1
+          }
+        ],
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      },
+      {
+        "kind": "struct",
+        "name": "RegistryConfig",
+        "ty_idx": 25,
+        "ident_loc": [
+          1,
+          77,
+          21,
+          77,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 906040894,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "addr",
+            "ty_idx": 13
+          },
+          {
+            "name": "maxCollatorsPerValidator",
+            "ty_idx": 9
+          },
+          {
+            "name": "newCodeHash",
+            "ty_idx": 26
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "validateEntry",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          93,
+          5,
+          93,
+          18
+        ],
+        "end_loc": [
+          1,
+          108,
+          1,
+          108,
+          2
+        ],
+        "params": [
+          {
+            "name": "c",
+            "ty_idx": 21
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "Cell<Entry>.load",
+        "return_ty_idx": 15,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 20
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "ShardSet.unpackFromSlice",
+        "return_ty_idx": 17,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          70,
+          14,
+          70,
+          29
+        ],
+        "end_loc": [
+          1,
+          75,
+          1,
+          75,
+          2
+        ],
+        "params": [
+          {
+            "name": "s",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "getRegistryConfigCell",
+        "return_ty_idx": 3,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          87,
+          5,
+          87,
+          26
+        ],
+        "end_loc": [
+          1,
+          91,
+          1,
+          91,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 4,
+        "name": "map<uint256, Collator>.findFirst",
+        "return_ty_idx": 27,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "MapEntry<uint256, Collator>.loadValue",
+        "return_ty_idx": 16,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1055,
+          20,
+          1055,
+          29
+        ],
+        "end_loc": [
+          0,
+          1061,
+          1,
+          1061,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Collator.fromSlice",
+        "return_ty_idx": 16,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<uint256, Collator>.iterateNext",
+        "return_ty_idx": 27,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "current",
+            "ty_idx": 27
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "getValidatorKeys",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          110,
+          5,
+          110,
+          21
+        ],
+        "end_loc": [
+          1,
+          131,
+          1,
+          131,
+          2
+        ],
+        "params": [
+          {
+            "name": "configIdx",
+            "ty_idx": 1
+          },
+          {
+            "name": "validators",
+            "ty_idx": 33
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "map<uint16, slice>.findFirst",
+        "return_ty_idx": 36,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "MapEntry<uint16, slice>.loadValue",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1064,
+          24,
+          1064,
+          33
+        ],
+        "end_loc": [
+          0,
+          1066,
+          1,
+          1066,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "map<uint256, ()>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          },
+          {
+            "name": "value",
+            "ty_idx": 32
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint16, slice>.iterateNext",
+        "return_ty_idx": 36,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "current",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          190,
+          5,
+          190,
+          22
+        ],
+        "end_loc": [
+          1,
+          191,
+          1,
+          191,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 14,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          193,
+          5,
+          193,
+          22
+        ],
+        "end_loc": [
+          1,
+          240,
+          1,
+          240,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsg",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "cleanupRegistry",
+        "return_ty_idx": 0,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          133,
+          5,
+          133,
+          20
+        ],
+        "end_loc": [
+          1,
+          163,
+          1,
+          163,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 16,
+        "name": "Storage.fromCell",
+        "return_ty_idx": 12,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "map<uint256, ValidatorInfo>.findFirst",
+        "return_ty_idx": 37,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "MapEntry<uint256, ValidatorInfo>.getKey",
+        "return_ty_idx": 13,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1048,
+          20,
+          1048,
+          26
+        ],
+        "end_loc": [
+          0,
+          1052,
+          1,
+          1052,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "map<uint256, ValidatorInfo>.iterateNext",
+        "return_ty_idx": 37,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "current",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "map<uint256, ()>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 33
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "map<uint256, ValidatorInfo>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "Storage.toCell",
+        "return_ty_idx": 38,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 12
+          },
+          {
+            "name": "options",
+            "ty_idx": 39
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "updateCode",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          165,
+          5,
+          165,
+          15
+        ],
+        "end_loc": [
+          1,
+          172,
+          1,
+          172,
+          2
+        ],
+        "params": [
+          {
+            "name": "newCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "RequestUpdate.fromSlice",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "getValidatorPublicKey",
+        "return_ty_idx": 13,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          174,
+          5,
+          174,
+          26
+        ],
+        "end_loc": [
+          1,
+          188,
+          1,
+          188,
+          2
+        ],
+        "params": [
+          {
+            "name": "valSetIdx",
+            "ty_idx": 1
+          },
+          {
+            "name": "valIdx",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "map<uint16, slice>.get",
+        "return_ty_idx": 41,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 35
+          },
+          {
+            "name": "key",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "MapLookupResult<slice>.loadValue",
+        "return_ty_idx": 2,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1028,
+          28,
+          1028,
+          37
+        ],
+        "end_loc": [
+          0,
+          1030,
+          1,
+          1030,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "map<uint256, ValidatorInfo>.get",
+        "return_ty_idx": 44,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "MapLookupResult<ValidatorInfo>.loadValue",
+        "return_ty_idx": 14,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1019,
+          29,
+          1019,
+          38
+        ],
+        "end_loc": [
+          0,
+          1025,
+          1,
+          1025,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 44
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "ValidatorInfo.fromSlice",
+        "return_ty_idx": 14,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 23
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "map<uint256, ValidatorInfo>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          },
+          {
+            "name": "value",
+            "ty_idx": 14
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "ValidatorRegistry",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ValidatorInfo"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Entry"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Collator"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ShardSet"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 16
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 15
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 20
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 14
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2613519016,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "registry",
+            "ty_idx": 22
+          },
+          {
+            "name": "lastCleanupKeyBlockSeqno",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ValidatorInfo",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1467379436,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "allowUpdateAt",
+            "ty_idx": 9,
+            "default_value": {
+              "kind": "int",
+              "v": "0"
+            }
+          },
+          {
+            "name": "entry",
+            "ty_idx": 21,
+            "default_value": {
+              "kind": "null"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Entry",
+        "ty_idx": 15,
+        "prefix": {
+          "prefix_num": 3940594292,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "collators",
+            "ty_idx": 19
+          },
+          {
+            "name": "monitoringShards",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Collator",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 271991956,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "monitoringShards",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ShardSet",
+        "ty_idx": 17,
+        "fields": [
+          {
+            "name": "n",
+            "ty_idx": 18
+          },
+          {
+            "name": "mask",
+            "ty_idx": 1
+          }
+        ],
+        "custom_pack_unpack": {
+          "pack_to_builder": true,
+          "unpack_from_slice": true
+        }
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 12
+    },
+    "incoming_messages": [],
+    "incoming_external": [
+      {
+        "body_ty_idx": 2
+      }
+    ],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERR_INVALID_OP",
+        "err_code": 900
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_TOO_MANY_COLLATORS",
+        "err_code": 901
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_TOO_EARLY_CLEANUP",
+        "err_code": 902
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_WRONG_KEY_BLOCK_SEQNO",
+        "err_code": 903
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_WRONG_VAL_SET_IDX",
+        "err_code": 904
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_TOO_BIG_VALID_UNTIL",
+        "err_code": 905
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_MESSAGE_EXPIRED",
+        "err_code": 906
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_VALIDATOR_NOT_FOUND",
+        "err_code": 907
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_TOO_EARLY_REQUEST",
+        "err_code": 908
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_WRONG_SIGNATURE",
+        "err_code": 909
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_RANGE_ERROR",
+        "err_code": 910
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_NO_CONFIG",
+        "err_code": 911
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_BAD_NEW_CODE_HASH",
+        "err_code": 912
+      },
+      {
+        "kind": "constant",
+        "name": "ERR_NEW_CODE_ALREADY_INSTALLED",
+        "err_code": 913
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/551a643b-ca2e-4153-8a99-4830f39b07e5/contracts/validator-registry.tolk",
+      "contents": "/*\n    Validator registry is a contract that holds certain data for validators.\n    Each validator can modify its own registry entry using a signed external message.\n */\nimport \"@stdlib/gas-payments\"\n\nconst VAL_REGISTRY_CONFIG_PARAM = 46;\nconst REQUEST_PERIOD = 120;\n\nconst OP_CLEANUP = 0x32b85a9b;\nconst OP_UPDATE_CODE = 0x34bdaa6c;\nconst OP_REQUEST = 0xcdb9d286;\n\nconst ERR_INVALID_OP = 900;\nconst ERR_TOO_MANY_COLLATORS = 901;\nconst ERR_TOO_EARLY_CLEANUP = 902;\nconst ERR_WRONG_KEY_BLOCK_SEQNO = 903;\nconst ERR_WRONG_VAL_SET_IDX = 904;\nconst ERR_TOO_BIG_VALID_UNTIL = 905;\nconst ERR_MESSAGE_EXPIRED = 906;\nconst ERR_VALIDATOR_NOT_FOUND = 907;\nconst ERR_TOO_EARLY_REQUEST = 908;\nconst ERR_WRONG_SIGNATURE = 909;\nconst ERR_RANGE_ERROR = 910;\nconst ERR_NO_CONFIG = 911;\nconst ERR_BAD_NEW_CODE_HASH = 912;\nconst ERR_NEW_CODE_ALREADY_INSTALLED = 913;\n\ncontract ValidatorRegistry {\n    storage: Storage\n}\n\nstruct (0x9bc722a8) Storage {\n    registry: map<uint256, ValidatorInfo>,\n    lastCleanupKeyBlockSeqno: uint32\n}\n\nstruct (0x57766eec) ValidatorInfo {\n    allowUpdateAt: uint32 = 0,\n    entry: Cell<Entry>? = null\n}\n\nstruct (0xeae0b274) Entry {\n    collators: map<uint256, Collator>,\n    monitoringShards: ShardSet\n}\n\nstruct (0x10364494) Collator {\n    monitoringShards: ShardSet\n}\n\nstruct (0xfbd82b02) RequestUpdate {\n    lastKeyBlockSeqno: uint32,\n    valSetIdx: uint8,\n    valIdx: uint16,\n    validUntil: uint32,\n    newEntry: Cell<Entry>?\n}\n\nstruct ShardSet {\n    // val_registry_shard_set$_ n:(#<= 8) mask:(BitsPow2 n) = ValRegistryShardSet;\n    n: uint8,\n    mask: int\n}\n\nfun ShardSet.packToBuilder(self, mutate b: builder) {\n    b.storeUint(self.n, 4).storeUint(self.mask, 1 << self.n);\n}\n\nfun ShardSet.unpackFromSlice(mutate s: slice) {\n    val n = s.loadUint(4);\n    assert (n <= 8) throw ERR_RANGE_ERROR;\n    val mask = s.loadUint(1 << n);\n    return ShardSet{n, mask};\n}\n\nstruct (0x3601163e) RegistryConfig {\n    addr: uint256,\n    maxCollatorsPerValidator: uint32,\n    newCodeHash: uint256?\n}\n\n@pure\nfun getLastKeyBlockSeqno(): uint32\n    asm \"PREVKEYBLOCK 2 INDEX\";\n\nfun getRegistryConfigCell(): cell {\n    var c = blockchain.configParam(VAL_REGISTRY_CONFIG_PARAM);\n    assert (c != null) throw ERR_NO_CONFIG;\n    return c;\n}\n\nfun validateEntry(c: Cell<Entry>?) {\n    if (c == null) {\n        return;\n    }\n    val entry = c.load();\n    val config = lazy RegistryConfig.fromCell(getRegistryConfigCell());\n    val maxCollators = config.maxCollatorsPerValidator;\n    var nCollators = 0;\n    var r = entry.collators.findFirst();\n    while (r.isFound) {\n        nCollators += 1;\n        assert (nCollators <= maxCollators) throw ERR_TOO_MANY_COLLATORS;\n        r.loadValue();\n        r = entry.collators.iterateNext(r);\n    }\n}\n\nfun getValidatorKeys(configIdx: int, mutate validators: map<uint256, ()>) {\n    val param = blockchain.configParam(configIdx);\n    if (param == null) {\n        return;\n    }\n    val paramCs = param.beginParse();\n    if (paramCs.remainingRefsCount() == 0) {\n        return;\n    }\n\n    val valSet: map<uint16, slice> = createMapFromLowLevelDict(paramCs.preloadRef());\n    var r = valSet.findFirst();\n    while (r.isFound) {\n        // ed25519_pubkey#8e81278a pubkey:bits256 = SigPubKey;\n        // validator#53 public_key:SigPubKey weight:uint64 = ValidatorDescr;\n        // validator_addr#73 public_key:SigPubKey weight:uint64 adnl_addr:bits256 = ValidatorDescr;\n        var cs = r.loadValue();\n        cs.skipBits(8 + 32);\n        validators.set(cs.loadUint(256), ());\n        r = valSet.iterateNext(r);\n    }\n}\n\nfun cleanupRegistry() {\n    var storage = Storage.fromCell(contract.getData());\n    val lastKeyBlockSeqno = getLastKeyBlockSeqno();\n    assert (storage.lastCleanupKeyBlockSeqno < lastKeyBlockSeqno) throw ERR_TOO_EARLY_CLEANUP;\n    acceptExternalMessage();\n\n    var validators: map<uint256, ()> = [];\n    getValidatorKeys(32, mutate validators);\n    getValidatorKeys(34, mutate validators);\n    getValidatorKeys(36, mutate validators);\n\n    var r = storage.registry.findFirst();\n    var iter = 0;\n    while (r.isFound) {\n        val key = r.getKey();\n        r = storage.registry.iterateNext(r);\n        if (!validators.exists(key)) {\n            storage.registry.delete(key);\n        }\n        iter += 1;\n        if (iter % 20 == 0) {\n            // Save intermediate storage to avoid failure when resistry wasn't cleaned for a long time so\n            // special_gas_limit is not enough to process the whole dict.\n            // Cleanup will finish eventually because the number of keys in 32/34/36 sets is limited.\n            contract.setData(storage.toCell());\n            commitContractDataAndActions();\n        }\n    }\n    storage.lastCleanupKeyBlockSeqno = lastKeyBlockSeqno;\n    contract.setData(storage.toCell());\n}\n\nfun updateCode(newCode: cell) {\n    val config = lazy RegistryConfig.fromCell(getRegistryConfigCell());\n    val newCodeHash = config.newCodeHash;\n    assert (newCodeHash != null && newCodeHash == newCode.hash()) throw ERR_BAD_NEW_CODE_HASH;\n    assert (contract.getCode().hash() != newCodeHash) throw ERR_NEW_CODE_ALREADY_INSTALLED;\n    contract.setCodePostponed(newCode);\n    acceptExternalMessage();\n}\n\nfun getValidatorPublicKey(valSetIdx: int, valIdx: uint16): uint256 {\n    val param = blockchain.configParam(valSetIdx);\n    assert (param != null) throw ERR_VALIDATOR_NOT_FOUND;\n    val paramCs = param.beginParse();\n    assert (paramCs.remainingRefsCount() > 0) throw ERR_VALIDATOR_NOT_FOUND;\n    val valSet: map<uint16, slice> = createMapFromLowLevelDict(paramCs.preloadRef());\n    val r = valSet.get(valIdx);\n    assert (r.isFound) throw ERR_VALIDATOR_NOT_FOUND;\n    // ed25519_pubkey#8e81278a pubkey:bits256 = SigPubKey;\n    // validator#53 public_key:SigPubKey weight:uint64 = ValidatorDescr;\n    // validator_addr#73 public_key:SigPubKey weight:uint64 adnl_addr:bits256 = ValidatorDescr;\n    var cs = r.loadValue();\n    cs.skipBits(8 + 32);\n    return cs.loadUint(256);\n}\n\nfun onInternalMessage() {\n}\n\nfun onExternalMessage(inMsg: slice) {\n    val opcode = inMsg.loadUint(32);\n    if (opcode == OP_CLEANUP) {\n        inMsg.assertEnd();\n        cleanupRegistry();\n        return;\n    }\n    if (opcode == OP_UPDATE_CODE) {\n        val newCode = inMsg.loadRef();\n        inMsg.assertEnd();\n        updateCode(newCode);\n        return;\n    }\n\n    assert (opcode == OP_REQUEST) throw ERR_INVALID_OP;\n    val signature = inMsg.loadBits(512);\n    val toSign = inMsg.hash();\n    val request = RequestUpdate.fromSlice(inMsg);\n    assert (request.lastKeyBlockSeqno == getLastKeyBlockSeqno()) throw ERR_WRONG_KEY_BLOCK_SEQNO;\n    assert (request.valSetIdx == 32 || request.valSetIdx == 34 || request.valSetIdx == 36) throw ERR_WRONG_VAL_SET_IDX;\n    assert (request.validUntil < blockchain.now() + REQUEST_PERIOD) throw ERR_TOO_BIG_VALID_UNTIL;\n    assert (request.validUntil > blockchain.now()) throw ERR_MESSAGE_EXPIRED;\n\n    val publicKey = getValidatorPublicKey(request.valSetIdx, request.valIdx);\n    var storage = Storage.fromCell(contract.getData());\n    val r = storage.registry.get(publicKey);\n    var info: ValidatorInfo;\n    if (r.isFound) {\n        info = r.loadValue();\n    } else {\n        info = ValidatorInfo{\n        };\n    }\n    assert (blockchain.now() >= info.allowUpdateAt) throw ERR_TOO_EARLY_REQUEST;\n\n    assert (isSignatureValid(toSign, signature, publicKey)) throw ERR_WRONG_SIGNATURE;\n\n    acceptExternalMessage();\n    info.allowUpdateAt = blockchain.now() + REQUEST_PERIOD;\n    storage.registry.set(publicKey, info);\n    contract.setData(storage.toCell());\n    commitContractDataAndActions();\n\n    validateEntry(request.newEntry);\n    info.entry = request.newEntry;\n    storage.registry.set(publicKey, info);\n    contract.setData(storage.toCell());\n}"
+    }
+  ]
+}

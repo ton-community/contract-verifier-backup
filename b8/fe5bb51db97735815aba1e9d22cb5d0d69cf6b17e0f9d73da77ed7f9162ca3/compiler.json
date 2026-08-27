@@ -1,0 +1,2095 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from dosgram_direct_board.tolk\nPROGRAM{\n  DECLPROC loadState()\n  DECLPROC applyBatch()\n  0 DECLMETHOD onInternalMessage()\n  104264 DECLMETHOD board_state()\n  124665 DECLMETHOD owner_of()\n  117403 DECLMETHOD expected_vault()\n  84356 DECLMETHOD protocol_limits()\n  // 14 functions inlined in-place:\n  // - saveState (3 calls)\n  // - emptyVaultPlan (1 call)\n  // - initialVaultData (1 call)\n  // - expectedVault (2 calls)\n  // - parseAndValidateBatch (1 call)\n  // - ownersRoot (3 calls)\n  // - addReferralUnits (1 call)\n  // - sendReceipt (3 calls)\n  // - sendSealNotice (2 calls)\n  // - retryReceipt (1 call)\n  // - resolveWinners (1 call)\n  // - MapLookupResult<uint32>.loadValue (1 call)\n  // - MapLookupResult<cell>.loadValue (1 call)\n  // - MapLookupResult<address>.loadValue (4 calls)\n  loadState() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    64 LDU\n    64 LDU\n    16 LDU\n    16 LDU\n    32 LDU\n    1 LDI\n    32 LDU\n    LDREF\n    LDREF\n    SWAP\n    CTOS\n    SWAP\n    LDREF\n    SWAP\n    CTOS\n    s0 s2 XCHG\n    LDDICT\n    LDDICT\n    LDDICT\n    s0 s5 XCHG2\n    LDDICT\n    LDDICT\n    s0 s3 XCHG2\n    ENDS\n    ENDS\n    s0 s4 XCHG\n    ENDS\n    s4 s3 s0 XCHG3\n  }>\n  applyBatch() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    s11 PUSH\n    503 THROWIF\n    DUP\n    IF:<{\n      s0 s2 XCHG\n      LDSTDADDR\n    }>ELSE<{\n      s3 s2 PUXC\n    }>\n    LDSTDADDR\n    LDOPTSTDADDR\n    64 LDU\n    16 LDU\n    16 LDU\n    LDREF\n    ENDS\n    OVER\n    0 GTINT\n    IF:<{\n      s2 s1 PUSH2\n      LESS\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    504 THROWIFNOT\n    s5 PUSH\n    REWRITESTDADDR\n    DROP\n    24 s() PUSH\n    NEWC\n    STSTDADDR\n    MYADDR\n    SWAP\n    STSTDADDR\n    s7 s(-1) PUXC\n    STSTDADDR\n    24 s() PUSH\n    NEWC\n    64 STU\n    24 s() PUSH\n    64 STUR\n    0 PUSHINT\n    228 STUR\n    0 PUSHINT\n    97 STUR\n    NEWC\n    b{00} STSLICECONST\n    ENDC\n    STREFR\n    NEWDICT\n    NEWC\n    STDICT\n    ENDC\n    STREFR\n    ENDC\n    STREFR\n    ENDC\n    17 s() PUSH\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{100} STSLICECONST\n    s1 s2 XCHG\n    8 STI\n    256 STU\n    BTOS\n    s7 PUSH\n    SDEQ\n    505 THROWIFNOT\n    s0 s8 XCHG\n    IF:<{\n      s0 s8 XCHG\n      22 s() PUSH\n      SDEQ\n      IF:<{\n        DUP\n        0 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s5 PUSH\n        1 EQINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      506 THROWIFNOT\n    }>ELSE<{\n      s8 POP\n    }>\n    s2 PUSH\n    ISNULL\n    IFNOT:<{\n      s2 s3 PUSH2\n      SDEQ\n      518 THROWIF\n    }>\n    s6 PUSH\n    CTOS\n    8 LDU\n    OVER\n    0 GTINT\n    IF:<{\n      OVER\n      33 LESSINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    501 THROWIFNOT\n    OVER\n    4 LSHIFT#\n    LDSLICEX\n    ENDS\n    DUP\n    0 PUSHINT\n    WHILE:<{\n      s0 s3 PUSH2\n      LESS\n    }>DO<{\n      SWAP\n      16 LDU\n      SWAP\n      23 s() PUSH\n      LESS\n      502 THROWIFNOT\n      SWAP\n      INC\n    }>\n    2DROP\n    s6 s13 PUSH2\n    267 PUSHINT\n    DICTGET NULLSWAPIFNOT\n    IF:<{\n      LDREF\n      ENDS\n      DUP\n      CTOS\n      64 LDU\n      16 LDU\n      16 LDU\n      8 LDU\n      NIP\n      8 LDU\n      NIP\n      2 LDU\n      256 LDU\n      ENDS\n      s4 s9 XCPU\n      EQUAL\n      IF:<{\n        s2 s7 XCPU\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        s2 POP\n        0 PUSHINT\n      }>\n      IF:<{\n        s1 s11 XCPU\n        EQUAL\n        0 NEQINT\n      }>ELSE<{\n        NIP\n        0 PUSHINT\n      }>\n      IFJMP:<{\n        3 3 BLKDROP2\n        s3 POP\n        s3 POP\n        s5 POP\n        s2 POP\n        s0 s5 XCHG\n        EQUAL\n        IF:<{\n          s0 s2 XCHG\n          HASHCU\n          s1 s3 XCHG\n          EQUAL\n          0 NEQINT\n        }>ELSE<{\n          2 2 BLKDROP2\n          0 PUSHINT\n        }>\n        507 THROWIFNOT\n        0 PUSHINT\n        NEWC\n        x{44524553} STSLICECONST\n        s0 s3 XCHG\n        CTOS\n        s0 s3 XCHG2\n        STSLICE\n        ENDC\n        NEWC\n        b{011000} STSLICECONST\n        s1 s2 XCHG\n        STSTDADDR\n        ROT\n        STGRAMS\n        b{0} STSLICECONST\n        3 PUSHINT\n        STGRAMS\n        1 PUSHINT\n        102 STUR\n        STREF\n        ENDC\n        64 PUSHINT\n        SENDRAWMSG\n        RETALT\n      }>\n      3 BLKDROP\n    }>ELSE<{\n      DROP\n    }>\n    0 PUSHINT\n    DUP\n    WHILE:<{\n      s0 s3 PUSH2\n      LESS\n    }>DO<{\n      s0 s2 XCHG\n      16 LDU\n      s10 PUSH\n      1 EQINT\n      IF:<{\n        s8 PUSH\n        NEWC\n        STSTDADDR\n        -ROT\n        s0 18 s() XCHG\n        16 PUSHINT\n        DICTUADDB\n        IF:<{\n          SWAP\n          INC\n          SWAP\n        }>\n      }>ELSE<{\n        OVER\n        18 s() PUSH\n        16 PUSHINT\n        DICTUGET NULLSWAPIFNOT\n        IF:<{\n          LDSTDADDR\n          ENDS\n          s9 PUSH\n          SDEQ\n          0 NEQINT\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        IF:<{\n          s0 17 s() XCHG\n          16 PUSHINT\n          DICTUDEL\n          508 THROWIFNOT\n          SWAP\n          INC\n          SWAP\n          s0 16 s() XCHG\n        }>ELSE<{\n          NIP\n        }>\n        s0 16 s() XCHG\n      }>\n      s0 s2 XCHG\n      INC\n      s2 16 s() XCHG\n    }>\n    DROP\n    NIP\n    s7 PUSH\n    1 EQINT\n    IF:<{\n      s0 19 s() XCHG\n      19 s() PUSH\n      ADD\n    }>ELSE<{\n      s0 19 s() XCHG\n      19 s() PUSH\n      SUB\n    }>\n    19 s() PUSH\n    0 GTINT\n    IF:<{\n      s7 PUSH\n      1 EQINT\n      IF:<{\n        s5 s11 PUSH2\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        NIP\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        NEWC\n        x{01} STSLICECONST\n        s0 s6 s12 XCPUXC\n        267 PUSHINT\n        DICTSETB\n        s4 PUSH\n        ISNULL\n        IFNOT:<{\n          s4 PUSH\n          NEWC\n          STSTDADDR\n          s0 s6 s13 XCPUXC\n          267 PUSHINT\n          DICTSETB\n          s0 s12 XCHG\n        }>\n        s0 s11 XCHG\n      }>\n      s5 s12 XCPU\n      267 PUSHINT\n      DICTGET NULLSWAPIFNOT\n      s5 PUSH\n      ISNULL\n      IFNOT:<{\n        DUP\n        IF:<{\n          OVER\n          LDSTDADDR\n          ENDS\n          s0 s6 XCHG2\n          SDEQ\n          0 NEQINT\n        }>ELSE<{\n          s5 POP\n          0 PUSHINT\n        }>\n        518 THROWIFNOT\n      }>ELSE<{\n        s5 POP\n      }>\n      s0 s4 XCHG\n      IF:<{\n        s0 s3 XCHG\n        LDSTDADDR\n        ENDS\n        s6 PUSH\n        1 EQINT\n        IF:<{\n          18 s() PUSH\n        }>ELSE<{\n          18 s() PUSH\n          NEGATE\n        }>\n        s1 s10 PUSH2\n        267 PUSHINT\n        DICTGET NULLSWAPIFNOT\n        IF:<{\n          32 LDU\n          ENDS\n        }>ELSE<{\n          DROP\n          0 PUSHINT\n        }>\n        ADD\n        DUP\n        -1 GTINT\n        517 THROWIFNOT\n        DUP\n        IF:<{\n          NEWC\n          32 STU\n          s0 s1 s10 XCHG3\n          267 PUSHINT\n          DICTSETB\n        }>ELSE<{\n          DROP\n          s0 s9 XCHG2\n          267 PUSHINT\n          DICTDEL\n          DROP\n        }>\n      }>ELSE<{\n        s3 POP\n        s5 PUSH\n        1 EQINT\n        IF:<{\n          17 s() PUSH\n        }>ELSE<{\n          17 s() PUSH\n          NEGATE\n        }>\n        s1 s15 XCHG\n        ADD\n        DUP\n        -1 GTINT\n        517 THROWIFNOT\n        s0 s14 XCHG\n        s0 s8 XCHG\n      }>\n      s3 s1 s8 XCHG3\n    }>ELSE<{\n      s4 POP\n      s4 POP\n    }>\n    s2 PUSH\n    -1 GTINT\n    IF:<{\n      s2 PUSH\n      19 s() PUSH\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    509 THROWIFNOT\n    s0 16 s() XCHG\n    INC\n    SWAP\n    NEWC\n    64 STU\n    s1 16 s() XCHG\n    16 STU\n    s1 s6 XCHG\n    16 STU\n    8 STU\n    s1 s14 XCHG\n    8 STU\n    OVER\n    2 STUR\n    s0 s2 XCHG\n    HASHCU\n    ROT\n    256 STU\n    ENDC\n    267 PUSHINT\n    s13 s1 s(-2) PU2XC\n    s1 s9 XCHG\n    DICTSETREF\n    SWAP\n    1 EQINT\n    IF:<{\n      s1 s12 PUSH2\n      EQUAL\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    DUP\n    IF:<{\n      TRUE\n      s11 POP\n    }>\n    DUP\n    5000000 PUSHINT\n    0 PUSHINT\n    CONDSEL\n    NEWC\n    x{44524553} STSLICECONST\n    s0 s8 XCHG\n    CTOS\n    s0 s8 XCHG2\n    STSLICE\n    ENDC\n    NEWC\n    b{011000} STSLICECONST\n    s1 s14 XCHG\n    STSTDADDR\n    s0 s7 XCHG2\n    STGRAMS\n    b{0} STSLICECONST\n    3 PUSHINT\n    STGRAMS\n    1 PUSHINT\n    102 STUR\n    s1 s12 XCHG\n    STREF\n    ENDC\n    s5 PUSH\n    1 PUSHINT\n    64 PUSHINT\n    CONDSEL\n    SENDRAWMSG\n    s0 s4 XCHG\n    IF:<{\n      30000000 PUSHINT\n      NEWC\n      x{44425345} STSLICECONST\n      s14 PUSH\n      64 STUR\n      s12 PUSH\n      16 STUR\n      s12 PUSH\n      NEWC\n      16 STU\n      s6 PUSH\n      16 STUR\n      s9 PUSH\n      32 STUR\n      s7 s(-1) PUXC\n      STDICT\n      s5 s(-1) PUXC\n      STDICT\n      s3 s(-1) PUXC\n      STDICT\n      HASHBU\n      256 STUR\n      s8 PUSH\n      32 STUR\n      s2 PUSH\n      NEWC\n      STDICT\n      ENDC\n      STREFR\n      ENDC\n      NEWC\n      b{011000} STSLICECONST\n      16 s() PUSH\n      SWAP\n      STSTDADDR\n      ROT\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      1 PUSHINT\n      102 STUR\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n    }>\n    s3 s9 XCHG\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    DUP\n    SEMPTY\n    IFJMP:<{\n      DROP\n    }>\n    BALANCE\n    FIRST\n    INMSG_VALUE\n    SUB\n    0 PUSHINT\n    RAWRESERVE\n    loadState() CALLDICT\n    s10 PUSH\n    0 GTINT\n    IF:<{\n      s10 PUSH\n      1000 PUSHINT\n      LEQ\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    511 THROWIFNOT\n    s0 s14 XCHG\n    32 LDU\n    OVER\n    1146115410 PUSHINT\n    EQUAL\n    IFJMP:<{\n      NIP\n      INMSG_SRC\n      s14 s15 XCHG\n      s13 s14 XCHG\n      s12 s13 XCHG\n      s11 s12 XCHG\n      s10 s11 XCHG\n      s9 s10 XCHG\n      s8 s9 XCHG\n      s7 s8 XCHG\n      s6 s7 XCHG\n      s5 s6 XCHG\n      s4 s5 XCHG\n      s3 s4 XCHG\n      s3 s0 s0 XCHG3\n      1 PUSHINT\n      TRUE\n      applyBatch() CALLDICT\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s1 s12 XCHG\n      64 STU\n      s1 s10 XCHG\n      64 STU\n      s1 s8 XCHG\n      16 STU\n      s1 s6 XCHG\n      16 STU\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      1 STI\n      32 STU\n      STREF\n      SWAP\n      NEWC\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      ENDC\n      STREFR\n      SWAP\n      NEWC\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      ENDC\n      STREFR\n      ENDC\n      c4 POP\n    }>\n    OVER\n    1146113091 PUSHINT\n    EQUAL\n    IF:<{\n      NIP\n      INMSG_SRC\n      s14 s15 XCHG\n      s13 s14 XCHG\n      s12 s13 XCHG\n      s11 s12 XCHG\n      s10 s11 XCHG\n      s9 s10 XCHG\n      s8 s9 XCHG\n      s7 s8 XCHG\n      s6 s7 XCHG\n      s5 s6 XCHG\n      s4 s5 XCHG\n      s3 s4 XCHG\n      s3 s0 s0 XCHG3\n      1 PUSHINT\n      FALSE\n      applyBatch() CALLDICT\n      s0 s13 XCHG\n      NEWC\n      STSTDADDR\n      s1 s12 XCHG\n      64 STU\n      s1 s10 XCHG\n      64 STU\n      s1 s8 XCHG\n      16 STU\n      s1 s6 XCHG\n      16 STU\n      s1 s4 XCHG\n      32 STU\n      s1 s2 XCHG\n      1 STI\n      32 STU\n      STREF\n      SWAP\n      NEWC\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      ENDC\n      STREFR\n      SWAP\n      NEWC\n      STDICT\n      s1 s2 XCHG\n      STDICT\n      ENDC\n      STREFR\n      ENDC\n      c4 POP\n    }>ELSE<{\n      OVER\n      1146244438 PUSHINT\n      EQUAL\n      IF:<{\n        NIP\n        INMSG_SRC\n        s14 s15 XCHG\n        s13 s14 XCHG\n        s12 s13 XCHG\n        s11 s12 XCHG\n        s10 s11 XCHG\n        s9 s10 XCHG\n        s8 s9 XCHG\n        s7 s8 XCHG\n        s6 s7 XCHG\n        s5 s6 XCHG\n        s4 s5 XCHG\n        s3 s4 XCHG\n        s3 s0 s0 XCHG3\n        2 PUSHINT\n        FALSE\n        applyBatch() CALLDICT\n        s0 s13 XCHG\n        NEWC\n        STSTDADDR\n        s1 s12 XCHG\n        64 STU\n        s1 s10 XCHG\n        64 STU\n        s1 s8 XCHG\n        16 STU\n        s1 s6 XCHG\n        16 STU\n        s1 s4 XCHG\n        32 STU\n        s1 s2 XCHG\n        1 STI\n        32 STU\n        STREF\n        SWAP\n        NEWC\n        STDICT\n        s1 s2 XCHG\n        STDICT\n        s1 s2 XCHG\n        STDICT\n        ENDC\n        STREFR\n        SWAP\n        NEWC\n        STDICT\n        s1 s2 XCHG\n        STDICT\n        ENDC\n        STREFR\n        ENDC\n        c4 POP\n      }>ELSE<{\n        s2 POP\n        s5 POP\n        s7 POP\n        s9 POP\n        s2 PUSH\n        1146246233 PUSHINT\n        EQUAL\n        IF:<{\n          s6 POP\n          4 BLKDROP\n          5 2 BLKDROP2\n          LDSTDADDR\n          ENDS\n          s0 s1 PUXC\n          267 PUSHINT\n          DICTGETREF\n          510 THROWIFNOT\n          0 PUSHINT\n          NEWC\n          x{44524553} STSLICECONST\n          s0 s2 XCHG\n          CTOS\n          ROT\n          STSLICE\n          ENDC\n          NEWC\n          b{011000} STSLICECONST\n          s1 s3 XCHG\n          STSTDADDR\n          SWAP\n          STGRAMS\n          b{0} STSLICECONST\n          3 PUSHINT\n          STGRAMS\n          1 PUSHINT\n          102 STUR\n          STREF\n          ENDC\n          64 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          DROP\n          OVER\n          1146245957 PUSHINT\n          EQUAL\n          IF:<{\n            NIP\n            s0 s3 XCHG\n            ENDS\n            INMSG_VALUE\n            40000000 PUSHINT\n            GEQ\n            516 THROWIFNOT\n            SWAP\n            IF:<{\n              s2 s3 PUSH2\n              EQUAL\n              0 NEQINT\n            }>ELSE<{\n              0 PUSHINT\n            }>\n            503 THROWIFNOT\n            30000000 PUSHINT\n            NEWC\n            x{44425345} STSLICECONST\n            s1 s7 XCHG\n            64 STU\n            s4 PUSH\n            16 STUR\n            s0 s4 XCHG\n            NEWC\n            16 STU\n            s1 s3 XCHG\n            16 STU\n            s2 PUSH\n            32 STUR\n            STDICT\n            s1 s3 XCHG\n            STDICT\n            s5 s(-1) PUXC\n            STDICT\n            HASHBU\n            256 STUR\n            32 STU\n            s0 s3 XCHG\n            NEWC\n            STDICT\n            ENDC\n            s0 s3 XCHG2\n            STREF\n            ENDC\n            NEWC\n            b{011000} STSLICECONST\n            s1 s2 XCHG\n            STSTDADDR\n            ROT\n            STGRAMS\n            b{0} STSLICECONST\n            3 PUSHINT\n            STGRAMS\n            1 PUSHINT\n            102 STUR\n            STREF\n            ENDC\n            1 PUSHINT\n            SENDRAWMSG\n          }>ELSE<{\n            s8 POP\n            DUP\n            1146571086 PUSHINT\n            EQUAL\n            IFNOTJMP:<{\n              9 1 BLKDROP2\n              1397047628 PUSHINT\n              EQUAL\n              IFJMP:<{\n                16 PUSHPOW2DEC\n                THROWANY\n              }>\n              16 PUSHPOW2DEC\n              THROWANY\n            }>\n            DROP\n            INMSG_SRC\n            s8 PUSH\n            SDEQ\n            IF:<{\n              SWAP\n              0 NEQINT\n            }>ELSE<{\n              NIP\n              0 PUSHINT\n            }>\n            512 THROWIFNOT\n            SWAP\n            256 LDU\n            32 LDU\n            1 LDI\n            32 LDU\n            ENDS\n            s6 PUSH\n            NEWC\n            16 STU\n            s1 s6 XCHG\n            16 STU\n            s1 s4 XCHG\n            32 STU\n            s7 s(-1) PUXC\n            STDICT\n            s1 s6 XCHG\n            STDICT\n            s1 s8 XCHG\n            STDICT\n            HASHBU\n            s7 PUSH\n            EQUAL\n            513 THROWIFNOT\n            2OVER\n            LESS\n            514 THROWIFNOT\n            s3 s4 XCPU\n            16 PUSHINT\n            DICTUGET\n            515 THROWIFNOT\n            LDSTDADDR\n            ENDS\n            PUSHNULL\n            s4 PUSH\n            IF:<{\n              DROP\n              s1 s2 PUXC\n              LESS\n              514 THROWIFNOT\n              s0 s3 XCHG2\n              16 PUSHINT\n              DICTUGET\n              515 THROWIFNOT\n              LDSTDADDR\n              ENDS\n              s0 s2 XCHG\n            }>ELSE<{\n              s5 POP\n              2 1 BLKDROP2\n            }>\n            NEWC\n            x{44575253} STSLICECONST\n            s1 s5 XCHG\n            256 STU\n            s1 s4 XCHG\n            STSTDADDR\n            s1 s3 XCHG\n            1 STI\n            s1 s2 XCHG\n            STOPTSTDADDR\n            ENDC\n            NEWC\n            b{011000} STSLICECONST\n            s1 s2 XCHG\n            STSTDADDR\n            b{00000} STSLICECONST\n            3 PUSHINT\n            STGRAMS\n            1 PUSHINT\n            102 STUR\n            STREF\n            ENDC\n            64 PUSHINT\n            SENDRAWMSG\n          }>\n        }>\n      }>\n    }>\n  }>\n  board_state() PROC:<{\n    loadState() CALLDICT\n    NIP\n    s2 POP\n    s3 POP\n    s8 POP\n    s9 POP\n    s5 PUSH\n    NEWC\n    16 STU\n    s5 PUSH\n    16 STUR\n    s1 s2 XCHG\n    32 STU\n    s1 s8 XCHG\n    STDICT\n    s1 s7 XCHG\n    STDICT\n    s1 s4 XCHG\n    STDICT\n    HASHBU\n    s4 s5 XCHG\n    s4 s3 s0 XCHG3\n    s1 s2 XCHG\n  }>\n  owner_of() PROC:<{\n    loadState() CALLDICT\n    s4 s9 XCHG\n    9 BLKDROP\n    2 2 BLKDROP2\n    s2 POP\n    s2 PUSH\n    -1 GTINT\n    IF:<{\n      s2 PUSH\n      GREATER\n      0 NEQINT\n    }>ELSE<{\n      DROP\n      0 PUSHINT\n    }>\n    502 THROWIFNOT\n    16 PUSHINT\n    DICTUGET NULLSWAPIFNOT\n    IFNOTJMP:<{\n      DROP\n      0 PUSHINT\n      s0 s0 PUSH2\n    }>\n    LDSTDADDR\n    ENDS\n    REWRITESTDADDR\n    1 PUSHINT\n    -ROT\n  }>\n  expected_vault() PROC:<{\n    loadState() CALLDICT\n    s5 s10 XCHG\n    10 BLKDROP\n    s4 PUSH\n    REWRITESTDADDR\n    DROP\n    s0 s4 XCHG\n    NEWC\n    STSTDADDR\n    MYADDR\n    SWAP\n    STSTDADDR\n    s1 s5 XCHG\n    STSTDADDR\n    s0 s2 XCHG\n    NEWC\n    64 STU\n    64 STU\n    0 PUSHINT\n    228 STUR\n    0 PUSHINT\n    97 STUR\n    NEWC\n    b{00} STSLICECONST\n    ENDC\n    STREFR\n    NEWDICT\n    NEWC\n    STDICT\n    ENDC\n    STREFR\n    ENDC\n    STREFR\n    ENDC\n    ROT\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{100} STSLICECONST\n    s1 s2 XCHG\n    8 STI\n    256 STU\n    BTOS\n  }>\n  protocol_limits() PROC:<{\n    1000 PUSHINT\n    32 PUSHINT\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECHgEAB0kAART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAYGQIBIAYHAfVO2i7fsr8tH3IJMC+kiSUjPi+kj6UNM/0w/TD9TRIcIAlVMhucMAkXDi8uH4JfpEMFYYyPpS+CgB+lJScPpSVhjIyz9WGM8LP3DPC+NwzwtgyM+EgMnPFG3I9ADJzxTJzxTJVhHIz4TQzMz5FsjPhkASygfL/89QJ8cFgQA30+JHyQCDHAJEw4PgnbxD4l6Fw+wLwASrCAJcqgQPou8MAkXDi8uH/DtMfIYIQRFBVUrrjAiGCEERQTEO64w+AICQoAYTtRND6SNM/0z/TD9MP0x/SANMf1NQB0AHUAdAC9AT0BPQEUAX0BPQEUAPR0QTRRDCAAqDH4khDvEN4QzRC8EKsQmhCJEHgQZxBWEEUQNEMAcX/wAg3I+lIcyz8ayz8Yyw8Wyw8Uyx8SygDLH8wByPQAEvQAEvQAyc8UAcj0ABL0AMnPFMntVACoMfiSEO8Q3hDNELwQqxCaEIkQeBBnEFYQRRA0QwBxcPACDcj6UhzLPxrLPxjLDxbLDxTLHxLKAMsfzAHI9AAS9AAS9ADJzxQByPQAEvQAyc8Uye1UAqghghBEUk1Wuo7IMjU3OSKCEERSVFm6jjg2XwRsUvpI0VICgQEL9Avy4f5wyM+REUkVTgLQWM7JyM+FiBP6UgH6As+Bc/oCcc8LZczJgED7AOMO4w0LDAHuMCGCEERSU0W6jmoxA9H4l4IKYloAvvLiBAGVUyO6wwCRcOLy4feCCcnDgMjPkREJTRYXyz8kzwsPBMjLDxPLDyLPCx/0ABP0AFJQ9AD5Fs8L/8sfA8j0AMlQA8zJyM+FiBL6Ulj6As+Bc/oCcc8LZczJcfsA4w4NAKgx+JIQ7xDeEM0QvBCrEJoQiRB4EGcQVhBFEDRDAHJw8AINyPpSHMs/Gss/GMsPFssPFMsfEsoAyx/MAcj0ABL0ABL0AMnPFAHI9AAS9ADJzxTJ7VQC/jggghBEV0lOuo4TbJGCEFNFQUy6lIQP8vDghA/y8OEw+JIoxwWTAcMAkjFw4vLiAAHT/9Mf0gDTH9EmyMsPFssPFMsfUnD0ABb0ABj0APkWJ7ry4gFdufLiAlE0gBD0DvLiA/pI0W0kkzVsIeMNyM+REV1JThXL/xT6UhPKABIODwAoMFITufLiAlADgBD0DvLiA/pI0QIANPpUycjPhYgS+lLPhBBz+gJxzwtlzMmAQPsABPzy4fkIjhoIVhbHBZUgwADDAJFw4pUlwAHDAJFw4vLh+pE44iJul1MjxwXy0gbfJtDTByHCAJUhwSHDAJFw4vLh9SGqA9cY0SBwk1MDuZwB0w8BVhe58uH2AaToW1NtgQEL9ApvoZEw4w1wIJNTA7mK6DAxJ8ABlRETVhOh4w0REhMUAOTU0SDQ0z/TD9MP0wcx0wcx0wHT/9FRSbqVUSe6wwCSMnDilVEbusMAkjFw4o5BbDMzMzUyBbqXAvkAE7rDAJNsInDi8uH7cMjPkRFJFU4D0FADzsnIz4WIEvpSWPoCz4Fz+gJxzwtlzMmAQPsA2zHgXwMAlgLTDyrAAY4QKMj6UlkREoAQ9FOTAaQB3o4qIVYSgBD0Dm+hmPpI0SnHBcMAkjBw4p4REYAQ9Fvy4fwBpAEREJEx4hEQ4gKkAhEQAgAKERNWE6AC/lYTwgCO9SfAAZ1TW4EBC/QKb6Exs8MAkXDijh7Iz4QGVCBtgQEL9EEkbp0kyPpSVCBugQEL9EEM3wveUVyBAQv0Cm+hJW6RNY4TIJoh+kjRUAbHBcMAkjVw4vLiBuIEjhYzJcABklYRk1YRo+IfoCDC//LiBQ4I4w1DGJI0NOIVFgB8A/pI0SbAAZJWEpNWEqPiUxqBAQv0Cm+hk9Mf0ZIwcOKgIML/8uIFIJrIyx9AGoEBC/RBmTBQCYEBC/RZMOIB/iLC/5YiVhO7wwCRcOLy4f0REKQByMs/AREQAcsPFssPywceywchzwsBAvkAWMv/yYEBC1RtIBn0EwHAAZVTHLrDAJFw4iCSfzveIIIITEtAcOMEyM+REUkVTgjQUAjOycjPhYge+lJQB/oCz4Fz+gJxzwtlHMzJJXGAQOME+wAXALoEjleCCcnDgMjPkREJTRYuzws/LM8LDyzIyw8mzwsPKc8LH1Jw9ABSUPQAUjD0APkWzwv/KM8LHyLI9ADJzxTJyM+FiFYQAfpSWPoCz4Fz+gJxzwtlzMlx+wDeEDkAD75MJAgfRAEEAgEgGhsASbl0jwATEyMzg5JcjLDyXPCw8Syx8Y9AAX9AAU9AD5FhBFRDASgCASAcHQCZtVN+ACILS+FEn0iGAJkfSl8FAD9KQr9KQFkZZ/ln7hnhfG4Z4WwZGfCQGTnijbkegBk54pk54pkrGRnwmhmZnyLZGfDIAllA+X/56hAAW7TfPgAiCSvhLYRGRFhf8oRXmGASRg4cXlw+0AIegc30MoYOCmAcP0kaP0iOKzA=",
+  "codeHashHex": "B8FE5BB51DB97735815ABA1E9D22CB5D0D69CF6B17E0F9D73DA77ED7F9162CA3",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/27a2cb32-3735-4f4e-aa10-cd5fafeb9218/contracts/dosgram_direct_board.tolk",
+        "size_chars": 14821,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "BoardState"
+      },
+      {
+        "kind": "uintN",
+        "n": 16
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 7
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 17
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 7,
+        "value_ty_idx": 9
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 13,
+        "value_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 24,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 26,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          2
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TValue"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          32
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          3
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 37,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 42
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          41
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          23,
+          46
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 47,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          49
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          7
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "MapLookupResult",
+        "type_args_ty_idx": [
+          9
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          5,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 30,
+        "struct_name": "MapLookupResult<cell>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 36,
+        "struct_name": "CreateMessageOptions<cell>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          48,
+          3
+        ]
+      },
+      {
+        "ty_idx": 51,
+        "struct_name": "MapLookupResult<address>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      },
+      {
+        "ty_idx": 52,
+        "struct_name": "MapLookupResult<uint32>",
+        "monomorphic_fields_ty_idx": [
+          31,
+          5
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "MapLookupResult",
+        "ty_idx": 33,
+        "ident_loc": [
+          0,
+          1010,
+          8,
+          1010,
+          23
+        ],
+        "type_params": [
+          "TValue"
+        ],
+        "fields": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 31
+          },
+          {
+            "name": "isFound",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 43
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 24,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 26,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 27
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 22,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 23
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 25
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 28
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 37,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 38,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 50,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 40
+          },
+          {
+            "name": "value",
+            "ty_idx": 45
+          },
+          {
+            "name": "dest",
+            "ty_idx": 48
+          },
+          {
+            "name": "body",
+            "ty_idx": 49
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "BoardState",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          30,
+          8,
+          30,
+          18
+        ],
+        "fields": [
+          {
+            "name": "core",
+            "ty_idx": 7
+          },
+          {
+            "name": "roundId",
+            "ty_idx": 1
+          },
+          {
+            "name": "nanoPerGram",
+            "ty_idx": 1
+          },
+          {
+            "name": "capacity",
+            "ty_idx": 1
+          },
+          {
+            "name": "filled",
+            "ty_idx": 1
+          },
+          {
+            "name": "sequence",
+            "ty_idx": 1
+          },
+          {
+            "name": "sealed",
+            "ty_idx": 5
+          },
+          {
+            "name": "noRefUnits",
+            "ty_idx": 1
+          },
+          {
+            "name": "vaultCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "owners",
+            "ty_idx": 14
+          },
+          {
+            "name": "lastReceipts",
+            "ty_idx": 15
+          },
+          {
+            "name": "referrers",
+            "ty_idx": 16
+          },
+          {
+            "name": "referralLocked",
+            "ty_idx": 18
+          },
+          {
+            "name": "referralUnits",
+            "ty_idx": 19
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "loadState",
+        "return_ty_idx": 12,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          47,
+          5,
+          47,
+          14
+        ],
+        "end_loc": [
+          1,
+          80,
+          1,
+          80,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 1,
+        "name": "applyBatch",
+        "return_ty_idx": 12,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          224,
+          5,
+          224,
+          15
+        ],
+        "end_loc": [
+          1,
+          336,
+          1,
+          336,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          },
+          {
+            "name": "fromCore",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "expectedVault",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          144,
+          5,
+          144,
+          18
+        ],
+        "end_loc": [
+          1,
+          152,
+          1,
+          152,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "initialVaultData",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          116,
+          5,
+          116,
+          21
+        ],
+        "end_loc": [
+          1,
+          142,
+          1,
+          142,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "emptyVaultPlan",
+        "return_ty_idx": 3,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          111,
+          5,
+          111,
+          19
+        ],
+        "end_loc": [
+          1,
+          114,
+          1,
+          114,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 5,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "parseAndValidateBatch",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          154,
+          5,
+          154,
+          26
+        ],
+        "end_loc": [
+          1,
+          168,
+          1,
+          168,
+          2
+        ],
+        "params": [
+          {
+            "name": "batch",
+            "ty_idx": 3
+          },
+          {
+            "name": "capacity",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "map<address, cell>.get",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "MapLookupResult<cell>.loadValue",
+        "return_ty_idx": 3,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 30
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "cell.fromSlice",
+        "return_ty_idx": 3,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "sendReceipt",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          196,
+          5,
+          196,
+          16
+        ],
+        "end_loc": [
+          1,
+          206,
+          1,
+          206,
+          2
+        ],
+        "params": [
+          {
+            "name": "vault",
+            "ty_idx": 7
+          },
+          {
+            "name": "receipt",
+            "ty_idx": 3
+          },
+          {
+            "name": "finalReceipt",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createMessage<cell>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "map<uint16, address>.addIfNotExists",
+        "return_ty_idx": 5,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          },
+          {
+            "name": "value",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "map<uint16, address>.get",
+        "return_ty_idx": 51,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "MapLookupResult<address>.loadValue",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 51
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "address.fromSlice",
+        "return_ty_idx": 7,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "map<uint16, address>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "map<address, uint8>.exists",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "map<address, uint8>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 18
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 17
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "map<address, address>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "map<address, address>.get",
+        "return_ty_idx": 51,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 16
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "addReferralUnits",
+        "return_ty_idx": 12,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          183,
+          5,
+          183,
+          21
+        ],
+        "end_loc": [
+          1,
+          194,
+          1,
+          194,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "referrer",
+            "ty_idx": 7
+          },
+          {
+            "name": "delta",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "map<address, uint32>.get",
+        "return_ty_idx": 52,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "MapLookupResult<uint32>.loadValue",
+        "return_ty_idx": 9,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          1016,
+          29,
+          1016,
+          38
+        ],
+        "end_loc": [
+          0,
+          1022,
+          1,
+          1022,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 52
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "uint32.fromSlice",
+        "return_ty_idx": 9,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "rawSlice",
+            "ty_idx": 2
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "map<address, uint32>.delete",
+        "return_ty_idx": 5,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "map<address, uint32>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 19
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "map<address, cell>.set",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "value",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "sendSealNotice",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          208,
+          5,
+          208,
+          19
+        ],
+        "end_loc": [
+          1,
+          222,
+          1,
+          222,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "ownersRoot",
+        "return_ty_idx": 1,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          170,
+          5,
+          170,
+          15
+        ],
+        "end_loc": [
+          1,
+          181,
+          1,
+          181,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          374,
+          5,
+          374,
+          22
+        ],
+        "end_loc": [
+          1,
+          409,
+          1,
+          409,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "saveState",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          82,
+          5,
+          82,
+          14
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "retryReceipt",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          338,
+          5,
+          338,
+          17
+        ],
+        "end_loc": [
+          1,
+          343,
+          1,
+          343,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "map<address, cell>.mustGet",
+        "return_ty_idx": 3,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 15
+          },
+          {
+            "name": "key",
+            "ty_idx": 7
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "resolveWinners",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          345,
+          5,
+          345,
+          19
+        ],
+        "end_loc": [
+          1,
+          372,
+          1,
+          372,
+          2
+        ],
+        "params": [
+          {
+            "name": "state",
+            "ty_idx": 12
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "map<uint16, address>.mustGet",
+        "return_ty_idx": 7,
+        "num_params": 3,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 14
+          },
+          {
+            "name": "key",
+            "ty_idx": 13
+          },
+          {
+            "name": "throwIfNotFound",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "board_state",
+        "return_ty_idx": 53,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          411,
+          9,
+          411,
+          20
+        ],
+        "end_loc": [
+          1,
+          414,
+          1,
+          414,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 37,
+        "name": "owner_of",
+        "return_ty_idx": 54,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          416,
+          9,
+          416,
+          17
+        ],
+        "end_loc": [
+          1,
+          425,
+          1,
+          425,
+          2
+        ],
+        "params": [
+          {
+            "name": "cellIndex",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "expected_vault",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          427,
+          9,
+          427,
+          23
+        ],
+        "end_loc": [
+          1,
+          429,
+          1,
+          429,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "protocol_limits",
+        "return_ty_idx": 55,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          431,
+          9,
+          431,
+          24
+        ],
+        "end_loc": [
+          1,
+          433,
+          1,
+          433,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1,
+          1,
+          5,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 3
+      }
+    ],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 104264,
+        "name": "board_state",
+        "parameters": [],
+        "return_ty_idx": 12
+      },
+      {
+        "tvm_method_id": 124665,
+        "name": "owner_of",
+        "parameters": [
+          {
+            "name": "cellIndex",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 13
+      },
+      {
+        "tvm_method_id": 117403,
+        "name": "expected_vault",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 84356,
+        "name": "protocol_limits",
+        "parameters": [],
+        "return_ty_idx": 14
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "plain_int",
+        "err_code": 501
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 502
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 503
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 504
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 505
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 506
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 507
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 508
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 509
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 510
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 511
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 512
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 513
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 514
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 515
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 516
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 517
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 518
+      },
+      {
+        "kind": "plain_int",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/27a2cb32-3735-4f4e-aa10-cd5fafeb9218/contracts/dosgram_direct_board.tolk",
+      "contents": "// SPDX-License-Identifier: MIT\n\n// DOSGRAM v2 board for a fixed-size round. The board is authoritative for\n// cell ownership. A deterministic player Vault submits bounded batches and\n// receives a receipt carrying all unused execution value back.\n\nconst OP_PURCHASE_AND_PLACE = 0x44505552; // \"DPUR\" (Core -> Board)\nconst OP_PLACE_BATCH = 0x44504C43;        // \"DPLC\" (Vault -> Board)\nconst OP_REMOVE_BATCH = 0x44524D56;       // \"DRMV\" (Vault -> Board)\nconst OP_RETRY_RECEIPT = 0x44525459;      // \"DRTY\" (permissionless)\nconst OP_BATCH_RESULT = 0x44524553;       // \"DRES\" (Board -> Vault)\nconst OP_SEAL = 0x5345414C;               // \"SEAL\"\nconst OP_BOARD_SEALED = 0x44425345;        // \"DBSE\" (Board -> Core)\nconst OP_RETRY_SEAL = 0x44525345;          // \"DRSE\" (permissionless)\nconst OP_RESOLVE_WINNERS = 0x4457494E;     // \"DWIN\" (Core -> Board)\nconst OP_WINNERS_RESULT = 0x44575253;      // \"DWRS\" (Board -> Core)\n\nconst MODE_PLACE = 1;\nconst MODE_REMOVE = 2;\nconst MAX_BOARD_CELLS = 1000;\nconst MAX_BATCH_CELLS = 32;\nconst FINAL_RECEIPT_GAS = 5000000;\nconst SEAL_NOTICE_GAS = 30000000;\nconst RETRY_MIN_VALUE = 40000000;\n\n@inline\nfun cellHash(value: cell): int\n    asm \"HASHCU\";\n\nstruct BoardState {\n    core: address;\n    roundId: int;\n    nanoPerGram: int;\n    capacity: int;\n    filled: int;\n    sequence: int;\n    sealed: bool;\n    noRefUnits: int;\n    vaultCode: cell;\n    owners: map<uint16, address>;\n    lastReceipts: map<address, cell>;\n    referrers: map<address, address>;\n    referralLocked: map<address, uint8>;\n    referralUnits: map<address, uint32>;\n}\n\nfun loadState(): BoardState {\n    var data = contract.getData().beginParse();\n    val core = data.loadAddress();\n    val roundId = data.loadUint(64);\n    val nanoPerGram = data.loadUint(64);\n    val capacity = data.loadUint(16);\n    val filled = data.loadUint(16);\n    val sequence = data.loadUint(32);\n    val sealed = data.loadBool();\n    val noRefUnits = data.loadUint(32);\n    val vaultCode = data.loadRef();\n    var ownership = data.loadRef().beginParse();\n    var referrals = data.loadRef().beginParse();\n    val state = BoardState {\n        core,\n        roundId,\n        nanoPerGram,\n        capacity,\n        filled,\n        sequence,\n        sealed,\n        noRefUnits,\n        vaultCode,\n        owners: createMapFromLowLevelDict<uint16, address>(ownership.loadDict()),\n        lastReceipts: createMapFromLowLevelDict<address, cell>(ownership.loadDict()),\n        referrers: createMapFromLowLevelDict<address, address>(ownership.loadDict()),\n        referralLocked: createMapFromLowLevelDict<address, uint8>(referrals.loadDict()),\n        referralUnits: createMapFromLowLevelDict<address, uint32>(referrals.loadDict()),\n    };\n    ownership.assertEnd();\n    referrals.assertEnd();\n    data.assertEnd();\n    return state;\n}\n\nfun saveState(state: BoardState) {\n    contract.setData(\n        beginCell()\n            .storeAddress(state.core)\n            .storeUint(state.roundId, 64)\n            .storeUint(state.nanoPerGram, 64)\n            .storeUint(state.capacity, 16)\n            .storeUint(state.filled, 16)\n            .storeUint(state.sequence, 32)\n            .storeBool(state.sealed)\n            .storeUint(state.noRefUnits, 32)\n            .storeRef(state.vaultCode)\n            .storeRef(\n                beginCell()\n                    .storeDict(state.owners.toLowLevelDict())\n                    .storeDict(state.lastReceipts.toLowLevelDict())\n                    .storeDict(state.referrers.toLowLevelDict())\n                    .endCell()\n            )\n            .storeRef(\n                beginCell()\n                    .storeDict(state.referralLocked.toLowLevelDict())\n                    .storeDict(state.referralUnits.toLowLevelDict())\n                    .endCell()\n            )\n            .endCell(),\n    );\n}\n\nfun emptyVaultPlan(): cell {\n    val emptyPlan: map<uint16, cell> = [];\n    return beginCell().storeDict(emptyPlan.toLowLevelDict()).endCell();\n}\n\nfun initialVaultData(state: BoardState, owner: address): cell {\n    return beginCell()\n        .storeAddress(state.core)\n        .storeAddress(contract.getAddress())\n        .storeAddress(owner)\n        .storeRef(\n            beginCell()\n                .storeUint(state.roundId, 64)\n                .storeUint(state.nanoPerGram, 64)\n                .storeUint(0, 2)\n                .storeUint(0, 32)\n                .storeUint(0, 32)\n                .storeUint(0, 2)\n                .storeUint(0, 64)\n                .storeUint(0, 64)\n                .storeUint(0, 16)\n                .storeUint(0, 16)\n                .storeUint(0, 32)\n                .storeUint(0, 32)\n                .storeUint(0, 32)\n                .storeBool(false)\n                .storeRef(beginCell().storeAddressNone().endCell())\n                .storeRef(emptyVaultPlan())\n                .endCell()\n        )\n        .endCell();\n}\n\nfun expectedVault(state: BoardState, owner: address): address {\n    return AutoDeployAddress {\n        workchain: owner.getWorkchain(),\n        stateInit: ContractState {\n            code: state.vaultCode,\n            data: initialVaultData(state, owner),\n        },\n    }.calculateAddress();\n}\n\nfun parseAndValidateBatch(batch: cell, capacity: int): (int, slice) {\n    var data = batch.beginParse();\n    val count = data.loadUint(8);\n    assert (count > 0 && count <= MAX_BATCH_CELLS) throw 501;\n    val indices = data.loadBits(count * 16);\n    data.assertEnd();\n\n    var check = indices;\n    var i = 0;\n    while (i < count) {\n        assert (check.loadUint(16) < capacity) throw 502;\n        i += 1;\n    }\n    return (count, indices);\n}\n\nfun ownersRoot(state: BoardState): int {\n    return cellHash(\n        beginCell()\n            .storeUint(state.capacity, 16)\n            .storeUint(state.filled, 16)\n            .storeUint(state.noRefUnits, 32)\n            .storeDict(state.owners.toLowLevelDict())\n            .storeDict(state.referrers.toLowLevelDict())\n            .storeDict(state.referralUnits.toLowLevelDict())\n            .endCell()\n    );\n}\n\nfun addReferralUnits(state: BoardState, referrer: address, delta: int): BoardState {\n    val found = state.referralUnits.get(referrer);\n    val current = found.isFound ? found.loadValue() as int : 0;\n    val next = current + delta;\n    assert (next >= 0) throw 517;\n    if (next == 0) {\n        state.referralUnits.delete(referrer);\n    } else {\n        state.referralUnits.set(referrer, next as uint32);\n    }\n    return state;\n}\n\nfun sendReceipt(vault: address, receipt: cell, finalReceipt: bool) {\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: finalReceipt ? FINAL_RECEIPT_GAS : 0,\n        dest: vault,\n        body: beginCell()\n            .storeUint(OP_BATCH_RESULT, 32)\n            .storeSlice(receipt.beginParse())\n            .endCell(),\n    }).send(finalReceipt ? SEND_MODE_PAY_FEES_SEPARATELY : SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nfun sendSealNotice(state: BoardState) {\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: SEAL_NOTICE_GAS,\n        dest: state.core,\n        body: beginCell()\n            .storeUint(OP_BOARD_SEALED, 32)\n            .storeUint(state.roundId, 64)\n            .storeUint(state.capacity, 16)\n            .storeUint(ownersRoot(state), 256)\n            .storeUint(state.noRefUnits, 32)\n            .storeRef(beginCell().storeDict(state.referralUnits.toLowLevelDict()).endCell())\n            .endCell(),\n    }).send(SEND_MODE_PAY_FEES_SEPARATELY);\n}\n\nfun applyBatch(\n    state: BoardState,\n    sender: address,\n    body: slice,\n    mode: int,\n    fromCore: bool,\n): BoardState {\n    assert (!state.sealed) throw 503;\n    val vault = fromCore ? body.loadAddress() : sender;\n    val owner = body.loadAddress();\n    val requestedReferrer = body.loadAddressOpt();\n    val queryId = body.loadUint(64);\n    val cursor = body.loadUint(16);\n    val batchCount = body.loadUint(16);\n    val batch = body.loadRef();\n    body.assertEnd();\n    assert (batchCount > 0 && cursor < batchCount) throw 504;\n    assert (vault == expectedVault(state, owner)) throw 505;\n    if (fromCore) {\n        assert (sender == state.core && cursor == 0 && mode == MODE_PLACE) throw 506;\n    }\n    if (requestedReferrer != null) {\n        assert (requestedReferrer! != owner) throw 518;\n    }\n\n    val (attempted, indices) = parseAndValidateBatch(batch, state.capacity);\n    val previous = state.lastReceipts.get(vault);\n    if (previous.isFound) {\n        val receipt = previous.loadValue();\n        var saved = receipt.beginParse();\n        val savedQueryId = saved.loadUint(64);\n        val savedCursor = saved.loadUint(16);\n        val savedBatchCount = saved.loadUint(16);\n        saved.loadUint(8);\n        saved.loadUint(8);\n        val savedMode = saved.loadUint(2);\n        val savedBatchHash = saved.loadUint(256);\n        saved.assertEnd();\n        if (savedQueryId == queryId && savedCursor == cursor && savedMode == mode) {\n            assert (savedBatchCount == batchCount && savedBatchHash == batch.hash()) throw 507;\n            sendReceipt(vault, receipt, false);\n            return state;\n        }\n    }\n\n    var changed = 0;\n    var cells = indices;\n    var i = 0;\n    while (i < attempted) {\n        val cellIndex = cells.loadUint(16);\n        if (mode == MODE_PLACE) {\n            if (state.owners.addIfNotExists(cellIndex, owner)) {\n                changed += 1;\n            }\n        } else {\n            val current = state.owners.get(cellIndex);\n            if (current.isFound && current.loadValue() == owner) {\n                assert (state.owners.delete(cellIndex)) throw 508;\n                changed += 1;\n            }\n        }\n        i += 1;\n    }\n\n    if (mode == MODE_PLACE) {\n        state.filled += changed;\n    } else {\n        state.filled -= changed;\n    }\n    if (changed > 0) {\n        if (mode == MODE_PLACE && !state.referralLocked.exists(owner)) {\n            state.referralLocked.set(owner, 1);\n            if (requestedReferrer != null) {\n                state.referrers.set(owner, requestedReferrer!);\n            }\n        }\n        val referrer = state.referrers.get(owner);\n        if (requestedReferrer != null) {\n            assert (referrer.isFound && referrer.loadValue() == requestedReferrer!) throw 518;\n        }\n        if (referrer.isFound) {\n            state = addReferralUnits(\n                state,\n                referrer.loadValue(),\n                mode == MODE_PLACE ? changed : -changed,\n            );\n        } else {\n            state.noRefUnits += mode == MODE_PLACE ? changed : -changed;\n            assert (state.noRefUnits >= 0) throw 517;\n        }\n    }\n    assert (state.filled >= 0 && state.filled <= state.capacity) throw 509;\n    state.sequence += 1;\n    val receipt = beginCell()\n        .storeUint(queryId, 64)\n        .storeUint(cursor, 16)\n        .storeUint(batchCount, 16)\n        .storeUint(attempted, 8)\n        .storeUint(changed, 8)\n        .storeUint(mode, 2)\n        .storeUint(batch.hash(), 256)\n        .endCell();\n    state.lastReceipts.set(vault, receipt);\n    val sealsNow = mode == MODE_PLACE && state.filled == state.capacity;\n    if (sealsNow) {\n        state.sealed = true;\n    }\n    sendReceipt(vault, receipt, sealsNow);\n    if (sealsNow) {\n        sendSealNotice(state);\n    }\n    return state;\n}\n\nfun retryReceipt(state: BoardState, body: slice) {\n    val vault = body.loadAddress();\n    body.assertEnd();\n    val receipt = state.lastReceipts.mustGet(vault, 510);\n    sendReceipt(vault, receipt, false);\n}\n\nfun resolveWinners(state: BoardState, sender: address, body: slice) {\n    assert (sender == state.core && state.sealed) throw 512;\n    val root = body.loadUint(256);\n    val winnerIndex = body.loadUint(32);\n    val hasBonus = body.loadBool();\n    val bonusWinnerIndex = body.loadUint(32);\n    body.assertEnd();\n    assert (root == ownersRoot(state)) throw 513;\n    assert (winnerIndex < state.capacity) throw 514;\n    val winner = state.owners.mustGet(winnerIndex, 515);\n    var bonusWinner: address? = null;\n    if (hasBonus) {\n        assert (bonusWinnerIndex < state.capacity) throw 514;\n        bonusWinner = state.owners.mustGet(bonusWinnerIndex, 515);\n    }\n    createMessage({\n        bounce: BounceMode.RichBounce,\n        value: 0,\n        dest: state.core,\n        body: beginCell()\n            .storeUint(OP_WINNERS_RESULT, 32)\n            .storeUint(root, 256)\n            .storeAddress(winner)\n            .storeBool(hasBonus)\n            .storeAddressOpt(bonusWinner)\n            .endCell(),\n    }).send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE);\n}\n\nfun onInternalMessage(in: InMessage) {\n    if (in.body.isEmpty()) {\n        return;\n    }\n    // Preserve the Board's pre-message balance. All permissionless retries and\n    // callbacks must be funded by the current inbound message.\n    val balanceBeforeMessage = contract.getOriginalBalance() - in.valueCoins;\n    reserveToncoinsOnBalance(balanceBeforeMessage, RESERVE_MODE_EXACT_AMOUNT);\n    var state = loadState();\n    assert (state.capacity > 0 && state.capacity <= MAX_BOARD_CELLS) throw 511;\n    var body = in.body;\n    val op = body.loadUint(32);\n    if (op == OP_PURCHASE_AND_PLACE) {\n        state = applyBatch(state, in.senderAddress, body, MODE_PLACE, true);\n        saveState(state);\n    } else if (op == OP_PLACE_BATCH) {\n        state = applyBatch(state, in.senderAddress, body, MODE_PLACE, false);\n        saveState(state);\n    } else if (op == OP_REMOVE_BATCH) {\n        state = applyBatch(state, in.senderAddress, body, MODE_REMOVE, false);\n        saveState(state);\n    } else if (op == OP_RETRY_RECEIPT) {\n        retryReceipt(state, body);\n    } else if (op == OP_RETRY_SEAL) {\n        body.assertEnd();\n        assert (in.valueCoins >= RETRY_MIN_VALUE) throw 516;\n        assert (state.sealed && state.filled == state.capacity) throw 503;\n        sendSealNotice(state);\n    } else if (op == OP_RESOLVE_WINNERS) {\n        resolveWinners(state, in.senderAddress, body);\n    } else if (op == OP_SEAL) {\n        throw 0xFFFF;\n    } else {\n        throw 0xFFFF;\n    }\n}\n\nget fun board_state(): (int, int, int, int, bool, int) {\n    val state = loadState();\n    return (state.roundId, state.capacity, state.filled, state.sequence, state.sealed, ownersRoot(state));\n}\n\nget fun owner_of(cellIndex: int): (int, int, int) {\n    val state = loadState();\n    assert (cellIndex >= 0 && cellIndex < state.capacity) throw 502;\n    val found = state.owners.get(cellIndex);\n    if (!found.isFound) {\n        return (0, 0, 0);\n    }\n    val (workchain, hash) = found.loadValue().getWorkchainAndHash();\n    return (1, workchain, hash);\n}\n\nget fun expected_vault(owner: address): address {\n    return expectedVault(loadState(), owner);\n}\n\nget fun protocol_limits(): (int, int) {\n    return (MAX_BOARD_CELLS, MAX_BATCH_CELLS);\n}\n"
+    }
+  ]
+}
