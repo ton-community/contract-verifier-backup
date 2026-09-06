@@ -1,0 +1,702 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Stellar.tolk, types.tolk\nPROGRAM{\n  0 DECLMETHOD onInternalMessage()\n  102025 DECLMETHOD getOwner()\n  123003 DECLMETHOD getCalculations()\n  90859 DECLMETHOD getLatestCalculation()\n  // 5 functions inlined in-place:\n  // - Storage.load (4 calls)\n  // - Storage.save (2 calls)\n  // - calculateStakingGains (1 call)\n  // - calculatePriceAppreciation (1 call)\n  // - storeCalculation (1 call)\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    0 THROWIF\n    64 LDU\n    32 LDU\n    32 LDU\n    32 PLDU\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    0 TUPLE\n    SWAP\n    8 LDU\n    PLDOPTREF\n    WHILE:<{\n      DUP\n      ISNULL\n      NOT\n    }>DO<{\n      CTOS\n      LDOPTREF\n      UNTIL:<{\n        64 LDU\n        64 LDU\n        32 LDU\n        32 LDU\n        32 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        32 LDU\n        LDREF\n        s0 s14 XCHG\n        11 -ROLL\n        11 TUPLE TPUSH\n        s3 PUSH\n        SEMPTY\n        s1 s4 XCHG\n      }>\n      DROP\n    }>\n    DROP\n    OVER\n    TLEN\n    EQUAL\n    9 THROWIFNOT\n    INMSG_SRC\n    s2 PUSH\n    SDEQ\n    100 THROWIFNOT\n    s2 PUSH\n    86400 PUSHINT\n    DIV\n    s5 PUSH\n    10000 PUSHINT\n    DIV\n    s7 PUSH\n    MUL\n    MUL\n    365 PUSHINT\n    DIV\n    s3 PUSH\n    86400 PUSHINT\n    DIV\n    s5 PUSH\n    100 PUSHINT\n    1000000000000000000 PUSHINT\n    0 PUSHINT\n    WHILE:<{\n      s0 s4 PUSH2\n      LESS\n    }>DO<{\n      s3 PUSH\n      100 ADDCONST\n      s1 s2 XCHG\n      MUL\n      s2 PUSH\n      DIV\n      SWAP\n      INC\n    }>\n    s1 s4 XCHG\n    4 BLKDROP\n    1000000000000000000 PUSHINT\n    SUB\n    s7 PUSH\n    MUL\n    1000000000000000000 PUSHINT\n    DIV\n    2DUP\n    ADD\n    s8 s0 PUSH2\n    ADD\n    OVER\n    10000 PUSHINT\n    MUL\n    s10 PUSH\n    DIV\n    NOW\n    <b b> PUSHREF\n    s7 s11 XCHG\n    s1 s10 XCHG\n    s9 s12 XCHG\n    s1 s7 XCHG\n    s1 s8 XCHG\n    s1 s12 XCHG\n    s1 s6 XCHG\n    s1 s5 XCHG\n    s1 s4 XCHG\n    s3 s3 s0 XCHG3\n    11 TUPLE TPUSH\n    OVER\n    NEWC\n    STSTDADDR\n    s2 POP\n    DUP\n    TLEN\n    1 PUSHINT\n    PUSHNULL\n    s2 s2 s1 PUSH3\n    DIVC\n    REPEAT:<{\n      SWAP\n      NEWC\n      STOPTREF\n      s2 s1 PUSH2\n      MIN\n      s2 s2 XCPU\n      SUB\n      s2 PUSH\n      REPEAT:<{\n        s5 s0 PUSH2\n        INDEXVAR 11 UNTUPLE\n        s10 s12 XCHG2\n        64 STU\n        s1 s8 XCHG\n        64 STU\n        s1 s6 XCHG\n        32 STU\n        s1 s4 XCHG\n        32 STU\n        s1 s2 XCHG\n        32 STU\n        64 STU\n        64 STU\n        64 STU\n        64 STU\n        32 STU\n        s1 s2 XCHG\n        STREF\n        SWAP\n        INC\n      }>\n      SWAP\n      ENDC\n      s0 s2 XCHG\n      SUB\n    }>\n    DROP\n    NIP\n    1 2 BLKDROP2\n    s0 s2 XCHG\n    8 STU\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  getOwner() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    DROP\n  }>\n  getCalculations() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    0 TUPLE\n    SWAP\n    8 LDU\n    LDOPTREF\n    WHILE:<{\n      OVER\n      ISNULL\n      NOT\n    }>DO<{\n      SWAP\n      CTOS\n      LDOPTREF\n      UNTIL:<{\n        64 LDU\n        64 LDU\n        32 LDU\n        32 LDU\n        32 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        32 LDU\n        LDREF\n        s0 s15 XCHG\n        11 -ROLL\n        11 TUPLE TPUSH\n        s4 PUSH\n        SEMPTY\n        s1 s5 XCHG\n      }>\n      DROP\n      SWAP\n    }>\n    NIP\n    s2 PUSH\n    TLEN\n    ROT\n    EQUAL\n    9 THROWIFNOT\n    ENDS\n  }>\n  getLatestCalculation() PROC:<{\n    c4 PUSH\n    CTOS\n    LDSTDADDR\n    NIP\n    0 TUPLE\n    SWAP\n    8 LDU\n    LDOPTREF\n    WHILE:<{\n      OVER\n      ISNULL\n      NOT\n    }>DO<{\n      SWAP\n      CTOS\n      LDOPTREF\n      UNTIL:<{\n        64 LDU\n        64 LDU\n        32 LDU\n        32 LDU\n        32 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        64 LDU\n        32 LDU\n        LDREF\n        s0 s15 XCHG\n        11 -ROLL\n        11 TUPLE TPUSH\n        s4 PUSH\n        SEMPTY\n        s1 s5 XCHG\n      }>\n      DROP\n      SWAP\n    }>\n    NIP\n    s2 PUSH\n    TLEN\n    ROT\n    EQUAL\n    9 THROWIFNOT\n    ENDS\n    DUP\n    TLEN\n    DEC\n    INDEXVAR 11 UNTUPLE\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECCwEAAfIAART/APSkE/S88sgLAQIBYgIDAezQ+JHyQNM/0x/TH9cLH+1E0PpIbwAB0wf0BZMgbrOOJ9D0BI4g0z/TP9Mf0x/TH9M/0z/TP9M/0x/UDlWgbwtvjCPHABTmMOgwIW+IuvKJ+JIixwXy4GQiggFRgKkEJYEnEKkEJ6iogQFtqQQjggFRgKkEJYBkBAIBIAcIAuqCMA3gtrOnZAAAcJNTBLmaI6ZkEqgiqQQBpOgUXwSCMA3gtrOnZAAAoSeogjAN4Lazp2QAAKkEXKBTgKAhgScQqCqpBPgjiBB7GhCcFxgcFhUUQzBvC2+MIcj6UjIgb4hxbVRyIakGiuQwMWwSAssH9ADJ7VQFBgAAAG4ByPQAUyG2CFEioSKOJFNQb4FvK1Csyz8Yyz8Wyx8Uyx8Syx/LP8s/yz/LP8sfEswBpOQByQKhAKG/F19qJofSQYt4AA6YP6AkmQt1nHFIDoegJHEGmf6Z/pj+mP6Y/pn+mf6Z/pn+mP6geq0DeFt8YSY4AK8xgA9BiRN8QsXXlE6JA3xFK3wLeVwCASAJCgARuOie1E0PpIMIAJG6B77UTQ+kgxbwAB0wf0BJMhbrOOKQHQ9ASOINM/0z/TH9Mf0x/TP9M/0z/TP9Mf1A9VoG8Lb4wkxwAV5jAB6DEib4hYuvKJ0Y",
+  "codeHashHex": "D7B5CE0BCB17F1B6ADBAFBF7335B9DA22CBD2E50DD95BB61664185B46BD7666F",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/9be946a8-c5e8-490a-b1d7-eb2caf11d7de/contracts/src/Stellar.tolk",
+        "size_chars": 15313,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/9be946a8-c5e8-490a-b1d7-eb2caf11d7de/contracts/src/types.tolk",
+        "size_chars": 485,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakingMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CalculationRecord"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 14
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 16,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakingMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          64,
+          8,
+          64,
+          22
+        ],
+        "fields": [
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CalculationRecord",
+        "ty_idx": 14,
+        "ident_loc": [
+          1,
+          76,
+          8,
+          76,
+          25
+        ],
+        "fields": [
+          {
+            "name": "timestamp",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          },
+          {
+            "name": "stakingGains",
+            "ty_idx": 11
+          },
+          {
+            "name": "priceAppreciation",
+            "ty_idx": 11
+          },
+          {
+            "name": "totalGain",
+            "ty_idx": 11
+          },
+          {
+            "name": "finalValue",
+            "ty_idx": 11
+          },
+          {
+            "name": "netGainBps",
+            "ty_idx": 9
+          },
+          {
+            "name": "prevHead",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          103,
+          8,
+          103,
+          15
+        ],
+        "fields": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "calculations",
+            "ty_idx": 15
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          248,
+          5,
+          248,
+          22
+        ],
+        "end_loc": [
+          1,
+          299,
+          1,
+          299,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "storeCalculation",
+        "return_ty_idx": 14,
+        "num_params": 5,
+        "ident_loc": [
+          1,
+          192,
+          5,
+          192,
+          21
+        ],
+        "end_loc": [
+          1,
+          241,
+          1,
+          241,
+          2
+        ],
+        "params": [
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          },
+          {
+            "name": "_sender",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "calculateStakingGains",
+        "return_ty_idx": 11,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          127,
+          5,
+          127,
+          26
+        ],
+        "end_loc": [
+          1,
+          145,
+          1,
+          145,
+          2
+        ],
+        "params": [
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "calculatePriceAppreciation",
+        "return_ty_idx": 11,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          149,
+          5,
+          149,
+          31
+        ],
+        "end_loc": [
+          1,
+          189,
+          1,
+          189,
+          2
+        ],
+        "params": [
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          114,
+          13,
+          114,
+          17
+        ],
+        "end_loc": [
+          1,
+          116,
+          1,
+          116,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "getOwner",
+        "return_ty_idx": 7,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          304,
+          9,
+          304,
+          17
+        ],
+        "end_loc": [
+          1,
+          307,
+          1,
+          307,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 6,
+        "name": "getCalculations",
+        "return_ty_idx": 15,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          310,
+          9,
+          310,
+          24
+        ],
+        "end_loc": [
+          1,
+          313,
+          1,
+          313,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 7,
+        "name": "Storage.load",
+        "return_ty_idx": 13,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          110,
+          13,
+          110,
+          17
+        ],
+        "end_loc": [
+          1,
+          112,
+          1,
+          112,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 8,
+        "name": "Storage.fromCell",
+        "return_ty_idx": 13,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "getLatestCalculation",
+        "return_ty_idx": 14,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          316,
+          9,
+          316,
+          29
+        ],
+        "end_loc": [
+          1,
+          319,
+          1,
+          319,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Stellar",
+    "author": "Prgnstctr",
+    "version": "1.0.0",
+    "description": "Append-only XLM investment calculation storage with owner-controlled updates",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakingMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CalculationRecord"
+      },
+      {
+        "kind": "arrayOf",
+        "inner_ty_idx": 13
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "StakingMessage",
+        "ty_idx": 12,
+        "fields": [
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CalculationRecord",
+        "ty_idx": 13,
+        "fields": [
+          {
+            "name": "timestamp",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 11
+          },
+          {
+            "name": "apyBasisPoints",
+            "ty_idx": 9
+          },
+          {
+            "name": "dailyRate",
+            "ty_idx": 9
+          },
+          {
+            "name": "periodSeconds",
+            "ty_idx": 9
+          },
+          {
+            "name": "stakingGains",
+            "ty_idx": 11
+          },
+          {
+            "name": "priceAppreciation",
+            "ty_idx": 11
+          },
+          {
+            "name": "totalGain",
+            "ty_idx": 11
+          },
+          {
+            "name": "finalValue",
+            "ty_idx": 11
+          },
+          {
+            "name": "netGainBps",
+            "ty_idx": 9
+          },
+          {
+            "name": "prevHead",
+            "ty_idx": 3
+          }
+        ]
+      }
+    ],
+    "storage": {},
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 102025,
+        "name": "getOwner",
+        "parameters": [],
+        "return_ty_idx": 7
+      },
+      {
+        "tvm_method_id": 123003,
+        "name": "getCalculations",
+        "parameters": [],
+        "return_ty_idx": 14
+      },
+      {
+        "tvm_method_id": 90859,
+        "name": "getLatestCalculation",
+        "parameters": [],
+        "return_ty_idx": 13
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotAuthorized",
+        "err_code": 100
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 101
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/9be946a8-c5e8-490a-b1d7-eb2caf11d7de/contracts/src/Stellar.tolk",
+      "contents": "// Import standard library functions and types for TON blockchain development\n//import \"@stdlib/stdlib\";\nimport \"types\"\n\n// ============================================================================\n// Contract\n// ============================================================================\n\n// Define the Stellar contract that wraps all the functionality\ncontract Stellar {\n    author: \"Prgnstctr\"\n    version: \"1.0.0\"\n    description: \"Append-only XLM investment calculation storage with owner-controlled updates\"\n    // Declare that this contract handles IncomingMessages type (which is aliased to StakingMessage)\n    // This tells the TON runtime to route incoming messages to the onInternalMessage handler\n    incomingMessages: StakingMessage\n}\n\n// ============================================================================\n// Type Aliases\n// ============================================================================\n\n// Define a type alias that maps IncomingMessages to StakingMessage\n// This tells the contract that all incoming messages should be of type StakingMessage\ntype IncomingMessages = StakingMessage\n\n//\n// CryptoGain Contract\n// author: PRGNSTCTR\n// version: 1.0.0\n// description: Append-only XLM investment calculation storage\n\n// Storage struct to hold the head of linked list and record count\n//struct Storage {\n//   count: uint32,           // Number of calculation records stored\n//    head: cell,              // Reference to the most recent calculation record (linked list head)\n//}\n\n// ===== CONSTANTS =====// \"XLM\" in hex is 584C4D\nconst TOKEN_NAME: slice = \"584C4D\".hexToSlice()\n\n//const TOKEN_NAME: slice = \"XLM\".literalSlice()\n\n// ============================================================================\n// Error Codes\n// ============================================================================\n\n// Error code 100: Thrown when a non-owner attempts to call restricted functions\n// Error code 101: Thrown when an incoming message doesn't match expected structure\n// Error code 102: Thrown when the principal amount is invalid (e.g., zero or negative)\n// Error code 103: Thrown when the staking period is invalid (e.g., zero or too short)\n//enum Errors {\n//  NotAuthorized = 100\n//  InvalidMessage = 101\n//  InvalidPrincipal = 102\n//  InvalidPeriod = 103\n//}\n\n// ============================================================================\n// Data Structures\n// ============================================================================\n\n// Define the structure for incoming staking messages with opcode 0x12345678\nstruct StakingMessage {\n    // The initial amount being staked (in smallest units, e.g., nanotons)\n    principal: uint64\n    // Annual Percentage Yield expressed in basis points (e.g., 3300 = 33%)\n    apyBasisPoints: uint32\n    // Daily rate of price appreciation expressed in basis points (e.g., 47 = 0.47%)\n    dailyRate: uint32\n    // Duration of the staking period in seconds (e.g., 1728000 = 20 days)\n    periodSeconds: uint32\n}\n\n// Define the structure for storing calculation results as a historical record\nstruct CalculationRecord {\n    // Unix timestamp when this calculation was performed (captured via blockchain.now())\n    timestamp: uint64\n    // Name of the token being staked (e.g., \"XLM\", \"GRAM\")\n    // The principal amount used in this calculation\n    principal: uint64\n    // The APY used in this calculation (stored for historical reference)\n    apyBasisPoints: uint32\n    // The daily rate used in this calculation (stored for historical reference)\n    dailyRate: uint32\n    // The staking period used in this calculation (stored for historical reference)\n    periodSeconds: uint32\n    // Gains calculated from the APY formula (interest earned from annual percentage)\n    stakingGains: uint64\n    // Gains calculated from daily compounding of the daily rate\n    priceAppreciation: uint64\n    // Sum of staking_gains and price_appreciation (total profit)\n    totalGain: uint64\n    // Final value = principal + total_gain (total amount after staking period)\n    finalValue: uint64\n    // Net gain expressed in basis points: (total_gain * 10000) / principal\n    netGainBps: uint32\n    // Reference to the previous calculation record in the linked list (for history tracking)\n    prevHead: cell\n}\n\n// Define the structure for persistent contract storage on the blockchain\nstruct Storage {\n    // The owner's address; only the owner can send staking messages to this contract\n    owner: address\n    // A array (dynamic array) that stores all historical CalculationRecord entries\n    calculations: array<CalculationRecord>\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(mutate self) {\n    contract.setData(self.toCell());\n}\n\n// ============================================================================\n// Calculation Functions\n// ============================================================================\nfun getTokenName(): slice {\n    return TOKEN_NAME;\n}\n\n// Function: Calculate staking gains based on APY and investment period\n// Formula: Staking Gain = Principal × (APY / 365) × Days\nfun calculateStakingGains(\n    principal: uint64,\n    apyBasisPoints: uint32,\n    periodSeconds: uint32,\n): uint64 {\n    // Convert period from seconds to days by dividing by 86400 (seconds per day)\n    val days = periodSeconds / 86400;\n\n    // Convert APY from basis points to decimal: divide by 10000\n    // Example: 3300 basis points = 3300 / 10000 = 0.33 = 33%\n    val apyDecimal = (apyBasisPoints as uint64) / 10000;\n\n    // Calculate staking gains: principal × apy_decimal × days / 365\n    // Example: 95 × 0.33 × 20 / 365 = 1.71780822\n    val gains = (principal * apyDecimal * days) / 365;\n\n    // Return the calculated staking gains\n    return gains;\n}\n\n// Function: Calculate price appreciation from daily compounding\n// Formula: Price Appreciation = Principal × ((1 + Daily Rate)^Days - 1)\nfun calculatePriceAppreciation(\n    principal: uint64,\n    dailyRate: uint32,\n    periodSeconds: uint32,\n): uint64 {\n    // Convert period from seconds to days by dividing by 86400\n    val days = periodSeconds / 86400;\n\n    // daily_rate is expressed as a percentage (e.g., 47 for 47%)\n    val rateDecimal = (dailyRate as uint64);\n\n    // Base multiplier: 10^18 for fixed-point precision arithmetic\n    // This allows us to handle decimal multiplications accurately\n    val base = 100 as uint64;\n    var multiplier = 1000000000000000000 as uint64; // 10^18\n\n    // Loop counter for daily compounding\n    var i = 0 as uint64;\n\n    // Apply daily compounding for each day in the investment period\n    // Each iteration: multiplier = multiplier × (100 + daily_rate) / 100\n    // This simulates: (1 + rate/100) raised to the power of days\n    // Example: for 47% daily over 20 days: (1.47)^20\n    while (i < days) {\n        // Multiply by (100 + rate) and divide by 100 to maintain precision\n        // Example iteration 1: multiplier = multiplier × 147 / 100\n        multiplier = (multiplier * (base + rateDecimal)) / base;\n\n        // Increment loop counter\n        i = i + 1;\n    }\n\n    // After loop, multiplier = (1 + daily_rate/100)^days × 10^18\n    // Now calculate appreciation: principal × (multiplier/10^18 - 1)\n    // Subtract 10^18 to remove the \"1\" part: (1 + rate)^days - 1\n    // Then multiply by principal and divide by 10^18 to scale back down\n    val appreciation = (principal * (multiplier - 1000000000000000000)) / 1000000000000000000;\n\n    // Return the calculated price appreciation\n    return appreciation;\n}\n\n// Store a new calculation record by computing all derived values\nfun storeCalculation(\n    principal: uint64,\n    apyBasisPoints: uint32,\n    dailyRate: uint32,\n    periodSeconds: uint32,\n    _sender: address,\n): CalculationRecord {\n    // Calculate the staking gains component using the APY-based formula\n    val stakingGains = calculateStakingGains(principal, apyBasisPoints, periodSeconds);\n\n    // Calculate the price appreciation component using daily compounding\n    val priceAppreciation = calculatePriceAppreciation(principal, dailyRate, periodSeconds);\n\n    // Calculate total gain by summing both components\n    val totalGain = stakingGains + priceAppreciation;\n\n    // Calculate the final value: what the principal grows to after the period\n    val finalValue = principal + totalGain;\n\n    // Calculate net gain in basis points: what percentage the principal grew\n    // (total_gain * 10000) / principal converts to basis points (1 basis point = 0.01%)\n    val netGainBps = (totalGain * 10000) / principal;\n\n    // Construct and return a new CalculationRecord with all computed values\n    return CalculationRecord {\n        // Set timestamp to current blockchain time (seconds since Unix epoch)\n        timestamp: blockchain.now(),\n        // Set token name to \"XLM\" (hardcoded for this contract)\n        // Store the principal for historical reference\n        principal,\n        // Store the APY for historical reference\n        apyBasisPoints,\n        // Store the daily rate for historical reference\n        dailyRate,\n        // Store the period for historical reference\n        periodSeconds,\n        // Store the calculated staking gains\n        stakingGains,\n        // Store the calculated price appreciation\n        priceAppreciation,\n        // Store the sum of both gain components\n        totalGain,\n        // Store the final value after the period\n        finalValue,\n        // Store the net gain expressed in basis points\n        netGainBps,\n        // Set prev_head to an empty cell (no linked list chain yet)\n        prevHead: beginCell().endCell(),\n    };\n}\n\n// ============================================================================\n// Message Handler\n// ============================================================================\n\n// Handle incoming internal messages (transactions) sent to this contract\nfun onInternalMessage(in: InMessage) {\n    // Parse the message body lazily as a StakingMessage struct\n    // Lazy evaluation defers parsing until the value is actually used\n    val msg = lazy StakingMessage.fromSlice(in.body);\n\n    // Match the parsed message against possible message types\n    match (msg) {\n        // If the message successfully parses as a StakingMessage, execute this block\n        StakingMessage => {\n            // Extract the principal amount from the message\n            val principal = msg.principal;\n            // Extract the APY basis points from the message\n            val apyBasisPoints = msg.apyBasisPoints;\n            // Extract the daily rate from the message\n            val dailyRate = msg.dailyRate;\n            // Extract the staking period from the message\n            val periodSeconds = msg.periodSeconds;\n\n            // Load the current contract storage state from the blockchain\n            // Using lazy evaluation to defer loading until needed\n            var storage = lazy Storage.load();\n\n            // Verify that the sender is the contract owner (authorization check)\n            // If not, throw NotAuthorized error and halt execution\n            assert (storage.owner == in.senderAddress) throw Errors.NotAuthorized;\n\n            // Create a new CalculationRecord with the extracted parameters\n            // This computes all the staking gains and price appreciation\n            val calculationRecord = storeCalculation(\n                principal,\n                apyBasisPoints,\n                dailyRate,\n                periodSeconds,\n                in.senderAddress,\n            );\n\n            // Add the newly created calculation record to the storage array\n            // This appends it to the end of the calculations list\n            storage.calculations.push(calculationRecord);\n\n            // Persist the updated storage back to the blockchain\n            // This saves the new calculation record permanently\n            storage.save();\n        }\n        // If the message does not match StakingMessage type, execute this block\n        else => {\n            // Verify that the message body is empty (reject non-empty invalid messages)\n            // If not empty, throw InvalidMessage error and halt execution\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\n// ============================================================================\n// Getter Functions\n// ============================================================================\nget fun getOwner(): address {\n    val storage = lazy Storage.load();\n    return storage.owner;\n}\n\n// Retrieve all calculation records from storage\nget fun getCalculations(): array<CalculationRecord> {\n    val storage = Storage.load();\n    return storage.calculations;\n}\n\n// Retrieve the latest calculation record\nget fun getLatestCalculation(): CalculationRecord {\n    val storage = Storage.load();\n    return storage.calculations.get(storage.calculations.size() - 1);\n}\n\n// ============================================================================\n// Initialization\n// ============================================================================\n\n// Initialize the contract when it is first deployed to the blockchain\nfun init(owner: address) {\n    // Create a new Storage struct to initialize contract state\n    var storage = Storage {\n        // Set the owner to the current contract's address (the deployer)\n        owner,\n        // Initialize an empty array to hold future calculation records\n        calculations: [],\n    };\n\n    // Create an initial test calculation record with hardcoded sample data\n    val calculationRecord = CalculationRecord {\n        // Set timestamp to current blockchain time\n        timestamp: blockchain.now(),\n        // Set token name to \"XLM\"\n        // Set principal to 100 units\n        principal: 100,\n        // Set APY to 3300 basis points (33%)\n        apyBasisPoints: 3300,\n        // Set daily rate to 47 percent (47%)\n        dailyRate: 47,\n        // Set period to 1728000 seconds (20 days)\n        periodSeconds: 1728000,\n        // Set staking gains to 2 units (pre-calculated for this test data)\n        stakingGains: 2,\n        // Set price appreciation to 225909 units (pre-calculated for this test data)\n        priceAppreciation: 225909,\n        // Set total gain to sum of both components\n        totalGain: 225911,\n        // Set final value to principal + total_gain\n        finalValue: 226011,\n        // Set net gain in basis points (22591100 = 225911 * 10000 / 100)\n        netGainBps: 22591100,\n        // Set prev_head to an empty cell (no linked list chain)\n        prevHead: beginCell().endCell(),\n    };\n\n    // Add the initial test record to the storage calculations array\n    storage.calculations.push(calculationRecord);\n\n    // Persist the initialized storage to the blockchain\n    storage.save();\n}\n// ============================================================================\n// Contract\n// ============================================================================\n// Define the Stellar contract that wraps all the functionality\n//contract Stellar {\n// Declare that this contract handles IncomingMessages type (which is aliased to StakingMessage)\n// This tells the TON runtime to route incoming messages to the onInternalMessage handler\n//  incomingMessages: StakingMessage\n//}\n"
+    },
+    {
+      "filename": "tmp/9be946a8-c5e8-490a-b1d7-eb2caf11d7de/contracts/src/types.tolk",
+      "contents": "enum Errors {\n    // NotOwner = 100\n    // InvalidMessage = 0xFFFF\n    NotAuthorized = 100\n    InvalidMessage = 101\n    InvalidPrincipal = 102\n    InvalidPeriod = 103\n}\n\n/* struct Storage {\n    owner: address\n    calculations: array<CalculationRecord>\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n//could be mutate self\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n} */\n\nstruct (0x2ce05111) ChangeOwner {\n    newOwner: address\n}\n"
+    }
+  ]
+}

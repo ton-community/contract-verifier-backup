@@ -1,0 +1,4727 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from Vault.tolk, constants.tolk, errors.tolk, messages.tolk, storage.tolk, tonstakers.tolk, window.tolk\nPROGRAM{\n  DECLPROC calcWindowState()\n  DECLPROC VaultStorage.tryStakeForfeits()\n  DECLPROC onBouncedMessage()\n  0 DECLMETHOD onInternalMessage()\n  103798 DECLMETHOD get_config()\n  102945 DECLMETHOD get_window()\n  68369 DECLMETHOD get_account_address()\n  // 18 functions inlined in-place:\n  // - VaultStorage.load (13 calls)\n  // - VaultStorage.save (11 calls)\n  // - calcAccountInit (2 calls)\n  // - calcTsTonWalletInit (1 call)\n  // - calcTsTonWalletAddress (1 call)\n  // - VaultStorage.accountInit (3 calls)\n  // - VaultStorage.assertFromAccount (5 calls)\n  // - VaultStorage.tstonWallet (3 calls)\n  // - VaultStorage.window (2 calls)\n  // - VaultStorage.distribute (3 calls)\n  // - sendExitAck (3 calls)\n  // - emitLog<LogForfeitStaked> (1 call)\n  // - emitLog<LogTrancheCancelled> (2 calls)\n  // - emitLog<LogDeposited> (1 call)\n  // - emitLog<LogExitRejected> (1 call)\n  // - emitLog<LogExitStarted> (2 calls)\n  // - emitLog<LogTrancheActivated> (1 call)\n  // - emitLog<LogExited> (1 call)\n  calcWindowState() PROC:<{\n    s3 PUSH\n    0 GTINT\n    IF:<{\n      s2 PUSH\n      0 GTINT\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    IF:<{\n      s2 s3 PUSH2\n      LESS\n      0 NEQINT\n    }>ELSE<{\n      0 PUSHINT\n    }>\n    118 THROWIFNOT\n    s0 s1 PUSH2\n    LESS\n    IFJMP:<{\n      DROP\n      s2 POP\n      FALSE\n      s2 PUSH\n      0 PUSHINT\n      s0 s3 XCHG\n      ADD\n      s3 s0 s1 XC2PU\n    }>\n    s0 s1 PUXC\n    SUB\n    s0 s3 PUSH2\n    DIV\n    s1 s4 XCPU\n    MOD\n    s2 PUSH\n    SUBR\n    s2 s2 XCPU\n    SUB\n    s3 PUSH\n    LESS\n    IFJMP:<{\n      OVER\n      TRUE\n      s0 s4 XCHG\n      ADD\n      s2 s4 PUXC\n      ADD\n      s1 s3 XCHG\n      s1 s4 XCHG\n    }>\n    FALSE\n    SWAP\n    INC\n    s2 s4 PUSH2\n    ADD\n    s3 s5 PUSH2\n    ADD\n    s0 s5 XCHG2\n    ADD\n    s3 s5 XCHG2\n    ADD\n    4 1 REVERSE\n  }>\n  VaultStorage.tryStakeForfeits() PROC:<{\n    DUP\n    IF:<{\n      -1 PUSHINT\n    }>ELSE<{\n      OVER\n      1000000000 PUSHINT\n      LESS\n      0 NEQINT\n    }>\n    IFJMP:<{\n    }>\n    OVER\n    1000000000 PUSHINT\n    ADD\n    500000000 PUSHINT\n    ADD\n    BALANCE\n    FIRST\n    GREATER\n    IFJMP:<{\n    }>\n    DROP\n    s5 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    NIP\n    LDREF\n    NIP\n    ENDS\n    OVER\n    1000000000 PUSHINT\n    ADD\n    NEWC\n    b{011000} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    SWAP\n    STGRAMS\n    b{00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010001111101010101000011100100010000000000000000000000000000000000000000000000000000000000000000} STSLICECONST\n    ENDC\n    1 PUSHINT\n    SENDRAWMSG\n    DUP\n    0 PUSHINT\n    NEWC\n    b{11000110000000000000000} STSLICECONST\n    877365742 PUSHINT\n    248 STUR\n    b{00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001101000100101110001001111011100000000000000000000000000000000000000000000000000000000000000000} STSLICECONST\n    s0 s3 XCHG2\n    STGRAMS\n    ENDC\n    s2 PUSH\n    SENDRAWMSG\n  }>\n  onBouncedMessage() PROC:<{\n    DUP\n    32 PLDU\n    32 PUSHPOW2DEC\n    EQUAL\n    IFJMP:<{\n      32 LDU\n      NIP\n      32 PLDU\n      1205158801 PUSHINT\n      EQUAL\n      IFJMP:<{\n        c4 PUSH\n        CTOS\n        32 LDU\n        32 LDU\n        32 LDU\n        LDREF\n        LDREF\n        32 LDU\n        LDGRAMS\n        128 LDU\n        LDGRAMS\n        LDGRAMS\n        LDGRAMS\n        ENDS\n        ADD\n        s0 s9 XCHG\n        NEWC\n        32 STU\n        s1 s8 XCHG\n        32 STU\n        s1 s6 XCHG\n        32 STU\n        s1 s4 XCHG\n        STREF\n        s1 s2 XCHG\n        STREF\n        32 STU\n        SWAP\n        STGRAMS\n        128 STU\n        SWAP\n        STGRAMS\n        SWAP\n        STGRAMS\n        x{0} STSLICECONST\n        ENDC\n        c4 POP\n      }>\n    }>\n    x{fffffffe} SDBEGINSQ\n    63 THROWIFNOT\n    PLDREF\n    CTOS\n    32 LDU\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    32 LDU\n    LDREF\n    LDREF\n    32 LDU\n    LDGRAMS\n    128 LDU\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s12 PUSH\n    1558396783 PUSHINT\n    EQUAL\n    IFJMP:<{\n      s12 POP\n      s0 s10 XCHG\n      64 LDU\n      LDGRAMS\n      160 LDU\n      NIP\n      LDSTDADDR\n      DROP\n      s5 s1 XCPU\n      SUB\n      0 PUSHINT\n      MAX\n      s0 s11 XCHG\n      NEWC\n      32 STU\n      s1 s10 XCHG\n      32 STU\n      s1 s8 XCHG\n      32 STU\n      s1 s6 XCHG\n      STREF\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      32 STU\n      s0 s6 XCHG2\n      STGRAMS\n      128 STU\n      SWAP\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      s0 s4 XCHG2\n      STGRAMS\n      ENDC\n      c4 POP\n      NEWC\n      b{010000} STSLICECONST\n      s1 s(-1) PUXC\n      STSTDADDR\n      3507580521 PUSHINT\n      143 STUR\n      s2 PUSH\n      64 STUR\n      s1 s(-1) PUXC\n      STSTDADDR\n      s3 PUSH\n      STGRAMS\n      x{ff} STSLICECONST\n      ENDC\n      66 PUSHINT\n      SENDRAWMSG\n      NEWC\n      x{1da026e0} STSLICECONST\n      s1 s2 XCHG\n      64 STU\n      STSTDADDR\n      SWAP\n      STGRAMS\n      x{ff} STSLICECONST\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      497034976 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    s0 s12 XCHG\n    260734629 PUSHINT\n    EQUAL\n    IFJMP:<{\n      s0 s10 XCHG\n      64 LDU\n      LDGRAMS\n      LDSTDADDR\n      DROP\n      s5 PUSH\n      0 GTINT\n      IF:<{\n        s0 s3 XCHG\n        ADD\n        64 LSHIFT#\n        s4 PUSH\n        DIV\n        s1 s3 XCHG\n        ADD\n        0 PUSHINT\n      }>ELSE<{\n        s0 s3 XCHG\n        ADD\n        s1 s3 XCHG\n      }>\n      s0 s10 XCHG\n      NEWC\n      32 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      32 STU\n      SWAP\n      STGRAMS\n      s1 s3 XCHG\n      128 STU\n      s0 s3 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      ENDC\n      c4 POP\n      64 PUSHINT\n      NEWC\n      b{010000} STSLICECONST\n      s1 s3 XCHG\n      STSTDADDR\n      1338820912 PUSHINT\n      143 STUR\n      64 STU\n      b{100000} STSLICECONST\n      ENDC\n      SWAP\n      SENDRAWMSG\n    }>\n    12 BLKDROP\n  }>\n  onInternalMessage() PROC:<{\n    INMSG_BOUNCED\n    IFJMP:<{\n      onBouncedMessage() CALLDICT\n    }>\n    DUP\n    x{95db9d39} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      INMSG_SRC\n      REWRITESTDADDR\n      DROP\n      120 THROWIF\n      64 LDU\n      LDGRAMS\n      DROP\n      DUP\n      1000000000 PUSHINT\n      GEQ\n      110 THROWIFNOT\n      INMSG_VALUE\n      OVER\n      1000000000 PUSHINT\n      ADD\n      300000000 PUSHINT\n      ADD\n      GEQ\n      111 THROWIFNOT\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s4 s11 XCPU\n      ADD\n      NOW\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s12 PUSH\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s5 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      STOPTREF\n      ENDC\n      s9 PUSH\n      INMSG_VALUE\n      20000000 PUSHINT\n      SUB\n      INMSG_SRC\n      NEWC\n      x{5ce33f6f} STSLICECONST\n      18 s() PUSH\n      64 STUR\n      17 s() PUSH\n      STGRAMS\n      s9 PUSH\n      128 STUR\n      s1 s5 XCHG\n      32 STU\n      s1 s4 XCHG\n      STSTDADDR\n      ENDC\n      NEWC\n      b{01100010000000000} STSLICECONST\n      2OVER\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      256 STUR\n      s0 s4 XCHG2\n      STGRAMS\n      b{0} STSLICECONST\n      3 PUSHINT\n      STGRAMS\n      141 PUSHINT\n      108 STUR\n      OVER\n      STREFR\n      s2 PUSH\n      STREFR\n      s1 s3 XCHG\n      STREF\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      s0 s12 XCHG\n      NEWC\n      32 STU\n      s1 s11 XCHG\n      32 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      STREF\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      32 STU\n      s0 s5 XCHG2\n      STGRAMS\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      c4 POP\n      INMSG_SRC\n      -ROT\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      NEWC\n      x{85b4434a} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      STSTDADDR\n      s1 s2 XCHG\n      STSTDADDR\n      SWAP\n      STGRAMS\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      2243183434 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{5b129b50} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      LDSTDADDR\n      64 LDU\n      LDGRAMS\n      256 LDU\n      1 PLDI\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s9 PUSH\n      17 s() PUSH\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      STOPTREF\n      ENDC\n      s14 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      SDEQ\n      104 THROWIFNOT\n      s9 s2 PUSH2\n      GEQ\n      119 THROWIFNOT\n      s15 s14 s13 PUSH3\n      NOW\n      calcWindowState() CALLDICT\n      3 1 BLKDROP2\n      s11 s4 XCPU\n      SUB\n      SWAP\n      IF:<{\n        -1 PUSHINT\n      }>ELSE<{\n        DUP\n        0 EQINT\n        0 NEQINT\n      }>\n      DUP\n      NOT\n      IF:<{\n        s0 s2 XCHG\n        NOT\n        0 NEQINT\n      }>ELSE<{\n        s2 POP\n        0 PUSHINT\n      }>\n      IFJMP:<{\n        5 BLKDROP\n        s6 s7 XCHG2\n        5 BLKDROP\n        3 3 BLKDROP2\n        s3 POP\n        s3 POP\n        INMSG_VALUE\n        20000000 PUSHINT\n        SUB\n        INMSG_SRC\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        SWAP\n        STGRAMS\n        2688964689 PUSHINT\n        139 STUR\n        s3 PUSH\n        64 STUR\n        s2 PUSH\n        32 STUR\n        ENDC\n        1 PUSHINT\n        SENDRAWMSG\n        NEWC\n        b{11000110000000000000000} STSLICECONST\n        2670399262 PUSHINT\n        248 STUR\n        2670399262 PUSHINT\n        130 STUR\n        s1 s3 XCHG\n        64 STU\n        s1 s2 XCHG\n        STSTDADDR\n        32 STU\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>\n      s10 POP\n      s2 s8 PUSH2\n      MUL\n      ROT\n      SUB\n      64 RSHIFT#\n      DUP\n      0 LESSINT\n      IF:<{\n        DROP\n        0 PUSHINT\n      }>\n      SWAP\n      IF:<{\n        DUP\n        0 GTINT\n        IF:<{\n          INMSG_VALUE\n          20000000 PUSHINT\n          SUB\n          s11 PUSH\n          CTOS\n          LDSTDADDR\n          NIP\n          LDSTDADDR\n          LDREF\n          ENDS\n          MYADDR\n          OVER\n          NEWC\n          x{0} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          s1 s3 XCHG\n          STSTDADDR\n          s1 s2 XCHG\n          STREF\n          0 PUSHINT\n          52 STUR\n          ENDC\n          SWAP\n          NEWC\n          b{00110} STSLICECONST\n          STREF\n          STREF\n          HASHBU\n          NEWC\n          b{10000000000} STSLICECONST\n          256 STU\n          BTOS\n          INMSG_SRC\n          INMSG_SRC\n          PUSHNULL\n          s4 PUSH\n          120000000 PUSHINT\n          SUB\n          b{0} PUSHSLICE\n          s11 s7 PUSH2\n          NEWC\n          x{0f8a7ea5} STSLICECONST\n          s1 s2 XCHG\n          64 STU\n          SWAP\n          STGRAMS\n          s1 s5 XCHG\n          STSTDADDR\n          s1 s3 XCHG\n          STOPTSTDADDR\n          STOPTREF\n          SWAP\n          STGRAMS\n          STSLICE\n          ENDC\n          NEWC\n          b{011000} STSLICECONST\n          s1 s2 XCHG\n          STSTDADDR\n          ROT\n          STGRAMS\n          b{0} STSLICECONST\n          3 PUSHINT\n          STGRAMS\n          1 PUSHINT\n          102 STUR\n          STREF\n          ENDC\n          1 PUSHINT\n          SENDRAWMSG\n        }>ELSE<{\n          INMSG_SRC\n          INMSG_VALUE\n          20000000 PUSHINT\n          SUB\n          1 PUSHINT\n          NEWC\n          b{010000} STSLICECONST\n          s1 s3 XCHG\n          STSTDADDR\n          SWAP\n          STGRAMS\n          1338820912 PUSHINT\n          139 STUR\n          s6 PUSH\n          64 STUR\n          b{100000} STSLICECONST\n          ENDC\n          SWAP\n          SENDRAWMSG\n        }>\n        NEWC\n        x{72d5e9ca} STSLICECONST\n        s1 s5 XCHG\n        64 STU\n        s1 s3 XCHG\n        STSTDADDR\n        b{10} STSLICECONST\n        64 STU\n        SWAP\n        STGRAMS\n        SWAP\n        STGRAMS\n        ENDC\n        NEWC\n        b{11000110000000000000000} STSLICECONST\n        1926621642 PUSHINT\n        248 STUR\n        1 PUSHINT\n        98 STUR\n        STREF\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        s8 PUSH\n        0 GTINT\n        IF:<{\n          s0 s6 XCHG2\n          ADD\n          64 LSHIFT#\n          s7 PUSH\n          DIV\n          s1 s6 XCHG\n          ADD\n          0 PUSHINT\n        }>ELSE<{\n          s1 s6 XCHG\n          ADD\n          s1 s6 XCHG\n        }>\n        INMSG_SRC\n        INMSG_VALUE\n        20000000 PUSHINT\n        SUB\n        1 PUSHINT\n        NEWC\n        b{010000} STSLICECONST\n        s1 s3 XCHG\n        STSTDADDR\n        SWAP\n        STGRAMS\n        1338820912 PUSHINT\n        139 STUR\n        s5 PUSH\n        64 STUR\n        b{010000} STSLICECONST\n        ENDC\n        SWAP\n        SENDRAWMSG\n        NEWC\n        x{72d5e9ca} STSLICECONST\n        s1 s4 XCHG\n        64 STU\n        s1 s2 XCHG\n        STSTDADDR\n        b{01} STSLICECONST\n        s1 s5 XCHG\n        64 STU\n        s0 s3 XCHG2\n        STGRAMS\n        x{0} STSLICECONST\n        ENDC\n        NEWC\n        b{11000110000000000000000} STSLICECONST\n        1926621642 PUSHINT\n        248 STUR\n        1 PUSHINT\n        98 STUR\n        STREF\n        ENDC\n        0 PUSHINT\n        SENDRAWMSG\n      }>\n      s0 s9 XCHG\n      NEWC\n      32 STU\n      s1 s8 XCHG\n      32 STU\n      s1 s6 XCHG\n      32 STU\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      32 STU\n      SWAP\n      STGRAMS\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      c4 POP\n    }>\n    x{d1116e69} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      LDSTDADDR\n      LDGRAMS\n      8 PLDU\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s7 s14 PUSH2\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      STOPTREF\n      ENDC\n      s12 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      SDEQ\n      104 THROWIFNOT\n      s7 s1 XCPU\n      SUB\n      0 PUSHINT\n      MAX\n      s0 s13 XCHG\n      NEWC\n      32 STU\n      s1 s12 XCHG\n      32 STU\n      s1 s10 XCHG\n      32 STU\n      s1 s8 XCHG\n      STREF\n      s1 s6 XCHG\n      STREF\n      s1 s4 XCHG\n      32 STU\n      s0 s8 XCHG2\n      STGRAMS\n      s1 s7 XCHG\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      s0 s5 XCHG2\n      STGRAMS\n      ENDC\n      c4 POP\n      NEWC\n      x{1da026e0} STSLICECONST\n      s1 s4 XCHG\n      64 STU\n      s1 s3 XCHG\n      STSTDADDR\n      ROT\n      STGRAMS\n      8 STU\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      497034976 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{18e86633} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      LDSTDADDR\n      8 LDU\n      LDGRAMS\n      LDGRAMS\n      1 PLDI\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s9 PUSH\n      17 s() PUSH\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      STOPTREF\n      ENDC\n      s14 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      SDEQ\n      104 THROWIFNOT\n      DUP\n      IF:<{\n        s0 s10 XCHG\n        INC\n        s0 s10 XCHG\n      }>\n      s0 s15 XCHG\n      NEWC\n      32 STU\n      s1 s14 XCHG\n      32 STU\n      s1 s12 XCHG\n      32 STU\n      s1 s10 XCHG\n      STREF\n      s1 s8 XCHG\n      STREF\n      s6 PUSH\n      32 STUR\n      s0 s5 XCHG2\n      STGRAMS\n      s1 s3 XCHG\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      s0 s8 XCHG2\n      STGRAMS\n      ENDC\n      c4 POP\n      NEWC\n      x{d4592eba} STSLICECONST\n      s1 s7 XCHG\n      64 STU\n      STSTDADDR\n      8 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      1 STI\n      32 STU\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      3562614458 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{bcbc6c5e} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      LDSTDADDR\n      LDGRAMS\n      DROP\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s12 PUSH\n      s0 s4 XCHG\n      NEWC\n      STSTDADDR\n      s1 s7 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STREF\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      s1 s3 XCHG\n      STOPTREF\n      ENDC\n      s9 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      s1 s2 XCHG\n      SDEQ\n      104 THROWIFNOT\n      INMSG_VALUE\n      OVER\n      GEQ\n      111 THROWIFNOT\n      ADD\n      10 ROLL\n      VaultStorage.tryStakeForfeits() CALLDICT\n      s0 s10 XCHG\n      NEWC\n      32 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      32 STU\n      SWAP\n      STGRAMS\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      c4 POP\n    }>\n    x{d730a916} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      s0 s11 XCHG\n      64 LDU\n      LDSTDADDR\n      2 LDU\n      64 LDU\n      LDGRAMS\n      LDGRAMS\n      1 PLDI\n      INMSG_SRC\n      MYADDR\n      PUSHNULL\n      NEWDICT\n      PUSHNULL\n      s10 PUSH\n      18 s() PUSH\n      s0 s5 XCHG\n      NEWC\n      STSTDADDR\n      STSTDADDR\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STOPTSTDADDR\n      0 PUSHINT\n      97 STUR\n      STOPTREF\n      STOPTREF\n      ENDC\n      s15 PUSH\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      SDEQ\n      104 THROWIFNOT\n      INMSG_VALUE\n      s2 PUSH\n      GEQ\n      111 THROWIFNOT\n      s7 s1 XCPU\n      ADD\n      s7 PUSH\n      NOT\n      IF:<{\n        s11 PUSH\n        0 GTINT\n        0 NEQINT\n      }>ELSE<{\n        0 PUSHINT\n      }>\n      IF:<{\n        s0 s11 XCHG\n        DEC\n        s0 s11 XCHG\n      }>\n      s10 16 s() XCHG\n      s9 s15 XCHG\n      s8 s14 XCHG\n      s7 s13 XCHG\n      s6 s12 XCHG\n      s5 s11 XCHG\n      s4 16 s() XCHG\n      s3 s15 XCHG\n      s14 s0 s0 XCHG3\n      s0 17 s() XCHG\n      VaultStorage.tryStakeForfeits() CALLDICT\n      s0 s10 XCHG\n      NEWC\n      32 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      OVER\n      32 STUR\n      ROT\n      STGRAMS\n      s1 s2 XCHG\n      128 STU\n      ROT\n      STGRAMS\n      ROT\n      STGRAMS\n      ROT\n      STGRAMS\n      ENDC\n      c4 POP\n      NEWC\n      x{72208540} STSLICECONST\n      s1 s3 XCHG\n      64 STU\n      STSTDADDR\n      s1 s5 XCHG\n      2 STU\n      s1 s3 XCHG\n      64 STU\n      SWAP\n      STGRAMS\n      s0 s3 XCHG2\n      STGRAMS\n      s1 s2 XCHG\n      1 STI\n      32 STU\n      ENDC\n      NEWC\n      b{11000110000000000000000} STSLICECONST\n      1914733888 PUSHINT\n      248 STUR\n      1 PUSHINT\n      98 STUR\n      STREF\n      ENDC\n      0 PUSHINT\n      SENDRAWMSG\n    }>\n    x{959c593e} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      VaultStorage.tryStakeForfeits() CALLDICT\n      s0 s10 XCHG\n      NEWC\n      32 STU\n      s1 s9 XCHG\n      32 STU\n      s1 s7 XCHG\n      32 STU\n      s1 s5 XCHG\n      STREF\n      s1 s3 XCHG\n      STREF\n      32 STU\n      SWAP\n      STGRAMS\n      128 STU\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      c4 POP\n    }>\n    x{7362d09c} SDBEGINSQ\n    IFJMP:<{\n      NIP\n      c4 PUSH\n      CTOS\n      32 LDU\n      32 LDU\n      32 LDU\n      LDREF\n      LDREF\n      32 LDU\n      LDGRAMS\n      128 LDU\n      LDGRAMS\n      LDGRAMS\n      LDGRAMS\n      ENDS\n      INMSG_SRC\n      s7 PUSH\n      CTOS\n      LDSTDADDR\n      NIP\n      LDSTDADDR\n      LDREF\n      ENDS\n      MYADDR\n      OVER\n      NEWC\n      x{0} STSLICECONST\n      s1 s2 XCHG\n      STSTDADDR\n      s1 s3 XCHG\n      STSTDADDR\n      s1 s2 XCHG\n      STREF\n      0 PUSHINT\n      52 STUR\n      ENDC\n      SWAP\n      NEWC\n      b{00110} STSLICECONST\n      STREF\n      STREF\n      HASHBU\n      NEWC\n      b{10000000000} STSLICECONST\n      256 STU\n      BTOS\n      SDEQ\n      103 THROWIFNOT\n      s0 s11 XCHG\n      64 LDU\n      NIP\n      LDGRAMS\n      LDOPTSTDADDR\n      DROP\n      ISNULL\n      IF:<{\n        0 PUSHINT\n        s12 POP\n      }>\n      s4 PUSH\n      0 GTINT\n      IF:<{\n        ROT\n        ADD\n        64 LSHIFT#\n        s3 PUSH\n        DIV\n        s1 s2 XCHG\n        ADD\n        0 PUSHINT\n      }>ELSE<{\n        s1 s2 XCHG\n        ADD\n        s1 s2 XCHG\n      }>\n      s0 s9 XCHG\n      NEWC\n      32 STU\n      s1 s8 XCHG\n      32 STU\n      s1 s6 XCHG\n      32 STU\n      s1 s4 XCHG\n      STREF\n      s1 s2 XCHG\n      STREF\n      32 STU\n      SWAP\n      STGRAMS\n      s1 s2 XCHG\n      128 STU\n      ROT\n      STGRAMS\n      SWAP\n      STGRAMS\n      SWAP\n      STGRAMS\n      ENDC\n      c4 POP\n    }>\n    x{d53276db} SDBEGINSQ\n    IFJMP:<{\n      2DROP\n    }>\n    x{34813b76} SDBEGINSQ\n    NIP\n    IFJMP:<{\n      DROP\n    }>\n    16 PUSHPOW2DEC\n    SWAP\n    SEMPTY\n    THROWANYIFNOT\n  }>\n  get_config() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    32 LDU\n    LDREF\n    NIP\n    LDREF\n    32 LDU\n    LDGRAMS\n    128 LDU\n    LDGRAMS\n    LDGRAMS\n    LDGRAMS\n    ENDS\n    s6 PUSH\n    CTOS\n    LDSTDADDR\n    LDSTDADDR\n    LDREF\n    NIP\n    ENDS\n    s0 s8 XCHG\n    CTOS\n    LDSTDADDR\n    NIP\n    LDSTDADDR\n    LDREF\n    ENDS\n    MYADDR\n    OVER\n    NEWC\n    x{0} STSLICECONST\n    s1 s2 XCHG\n    STSTDADDR\n    s1 s3 XCHG\n    STSTDADDR\n    s1 s2 XCHG\n    STREF\n    0 PUSHINT\n    52 STUR\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n    s0 s6 XCHG\n    s4 s8 s4 XCHG3\n    s1 s7 XCHG\n    s1 s5 XCHG\n    s1 s3 XCHG\n  }>\n  get_window() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    32 LDU\n    32 LDU\n    LDREF\n    NIP\n    LDREF\n    NIP\n    32 LDU\n    NIP\n    LDGRAMS\n    NIP\n    128 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n    NOW\n    calcWindowState() CALLDICT\n  }>\n  get_account_address() PROC:<{\n    c4 PUSH\n    CTOS\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDREF\n    32 LDU\n    NIP\n    LDGRAMS\n    NIP\n    128 LDU\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    LDGRAMS\n    NIP\n    ENDS\n    MYADDR\n    PUSHNULL\n    NEWDICT\n    PUSHNULL\n    s0 s3 XCHG\n    NEWC\n    STSTDADDR\n    s1 s6 XCHG\n    STSTDADDR\n    s1 s3 XCHG\n    STREF\n    s1 s2 XCHG\n    STOPTSTDADDR\n    0 PUSHINT\n    97 STUR\n    s1 s3 XCHG\n    STOPTREF\n    s1 s2 XCHG\n    STOPTREF\n    ENDC\n    SWAP\n    NEWC\n    b{00110} STSLICECONST\n    STREF\n    STREF\n    HASHBU\n    NEWC\n    b{10000000000} STSLICECONST\n    256 STU\n    BTOS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECKgEAC0kAART/APSkE/S88sgLAQIBYgIDAgLOBAUCASAmJwIBIAYHAgEgHyAEUz4kZLwA+Ag1ywkrtzpzOMC1ywi2JTahOMC1ywmiItzTOMC1ywgx0MxnIAgJCgsAqwjwgCVIsIAwwCRcOKVUyO5wwCRcOLy4HZTAbmaMDJwInADoFQTAeBSAqFTA6kEURSpCCKiUSKhI7mZIX8EoFIloBMU4HABpFMkoFM1oFAFoFA1oF4hgAfwx+JL6RDDy0HjTP/oAMCCCEDuaygC+8uBu+JchghA7msoAoIIQEeGjAKC+8uBv7UTQ0x/TH9Mf1NTTH/oA03/6APoA+gDRUUug+CP4kvgobW1tLATI+lIV+lITzPpUcM8LYPQA9ADJKfiXggkxLQCh+JLIz5FzjP2+VhLPCz8MBP4x7UTQ0x/TH9Mf1NTTH/oA03/6APoA+gDRC9M/+kjTP/oA0//XCgD4kvgobW1tKVYRBcj6UvpSFMwS+lRwzwtg9AD0AMkuyM+E0MzM+RbIz4oAQMv/z1DHBfLgaFOSvvLgd1R/7fgj8AFsMVG0oQGRf5UgwADDAOIgs+MP4wI6Dg8QEQH+Me1E0NMf0x/TH9TU0x/6ANN/+gD6APoA0QvTP/pI+gDXCwf4kvgobW1tU34FyPpS+lIUzBL6VHDPC2D0APQAySzIz4TQzMz5FsjPigBAy//PUMcF8uBoUXGhcLYJDcjLHxzLHxrLHxjMFswUyx9QCPoCF8t/AfoCAfoCUAX6AhUEwuMC1ywl5eNi9OMC1ywmuYVItOMC1ywkrOLJ9I48W+1E0NMf0x/TH9TU0x/6ANN/+gD6APoA0fACCsjLHxnLHxfLHxXME8zLHwH6Ast/AfoCAfoCAfoCye1U4NcsI5sWhOQWFxgZAf5WEfoCKc8LfxXLHxT6UsnIz4mIAV3Iz4TQzMz5Fs8L/1AE+gLPgXP6AoEAjc8LayHPFCLPFBPMyXH7AAzIyx8byx8Zyx8XzBXME8sfUAX6Ast/AfoCAfoCAfoCye1U+JJZyM+E0MzM+RbIz4oAQMv/z1DIz5IW0Q0qFMs/+lISDQA8+lIB+gLJyM+PGAAEghCFtENKzwv3cc8LYczJcPsAAAgCs8MAAAQycACsXwVQZ18FbDMzM/iXggkxLQCh+JLIz4UI+lIB+gKCEKBGWFHPC4ojzws/Is8LH8lx+wDIz48YAASCEJ8rDx7PC/eCEJ8rDx7PC4ETyz8S+lLLH8lw+wAD/lMoqFihqz8gwQCSMHDeAY7hIMIAjin4kviXggkxLQChccjPhQgT+lIB+gKCEE/MyTDPC4omzws/z4YIyQH7AOMNyM+Ry1enKhXLPxP6Us+GgMs/AfoCAfoCycjPjxgABIIQctXpys8L93HPC2HMyXD7AOMOCcjLHxjLHxbLHxQSExQA9PiXggkxLQChK9D6SDH6SNTR+CghyM+EIBL6UhP6UhLMcM8LM8kByM+E0MzM+RbIz4oAQMv/z1D4kviSbSSCEAcnDgChiwRTt8jPkD4p+pYSyz8B+gIV+lIT+lT0AAH6As7JyM+FiBL6Ulj6As+Bc/oCcc8LZczJcfsAAOAowgCbUAagqj8nqQQWoHCTFqAW4viS+JeCCTEtAKFxyM+FCBP6UgH6AoIQT8zJMM8LiiXPCz/PhQjJAfsAyM+Ry1enKhTLPxL6Us+FgBXLP1AD+gLPhCDJyM+PGAAEghBy1enKzwv3cc8LYczJcPsAACzMEszLHwH6Ast/AfoCAfoCAfoCye1UAFzJ7VTIz5B2gJuCFMs/E/pSWPoCywfJyM+PGAAEghAdoCbgzwv3cc8LYczJcPsAAf4x7UTQ0x/TH9Mf1NTTH/oA03/6APoA+gDRC9M/+kjTB/oA+gDXCgD4kvgobW1tKVYRBcj6UvpSFMwS+lRwzwtg9AD0AMkuyM+E0MzM+RbIz4oAQMv/z1DHBfLgaCCTCqQK3g/Iyx8eyx8cyx8azBjMJs8LH1AF+gITy38B+gIBGgH+Me1E0NMf0x/TH9TU0x/6ANN/+gD6APoA0QvTPzH6SPoAMPiS+ChtbW0sBMj6Uhf6UhPM+lRwzwtg9AAT9ADJKcjPhNDMzPkWyM+KAEDL/89QEscF8uBo+JchvvLgb6BVCfACCsjLHxnLHxfLHxXME8zLHwH6Ast/AfoCAfoCARsB/DHtRNDTH9Mf0x/U1NMf+gDTf/oA+gD6ANEL0z/6SNMB0z/6APoA1woA+JL4KG1tbSpWEgXI+lL6UhTMEvpUcM8LYPQA9ADJL8jPhNDMzPkWyM+KAEDL/89QxwXy4Gj4lyK+8uBvUXGgJ7OVK8IAwwCRcOKTC6UL3goREAoQnxwBPOMC1ywmqZO23JFb4NcsIaQJ27QxkTDghA8BxwDy9B0AdPoCUAj6AsntVMjPk1FkuuoXyz/6UssHAfoCAfoCygDLH8nIz48YAASCENRZLrrPC/dxzwthzMlw+wAACvoCye1UAN4QjhB9EGwQWwQREAQQP04AERHwAgrIyx8Zyx8Xyx8VzBPMIc8LH1j6AhLLf1j6Alj6Alj6AsntVMjPkciCFQITyz/6UhXLARPLPwH6AlAD+gISygDLH8nIz48YAASCEHIghUDPC/dxzwthzMlw+wAB/DHtRNDTH9Mf0x/U1NMf+gDTf/oA+gD6ANH4kifQ+kgx+kjU0fgoIcjPhCAS+lIT+lISzHDPCzPJAcjPhNDMzPkWyM+KAEDL/89QxwXy4GcL0z8x+gD6UDBuknA83iTCAJpYoKo/I6kEEqBwkxKgEuIJyMsfGMsfFssfFMwSzB4AKMsfAfoCEst/WPoCAfoCAfoCye1UAvUIJF/miGCEDuaygC5wwDi3CGCEDuaygCgghAdzWUAoPgnbxC83DAl0PpI+kgx1DHRIYIQO5rKAKDIz4WIEvpSAfoCjQZAAAAAAAAAAAAAAAAAAj6qHIgAAAAAAAAABM8WyXH7ACBwyM+PGAAEghA0S4nuzwv3ic8WUAOAhIgH3CDXCx+EH7qOStMfMdcLH4IQR9VDkbqOOu1E0NMf0x/TH9TU0x/6ANN/+gD6APoA0aAJyMsfGMsfFssfFMwSzMsfAfoCy38B+gIB+gLPhCDJ7VTg4NcsJ/////Tyv9dM0NMf7UTQ0x/TH9Mf1NTTH/oA03/6APoA+gDRLICMAMQAAAAAAAAAAAAAAAA0S4nuAAAAAAAAAACAADPoCySL7AAHighBc4z9vuuMCDIIQD4p+pbqOWwrTP/oA+kgwJcIAmgOgqj8kqQQToHCTA6AT4grIyx8Zyx8Xyx8VzBPMyx8B+gITy39QA/oCUAP6AlAD+gLJ7VSAQMjPhQgT+lKCEE/MyTDPC47LP8+GCMkB+wDgXwwkAfw8CtM/+gDTnzH6SDBRUaFwtgkLyMsfGssfGMsfFswUzBLLH1AG+gLLfwH6AlAE+gJQBPoCye1UyM+FCFIQ+lKCENERbmnPC44izws/UhD6UiP6As+H/smAQvsAyM+QdoCbghLLP/pSAfoCz4f+ycjPjxgABIIQHaAm4M8L93ElABDPC2HMyXD7AACjvFiPaiaGmPmOmPmOmPmOpqaY+Y/QAY6b+Y/QAY/QAY/QAY6PwUNra2geR9KQt9KQnmCX0qOGeFsAn6AAl6AGSA5GfCaGZmfItkZ8UAIGX/56hAIDeKAoKQBMqiHtRNDTH9Mf0x/UMdQx0x8x+gAx038x+gAx+gAx+gAx0fgj8AEAsql27UTQ0x/TH9Mf1DHU0x/6ANN/+gD6APoA0SbQ+kj6SNQx0QjQ+kgx+kjU0fgoIcjPhCAS+lIT+lISzHDPCzPJAcjPhNDMzPkWyM+KAEDL/89QBkSEFxUT",
+  "codeHashHex": "C3BD2C6794F3C2F1AED3BE4F28CC9078F420A4F480636319F5176B95F5D96DD9",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75177,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/Vault.tolk",
+        "size_chars": 15985,
+        "imports": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/constants.tolk",
+        "size_chars": 3504,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/errors.tolk",
+        "size_chars": 580,
+        "imports": []
+      },
+      {
+        "file_id": 4,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/messages.tolk",
+        "size_chars": 4954,
+        "imports": []
+      },
+      {
+        "file_id": 5,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/storage.tolk",
+        "size_chars": 4026,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 6,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/tonstakers.tolk",
+        "size_chars": 3311,
+        "imports": [
+          2
+        ]
+      },
+      {
+        "file_id": 7,
+        "file_name": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/window.tolk",
+        "size_chars": 1660,
+        "imports": [
+          3
+        ]
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "VaultMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Deposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeForfeits"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitNotice"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TrancheCancelled"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TrancheActivated"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Forfeit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitReport"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransferNotification"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUp"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 13,
+            "prefix_num": 2514197817,
+            "prefix_len": 32,
+            "stack_type_id": 135,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 14,
+            "prefix_num": 2510051646,
+            "prefix_len": 32,
+            "stack_type_id": 136,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 15,
+            "prefix_num": 1527946064,
+            "prefix_len": 32,
+            "stack_type_id": 137,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 17,
+            "prefix_num": 3507580521,
+            "prefix_len": 32,
+            "stack_type_id": 138,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 19,
+            "prefix_num": 417883699,
+            "prefix_len": 32,
+            "stack_type_id": 139,
+            "stack_width": 6
+          },
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 3166465118,
+            "prefix_len": 32,
+            "stack_type_id": 140,
+            "stack_width": 3
+          },
+          {
+            "variant_ty_idx": 21,
+            "prefix_num": 3610290454,
+            "prefix_len": 32,
+            "stack_type_id": 141,
+            "stack_width": 7
+          },
+          {
+            "variant_ty_idx": 23,
+            "prefix_num": 1935855772,
+            "prefix_len": 32,
+            "stack_type_id": 142,
+            "stack_width": 4
+          },
+          {
+            "variant_ty_idx": 26,
+            "prefix_num": 3576854235,
+            "prefix_len": 32,
+            "stack_type_id": 143,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 880884598,
+            "prefix_len": 32,
+            "stack_type_id": 144,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AccountParams"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 30
+      },
+      {
+        "kind": "uintN",
+        "n": 128
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WindowState"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          36
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 38,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 39,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 42
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          41
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 44,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 145,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          46,
+          16
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 49,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 51,
+        "stack_type_id": 130,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 47,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 146,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 48,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 132,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          55
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogForfeitStaked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          57
+        ]
+      },
+      {
+        "kind": "addressAny"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExtOutLogBucket"
+      },
+      {
+        "kind": "uintN",
+        "n": 248
+      },
+      {
+        "kind": "bitsN",
+        "n": 248
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 61,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 62,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 147,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 59,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 9,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 60,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          55
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 29
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceOriginalMsgInfo"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 69
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "RichBounceComputePhaseInfo"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 71,
+        "stack_type_id": 148,
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          17
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogTrancheCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          74
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitAck"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          76
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AccountStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Tranche"
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 18,
+        "value_ty_idx": 79
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PendingBatch"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 81
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 82
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 78
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreditTranche"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          85
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogDeposited"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          87
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitRejected"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          89
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExitRejected"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          91
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TsTonWalletData"
+      },
+      {
+        "kind": "uintN",
+        "n": 48
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 93
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          96
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExitStarted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          99
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogTrancheActivated"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          101
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExited"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateExternalLogMessageOptions",
+        "type_args_ty_idx": [
+          103
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultConfigReply"
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 37,
+        "struct_name": "CreateMessageOptions<PoolDeposit>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          36
+        ]
+      },
+      {
+        "ty_idx": 58,
+        "struct_name": "CreateExternalLogMessageOptions<LogForfeitStaked>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          57
+        ]
+      },
+      {
+        "ty_idx": 73,
+        "struct_name": "CreateMessageOptions<TrancheCancelled>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          17
+        ]
+      },
+      {
+        "ty_idx": 75,
+        "struct_name": "CreateExternalLogMessageOptions<LogTrancheCancelled>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          74
+        ]
+      },
+      {
+        "ty_idx": 77,
+        "struct_name": "CreateMessageOptions<ExitAck>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          76
+        ]
+      },
+      {
+        "ty_idx": 86,
+        "struct_name": "CreateMessageOptions<CreditTranche>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          85
+        ]
+      },
+      {
+        "ty_idx": 88,
+        "struct_name": "CreateExternalLogMessageOptions<LogDeposited>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          87
+        ]
+      },
+      {
+        "ty_idx": 90,
+        "struct_name": "CreateMessageOptions<ExitRejected>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          89
+        ]
+      },
+      {
+        "ty_idx": 92,
+        "struct_name": "CreateExternalLogMessageOptions<LogExitRejected>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          91
+        ]
+      },
+      {
+        "ty_idx": 98,
+        "struct_name": "CreateMessageOptions<JettonTransfer>",
+        "monomorphic_fields_ty_idx": [
+          40,
+          45,
+          54,
+          96
+        ]
+      },
+      {
+        "ty_idx": 100,
+        "struct_name": "CreateExternalLogMessageOptions<LogExitStarted>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          99
+        ]
+      },
+      {
+        "ty_idx": 102,
+        "struct_name": "CreateExternalLogMessageOptions<LogTrancheActivated>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          101
+        ]
+      },
+      {
+        "ty_idx": 104,
+        "struct_name": "CreateExternalLogMessageOptions<LogExited>",
+        "monomorphic_fields_ty_idx": [
+          64,
+          103
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 67,
+        "ident_loc": [
+          0,
+          433,
+          8,
+          433,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          445,
+          8,
+          445,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          1588,
+          6,
+          1588,
+          24
+        ],
+        "target_ty_idx": 43
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 49,
+        "ident_loc": [
+          0,
+          1592,
+          8,
+          1592,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 51,
+        "ident_loc": [
+          0,
+          1599,
+          8,
+          1599,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 52
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 48,
+        "ident_loc": [
+          0,
+          1621,
+          8,
+          1621,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 46
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 50
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 53
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 38,
+        "ident_loc": [
+          0,
+          1677,
+          6,
+          1677,
+          16
+        ],
+        "encoded_as_ty_idx": 22,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1687,
+          6,
+          1687,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 56,
+        "ident_loc": [
+          0,
+          1691,
+          8,
+          1691,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 40
+          },
+          {
+            "name": "value",
+            "ty_idx": 45
+          },
+          {
+            "name": "dest",
+            "ty_idx": 54
+          },
+          {
+            "name": "body",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExtOutLogBucket",
+        "ty_idx": 60,
+        "ident_loc": [
+          0,
+          1735,
+          15,
+          1735,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 0,
+          "prefix_len": 8
+        },
+        "fields": [
+          {
+            "name": "topic",
+            "ty_idx": 63
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreateExternalLogMessageOptions",
+        "ty_idx": 65,
+        "ident_loc": [
+          0,
+          1741,
+          8,
+          1741,
+          39
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "dest",
+            "ty_idx": 64
+          },
+          {
+            "name": "body",
+            "ty_idx": 55
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 35,
+        "ident_loc": [
+          0,
+          1788,
+          8,
+          1788,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceBody",
+        "ty_idx": 68,
+        "ident_loc": [
+          0,
+          1955,
+          21,
+          1955,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 4294967294,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "originalBody",
+            "ty_idx": 3
+          },
+          {
+            "name": "originalInfo",
+            "ty_idx": 70
+          },
+          {
+            "name": "bouncedByPhase",
+            "ty_idx": 18
+          },
+          {
+            "name": "exitCode",
+            "ty_idx": 8
+          },
+          {
+            "name": "computePhase",
+            "ty_idx": 72
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceComputePhaseInfo",
+        "ty_idx": 71,
+        "ident_loc": [
+          0,
+          1964,
+          8,
+          1964,
+          34
+        ],
+        "fields": [
+          {
+            "name": "gasUsed",
+            "ty_idx": 9
+          },
+          {
+            "name": "vmSteps",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "RichBounceOriginalMsgInfo",
+        "ty_idx": 69,
+        "ident_loc": [
+          0,
+          1975,
+          8,
+          1975,
+          33
+        ],
+        "fields": [
+          {
+            "name": "valueCoins",
+            "ty_idx": 6
+          },
+          {
+            "name": "valueExtra",
+            "ty_idx": 41
+          },
+          {
+            "name": "createdLt",
+            "ty_idx": 11
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "VaultMessage",
+        "ty_idx": 12,
+        "ident_loc": [
+          1,
+          19,
+          6,
+          19,
+          18
+        ],
+        "target_ty_idx": 28
+      },
+      {
+        "kind": "struct",
+        "name": "VaultConfigReply",
+        "ty_idx": 105,
+        "ident_loc": [
+          1,
+          432,
+          8,
+          432,
+          24
+        ],
+        "fields": [
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "windowLength",
+            "ty_idx": 9
+          },
+          {
+            "name": "epochStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "pool",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "vaultTstonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalPrincipal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc",
+            "ty_idx": 32
+          },
+          {
+            "name": "unallocated",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeitBuffer",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingStake",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Deposit",
+        "ty_idx": 13,
+        "ident_loc": [
+          4,
+          5,
+          21,
+          5,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 2514197817,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "StakeForfeits",
+        "ty_idx": 14,
+        "ident_loc": [
+          4,
+          11,
+          21,
+          11,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 2510051646,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "CreditTranche",
+        "ty_idx": 85,
+        "ident_loc": [
+          4,
+          18,
+          21,
+          18,
+          34
+        ],
+        "prefix": {
+          "prefix_num": 1558396783,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc0",
+            "ty_idx": 32
+          },
+          {
+            "name": "depositedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExitAck",
+        "ty_idx": 76,
+        "ident_loc": [
+          4,
+          27,
+          21,
+          27,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 1338820912,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mode",
+            "ty_idx": 22
+          },
+          {
+            "name": "bonus",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExitRejected",
+        "ty_idx": 89,
+        "ident_loc": [
+          4,
+          34,
+          21,
+          34,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 2688964689,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TrancheCancelled",
+        "ty_idx": 17,
+        "ident_loc": [
+          4,
+          43,
+          21,
+          43,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 3507580521,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "slot",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TrancheActivated",
+        "ty_idx": 19,
+        "ident_loc": [
+          4,
+          51,
+          21,
+          51,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 417883699,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slot",
+            "ty_idx": 18
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "first",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExitNotice",
+        "ty_idx": 15,
+        "ident_loc": [
+          4,
+          61,
+          21,
+          61,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 1527946064,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "debtSum",
+            "ty_idx": 16
+          },
+          {
+            "name": "forceEarly",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Forfeit",
+        "ty_idx": 20,
+        "ident_loc": [
+          4,
+          71,
+          21,
+          71,
+          28
+        ],
+        "prefix": {
+          "prefix_num": 3166465118,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "ExitReport",
+        "ty_idx": 21,
+        "ident_loc": [
+          4,
+          78,
+          21,
+          78,
+          31
+        ],
+        "prefix": {
+          "prefix_num": 3610290454,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 22
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeit",
+            "ty_idx": 6
+          },
+          {
+            "name": "hasTranches",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TopUp",
+        "ty_idx": 27,
+        "ident_loc": [
+          4,
+          103,
+          21,
+          103,
+          26
+        ],
+        "prefix": {
+          "prefix_num": 880884598,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogDeposited",
+        "ty_idx": 87,
+        "ident_loc": [
+          4,
+          110,
+          21,
+          110,
+          33
+        ],
+        "prefix": {
+          "prefix_num": 2243183434,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "account",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogTrancheActivated",
+        "ty_idx": 101,
+        "ident_loc": [
+          4,
+          118,
+          21,
+          118,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 3562614458,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slot",
+            "ty_idx": 18
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "memberJoined",
+            "ty_idx": 5
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogTrancheCancelled",
+        "ty_idx": 74,
+        "ident_loc": [
+          4,
+          129,
+          21,
+          129,
+          40
+        ],
+        "prefix": {
+          "prefix_num": 497034976,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "slot",
+            "ty_idx": 18
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogExitStarted",
+        "ty_idx": 99,
+        "ident_loc": [
+          4,
+          136,
+          21,
+          136,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 1926621642,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 22
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "bonus",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogExitRejected",
+        "ty_idx": 91,
+        "ident_loc": [
+          4,
+          145,
+          21,
+          145,
+          36
+        ],
+        "prefix": {
+          "prefix_num": 2670399262,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogExited",
+        "ty_idx": 103,
+        "ident_loc": [
+          4,
+          151,
+          21,
+          151,
+          30
+        ],
+        "prefix": {
+          "prefix_num": 1914733888,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 22
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeit",
+            "ty_idx": 6
+          },
+          {
+            "name": "hasTranches",
+            "ty_idx": 5
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogForfeitStaked",
+        "ty_idx": 57,
+        "ident_loc": [
+          4,
+          162,
+          21,
+          162,
+          37
+        ],
+        "prefix": {
+          "prefix_num": 877365742,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AccountParams",
+        "ty_idx": 30,
+        "ident_loc": [
+          5,
+          4,
+          8,
+          4,
+          21
+        ],
+        "fields": [
+          {
+            "name": "pool",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonWalletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "VaultStorage",
+        "ty_idx": 29,
+        "ident_loc": [
+          5,
+          12,
+          8,
+          12,
+          20
+        ],
+        "fields": [
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "windowLength",
+            "ty_idx": 9
+          },
+          {
+            "name": "epochStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "accountCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "accountParams",
+            "ty_idx": 31
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalPrincipal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc",
+            "ty_idx": 32
+          },
+          {
+            "name": "unallocated",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeitBuffer",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingStake",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Tranche",
+        "ty_idx": 79,
+        "ident_loc": [
+          5,
+          36,
+          8,
+          36,
+          15
+        ],
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "depositedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc0",
+            "ty_idx": 32
+          },
+          {
+            "name": "status",
+            "ty_idx": 22
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PendingBatch",
+        "ty_idx": 81,
+        "ident_loc": [
+          5,
+          45,
+          8,
+          45,
+          20
+        ],
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "tokensSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "debtSum",
+            "ty_idx": 16
+          },
+          {
+            "name": "mode",
+            "ty_idx": 22
+          },
+          {
+            "name": "bonusTokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "batchId",
+            "ty_idx": 9
+          },
+          {
+            "name": "createdAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "burnSentAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "burnValue",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AccountStorage",
+        "ty_idx": 78,
+        "ident_loc": [
+          5,
+          59,
+          8,
+          59,
+          22
+        ],
+        "fields": [
+          {
+            "name": "vault",
+            "ty_idx": 7
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "params",
+            "ty_idx": 31
+          },
+          {
+            "name": "tstonWallet",
+            "ty_idx": 24
+          },
+          {
+            "name": "usedSlots",
+            "ty_idx": 11
+          },
+          {
+            "name": "isMember",
+            "ty_idx": 5
+          },
+          {
+            "name": "batchSeq",
+            "ty_idx": 9
+          },
+          {
+            "name": "tranches",
+            "ty_idx": 80
+          },
+          {
+            "name": "pending",
+            "ty_idx": 83
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolDeposit",
+        "ty_idx": 36,
+        "ident_loc": [
+          6,
+          9,
+          21,
+          9,
+          32
+        ],
+        "prefix": {
+          "prefix_num": 1205158801,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonTransfer",
+        "ty_idx": 96,
+        "ident_loc": [
+          6,
+          38,
+          21,
+          38,
+          35
+        ],
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 24
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 97
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonTransferNotification",
+        "ty_idx": 23,
+        "ident_loc": [
+          6,
+          57,
+          21,
+          57,
+          47
+        ],
+        "prefix": {
+          "prefix_num": 1935855772,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "from",
+            "ty_idx": 24
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 25
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 26,
+        "ident_loc": [
+          6,
+          78,
+          21,
+          78,
+          29
+        ],
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "TsTonWalletData",
+        "ty_idx": 93,
+        "ident_loc": [
+          6,
+          93,
+          8,
+          93,
+          23
+        ],
+        "fields": [
+          {
+            "name": "balance",
+            "ty_idx": 6
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "locked",
+            "ty_idx": 6
+          },
+          {
+            "name": "lockExpiration",
+            "ty_idx": 94
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WindowState",
+        "ty_idx": 33,
+        "ident_loc": [
+          7,
+          5,
+          8,
+          5,
+          19
+        ],
+        "fields": [
+          {
+            "name": "isOpen",
+            "ty_idx": 5
+          },
+          {
+            "name": "index",
+            "ty_idx": 9
+          },
+          {
+            "name": "openedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "closesAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "calcWindowState",
+        "return_ty_idx": 33,
+        "num_params": 4,
+        "ident_loc": [
+          7,
+          13,
+          5,
+          13,
+          20
+        ],
+        "end_loc": [
+          7,
+          43,
+          1,
+          43,
+          2
+        ],
+        "params": [
+          {
+            "name": "period",
+            "ty_idx": 1
+          },
+          {
+            "name": "windowLength",
+            "ty_idx": 1
+          },
+          {
+            "name": "epochStart",
+            "ty_idx": 1
+          },
+          {
+            "name": "now",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "VaultStorage.tryStakeForfeits",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          66,
+          18,
+          66,
+          34
+        ],
+        "end_loc": [
+          1,
+          92,
+          1,
+          92,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 2,
+        "name": "Cell<AccountParams>.load",
+        "return_ty_idx": 30,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 31
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "createMessage<PoolDeposit>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 37
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "emitLog<LogForfeitStaked>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 57
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "createExternalLogMessage<LogForfeitStaked>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 58
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "onBouncedMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          113,
+          5,
+          113,
+          21
+        ],
+        "end_loc": [
+          1,
+          182,
+          1,
+          182,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "VaultStorage.load",
+        "return_ty_idx": 29,
+        "num_params": 0,
+        "ident_loc": [
+          5,
+          26,
+          18,
+          26,
+          22
+        ],
+        "end_loc": [
+          5,
+          28,
+          1,
+          28,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 8,
+        "name": "VaultStorage.fromCell",
+        "return_ty_idx": 29,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 34
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "VaultStorage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          5,
+          30,
+          18,
+          30,
+          22
+        ],
+        "end_loc": [
+          5,
+          32,
+          1,
+          32,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 10,
+        "name": "VaultStorage.toCell",
+        "return_ty_idx": 66,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "options",
+            "ty_idx": 67
+          }
+        ]
+      },
+      {
+        "f_idx": 11,
+        "name": "createMessage<TrancheCancelled>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 73
+          }
+        ]
+      },
+      {
+        "f_idx": 12,
+        "name": "emitLog<LogTrancheCancelled>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 74
+          }
+        ]
+      },
+      {
+        "f_idx": 13,
+        "name": "createExternalLogMessage<LogTrancheCancelled>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 75
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "VaultStorage.distribute",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          55,
+          18,
+          55,
+          28
+        ],
+        "end_loc": [
+          1,
+          63,
+          1,
+          63,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "f_idx": 15,
+        "name": "sendExitAck",
+        "return_ty_idx": 0,
+        "num_params": 6,
+        "ident_loc": [
+          1,
+          94,
+          5,
+          94,
+          16
+        ],
+        "end_loc": [
+          1,
+          109,
+          1,
+          109,
+          2
+        ],
+        "params": [
+          {
+            "name": "to",
+            "ty_idx": 7
+          },
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mode",
+            "ty_idx": 1
+          },
+          {
+            "name": "bonus",
+            "ty_idx": 6
+          },
+          {
+            "name": "value",
+            "ty_idx": 6
+          },
+          {
+            "name": "sendMode",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 16,
+        "name": "createMessage<ExitAck>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 77
+          }
+        ]
+      },
+      {
+        "f_idx": 17,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          186,
+          5,
+          186,
+          22
+        ],
+        "end_loc": [
+          1,
+          428,
+          1,
+          428,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 18,
+        "name": "VaultStorage.accountInit",
+        "return_ty_idx": 48,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          33,
+          18,
+          33,
+          29
+        ],
+        "end_loc": [
+          1,
+          35,
+          1,
+          35,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 19,
+        "name": "calcAccountInit",
+        "return_ty_idx": 48,
+        "num_params": 4,
+        "ident_loc": [
+          5,
+          80,
+          5,
+          80,
+          20
+        ],
+        "end_loc": [
+          5,
+          98,
+          1,
+          98,
+          2
+        ],
+        "params": [
+          {
+            "name": "vault",
+            "ty_idx": 7
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "accountCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "params",
+            "ty_idx": 31
+          }
+        ]
+      },
+      {
+        "f_idx": 20,
+        "name": "AccountStorage.toCell",
+        "return_ty_idx": 84,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 78
+          },
+          {
+            "name": "options",
+            "ty_idx": 67
+          }
+        ]
+      },
+      {
+        "f_idx": 21,
+        "name": "createMessage<CreditTranche>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 86
+          }
+        ]
+      },
+      {
+        "f_idx": 22,
+        "name": "AutoDeployAddress.calculateAddress",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 48
+          }
+        ]
+      },
+      {
+        "f_idx": 23,
+        "name": "emitLog<LogDeposited>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 87
+          }
+        ]
+      },
+      {
+        "f_idx": 24,
+        "name": "createExternalLogMessage<LogDeposited>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 88
+          }
+        ]
+      },
+      {
+        "f_idx": 25,
+        "name": "VaultStorage.assertFromAccount",
+        "return_ty_idx": 0,
+        "num_params": 3,
+        "ident_loc": [
+          1,
+          37,
+          18,
+          37,
+          35
+        ],
+        "end_loc": [
+          1,
+          39,
+          1,
+          39,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          },
+          {
+            "name": "sender",
+            "ty_idx": 7
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "f_idx": 26,
+        "name": "VaultStorage.window",
+        "return_ty_idx": 33,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          50,
+          18,
+          50,
+          24
+        ],
+        "end_loc": [
+          1,
+          52,
+          1,
+          52,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 27,
+        "name": "createMessage<ExitRejected>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 90
+          }
+        ]
+      },
+      {
+        "f_idx": 28,
+        "name": "emitLog<LogExitRejected>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 91
+          }
+        ]
+      },
+      {
+        "f_idx": 29,
+        "name": "createExternalLogMessage<LogExitRejected>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 92
+          }
+        ]
+      },
+      {
+        "f_idx": 30,
+        "name": "VaultStorage.tstonWallet",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          41,
+          18,
+          41,
+          29
+        ],
+        "end_loc": [
+          1,
+          48,
+          1,
+          48,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 29
+          }
+        ]
+      },
+      {
+        "f_idx": 31,
+        "name": "calcTsTonWalletAddress",
+        "return_ty_idx": 7,
+        "num_params": 3,
+        "ident_loc": [
+          6,
+          114,
+          5,
+          114,
+          27
+        ],
+        "end_loc": [
+          6,
+          116,
+          1,
+          116,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 32,
+        "name": "calcTsTonWalletInit",
+        "return_ty_idx": 48,
+        "num_params": 3,
+        "ident_loc": [
+          6,
+          102,
+          5,
+          102,
+          24
+        ],
+        "end_loc": [
+          6,
+          112,
+          1,
+          112,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "master",
+            "ty_idx": 7
+          },
+          {
+            "name": "walletCode",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "f_idx": 33,
+        "name": "TsTonWalletData.toCell",
+        "return_ty_idx": 95,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 93
+          },
+          {
+            "name": "options",
+            "ty_idx": 67
+          }
+        ]
+      },
+      {
+        "f_idx": 34,
+        "name": "createMessage<JettonTransfer>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 98
+          }
+        ]
+      },
+      {
+        "f_idx": 35,
+        "name": "emitLog<LogExitStarted>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 99
+          }
+        ]
+      },
+      {
+        "f_idx": 36,
+        "name": "createExternalLogMessage<LogExitStarted>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 100
+          }
+        ]
+      },
+      {
+        "f_idx": 37,
+        "name": "emitLog<LogTrancheActivated>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 101
+          }
+        ]
+      },
+      {
+        "f_idx": 38,
+        "name": "createExternalLogMessage<LogTrancheActivated>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 102
+          }
+        ]
+      },
+      {
+        "f_idx": 39,
+        "name": "emitLog<LogExited>",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          4,
+          168,
+          5,
+          168,
+          12
+        ],
+        "end_loc": [
+          4,
+          174,
+          1,
+          174,
+          2
+        ],
+        "params": [
+          {
+            "name": "topic",
+            "ty_idx": 1
+          },
+          {
+            "name": "body",
+            "ty_idx": 103
+          }
+        ]
+      },
+      {
+        "f_idx": 40,
+        "name": "createExternalLogMessage<LogExited>",
+        "return_ty_idx": 35,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 104
+          }
+        ]
+      },
+      {
+        "f_idx": 41,
+        "name": "get_config",
+        "return_ty_idx": 105,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          447,
+          9,
+          447,
+          19
+        ],
+        "end_loc": [
+          1,
+          464,
+          1,
+          464,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 42,
+        "name": "get_window",
+        "return_ty_idx": 33,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          466,
+          9,
+          466,
+          19
+        ],
+        "end_loc": [
+          1,
+          469,
+          1,
+          469,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 43,
+        "name": "get_account_address",
+        "return_ty_idx": 7,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          471,
+          9,
+          471,
+          28
+        ],
+        "end_loc": [
+          1,
+          474,
+          1,
+          474,
+          2
+        ],
+        "params": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ]
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "Vault",
+    "author": "lock-in-wallet",
+    "version": "0.1.0",
+    "description": "Lock-in Wallet vault: schedule, member registry, cauldron (tsTON) with acc counter",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Deposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "StakeForfeits"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitNotice"
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TrancheCancelled"
+      },
+      {
+        "kind": "uintN",
+        "n": 8
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TrancheActivated"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Forfeit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitReport"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransferNotification"
+      },
+      {
+        "kind": "addressOpt"
+      },
+      {
+        "kind": "remaining"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Excesses"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "TopUp"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultStorage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AccountParams"
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 28
+      },
+      {
+        "kind": "uintN",
+        "n": 128
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PoolDeposit"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitAck"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreditTranche"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ExitRejected"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "JettonTransfer"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "VaultConfigReply"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "WindowState"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogForfeitStaked"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogTrancheCancelled"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogDeposited"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExitRejected"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExitStarted"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogTrancheActivated"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "LogExited"
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "struct",
+        "name": "VaultConfigReply",
+        "ty_idx": 37,
+        "fields": [
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "windowLength",
+            "ty_idx": 9
+          },
+          {
+            "name": "epochStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "pool",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "vaultTstonWallet",
+            "ty_idx": 7
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalPrincipal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc",
+            "ty_idx": 30
+          },
+          {
+            "name": "unallocated",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeitBuffer",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingStake",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Deposit",
+        "ty_idx": 12,
+        "prefix": {
+          "prefix_num": 2514197817,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ],
+        "description": "deposit: внести `amount` TON; value ≥ amount + POOL_DEPOSIT_FEE + DEPOSIT_GAS."
+      },
+      {
+        "kind": "struct",
+        "name": "StakeForfeits",
+        "ty_idx": 13,
+        "prefix": {
+          "prefix_num": 2510051646,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "stake_forfeits: ручной триггер стейка котла (любой отправитель)."
+      },
+      {
+        "kind": "struct",
+        "name": "CreditTranche",
+        "ty_idx": 33,
+        "prefix": {
+          "prefix_num": 1558396783,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc0",
+            "ty_idx": 30
+          },
+          {
+            "name": "depositedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "description": "credit_tranche: новый транш (+stateInit при первом депозите)."
+      },
+      {
+        "kind": "struct",
+        "name": "ExitAck",
+        "ty_idx": 32,
+        "prefix": {
+          "prefix_num": 1338820912,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "mode",
+            "ty_idx": 21
+          },
+          {
+            "name": "bonus",
+            "ty_idx": 6
+          }
+        ],
+        "description": "exit_ack: решение Vault по батчу (mode = MODE_EARLY | MODE_FULL, bonus = tsTON, уже отправленные аккаунту или 0)."
+      },
+      {
+        "kind": "struct",
+        "name": "ExitRejected",
+        "ty_idx": 34,
+        "prefix": {
+          "prefix_num": 2688964689,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ],
+        "description": "exit_rejected: окно закрыто, force_early не задан."
+      },
+      {
+        "kind": "struct",
+        "name": "TrancheCancelled",
+        "ty_idx": 16,
+        "prefix": {
+          "prefix_num": 3507580521,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "slot",
+            "ty_idx": 17
+          }
+        ],
+        "description": "tranche_cancelled: депозит в пул отбился (или нет свободного слота: slot = 255),\nтранш удалён, TON возвращён владельцу."
+      },
+      {
+        "kind": "struct",
+        "name": "TrancheActivated",
+        "ty_idx": 18,
+        "prefix": {
+          "prefix_num": 417883699,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slot",
+            "ty_idx": 17
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "first",
+            "ty_idx": 5
+          }
+        ],
+        "description": "tranche_activated: транш подтверждён стейком; first = аккаунт стал участником."
+      },
+      {
+        "kind": "struct",
+        "name": "ExitNotice",
+        "ty_idx": 14,
+        "prefix": {
+          "prefix_num": 1527946064,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "debtSum",
+            "ty_idx": 15
+          },
+          {
+            "name": "forceEarly",
+            "ty_idx": 5
+          }
+        ],
+        "description": "exit_notice: аккаунт просит решение по батчу."
+      },
+      {
+        "kind": "struct",
+        "name": "Forfeit",
+        "ty_idx": 19,
+        "prefix": {
+          "prefix_num": 3166465118,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ],
+        "description": "forfeit: TON в котёл (неатрибутированный TON при sweep); value ≥ amount + газ."
+      },
+      {
+        "kind": "struct",
+        "name": "ExitReport",
+        "ty_idx": 20,
+        "prefix": {
+          "prefix_num": 3610290454,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 21
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeit",
+            "ty_idx": 6
+          },
+          {
+            "name": "hasTranches",
+            "ty_idx": 5
+          }
+        ],
+        "description": "exit_report: выплата произведена; forfeit — TON в котёл (value ≥ forfeit + газ)."
+      },
+      {
+        "kind": "struct",
+        "name": "TopUp",
+        "ty_idx": 26,
+        "prefix": {
+          "prefix_num": 880884598,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "top_up: пополнить баланс контракта (Vault или аккаунт); пустое тело тоже принимается."
+      },
+      {
+        "kind": "struct",
+        "name": "LogDeposited",
+        "ty_idx": 41,
+        "prefix": {
+          "prefix_num": 2243183434,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "account",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          }
+        ],
+        "description": "Депозит принят Vault'ом, транш ещё стейкается (слот назначит аккаунт)."
+      },
+      {
+        "kind": "struct",
+        "name": "LogTrancheActivated",
+        "ty_idx": 44,
+        "prefix": {
+          "prefix_num": 3562614458,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "slot",
+            "ty_idx": 17
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "tokens",
+            "ty_idx": 6
+          },
+          {
+            "name": "memberJoined",
+            "ty_idx": 5
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          }
+        ],
+        "description": "Транш подтверждён стейком: с этого момента он существует в слоте."
+      },
+      {
+        "kind": "struct",
+        "name": "LogTrancheCancelled",
+        "ty_idx": 40,
+        "prefix": {
+          "prefix_num": 497034976,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "principal",
+            "ty_idx": 6
+          },
+          {
+            "name": "slot",
+            "ty_idx": 17
+          }
+        ],
+        "description": "Депозит не удался (bounce пула или нет слота: slot = 255), principal снят с total_principal."
+      },
+      {
+        "kind": "struct",
+        "name": "LogExitStarted",
+        "ty_idx": 43,
+        "prefix": {
+          "prefix_num": 1926621642,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 21
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "principalSum",
+            "ty_idx": 6
+          },
+          {
+            "name": "bonus",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogExitRejected",
+        "ty_idx": 42,
+        "prefix": {
+          "prefix_num": 2670399262,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogExited",
+        "ty_idx": 45,
+        "prefix": {
+          "prefix_num": 1914733888,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "owner",
+            "ty_idx": 7
+          },
+          {
+            "name": "mode",
+            "ty_idx": 21
+          },
+          {
+            "name": "slots",
+            "ty_idx": 11
+          },
+          {
+            "name": "payout",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeit",
+            "ty_idx": 6
+          },
+          {
+            "name": "hasTranches",
+            "ty_idx": 5
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "LogForfeitStaked",
+        "ty_idx": 39,
+        "prefix": {
+          "prefix_num": 877365742,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "amount",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AccountParams",
+        "ty_idx": 28,
+        "fields": [
+          {
+            "name": "pool",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonMaster",
+            "ty_idx": 7
+          },
+          {
+            "name": "tstonWalletCode",
+            "ty_idx": 3
+          }
+        ],
+        "description": "Неизменяемые параметры протокола; одна ячейка, общая для Vault и всех аккаунтов (init-данные)."
+      },
+      {
+        "kind": "struct",
+        "name": "VaultStorage",
+        "ty_idx": 27,
+        "fields": [
+          {
+            "name": "period",
+            "ty_idx": 9
+          },
+          {
+            "name": "windowLength",
+            "ty_idx": 9
+          },
+          {
+            "name": "epochStart",
+            "ty_idx": 9
+          },
+          {
+            "name": "accountCode",
+            "ty_idx": 3
+          },
+          {
+            "name": "accountParams",
+            "ty_idx": 29
+          },
+          {
+            "name": "memberCount",
+            "ty_idx": 9
+          },
+          {
+            "name": "totalPrincipal",
+            "ty_idx": 6
+          },
+          {
+            "name": "acc",
+            "ty_idx": 30
+          },
+          {
+            "name": "unallocated",
+            "ty_idx": 6
+          },
+          {
+            "name": "forfeitBuffer",
+            "ty_idx": 6
+          },
+          {
+            "name": "pendingStake",
+            "ty_idx": 6
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "PoolDeposit",
+        "ty_idx": 31,
+        "prefix": {
+          "prefix_num": 1205158801,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ],
+        "description": "deposit#47d54391 query_id:uint64 — депозит TON в пул; пул удерживает 1 TON и возвращает excesses."
+      },
+      {
+        "kind": "struct",
+        "name": "JettonTransfer",
+        "ty_idx": 35,
+        "prefix": {
+          "prefix_num": 260734629,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "destination",
+            "ty_idx": 7
+          },
+          {
+            "name": "responseDestination",
+            "ty_idx": 23
+          },
+          {
+            "name": "customPayload",
+            "ty_idx": 36
+          },
+          {
+            "name": "forwardTonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "JettonTransferNotification",
+        "ty_idx": 22,
+        "prefix": {
+          "prefix_num": 1935855772,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          },
+          {
+            "name": "jettonAmount",
+            "ty_idx": 6
+          },
+          {
+            "name": "from",
+            "ty_idx": 23
+          },
+          {
+            "name": "forwardPayload",
+            "ty_idx": 24
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Excesses",
+        "ty_idx": 25,
+        "prefix": {
+          "prefix_num": 3576854235,
+          "prefix_len": 32
+        },
+        "fields": [
+          {
+            "name": "queryId",
+            "ty_idx": 11
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "WindowState",
+        "ty_idx": 38,
+        "fields": [
+          {
+            "name": "isOpen",
+            "ty_idx": 5
+          },
+          {
+            "name": "index",
+            "ty_idx": 9
+          },
+          {
+            "name": "openedAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "closesAt",
+            "ty_idx": 9
+          },
+          {
+            "name": "nextWindowAt",
+            "ty_idx": 9
+          }
+        ],
+        "description": "Состояние расписания окон вывода (DESIGN §2.3): окно открыто,\nкогда (now − epoch_start) mod period < window_length."
+      }
+    ],
+    "storage": {
+      "storage_ty_idx": 27
+    },
+    "incoming_messages": [
+      {
+        "body_ty_idx": 12
+      },
+      {
+        "body_ty_idx": 13
+      },
+      {
+        "body_ty_idx": 14
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 18
+      },
+      {
+        "body_ty_idx": 19
+      },
+      {
+        "body_ty_idx": 20
+      },
+      {
+        "body_ty_idx": 22
+      },
+      {
+        "body_ty_idx": 25
+      },
+      {
+        "body_ty_idx": 26
+      }
+    ],
+    "incoming_external": [],
+    "outgoing_messages": [
+      {
+        "body_ty_idx": 31
+      },
+      {
+        "body_ty_idx": 32
+      },
+      {
+        "body_ty_idx": 16
+      },
+      {
+        "body_ty_idx": 33
+      },
+      {
+        "body_ty_idx": 34
+      },
+      {
+        "body_ty_idx": 35
+      }
+    ],
+    "emitted_events": [
+      {
+        "body_ty_idx": 39
+      },
+      {
+        "body_ty_idx": 40
+      },
+      {
+        "body_ty_idx": 41
+      },
+      {
+        "body_ty_idx": 42
+      },
+      {
+        "body_ty_idx": 43
+      },
+      {
+        "body_ty_idx": 44
+      },
+      {
+        "body_ty_idx": 45
+      }
+    ],
+    "get_methods": [
+      {
+        "tvm_method_id": 103798,
+        "name": "get_config",
+        "parameters": [],
+        "return_ty_idx": 37
+      },
+      {
+        "tvm_method_id": 102945,
+        "name": "get_window",
+        "parameters": [],
+        "return_ty_idx": 38
+      },
+      {
+        "tvm_method_id": 68369,
+        "name": "get_account_address",
+        "parameters": [
+          {
+            "name": "owner",
+            "ty_idx": 7
+          }
+        ],
+        "return_ty_idx": 7
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotTstonWallet",
+        "err_code": 103
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotMemberAccount",
+        "err_code": 104
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.DepositTooSmall",
+        "err_code": 110
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.NotEnoughGas",
+        "err_code": 111
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.BadConfig",
+        "err_code": 118
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.PrincipalUnderflow",
+        "err_code": 119
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.WrongWorkchain",
+        "err_code": 120
+      },
+      {
+        "kind": "enum_member",
+        "name": "Errors.InvalidMessage",
+        "err_code": 65535
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.1"
+  },
+  "tolkVersion": "1.4.1",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/Vault.tolk",
+      "contents": "// Vault: конфиг капсулы, реестр участников, котёл (tsTON) и накопительный счётчик acc.\n// DESIGN.md §3.1, §4. Администратора и апгрейда нет (I5).\n\nimport \"constants\"\nimport \"errors\"\nimport \"messages\"\nimport \"storage\"\nimport \"tonstakers\"\nimport \"window\"\n\ncontract Vault {\n    author: \"lock-in-wallet\"\n    version: \"0.1.0\"\n    description: \"Lock-in Wallet vault: schedule, member registry, cauldron (tsTON) with acc counter\"\n    storage: VaultStorage\n    incomingMessages: VaultMessage\n}\n\ntype VaultMessage =\n    | Deposit\n    | StakeForfeits\n    | ExitNotice\n    | TrancheCancelled\n    | TrancheActivated\n    | Forfeit\n    | ExitReport\n    | JettonTransferNotification\n    | Excesses\n    | TopUp\n\n// ---------- helpers ----------\n\nfun VaultStorage.accountInit(self, owner: address): AutoDeployAddress {\n    return calcAccountInit(contract.getAddress(), owner, self.accountCode, self.accountParams);\n}\n\nfun VaultStorage.assertFromAccount(self, sender: address, owner: address) {\n    assert (sender == self.accountInit(owner).calculateAddress()) throw Errors.NotMemberAccount;\n}\n\nfun VaultStorage.tstonWallet(self): address {\n    val params = self.accountParams.load();\n    return calcTsTonWalletAddress(\n        contract.getAddress(),\n        params.tstonMaster,\n        params.tstonWalletCode,\n    );\n}\n\nfun VaultStorage.window(self): WindowState {\n    return calcWindowState(self.period, self.windowLength, self.epochStart, blockchain.now());\n}\n\n/// Разнести tsTON котла в acc (I4). Если активных вкладов нет — в unallocated до следующего раза.\nfun VaultStorage.distribute(mutate self, tokens: coins) {\n    if (self.totalPrincipal > 0) {\n        val total = tokens + self.unallocated;\n        self.acc += (total << ACC_SCALE_BITS) / self.totalPrincipal;\n        self.unallocated = 0;\n    } else {\n        self.unallocated += tokens;\n    }\n}\n\n/// Отправить накопленные форфейты в пул, если буфер ≥ FORFEIT_STAKE_MIN и хватает на комиссию пула.\nfun VaultStorage.tryStakeForfeits(mutate self) {\n    if (self.pendingStake != 0 || self.forfeitBuffer < FORFEIT_STAKE_MIN) {\n        return;\n    }\n    val needed = self.forfeitBuffer + POOL_DEPOSIT_FEE + VAULT_MIN_BALANCE;\n    if (contract.getOriginalBalance() < needed) {\n        return;\n    }\n    val params = self.accountParams.load();\n    val amount = self.forfeitBuffer;\n    val stake = createMessage({\n        bounce: BounceMode.Only256BitsOfBody,\n        dest: params.pool,\n        value: amount + POOL_DEPOSIT_FEE,\n        body: PoolDeposit { queryId: 0 },\n    });\n    stake.send(SEND_MODE_PAY_FEES_SEPARATELY);\n    self.pendingStake = amount;\n    self.forfeitBuffer = 0;\n    emitLog(\n        0x344b89ee,\n        LogForfeitStaked {\n            queryId: 0,\n            amount,\n        },\n    );\n}\n\nfun sendExitAck(\n    to: address,\n    queryId: uint64,\n    mode: int,\n    bonus: coins,\n    value: coins,\n    sendMode: int,\n) {\n    val ack = createMessage({\n        bounce: BounceMode.NoBounce,\n        dest: to,\n        value,\n        body: ExitAck { queryId, mode, bonus },\n    });\n    ack.send(sendMode);\n}\n\n// ---------- bounces ----------\n\nfun onBouncedMessage(in: InMessageBounced) {\n    val prefix = in.bouncedBody.preloadUint(32);\n    if (prefix == 0xffffffff) {\n        // Only256BitsOfBody: единственный такой исходящий — deposit форфейтов в пул\n        in.bouncedBody.skipBouncedPrefix();\n        val op = in.bouncedBody.loadUint(32);\n        if (op == 0x47d54391) {\n            var storage = VaultStorage.load();\n            storage.forfeitBuffer += storage.pendingStake;\n            storage.pendingStake = 0;\n            storage.save();\n        }\n        return;\n    }\n\n    val rich = lazy RichBounceBody.fromSlice(in.bouncedBody);\n    var body = rich.originalBody.beginParse();\n    val op = body.loadUint(32);\n    var storage = VaultStorage.load();\n\n    if (op == 0x5ce33f6f) {\n        // credit_tranche отбит: вернуть principal из total_principal, TON — владельцу\n        val queryId = body.loadUint(64);\n        val principal = body.loadCoins();\n        body.skipBits(128 + 32);\n        val owner = body.loadAddress();\n        storage.totalPrincipal = max(storage.totalPrincipal - principal, 0);\n        storage.save();\n        val refund = createMessage({\n            bounce: BounceMode.NoBounce,\n            dest: owner,\n            value: 0,\n            body: TrancheCancelled {\n                queryId,\n                owner,\n                principal,\n                slot: 255,\n            },\n        });\n        refund.send(SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE | SEND_MODE_IGNORE_ERRORS);\n        emitLog(\n            0x1da026e0,\n            LogTrancheCancelled {\n                queryId,\n                owner,\n                principal,\n                slot: 255,\n            },\n        );\n        return;\n    }\n\n    if (op == 0x0f8a7ea5) {\n        // бонус-жетон не доставлен: вернуть токены в котёл, аккаунт разблокировать exit_ack{bonus=0}\n        val queryId = body.loadUint(64);\n        val bonus = body.loadCoins();\n        val account = body.loadAddress();\n        storage.distribute(bonus);\n        storage.save();\n        sendExitAck(\n            account,\n            queryId,\n            MODE_FULL,\n            0,\n            0,\n            SEND_MODE_CARRY_ALL_REMAINING_MESSAGE_VALUE,\n        );\n        return;\n    }\n}\n\n// ---------- messages ----------\n\nfun onInternalMessage(in: InMessage) {\n    val msg = lazy VaultMessage.fromSlice(in.body);\n\n    match (msg) {\n        Deposit => {\n            assert (in.senderAddress.getWorkchain() == MY_WORKCHAIN) throw Errors.WrongWorkchain;\n            assert (msg.amount >= MIN_DEPOSIT) throw Errors.DepositTooSmall;\n            assert (\n                in.valueCoins >= msg.amount + POOL_DEPOSIT_FEE + DEPOSIT_GAS\n            ) throw Errors.NotEnoughGas;\n\n            var storage = VaultStorage.load();\n            storage.totalPrincipal += msg.amount;\n            val now = blockchain.now();\n            val accountInit = storage.accountInit(in.senderAddress);\n\n            val credit = createMessage({\n                bounce: BounceMode.RichBounce,\n                dest: accountInit,\n                value: in.valueCoins - VAULT_GAS_CUT,\n                body: CreditTranche {\n                    queryId: msg.queryId,\n                    principal: msg.amount,\n                    acc0: storage.acc,\n                    depositedAt: now,\n                    owner: in.senderAddress,\n                },\n            });\n            credit.send(SEND_MODE_PAY_FEES_SEPARATELY);\n            storage.save();\n\n            emitLog(\n                0x85b4434a,\n                LogDeposited {\n                    queryId: msg.queryId,\n                    owner: in.senderAddress,\n                    account: accountInit.calculateAddress(),\n                    principal: msg.amount,\n                },\n            );\n        }\n\n        ExitNotice => {\n            var storage = VaultStorage.load();\n            storage.assertFromAccount(in.senderAddress, msg.owner);\n            assert (storage.totalPrincipal >= msg.principalSum) throw Errors.PrincipalUnderflow;\n\n            val window = storage.window();\n            val remaining = storage.totalPrincipal - msg.principalSum;\n            val full = window.isOpen || remaining == 0; // I6: последнему некому отдавать\n\n            if (!full && !msg.forceEarly) {\n                val rejected = createMessage({\n                    bounce: BounceMode.NoBounce,\n                    dest: in.senderAddress,\n                    value: in.valueCoins - VAULT_GAS_CUT,\n                    body: ExitRejected {\n                        queryId: msg.queryId,\n                        nextWindowAt: window.nextWindowAt,\n                    },\n                });\n                rejected.send(SEND_MODE_PAY_FEES_SEPARATELY);\n                emitLog(\n                    0x9f2b0f1e,\n                    LogExitRejected {\n                        queryId: msg.queryId,\n                        owner: msg.owner,\n                        nextWindowAt: window.nextWindowAt,\n                    },\n                );\n                return;\n            }\n\n            var share = (msg.principalSum * storage.acc - msg.debtSum) >> ACC_SCALE_BITS;\n            if (share < 0) {\n                share = 0;\n            }\n            storage.totalPrincipal = remaining;\n\n            if (full) {\n                if (share > 0) {\n                    val value = in.valueCoins - VAULT_GAS_CUT;\n                    val transfer = createMessage({\n                        bounce: BounceMode.RichBounce,\n                        dest: storage.tstonWallet(),\n                        value,\n                        body: JettonTransfer {\n                            queryId: msg.queryId,\n                            jettonAmount: share,\n                            destination: in.senderAddress,\n                            responseDestination: in.senderAddress,\n                            customPayload: null,\n                            forwardTonAmount: value - JETTON_TRANSFER_RESERVE,\n                            forwardPayload: beginCell().storeUint(0, 1).endCell().beginParse(),\n                        },\n                    });\n                    transfer.send(SEND_MODE_PAY_FEES_SEPARATELY);\n                } else {\n                    sendExitAck(\n                        in.senderAddress,\n                        msg.queryId,\n                        MODE_FULL,\n                        0,\n                        in.valueCoins - VAULT_GAS_CUT,\n                        SEND_MODE_PAY_FEES_SEPARATELY,\n                    );\n                }\n                emitLog(\n                    0x72d5e9ca,\n                    LogExitStarted {\n                        queryId: msg.queryId,\n                        owner: msg.owner,\n                        mode: MODE_FULL,\n                        slots: msg.slots,\n                        principalSum: msg.principalSum,\n                        bonus: share,\n                    },\n                );\n            } else {\n                // I2: доля котла ушедшего остаётся в котле и делится между оставшимися\n                storage.distribute(share);\n                sendExitAck(\n                    in.senderAddress,\n                    msg.queryId,\n                    MODE_EARLY,\n                    0,\n                    in.valueCoins - VAULT_GAS_CUT,\n                    SEND_MODE_PAY_FEES_SEPARATELY,\n                );\n                emitLog(\n                    0x72d5e9ca,\n                    LogExitStarted {\n                        queryId: msg.queryId,\n                        owner: msg.owner,\n                        mode: MODE_EARLY,\n                        slots: msg.slots,\n                        principalSum: msg.principalSum,\n                        bonus: 0,\n                    },\n                );\n            }\n            storage.save();\n        }\n\n        TrancheCancelled => {\n            var storage = VaultStorage.load();\n            storage.assertFromAccount(in.senderAddress, msg.owner);\n            storage.totalPrincipal = max(storage.totalPrincipal - msg.principal, 0);\n            storage.save();\n            emitLog(\n                0x1da026e0,\n                LogTrancheCancelled {\n                    queryId: msg.queryId,\n                    owner: msg.owner,\n                    principal: msg.principal,\n                    slot: msg.slot,\n                },\n            );\n        }\n\n        TrancheActivated => {\n            var storage = VaultStorage.load();\n            storage.assertFromAccount(in.senderAddress, msg.owner);\n            if (msg.first) {\n                storage.memberCount += 1;\n            }\n            storage.save();\n            emitLog(\n                0xd4592eba,\n                LogTrancheActivated {\n                    queryId: msg.queryId,\n                    owner: msg.owner,\n                    slot: msg.slot,\n                    principal: msg.principal,\n                    tokens: msg.tokens,\n                    memberJoined: msg.first,\n                    memberCount: storage.memberCount,\n                },\n            );\n        }\n\n        Forfeit => {\n            var storage = VaultStorage.load();\n            storage.assertFromAccount(in.senderAddress, msg.owner);\n            assert (in.valueCoins >= msg.amount) throw Errors.NotEnoughGas;\n            storage.forfeitBuffer += msg.amount;\n            storage.tryStakeForfeits();\n            storage.save();\n        }\n\n        ExitReport => {\n            var storage = VaultStorage.load();\n            storage.assertFromAccount(in.senderAddress, msg.owner);\n            assert (in.valueCoins >= msg.forfeit) throw Errors.NotEnoughGas;\n            storage.forfeitBuffer += msg.forfeit;\n            if (!msg.hasTranches && storage.memberCount > 0) {\n                storage.memberCount -= 1;\n            }\n            storage.tryStakeForfeits();\n            storage.save();\n            emitLog(\n                0x72208540,\n                LogExited {\n                    queryId: msg.queryId,\n                    owner: msg.owner,\n                    mode: msg.mode,\n                    slots: msg.slots,\n                    payout: msg.payout,\n                    forfeit: msg.forfeit,\n                    hasTranches: msg.hasTranches,\n                    memberCount: storage.memberCount,\n                },\n            );\n        }\n\n        StakeForfeits => {\n            var storage = VaultStorage.load();\n            storage.tryStakeForfeits();\n            storage.save();\n        }\n\n        JettonTransferNotification => {\n            // tsTON пришли на кошелёк Vault: стейк форфейтов (from == none) или пожертвование\n            var storage = VaultStorage.load();\n            assert (in.senderAddress == storage.tstonWallet()) throw Errors.NotTstonWallet;\n            if (msg.from == null) {\n                storage.pendingStake = 0;\n            }\n            storage.distribute(msg.jettonAmount);\n            storage.save();\n        }\n\n        Excesses => {\n            // возврат комиссии пула после стейка форфейтов: остаётся на балансе Vault\n        }\n\n        TopUp => {}\n\n        else => {\n            assert (in.body.isEmpty()) throw Errors.InvalidMessage;\n        }\n    }\n}\n\n// ---------- get-методы ----------\n\nstruct VaultConfigReply {\n    period: uint32\n    windowLength: uint32\n    epochStart: uint32\n    pool: address\n    tstonMaster: address\n    vaultTstonWallet: address\n    memberCount: uint32\n    totalPrincipal: coins\n    acc: uint128\n    unallocated: coins\n    forfeitBuffer: coins\n    pendingStake: coins\n}\n\nget fun get_config(): VaultConfigReply {\n    val storage = VaultStorage.load();\n    val params = storage.accountParams.load();\n    return {\n        period: storage.period,\n        windowLength: storage.windowLength,\n        epochStart: storage.epochStart,\n        pool: params.pool,\n        tstonMaster: params.tstonMaster,\n        vaultTstonWallet: storage.tstonWallet(),\n        memberCount: storage.memberCount,\n        totalPrincipal: storage.totalPrincipal,\n        acc: storage.acc,\n        unallocated: storage.unallocated,\n        forfeitBuffer: storage.forfeitBuffer,\n        pendingStake: storage.pendingStake,\n    };\n}\n\nget fun get_window(): WindowState {\n    val storage = VaultStorage.load();\n    return storage.window();\n}\n\nget fun get_account_address(owner: address): address {\n    val storage = VaultStorage.load();\n    return storage.accountInit(owner).calculateAddress();\n}\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/constants.tolk",
+      "contents": "// Общие константы протокола капсулы. Значения газа — первичные оценки,\n// уточняются по профилю `acton test --gas-profile` (см. PLAN.md §5).\n\nconst MY_WORKCHAIN = BASECHAIN\n\n/// Минимальный вклад: минимум депозита Tonstakers (DESIGN §5, §7.2).\nconst MIN_DEPOSIT = ton(\"1\")\n\n/// Слотов траншей на аккаунт (DESIGN §3.2): битовая маска uint64.\nconst MAX_TRANCHES = 64\n\n/// Множитель накопительного счётчика acc (DESIGN §4.4): 2^64.\nconst ACC_SCALE_BITS = 64\n\n/// Комиссия депозита Tonstakers: пул удерживает ровно 1 TON и возвращает остаток excesses (§7.2).\nconst POOL_DEPOSIT_FEE = ton(\"1\")\n\n/// Сколько TON должно дойти до пула вместе с burn (§7.3: > 0.5 TON, SDK прикладывает 1.05).\nconst POOL_BURN_VALUE_MIN = ton(\"1.05\")\n\n/// Газ цепочки депозита сверх `amount + POOL_DEPOSIT_FEE`: Vault → Account(deploy) → pool → mint → notification.\nconst DEPOSIT_GAS = ton(\"0.3\")\n\n/// Газ цепочки выхода: exit_notice → (бонус jetton) → burn → выплата → exit_report.\nconst WITHDRAW_GAS = ton(\"1.5\")\n\n/// Газ повторного burn (retry_exit).\nconst RETRY_GAS = ton(\"1.2\")\n\n/// Газ ручного триггера стейка котла.\nconst STAKE_FORFEITS_GAS = ton(\"0.1\")\n\n/// Резерв аккаунта на хранение (капсула бессрочна, §4.5).\nconst ACCOUNT_MIN_BALANCE = ton(\"0.1\")\n\n/// Сверх резерва аккаунта: всё, что выше `ACCOUNT_MIN_BALANCE + SWEEP_THRESHOLD`\n/// при withdraw считается неатрибутированным TON и уходит в котёл (§7.3 п. 3).\nconst SWEEP_THRESHOLD = ton(\"0.2\")\n\n/// Резерв Vault на хранение и газ.\nconst VAULT_MIN_BALANCE = ton(\"0.5\")\n\n/// Порог стейка котла (§4.4): меньше — комиссия пула съедает смысл.\nconst FORFEIT_STAKE_MIN = ton(\"1\")\n\n/// Что Vault оставляет себе с каждого проходящего сообщения на газ (deposit, exit_notice).\nconst VAULT_GAS_CUT = ton(\"0.02\")\n\n/// Газ, который аккаунт прикладывает к служебным сообщениям в Vault (отчёты, отмены).\nconst REPORT_GAS = ton(\"0.03\")\n\n/// Запас на два jetton-хопа при переводе бонуса из Vault в аккаунт: сколько TON НЕ уходит в forward_ton_amount.\nconst JETTON_TRANSFER_RESERVE = ton(\"0.12\")\n\n/// Что аккаунт оставляет от входящего value при отправке burn (газ этой транзакции и forward fee).\nconst BURN_TX_RESERVE = ton(\"0.02\")\n\n/// Отложенная выплата принимается, если value ≥ P_sum × 90 % (§7.3 п. 2).\nconst DEFERRED_PAYOUT_MIN_PERCENT = 90\n\n/// Через сколько владелец может повторить burn (§7.3, retry_exit): 3 суток.\nconst RETRY_TIMEOUT = 3 * 24 * 3600\n\n/// Статусы транша (DESIGN §3.2).\nconst TRANCHE_STAKING = 0\nconst TRANCHE_ACTIVE = 1\nconst TRANCHE_EXITING = 2\n\n/// Режимы pending-батча (DESIGN §3.2).\nconst MODE_AWAITING_ACK = 0\nconst MODE_EARLY = 1\nconst MODE_FULL = 2\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/errors.tolk",
+      "contents": "enum Errors {\n    NotOwner = 100\n    NotVault = 101\n    NotPool = 102\n    NotTstonWallet = 103\n    NotMemberAccount = 104\n    DepositTooSmall = 110\n    NotEnoughGas = 111\n    NoFreeSlot = 112\n    BadSlots = 113\n    TrancheNotActive = 114\n    PendingExists = 115\n    NoPending = 116\n    RetryTooEarly = 117\n    BadConfig = 118\n    PrincipalUnderflow = 119\n    WrongWorkchain = 120\n    // коды реального пула Tonstakers (DESIGN §7.2), используются моком\n    PoolDepositTooLow = 0xf200\n    PoolDepositsClosed = 0xf201\n    InvalidMessage = 0xFFFF\n}\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/messages.tolk",
+      "contents": "// Сообщения капсулы. Опкоды = crc32 имени (см. INTERFACE.md).\n// ---------- пользователь → Vault ----------\n\n/// deposit: внести `amount` TON; value ≥ amount + POOL_DEPOSIT_FEE + DEPOSIT_GAS.\nstruct (0x95db9d39) Deposit {\n    queryId: uint64\n    amount: coins\n}\n\n/// stake_forfeits: ручной триггер стейка котла (любой отправитель).\nstruct (0x959c593e) StakeForfeits {\n    queryId: uint64\n}\n\n// ---------- Vault → MemberAccount ----------\n\n/// credit_tranche: новый транш (+stateInit при первом депозите).\nstruct (0x5ce33f6f) CreditTranche {\n    queryId: uint64\n    principal: coins\n    acc0: uint128\n    depositedAt: uint32\n    owner: address // для возврата TON при bounce\n}\n\n/// exit_ack: решение Vault по батчу (mode = MODE_EARLY | MODE_FULL, bonus = tsTON, уже отправленные аккаунту или 0).\nstruct (0x4fccc930) ExitAck {\n    queryId: uint64\n    mode: uint2\n    bonus: coins\n}\n\n/// exit_rejected: окно закрыто, force_early не задан.\nstruct (0xa0465851) ExitRejected {\n    queryId: uint64\n    nextWindowAt: uint32\n}\n\n// ---------- MemberAccount → Vault ----------\n\n/// tranche_cancelled: депозит в пул отбился (или нет свободного слота: slot = 255),\n/// транш удалён, TON возвращён владельцу.\nstruct (0xd1116e69) TrancheCancelled {\n    queryId: uint64\n    owner: address\n    principal: coins\n    slot: uint8\n}\n\n/// tranche_activated: транш подтверждён стейком; first = аккаунт стал участником.\nstruct (0x18e86633) TrancheActivated {\n    queryId: uint64\n    owner: address\n    slot: uint8\n    principal: coins\n    tokens: coins\n    first: bool\n}\n\n/// exit_notice: аккаунт просит решение по батчу.\nstruct (0x5b129b50) ExitNotice {\n    queryId: uint64\n    owner: address\n    slots: uint64\n    principalSum: coins\n    debtSum: uint256\n    forceEarly: bool\n}\n\n/// forfeit: TON в котёл (неатрибутированный TON при sweep); value ≥ amount + газ.\nstruct (0xbcbc6c5e) Forfeit {\n    queryId: uint64\n    owner: address\n    amount: coins\n}\n\n/// exit_report: выплата произведена; forfeit — TON в котёл (value ≥ forfeit + газ).\nstruct (0xd730a916) ExitReport {\n    queryId: uint64\n    owner: address\n    mode: uint2\n    slots: uint64\n    payout: coins\n    forfeit: coins\n    hasTranches: bool\n}\n\n// ---------- пользователь → MemberAccount ----------\n\n/// withdraw: вывести транши по маске слотов; value ≥ WITHDRAW_GAS.\nstruct (0xb5de5f9e) Withdraw {\n    queryId: uint64\n    slots: uint64\n    forceEarly: bool\n}\n\n/// retry_exit: повторить burn тем же batch_id через RETRY_TIMEOUT.\nstruct (0x770cf851) RetryExit {\n    queryId: uint64\n}\n\n/// top_up: пополнить баланс контракта (Vault или аккаунт); пустое тело тоже принимается.\nstruct (0x34813b76) TopUp {\n    queryId: uint64\n}\n\n// ---------- события (внешние сообщения из Vault; query_id — первым после опкода) ----------\n\n/// Депозит принят Vault'ом, транш ещё стейкается (слот назначит аккаунт).\nstruct (0x85b4434a) LogDeposited {\n    queryId: uint64\n    owner: address\n    account: address\n    principal: coins\n}\n\n/// Транш подтверждён стейком: с этого момента он существует в слоте.\nstruct (0xd4592eba) LogTrancheActivated {\n    queryId: uint64\n    owner: address\n    slot: uint8\n    principal: coins\n    tokens: coins\n    memberJoined: bool\n    memberCount: uint32\n}\n\n/// Депозит не удался (bounce пула или нет слота: slot = 255), principal снят с total_principal.\nstruct (0x1da026e0) LogTrancheCancelled {\n    queryId: uint64\n    owner: address\n    principal: coins\n    slot: uint8\n}\n\nstruct (0x72d5e9ca) LogExitStarted {\n    queryId: uint64\n    owner: address\n    mode: uint2\n    slots: uint64\n    principalSum: coins\n    bonus: coins\n}\n\nstruct (0x9f2b0f1e) LogExitRejected {\n    queryId: uint64\n    owner: address\n    nextWindowAt: uint32\n}\n\nstruct (0x72208540) LogExited {\n    queryId: uint64\n    owner: address\n    mode: uint2\n    slots: uint64\n    payout: coins\n    forfeit: coins\n    hasTranches: bool\n    memberCount: uint32\n}\n\nstruct (0x344b89ee) LogForfeitStaked {\n    queryId: uint64\n    amount: coins\n}\n\n/// Отправить событие как внешнее сообщение; topic = опкод структуры.\nfun emitLog<T>(topic: int, body: T) {\n    val msg = createExternalLogMessage({\n        dest: ExtOutLogBucket { topic },\n        body,\n    });\n    msg.send(SEND_MODE_REGULAR);\n}\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/storage.tolk",
+      "contents": "import \"constants\"\n\n/// Неизменяемые параметры протокола; одна ячейка, общая для Vault и всех аккаунтов (init-данные).\nstruct AccountParams {\n    pool: address\n    tstonMaster: address\n    tstonWalletCode: cell\n}\n\n// ---------- Vault ----------\n\nstruct VaultStorage {\n    period: uint32        // секунды между окнами, неизменяемо\n    windowLength: uint32  // секунды, сколько окно открыто, неизменяемо\n    epochStart: uint32    // момент отсчёта окон, неизменяемо\n    accountCode: cell     // код MemberAccount\n    accountParams: Cell<AccountParams>\n    memberCount: uint32\n    totalPrincipal: coins // сумма principal всех активных траншей\n    acc: uint128          // бонус-tsTON на 1 nanoTON principal, ×2^64\n    unallocated: coins    // tsTON котла, ещё не разнесённые в acc (некому было)\n    forfeitBuffer: coins  // TON форфейтов, ещё не отправленные в стейкинг\n    pendingStake: coins   // TON форфейтов, отправленные в пул и ещё не подтверждённые\n}\n\nfun VaultStorage.load(): VaultStorage {\n    return VaultStorage.fromCell(contract.getData());\n}\n\nfun VaultStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n// ---------- MemberAccount ----------\n\nstruct Tranche {\n    queryId: uint64     // query_id депозита (для сопоставления с событиями)\n    principal: coins\n    depositedAt: uint32 // только для UI и истории\n    tokens: coins       // tsTON; 0, пока stake не подтверждён\n    acc0: uint128       // снимок Vault.acc в момент депозита\n    status: uint2       // TRANCHE_STAKING / ACTIVE / EXITING\n}\n\nstruct PendingBatch {\n    queryId: uint64    // query_id из withdraw владельца (для событий)\n    slots: uint64      // маска слотов траншей в батче\n    principalSum: coins\n    tokensSum: coins\n    debtSum: uint256   // Σ principal_i × acc0_i\n    mode: uint2        // MODE_AWAITING_ACK / EARLY / FULL\n    bonusTokens: coins\n    batchId: uint32    // query_id для burn и атрибуции выплаты\n    createdAt: uint32  // для RETRY_TIMEOUT\n    burnSentAt: uint32 // 0, пока burn не отправлен\n    burnValue: coins   // TON, приложенные к burn: пул возвращает их вместе с выплатой\n}\n\nstruct AccountStorage {\n    vault: address\n    owner: address\n    params: Cell<AccountParams>\n    tstonWallet: address? // вычисляется при первом credit_tranche\n    usedSlots: uint64     // маска занятых слотов (staking | active | exiting)\n    isMember: bool        // учтён в Vault.member_count\n    batchSeq: uint32\n    tranches: map<uint8, Tranche>\n    pending: Cell<PendingBatch>?\n}\n\nfun AccountStorage.load(): AccountStorage {\n    return AccountStorage.fromCell(contract.getData());\n}\n\nfun AccountStorage.save(self) {\n    contract.setData(self.toCell());\n}\n\n/// Init-данные аккаунта участника: детерминированы из (vault, owner, params).\nfun calcAccountInit(\n    vault: address,\n    owner: address,\n    accountCode: cell,\n    params: Cell<AccountParams>,\n): AutoDeployAddress {\n    val data: AccountStorage = {\n        vault,\n        owner,\n        params,\n        tstonWallet: null,\n        usedSlots: 0,\n        isMember: false,\n        batchSeq: 0,\n        tranches: [],\n        pending: null,\n    };\n    return { workchain: MY_WORKCHAIN, stateInit: { code: accountCode, data: data.toCell() } };\n}\n\nfun calcAccountAddress(\n    vault: address,\n    owner: address,\n    accountCode: cell,\n    params: Cell<AccountParams>,\n): address {\n    return calcAccountInit(vault, owner, accountCode, params).calculateAddress();\n}\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/tonstakers.tolk",
+      "contents": "// Сообщения протокола Tonstakers (ton-blockchain/liquid-staking-contract) и TEP-74,\n// а также расчёт адреса tsTON-кошелька (раскладка jetton_dao, DESIGN §7.1).\n\nimport \"constants\"\n\n// ---------- пул ----------\n\n/// deposit#47d54391 query_id:uint64 — депозит TON в пул; пул удерживает 1 TON и возвращает excesses.\nstruct (0x47d54391) PoolDeposit {\n    queryId: uint64\n}\n\n/// pool::withdrawal#0a77535c query_id:uint64 — мгновенная выплата TON от пула после burn.\nstruct (0x0a77535c) PoolWithdrawal {\n    queryId: uint64\n}\n\n/// distributed_asset#db3b8abd query_id:uint64 — отложенная выплата от коллекции раунда (query_id = lt пула).\nstruct (0xdb3b8abd) DistributedAsset {\n    queryId: uint64\n}\n\n/// ownership_assigned#05138d91 — payout-NFT сообщает о выдаче (отложенный путь); аккаунт игнорирует.\nstruct (0x05138d91) OwnershipAssigned {\n    queryId: uint64\n    prevOwner: address\n    forwardPayload: RemainingBitsAndRefs\n}\n\n/// custom_payload для burn в tsTON-кошельке: wait_till_round_end:Bool fill_or_kill:Bool.\nstruct BurnCustomPayload {\n    waitTillRoundEnd: bool\n    fillOrKill: bool\n}\n\n// ---------- TEP-74 ----------\n\nstruct (0x0f8a7ea5) JettonTransfer {\n    queryId: uint64\n    jettonAmount: coins\n    destination: address\n    responseDestination: address?\n    customPayload: cell?\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\nstruct (0x178d4519) JettonInternalTransfer {\n    queryId: uint64\n    jettonAmount: coins\n    from: address?\n    responseDestination: address?\n    forwardTonAmount: coins\n    forwardPayload: RemainingBitsAndRefs\n}\n\nstruct (0x7362d09c) JettonTransferNotification {\n    queryId: uint64\n    jettonAmount: coins\n    from: address?\n    forwardPayload: RemainingBitsAndRefs\n}\n\nstruct (0x595f07bc) JettonBurn {\n    queryId: uint64\n    jettonAmount: coins\n    responseDestination: address?\n    customPayload: cell?\n}\n\nstruct (0x7bdd97de) JettonBurnNotification {\n    queryId: uint64\n    jettonAmount: coins\n    sender: address\n    responseDestination: address?\n}\n\nstruct (0xd53276db) Excesses {\n    queryId: uint64\n}\n\n/// Ответ стандартного get_wallet_data (TEP-74).\nstruct JettonWalletData {\n    balance: coins\n    owner: address\n    master: address\n    walletCode: cell\n}\n\n// ---------- адрес tsTON-кошелька ----------\n\n/// Данные jetton-кошелька tsTON (jetton_dao): coins(0) owner master ^code coins(0) uint48(0).\nstruct TsTonWalletData {\n    balance: coins\n    owner: address\n    master: address\n    walletCode: cell\n    locked: coins\n    lockExpiration: uint48\n}\n\nfun calcTsTonWalletInit(owner: address, master: address, walletCode: cell): AutoDeployAddress {\n    val data: TsTonWalletData = {\n        balance: 0,\n        owner,\n        master,\n        walletCode,\n        locked: 0,\n        lockExpiration: 0,\n    };\n    return { workchain: MY_WORKCHAIN, stateInit: { code: walletCode, data: data.toCell() } };\n}\n\nfun calcTsTonWalletAddress(owner: address, master: address, walletCode: cell): address {\n    return calcTsTonWalletInit(owner, master, walletCode).calculateAddress();\n}\n"
+    },
+    {
+      "filename": "tmp/4fb419fe-a334-4dbb-9da0-325d3dfa2561/contracts/window.tolk",
+      "contents": "import \"errors\"\n\n/// Состояние расписания окон вывода (DESIGN §2.3): окно открыто,\n/// когда (now − epoch_start) mod period < window_length.\nstruct WindowState {\n    isOpen: bool\n    index: uint32        // номер окна (0 — открывается в epoch_start): текущего, если открыто, иначе ближайшего\n    openedAt: uint32     // начало этого окна\n    closesAt: uint32     // конец этого окна\n    nextWindowAt: uint32 // когда откроется следующее окно: openedAt, если сейчас закрыто, иначе следующее\n}\n\nfun calcWindowState(period: int, windowLength: int, epochStart: int, now: int): WindowState {\n    assert (period > 0 && windowLength > 0 && windowLength < period) throw Errors.BadConfig;\n    if (now < epochStart) {\n        return {\n            isOpen: false,\n            index: 0,\n            openedAt: epochStart,\n            closesAt: epochStart + windowLength,\n            nextWindowAt: epochStart,\n        };\n    }\n    val elapsed = now - epochStart;\n    val k = elapsed / period;\n    val start = now - elapsed % period; // начало окна k\n    if (now - start < windowLength) {\n        return {\n            isOpen: true,\n            index: k,\n            openedAt: start,\n            closesAt: start + windowLength,\n            nextWindowAt: start + period,\n        };\n    }\n    return {\n        isOpen: false,\n        index: k + 1,\n        openedAt: start + period,\n        closesAt: start + period + windowLength,\n        nextWindowAt: start + period,\n    };\n}\n"
+    }
+  ]
+}

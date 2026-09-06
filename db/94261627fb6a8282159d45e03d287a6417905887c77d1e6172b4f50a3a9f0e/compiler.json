@@ -1,0 +1,1200 @@
+{
+  "status": "ok",
+  "fiftCode": "\"Asm.fif\" include\n// automatically generated from comment_payer_hl.tolk\nPROGRAM{\n  -1 DECLMETHOD onExternalMessage()\n  0 DECLMETHOD onInternalMessage()\n  86520 DECLMETHOD publicKey()\n  101849 DECLMETHOD paymentInfo()\n  129134 DECLMETHOD commentLimits()\n  87531 DECLMETHOD maxBatch()\n  100093 DECLMETHOD processed()\n  78904 DECLMETHOD windowParams()\n  72741 DECLMETHOD lastCleaned()\n  // 4 functions inlined in-place:\n  // - Storage.load (6 calls)\n  // - Storage.save (2 calls)\n  // - validateComment (1 call)\n  // - handleAdmin (1 call)\n  onExternalMessage() PROC:<{\n    9 PUSHPOW2\n    LDSLICEX\n    DUP\n    NEWC\n    STSLICE\n    HASHBU\n    c4 PUSH\n    CTOS\n    256 LDU\n    32 LDU\n    LDREF\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s0 s6 XCHG\n    1 LDI\n    s6 s8 s5 XC2PU\n    CHKSIGNU\n    35 THROWIFNOT\n    s0 s6 XCHG\n    32 LDU\n    32 LDU\n    NOW\n    DUP\n    240 PUSHINT\n    SUB\n    s3 PUSH\n    LESS\n    36 THROWIFNOT\n    DUP\n    60 ADDCONST\n    s1 s3 XCHG\n    LEQ\n    37 THROWIFNOT\n    s4 PUSH\n    300 PUSHINT\n    ADD\n    s2 PUSH\n    LESS\n    IF:<{\n      s7 POP\n      s0 s3 XCHG\n      600 PUSHINT\n      ADD\n      s3 PUSH\n      LESS\n      IF:<{\n        s6 POP\n        NEWDICT\n      }>ELSE<{\n        s0 s6 XCHG\n      }>\n      NEWDICT\n      s7 s7 XCHG2\n      s0 s6 XCHG\n    }>ELSE<{\n      NIP\n    }>\n    OVER\n    8 RSHIFT#\n    s0 s2 XCHG\n    8 PUSHPOW2DEC\n    AND\n    POW2\n    s7 PUSH\n    DICTEMPTY\n    IFNOT:<{\n      s2 s7 PUSH2\n      24 PUSHINT\n      DICTUGET\n      NULLSWAPIFNOT\n      IF:<{\n        256 PLDU\n        OVER\n        AND\n        38 THROWIF\n      }>ELSE<{\n        DROP\n      }>\n    }>\n    0 PUSHINT\n    s9 PUSH\n    DICTEMPTY\n    IFNOT:<{\n      s3 s9 PUSH2\n      24 PUSHINT\n      DICTUGET\n      NULLSWAPIFNOT\n      IF:<{\n        NIP\n        256 PLDU\n        s0 s1 PUSH2\n        AND\n        38 THROWIF\n      }>ELSE<{\n        DROP\n      }>\n    }>\n    s0 s7 XCHG\n    IFJMP:<{\n      s1 s6 XCHG\n      OR\n      s0 s5 XCHG\n      32 LDU\n      OVER\n      1 EQINT\n      IF:<{\n        NIP\n        LDSTDADDR\n        DROP\n        ACCEPT\n        NEWC\n        b{010000} STSLICECONST\n        STSTDADDR\n        0 PUSHINT\n        111 STUR\n        ENDC\n        130 PUSHINT\n        SENDRAWMSG\n      }>ELSE<{\n        SWAP\n        2 EQINT\n        IFNOTJMP:<{\n          8 BLKDROP\n          43 THROW\n        }>\n        8 LDU\n        PLDREF\n        ACCEPT\n        SWAP\n        SENDRAWMSG\n      }>\n      24 PUSHINT\n      s0 s5 XCHG\n      NEWC\n      256 STU\n      s0 s3 XCHG\n      s1 s7 s5 XCHG3\n      DICTUSETB\n      OVER\n      NEWC\n      256 STU\n      s2 POP\n      s2 s1 PUXC\n      32 STU\n      s2 POP\n      s3 s1 PUXC\n      STREF\n      s3 POP\n      s0 s2 PUXC\n      STOPTREF\n      s2 POP\n      s0 s1 PUXC\n      STOPTREF\n      NIP\n      ENDC\n      c4 POP\n    }>\n    s3 PUSH\n    CTOS\n    10 PUSHPOW2DEC\n    OVER\n    SBITS\n    SUB\n    s3 PUSH\n    0 PUSHINT\n    TRUE\n    WHILE:<{\n    }>DO<{\n      INC\n      DUP\n      6 LESSINT\n      42 THROWIFNOT\n      SWAP\n      1 LDI\n      OVER\n      IF:<{\n        LDREF\n        SWAP\n        CTOS\n      }>ELSE<{\n        DUP\n        SREFS\n        1 EQINT\n        IF:<{\n          LDREF\n          SWAP\n          CTOS\n        }>ELSE<{\n          DUP\n        }>\n      }>\n      DUP\n      SBITS\n      s5 PUSH\n      LEQ\n      40 THROWIFNOT\n      1 PUSHINT\n      WHILE:<{\n        OVER\n        SREMPTY\n        NOT\n      }>DO<{\n        DUP\n        4 LESSINT\n        40 THROWIFNOT\n        OVER\n        SREFS\n        1 EQINT\n        41 THROWIFNOT\n        SWAP\n        PLDREF\n        CTOS\n        SWAP\n        INC\n      }>\n      2DROP\n      OVER\n      IF:<{\n        PLDREF\n        CTOS\n      }>\n      -ROT\n    }>\n    3 BLKDROP\n    ACCEPT\n    TRUE\n    WHILE:<{\n    }>DO<{\n      s0 s2 XCHG\n      1 LDI\n      OVER\n      IF:<{\n        LDREF\n        SWAP\n        CTOS\n      }>ELSE<{\n        DUP\n        SREFS\n        1 EQINT\n        IF:<{\n          LDREF\n          SWAP\n          CTOS\n        }>ELSE<{\n          DUP\n        }>\n      }>\n      s4 PUSH\n      NEWC\n      STSLICE\n      STSLICE\n      ENDC\n      1 PUSHINT\n      SENDRAWMSG\n      OVER\n      IF:<{\n        PLDREF\n        CTOS\n      }>\n      s3 s3 XCHG2\n    }>\n    DROP\n    NIP\n    s0 s5 XCHG\n    24 PUSHINT\n    s0 s6 XCHG\n    OR\n    NEWC\n    256 STU\n    s0 s3 XCHG\n    s1 s7 s5 XCHG3\n    DICTUSETB\n    SWAP\n    NEWC\n    256 STU\n    s1 s2 XCHG\n    32 STU\n    s1 s3 XCHG\n    STREF\n    s1 s2 XCHG\n    STOPTREF\n    STOPTREF\n    ENDC\n    c4 POP\n  }>\n  onInternalMessage() PROC:<{\n    DROP\n    INMSG_BOUNCED\n    0 THROWIF\n  }>\n  publicKey() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n  }>\n  paymentInfo() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    CTOS\n    6 LDU\n    NIP\n    LDSTDADDR\n    LDGRAMS\n    DROP\n  }>\n  commentLimits() PROC:<{\n    10 PUSHPOW2DEC\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n    CTOS\n    SBITS\n    SUB\n    4 PUSHINT\n  }>\n  maxBatch() PROC:<{\n    5 PUSHINT\n  }>\n  processed() PROC:<{\n    c2 SAVE\n    SAMEALTSAVE\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 LDU\n    NIP\n    LDREF\n    NIP\n    LDOPTREF\n    LDOPTREF\n    ENDS\n    s2 PUSH\n    8 RSHIFT#\n    s0 s3 XCHG\n    8 PUSHPOW2DEC\n    AND\n    POW2\n    s3 s2 PUXC\n    24 PUSHINT\n    DICTUGET\n    NULLSWAPIFNOT\n    IF:<{\n      256 PLDU\n      s2 PUSH\n      AND\n      IFJMP:<{\n        3 BLKDROP\n        TRUE\n        RETALT\n      }>\n    }>ELSE<{\n      DROP\n    }>\n    s1 s2 XCHG\n    24 PUSHINT\n    DICTUGET\n    NULLSWAPIFNOT\n    IF:<{\n      256 PLDU\n      AND\n      IFJMP:<{\n        TRUE\n        RETALT\n      }>\n    }>ELSE<{\n      2DROP\n    }>\n    FALSE\n  }>\n  windowParams() PROC:<{\n    240 PUSHINT\n    60 PUSHINT\n    300 PUSHINT\n  }>\n  lastCleaned() PROC:<{\n    c4 PUSH\n    CTOS\n    256 LDU\n    NIP\n    32 LDU\n    LDREF\n    NIP\n    LDOPTREF\n    NIP\n    LDOPTREF\n    NIP\n    ENDS\n  }>\n}END>c\n",
+  "codeBoc64": "te6ccgECFwEAAqYAART/APSkE/S88sgLAQIBIAIDAgFIBAUC+PKDCNcYIMjO+RbtRNDT/9Mf1PQE9ATRBtIAVBaF+RDyowbTH9Mf+CMggQDwoSO58qQgpjwTu/KlJIEBLKAiuY4SNwOBAligI7mSNm2RBuJtUHcGkTHiIasHAoQHsK4nbo4TUyeAGPQOb6GX1wv/IbDyZpEw4t9wKW7jAQcSEwAM0DD4kfJAAgEgBgcCASAICQIBIA4PAgEgCgsCAnIMDQAnt4S9qJoaf+Y6Y/qGPoCGPoCGOjAAFbaHECAeEAeQICWQACap+O1E0NP/0x8x1DH0BDH0BDHRAAap63UCAWIQEQA1u4boQJ7UTQ0/8x0x8x1PQEMfQEMdHQ10mhdIAJevfvbRdv32omhp/5jpj5jqGPoCegJokVWDgcID2FcpGcAMegc30M5rhf+RWEqvgb/tmPBImHEJQAx6BzfQzOuF/9hJv+2Y8Eit8ThAADmu7PaiaGn/mOmPmOp6Ahj6Ahjo6GmCmP0kfQAYQAAqUzmAGPQOb6GZMdcL/1MBsPJmkTDiA/6OWxaxBdMfIcABjhYx+kgw+ADIz4UI+lJwzwtuyYEAgvsAjhIBwAKUXwjyK+HTB9dM+AAB+wDigBgFyMv/A0F19EMhyMv/MlIiyx8yUjLMM1ID9AAyUgL0ADHJ7VTgI9CECSHXSaEjcH+QiuhfA/gAf5CK6DAxBYAYBrHIy/8DFBUWAIykIMEG8qoB0gAhk9QB0Jwg10rAAZPUAdCRIOLiINdJJbvyqHGUIccCs44SIMEE8qgh10rAAfKpAddM0AGk6Fshk9dM0N5ZAEwC0gAhk9QB0Jwg10rAAZPUAdCRIOLiJMjOzslx+wAhk9dM0N5QMwAqQXX0QwHIy/8Syx8TzBL0APQAye1U",
+  "codeHashHex": "DB94261627FB6A8282159D45E03D287A6417905887C77D1E6172B4F50A3A9F0E",
+  "symbolTypesJson": {
+    "files": [
+      {
+        "file_id": 0,
+        "file_name": "@stdlib/common.tolk",
+        "size_chars": 75314,
+        "imports": []
+      },
+      {
+        "file_id": 1,
+        "file_name": "tmp/148c1297-ef44-45df-9a41-5e99018051a8/comment_payer_hl.tolk",
+        "size_chars": 20916,
+        "imports": [
+          2,
+          3
+        ]
+      },
+      {
+        "file_id": 2,
+        "file_name": "@stdlib/gas-payments.tolk",
+        "size_chars": 3659,
+        "imports": []
+      },
+      {
+        "file_id": 3,
+        "file_name": "@stdlib/tvm-dicts.tolk",
+        "size_chars": 10687,
+        "imports": []
+      }
+    ],
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 256
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "Storage"
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "dict"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "UnpackOptions"
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 2
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "OutMessage"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          0
+        ]
+      },
+      {
+        "kind": "EnumRef",
+        "enum_name": "BounceMode"
+      },
+      {
+        "kind": "uintN",
+        "n": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "OldBounceMode"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 20,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 129,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 22,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 2,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 2
+      },
+      {
+        "kind": "AliasRef",
+        "alias_name": "ExtraCurrenciesMap"
+      },
+      {
+        "kind": "varuintN",
+        "n": 32
+      },
+      {
+        "kind": "mapKV",
+        "key_ty_idx": 8,
+        "value_ty_idx": 25
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          6,
+          24
+        ]
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 6,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 17,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 27,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 133,
+            "stack_width": 2
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "intN",
+        "n": 8
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          29,
+          12
+        ]
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AutoDeployAddress"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "ContractState"
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 32,
+            "prefix_num": 0,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 131,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 3,
+            "prefix_num": 1,
+            "prefix_len": 1,
+            "is_prefix_implicit": true,
+            "stack_type_id": 3,
+            "stack_width": 1
+          }
+        ],
+        "stack_width": 3
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "AddressShardingOptions"
+      },
+      {
+        "kind": "uintN",
+        "n": 5
+      },
+      {
+        "kind": "nullable",
+        "inner_ty_idx": 34,
+        "stack_type_id": 132,
+        "stack_width": 3
+      },
+      {
+        "kind": "union",
+        "variants": [
+          {
+            "variant_ty_idx": 7,
+            "prefix_num": 0,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 8,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 4,
+            "prefix_num": 1,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 5,
+            "stack_width": 1
+          },
+          {
+            "variant_ty_idx": 30,
+            "prefix_num": 2,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 134,
+            "stack_width": 2
+          },
+          {
+            "variant_ty_idx": 31,
+            "prefix_num": 3,
+            "prefix_len": 2,
+            "is_prefix_implicit": true,
+            "stack_type_id": 130,
+            "stack_width": 7
+          }
+        ],
+        "stack_width": 8
+      },
+      {
+        "kind": "genericT",
+        "name_t": "TBody"
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "CreateMessageOptions",
+        "type_args_ty_idx": [
+          38
+        ]
+      },
+      {
+        "kind": "cellOf",
+        "inner_ty_idx": 13
+      },
+      {
+        "kind": "StructRef",
+        "struct_name": "PackOptions"
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [
+      {
+        "ty_idx": 19,
+        "struct_name": "CreateMessageOptions<void>",
+        "monomorphic_fields_ty_idx": [
+          23,
+          28,
+          37,
+          0
+        ]
+      }
+    ],
+    "alias_instantiations": [],
+    "declarations": [
+      {
+        "kind": "alias",
+        "name": "dict",
+        "ty_idx": 14,
+        "ident_loc": [
+          0,
+          168,
+          6,
+          168,
+          10
+        ],
+        "target_ty_idx": 15
+      },
+      {
+        "kind": "struct",
+        "name": "PackOptions",
+        "ty_idx": 41,
+        "ident_loc": [
+          0,
+          439,
+          8,
+          439,
+          19
+        ],
+        "fields": [
+          {
+            "name": "skipBitsNValidation",
+            "ty_idx": 5
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "UnpackOptions",
+        "ty_idx": 16,
+        "ident_loc": [
+          0,
+          451,
+          8,
+          451,
+          21
+        ],
+        "fields": [
+          {
+            "name": "assertEndAfterReading",
+            "ty_idx": 5
+          },
+          {
+            "name": "throwIfOpcodeDoesNotMatch",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "ExtraCurrenciesMap",
+        "ty_idx": 24,
+        "ident_loc": [
+          0,
+          1596,
+          6,
+          1596,
+          24
+        ],
+        "target_ty_idx": 26
+      },
+      {
+        "kind": "struct",
+        "name": "ContractState",
+        "ty_idx": 32,
+        "ident_loc": [
+          0,
+          1600,
+          8,
+          1600,
+          21
+        ],
+        "fields": [
+          {
+            "name": "code",
+            "ty_idx": 3
+          },
+          {
+            "name": "data",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AddressShardingOptions",
+        "ty_idx": 34,
+        "ident_loc": [
+          0,
+          1607,
+          8,
+          1607,
+          30
+        ],
+        "fields": [
+          {
+            "name": "fixedPrefixLength",
+            "ty_idx": 35
+          },
+          {
+            "name": "closeTo",
+            "ty_idx": 7
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "AutoDeployAddress",
+        "ty_idx": 31,
+        "ident_loc": [
+          0,
+          1629,
+          8,
+          1629,
+          25
+        ],
+        "fields": [
+          {
+            "name": "workchain",
+            "ty_idx": 29
+          },
+          {
+            "name": "stateInit",
+            "ty_idx": 33
+          },
+          {
+            "name": "toShard",
+            "ty_idx": 36
+          }
+        ]
+      },
+      {
+        "kind": "enum",
+        "name": "BounceMode",
+        "ty_idx": 20,
+        "ident_loc": [
+          0,
+          1685,
+          6,
+          1685,
+          16
+        ],
+        "encoded_as_ty_idx": 21,
+        "members": [
+          {
+            "name": "NoBounce",
+            "value": "0"
+          },
+          {
+            "name": "Only256BitsOfBody",
+            "value": "1"
+          },
+          {
+            "name": "RichBounce",
+            "value": "2"
+          },
+          {
+            "name": "RichBounceOnlyRootCell",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "kind": "alias",
+        "name": "OldBounceMode",
+        "ty_idx": 22,
+        "ident_loc": [
+          0,
+          1695,
+          6,
+          1695,
+          19
+        ],
+        "target_ty_idx": 5
+      },
+      {
+        "kind": "struct",
+        "name": "CreateMessageOptions",
+        "ty_idx": 39,
+        "ident_loc": [
+          0,
+          1699,
+          8,
+          1699,
+          28
+        ],
+        "type_params": [
+          "TBody"
+        ],
+        "fields": [
+          {
+            "name": "bounce",
+            "ty_idx": 23
+          },
+          {
+            "name": "value",
+            "ty_idx": 28
+          },
+          {
+            "name": "dest",
+            "ty_idx": 37
+          },
+          {
+            "name": "body",
+            "ty_idx": 38
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "OutMessage",
+        "ty_idx": 18,
+        "ident_loc": [
+          0,
+          1796,
+          8,
+          1796,
+          18
+        ],
+        "fields": [
+          {
+            "name": "messageCell",
+            "ty_idx": 3
+          }
+        ]
+      },
+      {
+        "kind": "struct",
+        "name": "Storage",
+        "ty_idx": 13,
+        "ident_loc": [
+          1,
+          141,
+          8,
+          141,
+          15
+        ],
+        "fields": [
+          {
+            "name": "publicKey",
+            "ty_idx": 12
+          },
+          {
+            "name": "lastCleaned",
+            "ty_idx": 9
+          },
+          {
+            "name": "msgPrefix",
+            "ty_idx": 3
+          },
+          {
+            "name": "queries",
+            "ty_idx": 14
+          },
+          {
+            "name": "oldQueries",
+            "ty_idx": 14
+          }
+        ]
+      }
+    ],
+    "functions": [
+      {
+        "f_idx": 0,
+        "name": "onExternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          182,
+          5,
+          182,
+          22
+        ],
+        "end_loc": [
+          1,
+          294,
+          1,
+          294,
+          2
+        ],
+        "params": [
+          {
+            "name": "inMsg",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 1,
+        "name": "Storage.load",
+        "return_ty_idx": 13,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          149,
+          13,
+          149,
+          17
+        ],
+        "end_loc": [
+          1,
+          151,
+          1,
+          151,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 2,
+        "name": "Storage.fromCell",
+        "return_ty_idx": 13,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "packedCell",
+            "ty_idx": 3
+          },
+          {
+            "name": "options",
+            "ty_idx": 16
+          }
+        ]
+      },
+      {
+        "f_idx": 3,
+        "name": "handleAdmin",
+        "return_ty_idx": 0,
+        "num_params": 4,
+        "ident_loc": [
+          1,
+          305,
+          5,
+          305,
+          16
+        ],
+        "end_loc": [
+          1,
+          350,
+          1,
+          350,
+          2
+        ],
+        "params": [
+          {
+            "name": "storage",
+            "ty_idx": 13
+          },
+          {
+            "name": "inMsg",
+            "ty_idx": 2
+          },
+          {
+            "name": "queryKey",
+            "ty_idx": 1
+          },
+          {
+            "name": "newMask",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 4,
+        "name": "createMessage<void>",
+        "return_ty_idx": 18,
+        "num_params": 1,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "options",
+            "ty_idx": 19
+          }
+        ]
+      },
+      {
+        "f_idx": 5,
+        "name": "Storage.save",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          153,
+          13,
+          153,
+          17
+        ],
+        "end_loc": [
+          1,
+          155,
+          1,
+          155,
+          2
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 13
+          }
+        ]
+      },
+      {
+        "f_idx": 6,
+        "name": "Storage.toCell",
+        "return_ty_idx": 40,
+        "num_params": 2,
+        "ident_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end_loc": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "params": [
+          {
+            "name": "self",
+            "ty_idx": 13
+          },
+          {
+            "name": "options",
+            "ty_idx": 41
+          }
+        ]
+      },
+      {
+        "f_idx": 7,
+        "name": "validateComment",
+        "return_ty_idx": 0,
+        "num_params": 2,
+        "ident_loc": [
+          1,
+          158,
+          5,
+          158,
+          20
+        ],
+        "end_loc": [
+          1,
+          170,
+          1,
+          170,
+          2
+        ],
+        "params": [
+          {
+            "name": "comment",
+            "ty_idx": 2
+          },
+          {
+            "name": "maxRootBits",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 8,
+        "name": "onInternalMessage",
+        "return_ty_idx": 0,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          353,
+          5,
+          353,
+          22
+        ],
+        "end_loc": [
+          1,
+          354,
+          1,
+          354,
+          2
+        ],
+        "params": [
+          {
+            "name": "in.body",
+            "ty_idx": 2
+          }
+        ]
+      },
+      {
+        "f_idx": 9,
+        "name": "publicKey",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          356,
+          9,
+          356,
+          18
+        ],
+        "end_loc": [
+          1,
+          358,
+          1,
+          358,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 10,
+        "name": "paymentInfo",
+        "return_ty_idx": 42,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          360,
+          9,
+          360,
+          20
+        ],
+        "end_loc": [
+          1,
+          366,
+          1,
+          366,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 11,
+        "name": "commentLimits",
+        "return_ty_idx": 43,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          368,
+          9,
+          368,
+          22
+        ],
+        "end_loc": [
+          1,
+          371,
+          1,
+          371,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 12,
+        "name": "maxBatch",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          373,
+          9,
+          373,
+          17
+        ],
+        "end_loc": [
+          1,
+          375,
+          1,
+          375,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 13,
+        "name": "processed",
+        "return_ty_idx": 5,
+        "num_params": 1,
+        "ident_loc": [
+          1,
+          388,
+          9,
+          388,
+          18
+        ],
+        "end_loc": [
+          1,
+          410,
+          1,
+          410,
+          2
+        ],
+        "params": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ]
+      },
+      {
+        "f_idx": 14,
+        "name": "windowParams",
+        "return_ty_idx": 44,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          415,
+          9,
+          415,
+          21
+        ],
+        "end_loc": [
+          1,
+          417,
+          1,
+          417,
+          2
+        ],
+        "params": []
+      },
+      {
+        "f_idx": 15,
+        "name": "lastCleaned",
+        "return_ty_idx": 1,
+        "num_params": 0,
+        "ident_loc": [
+          1,
+          420,
+          9,
+          420,
+          20
+        ],
+        "end_loc": [
+          1,
+          422,
+          1,
+          422,
+          2
+        ],
+        "params": []
+      }
+    ]
+  },
+  "debugMarksJson": null,
+  "debugMarksBase64": "",
+  "abiJson": {
+    "abi_schema_version": "1.0",
+    "contract_name": "",
+    "unique_types": [
+      {
+        "kind": "void"
+      },
+      {
+        "kind": "int"
+      },
+      {
+        "kind": "slice"
+      },
+      {
+        "kind": "cell"
+      },
+      {
+        "kind": "builder"
+      },
+      {
+        "kind": "bool"
+      },
+      {
+        "kind": "coins"
+      },
+      {
+        "kind": "address"
+      },
+      {
+        "kind": "intN",
+        "n": 32
+      },
+      {
+        "kind": "uintN",
+        "n": 32
+      },
+      {
+        "kind": "intN",
+        "n": 64
+      },
+      {
+        "kind": "uintN",
+        "n": 64
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          7,
+          6
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1
+        ]
+      },
+      {
+        "kind": "tensor",
+        "items_ty_idx": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "struct_instantiations": [],
+    "alias_instantiations": [],
+    "declarations": [],
+    "storage": {},
+    "incoming_messages": [],
+    "incoming_external": [],
+    "outgoing_messages": [],
+    "emitted_events": [],
+    "get_methods": [
+      {
+        "tvm_method_id": 86520,
+        "name": "publicKey",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 101849,
+        "name": "paymentInfo",
+        "parameters": [],
+        "return_ty_idx": 12
+      },
+      {
+        "tvm_method_id": 129134,
+        "name": "commentLimits",
+        "parameters": [],
+        "return_ty_idx": 13
+      },
+      {
+        "tvm_method_id": 87531,
+        "name": "maxBatch",
+        "parameters": [],
+        "return_ty_idx": 1
+      },
+      {
+        "tvm_method_id": 100093,
+        "name": "processed",
+        "parameters": [
+          {
+            "name": "queryId",
+            "ty_idx": 1
+          }
+        ],
+        "return_ty_idx": 5
+      },
+      {
+        "tvm_method_id": 78904,
+        "name": "windowParams",
+        "parameters": [],
+        "return_ty_idx": 14,
+        "description": "Параметры окна: (сколько живёт сообщение, допуск часов, период ротации).\nСервис читает их отсюда, а не хардкодит: от MESSAGE_TTL зависит, когда\nбезопасно переподписывать."
+      },
+      {
+        "tvm_method_id": 72741,
+        "name": "lastCleaned",
+        "parameters": [],
+        "return_ty_idx": 1,
+        "description": "Когда в последний раз крутили поколения. Для диагностики."
+      }
+    ],
+    "thrown_errors": [
+      {
+        "kind": "constant",
+        "name": "ERROR_INVALID_SIGNATURE",
+        "description": "Подпись не прошла проверку ed25519 против нужного ключа. Нересторимо.",
+        "err_code": 35
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_EXPIRED",
+        "description": "createdAt вышел из окна валидности. Переподписать с ТЕМ ЖЕ query_id.",
+        "err_code": 36
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_CREATED_IN_FUTURE",
+        "description": "createdAt из будущего дальше CLOCK_SKEW. Нересторимо: врут часы подписанта.",
+        "err_code": 37
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_ALREADY_EXECUTED",
+        "description": "query_id уже исполнен. Ровно это защищает от двойной выплаты.",
+        "err_code": 38
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_COMMENT_TOO_LONG",
+        "description": "Комментарий не влезает в отведённый бюджет.",
+        "err_code": 40
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_COMMENT_MALFORMED",
+        "description": "Комментарий не линейная цепочка: у ячейки больше одного рефа.",
+        "err_code": 41
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_BATCH_TOO_LARGE",
+        "description": "В батче больше MAX_BATCH элементов.",
+        "err_code": 42
+      },
+      {
+        "kind": "constant",
+        "name": "ERROR_UNKNOWN_OP",
+        "description": "Неизвестный админский op-код.",
+        "err_code": 43
+      }
+    ],
+    "compiler_name": "tolk",
+    "compiler_version": "1.4.2"
+  },
+  "tolkVersion": "1.4.2",
+  "stderr": "",
+  "sourcesSnapshot": [
+    {
+      "filename": "tmp/148c1297-ef44-45df-9a41-5e99018051a8/comment_payer_hl.tolk",
+      "contents": "tolk 1.4.2\n\nimport \"@stdlib/gas-payments\"\nimport \"@stdlib/tvm-dicts\"\n\n/**\n * CommentPayerHL — платёж с комментарием без seqno.\n *\n * Зачем. У seqno-версии жёсткое свойство: сообщение с seqno N+1 отвергается\n * ДО accept, пока в контракте всё ещё N. Подписать вторую отправку, не дождавшись\n * подтверждения первой, физически нельзя. Здесь seqno заменён на защиту от\n * повторов по query_id, как в highload-кошельках: сообщения независимы, порядок\n * не важен, знать текущее состояние контракта, чтобы подписать, НЕ НУЖНО.\n *\n * Это не копия highload-wallet-v3, а самый дешёвый вариант того же приёма:\n * без subwallet_id, без ^message_to_send в теле платежа, без фан-аута через\n * внутреннее сообщение самому себе, и с маской использованных id в uint256\n * вместо 1023-битного слайса — целочисленные операции вместо разрезания\n * и склейки слайсов.\n *\n * -------------------------------------------------------------------------\n * ОДИН КЛЮЧ\n *\n * publicKey подписывает и платежи, и админские операции — вывод баланса\n * и произвольное исходящее сообщение. Решение заказчика: один секрет вместо\n * двух, storage короче на 256 бит, деплой и эксплуатация проще.\n *\n * Цена названа прямо, чтобы её не пришлось узнавать на практике: ключ лежит\n * в окружении сервиса, на машине с сетью. Его компрометация теперь означает\n * потерю ВСЕГО баланса контракта, а не только тех переводов зашитому\n * получателю, что успеют уйти до опустошения.\n *\n * Отсюда правило эксплуатации, которое заменяет собой разделение ключей:\n * на контракте держится оборотный остаток на несколько часов работы,\n * а не весь запас. Пополнение — отдельная операция снаружи сервиса.\n *\n * Вернуть разделение можно только новым деплоем: обновления кода (SETCODE)\n * здесь намеренно НЕТ — изменяемый код обесценил бы любые гарантии,\n * доказанные тестами для текущего.\n * -------------------------------------------------------------------------\n * Формат внешнего сообщения (body):\n *\n *   signature : bits512   — ed25519(payloadCell.hash(), publicKey)\n *   ---------- подписанный payload ----------\n *   isAdmin   : 1 бит     — 0 платёж, 1 админская операция\n *   queryId   : uint32    — старшие 24 бита ключ словаря, младшие 8 номер бита\n *   createdAt : uint32    — unixtime подписания\n *   далее по isAdmin: батч платежей либо админская операция\n *\n * Элемент батча:\n *   hasMore : 1 бит\n *   если hasMore = 1: реф0 = комментарий, реф1 = следующий элемент\n *   если hasMore = 0: комментарий рефом, если реф ровно один, иначе инлайн\n *\n * Инлайн у последнего элемента — не украшение: он убирает лишнюю ячейку\n * из внешнего сообщения и экономит около 25 000 нанотон на одиночной отправке,\n * то есть на основном режиме работы.\n *\n * Один query_id на всю внешку, а не на элемент: защита от повторов работает\n * на уровне сообщения целиком.\n * -------------------------------------------------------------------------\n * ЗАЩИТА ОТ ПОВТОРОВ\n *\n * Использованные query_id помнятся в двух поколениях словаря. Раз в\n * ROTATION_PERIOD текущее поколение становится старым, а старое выбрасывается.\n * Проверка идёт по обоим, поэтому id помнится не меньше ROTATION_PERIOD секунд\n * после использования.\n *\n * Отсюда обязательное соотношение:\n *\n *     MESSAGE_TTL + CLOCK_SKEW <= ROTATION_PERIOD\n *\n * Слева максимальное время жизни сообщения от момента, когда его МОГЛИ принять,\n * справа гарантия памяти. Нарушить соотношение — открыть окно, в котором\n * сообщение ещё валидно, а его id уже забыт: платёж пройдёт дважды. Поэтому\n * ROTATION_PERIOD не задаётся отдельно, а выводится из двух других констант.\n *\n * Проверка «createdAt не из будущего» — часть этого соотношения, а не гигиена:\n * без неё можно подписать сообщение с createdAt на год вперёд, оно будет валидно\n * год, а его id забудется через два поколения.\n * -------------------------------------------------------------------------\n */\n\n/// Подпись не прошла проверку ed25519 против нужного ключа. Нересторимо.\nconst ERROR_INVALID_SIGNATURE = 35;\n/// createdAt вышел из окна валидности. Переподписать с ТЕМ ЖЕ query_id.\nconst ERROR_EXPIRED = 36;\n/// createdAt из будущего дальше CLOCK_SKEW. Нересторимо: врут часы подписанта.\nconst ERROR_CREATED_IN_FUTURE = 37;\n/// query_id уже исполнен. Ровно это защищает от двойной выплаты.\nconst ERROR_ALREADY_EXECUTED = 38;\n/// Комментарий не влезает в отведённый бюджет.\nconst ERROR_COMMENT_TOO_LONG = 40;\n/// Комментарий не линейная цепочка: у ячейки больше одного рефа.\nconst ERROR_COMMENT_MALFORMED = 41;\n/// В батче больше MAX_BATCH элементов.\nconst ERROR_BATCH_TOO_LARGE = 42;\n/// Неизвестный админский op-код.\nconst ERROR_UNKNOWN_OP = 43;\n\n/// Вывести весь баланс на адрес из сообщения. Только админским ключом.\nconst OP_WITHDRAW_ALL = 1;\n/// Отправить произвольное сообщение с произвольным режимом. Только админским ключом.\nconst OP_EXECUTE = 2;\n\nconst CELL_MAX_BITS = 1023;\n\n/// Потолок ячеек в одном комментарии: корневая плюс продолжения.\nconst MAX_COMMENT_CELLS = 4;\n\n/// Потолок платежей в одной внешке. Сервис вправе использовать меньше.\nconst MAX_BATCH = 5;\n\n/// Сколько живёт подписанное сообщение.\nconst MESSAGE_TTL = 240;\n\n/// Насколько часы подписанта могут убежать вперёд относительно валидатора.\nconst CLOCK_SKEW = 60;\n\n/// Период ротации поколений. ВЫВОДИТСЯ, а не задаётся: см. соотношение выше.\nconst ROTATION_PERIOD = MESSAGE_TTL + CLOCK_SKEW;\n\n/// query_id = ключ словаря (24 бита) : номер бита в маске (8 бит).\nconst QUERY_KEY_BITS = 24;\nconst QUERY_BIT_BITS = 8;\nconst QUERY_BITS_PER_ENTRY = 1 << QUERY_BIT_BITS;\n\n/// Режим вывода баланса: всё, что есть, с игнорированием ошибок отправки.\nconst WITHDRAW_MODE = SEND_MODE_CARRY_ALL_BALANCE | SEND_MODE_IGNORE_ERRORS;\n\n/**\n * Storage:\n *   publicKey   : uint256  — единственный ключ: платежи и админские операции\n *   lastCleaned : uint32   — когда в последний раз крутили поколения\n *   msgPrefix   : ^Cell    — статический заголовок исходящего платежа\n *   queries     : dict     — текущее поколение: ключ 24 бита -> маска uint256\n *   oldQueries  : dict     — предыдущее поколение\n *\n * 288 бит и три рефа из четырёх возможных.\n */\nstruct Storage {\n    publicKey: uint256\n    lastCleaned: uint32\n    msgPrefix: cell\n    queries: dict\n    oldQueries: dict\n}\n\nfun Storage.load(): Storage {\n    return Storage.fromCell(contract.getData());\n}\n\nfun Storage.save(self) {\n    contract.setData(self.toCell());\n}\n\n/// Проверяет один комментарий: корневой кусок влезает, цепочка линейная и не длиннее лимита.\nfun validateComment(comment: slice, maxRootBits: int): void {\n    assert (comment.remainingBitsCount() <= maxRootBits) throw ERROR_COMMENT_TOO_LONG;\n\n    var tail = comment;\n    var cellsUsed = 1;\n    while (!tail.isEndOfRefs()) {\n        assert (cellsUsed < MAX_COMMENT_CELLS) throw ERROR_COMMENT_TOO_LONG;\n        assert (tail.remainingRefsCount() == 1) throw ERROR_COMMENT_MALFORMED;\n        val next = tail.loadRef();\n        tail = next.beginParse();\n        cellsUsed += 1;\n    }\n}\n\n/**\n * Единственная точка входа.\n *\n * Как и в seqno-версии, ВСЕ проверки идут до acceptExternalMessage(): падение\n * после accept списало бы газ, откатило состояние и оставило внешку в вечном\n * ретрае. До accept сообщение просто отвергается нодой, бесплатно.\n *\n * Приятное следствие для ретраев: повторная отправка уже исполненного сообщения\n * отвергается кодом 38 БЕЗ транзакции и без газа, сколько бы раз её ни повторили.\n */\nfun onExternalMessage(inMsg: slice) {\n    val signature: slice = inMsg.loadBits(512);\n    val payloadHash: uint256 = inMsg.hash();\n\n    var storage = Storage.load();\n\n    val isAdmin = inMsg.loadBool();\n    assert (isSignatureValid(payloadHash, signature, storage.publicKey)) throw ERROR_INVALID_SIGNATURE;\n\n    val queryId = inMsg.loadUint(32);\n    val createdAt = inMsg.loadUint(32);\n    val nowTime = blockchain.now();\n\n    assert (createdAt > nowTime - MESSAGE_TTL) throw ERROR_EXPIRED;\n    assert (createdAt <= nowTime + CLOCK_SKEW) throw ERROR_CREATED_IN_FUTURE;\n\n    // --- ротация поколений -------------------------------------------------\n    // Крутим ДО проверки повтора: иначе протухшее поколение считалось бы\n    // актуальным, и словарь рос бы без границы.\n    if (nowTime > storage.lastCleaned + ROTATION_PERIOD) {\n        storage.oldQueries = nowTime > storage.lastCleaned + 2 * ROTATION_PERIOD\n            ? createEmptyDict()   // простой длиннее двух окон: оба поколения протухли\n            : storage.queries;\n        storage.queries = createEmptyDict();\n        storage.lastCleaned = nowTime;\n    }\n\n    // --- защита от повторов ------------------------------------------------\n    val queryKey = queryId >> QUERY_BIT_BITS;\n    val queryBit = 1 << (queryId & (QUERY_BITS_PER_ENTRY - 1));\n\n    if (!storage.oldQueries.dictIsEmpty()) {\n        val (oldValue, oldFound) = storage.oldQueries.uDictGet(QUERY_KEY_BITS, queryKey);\n        if (oldFound) {\n            var oldSlice = oldValue!;\n            assert ((oldSlice.loadUint(256) & queryBit) == 0) throw ERROR_ALREADY_EXECUTED;\n        }\n    }\n\n    var mask = 0;\n    if (!storage.queries.dictIsEmpty()) {\n        val (currentValue, currentFound) = storage.queries.uDictGet(QUERY_KEY_BITS, queryKey);\n        if (currentFound) {\n            var currentSlice = currentValue!;\n            mask = currentSlice.loadUint(256);\n            assert ((mask & queryBit) == 0) throw ERROR_ALREADY_EXECUTED;\n        }\n    }\n\n    if (isAdmin) {\n        handleAdmin(mutate storage, mutate inMsg, queryKey, mask | queryBit);\n        return;\n    }\n\n    // --- платежи -----------------------------------------------------------\n    val prefix: slice = storage.msgPrefix.beginParse();\n    val maxRootBits = CELL_MAX_BITS - prefix.remainingBitsCount();\n\n    // Проход 1: валидация всех элементов до accept.\n    // break в Tolk 1.4.2 ещё не поддержан, выход из цикла через флаг.\n    var cursor = inMsg;\n    var count = 0;\n    var more = true;\n    while (more) {\n        count += 1;\n        assert (count <= MAX_BATCH) throw ERROR_BATCH_TOO_LARGE;\n\n        val hasMore = cursor.loadBool();\n        val comment: slice = hasMore\n            ? cursor.loadRef().beginParse()\n            : (cursor.remainingRefsCount() == 1 ? cursor.loadRef().beginParse() : cursor);\n        validateComment(comment, maxRootBits);\n\n        more = hasMore;\n        if (hasMore) {\n            val nextItem = cursor.loadRef();\n            cursor = nextItem.beginParse();\n        }\n    }\n\n    acceptExternalMessage();\n\n    // Проход 2: отправка. Обхода цепочек комментариев здесь уже нет.\n    var sendCursor = inMsg;\n    var sendMore = true;\n    while (sendMore) {\n        val hasMore = sendCursor.loadBool();\n        val comment: slice = hasMore\n            ? sendCursor.loadRef().beginParse()\n            : (sendCursor.remainingRefsCount() == 1 ? sendCursor.loadRef().beginParse() : sendCursor);\n\n        sendRawMessage(\n            beginCell()\n                .storeSlice(prefix)\n                .storeSlice(comment)\n                .endCell(),\n            SEND_MODE_PAY_FEES_SEPARATELY\n        );\n\n        sendMore = hasMore;\n        if (hasMore) {\n            val nextItem = sendCursor.loadRef();\n            sendCursor = nextItem.beginParse();\n        }\n    }\n\n    storage.queries.uDictSetBuilder(\n        QUERY_KEY_BITS,\n        queryKey,\n        beginCell().storeUint(mask | queryBit, 256)\n    );\n    storage.save();\n}\n\n/**\n * Админские операции. Вызывается после успешной проверки подписи и всех\n * оконных проверок.\n *\n * Обе операции дают полный контроль над балансом. Ключ тот же, что у платежей,\n * поэтому единственное, что отделяет обычную работу сервиса от вывода всего\n * баланса, — это то, что сервис таких сообщений не собирает. Кода, способного\n * построить OP_WITHDRAW_ALL или OP_EXECUTE, в сервисе нет.\n */\nfun handleAdmin(mutate storage: Storage, mutate inMsg: slice, queryKey: int, newMask: int): void {\n    val op = inMsg.loadUint(32);\n\n    if (op == OP_WITHDRAW_ALL) {\n        val dest = inMsg.loadAddress();\n\n        acceptExternalMessage();\n\n        // Здесь createMessage, а не ручная сборка: заголовок собирается один раз\n        // и не переиспользуется, экономить на нём нечего, а ручная раскладка\n        // int_msg_info — источник трудноуловимых ошибок в редко исполняемом коде.\n        //\n        // В платёжном пути наоборот: там заголовок заранее лежит в msgPrefix и\n        // копируется одним storeSlice, и createMessage сериализовал бы адрес\n        // с суммой заново на каждой отправке. Разные задачи — разные средства.\n        //\n        // bounce = false намеренно: адрес вывода чаще всего ещё не развёрнут,\n        // и с bounce = true вывод на него просто отскочил бы назад. Обратная\n        // сторона — опечатка в адресе необратима, адрес проверяет человек.\n        // Кому нужен bounce, у того есть OP_EXECUTE с полным контролем.\n        //\n        // Режим 128 отправляет весь баланс, +2 гасит ошибку отправки, чтобы\n        // неудача не откатила транзакцию и не оставила внешку в ретрае.\n        createMessage({\n            bounce: BounceMode.NoBounce,\n            value: 0,          // сумму подставит режим 128\n            dest: dest,\n        }).send(WITHDRAW_MODE);\n    } else if (op == OP_EXECUTE) {\n        val mode = inMsg.loadUint(8);\n        val message = inMsg.loadRef();\n\n        acceptExternalMessage();\n\n        sendRawMessage(message, mode);\n    } else {\n        assert (false) throw ERROR_UNKNOWN_OP;\n    }\n\n    storage.queries.uDictSetBuilder(\n        QUERY_KEY_BITS,\n        queryKey,\n        beginCell().storeUint(newMask, 256)\n    );\n    storage.save();\n}\n\n/// Приём пополнений баланса.\nfun onInternalMessage(in: InMessage) {\n}\n\nget fun publicKey(): int {\n    return Storage.load().publicKey;\n}\n\nget fun paymentInfo(): (address, coins) {\n    var prefix = Storage.load().msgPrefix.beginParse();\n    prefix.skipBits(4 + 2);\n    val dest = prefix.loadAddress();\n    val value = prefix.loadCoins();\n    return (dest, value);\n}\n\nget fun commentLimits(): (int, int) {\n    val maxRootBits = CELL_MAX_BITS - Storage.load().msgPrefix.beginParse().remainingBitsCount();\n    return (maxRootBits, MAX_COMMENT_CELLS);\n}\n\nget fun maxBatch(): int {\n    return MAX_BATCH;\n}\n\n/**\n * Исполнен ли уже этот query_id.\n *\n * Заменяет seqno как способ подтверждения: сервис спрашивает про КОНКРЕТНОЕ\n * сообщение, а не про общее состояние контракта, и ответ не зависит ни от\n * порядка, ни от других отправок.\n *\n * ВАЖНО: ответ достоверен только внутри окна памяти (ROTATION_PERIOD после\n * исполнения). Для давно подтверждённых платежей вернётся false — их надо\n * искать в истории транзакций по хешу тела, а не спрашивать здесь.\n */\nget fun processed(queryId: int): bool {\n    val storage = Storage.load();\n    val queryKey = queryId >> QUERY_BIT_BITS;\n    val queryBit = 1 << (queryId & (QUERY_BITS_PER_ENTRY - 1));\n\n    val (currentValue, currentFound) = storage.queries.uDictGet(QUERY_KEY_BITS, queryKey);\n    if (currentFound) {\n        var s = currentValue!;\n        if ((s.loadUint(256) & queryBit) != 0) {\n            return true;\n        }\n    }\n\n    val (oldValue, oldFound) = storage.oldQueries.uDictGet(QUERY_KEY_BITS, queryKey);\n    if (oldFound) {\n        var s = oldValue!;\n        if ((s.loadUint(256) & queryBit) != 0) {\n            return true;\n        }\n    }\n\n    return false;\n}\n\n/// Параметры окна: (сколько живёт сообщение, допуск часов, период ротации).\n/// Сервис читает их отсюда, а не хардкодит: от MESSAGE_TTL зависит, когда\n/// безопасно переподписывать.\nget fun windowParams(): (int, int, int) {\n    return (MESSAGE_TTL, CLOCK_SKEW, ROTATION_PERIOD);\n}\n\n/// Когда в последний раз крутили поколения. Для диагностики.\nget fun lastCleaned(): int {\n    return Storage.load().lastCleaned;\n}\n"
+    }
+  ]
+}
